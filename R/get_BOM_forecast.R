@@ -71,7 +71,7 @@ get_BOM_forecast <- function() {
   }
 
   # combind list into a single dataframe
-  y <-  dplyr::rbind_all(y, fill = TRUE)
+  y <- data.table::rbindlist(y, fill = TRUE)
 
   # add the forecast description to the dataframe
   forecast <- data.frame(y, labs, rep(NA, length(labs)))
