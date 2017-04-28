@@ -1,0 +1,30 @@
+Package: BOMRang
+Type: Package
+Title: Fetch Australian Government Bureau of Meteorology Data
+Version: 0.0.1-1
+Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
+    email = "adamhsparks@gmail.com"),
+    person("Keith", "Pembleton", role = "aut",
+    email = "keith.pembleton@usq.edu.au"))
+Description: Fetches Fetch Australian Government Bureau of Meteorology Weather
+    forecasts and returns a tidy data frame of the current and next six days
+    weather.
+URL: https://github.com/adamhsparks/BOMRang
+BugReports: https://github.com/adamhsparks/BOMRang/issues
+License: MIT + file LICENSE
+Depends:
+    R (>= 3.2.0)
+Imports:
+    dplyr,
+    foreign,
+    lubridate,
+    plyr,
+    stringr,
+    tibble,
+    xml2
+Encoding: UTF-8
+LazyData: true
+Suggests: covr
+RoxygenNote: 6.0.1
+NeedsCompilation: no
+ByteCompile: TRUE
