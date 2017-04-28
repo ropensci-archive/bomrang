@@ -50,6 +50,11 @@ get_BOM_forecast <- function() {
   forecasts <- plyr::llply(forecasts, unlist)
   names(forecasts) <- forecast_locations$aac
 
+  pub_districts <- xml2::xml_attrs(areas, "//aac | //type")
+
+  pub_districts <-
+    dplyr::bind_rows(pub_districts)
+
   # get all the <element> and <text> tags (the forecast)
   eltext <- xml2::xml_find_all(xmlforecast, "//element | //text")
 
@@ -77,6 +82,15 @@ get_BOM_forecast <- function() {
   forecast <- data.frame(y, labs, rep(NA, length(labs)))
   names(forecast) <- c("aac", "keyName", "value", "labs", "element")
 
+  # add dates to the data frame
+  forecast$date <- c(Sys.Date(),
+                     rep(seq(
+                       lubridate::ymd(Sys.Date() + 1),
+                       lubridate::ymd(Sys.Date() + 6),
+                       by = "1 day"
+                     ),
+                     each = 2))
+
   # label for min/max temperature in a new col to use for sorting in next step
   forecast$element <-
     as.character(stringr::str_match(forecast$labs,
@@ -86,15 +100,6 @@ get_BOM_forecast <- function() {
   # keep only max and min temp
   forecast <-
     tibble::as_tibble(stats::na.omit(forecast[, c(1, 3, 5)]))
-
-  # add dates to the data frame
-  forecast$date <- c(Sys.Date(),
-                     rep(seq(
-                       lubridate::ymd(Sys.Date() + 1),
-                       lubridate::ymd(Sys.Date() + 6),
-                       by = "1 day"
-                     ),
-                     each = 2))
 
   forecast <-
     dplyr::left_join(forecast, forecast_locations, by = "aac")
