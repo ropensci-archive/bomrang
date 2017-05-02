@@ -9,6 +9,8 @@ Fetches Fetch Australian Government Bureau of Meteorology Weather forecasts and 
 
 *Limited to Queensland and temperature values only at the moment*
 
+Credit for the name, *BOMRang*, goes to the attendees of the 2016 \#AUUnconf in Brisbane, I can't recall if it was @MilesMcBain who suggested it or someone else? If you can take credit, submit a pull request taking credit please.
+
 Quick start
 -----------
 
