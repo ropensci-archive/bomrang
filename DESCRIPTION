@@ -9,8 +9,8 @@ Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
 Description: Fetches Fetch Australian Government Bureau of Meteorology Weather
     data, currently Queensland only forecast and returns a tidy data frame of 
     next seven days weather forecast.
-URL: https://github.com/adamhsparks/BOMRang
-BugReports: https://github.com/adamhsparks/BOMRang/issues
+URL: https://github.com/toowoombatrio/BOMRang
+BugReports: https://github.com/toowoombatrio/BOMRang/issues
 License: MIT + file LICENSE
 Depends:
     R (>= 3.2.0)
