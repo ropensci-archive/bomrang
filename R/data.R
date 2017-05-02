@@ -4,6 +4,7 @@
 #' \describe{
 #'   \item{AAC}{Unique identifier for each location}
 #'   \item{PT_NAME}{Human readable location name}
+#'   \item{ELEVATION}{Elevation (metres)}
 #'   \item{LON}{Longitude}
 #'   \item{LAT}{Latitude}
 #' }
