@@ -4,7 +4,21 @@
 \name{BOMRang}
 \alias{BOMRang}
 \alias{BOMRang-package}
-\title{BOMRang.}
+\title{Fetches Fetch Australian Government Bureau of Meteorology Weather
+data, currently Queensland only forecast and returns a tidy data frame of
+next seven days weather forecast.}
 \description{
-BOMRang.
+Fetches Fetch Australian Government Bureau of Meteorology Weather
+data, currently Queensland only forecast and returns a tidy data frame of
+next seven days weather forecast.
+}
+\seealso{
+\strong{Useful links:}
+\itemize{
+\item{\url{https://github.com/adamhsparks/BOMRang}}
+\item{Report bugs at \url{https://github.com/adamhsparks/BOMRang/issues}}
+}
+}
+\author{
+Adam Sparks and Keith Pembleton
 }

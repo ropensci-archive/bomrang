@@ -6,9 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fetches Fetch Australian Government Bureau of Meteorology Weather
-data, currently Queensland only forecast and returns a tidy data frame of
-next seven days weather forecast. — BOMRang • BOMRang</title>
+<title>Get BOM Forecast for Queensland — get_BOM_QLD • BOMRang</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -78,37 +76,36 @@ next seven days weather forecast. — BOMRang • BOMRang</title>
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fetches Fetch Australian Government Bureau of Meteorology Weather
-data, currently Queensland only forecast and returns a tidy data frame of
-next seven days weather forecast.</h1>
+    <h1>Get BOM Forecast for Queensland</h1>
     </div>
 
     
-    <p>Fetches Fetch Australian Government Bureau of Meteorology Weather
-data, currently Queensland only forecast and returns a tidy data frame of
-next seven days weather forecast.</p>
+    <p>Fetch the BOM forecast and create a data frame object that can be used for
+interpolating.</p>
     
 
+    <pre class="usage"><span class='fu'>get_BOM_QLD</span>()</pre>
         
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p><strong>Useful links:</strong></p><ul>
-<li><p><a href = 'https://github.com/adamhsparks/BOMRang'>https://github.com/adamhsparks/BOMRang</a></p></li>
-<li><p>Report bugs at <a href = 'https://github.com/adamhsparks/BOMRang/issues'>https://github.com/adamhsparks/BOMRang/issues</a></p></li>
-</ul>
+    <p>Data frame of a Australia BOM forecast for Queensland for max temperature,
+min temperature and corresponding locations with lat/lon values for the next
+six days.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>not_run</span>({
+  <span class='no'>BOM_forecast</span> <span class='kw'>&lt;-</span> <span class='fu'>get_BOM_QLD</span>()
+})</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
-      <li><a href="#see-also">See also</a></li>
-          </ul>
-
-    <h2>Author</h2>
-    
-Adam Sparks and Keith Pembleton
+      <li><a href="#value">Value</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
   </div>
 </div>

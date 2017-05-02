@@ -6,16 +6,17 @@
 #'
 #' @return
 #' Data frame of a Australia BOM forecast for Queensland for max temperature,
-#' min temperature and corresponding locations.
+#' min temperature and corresponding locations with lat/lon values for the next
+#' six days.
 #'
 #' @examples
 #' \dontrun{
-#' BOM_forecast <- get_BOM_forecast()
+#' BOM_forecast <- get_BOM_QLD()
 #' }
 #' @export
 #'
 #' @importFrom dplyr %>%
-get_BOM_forecast <- function() {
+get_BOM_QLD <- function() {
   # BOM station list - a .dbf file (part of a shapefile of station locations)
   # AAC codes can be used to add lat/lon to the forecast
   utils::download.file(
@@ -32,8 +33,12 @@ get_BOM_forecast <- function() {
   xmlforecast <-
     xml2::read_xml("ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ11295.xml")
 
+  # remove index=0 (today's "forecast"), it varies and we're not interested anyway
+  xml2::xml_find_all(xmlforecast, ".//*[@index='0']") %>%
+    xml2::xml_remove()
+
   # extract locations from forecast
-  areas <- xml2::xml_find_all(xmlforecast, "//forecast/area")
+  areas <- xml2::xml_find_all(xmlforecast, ".//*[@type='location']")
   forecast_locations <-
     dplyr::bind_rows(lapply(xml2::xml_attrs(areas), as.list))
 
@@ -43,17 +48,13 @@ get_BOM_forecast <- function() {
                                          by = c("aac" = "AAC",
                                                 "description" = "PT_NAME"))
 
-  # unlist and add the locations aac code
+    # unlist and add the locations aac code
   forecasts <-
-    lapply(xml2::xml_find_all(xmlforecast, "//forecast/area"),
+    lapply(xml2::xml_find_all(xmlforecast, ".//*[@type='location']"),
            xml2::as_list)
+
   forecasts <- plyr::llply(forecasts, unlist)
   names(forecasts) <- forecast_locations$aac
-
-  pub_districts <- xml2::xml_attrs(areas, "//aac | //type")
-
-  pub_districts <-
-    dplyr::bind_rows(pub_districts)
 
   # get all the <element> and <text> tags (the forecast)
   eltext <- xml2::xml_find_all(xmlforecast, "//element | //text")
@@ -82,14 +83,13 @@ get_BOM_forecast <- function() {
   forecast <- data.frame(y, labs, rep(NA, length(labs)))
   names(forecast) <- c("aac", "keyName", "value", "labs", "element")
 
-  # add dates to the data frame
-  forecast$date <- c(Sys.Date(),
-                     rep(seq(
-                       lubridate::ymd(Sys.Date() + 1),
-                       lubridate::ymd(Sys.Date() + 6),
-                       by = "1 day"
-                     ),
-                     each = 2))
+  # add dates to the new object
+  forecast$date <- c(rep(seq(
+    lubridate::ymd(Sys.Date() + 1),
+    lubridate::ymd(Sys.Date() + 7),
+    by = "1 day"
+  ),
+  each = 2))
 
   # label for min/max temperature in a new col to use for sorting in next step
   forecast$element <-
@@ -99,8 +99,13 @@ get_BOM_forecast <- function() {
   # convert object to tibble and remove rows we don't need, e.g., precip
   # keep only max and min temp
   forecast <-
-    tibble::as_tibble(stats::na.omit(forecast[, c(1, 3, 5)]))
+    tibble::as_tibble(stats::na.omit(forecast[, c(1, 3, 5:6)]))
 
+  # convert forecast_locations$aac to factor for merging
+  forecast$aac <- as.character(forecast$aac)
+
+  # merge the forecast with the locations
   forecast <-
     dplyr::left_join(forecast, forecast_locations, by = "aac")
+
 }
