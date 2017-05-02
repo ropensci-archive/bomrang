@@ -17,17 +17,10 @@
 #'
 #' @importFrom dplyr %>%
 get_BOM_QLD <- function() {
-  # BOM station list - a .dbf file (part of a shapefile of station locations)
-  # AAC codes can be used to add lat/lon to the forecast
-  utils::download.file(
-    "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf",
-    destfile = paste0(tempdir(), "AAC_codes.dbf"),
-    mode = "wb"
-  )
 
-  AAC_codes <-
-    foreign::read.dbf(paste0(tempdir(), "AAC_codes.dbf"), as.is = TRUE)
-  AAC_codes <- AAC_codes[, c(2:3, 7:9)]
+  # Load BOM location data
+  utils::data("AAC_codes", package = "BOMRang")
+  AAC_codes <- AAC_codes
 
   # fetch BOM foreast for Qld
   xmlforecast <-

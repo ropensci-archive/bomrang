@@ -1,0 +1,38 @@
+---
+title: "Get BOM Locations"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Get BOM Locations
+
+BOM maintains a shapefile of a station list. For ease, we'll just use the .dbf 
+file part of th shapefile to extract AAC codes that can be used to add lat/lon
+to the forecast.
+
+```{r get_locations}
+  utils::download.file(
+    "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf",
+    destfile = paste0(tempdir(), "AAC_codes.dbf"),
+    mode = "wb"
+  )
+
+  AAC_codes <-
+    foreign::read.dbf(paste0(tempdir(), "AAC_codes.dbf"), as.is = TRUE)
+  AAC_codes <- AAC_codes[, c(2:3, 7:9)]
+```
+
+Save the stations to disk for use in the R package.
+
+```{r create_data}
+  devtools::use_data(AAC_codes, overwrite = TRUE)
+```
+
+## Session Info
+```{r session_info}
+devtools::session_info()
+```
+
