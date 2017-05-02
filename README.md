@@ -9,6 +9,19 @@ Fetches Fetch Australian Government Bureau of Meteorology Weather forecasts and 
 
 *Limited to Queensland and temperature values only at the moment*
 
+Quick start
+-----------
+
+``` r
+if (!require("devtools")) {
+  install.packages("devtools", repos = "http://cran.rstudio.com/") 
+  library("devtools")
+}
+
+devtools::install_github("adamhsparks/BOMRang")
+library("BOMRang")
+```
+
 Meta
 ----
 

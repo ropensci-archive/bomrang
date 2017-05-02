@@ -65,6 +65,17 @@
 
 <p>Fetches Fetch Australian Government Bureau of Meteorology Weather forecasts and returns a tidy data frame in a <em>Tibble</em> of the current and next six days weather.</p>
 <p><em>Limited to Queensland and temperature values only at the moment</em></p>
+<div id="quick-start" class="section level2">
+<h2 class="hasAnchor">
+<a href="#quick-start" class="anchor"></a>Quick start</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"devtools"</span>)) {
+  <span class="kw">install.packages</span>(<span class="st">"devtools"</span>, <span class="dt">repos =</span> <span class="st">"http://cran.rstudio.com/"</span>) 
+  <span class="kw">library</span>(<span class="st">"devtools"</span>)
+}
+
+devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"adamhsparks/BOMRang"</span>)
+<span class="kw">library</span>(<span class="st">"BOMRang"</span>)</code></pre></div>
+</div>
 <div id="meta" class="section level2">
 <h2 class="hasAnchor">
 <a href="#meta" class="anchor"></a>Meta</h2>
