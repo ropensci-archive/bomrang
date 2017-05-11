@@ -1,5 +1,5 @@
 
-#' Get BOM Forecast for Queensland
+#' Get BOM Forecast
 #'
 #'Fetch the BOM forecast and create a data frame object that can be used for
 #'interpolating.
@@ -7,9 +7,8 @@
 #' @param state Australian state or territory, either as full name or abbreviation
 #'
 #' @return
-#' Data frame of a Australia BOM forecast for Queensland for max temperature,
-#' min temperature and corresponding locations with lat/lon values for the next
-#' six days.
+#' Data frame of a Australia BOM forecast for max temperature, min temperature
+#' and corresponding locations with lat/lon values for the next six days.
 #'
 #' @examples
 #' \dontrun{
@@ -27,28 +26,28 @@ get_forecast <- function(state) {
 
   # Select state/territory forecast and fetch
 
-  if (state = "NT") {
+  if (state == "NT") {
     xmlforecast <-
       xml2::read_xml("ftp://ftp.bom.gov.au/anon/gen/fwo/IDD10207.xml") # nt
   }
-  else if (state = "NSW") {
+  else if (state == "NSW") {
     xmlforecast <-
       xml2::read_xml("ftp://ftp.bom.gov.au/anon/gen/fwo/IDN11060.xml") # nsw
   }
-  else if (state = "QLD") {
+  else if (state == "QLD") {
     xmlforecast <-
       xml2::read_xml("ftp://ftp.bom.gov.au/anon/gen/fwo/IDN11060.xml") # qld
   }
-  else if (state = "SA") {
+  else if (state == "SA") {
     xmlforecast <-
       xml2::read_xml("ftp://ftp.bom.gov.au/anon/gen/fwo/IDS10044.xml") # sa
   }
-  else if (state = "TAS")
+  else if (state == "TAS")
   {
     xmlforecast <-
       xml2::read_xml("ftp://ftp.bom.gov.au/anon/gen/fwo/IDT16710.xml") # tas
   }
-  else if (state = "VIC") {
+  else if (state == "VIC") {
     xmlforecast <-
       xml2::read_xml("ftp://ftp.bom.gov.au/anon/gen/fwo/IDV10753.xml") # vic
   }
