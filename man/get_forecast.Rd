@@ -7,19 +7,34 @@
 get_forecast(state)
 }
 \arguments{
-\item{state}{Australian state or territory, either as full name or abbreviation}
+\item{state}{Australian state or territory as postal code, see details for
+instruction.}
 }
 \value{
 Data frame of a Australia BOM forecast for max temperature, min temperature
 and corresponding locations with lat/lon values for the next six days.
 }
 \description{
-Fetch the BOM forecast and create a data frame object that can be used for
-interpolating.
+Fetch the BOM forecast and create a tidy data frame of the six day forecast
+}
+\details{
+Allowed state and territory postal codes, only one state per request
+or all using \code{AUS}.
+ \itemize{
+   \item{ACT - Australian Capital Territory}
+   \item{NSW - New South Wales}
+   \item{NT - Northern Territory}
+   \item{QLD - Queensland}
+   \item{SA - South Australia}
+   \item{TAS - Tasmania}
+   \item{VIC - Tasmania}
+   \item{WA - Western Australia}
+   \item{AUS - Australia, returns forecast for all states}
+ }
 }
 \examples{
 \dontrun{
-BOM_forecast <- get_forecast(state = "Qld")
+BOM_forecast <- get_forecast(state = "QLD")
 }
 
 }

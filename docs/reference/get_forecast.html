@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • BOMRang</title>
+<title>Get BOM Forecast — get_forecast • BOMRang</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -36,7 +36,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -74,66 +74,65 @@
       </header>
 
       <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.0.1-1</small>
-      </h1>
+    <h1>Get BOM Forecast</h1>
     </div>
 
-    <div class="contents">
-      <table class="ref-index">
+    
+    <p>Fetch the BOM forecast and create a tidy data frame of the six day forecast</p>
+    
 
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
+    <pre class="usage"><span class='fu'>get_forecast</span>(<span class='no'>state</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>state</th>
+      <td><p>Australian state or territory as postal code, see details for
+instruction.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="AAC_codes.html">AAC_codes</a></code> </p>
-          </td>
-          <td><p>AAC_codes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="BOMRang.html">BOMRang</a></code> </p>
-          </td>
-          <td><p>Fetches Fetch Australian Government Bureau of Meteorology Weather
-data, currently Queensland only forecast and returns a tidy data frame of
-next seven days weather forecast.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_forecast.html">get_forecast</a></code> </p>
-          </td>
-          <td><p>Get BOM Forecast</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="update_locations.html">update_locations</a></code> </p>
-          </td>
-          <td><p>Update Internal Database With Latest BOM Forecast Locations From BOM FTP Server</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+    <p>Data frame of a Australia BOM forecast for max temperature, min temperature
+and corresponding locations with lat/lon values for the next six days.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Allowed state and territory postal codes, only one state per request
+or all using <code>AUS</code>.</p><ul>
+<li><p>ACT - Australian Capital Territory</p></li>
+<li><p>NSW - New South Wales</p></li>
+<li><p>NT - Northern Territory</p></li>
+<li><p>QLD - Queensland</p></li>
+<li><p>SA - South Australia</p></li>
+<li><p>TAS - Tasmania</p></li>
+<li><p>VIC - Tasmania</p></li>
+<li><p>WA - Western Australia</p></li>
+<li><p>AUS - Australia, returns forecast for all states</p></li>
+</ul>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>not_run</span>({
+  <span class='no'>BOM_forecast</span> <span class='kw'>&lt;-</span> <span class='fu'>get_forecast</span>(<span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"QLD"</span>)
+})</div></pre>
   </div>
-
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
     </ul>
+
   </div>
 </div>
 
