@@ -64,7 +64,7 @@ Results
 The function, `get_forecast()` will return a Tibble of the weather forecast for the next six days with the following fields.
 
 -   **aac** - AMOC Area Code, e.g. WA\_MW008, a unique identifier for each location
--   **date** - Date in YYYY-MM-DD format
+-   **date** - Date (YYYY-MM-DD)
 -   **max\_temp** - Maximum forecasted temperature (degrees Celsius)
 -   **min\_temp** - Minimum forecasted temperature (degrees Celsius)
 -   **lower\_prcp\_limit** - Lower forecasted precipitation limit (millimetres)

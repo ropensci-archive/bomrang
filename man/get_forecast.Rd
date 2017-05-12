@@ -16,7 +16,7 @@ with the following fields.
 
 \describe{
    \item{aac}{AMOC Area Code, e.g. WA_MW008, a unique identifier for each location}
-   \item{date}{Date in YYYY-MM-DD format}
+   \item{date}{Date (YYYY-MM-DD)}
    \item{max_temp}{Maximum forecasted temperature (degrees Celsius)}
    \item{min_temp}{Minimum forecasted temperature (degrees Celsius)}
    \item{lower_prcp_limit}{Lower forecasted precipitation limit (millimetres)}
