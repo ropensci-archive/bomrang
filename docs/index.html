@@ -104,6 +104,51 @@ QLD_forecast</code></pre></div>
 <p>If you want the national forecast for all areas BOM offers, use the official three letter ISO code abbreviation for Australia, AUS, as the <code>state</code> parameter.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BOM_forecast &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_forecast.html">get_forecast</a></span>(<span class="dt">state =</span> <span class="st">"AUS"</span>)</code></pre></div>
 </div>
+<div id="results" class="section level2">
+<h2 class="hasAnchor">
+<a href="#results" class="anchor"></a>Results</h2>
+<p>The function, <code><a href="reference/get_forecast.html">get_forecast()</a></code> will return a Tibble of the weather forecast for the next six days with the following fields.</p>
+<ul>
+<li>
+<strong>aac</strong> - AMOC Area Code, e.g. WA_MW008, a unique identifier for each location<br>
+</li>
+<li>
+<strong>date</strong> - Date in YYYY-MM-DD format<br>
+</li>
+<li>
+<strong>max_temp</strong> - Maximum forecasted temperature (degrees Celsius)<br>
+</li>
+<li>
+<strong>min_temp</strong> - Minimum forecasted temperature (degrees Celsius)<br>
+</li>
+<li>
+<strong>lower_prcp_limit</strong> - Lower forecasted precipitation limit (millimetres)<br>
+</li>
+<li>
+<strong>upper_prcp_limit</strong> - Upper forecasted precipitation limit (millimetres)<br>
+</li>
+<li>
+<strong>precis</strong> - Précis forecast (a short summary, less than 30 characters)<br>
+</li>
+<li>
+<strong>prob_prcp</strong> - Probability of precipitation (percent)<br>
+</li>
+<li>
+<strong>location</strong> - Named location for forecast<br>
+</li>
+<li>
+<strong>state</strong> - State name (postal code abbreviation)<br>
+</li>
+<li>
+<strong>lon</strong> - Longitude of named location (decimal Degrees)<br>
+</li>
+<li>
+<strong>lat</strong> - Latitude of named location (decimal Degrees)<br>
+</li>
+<li>
+<strong>elev</strong> - Elevation of named location (metres)</li>
+</ul>
+</div>
 <div id="meta" class="section level2">
 <h2 class="hasAnchor">
 <a href="#meta" class="anchor"></a>Meta</h2>
@@ -117,6 +162,11 @@ Sparks A and Pembleton K (2017). <em>BOMRang: Fetch Australian Government Bureau
 </li>
 <li>Please note that this project is released with a <a href="CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</li>
 </ul>
+</div>
+<div id="references" class="section level2">
+<h2 class="hasAnchor">
+<a href="#references" class="anchor"></a>References</h2>
+<p><a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services</a></p>
 </div>
 </div>
 </div>
