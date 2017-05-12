@@ -25,4 +25,8 @@ library("BOMRang")
 Meta
 ----
 
-Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+-   Please [report any issues or bugs](https://github.com/ToowoombaTrio/BOMRang/issues).
+-   License: MIT
+-   To cite *BOMRang*, please use:
+    Sparks A and Pembleton K (2017). *BOMRang: Fetch Australian Government Bureau of Meteorology Weather Data*. R package version 0.0.1-1, &lt;URL: <https://github.com/ToowoombaTrio/BOMRang>&gt;.
+-   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
