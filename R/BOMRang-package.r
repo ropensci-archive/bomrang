@@ -1,9 +1,8 @@
-#' Fetches Fetch Australian Government Bureau of Meteorology Weather
-#' data, currently Queensland only forecast and returns a tidy data frame of
-#' next seven days weather forecast.
+#' Fetches Australian Government Bureau of Meteorology (BOM) XML weather forecast
+#' and returns a tidy data frame of the daily weather forecast.
 #'
 #' @name BOMRang
-#' @author Adam Sparks and Keith Pembleton
+#' @author Adam H Sparks and Keith Pembleton
 #' @docType package
 #'
 #' @seealso

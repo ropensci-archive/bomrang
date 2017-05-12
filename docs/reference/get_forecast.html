@@ -54,6 +54,9 @@
   <a href="../reference/index.html">Reference</a>
 </li>
 <li>
+  <a href="../articles/index.html">Articles</a>
+</li>
+<li>
   <a href="../news/index.html">News</a>
 </li>
       </ul>
@@ -80,7 +83,7 @@
     </div>
 
     
-    <p>Fetch the BOM forecast and create a tidy data frame of the six day forecast</p>
+    <p>Fetch the BOM forecast and create a tidy data frame of the daily forecast</p>
     
 
     <pre class="usage"><span class='fu'>get_forecast</span>(<span class='kw'>state</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
@@ -97,8 +100,8 @@ instruction.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Data frame of a Australia BOM forecast for the next six days in a data frame
-with the following fields.</p><dl class='dl-horizontal'>
+    <p>Data frame of a Australia BOM daily forecast in a data frame with the
+following fields.</p><dl class='dl-horizontal'>
    <dt>aac</dt><dd><p>AMOC Area Code, e.g. WA_MW008, a unique identifier for each location</p></dd>
    <dt>date</dt><dd><p>Date (YYYY-MM-DD)</p></dd>
    <dt>max_temp</dt><dd><p>Maximum forecasted temperature (degrees Celsius)</p></dd>
@@ -125,7 +128,7 @@ or all using <code>AUS</code>.</p><dl class='dl-horizontal'>
    <dt>QLD</dt><dd><p>Queensland</p></dd>
    <dt>SA</dt><dd><p>South Australia</p></dd>
    <dt>TAS</dt><dd><p>Tasmania</p></dd>
-   <dt>VIC</dt><dd><p>Tasmania</p></dd>
+   <dt>VIC</dt><dd><p>Victoria</p></dd>
    <dt>WA</dt><dd><p>Western Australia</p></dd>
    <dt>AUS</dt><dd><p>Australia, returns forecast for all states</p></dd>
  </dl>

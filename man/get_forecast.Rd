@@ -11,8 +11,8 @@ get_forecast(state = NULL)
 instruction.}
 }
 \value{
-Data frame of a Australia BOM forecast for the next six days in a data frame
-with the following fields.
+Data frame of a Australia BOM daily forecast in a data frame with the
+following fields.
 
 \describe{
    \item{aac}{AMOC Area Code, e.g. WA_MW008, a unique identifier for each location}
@@ -31,7 +31,7 @@ with the following fields.
 }
 }
 \description{
-Fetch the BOM forecast and create a tidy data frame of the six day forecast
+Fetch the BOM forecast and create a tidy data frame of the daily forecast
 }
 \details{
 Allowed state and territory postal codes, only one state per request
@@ -43,7 +43,7 @@ or all using \code{AUS}.
    \item{QLD}{Queensland}
    \item{SA}{South Australia}
    \item{TAS}{Tasmania}
-   \item{VIC}{Tasmania}
+   \item{VIC}{Victoria}
    \item{WA}{Western Australia}
    \item{AUS}{Australia, returns forecast for all states}
  }

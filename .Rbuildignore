@@ -8,3 +8,5 @@
 ^codecov\.yml$
 ^docs$
 ^data-raw$
+^cran-comments\.md$
+^revdep$
