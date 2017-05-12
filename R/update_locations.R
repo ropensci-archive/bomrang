@@ -2,15 +2,21 @@
 #'
 #' This function downloads the latest forecast locations from the BOM server
 #' and updates BOMRang's internal database of forecast locations.  There is no
-#' need to use this unless you know that a forecast locations exist in the BOM
-#' forecast location database that is not available in the database distributed
-#' with \code{\link{BOMRang}}.
+#' need to use this unless you know that a forecast location exists in a more
+#' current version of the BOM forecast location database that is not available
+#' in the database distributed with \code{\link{BOMRang}}.
 #'
 #' @examples
 #' \dontrun{
 #' update_locations()
 #' }
 #' @return Updated internal database of BOM forecast locations
+#'
+#' @references
+#' Australian Bureau of Meteorology (BOM) Weather Data Services
+#' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
+#'
+#'
 #' @author Adam H Sparks, \email{adamhsparks@gmail.com}
 #' @export
 #'

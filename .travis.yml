@@ -4,5 +4,24 @@ language: R
 sudo: false
 cache: packages
 
+## Set up the matrix of different runs
+env:
+  matrix:
+  - r: release
+    not_cran: true
+    r_check_args: "--no-manual"
+  - r: release
+    not_cran: false
+    r_check_args: "--no-manual --as--cran"
+
+after_failure:
+  - ./pkg-build.sh dump_logs
+
+notifications:
+  email:
+    on_success: change
+    on_failure: change
+
+
 after_success:
   - Rscript -e 'covr::codecov()'
