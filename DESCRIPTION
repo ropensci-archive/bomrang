@@ -7,7 +7,7 @@ Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     person("Keith", "Pembleton", role = "aut",
     email = "keith.pembleton@usq.edu.au"))
 Description: Fetches Australian Government Bureau of Meteorology Weather XML 
-    forecast and returns a tidy data frame of daily weather forecast.
+    précis forecast and returns a tidy data frame of the daily weather forecast.
 URL: https://github.com/ToowoombaTrio/BOMRang
 BugReports: https://github.com/ToowoombaTrio/BOMRang/issues
 License: MIT + file LICENSE

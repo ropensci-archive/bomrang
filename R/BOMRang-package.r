@@ -1,4 +1,4 @@
-#' Fetches Australian Government Bureau of Meteorology (BOM) XML weather forecast
+#' Fetches Australian Government Bureau of Meteorology (BOM) XML précis forecast
 #' and returns a tidy data frame of the daily weather forecast.
 #'
 #' @name BOMRang

@@ -31,7 +31,8 @@ following fields.
 }
 }
 \description{
-Fetch the BOM forecast and create a tidy data frame of the daily forecast
+Fetch the BOM précis forecast and return a tidy data frame of the daily
+forecast
 }
 \details{
 Allowed state and territory postal codes, only one state per request

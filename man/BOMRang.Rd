@@ -4,10 +4,10 @@
 \name{BOMRang}
 \alias{BOMRang}
 \alias{BOMRang-package}
-\title{Fetches Australian Government Bureau of Meteorology (BOM) XML weather forecast
+\title{Fetches Australian Government Bureau of Meteorology (BOM) XML précis forecast
 and returns a tidy data frame of the daily weather forecast.}
 \description{
-Fetches Australian Government Bureau of Meteorology (BOM) XML weather forecast
+Fetches Australian Government Bureau of Meteorology (BOM) XML précis forecast
 and returns a tidy data frame of the daily weather forecast.
 }
 \seealso{

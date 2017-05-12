@@ -12,7 +12,7 @@ output: github_document
 [![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-brightgreen.svg)](https://github.com/toowoombatrio/BOMRang/commits/master) 
 [![minimal R version](https://img.shields.io/badge/R%3E%3D-`r as.character(getRversion())`-brightgreen.svg)](https://cran.r-project.org/)
 
-Fetches Australian Government Bureau of Meteorology XML weather forecast and
+Fetches Australian Government Bureau of Meteorology XML précis forecast and
 returns a tidy data frame ([Tibble](http://tibble.tidyverse.org)) of the daily 
 weather forecast.
 
