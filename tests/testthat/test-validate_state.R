@@ -1,13 +1,21 @@
 context(".validate_state")
 
-# Test that .validate_dsn stops if the dsn is not provided ---------------------
+# Test that .validate_state stops if the state is not provided -----------------
 
 test_that(".validate_state stops if the state is not provided", {
   state <- NULL
-  expect_error(.validate_dsn(dsn))
+  expect_error(.validate_state(state))
 })
 
-test_that(".validate_state stops if the state is properly formatted/recognised", {
+# Test that .validate_state stops if the state recognised ----------------------
+test_that(".validate_state stops if the state is recognised", {
   state <- "Australia"
-  expect_error(.validate_dsn(dsn))
+  expect_error(.validate_state(state))
+})
+
+# Test that .validate_state returns values in upper case  ----------------------
+test_that(".validate_state returns the entered value in upper case", {
+  state <- "Qld"
+  state <- .validate_state(state)
+  expect_equal(state, "QLD")
 })

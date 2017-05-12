@@ -34,6 +34,7 @@
 #'    \item{precis}{Précis forecast (a short summary, less than 30 characters)}
 #'    \item{prob_prcp}{Probability of precipitation (percent)}
 #'    \item{location}{Named location for forecast}
+#'    \item{state}{State name}
 #'    \item{lon}{Longitude of named location (Decimal Degrees)}
 #'    \item{lat}{Latitude of named location (Decimal Degrees)}
 #'    \item{elev}{Elevation of named location (Metres)}
@@ -242,11 +243,17 @@ get_forecast <- function(state = NULL) {
     forecast$aac <- as.character(forecast$aac)
 
     # return final forecast object ---------------------------------------------
-    forecast <-
+    forecast  <-
       dplyr::left_join(tibble::as_tibble(forecast),
                        forecast_locations, by = "aac") %>%
       dplyr::select(-`parent-aac`) %>%
-      dplyr::rename(lon = LON, lat = LAT, elev = ELEVATION)
+      dplyr::rename(lon = LON,
+                    lat = LAT,
+                    elev = ELEVATION) %>%
+      dplyr::mutate(state = stringr::str_extract(forecast$aac,
+                                                 pattern = "[:alpha:]{2,3}")) %>%
+      dplyr::rename(location = description) %>%
+      dplyr::select(aac:location, state, lon, lat, elev)
 }
 
 #' @noRd
