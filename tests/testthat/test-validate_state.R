@@ -7,12 +7,6 @@ test_that(".validate_state stops if the state is not provided", {
   expect_error(.validate_state(state))
 })
 
-# Test that .validate_state stops if the state recognised ----------------------
-test_that(".validate_state stops if the state is recognised", {
-  state <- "Australia"
-  expect_error(.validate_state(state))
-})
-
 # Test that .validate_state returns values in upper case  ----------------------
 test_that(".validate_state returns the entered value in upper case", {
   state <- "Qld"

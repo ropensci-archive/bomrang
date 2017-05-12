@@ -20,6 +20,7 @@ Imports:
     lubridate,
     plyr,
     reshape2,
+    stringr,
     tibble,
     tidyr,
     xml2

@@ -107,7 +107,6 @@ get_forecast <- function(state = NULL) {
       file_list,
       file.path(tempdir(), basename(file_list))
     )
-
   } else
     stop(state, " not recognised as a valid state or territory")
 
@@ -127,8 +126,8 @@ get_forecast <- function(state = NULL) {
 
 .parse_forecast <- function(xmlforecast) {
   type <-
-    precipitation_range <-
-    `parent-aac` <- LON <- LAT <- ELEVATION <- NULL
+    description <- aac <- location <- state <- lon <- lat <- elev <-
+    precipitation_range <- `parent-aac` <- LON <- LAT <- ELEVATION <- NULL
 
     # load BOM location data ---------------------------------------------------
     utils::data("AAC_codes", package = "BOMRang")
