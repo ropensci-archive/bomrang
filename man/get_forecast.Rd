@@ -24,10 +24,10 @@ with the following fields.
    \item{precis}{Précis forecast (a short summary, less than 30 characters)}
    \item{prob_prcp}{Probability of precipitation (percent)}
    \item{location}{Named location for forecast}
-   \item{state}{State name}
-   \item{lon}{Longitude of named location (Decimal Degrees)}
-   \item{lat}{Latitude of named location (Decimal Degrees)}
-   \item{elev}{Elevation of named location (Metres)}
+   \item{state}{State name  (postal code abbreviation)}
+   \item{lon}{Longitude of named location (decimal Degrees)}
+   \item{lat}{Latitude of named location (decimal Degrees)}
+   \item{elev}{Elevation of named location (metres)}
 }
 }
 \description{
@@ -36,16 +36,16 @@ Fetch the BOM forecast and create a tidy data frame of the six day forecast
 \details{
 Allowed state and territory postal codes, only one state per request
 or all using \code{AUS}.
- \itemize{
-   \item{ACT - Australian Capital Territory}
-   \item{NSW - New South Wales}
-   \item{NT - Northern Territory}
-   \item{QLD - Queensland}
-   \item{SA - South Australia}
-   \item{TAS - Tasmania}
-   \item{VIC - Tasmania}
-   \item{WA - Western Australia}
-   \item{AUS - Australia, returns forecast for all states}
+ \describe{
+   \item{ACT}{Australian Capital Territory}
+   \item{NSW}{New South Wales}
+   \item{NT}{Northern Territory}
+   \item{QLD}{Queensland}
+   \item{SA}{South Australia}
+   \item{TAS}{Tasmania}
+   \item{VIC}{Tasmania}
+   \item{WA}{Western Australia}
+   \item{AUS}{Australia, returns forecast for all states}
  }
 }
 \examples{

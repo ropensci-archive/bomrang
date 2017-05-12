@@ -58,6 +58,25 @@ If you want the national forecast for all areas BOM offers, use the official thr
 BOM_forecast <- get_forecast(state = "AUS")
 ```
 
+Results
+-------
+
+The function, `get_forecast()` will return a Tibble of the weather forecast for the next six days with the following fields.
+
+-   **aac** - AMOC Area Code, e.g. WA\_MW008, a unique identifier for each location
+-   **date** - Date in YYYY-MM-DD format
+-   **max\_temp** - Maximum forecasted temperature (degrees Celsius)
+-   **min\_temp** - Minimum forecasted temperature (degrees Celsius)
+-   **lower\_prcp\_limit** - Lower forecasted precipitation limit (millimetres)
+-   **upper\_prcp\_limit** - Upper forecasted precipitation limit (millimetres)
+-   **precis** - Précis forecast (a short summary, less than 30 characters)
+-   **prob\_prcp** - Probability of precipitation (percent)
+-   **location** - Named location for forecast
+-   **state** - State name (postal code abbreviation)
+-   **lon** - Longitude of named location (decimal Degrees)
+-   **lat** - Latitude of named location (decimal Degrees)
+-   **elev** - Elevation of named location (metres)
+
 Meta
 ----
 
@@ -66,3 +85,8 @@ Meta
 -   To cite *BOMRang*, please use:
     Sparks A and Pembleton K (2017). *BOMRang: Fetch Australian Government Bureau of Meteorology Weather Data*. R package version 0.0.1-1, &lt;URL: <https://github.com/ToowoombaTrio/BOMRang>&gt;.
 -   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+
+References
+----------
+
+[Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml)
