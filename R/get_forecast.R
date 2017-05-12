@@ -1,7 +1,7 @@
 
 #' Get BOM Forecast
 #'
-#'Fetch the BOM forecast and create a tidy data frame of the six day forecast
+#'Fetch the BOM forecast and create a tidy data frame of the daily forecast
 #'
 #' @param state Australian state or territory as postal code, see details for
 #' instruction.
@@ -15,18 +15,18 @@
 #'    \item{QLD}{Queensland}
 #'    \item{SA}{South Australia}
 #'    \item{TAS}{Tasmania}
-#'    \item{VIC}{Tasmania}
+#'    \item{VIC}{Victoria}
 #'    \item{WA}{Western Australia}
 #'    \item{AUS}{Australia, returns forecast for all states}
 #'  }
 #'
 #' @return
-#' Data frame of a Australia BOM forecast for the next six days in a data frame
-#' with the following fields.
+#' Data frame of a Australia BOM daily forecast in a data frame with the
+#' following fields.
 #'
 #'\describe{
 #'    \item{aac}{AMOC Area Code, e.g. WA_MW008, a unique identifier for each location}
-#'    \item{date}{Date in YYYY-MM-DD format}
+#'    \item{date}{Date (YYYY-MM-DD)}
 #'    \item{max_temp}{Maximum forecasted temperature (degrees Celsius)}
 #'    \item{min_temp}{Minimum forecasted temperature (degrees Celsius)}
 #'    \item{lower_prcp_limit}{Lower forecasted precipitation limit (millimetres)}
@@ -136,7 +136,7 @@ get_forecast <- function(state = NULL) {
     # load the XML forecast ----------------------------------------------------
     xmlforecast <- xml2::read_xml(xmlforecast)
 
-    # remove today's "forecast" ------------------------------------------------
+    # remove today's data ------------------------------------------------------
     xml2::xml_find_all(xmlforecast, ".//*[@index='0']") %>%
       xml2::xml_remove()
 
@@ -188,10 +188,15 @@ get_forecast <- function(state = NULL) {
       data.frame(y[, -2], labs) # drop keyName colum from "y"
     names(forecast) <- c("aac", "value", "labs")
 
+    # how many days are in the forecast? It may be 6 or 7 ----------------------
+    indices <- xml2::xml_find_all(xmlforecast, "//forecast-period")
+    indices <- trimws(xml2::xml_attrs(indices, "index"))
+    days <- as.numeric(max(stringr::str_sub(indices, 4, 4)))
+
     # add dates to forecast ----------------------------------------------------
     forecast$date <-  c(rep(seq(
       lubridate::ymd(Sys.Date() + 1),
-      lubridate::ymd(Sys.Date() + 6),
+      lubridate::ymd(Sys.Date() + days),
       by = "1 day"
     ),
     each = 6))

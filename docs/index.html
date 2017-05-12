@@ -32,6 +32,9 @@
   <a href="reference/index.html">Reference</a>
 </li>
 <li>
+  <a href="articles/index.html">Articles</a>
+</li>
+<li>
   <a href="news/index.html">News</a>
 </li>
       </ul>
@@ -59,12 +62,12 @@
     
 <div class="contents">
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<div id="bomrang-fetch-australian-government-bureau-of-meteorology-data" class="section level1">
+<div id="bomrang-fetch-australian-government-bureau-of-meteorology-bom-data" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#bomrang-fetch-australian-government-bureau-of-meteorology-data" class="anchor"></a><em>BOMRang</em>: Fetch Australian Government Bureau of Meteorology Data</h1></div>
+<a href="#bomrang-fetch-australian-government-bureau-of-meteorology-bom-data" class="anchor"></a><em>BOMRang</em>: Fetch Australian Government Bureau of Meteorology (BOM) Data</h1></div>
 
-<p>Fetches Australian Government Bureau of Meteorology Weather xml forecast and returns a tidy data frame (<a href="http://tibble.tidyverse.org">Tibble</a>) of next six days’ weather forecast.</p>
-<p>Credit for the name, <em>BOMRang</em>, goes to <a href="http://dicook.github.io">Di Cook</a>, who suggested it attending the rOpenSci AUUnconf in Brisbane, 2016 when seeing the <a href="https://github.com/saundersk1/auunconf16/blob/master/Vignette_BoM.pdf">vignette</a> that we had assembled during the Unconf.</p>
+<p>Fetches Australian Government Bureau of Meteorology XML weather forecast and returns a tidy data frame (<a href="http://tibble.tidyverse.org">Tibble</a>) of the daily weather forecast.</p>
+<p>Credit for the name, <em>BOMRang</em>, goes to <a href="http://dicook.github.io">Di Cook</a>, who suggested it attending the rOpenSci AUUnconf in Brisbane, 2016, when seeing the <a href="https://github.com/saundersk1/auunconf16/blob/master/Vignette_BoM.pdf">vignette</a> that we had assembled during the Unconf.</p>
 <div id="quick-start" class="section level2">
 <h2 class="hasAnchor">
 <a href="#quick-start" class="anchor"></a>Quick start</h2>
@@ -79,26 +82,26 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <h2 class="hasAnchor">
 <a href="#using-bomrang" class="anchor"></a>Using <em>BOMRang</em>
 </h2>
-<p><em>BOMRang</em> allows you to fetch forecasts for an individual state or all at once, your choice. To fetch an individual state, simply use the official postal code for the state for the <code>state</code> parameter.</p>
+<p><em>BOMRang</em> allows you to fetch forecasts for an individual state or all at once, the national forecast. To fetch an individual state, simply use the official postal code for the state for the <code>state</code> parameter.</p>
 <p>Fetch the forecast for Queensland</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"BOMRang"</span>)
 
 QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_forecast.html">get_forecast</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
 QLD_forecast</code></pre></div>
-<pre><code>## # A tibble: 672 × 13
+<pre><code>## # A tibble: 784 × 13
 ##          aac       date max_temp min_temp lower_prcp_limit
 ##        &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;            &lt;chr&gt;
-## 1  QLD_PT038 2017-05-13       24       12               0 
-## 2  QLD_PT038 2017-05-14       24       13               5 
+## 1  QLD_PT038 2017-05-13       23       12               0 
+## 2  QLD_PT038 2017-05-14       23       13               5 
 ## 3  QLD_PT038 2017-05-15       26       10               0 
 ## 4  QLD_PT038 2017-05-16       25        9               0 
 ## 5  QLD_PT038 2017-05-17       25        9               0 
 ## 6  QLD_PT038 2017-05-18       24       11               0 
-## 7  QLD_PT045 2017-05-13       23       11               0 
-## 8  QLD_PT045 2017-05-14       23       12               3 
-## 9  QLD_PT045 2017-05-15       25        9               0 
-## 10 QLD_PT045 2017-05-16       25        7               0 
-## # ... with 662 more rows, and 8 more variables: upper_prcp_limit &lt;chr&gt;,
+## 7  QLD_PT038 2017-05-19       22       14               5 
+## 8  QLD_PT045 2017-05-13       22       11               0 
+## 9  QLD_PT045 2017-05-14       22       12               3 
+## 10 QLD_PT045 2017-05-15       24        9               0 
+## # ... with 774 more rows, and 8 more variables: upper_prcp_limit &lt;chr&gt;,
 ## #   precis &lt;chr&gt;, prob_prcp &lt;chr&gt;, location &lt;chr&gt;, state &lt;chr&gt;, lon &lt;dbl&gt;,
 ## #   lat &lt;dbl&gt;, elev &lt;dbl&gt;</code></pre>
 <p>If you want the national forecast for all areas BOM offers, use the official three letter ISO code abbreviation for Australia, AUS, as the <code>state</code> parameter.</p>
@@ -107,13 +110,13 @@ QLD_forecast</code></pre></div>
 <div id="results" class="section level2">
 <h2 class="hasAnchor">
 <a href="#results" class="anchor"></a>Results</h2>
-<p>The function, <code><a href="reference/get_forecast.html">get_forecast()</a></code> will return a Tibble of the weather forecast for the next six days with the following fields.</p>
+<p>The function, <code><a href="reference/get_forecast.html">get_forecast()</a></code> will return a Tibble of the weather forecast for daily forecast with the following fields.</p>
 <ul>
 <li>
 <strong>aac</strong> - AMOC Area Code, e.g. WA_MW008, a unique identifier for each location<br>
 </li>
 <li>
-<strong>date</strong> - Date in YYYY-MM-DD format<br>
+<strong>date</strong> - Date (YYYY-MM-DD)<br>
 </li>
 <li>
 <strong>max_temp</strong> - Maximum forecasted temperature (degrees Celsius)<br>

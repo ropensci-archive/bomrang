@@ -4,13 +4,11 @@
 \name{BOMRang}
 \alias{BOMRang}
 \alias{BOMRang-package}
-\title{Fetches Fetch Australian Government Bureau of Meteorology Weather
-data, currently Queensland only forecast and returns a tidy data frame of
-next seven days weather forecast.}
+\title{Fetches Australian Government Bureau of Meteorology (BOM) XML weather forecast
+and returns a tidy data frame of the daily weather forecast.}
 \description{
-Fetches Fetch Australian Government Bureau of Meteorology Weather
-data, currently Queensland only forecast and returns a tidy data frame of
-next seven days weather forecast.
+Fetches Australian Government Bureau of Meteorology (BOM) XML weather forecast
+and returns a tidy data frame of the daily weather forecast.
 }
 \seealso{
 \strong{Useful links:}
@@ -20,5 +18,5 @@ next seven days weather forecast.
 }
 }
 \author{
-Adam Sparks and Keith Pembleton
+Adam H Sparks and Keith Pembleton
 }
