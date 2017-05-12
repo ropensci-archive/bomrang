@@ -6,8 +6,8 @@ Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     email = "adamhsparks@gmail.com"),
     person("Keith", "Pembleton", role = "aut",
     email = "keith.pembleton@usq.edu.au"))
-Description: Fetches Fetch Australian Government Bureau of Meteorology Weather
-    data and returns a tidy data frame of next six days weather forecast.
+Description: Fetches Australian Government Bureau of Meteorology Weather xml 
+    forecast and returns a tidy data frame of next six days' weather forecast.
 URL: https://github.com/ToowoombaTrio/BOMRang
 BugReports: https://github.com/ToowoombaTrio/BOMRang/issues
 License: MIT + file LICENSE
