@@ -75,6 +75,12 @@ test_that("get_forecast returns the forecast for WA", {
   expect_equal(BOM_forecast[1, 10], "WA")
 })
 
+test_that("get_forecast returns the forecast for AUS", {
+  skip_on_cran()
+  BOM_forecast <- as.data.frame(get_forecast(state = "AUS"))
+  expect_equal(unique(BOM_forecast[, 10]), c("NT", "NSW", "QLD", "SA", "TAS", "VIC", "WA"))
+})
+
 # Test that .validate_state stops if the state recognised ----------------------
 test_that("get_forecast() stops if the state is recognised", {
   state <- "Kansas"
