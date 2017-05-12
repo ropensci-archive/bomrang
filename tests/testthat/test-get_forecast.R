@@ -39,6 +39,12 @@ test_that("get_forecast returns the forecast for ACT/NSW", {
   expect_equal(BOM_forecast[1, 10], "NSW")
 })
 
+test_that("get_forecast returns the forecast for NT", {
+  skip_on_cran()
+  BOM_forecast <- as.data.frame(get_forecast(state = "NT"))
+  expect_equal(BOM_forecast[1, 10], "NT")
+})
+
 test_that("get_forecast returns the forecast for QLD", {
   skip_on_cran()
   BOM_forecast <- as.data.frame(get_forecast(state = "QLD"))
@@ -67,6 +73,12 @@ test_that("get_forecast returns the forecast for WA", {
   skip_on_cran()
   BOM_forecast <- as.data.frame(get_forecast(state = "WA"))
   expect_equal(BOM_forecast[1, 10], "WA")
+})
+
+test_that("get_forecast returns the forecast for AUS", {
+  skip_on_cran()
+  BOM_forecast <- as.data.frame(get_forecast(state = "AUS"))
+  expect_equal(unique(BOM_forecast[, 10]), c("NT", "NSW", "QLD", "SA", "TAS", "VIC", "WA"))
 })
 
 # Test that .validate_state stops if the state recognised ----------------------
