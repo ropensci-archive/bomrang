@@ -21,6 +21,10 @@ with \code{\link{BOMRang}}.
 update_locations()
 }
 }
+\references{
+Australian Bureau of Meteorology (BOM) Weather Data Services
+\url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
+}
 \author{
 Adam H Sparks, \email{adamhsparks@gmail.com}
 }

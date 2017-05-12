@@ -4,15 +4,30 @@
 \alias{get_forecast}
 \title{Get BOM Forecast}
 \usage{
-get_forecast(state)
+get_forecast(state = NULL)
 }
 \arguments{
 \item{state}{Australian state or territory as postal code, see details for
 instruction.}
 }
 \value{
-Data frame of a Australia BOM forecast for max temperature, min temperature
-and corresponding locations with lat/lon values for the next six days.
+Data frame of a Australia BOM forecast for the next six days in a data frame
+with the following fields.
+
+\describe{
+   \item{aac}{AMOC Area Code, e.g. WA_MW008, a unique identifier for each location}
+   \item{date}{Date in YYYY-MM-DD format}
+   \item{max_temp}{Maximum forecasted temperature (degrees Celsius)}
+   \item{min_temp}{Minimum forecasted temperature (degrees Celsius)}
+   \item{lower_prcp_limit}{Lower forecasted precipitation limit (millimetres)}
+   \item{upper_prcp_limit}{Upper forecasted precipitation limit (millimetres)}
+   \item{precis}{Précis forecast (a short summary, less than 30 characters)}
+   \item{prob_prcp}{Probability of precipitation (percent)}
+   \item{location}{Named location for forecast}
+   \item{lon}{Longitude of named location (Decimal Degrees)}
+   \item{lat}{Latitude of named location (Decimal Degrees)}
+   \item{elev}{Elevation of named location (Metres)}
+}
 }
 \description{
 Fetch the BOM forecast and create a tidy data frame of the six day forecast
@@ -37,4 +52,11 @@ or all using \code{AUS}.
 BOM_forecast <- get_forecast(state = "QLD")
 }
 
+}
+\references{
+Australian Bureau of Meteorology (BOM) Weather Data Services
+\url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
+}
+\author{
+Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton \email{keith.pembleton@usq.edu.au}
 }

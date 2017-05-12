@@ -7,8 +7,7 @@ Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     person("Keith", "Pembleton", role = "aut",
     email = "keith.pembleton@usq.edu.au"))
 Description: Fetches Fetch Australian Government Bureau of Meteorology Weather
-    data, currently Queensland only forecast and returns a tidy data frame of 
-    next seven days weather forecast.
+    data and returns a tidy data frame of next six days weather forecast.
 URL: https://github.com/ToowoombaTrio/BOMRang
 BugReports: https://github.com/ToowoombaTrio/BOMRang/issues
 License: MIT + file LICENSE
@@ -20,12 +19,14 @@ Imports:
     foreign,
     lubridate,
     plyr,
-    stringr,
+    reshape2,
     tibble,
+    tidyr,
     xml2
 Encoding: UTF-8
 LazyData: true
-Suggests: covr
+Suggests: covr,
+    testthat
 RoxygenNote: 6.0.1
 NeedsCompilation: no
 ByteCompile: TRUE

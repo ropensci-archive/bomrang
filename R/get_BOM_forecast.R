@@ -21,19 +21,40 @@
 #'  }
 #'
 #' @return
-#' Data frame of a Australia BOM forecast for max temperature, min temperature
-#' and corresponding locations with lat/lon values for the next six days.
+#' Data frame of a Australia BOM forecast for the next six days in a data frame
+#' with the following fields.
+#'
+#'\describe{
+#'    \item{aac}{AMOC Area Code, e.g. WA_MW008, a unique identifier for each location}
+#'    \item{date}{Date in YYYY-MM-DD format}
+#'    \item{max_temp}{Maximum forecasted temperature (degrees Celsius)}
+#'    \item{min_temp}{Minimum forecasted temperature (degrees Celsius)}
+#'    \item{lower_prcp_limit}{Lower forecasted precipitation limit (millimetres)}
+#'    \item{upper_prcp_limit}{Upper forecasted precipitation limit (millimetres)}
+#'    \item{precis}{Précis forecast (a short summary, less than 30 characters)}
+#'    \item{prob_prcp}{Probability of precipitation (percent)}
+#'    \item{location}{Named location for forecast}
+#'    \item{lon}{Longitude of named location (Decimal Degrees)}
+#'    \item{lat}{Latitude of named location (Decimal Degrees)}
+#'    \item{elev}{Elevation of named location (Metres)}
+#' }
 #'
 #' @examples
 #' \dontrun{
 #' BOM_forecast <- get_forecast(state = "QLD")
 #' }
 #'
+#' @author Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton \email{keith.pembleton@usq.edu.au}
+#'
+#' @references
+#' Australian Bureau of Meteorology (BOM) Weather Data Services
+#' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
+#'
 #' @importFrom dplyr %>%
 #'
 #'
 #' @export
-get_forecast <- function(state) {
+get_forecast <- function(state = NULL) {
   .validate_state(state)
 
   # ftp server
@@ -42,7 +63,7 @@ get_forecast <- function(state) {
   # State/territory forecast files
   NT  <- "IDD10207.xml"
   NSW <- "IDN11060.xml"
-  QLD <- "IDN11060.xml"
+  QLD <- "IDQ11295.xml"
   SA  <- "IDS10044.xml"
   TAS <- "IDT16710.xml"
   VIC <- "IDV10753.xml"
@@ -64,8 +85,7 @@ get_forecast <- function(state) {
     xmlforecast <-
       paste0(ftp_base, SA) # sa
   }
-  else if (state == "TAS")
-  {
+  else if (state == "TAS") {
     xmlforecast <-
       paste0(ftp_base, TAS) # tas
   }
@@ -96,94 +116,137 @@ get_forecast <- function(state) {
   else if (state == "AUS") {
     xml_list <-
       list.files(tempdir(), pattern = ".xml$", full.names = TRUE)
-    tibble::as_tibble(plyr::ldply(.data = xml_list,
-                .fun = .parse_forecast,
-                .progress = "text"))
+    tibble::as_tibble(plyr::ldply(
+      .data = xml_list,
+      .fun = .parse_forecast,
+      .progress = "text"
+    ))
   }
 }
 
 .parse_forecast <- function(xmlforecast) {
+  type <-
+    precipitation_range <-
+    `parent-aac` <- LON <- LAT <- ELEVATION <- NULL
 
-  # Load BOM location data
-  utils::data("AAC_codes", package = "BOMRang")
-  AAC_codes <- AAC_codes
+    # load BOM location data ---------------------------------------------------
+    utils::data("AAC_codes", package = "BOMRang")
+    AAC_codes <- AAC_codes
 
-  xmlforecast <- xml2::read_xml(xmlforecast)
+    # load the XML forecast ----------------------------------------------------
+    xmlforecast <- xml2::read_xml(xmlforecast)
 
-  # remove index=0 (today's "forecast"), it varies and we're not interested anyway
-  xml2::xml_find_all(xmlforecast, ".//*[@index='0']") %>%
-    xml2::xml_remove()
+    # remove today's "forecast" ------------------------------------------------
+    xml2::xml_find_all(xmlforecast, ".//*[@index='0']") %>%
+      xml2::xml_remove()
 
-  # extract locations from forecast
-  areas <- xml2::xml_find_all(xmlforecast, ".//*[@type='location']")
-  forecast_locations <-
-    dplyr::bind_rows(lapply(xml2::xml_attrs(areas), as.list))
+    # extract locations from forecast ------------------------------------------
+    areas <- xml2::xml_find_all(xmlforecast, ".//*[@type='location']")
+    forecast_locations <-
+      dplyr::bind_rows(lapply(xml2::xml_attrs(areas), as.list)) %>%
+      dplyr::select(-type)
 
-  # join locations with lat/lon values for mapping and interpolation
-  forecast_locations <- dplyr::left_join(forecast_locations,
-                                         AAC_codes,
-                                         by = c("aac" = "AAC",
-                                                "description" = "PT_NAME"))
+    # join locations with lat/lon values ---------------------------------------
+    forecast_locations <- dplyr::left_join(forecast_locations,
+                                           AAC_codes,
+                                           by = c("aac" = "AAC",
+                                                  "description" = "PT_NAME"))
 
-  # unlist and add the locations aac code
-  forecasts <-
-    lapply(xml2::xml_find_all(xmlforecast, ".//*[@type='location']"),
-           xml2::as_list)
+    # unlist and add the locations aac code ------------------------------------
+    forecasts <-
+      lapply(xml2::xml_find_all(xmlforecast, ".//*[@type='location']"),
+             xml2::as_list)
 
-  forecasts <- plyr::llply(forecasts, unlist)
-  names(forecasts) <- forecast_locations$aac
+    forecasts <- plyr::llply(forecasts, unlist)
+    names(forecasts) <- forecast_locations$aac
 
-  # get all the <element> and <text> tags (the forecast)
-  eltext <- xml2::xml_find_all(xmlforecast, "//element | //text")
+    # get all the <element> and <text> tags (the forecast) ---------------------
+    eltext <- xml2::xml_find_all(xmlforecast, "//element | //text")
 
-  # extract and clean (if needed) (the labels for the forecast)
-  labs <- trimws(xml2::xml_attrs(eltext, "type"))
+    # extract and clean (if needed) (the labels for the forecast) --------------
+    labs <- trimws(xml2::xml_attrs(eltext, "type"))
 
-  # use a loop to turn list of named character elements into a list of dataframes
-  # with the location aac code for each line of the data frame
-  y <- vector("list")
-  for (i in unique(names(forecasts))) {
-    x <- data.frame(
-      keyName = names(forecasts[[i]]),
-      value = forecasts[[i]],
-      row.names = NULL
-    )
-    z <- names(forecasts[i])
-    x <- data.frame(rep(as.character(z), nrow(x)), x)
-    y[[i]] <- x
-  }
+    # use a loop to turn list of named character elements into a list ----------
+    # of dataframes with the location aac code for each line of the data frame
+    y <- vector("list")
+    for (i in unique(names(forecasts))) {
+      x <- data.frame(
+        keyName = names(forecasts[[i]]),
+        value = forecasts[[i]],
+        row.names = NULL
+      )
+      z <- names(forecasts[i])
+      x <- data.frame(rep(as.character(z), nrow(x)), x)
+      y[[i]] <- x
+    }
 
-  # combind list into a single dataframe
-  y <- data.table::rbindlist(y, fill = TRUE)
+    # combine list into a single dataframe -
+    y <- data.table::rbindlist(y, fill = TRUE)
 
-  # add the forecast description to the dataframe
-  forecast <- data.frame(y, labs, rep(NA, length(labs)))
-  names(forecast) <- c("aac", "keyName", "value", "labs", "element")
+    # add the forecast description to the dataframe ----------------------------
+    forecast <-
+      data.frame(y[, -2], labs) # drop keyName colum from "y"
+    names(forecast) <- c("aac", "value", "labs")
 
-  # add dates to the new object
-  forecast$date <- c(rep(seq(
-    lubridate::ymd(Sys.Date() + 1),
-    lubridate::ymd(Sys.Date() + 7),
-    by = "1 day"
-  ),
-  each = 2))
+    # add dates to forecast ----------------------------------------------------
+    forecast$date <-  c(rep(seq(
+      lubridate::ymd(Sys.Date() + 1),
+      lubridate::ymd(Sys.Date() + 6),
+      by = "1 day"
+    ),
+    each = 6))
 
-  # label for min/max temperature in a new col to use for sorting in next step
-  forecast$element <-
-    as.character(stringr::str_match(forecast$labs,
-                                    "air_temperature_[[:graph:]]{7}"))
+    # spread columns -----------------------------------------------------------
+    forecast <-
+      forecast %>%
+      reshape2::dcast(aac + date ~ labs, value.var = "value")
 
-  # convert object to tibble and remove rows we don't need, e.g., precip
-  # keep only max and min temp
-  forecast <-
-    tibble::as_tibble(stats::na.omit(forecast[, c(1, 3, 5:6)]))
+    # split precipitation forecast values into lower/upper limits --------------
 
-  # convert forecast_locations$aac to factor for merging
-  forecast$aac <- as.character(forecast$aac)
+    # format any values that are only zero to make next step easier
+    forecast$precipitation_range[which(forecast$precipitation_range == "0 mm")] <-
+      "0 mm to 0 mm"
 
-  # merge the forecast with the locations
-  forecast <-
-    dplyr::left_join(forecast, forecast_locations, by = "aac")
+    # separate the precipitation column into two, upper/lower limit ------------
+    forecast <-
+      forecast %>%
+      tidyr::separate(
+        precipitation_range,
+        into = c("lower_prec_limit", "upper_prec_limit"),
+        sep = "to"
+      )
+
+    # remove unnecessary text (mm in prcp cols) --------------------------------
+    forecast <- lapply(forecast, function(x) {
+      gsub(" mm", "", x)
+    })
+
+    # rename columns -----------------------------------------------------------
+    forecast <- forecast[-5] # drop forecast_icon_code column
+
+    names(forecast) <-
+      c(
+        "aac",
+        "date",
+        "max_temp",
+        "min_temp",
+        "lower_prcp_limit",
+        "upper_prcp_limit",
+        "precis",
+        "prob_prcp"
+      )
+
+    # merge the forecast with the locations ------------------------------------
+
+    # convert forecast_locations$aac to factor for merging
+    forecast$aac <- as.character(forecast$aac)
+
+    # return final forecast object ---------------------------------------------
+    forecast <-
+      dplyr::left_join(tibble::as_tibble(forecast),
+                       forecast_locations, by = "aac") %>%
+      dplyr::select(-`parent-aac`) %>%
+      dplyr::rename(lon = LON, lat = LAT, elev = ELEVATION)
 }
 
 #' @noRd
