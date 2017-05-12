@@ -19,7 +19,43 @@ if (!require("devtools")) {
 }
 
 devtools::install_github("toowoombatrio/BOMRang")
+```
+
+Using *BOMRang*
+---------------
+
+*BOMRang* allows you to fetch forecasts for an individual state or all at once, your choice. To fetch an individual state, simply use the official postal code for the state for the `state` parameter.
+
+Fetch the forecast for Queensland
+
+``` r
 library("BOMRang")
+
+QLD_forecast <- get_forecast(state = "QLD")
+QLD_forecast
+```
+
+    ## # A tibble: 672 × 13
+    ##          aac       date max_temp min_temp lower_prcp_limit
+    ##        <chr>      <chr>    <chr>    <chr>            <chr>
+    ## 1  QLD_PT038 2017-05-13       24       12               0 
+    ## 2  QLD_PT038 2017-05-14       24       13               5 
+    ## 3  QLD_PT038 2017-05-15       26       10               0 
+    ## 4  QLD_PT038 2017-05-16       25        9               0 
+    ## 5  QLD_PT038 2017-05-17       25        9               0 
+    ## 6  QLD_PT038 2017-05-18       24       11               0 
+    ## 7  QLD_PT045 2017-05-13       23       11               0 
+    ## 8  QLD_PT045 2017-05-14       23       12               3 
+    ## 9  QLD_PT045 2017-05-15       25        9               0 
+    ## 10 QLD_PT045 2017-05-16       25        7               0 
+    ## # ... with 662 more rows, and 8 more variables: upper_prcp_limit <chr>,
+    ## #   precis <chr>, prob_prcp <chr>, location <chr>, state <chr>, lon <dbl>,
+    ## #   lat <dbl>, elev <dbl>
+
+If you want the national forecast for all areas BOM offers, use the official three letter ISO code abbreviation for Australia, AUS, as the `state` parameter.
+
+``` r
+BOM_forecast <- get_forecast(state = "AUS")
 ```
 
 Meta

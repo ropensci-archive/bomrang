@@ -73,8 +73,36 @@
   <span class="kw">library</span>(<span class="st">"devtools"</span>)
 }
 
-devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"toowoombatrio/BOMRang"</span>)
-<span class="kw">library</span>(<span class="st">"BOMRang"</span>)</code></pre></div>
+devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"toowoombatrio/BOMRang"</span>)</code></pre></div>
+</div>
+<div id="using-bomrang" class="section level2">
+<h2 class="hasAnchor">
+<a href="#using-bomrang" class="anchor"></a>Using <em>BOMRang</em>
+</h2>
+<p><em>BOMRang</em> allows you to fetch forecasts for an individual state or all at once, your choice. To fetch an individual state, simply use the official postal code for the state for the <code>state</code> parameter.</p>
+<p>Fetch the forecast for Queensland</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"BOMRang"</span>)
+
+QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_forecast.html">get_forecast</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
+QLD_forecast</code></pre></div>
+<pre><code>## # A tibble: 672 × 13
+##          aac       date max_temp min_temp lower_prcp_limit
+##        &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;            &lt;chr&gt;
+## 1  QLD_PT038 2017-05-13       24       12               0 
+## 2  QLD_PT038 2017-05-14       24       13               5 
+## 3  QLD_PT038 2017-05-15       26       10               0 
+## 4  QLD_PT038 2017-05-16       25        9               0 
+## 5  QLD_PT038 2017-05-17       25        9               0 
+## 6  QLD_PT038 2017-05-18       24       11               0 
+## 7  QLD_PT045 2017-05-13       23       11               0 
+## 8  QLD_PT045 2017-05-14       23       12               3 
+## 9  QLD_PT045 2017-05-15       25        9               0 
+## 10 QLD_PT045 2017-05-16       25        7               0 
+## # ... with 662 more rows, and 8 more variables: upper_prcp_limit &lt;chr&gt;,
+## #   precis &lt;chr&gt;, prob_prcp &lt;chr&gt;, location &lt;chr&gt;, state &lt;chr&gt;, lon &lt;dbl&gt;,
+## #   lat &lt;dbl&gt;, elev &lt;dbl&gt;</code></pre>
+<p>If you want the national forecast for all areas BOM offers, use the official three letter ISO code abbreviation for Australia, AUS, as the <code>state</code> parameter.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">BOM_forecast &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_forecast.html">get_forecast</a></span>(<span class="dt">state =</span> <span class="st">"AUS"</span>)</code></pre></div>
 </div>
 <div id="meta" class="section level2">
 <h2 class="hasAnchor">

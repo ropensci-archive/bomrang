@@ -30,7 +30,27 @@ if (!require("devtools")) {
 }
 
 devtools::install_github("toowoombatrio/BOMRang")
+```
+
+## Using _BOMRang_
+
+_BOMRang_ allows you to fetch forecasts for an individual state or all at once,
+your choice. To fetch an individual state, simply use the official postal code
+for the state for the `state` parameter.
+
+Fetch the forecast for Queensland
+```{r, eval=TRUE}
 library("BOMRang")
+
+QLD_forecast <- get_forecast(state = "QLD")
+QLD_forecast
+```
+
+If you want the national forecast for all areas BOM offers, use the official 
+three letter ISO code abbreviation for Australia, AUS, as the `state` parameter.
+
+```{r, eval=FALSE}
+BOM_forecast <- get_forecast(state = "AUS")
 ```
 
 ## Meta

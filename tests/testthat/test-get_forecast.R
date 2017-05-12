@@ -1,8 +1,8 @@
 context("get_forecast")
 
 # Test that get_forecast returns a data frame with 13 colums -------------------
-skip_on_cran()
 test_that("get_forecast returns 13 columns", {
+  skip_on_cran()
   BOM_forecast <- get_forecast(state = "QLD")
   expect_equal(ncol(BOM_forecast), 13)
   expect_named(
@@ -78,11 +78,13 @@ test_that("get_forecast returns the forecast for WA", {
 test_that("get_forecast returns the forecast for AUS", {
   skip_on_cran()
   BOM_forecast <- as.data.frame(get_forecast(state = "AUS"))
-  expect_equal(unique(BOM_forecast[, 10]), c("NT", "NSW", "QLD", "SA", "TAS", "VIC", "WA"))
+  expect_equal(unique(BOM_forecast[, 10]),
+               c("NT", "NSW", "QLD", "SA", "TAS", "VIC", "WA"))
 })
 
 # Test that .validate_state stops if the state recognised ----------------------
 test_that("get_forecast() stops if the state is recognised", {
+  skip_on_cran()
   state <- "Kansas"
   expect_error(get_forecast(state))
 })
