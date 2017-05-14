@@ -63,21 +63,21 @@ get_forecast <- function(state = NULL) {
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
 
   # State/territory forecast files
-  NT  <- "IDD10207.xml"
   NSW <- "IDN11060.xml"
+  NT  <- "IDD10207.xml"
   QLD <- "IDQ11295.xml"
   SA  <- "IDS10044.xml"
   TAS <- "IDT16710.xml"
   VIC <- "IDV10753.xml"
   WA  <- "IDW14199.xml"
 
-  if (state == "NT") {
-    xmlforecast <-
-      paste0(ftp_base, NT) # nt
-  }
-  else if (state == "NSW" | state == "ACT") {
+  if (state == "NSW" | state == "ACT") {
     xmlforecast <-
       paste0(ftp_base, NSW) # nsw
+  }
+  else if (state == "NT") {
+    xmlforecast <-
+      paste0(ftp_base, NT) # nt
   }
   else if (state == "QLD") {
     xmlforecast <-
@@ -261,11 +261,3 @@ get_forecast <- function(state = NULL) {
       dplyr::select(aac:location, state, lon, lat, elev)
 }
 
-#' @noRd
-.validate_state <-
-  function(state) {
-    if (!is.null(state)) {
-      state <- toupper(trimws(state))
-    } else
-      stop("\nPlease provide a valid 2 or 3 letter state or territory postal code abbreviation")
-  }
