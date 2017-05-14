@@ -38,7 +38,7 @@ forecast
 Allowed state and territory postal codes, only one state per request
 or all using \code{AUS}.
  \describe{
-   \item{ACT}{Australian Capital Territory}
+   \item{ACT}{Australian Capital Territory (will return NSW)}
    \item{NSW}{New South Wales}
    \item{NT}{Northern Territory}
    \item{QLD}{Queensland}
