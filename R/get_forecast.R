@@ -57,7 +57,7 @@
 #'
 #' @export
 get_forecast <- function(state = NULL) {
-  .validate_state(state)
+  state <- .validate_state(state)
 
   # ftp server
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"

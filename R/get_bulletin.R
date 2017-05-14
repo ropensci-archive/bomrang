@@ -1,4 +1,5 @@
 
+
 #' Get BOM Agriculture Bulletin
 #'
 #'Fetch the BOM agricultural bulletin information
@@ -37,12 +38,9 @@
 #' Australian Bureau of Meteorology (BOM) Weather Data Services
 #' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 #'
-#' @importFrom dplyr %>%
-#'
-#'
 #' @export
 get_bulletin <- function(state = NULL) {
-  .validate_state(state)
+  state <- .validate_state(state)
 
   # Agricultural Bulletin Station Locations
 
@@ -62,6 +60,19 @@ get_bulletin <- function(state = NULL) {
         "Years",
         "%",
         "AWS"
+      ),
+      col_types = c(
+        "Site" = readr::col_integer(),
+        "Name" = readr::col_character(),
+        "Lat" = readr::col_double(),
+        "Lon" = readr::col_double(),
+        "`Start Month`" = readr::col_character(),
+        "`Start Year`" = readr::col_integer(),
+        "`End Month`" = readr::col_character(),
+        "`End Year`" = readr::col_integer(),
+        "Years" = readr::col_double(),
+        "`%`" = readr::col_integer(),
+        "AWS" = readr::col_character()
       )
     )
 
@@ -120,49 +131,51 @@ get_bulletin <- function(state = NULL) {
     stop(state, " not recognised as a valid state or territory")
 
   if (state != "AUS") {
-    tibble::as_tibble(.parse_forecast(xmlbulletin))
+    tibble::as_tibble(.parse_bulletin(xmlbulletin, stations_meta))
   }
   else if (state == "AUS") {
     xml_list <-
       list.files(tempdir(), pattern = ".xml$", full.names = TRUE)
-    tibble::as_tibble(plyr::ldply(
-      .data = xml_list,
-      .fun = .parse_forecast,
-      .progress = "text"
-    ))
+    tibble::as_tibble(
+      plyr::ldply(
+        .data = xml_list,
+        .fun = .parse_bulletin,
+        stations_meta,
+        .progress = "text"
+      )
+    )
   }
 }
 
-.parse_bulletin <- function(xmlbulletin) {
+#'@nord
+.parse_bulletin <- function(xmlbulletin, stations_meta) {
   # load the XML forecast ------------------------------------------------------
   xmlbulletin <- xml2::read_xml(xmlbulletin)
-
-
-  # extract locations from forecast --------------------------------------------
   obs <- xml2::xml_find_all(xmlbulletin, "//obs")
-  bulletin_locations <-
-    dplyr::bind_rows(lapply(xml2::xml_attrs(obs), as.list))
-
-  # join locations with lat/lon values -----------------------------------------
-  bulletin_locations <- dplyr::left_join(bulletin_locations,
-                                         stations_meta,
-                                         by = c("site" = "Site"))
 
   # get the data from observations ---------------------------------------------
   .get_obs <- function(x) {
-    location <- unlist(t(as.data.frame(xml2::xml_attrs(x))))
     d <- xml2::xml_children(x)
     value <-
       as.numeric(unlist(as.character(xml2::xml_contents(d))))
     attrs <- unlist(as.character(xml2::xml_attrs(d)))
+
+    location <- unlist(t(as.data.frame(xml2::xml_attrs(x))))
     location <-
-      location[rep(seq_len(nrow(location)), each = length(value)),]
+      location[rep(seq_len(nrow(location)), each = length(value)), ]
+
     out <- cbind(location, attrs, value)
     row.names(out) <- NULL
+    out <- as.data.frame(out)
+    out$site <- as.character(out$site)
+    out <- tidyr::spread(out, key = attrs, value = value)
+
+    # join locations with lat/lon values ---------------------------------------
     return(out)
   }
+  tidy_df <- plyr::ldply(.data = obs, .fun = .get_obs)
+  tidy_df <- dplyr::left_join(tidy_df,
+                              stations_meta,
+                              by = c("site" = "Site"))[-1]
 
-  out <- plyr::ldply(.data = obs, .fun = .get_obs)
-
-  out <- tidyr::spread(out, key = attrs, value = value)
 }
