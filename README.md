@@ -3,7 +3,7 @@
 *BOMRang*: Fetch Australian Government Bureau of Meteorology (BOM) Data
 =======================================================================
 
-[![Travis-CI Build Status](https://travis-ci.org/ToowoombaTrio/BOMRang.svg?branch=master)](https://travis-ci.org/ToowoombaTrio/BOMRang) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ToowoombaTrio/BOMRang?branch=master&svg=true)](https://ci.appveyor.com/project/ToowoombaTrio/BOMRang) [![Coverage Status](https://img.shields.io/codecov/c/github/ToowoombaTrio/BOMRang/master.svg)](https://codecov.io/github/ToowoombaTrio/BOMRang?branch=master) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--05--12-brightgreen.svg)](https://github.com/toowoombatrio/BOMRang/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/)
+[![Travis-CI Build Status](https://travis-ci.org/ToowoombaTrio/BOMRang.svg?branch=master)](https://travis-ci.org/ToowoombaTrio/BOMRang) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ToowoombaTrio/BOMRang?branch=master&svg=true)](https://ci.appveyor.com/project/ToowoombaTrio/BOMRang) [![Coverage Status](https://img.shields.io/codecov/c/github/ToowoombaTrio/BOMRang/master.svg)](https://codecov.io/github/ToowoombaTrio/BOMRang?branch=master) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--05--14-brightgreen.svg)](https://github.com/toowoombatrio/BOMRang/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/)
 
 Fetches Australian Government Bureau of Meteorology XML précis forecast and returns a tidy data frame ([Tibble](http://tibble.tidyverse.org)) of the daily weather forecast.
 
@@ -35,20 +35,20 @@ QLD_forecast <- get_forecast(state = "QLD")
 QLD_forecast
 ```
 
-    ## # A tibble: 784 × 13
+    ## # A tibble: 672 × 13
     ##          aac       date max_temp min_temp lower_prcp_limit
     ##        <chr>      <chr>    <chr>    <chr>            <chr>
-    ## 1  QLD_PT038 2017-05-13       23       12               0 
-    ## 2  QLD_PT038 2017-05-14       23       13               5 
-    ## 3  QLD_PT038 2017-05-15       26       10               0 
-    ## 4  QLD_PT038 2017-05-16       25        9               0 
-    ## 5  QLD_PT038 2017-05-17       25        9               0 
-    ## 6  QLD_PT038 2017-05-18       24       11               0 
-    ## 7  QLD_PT038 2017-05-19       22       14               5 
-    ## 8  QLD_PT045 2017-05-13       22       11               0 
-    ## 9  QLD_PT045 2017-05-14       22       12               3 
-    ## 10 QLD_PT045 2017-05-15       24        9               0 
-    ## # ... with 774 more rows, and 8 more variables: upper_prcp_limit <chr>,
+    ## 1  QLD_PT038 2017-05-15       25       10               0 
+    ## 2  QLD_PT038 2017-05-16       25        9               0 
+    ## 3  QLD_PT038 2017-05-17       24        8               0 
+    ## 4  QLD_PT038 2017-05-18       24       10               0 
+    ## 5  QLD_PT038 2017-05-19       23       13               2 
+    ## 6  QLD_PT038 2017-05-20       23       14               6 
+    ## 7  QLD_PT045 2017-05-15       24        9               0 
+    ## 8  QLD_PT045 2017-05-16       24        8               0 
+    ## 9  QLD_PT045 2017-05-17       24        7               0 
+    ## 10 QLD_PT045 2017-05-18       23        9               0 
+    ## # ... with 662 more rows, and 8 more variables: upper_prcp_limit <chr>,
     ## #   precis <chr>, prob_prcp <chr>, location <chr>, state <chr>, lon <dbl>,
     ## #   lat <dbl>, elev <dbl>
 
