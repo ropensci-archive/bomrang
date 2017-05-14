@@ -168,6 +168,7 @@ get_bulletin <- function(state = NULL) {
     row.names(out) <- NULL
     out <- as.data.frame(out)
     out$site <- as.character(out$site)
+    out$value <- as.numeric(as.character(out$value))
     out <- tidyr::spread(out, key = attrs, value = value)
 
     # join locations with lat/lon values ---------------------------------------
