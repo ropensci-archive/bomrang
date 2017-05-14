@@ -24,7 +24,33 @@
 #' Data frame of a Australia BOM agricultural bulletin information
 #'
 #'\describe{
-#'    # to be updated
+#'    \item{obs-time-utc}{}
+#'    \item{time-zone}{}
+#'    \item{site}{}
+#'    \item{station}{}
+#'    \item{r}{}
+#'    \item{tn}{}
+#'    \item{twd}{}
+#'    \item{tx}{}
+#'    \item{ev}{}
+#'    \item{tg}{}
+#'    \item{sn}{}
+#'    \item{t5}{}
+#'    \item{t10}{}
+#'    \item{t20}{}
+#'    \item{t50}{}
+#'    \item{t1m}{}
+#'    \item{wr}{}
+#'    \item{Name}{}
+#'    \item{Lat}{}
+#'    \item{Lon}{}
+#'    \item{Start Month}{}
+#'    \item{Start Year}{}
+#'    \item{End Month}{}
+#'    \item{End Year}{}
+#'    \item{Years}{}
+#'    \item{%}{}
+#'    \item{AWS}{Automated Weather Station}
 #' }
 #'
 #' @examples
