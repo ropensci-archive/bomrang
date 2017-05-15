@@ -1,4 +1,4 @@
-Package: BOMRang
+Package: bomrang
 Type: Package
 Title: Fetch Australian Government Bureau of Meteorology Data
 Version: 0.0.1-1
@@ -7,18 +7,19 @@ Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     person("Keith", "Pembleton", role = "aut",
     email = "keith.pembleton@usq.edu.au"))
 Description: Fetches Australian Government Bureau of Meteorology Weather XML 
-    précis forecast and returns a tidy data frame of the daily weather forecast.
-URL: https://github.com/ToowoombaTrio/BOMRang
-BugReports: https://github.com/ToowoombaTrio/BOMRang/issues
+    files and returns a tidy data frame of data.
+URL: https://github.com/ToowoombaTrio/bomrang
+BugReports: https://github.com/ToowoombaTrio/bomrang/issues
 License: MIT + file LICENSE
 Depends:
     R (>= 3.2.0)
 Imports:
-    data.table,
+    curl,
     dplyr,
     foreign,
     lubridate,
     plyr,
+    readr,
     reshape2,
     stringr,
     tibble,

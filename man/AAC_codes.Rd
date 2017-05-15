@@ -14,7 +14,7 @@
 }
 
 The \code{AAC_codes} data are automatically loaded with the
-\code{\link{BOMRang}} package and merged with the latest available forecast
+\code{\link{bomrang}} package and merged with the latest available forecast
 from the BOM.}
 \source{
 \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}

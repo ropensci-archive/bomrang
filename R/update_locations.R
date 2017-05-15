@@ -1,10 +1,10 @@
 #' Update Internal Database With Latest BOM Forecast Locations From BOM FTP Server
 #'
 #' This function downloads the latest forecast locations from the BOM server
-#' and updates BOMRang's internal database of forecast locations.  There is no
+#' and updates bomrang's internal database of forecast locations.  There is no
 #' need to use this unless you know that a forecast location exists in a more
 #' current version of the BOM forecast location database that is not available
-#' in the database distributed with \code{\link{BOMRang}}.
+#' in the database distributed with \code{\link{bomrang}}.
 #'
 #' @examples
 #' \dontrun{
@@ -26,7 +26,7 @@ update_locations <- function() {
   on.exit(options(timeout = original_timeout))
 
   # fetch new database from BOM server
-  utils::download.file(
+ curl::curl_download(
     "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf",
     destfile = paste0(tempdir(), "AAC_codes.dbf"),
     mode = "wb"
@@ -39,7 +39,7 @@ update_locations <- function() {
 
   # overwrite the existing isd_history.rda file on disk
   message("Overwriting existing database")
-  pkg <- system.file(package = "BOMRang")
+  pkg <- system.file(package = "bomrang")
   path <-
     file.path(file.path(pkg, "data"), paste0("AAC_codes.rda"))
   save(AAC_codes, file = path, compress = "bzip2")

@@ -16,17 +16,21 @@ following fields.
 
 \describe{
    \item{aac}{AMOC Area Code, e.g. WA_MW008, a unique identifier for each location}
-   \item{date}{Date (YYYY-MM-DD)}
-   \item{max_temp}{Maximum forecasted temperature (degrees Celsius)}
-   \item{min_temp}{Minimum forecasted temperature (degrees Celsius)}
-   \item{lower_prcp_limit}{Lower forecasted precipitation limit (millimetres)}
-   \item{upper_prcp_limit}{Upper forecasted precipitation limit (millimetres)}
+   \item{index}{Index value, day 0 to day 7}
+   \item{start_time_local}{Start of forecast date and time in local TZ}
+   \item{end_time_local}{End of forecast date and time in local TZ}
+   \item{start_time_utc}{Start of forecast date and time in UTC}
+   \item{end_time_utc}{End of forecast date and time in UTC}
+   \item{maximum_temperature}{Maximum forecasted temperature (Celsius)}
+   \item{minimum_temperature}{Minimum forecasted temperature (Celsius)}
+   \item{lower_prec_limit}{Lower forecasted precipitation limit (millimetres)}
+   \item{upper_prec_limit}{Upper forecasted precipitation limit (millimetres)}
    \item{precis}{Précis forecast (a short summary, less than 30 characters)}
-   \item{prob_prcp}{Probability of precipitation (percent)}
+   \item{probability_of_precipitation}{Probability of precipitation (percent)}
    \item{location}{Named location for forecast}
-   \item{state}{State name  (postal code abbreviation)}
-   \item{lon}{Longitude of named location (decimal Degrees)}
-   \item{lat}{Latitude of named location (decimal Degrees)}
+   \item{state}{State name (postal code abbreviation)}
+   \item{lon}{Longitude of named location (decimal degrees)}
+   \item{lat}{Latitude of named location (decimal degrees)}
    \item{elev}{Elevation of named location (metres)}
 }
 }
