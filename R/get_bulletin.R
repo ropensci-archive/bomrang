@@ -144,7 +144,7 @@ get_bulletin <- function(state = NULL) {
 .parse_bulletin <- function(xmlbulletin, stations_meta) {
   `obs-time-utc` <-
     `time-zone` <- site <- name <- r <- tn <- tx <- twd <-
-    ev <-
+    ev <- obs_time_utc <- time_zone <-
     state <- tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <-
     lon <- attrs <- `rep(bulletin_state, nrow(tidy_df))` <- NULL
 
