@@ -26,7 +26,7 @@
 #' following fields.
 #'
 #'\describe{
-#'    \item{aac}{AMOC Area Code, e.g. WA_MW008, a unique identifier for each location}
+#'    \item{aac}{AMOC Area Code, \emph{e.g.}, WA_MW008, a unique identifier for each location}
 #'    \item{index}{Index value, day 0 to day 7}
 #'    \item{start_time_local}{Start of forecast date and time in local TZ}
 #'    \item{end_time_local}{End of forecast date and time in local TZ}
@@ -199,6 +199,7 @@ get_forecast <- function(state = NULL) {
     dplyr::rename(lon = LON,
                   lat = LAT,
                   elev = ELEVATION) %>%
+    dplyr::mutate_each(dplyr::funs(as.character), start_time_local) %>%
     dplyr::mutate_each(dplyr::funs(as.character), start_time_local) %>%
     dplyr::mutate_each(dplyr::funs(as.character), end_time_local) %>%
     dplyr::mutate_each(dplyr::funs(as.character), start_time_utc) %>%

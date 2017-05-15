@@ -1,15 +1,15 @@
 context("get_bulletin")
 
-# Test that get_bulletin returns a data frame with 13 colums -------------------
-test_that("get_bulletin returns 17 columns", {
+# Test that get_bulletin returns a data frame with 20 columns ------------------
+test_that("get_bulletin returns 20 columns", {
   skip_on_cran()
   BOM_bulletin <- get_bulletin(state = "QLD")
   expect_equal(ncol(BOM_bulletin), 20)
   expect_named(
     BOM_bulletin,
     c(
-      "obs-time-utc",
-      "time-zone",
+      "obs_time_utc",
+      "time_zone",
       "site",
       "name",
       "r",

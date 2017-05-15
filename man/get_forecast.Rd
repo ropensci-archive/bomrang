@@ -15,7 +15,7 @@ Data frame of a Australia BOM daily forecast in a data frame with the
 following fields.
 
 \describe{
-   \item{aac}{AMOC Area Code, e.g. WA_MW008, a unique identifier for each location}
+   \item{aac}{AMOC Area Code, \emph{e.g.}, WA_MW008, a unique identifier for each location}
    \item{index}{Index value, day 0 to day 7}
    \item{start_time_local}{Start of forecast date and time in local TZ}
    \item{end_time_local}{End of forecast date and time in local TZ}
