@@ -84,12 +84,87 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 </h2>
 <p><em>bomrang</em> allows you to fetch forecasts for an individual state or all at once, the national forecast. To fetch an individual state, simply use the official postal code for the state for the <code>state</code> parameter. ### Using <code><a href="reference/get_forecast.html">get_forecast()</a></code></p>
 <p>This function only takes one parameter, <code>state</code>. The <code>state</code> parameter allows the user to select the forecast for just one state or a national forecast. States are specified using the official postal codes,</p>
-<p><strong>ACT</strong> - Australian Capital Territory<br><strong>NSW</strong> - New South Wales<br><strong>NT</strong> - Northern Territory<br><strong>QLD</strong> - Queensland<br><strong>SA</strong> - South Australia<br><strong>TAS</strong> - Tasmania<br><strong>VIC</strong> - Tasmania<br><strong>WA</strong> - Western Australia<br><strong>AUS</strong> - Australia, returns forecast for all states</p>
+<ul>
+<li>
+<strong>ACT</strong> - Australian Capital Territory<br>
+</li>
+<li>
+<strong>NSW</strong> - New South Wales<br>
+</li>
+<li>
+<strong>NT</strong> - Northern Territory<br>
+</li>
+<li>
+<strong>QLD</strong> - Queensland<br>
+</li>
+<li>
+<strong>SA</strong> - South Australia<br>
+</li>
+<li>
+<strong>TAS</strong> - Tasmania<br>
+</li>
+<li>
+<strong>VIC</strong> - Tasmania<br>
+</li>
+<li>
+<strong>WA</strong> - Western Australia<br>
+</li>
+<li>
+<strong>AUS</strong> - Australia, returns forecast for all states</li>
+</ul>
 <div id="results" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results" class="anchor"></a>Results</h3>
 <p>The function, <code><a href="reference/get_forecast.html">get_forecast()</a></code> will return a Tibble of the weather forecast for the daily forecast with the following fields,</p>
-<p><strong>aac</strong> - AMOC Area Code, e.g. WA_MW008, a unique identifier for each location<br><strong>start_time_local</strong> - Start of forecast date and time in local TZ<br><strong>end_time_local</strong> - End of forecast date and time in local TZ<br><strong>start_time_utc</strong> - Start of forecast date and time in UTC<br><strong>end_time_utc</strong> - End of forecast date and time in UTC<br><strong>max_temp</strong> - Maximum forecasted temperature (degrees Celsius)<br><strong>min_temp</strong> - Minimum forecasted temperature (degrees Celsius)<br><strong>lower_prcp_limit</strong> - Lower forecasted precipitation limit (millimetres)<br><strong>upper_prcp_limit</strong> - Upper forecasted precipitation limit (millimetres)<br><strong>precis</strong> - Précis forecast (a short summary, less than 30 characters)<br><strong>prob_prcp</strong> - Probability of precipitation (percent)<br><strong>location</strong> - Named location for forecast<br><strong>state</strong> - State name (postal code abbreviation)<br><strong>lon</strong> - Longitude of named location (decimal Degrees)<br><strong>lat</strong> - Latitude of named location (decimal Degrees)<br><strong>elev</strong> - Elevation of named location (metres)</p>
+<ul>
+<li>
+<strong>aac</strong> - AMOC Area Code, e.g. WA_MW008, a unique identifier for each location<br>
+</li>
+<li>
+<strong>start_time_local</strong> - Start of forecast date and time in local TZ<br>
+</li>
+<li>
+<strong>end_time_local</strong> - End of forecast date and time in local TZ<br>
+</li>
+<li>
+<strong>start_time_utc</strong> - Start of forecast date and time in UTC<br>
+</li>
+<li>
+<strong>end_time_utc</strong> - End of forecast date and time in UTC<br>
+</li>
+<li>
+<strong>max_temp</strong> - Maximum forecasted temperature (degrees Celsius)<br>
+</li>
+<li>
+<strong>min_temp</strong> - Minimum forecasted temperature (degrees Celsius)<br>
+</li>
+<li>
+<strong>lower_prcp_limit</strong> - Lower forecasted precipitation limit (millimetres)<br>
+</li>
+<li>
+<strong>upper_prcp_limit</strong> - Upper forecasted precipitation limit (millimetres)<br>
+</li>
+<li>
+<strong>precis</strong> - Précis forecast (a short summary, less than 30 characters)<br>
+</li>
+<li>
+<strong>prob_prcp</strong> - Probability of precipitation (percent)<br>
+</li>
+<li>
+<strong>location</strong> - Named location for forecast<br>
+</li>
+<li>
+<strong>state</strong> - State name (postal code abbreviation)<br>
+</li>
+<li>
+<strong>lon</strong> - Longitude of named location (decimal Degrees)<br>
+</li>
+<li>
+<strong>lat</strong> - Latitude of named location (decimal Degrees)<br>
+</li>
+<li>
+<strong>elev</strong> - Elevation of named location (metres)</li>
+</ul>
 </div>
 <div id="examples" class="section level3">
 <h3 class="hasAnchor">
@@ -124,13 +199,100 @@ QLD_forecast</code></pre></div>
 <a href="#using-get_bulletin" class="anchor"></a>Using <code><a href="reference/get_bulletin.html">get_bulletin()</a></code>
 </h3>
 <p>This function only takes one parameter, <code>state</code>. The <code>state</code> parameter allows the user to select the bulletin for just one state or a national forecast. States are specified using the official postal codes,</p>
-<p><strong>ACT</strong> - Australian Capital Territory<br><strong>NSW</strong> - New South Wales<br><strong>NT</strong> - Northern Territory<br><strong>QLD</strong> - Queensland<br><strong>SA</strong> - South Australia<br><strong>TAS</strong> - Tasmania<br><strong>VIC</strong> - Tasmania<br><strong>WA</strong> - Western Australia<br><strong>AUS</strong> - Australia, returns forecast for all states</p>
+<ul>
+<li>
+<strong>ACT</strong> - Australian Capital Territory<br>
+</li>
+<li>
+<strong>NSW</strong> - New South Wales<br>
+</li>
+<li>
+<strong>NT</strong> - Northern Territory<br>
+</li>
+<li>
+<strong>QLD</strong> - Queensland<br>
+</li>
+<li>
+<strong>SA</strong> - South Australia<br>
+</li>
+<li>
+<strong>TAS</strong> - Tasmania<br>
+</li>
+<li>
+<strong>VIC</strong> - Tasmania<br>
+</li>
+<li>
+<strong>WA</strong> - Western Australia<br>
+</li>
+<li>
+<strong>AUS</strong> - Australia, returns forecast for all states</li>
+</ul>
 </div>
 <div id="results-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results-1" class="anchor"></a>Results</h3>
 <p>The function, <code><a href="reference/get_bulletin.html">get_bulletin()</a></code> will return a Tibble of the agriculture bulletin for Queensland with the following fields,</p>
-<p><strong>obs-time-utc</strong> - Observation time (Time in UTC)<br><strong>time-zone</strong> - Time zone for observation<br><strong>site</strong> - Unique BOM identifier for each station<br><strong>name</strong> - BOM station name<br><strong>r</strong> - Rain to 9am (millimetres). \strong{Trace will be reported as 0.01<br><strong>tn</strong> - Minimum temperature (Degrees Celsius)<br><strong>tx</strong> - Maximum temperature (Degrees Celsius)<br><strong>twd</strong> - Wetbulb depression (Degress Celsius)<br><strong>ev</strong> - Evaporation (milimetres)<br><strong>tg</strong> - Terrestrial minimum temperature (Degress Celsius)<br><strong>sn</strong> - Sunshine (Hours)<br><strong>t5</strong> - 5cm temperature (Celsius)<br><strong>t10</strong> - 10cm temperature (Celsius)<br><strong>t20</strong> - 20cm temperature (Celsius)<br><strong>t50</strong> - 50cm temperature (Celsius)<br><strong>t1m</strong> - 1m temperature (Celsius)<br><strong>wr</strong> - Wind run (kilometres)<br><strong>state</strong> - State name (postal code abbreviation)<br><strong>lat</strong> - Latitude (Decimal degrees)<br><strong>lon</strong> - Longitude (Decimal degrees)</p>
+<ul>
+<li>
+<strong>obs-time-utc</strong> - Observation time (Time in UTC)<br>
+</li>
+<li>
+<strong>time-zone</strong> - Time zone for observation<br>
+</li>
+<li>
+<strong>site</strong> - Unique BOM identifier for each station<br>
+</li>
+<li>
+<strong>name</strong> - BOM station name<br>
+</li>
+<li>
+<strong>r</strong> - Rain to 9am (millimetres). \strong{Trace will be reported as 0.01<br>
+</li>
+<li>
+<strong>tn</strong> - Minimum temperature (Degrees Celsius)<br>
+</li>
+<li>
+<strong>tx</strong> - Maximum temperature (Degrees Celsius)<br>
+</li>
+<li>
+<strong>twd</strong> - Wetbulb depression (Degress Celsius)<br>
+</li>
+<li>
+<strong>ev</strong> - Evaporation (milimetres)<br>
+</li>
+<li>
+<strong>tg</strong> - Terrestrial minimum temperature (Degress Celsius)<br>
+</li>
+<li>
+<strong>sn</strong> - Sunshine (Hours)<br>
+</li>
+<li>
+<strong>t5</strong> - 5cm temperature (Celsius)<br>
+</li>
+<li>
+<strong>t10</strong> - 10cm temperature (Celsius)<br>
+</li>
+<li>
+<strong>t20</strong> - 20cm temperature (Celsius)<br>
+</li>
+<li>
+<strong>t50</strong> - 50cm temperature (Celsius)<br>
+</li>
+<li>
+<strong>t1m</strong> - 1m temperature (Celsius)<br>
+</li>
+<li>
+<strong>wr</strong> - Wind run (kilometres)<br>
+</li>
+<li>
+<strong>state</strong> - State name (postal code abbreviation)<br>
+</li>
+<li>
+<strong>lat</strong> - Latitude (Decimal degrees)<br>
+</li>
+<li>
+<strong>lon</strong> - Longitude (Decimal degrees)</li>
+</ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"bomrang"</span>)
 
 QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_bulletin.html">get_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)

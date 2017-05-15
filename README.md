@@ -28,36 +28,36 @@ Using *bomrang*
 
 This function only takes one parameter, `state`. The `state` parameter allows the user to select the forecast for just one state or a national forecast. States are specified using the official postal codes,
 
-**ACT** - Australian Capital Territory
-**NSW** - New South Wales
-**NT** - Northern Territory
-**QLD** - Queensland
-**SA** - South Australia
-**TAS** - Tasmania
-**VIC** - Tasmania
-**WA** - Western Australia
-**AUS** - Australia, returns forecast for all states
+-   **ACT** - Australian Capital Territory
+-   **NSW** - New South Wales
+-   **NT** - Northern Territory
+-   **QLD** - Queensland
+-   **SA** - South Australia
+-   **TAS** - Tasmania
+-   **VIC** - Tasmania
+-   **WA** - Western Australia
+-   **AUS** - Australia, returns forecast for all states
 
 ### Results
 
 The function, `get_forecast()` will return a Tibble of the weather forecast for the daily forecast with the following fields,
 
-**aac** - AMOC Area Code, e.g. WA\_MW008, a unique identifier for each location
-**start\_time\_local** - Start of forecast date and time in local TZ
-**end\_time\_local** - End of forecast date and time in local TZ
-**start\_time\_utc** - Start of forecast date and time in UTC
-**end\_time\_utc** - End of forecast date and time in UTC
-**max\_temp** - Maximum forecasted temperature (degrees Celsius)
-**min\_temp** - Minimum forecasted temperature (degrees Celsius)
-**lower\_prcp\_limit** - Lower forecasted precipitation limit (millimetres)
-**upper\_prcp\_limit** - Upper forecasted precipitation limit (millimetres)
-**precis** - Précis forecast (a short summary, less than 30 characters)
-**prob\_prcp** - Probability of precipitation (percent)
-**location** - Named location for forecast
-**state** - State name (postal code abbreviation)
-**lon** - Longitude of named location (decimal Degrees)
-**lat** - Latitude of named location (decimal Degrees)
-**elev** - Elevation of named location (metres)
+-   **aac** - AMOC Area Code, e.g. WA\_MW008, a unique identifier for each location
+-   **start\_time\_local** - Start of forecast date and time in local TZ
+-   **end\_time\_local** - End of forecast date and time in local TZ
+-   **start\_time\_utc** - Start of forecast date and time in UTC
+-   **end\_time\_utc** - End of forecast date and time in UTC
+-   **max\_temp** - Maximum forecasted temperature (degrees Celsius)
+-   **min\_temp** - Minimum forecasted temperature (degrees Celsius)
+-   **lower\_prcp\_limit** - Lower forecasted precipitation limit (millimetres)
+-   **upper\_prcp\_limit** - Upper forecasted precipitation limit (millimetres)
+-   **precis** - Précis forecast (a short summary, less than 30 characters)
+-   **prob\_prcp** - Probability of precipitation (percent)
+-   **location** - Named location for forecast
+-   **state** - State name (postal code abbreviation)
+-   **lon** - Longitude of named location (decimal Degrees)
+-   **lat** - Latitude of named location (decimal Degrees)
+-   **elev** - Elevation of named location (metres)
 
 ### Examples
 
@@ -94,40 +94,40 @@ QLD_forecast
 
 This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national forecast. States are specified using the official postal codes,
 
-**ACT** - Australian Capital Territory
-**NSW** - New South Wales
-**NT** - Northern Territory
-**QLD** - Queensland
-**SA** - South Australia
-**TAS** - Tasmania
-**VIC** - Tasmania
-**WA** - Western Australia
-**AUS** - Australia, returns forecast for all states
+-   **ACT** - Australian Capital Territory
+-   **NSW** - New South Wales
+-   **NT** - Northern Territory
+-   **QLD** - Queensland
+-   **SA** - South Australia
+-   **TAS** - Tasmania
+-   **VIC** - Tasmania
+-   **WA** - Western Australia
+-   **AUS** - Australia, returns forecast for all states
 
 ### Results
 
 The function, `get_bulletin()` will return a Tibble of the agriculture bulletin for Queensland with the following fields,
 
-**obs-time-utc** - Observation time (Time in UTC)
-**time-zone** - Time zone for observation
-**site** - Unique BOM identifier for each station
-**name** - BOM station name
-**r** - Rain to 9am (millimetres). \\strong{Trace will be reported as 0.01
-**tn** - Minimum temperature (Degrees Celsius)
-**tx** - Maximum temperature (Degrees Celsius)
-**twd** - Wetbulb depression (Degress Celsius)
-**ev** - Evaporation (milimetres)
-**tg** - Terrestrial minimum temperature (Degress Celsius)
-**sn** - Sunshine (Hours)
-**t5** - 5cm temperature (Celsius)
-**t10** - 10cm temperature (Celsius)
-**t20** - 20cm temperature (Celsius)
-**t50** - 50cm temperature (Celsius)
-**t1m** - 1m temperature (Celsius)
-**wr** - Wind run (kilometres)
-**state** - State name (postal code abbreviation)
-**lat** - Latitude (Decimal degrees)
-**lon** - Longitude (Decimal degrees)
+-   **obs-time-utc** - Observation time (Time in UTC)
+-   **time-zone** - Time zone for observation
+-   **site** - Unique BOM identifier for each station
+-   **name** - BOM station name
+-   **r** - Rain to 9am (millimetres). \\strong{Trace will be reported as 0.01
+-   **tn** - Minimum temperature (Degrees Celsius)
+-   **tx** - Maximum temperature (Degrees Celsius)
+-   **twd** - Wetbulb depression (Degress Celsius)
+-   **ev** - Evaporation (milimetres)
+-   **tg** - Terrestrial minimum temperature (Degress Celsius)
+-   **sn** - Sunshine (Hours)
+-   **t5** - 5cm temperature (Celsius)
+-   **t10** - 10cm temperature (Celsius)
+-   **t20** - 20cm temperature (Celsius)
+-   **t50** - 50cm temperature (Celsius)
+-   **t1m** - 1m temperature (Celsius)
+-   **wr** - Wind run (kilometres)
+-   **state** - State name (postal code abbreviation)
+-   **lat** - Latitude (Decimal degrees)
+-   **lon** - Longitude (Decimal degrees)
 
 ``` r
 library("bomrang")
