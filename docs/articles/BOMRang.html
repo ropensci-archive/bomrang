@@ -62,7 +62,7 @@
 <em>bomrang</em>: Fetch Australian Government Bureau of Meteorology (BOM) Data</h1>
                         <h4 class="author">Adam H Sparks</h4>
             
-            <h4 class="date">2017-05-15</h4>
+            <h4 class="date">2017-05-16</h4>
           </div>
 
     
@@ -71,25 +71,73 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p><em>bomrang</em> provides functions for interacting with <a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services</a> forecasts. BOM serves forecasts as XML files. This package fetches the forecast, parses it and returns a tidy dataframe for use in R.</p>
+<p><em>bomrang</em> provides functions for interacting with <a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services</a> forecasts. BOM serves several types of data data as XML files. This package fetches these files, parses them and return a tidy dataframe.</p>
 </div>
 <div id="using-bomrang" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-bomrang" class="anchor"></a>Using <em>bomrang</em>
 </h2>
-<p>Three functions are provided by <em>bomrang</em>. The two main functions are <code><a href="../reference/get_forecast.html">get_forecast()</a></code>, which creates a data frame of the daily forecast from BOM, and <code><a href="../reference/get_bulletin.html">get_bulletin()</a></code>, which creates a data frame of agriculture bulletin information. The third function, <code><a href="../reference/update_locations.html">update_locations()</a></code>, updates an internal database of forecast locations distributed with the package.</p>
+<p>Three functions are provided by <em>bomrang</em>. The two main functions are <code><a href="../reference/get_forecast.html">get_forecast()</a></code>, which creates a data frame of the daily précis forecast from BOM, and <code><a href="../reference/get_bulletin.html">get_bulletin()</a></code>, which creates a data frame of agriculture bulletin information. The third function, <code><a href="../reference/update_locations.html">update_locations()</a></code>, updates an internal database of forecast locations distributed with the package.</p>
 <div id="using-get_forecast" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-get_forecast" class="anchor"></a>Using <code><a href="../reference/get_forecast.html">get_forecast()</a></code>
 </h3>
 <p>This function only takes one parameter, <code>state</code>. The <code>state</code> parameter allows the user to select the forecast for just one state or a national forecast. States are specified using the official postal codes,</p>
-<p><strong>ACT</strong> - Australian Capital Territory<br><strong>NSW</strong> - New South Wales<br><strong>NT</strong> - Northern Territory<br><strong>QLD</strong> - Queensland<br><strong>SA</strong> - South Australia<br><strong>TAS</strong> - Tasmania<br><strong>VIC</strong> - Tasmania<br><strong>WA</strong> - Western Australia<br><strong>AUS</strong> - Australia, returns forecast for all states</p>
+<p><strong>ACT</strong> - Australian Capital Territory<br><strong>NSW</strong> - New South Wales<br><strong>NT</strong> - Northern Territory<br><strong>QLD</strong> - Queensland<br><strong>SA</strong> - South Australia<br><strong>TAS</strong> - Tasmania<br><strong>VIC</strong> - Tasmania<br><strong>WA</strong> - Western Australia<br><strong>AUS</strong> - Australia, returns national forecast including all states</p>
 </div>
 <div id="results" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results" class="anchor"></a>Results</h3>
-<p>The function, <code><a href="../reference/get_forecast.html">get_forecast()</a></code> will return a Tibble of the weather forecast for the daily forecast with the following fields,</p>
-<p><strong>aac</strong> - AMOC Area Code, e.g. WA_MW008, a unique identifier for each location<br><strong>start_time_local</strong> - Start of forecast date and time in local TZ<br><strong>end_time_local</strong> - End of forecast date and time in local TZ<br><strong>start_time_utc</strong> - Start of forecast date and time in UTC<br><strong>end_time_utc</strong> - End of forecast date and time in UTC<br><strong>max_temp</strong> - Maximum forecasted temperature (degrees Celsius)<br><strong>min_temp</strong> - Minimum forecasted temperature (degrees Celsius)<br><strong>lower_prcp_limit</strong> - Lower forecasted precipitation limit (millimetres)<br><strong>upper_prcp_limit</strong> - Upper forecasted precipitation limit (millimetres)<br><strong>precis</strong> - Précis forecast (a short summary, less than 30 characters)<br><strong>prob_prcp</strong> - Probability of precipitation (percent)<br><strong>location</strong> - Named location for forecast<br><strong>state</strong> - State name (postal code abbreviation)<br><strong>lon</strong> - Longitude of named location (decimal degrees)<br><strong>lat</strong> - Latitude of named location (decimal degrees)<br><strong>elev</strong> - Elevation of named location (metres)</p>
+<p>The function, <code><a href="../reference/get_forecast.html">get_forecast()</a></code> will return a <a href="https://CRAN.R-project.org/package=tibble">tibble</a> of the weather forecast for the daily forecast with the following fields,</p>
+<ul>
+<li>
+<strong>aac</strong> - AMOC Area Code, <em>e.g.</em> WA_MW008, a unique identifier for each location<br>
+</li>
+<li>
+<strong>start_time_local</strong> - Start of forecast date and time in local TZ<br>
+</li>
+<li>
+<strong>end_time_local</strong> - End of forecast date and time in local TZ<br>
+</li>
+<li>
+<strong>start_time_utc</strong> - Start of forecast date and time in UTC<br>
+</li>
+<li>
+<strong>end_time_utc</strong> - End of forecast date and time in UTC<br>
+</li>
+<li>
+<strong>max_temp</strong> - Maximum forecasted temperature (degrees Celsius)<br>
+</li>
+<li>
+<strong>min_temp</strong> - Minimum forecasted temperature (degrees Celsius)<br>
+</li>
+<li>
+<strong>lower_prcp_limit</strong> - Lower forecasted precipitation limit (millimetres)<br>
+</li>
+<li>
+<strong>upper_prcp_limit</strong> - Upper forecasted precipitation limit (millimetres)<br>
+</li>
+<li>
+<strong>precis</strong> - Précis forecast (a short summary, less than 30 characters)<br>
+</li>
+<li>
+<strong>prob_prcp</strong> - Probability of precipitation (percent)<br>
+</li>
+<li>
+<strong>location</strong> - Named location for forecast<br>
+</li>
+<li>
+<strong>state</strong> - State name (postal code abbreviation)<br>
+</li>
+<li>
+<strong>lon</strong> - Longitude of named location (decimal degrees)<br>
+</li>
+<li>
+<strong>lat</strong> - Latitude of named location (decimal degrees)<br>
+</li>
+<li>
+<strong>elev</strong> - Elevation of named location (metres)</li>
+</ul>
 </div>
 <div id="examples" class="section level3">
 <h3 class="hasAnchor">
@@ -99,20 +147,20 @@
 
 QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_forecast.html">get_forecast</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
 QLD_forecast</code></pre></div>
-<pre><code>## # A tibble: 896 × 17
+<pre><code>## # A tibble: 784 × 17
 ##          aac index          start_time_local            end_time_local
 ##        &lt;chr&gt; &lt;chr&gt;                     &lt;chr&gt;                     &lt;chr&gt;
-## 1  QLD_PT038     0 2017-05-15T17:00:00+10:00 2017-05-16T00:00:00+10:00
-## 2  QLD_PT038     1 2017-05-16T00:00:00+10:00 2017-05-17T00:00:00+10:00
-## 3  QLD_PT038     2 2017-05-17T00:00:00+10:00 2017-05-18T00:00:00+10:00
-## 4  QLD_PT038     3 2017-05-18T00:00:00+10:00 2017-05-19T00:00:00+10:00
-## 5  QLD_PT038     4 2017-05-19T00:00:00+10:00 2017-05-20T00:00:00+10:00
-## 6  QLD_PT038     5 2017-05-20T00:00:00+10:00 2017-05-21T00:00:00+10:00
-## 7  QLD_PT038     6 2017-05-21T00:00:00+10:00 2017-05-22T00:00:00+10:00
-## 8  QLD_PT038     7 2017-05-22T00:00:00+10:00 2017-05-23T00:00:00+10:00
-## 9  QLD_PT045     0 2017-05-15T17:00:00+10:00 2017-05-16T00:00:00+10:00
-## 10 QLD_PT045     1 2017-05-16T00:00:00+10:00 2017-05-17T00:00:00+10:00
-## # ... with 886 more rows, and 13 more variables: start_time_utc &lt;chr&gt;,
+## 1  QLD_PT038     0 2017-05-16T05:00:00+10:00 2017-05-17T00:00:00+10:00
+## 2  QLD_PT038     1 2017-05-17T00:00:00+10:00 2017-05-18T00:00:00+10:00
+## 3  QLD_PT038     2 2017-05-18T00:00:00+10:00 2017-05-19T00:00:00+10:00
+## 4  QLD_PT038     3 2017-05-19T00:00:00+10:00 2017-05-20T00:00:00+10:00
+## 5  QLD_PT038     4 2017-05-20T00:00:00+10:00 2017-05-21T00:00:00+10:00
+## 6  QLD_PT038     5 2017-05-21T00:00:00+10:00 2017-05-22T00:00:00+10:00
+## 7  QLD_PT038     6 2017-05-22T00:00:00+10:00 2017-05-23T00:00:00+10:00
+## 8  QLD_PT045     0 2017-05-16T05:00:00+10:00 2017-05-17T00:00:00+10:00
+## 9  QLD_PT045     1 2017-05-17T00:00:00+10:00 2017-05-18T00:00:00+10:00
+## 10 QLD_PT045     2 2017-05-18T00:00:00+10:00 2017-05-19T00:00:00+10:00
+## # ... with 774 more rows, and 13 more variables: start_time_utc &lt;chr&gt;,
 ## #   end_time_utc &lt;chr&gt;, maximum_temperature &lt;dbl&gt;,
 ## #   minimum_temperature &lt;dbl&gt;, lower_prec_limit &lt;dbl&gt;,
 ## #   upper_prec_limit &lt;chr&gt;, precis &lt;chr&gt;,
@@ -129,8 +177,68 @@ QLD_forecast</code></pre></div>
 <div id="results-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results-1" class="anchor"></a>Results</h3>
-<p>The function, <code><a href="../reference/get_bulletin.html">get_bulletin()</a></code> will return a Tibble of the agriculture bulletin for Queensland with the following fields,</p>
-<p><strong>obs-time-utc</strong> - Observation time (Time in UTC)<br><strong>time-zone</strong> - Time zone for observation<br><strong>site</strong> - Unique BOM identifier for each station<br><strong>name</strong> - BOM station name<br><strong>r</strong> - Rain to 9am (millimetres). \strong{Trace will be reported as 0.01<br><strong>tn</strong> - Minimum temperature (degrees Celsius)<br><strong>tx</strong> - Maximum temperature (degrees Celsius)<br><strong>twd</strong> - Wetbulb depression (degress Celsius)<br><strong>ev</strong> - Evaporation (millimetres)<br><strong>tg</strong> - Terrestrial minimum temperature (degress Celsius)<br><strong>sn</strong> - Sunshine (Hours)<br><strong>t5</strong> - 5cm soil temperature (Celsius)<br><strong>t10</strong> - 10cm soil temperature (Celsius)<br><strong>t20</strong> - 20cm soil temperature (Celsius)<br><strong>t50</strong> - 50cm soil temperature (Celsius)<br><strong>t1m</strong> - 1m soil temperature (Celsius)<br><strong>wr</strong> - Wind run (kilometres)<br><strong>state</strong> - State name (postal code abbreviation)<br><strong>lat</strong> - Latitude (decimal degrees)<br><strong>lon</strong> - Longitude (decimal degrees)</p>
+<p>The function, <code><a href="../reference/get_bulletin.html">get_bulletin()</a></code> will return a <a href="https://CRAN.R-project.org/package=tibble">tibble</a> of the agriculture bulletin with the following fields,</p>
+<ul>
+<li>
+<strong>obs-time-utc</strong> - Observation time (Time in UTC)<br>
+</li>
+<li>
+<strong>time-zone</strong> - Time zone for observation<br>
+</li>
+<li>
+<strong>site</strong> - Unique BOM identifier for each station<br>
+</li>
+<li>
+<strong>name</strong> - BOM station name<br>
+</li>
+<li>
+<strong>r</strong> - Rain to 9am (millimetres). <em>Trace will be reported as 0.01</em><br>
+</li>
+<li>
+<strong>tn</strong> - Minimum temperature (degrees Celsius)<br>
+</li>
+<li>
+<strong>tx</strong> - Maximum temperature (degrees Celsius)<br>
+</li>
+<li>
+<strong>twd</strong> - Wetbulb depression (degress Celsius)<br>
+</li>
+<li>
+<strong>ev</strong> - Evaporation (millimetres)<br>
+</li>
+<li>
+<strong>tg</strong> - Terrestrial minimum temperature (degress Celsius)<br>
+</li>
+<li>
+<strong>sn</strong> - Sunshine (Hours)<br>
+</li>
+<li>
+<strong>t5</strong> - 5cm soil temperature (Celsius)<br>
+</li>
+<li>
+<strong>t10</strong> - 10cm soil temperature (Celsius)<br>
+</li>
+<li>
+<strong>t20</strong> - 20cm soil temperature (Celsius)<br>
+</li>
+<li>
+<strong>t50</strong> - 50cm soil temperature (Celsius)<br>
+</li>
+<li>
+<strong>t1m</strong> - 1m soil temperature (Celsius)<br>
+</li>
+<li>
+<strong>wr</strong> - Wind run (kilometres)<br>
+</li>
+<li>
+<strong>state</strong> - State name (postal code abbreviation)<br>
+</li>
+<li>
+<strong>lat</strong> - Latitude (decimal degrees)<br>
+</li>
+<li>
+<strong>lon</strong> - Longitude (decimal degrees)</li>
+</ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"bomrang"</span>)
 
 QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_bulletin.html">get_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
@@ -156,7 +264,7 @@ QLD_bulletin</code></pre></div>
 <h3 class="hasAnchor">
 <a href="#using-update_locations" class="anchor"></a>Using <code><a href="../reference/update_locations.html">update_locations()</a></code>
 </h3>
-<p>This function downloads the latest precis forecast locations from the BOM server and updates <em>bomrang</em>’s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BOM forecast location database that is not available in the database distributed with <em>bomrang</em>. This database is distributed with the package to make the process faster when fetching the forecast.</p>
+<p>This function downloads the latest précis forecast locations from the BOM server and updates <em>bomrang</em>’s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BOM forecast location database that is not available in the database distributed with <em>bomrang</em>. This database is distributed with the package to make the process faster when fetching the forecast.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/update_locations.html">update_locations</a></span>()</code></pre></div>
 </div>
 </div>
@@ -164,6 +272,8 @@ QLD_bulletin</code></pre></div>
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
 <p><a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services</a></p>
+<p><a href="http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services Agriculture Bulletins</a></p>
+<p><a href="http://www.bom.gov.au/climate/how/observations/rain-measure.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services Observation of Rainfall</a></p>
 </div>
 </div>
   </div>

@@ -1,7 +1,7 @@
 
-#' Get BOM Forecast
+#' Get BOM Daily Précis Forecast
 #'
-#'Fetch the BOM précis forecast and return a tidy data frame of the daily
+#'Fetch the BOM daily précis forecast and return a tidy data frame of the daily
 #'forecast
 #'
 #' @param state Australian state or territory as postal code, see details for

@@ -1,7 +1,7 @@
 #' Update Internal Database With Latest BOM Forecast Locations From BOM FTP Server
 #'
-#' This function downloads the latest forecast locations from the BOM server
-#' and updates bomrang's internal database of forecast locations.  There is no
+#' Download the latest forecast locations from the BOM server and update
+#' bomrang's internal database of forecast locations.  There is no
 #' need to use this unless you know that a forecast location exists in a more
 #' current version of the BOM forecast location database that is not available
 #' in the database distributed with \code{\link{bomrang}}.

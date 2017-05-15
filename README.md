@@ -3,9 +3,9 @@
 *bomrang*: Fetch Australian Government Bureau of Meteorology (BOM) Data
 =======================================================================
 
-[![Travis-CI Build Status](https://travis-ci.org/ToowoombaTrio/bomrang.svg?branch=master)](https://travis-ci.org/ToowoombaTrio/bomrang) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ToowoombaTrio/bomrang?branch=master&svg=true)](https://ci.appveyor.com/project/ToowoombaTrio/bomrang) [![Coverage Status](https://img.shields.io/codecov/c/github/ToowoombaTrio/bomrang/master.svg)](https://codecov.io/github/ToowoombaTrio/bomrang?branch=master) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--05--15-brightgreen.svg)](https://github.com/toowoombatrio/bomrang/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/)
+[![Travis-CI Build Status](https://travis-ci.org/ToowoombaTrio/bomrang.svg?branch=master)](https://travis-ci.org/ToowoombaTrio/bomrang) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ToowoombaTrio/bomrang?branch=master&svg=true)](https://ci.appveyor.com/project/ToowoombaTrio/bomrang) [![Coverage Status](https://img.shields.io/codecov/c/github/ToowoombaTrio/bomrang/master.svg)](https://codecov.io/github/ToowoombaTrio/bomrang?branch=master) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--05--16-brightgreen.svg)](https://github.com/toowoombatrio/bomrang/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/)
 
-Fetches Australian Government Bureau of Meteorology XML data and returns a tidy data frame ([Tibble](http://tibble.tidyverse.org)) of the data.
+Fetches Australian Government Bureau of Meteorology XML data and returns a tidy data frame ([tibble](http://tibble.tidyverse.org)).
 
 Credit for the name, *bomrang*, goes to [Di Cook](http://dicook.github.io), who suggested it attending the rOpenSci AUUnconf in Brisbane, 2016, when seeing the [vignette](https://github.com/saundersk1/auunconf16/blob/master/Vignette_BoM.pdf) that we had assembled during the Unconf.
 
@@ -24,21 +24,21 @@ devtools::install_github("toowoombatrio/bomrang")
 Using *bomrang*
 ---------------
 
-Two functions are provided, `get_forecast()`, which retreives the précis forecast and `get_bulletin()`, which retrives the agriculture bulletin. Both of these functions in *bomrang* allow you to fetch forecasts for an individual state or all at once, i.e., all of Australia. To fetch an individual state, simply use the official postal code for the state for the `state` parameter. To fetch data for all of Australia, use "AUS" in the `state` parameter.
+Two functions are provided, `get_forecast()`, which retreives the précis forecast and `get_bulletin()`, which retrives the agriculture bulletin. Both of these functions in *bomrang* allow you to fetch data for an individual state or all at once, i.e., all of Australia. To fetch an individual state, simply use the official postal code for the state for the `state` parameter. To fetch data for all of Australia, use "AUS" in the `state` parameter.
 
 ### Using `get_forecast()`
 
 This function only takes one parameter, `state`. States are specified using the official postal codes,
 
--   **ACT** - Australian Capital Territory
--   **NSW** - New South Wales
--   **NT** - Northern Territory
--   **QLD** - Queensland
--   **SA** - South Australia
--   **TAS** - Tasmania
--   **VIC** - Tasmania
--   **WA** - Western Australia
--   **AUS** - Australia, returns forecast for all states
+**ACT** - Australian Capital Territory
+**NSW** - New South Wales
+**NT** - Northern Territory
+**QLD** - Queensland
+**SA** - South Australia
+**TAS** - Tasmania
+**VIC** - Tasmania
+**WA** - Western Australia
+**AUS** - Australia, returns national forecast including all states
 
 ### Results
 
@@ -72,20 +72,20 @@ QLD_forecast <- get_forecast(state = "QLD")
 QLD_forecast
 ```
 
-    ## # A tibble: 896 × 17
+    ## # A tibble: 784 × 17
     ##          aac index          start_time_local            end_time_local
     ##        <chr> <chr>                     <chr>                     <chr>
-    ## 1  QLD_PT038     0 2017-05-15T17:00:00+10:00 2017-05-16T00:00:00+10:00
-    ## 2  QLD_PT038     1 2017-05-16T00:00:00+10:00 2017-05-17T00:00:00+10:00
-    ## 3  QLD_PT038     2 2017-05-17T00:00:00+10:00 2017-05-18T00:00:00+10:00
-    ## 4  QLD_PT038     3 2017-05-18T00:00:00+10:00 2017-05-19T00:00:00+10:00
-    ## 5  QLD_PT038     4 2017-05-19T00:00:00+10:00 2017-05-20T00:00:00+10:00
-    ## 6  QLD_PT038     5 2017-05-20T00:00:00+10:00 2017-05-21T00:00:00+10:00
-    ## 7  QLD_PT038     6 2017-05-21T00:00:00+10:00 2017-05-22T00:00:00+10:00
-    ## 8  QLD_PT038     7 2017-05-22T00:00:00+10:00 2017-05-23T00:00:00+10:00
-    ## 9  QLD_PT045     0 2017-05-15T17:00:00+10:00 2017-05-16T00:00:00+10:00
-    ## 10 QLD_PT045     1 2017-05-16T00:00:00+10:00 2017-05-17T00:00:00+10:00
-    ## # ... with 886 more rows, and 13 more variables: start_time_utc <chr>,
+    ## 1  QLD_PT038     0 2017-05-16T05:00:00+10:00 2017-05-17T00:00:00+10:00
+    ## 2  QLD_PT038     1 2017-05-17T00:00:00+10:00 2017-05-18T00:00:00+10:00
+    ## 3  QLD_PT038     2 2017-05-18T00:00:00+10:00 2017-05-19T00:00:00+10:00
+    ## 4  QLD_PT038     3 2017-05-19T00:00:00+10:00 2017-05-20T00:00:00+10:00
+    ## 5  QLD_PT038     4 2017-05-20T00:00:00+10:00 2017-05-21T00:00:00+10:00
+    ## 6  QLD_PT038     5 2017-05-21T00:00:00+10:00 2017-05-22T00:00:00+10:00
+    ## 7  QLD_PT038     6 2017-05-22T00:00:00+10:00 2017-05-23T00:00:00+10:00
+    ## 8  QLD_PT045     0 2017-05-16T05:00:00+10:00 2017-05-17T00:00:00+10:00
+    ## 9  QLD_PT045     1 2017-05-17T00:00:00+10:00 2017-05-18T00:00:00+10:00
+    ## 10 QLD_PT045     2 2017-05-18T00:00:00+10:00 2017-05-19T00:00:00+10:00
+    ## # ... with 774 more rows, and 13 more variables: start_time_utc <chr>,
     ## #   end_time_utc <chr>, maximum_temperature <dbl>,
     ## #   minimum_temperature <dbl>, lower_prec_limit <dbl>,
     ## #   upper_prec_limit <chr>, precis <chr>,
@@ -94,38 +94,38 @@ QLD_forecast
 
 ### Using `get_bulletin()`
 
-This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national forecast. States are specified using the official postal codes,
+This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national bulletin. States are specified using the official postal codes,
 
--   **ACT** - Australian Capital Territory
--   **NSW** - New South Wales
--   **NT** - Northern Territory
--   **QLD** - Queensland
--   **SA** - South Australia
--   **TAS** - Tasmania
--   **VIC** - Tasmania
--   **WA** - Western Australia
--   **AUS** - Australia, returns forecast for all states
+**ACT** - Australian Capital Territory
+**NSW** - New South Wales
+**NT** - Northern Territory
+**QLD** - Queensland
+**SA** - South Australia
+**TAS** - Tasmania
+**VIC** - Tasmania
+**WA** - Western Australia
+**AUS** - Australia, returns forecast for all states
 
 ### Results
 
-The function, `get_bulletin()` will return a Tibble of the agriculture bulletin for Queensland with the following fields,
+The function, `get_bulletin()` will return a tibble of the agriculture bulletin with the following fields,
 
 -   **obs-time-utc** - Observation time (Time in UTC)
 -   **time-zone** - Time zone for observation
 -   **site** - Unique BOM identifier for each station
 -   **name** - BOM station name
--   **r** - Rain to 9am (millimetres). \\strong{Trace will be reported as 0.01
--   **tn** - Minimum temperature (Degrees Celsius)
--   **tx** - Maximum temperature (Degrees Celsius)
--   **twd** - Wetbulb depression (Degress Celsius)
+-   **r** - Rain to 9am (millimetres). *Trace will be reported as 0.01*
+-   **tn** - Minimum temperature (degrees Celsius)
+-   **tx** - Maximum temperature (degrees Celsius)
+-   **twd** - Wetbulb depression (degress Celsius)
 -   **ev** - Evaporation (millimetres)
--   **tg** - Terrestrial minimum temperature (Degress Celsius)
+-   **tg** - Terrestrial minimum temperature (degress Celsius)
 -   **sn** - Sunshine (Hours)
--   **t5** - 5cm soil temperature (Celsius)
--   **t10** - 10cm soil temperature (Celsius)
--   **t20** - 20cm soil temperature (Celsius)
--   **t50** - 50cm soil temperature (Celsius)
--   **t1m** - 1m soil temperature (Celsius)
+-   **t5** - 5cm soil temperature (degrees Celsius)
+-   **t10** - 10cm soil temperature (degrees Celsius)
+-   **t20** - 20cm soil temperature (degrees Celsius)
+-   **t50** - 50cm soil temperature (degrees Celsius)
+-   **t1m** - 1m soil temperature (degrees Celsius)
 -   **wr** - Wind run (kilometres)
 -   **state** - State name (postal code abbreviation)
 -   **lat** - Latitude (decimal degrees)
@@ -168,3 +168,7 @@ References
 ----------
 
 [Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml)
+
+[Australian Bureau of Meteorology (BOM) Weather Data Services Agriculture Bulletins](http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml)
+
+[Australian Bureau of Meteorology (BOM) Weather Data Services Observation of Rainfall](http://www.bom.gov.au/climate/how/observations/rain-measure.shtml)

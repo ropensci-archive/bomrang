@@ -1,7 +1,7 @@
 
 #' Get BOM Agriculture Bulletin
 #'
-#'Fetch the BOM agricultural bulletin information
+#'Fetch the BOM agricultural bulletin information and return a tidy data frame
 #'
 #' @param state Australian state or territory as postal code, see details for
 #' instruction.
