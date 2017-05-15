@@ -1,6 +1,6 @@
 context("get_bulletin")
 
-# Test that get_bulletin returns a data frame with 20 colums -------------------
+# Test that get_bulletin returns a data frame with 20 columns ------------------
 test_that("get_bulletin returns 20 columns", {
   skip_on_cran()
   BOM_bulletin <- get_bulletin(state = "QLD")
