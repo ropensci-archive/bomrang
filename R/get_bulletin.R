@@ -16,7 +16,7 @@
 #'    \item{TAS}{Tasmania}
 #'    \item{VIC}{Victoria}
 #'    \item{WA}{Western Australia}
-#'    \item{AUS}{Australia, returns forecast for all states}
+#'    \item{AUS}{Australia, returns bulletin for all states}
 #'  }
 #'
 #' @return
@@ -28,11 +28,11 @@
 #'    \item{site}{Unique BOM identifier for each station}
 #'    \item{name}{BOM station name}
 #'    \item{r}{Rain to 9am (millimetres). \strong{Trace will be reported as 0.01}}
-#'    \item{tn}{Minimum temperature (Degrees Celsius)}
-#'    \item{tx}{Maximum temperature (Degrees Celsius)}
-#'    \item{twd}{Wetbulb depression (Degrees Celsius)}
+#'    \item{tn}{Minimum temperature (Celsius)}
+#'    \item{tx}{Maximum temperature (Celsius)}
+#'    \item{twd}{Wetbulb depression (Celsius)}
 #'    \item{ev}{Evaporation (millimetres)}
-#'    \item{tg}{Terrestrial minimum temperature (Degrees Celsius)}
+#'    \item{tg}{Terrestrial minimum temperature (Celsius)}
 #'    \item{sn}{Sunshine (Hours)}
 #'    \item{t5}{5cm temperature (Celsius)}
 #'    \item{t10}{10cm temperature (Celsius)}
@@ -41,8 +41,8 @@
 #'    \item{t1m}{1m temperature (Celsius)}
 #'    \item{wr}{Wind run (kilometres)}
 #'    \item{state}{State name (postal code abbreviation)}
-#'    \item{lat}{Latitude (Decimal degrees)}
-#'    \item{lon}{Longitude (Decimal degrees)}
+#'    \item{lat}{Latitude (decimal degrees)}
+#'    \item{lon}{Longitude (decimal degrees)}
 #' }
 #'
 #' @examples
@@ -124,27 +124,19 @@ get_bulletin <- function(state = NULL) {
   else if (state == "AUS") {
     AUS <- list(NT, NSW, QLD, SA, TAS, VIC, WA)
     file_list <- paste0(ftp_base, AUS)
-    Map(
-      function(ftp, dest)
-        utils::download.file(url = ftp, destfile = dest),
-      file_list,
-      file.path(tempdir(), basename(file_list))
-    )
   } else
     stop(state, " not recognised as a valid state or territory")
 
   if (state != "AUS") {
-    .parse_bulletin(xmlbulletin, stations_meta)
+    tibble::as_tibble(.parse_bulletin(xmlbulletin, stations_meta))
   }
   else if (state == "AUS") {
-    xml_list <-
-      list.files(tempdir(), pattern = ".xml$", full.names = TRUE)
-    plyr::ldply(
-      .data = xml_list,
+    tibble::as_tibble(plyr::ldply(
+      .data = file_list,
       .fun = .parse_bulletin,
       stations_meta,
       .progress = "text"
-    )
+    ))
   }
 }
 
@@ -152,7 +144,8 @@ get_bulletin <- function(state = NULL) {
 .parse_bulletin <- function(xmlbulletin, stations_meta) {
   `obs-time-utc` <-
     `time-zone` <- site <- name <- r <- tn <- tx <- twd <-
-    ev <- state <- tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <-
+    ev <-
+    state <- tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <-
     lon <- attrs <- `rep(bulletin_state, nrow(tidy_df))` <- NULL
 
   # load the XML bulletin ------------------------------------------------------
@@ -190,7 +183,7 @@ get_bulletin <- function(state = NULL) {
 
     location <- unlist(t(as.data.frame(xml2::xml_attrs(x))))
     location <-
-      location[rep(seq_len(nrow(location)), each = length(value)),]
+      location[rep(seq_len(nrow(location)), each = length(value)), ]
 
     out <- cbind(location, attrs, value)
     row.names(out) <- NULL

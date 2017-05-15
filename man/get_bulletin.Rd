@@ -19,11 +19,11 @@ Data frame of a Australia BOM agricultural bulletin information
    \item{site}{Unique BOM identifier for each station}
    \item{name}{BOM station name}
    \item{r}{Rain to 9am (millimetres). \strong{Trace will be reported as 0.01}}
-   \item{tn}{Minimum temperature (Degrees Celsius)}
-   \item{tx}{Maximum temperature (Degrees Celsius)}
-   \item{twd}{Wetbulb depression (Degrees Celsius)}
+   \item{tn}{Minimum temperature (Celsius)}
+   \item{tx}{Maximum temperature (Celsius)}
+   \item{twd}{Wetbulb depression (Celsius)}
    \item{ev}{Evaporation (millimetres)}
-   \item{tg}{Terrestrial minimum temperature (Degrees Celsius)}
+   \item{tg}{Terrestrial minimum temperature (Celsius)}
    \item{sn}{Sunshine (Hours)}
    \item{t5}{5cm temperature (Celsius)}
    \item{t10}{10cm temperature (Celsius)}
@@ -32,8 +32,8 @@ Data frame of a Australia BOM agricultural bulletin information
    \item{t1m}{1m temperature (Celsius)}
    \item{wr}{Wind run (kilometres)}
    \item{state}{State name (postal code abbreviation)}
-   \item{lat}{Latitude (Decimal degrees)}
-   \item{lon}{Longitude (Decimal degrees)}
+   \item{lat}{Latitude (decimal degrees)}
+   \item{lon}{Longitude (decimal degrees)}
 }
 }
 \description{
@@ -50,7 +50,7 @@ or all using \code{AUS}.
    \item{TAS}{Tasmania}
    \item{VIC}{Victoria}
    \item{WA}{Western Australia}
-   \item{AUS}{Australia, returns forecast for all states}
+   \item{AUS}{Australia, returns bulletin for all states}
  }
 }
 \examples{

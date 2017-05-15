@@ -32,16 +32,16 @@
 #'    \item{end_time_local}{End of forecast date and time in local TZ}
 #'    \item{start_time_utc}{Start of forecast date and time in UTC}
 #'    \item{end_time_utc}{End of forecast date and time in UTC}
-#'    \item{maximum_temperature}{Maximum forecasted temperature (degrees Celsius)}
-#'    \item{minimum_temperature}{Minimum forecasted temperature (degrees Celsius)}
+#'    \item{maximum_temperature}{Maximum forecasted temperature (Celsius)}
+#'    \item{minimum_temperature}{Minimum forecasted temperature (Celsius)}
 #'    \item{lower_prec_limit}{Lower forecasted precipitation limit (millimetres)}
 #'    \item{upper_prec_limit}{Upper forecasted precipitation limit (millimetres)}
 #'    \item{precis}{Précis forecast (a short summary, less than 30 characters)}
 #'    \item{probability_of_precipitation}{Probability of precipitation (percent)}
 #'    \item{location}{Named location for forecast}
 #'    \item{state}{State name (postal code abbreviation)}
-#'    \item{lon}{Longitude of named location (decimal Degrees)}
-#'    \item{lat}{Latitude of named location (decimal Degrees)}
+#'    \item{lon}{Longitude of named location (decimal degrees)}
+#'    \item{lat}{Latitude of named location (decimal degrees)}
 #'    \item{elev}{Elevation of named location (metres)}
 #' }
 #'
@@ -106,12 +106,6 @@ get_forecast <- function(state = NULL) {
   else if (state == "AUS") {
     AUS <- list(NT, NSW, QLD, SA, TAS, VIC, WA)
     file_list <- paste0(ftp_base, AUS)
-    Map(
-      function(ftp, dest)
-        utils::download.file(url = ftp, destfile = dest),
-      file_list,
-      file.path(tempdir(), basename(file_list))
-    )
   } else
     stop(state, " not recognised as a valid state or territory")
 
@@ -119,10 +113,8 @@ get_forecast <- function(state = NULL) {
     tibble::as_tibble(.parse_forecast(xmlforecast))
   }
   else if (state == "AUS") {
-    xml_list <-
-      list.files(tempdir(), pattern = ".xml$", full.names = TRUE)
     tibble::as_tibble(plyr::ldply(
-      .data = xml_list,
+      .data = file_list,
       .fun = .parse_forecast,
       .progress = "text"
     ))
@@ -132,7 +124,8 @@ get_forecast <- function(state = NULL) {
 .parse_forecast <- function(xmlforecast) {
   aac <- location <- state <- lon <- lat <- elev <-
     precipitation_range <- attrs <- values <-
-    `c("air_temperature_maximum", "Celsius")` <- `start-time-local` <-
+    `c("air_temperature_maximum", "Celsius")` <-
+    `start-time-local` <-
     `end-time-local` <- `c("air_temperature_minimum", "Celsius")` <-
     LON <- LAT <- ELEVATION <- `end-time-utc` <-
     `start-time-utc` <- precis <- probability_of_precipitation <-
@@ -246,7 +239,7 @@ get_forecast <- function(state = NULL) {
 
   time_period <- unlist(t(as.data.frame(xml2::xml_attrs(y))))
   time_period <-
-    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)),]
+    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)), ]
 
   sub_out <- cbind(time_period, attrs, values)
   row.names(sub_out) <- NULL

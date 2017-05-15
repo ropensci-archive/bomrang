@@ -11,7 +11,7 @@
 
  test_that("update_locations() downloads and imports the proper file", {
    skip_on_cran()
-   utils::download.file(
+   curl::curl_download(
      "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf",
      destfile = paste0(tempdir(), "AAC_codes.dbf"),
      mode = "wb"

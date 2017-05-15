@@ -26,7 +26,7 @@ update_locations <- function() {
   on.exit(options(timeout = original_timeout))
 
   # fetch new database from BOM server
-  utils::download.file(
+ curl::curl_download(
     "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf",
     destfile = paste0(tempdir(), "AAC_codes.dbf"),
     mode = "wb"

@@ -14,7 +14,6 @@ License: MIT + file LICENSE
 Depends:
     R (>= 3.2.0)
 Imports:
-    data.table,
     dplyr,
     foreign,
     lubridate,

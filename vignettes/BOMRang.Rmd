@@ -106,8 +106,8 @@ The function, `get_bulletin()` will return a Tibble of the agriculture bulletin 
 ```{r, eval=TRUE}
 library("bomrang")
 
-QLD_forecast <- get_bulletin(state = "QLD")
-QLD_forecast
+QLD_bulletin <- get_bulletin(state = "QLD")
+QLD_bulletin
 ```
 
 ### Using `update_locations()`
