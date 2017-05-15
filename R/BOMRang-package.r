@@ -1,14 +1,14 @@
 #' Fetches Australian Government Bureau of Meteorology (BOM) XML file and
 #' returns a tidy data frame of the data.
 #'
-#' @name BOMRang
+#' @name bomrang
 #' @author Adam H Sparks and Keith Pembleton
 #' @docType package
 #'
 #' @seealso
 #'\strong{Useful links:}
 #' \itemize{
-#' \item{\url{https://github.com/ToowoombaTrio/BOMRang}}
-#' \item{Report bugs at \url{https://github.com/ToowoombaTrio/BOMRang/issues}}
+#' \item{\url{https://github.com/ToowoombaTrio/bomrang}}
+#' \item{Report bugs at \url{https://github.com/ToowoombaTrio/bomrang/issues}}
 #' }
 NULL

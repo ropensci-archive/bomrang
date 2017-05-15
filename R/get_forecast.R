@@ -27,15 +27,19 @@
 #'
 #'\describe{
 #'    \item{aac}{AMOC Area Code, e.g. WA_MW008, a unique identifier for each location}
-#'    \item{date}{Date (YYYY-MM-DD)}
-#'    \item{max_temp}{Maximum forecasted temperature (degrees Celsius)}
-#'    \item{min_temp}{Minimum forecasted temperature (degrees Celsius)}
-#'    \item{lower_prcp_limit}{Lower forecasted precipitation limit (millimetres)}
-#'    \item{upper_prcp_limit}{Upper forecasted precipitation limit (millimetres)}
+#'    \item{index}{Index value, day 0 to day 7}
+#'    \item{start_time_local}{Start of forecast date and time in local TZ}
+#'    \item{end_time_local}{End of forecast date and time in local TZ}
+#'    \item{start_time_utc}{Start of forecast date and time in UTC}
+#'    \item{end_time_utc}{End of forecast date and time in UTC}
+#'    \item{maximum_temperature}{Maximum forecasted temperature (degrees Celsius)}
+#'    \item{minimum_temperature}{Minimum forecasted temperature (degrees Celsius)}
+#'    \item{lower_prec_limit}{Lower forecasted precipitation limit (millimetres)}
+#'    \item{upper_prec_limit}{Upper forecasted precipitation limit (millimetres)}
 #'    \item{precis}{Précis forecast (a short summary, less than 30 characters)}
-#'    \item{prob_prcp}{Probability of precipitation (percent)}
+#'    \item{probability_of_precipitation}{Probability of precipitation (percent)}
 #'    \item{location}{Named location for forecast}
-#'    \item{state}{State name  (postal code abbreviation)}
+#'    \item{state}{State name (postal code abbreviation)}
 #'    \item{lon}{Longitude of named location (decimal Degrees)}
 #'    \item{lat}{Latitude of named location (decimal Degrees)}
 #'    \item{elev}{Elevation of named location (metres)}
@@ -126,138 +130,125 @@ get_forecast <- function(state = NULL) {
 }
 
 .parse_forecast <- function(xmlforecast) {
-  type <-
-    description <- aac <- location <- state <- lon <- lat <- elev <-
-    precipitation_range <- `parent-aac` <- LON <- LAT <- ELEVATION <- NULL
+  aac <- location <- state <- lon <- lat <- elev <-
+    precipitation_range <- attrs <- values <-
+    `c("air_temperature_maximum", "Celsius")` <- `start-time-local` <-
+    `end-time-local` <- `c("air_temperature_minimum", "Celsius")` <-
+    LON <- LAT <- ELEVATION <- `end-time-utc` <-
+    `start-time-utc` <- precis <- probability_of_precipitation <-
+    PT_NAME <- end_time_local <- end_time_utc <- lower_prec_limit <-
+    start_time_local <- start_time_utc <- maximum_temperature <-
+    minimum_temperature <- NULL
 
-    # load BOM location data ---------------------------------------------------
-    utils::data("AAC_codes", package = "BOMRang")
-    AAC_codes <- AAC_codes
+  # load BOM location data ---------------------------------------------------
+  utils::data("AAC_codes", package = "bomrang")
+  AAC_codes <- AAC_codes
 
-    # load the XML forecast ----------------------------------------------------
-    xmlforecast <- xml2::read_xml(xmlforecast)
+  # load the XML forecast ----------------------------------------------------
+  xmlforecast <- xml2::read_xml(xmlforecast)
+  areas <-
+    xml2::xml_find_all(xmlforecast, ".//*[@type='location']")
+  xml2::xml_find_all(areas, ".//*[@type='forecast_icon_code']") %>%
+    xml2::xml_remove()
 
-    # remove today's data ------------------------------------------------------
-    xml2::xml_find_all(xmlforecast, ".//*[@index='0']") %>%
-      xml2::xml_remove()
+  out <- plyr::ldply(.data = areas, .fun = .parse_areas)
 
-    # extract locations from forecast ------------------------------------------
-    areas <- xml2::xml_find_all(xmlforecast, ".//*[@type='location']")
-    forecast_locations <-
-      dplyr::bind_rows(lapply(xml2::xml_attrs(areas), as.list)) %>%
-      dplyr::select(-type)
+  # This is the actual returned value for the main function. The functions
+  # below chunk the xml into locations and then days, this assembles into
+  # the final data frame
 
-    # join locations with lat/lon values ---------------------------------------
-    forecast_locations <- dplyr::left_join(forecast_locations,
-                                           AAC_codes,
-                                           by = c("aac" = "AAC",
-                                                  "description" = "PT_NAME"))
+  out <- tidyr::spread(out, key = attrs, value = values)
+  out <-
+    dplyr::rename(
+      out,
+      maximum_temperature = `c("air_temperature_maximum", "Celsius")`,
+      minimum_temperature = `c("air_temperature_minimum", "Celsius")`,
+      start_time_local = `start-time-local`,
+      end_time_local = `end-time-local`,
+      start_time_utc = `start-time-utc`,
+      end_time_utc = `end-time-utc`
+    )
 
-    # unlist and add the locations aac code ------------------------------------
-    forecasts <-
-      lapply(xml2::xml_find_all(xmlforecast, ".//*[@type='location']"),
-             xml2::as_list)
+  out$probability_of_precipitation <-
+    gsub("%", "", paste(out$probability_of_precipitation))
 
-    forecasts <- plyr::llply(forecasts, unlist)
-    names(forecasts) <- forecast_locations$aac
+  out <-
+    out %>%
+    dplyr::mutate_each(dplyr::funs(as.character), aac) %>%
+    dplyr::mutate_each(dplyr::funs(as.character), precipitation_range)
 
-    # get all the <element> and <text> tags (the forecast) ---------------------
-    eltext <- xml2::xml_find_all(xmlforecast, "//element | //text")
+  # split precipitation forecast values into lower/upper limits --------------
 
-    # extract and clean (if needed) (the labels for the forecast) --------------
-    labs <- trimws(xml2::xml_attrs(eltext, "type"))
+  # format any values that are only zero to make next step easier
+  out$precipitation_range[which(out$precipitation_range == "0 mm")] <-
+    "0 mm to 0 mm"
 
-    # use a loop to turn list of named character elements into a list ----------
-    # of dataframes with the location aac code for each line of the data frame
-    y <- vector("list")
-    for (i in unique(names(forecasts))) {
-      x <- data.frame(
-        keyName = names(forecasts[[i]]),
-        value = forecasts[[i]],
-        row.names = NULL
-      )
-      z <- names(forecasts[i])
-      x <- data.frame(rep(as.character(z), nrow(x)), x)
-      y[[i]] <- x
-    }
+  # separate the precipitation column into two, upper/lower limit ------------
+  out <-
+    out %>%
+    tidyr::separate(
+      precipitation_range,
+      into = c("lower_prec_limit", "upper_prec_limit"),
+      sep = "to"
+    )
 
-    # combine list into a single dataframe -
-    y <- data.table::rbindlist(y, fill = TRUE)
+  # remove unnecessary text (mm in prcp cols) --------------------------------
+  out <- lapply(out, function(x) {
+    gsub(" mm", "", x)
+  })
 
-    # add the forecast description to the dataframe ----------------------------
-    forecast <-
-      data.frame(y[, -2], labs) # drop keyName colum from "y"
-    names(forecast) <- c("aac", "value", "labs")
+  # merge the forecast with the locations ------------------------------------
 
-    # how many days are in the forecast? It may be 6 or 7 ----------------------
-    indices <- xml2::xml_find_all(xmlforecast, "//forecast-period")
-    indices <- trimws(xml2::xml_attrs(indices, "index"))
-    days <- as.numeric(max(stringr::str_sub(indices, 4, 4)))
+  # return final forecast object ---------------------------------------------
+  tidy_df <-
+    dplyr::left_join(tibble::as_tibble(out),
+                     AAC_codes, by = c("aac" = "AAC")) %>%
+    dplyr::rename(lon = LON,
+                  lat = LAT,
+                  elev = ELEVATION) %>%
+    dplyr::mutate_each(dplyr::funs(as.character), start_time_local) %>%
+    dplyr::mutate_each(dplyr::funs(as.character), end_time_local) %>%
+    dplyr::mutate_each(dplyr::funs(as.character), start_time_utc) %>%
+    dplyr::mutate_each(dplyr::funs(as.character), end_time_utc) %>%
+    dplyr::mutate_each(dplyr::funs(as.numeric), maximum_temperature) %>%
+    dplyr::mutate_each(dplyr::funs(as.numeric), minimum_temperature) %>%
+    dplyr::mutate_each(dplyr::funs(as.numeric), lower_prec_limit) %>%
+    dplyr::mutate_each(dplyr::funs(as.numeric), lower_prec_limit) %>%
+    dplyr::mutate_each(dplyr::funs(as.character), precis) %>%
+    dplyr::mutate_each(dplyr::funs(as.character), probability_of_precipitation) %>%
+    dplyr::mutate(state = stringr::str_extract(out$aac,
+                                               pattern = "[:alpha:]{2,3}")) %>%
+    dplyr::rename(location = PT_NAME) %>%
+    dplyr::select(aac:location, state, lon, lat, elev)
 
-    # add dates to forecast ----------------------------------------------------
-    forecast$date <-  c(rep(seq(
-      lubridate::ymd(Sys.Date() + 1),
-      lubridate::ymd(Sys.Date() + days),
-      by = "1 day"
-    ),
-    each = 6))
-
-    # spread columns -----------------------------------------------------------
-    forecast <-
-      forecast %>%
-      reshape2::dcast(aac + date ~ labs, value.var = "value")
-
-    # split precipitation forecast values into lower/upper limits --------------
-
-    # format any values that are only zero to make next step easier
-    forecast$precipitation_range[which(forecast$precipitation_range == "0 mm")] <-
-      "0 mm to 0 mm"
-
-    # separate the precipitation column into two, upper/lower limit ------------
-    forecast <-
-      forecast %>%
-      tidyr::separate(
-        precipitation_range,
-        into = c("lower_prec_limit", "upper_prec_limit"),
-        sep = "to"
-      )
-
-    # remove unnecessary text (mm in prcp cols) --------------------------------
-    forecast <- lapply(forecast, function(x) {
-      gsub(" mm", "", x)
-    })
-
-    # rename columns -----------------------------------------------------------
-    forecast <- forecast[-5] # drop forecast_icon_code column
-
-    names(forecast) <-
-      c(
-        "aac",
-        "date",
-        "max_temp",
-        "min_temp",
-        "lower_prcp_limit",
-        "upper_prcp_limit",
-        "precis",
-        "prob_prcp"
-      )
-
-    # merge the forecast with the locations ------------------------------------
-
-    # convert forecast_locations$aac to factor for merging
-    forecast$aac <- as.character(forecast$aac)
-
-    # return final forecast object ---------------------------------------------
-    forecast  <-
-      dplyr::left_join(tibble::as_tibble(forecast),
-                       forecast_locations, by = "aac") %>%
-      dplyr::select(-`parent-aac`) %>%
-      dplyr::rename(lon = LON,
-                    lat = LAT,
-                    elev = ELEVATION) %>%
-      dplyr::mutate(state = stringr::str_extract(forecast$aac,
-                                                 pattern = "[:alpha:]{2,3}")) %>%
-      dplyr::rename(location = description) %>%
-      dplyr::select(aac:location, state, lon, lat, elev)
+  return(tidy_df)
 }
 
+# get the data from areas --------------------------------------------------
+.parse_areas <- function(x) {
+  aac <- as.character(xml2::xml_attr(x, "aac"))
+
+  # get xml children for the forecast (there are seven of these for each area)
+  forecast_periods <- xml2::xml_children(x)
+
+  sub_out <-
+    plyr::ldply(.data = forecast_periods, .fun = .extract_values)
+
+  sub_out <- cbind(aac, sub_out)
+  return(sub_out)
+}
+
+# extract the values of the forecast items
+.extract_values <- function(y) {
+  values <- xml2::xml_children(y)
+  attrs <- unlist(as.character(xml2::xml_attrs(values)))
+  values <- unlist(as.character(xml2::xml_contents(values)))
+
+  time_period <- unlist(t(as.data.frame(xml2::xml_attrs(y))))
+  time_period <-
+    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)),]
+
+  sub_out <- cbind(time_period, attrs, values)
+  row.names(sub_out) <- NULL
+  return(sub_out)
+}

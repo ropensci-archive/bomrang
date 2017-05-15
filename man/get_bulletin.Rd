@@ -14,7 +14,26 @@ instruction.}
 Data frame of a Australia BOM agricultural bulletin information
 
 \describe{
-   # to be updated
+   \item{obs-time-utc}{Observation time (Time in UTC)}
+   \item{time-zone}{Time zone for observation}
+   \item{site}{Unique BOM identifier for each station}
+   \item{name}{BOM station name}
+   \item{r}{Rain to 9am (millimetres). \strong{Trace will be reported as 0.01}}
+   \item{tn}{Minimum temperature (Degrees Celsius)}
+   \item{tx}{Maximum temperature (Degrees Celsius)}
+   \item{twd}{Wetbulb depression (Degrees Celsius)}
+   \item{ev}{Evaporation (millimetres)}
+   \item{tg}{Terrestrial minimum temperature (Degrees Celsius)}
+   \item{sn}{Sunshine (Hours)}
+   \item{t5}{5cm temperature (Celsius)}
+   \item{t10}{10cm temperature (Celsius)}
+   \item{t20}{20cm temperature (Celsius)}
+   \item{t50}{50cm temperature (Celsius)}
+   \item{t1m}{1m temperature (Celsius)}
+   \item{wr}{Wind run (kilometres)}
+   \item{state}{State name (postal code abbreviation)}
+   \item{lat}{Latitude (Decimal degrees)}
+   \item{lon}{Longitude (Decimal degrees)}
 }
 }
 \description{
@@ -41,9 +60,12 @@ ag_bulletin <- get_bulletin(state = "QLD")
 
 }
 \references{
-Australian Bureau of Meteorology (BOM) Weather Data Services
-\url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
+Australian Bureau of Meteorology (BOM) Weather Data Services Agriculture Bulletins
+\url{http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml}
+
+Australian Bureau of Meteorology (BOM) Weather Data Services Observation of Rainfall
+\url{http://www.bom.gov.au/climate/how/observations/rain-measure.shtml}
 }
 \author{
-Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton \email{keith.pembleton@usq.edu.au}
+Adam H Sparks, \email{adamhsparks@gmail.com}
 }

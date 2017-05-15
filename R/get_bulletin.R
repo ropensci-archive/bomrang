@@ -1,5 +1,4 @@
 
-
 #' Get BOM Agriculture Bulletin
 #'
 #'Fetch the BOM agricultural bulletin information
@@ -24,33 +23,26 @@
 #' Data frame of a Australia BOM agricultural bulletin information
 #'
 #'\describe{
-#'    \item{obs-time-utc}{}
-#'    \item{time-zone}{}
-#'    \item{site}{}
-#'    \item{station}{}
-#'    \item{r}{}
-#'    \item{tn}{}
-#'    \item{twd}{}
-#'    \item{tx}{}
-#'    \item{ev}{}
-#'    \item{tg}{}
-#'    \item{sn}{}
-#'    \item{t5}{}
-#'    \item{t10}{}
-#'    \item{t20}{}
-#'    \item{t50}{}
-#'    \item{t1m}{}
-#'    \item{wr}{}
-#'    \item{Name}{}
-#'    \item{Lat}{}
-#'    \item{Lon}{}
-#'    \item{Start Month}{}
-#'    \item{Start Year}{}
-#'    \item{End Month}{}
-#'    \item{End Year}{}
-#'    \item{Years}{}
-#'    \item{%}{}
-#'    \item{AWS}{Automated Weather Station}
+#'    \item{obs-time-utc}{Observation time (Time in UTC)}
+#'    \item{time-zone}{Time zone for observation}
+#'    \item{site}{Unique BOM identifier for each station}
+#'    \item{name}{BOM station name}
+#'    \item{r}{Rain to 9am (millimetres). \strong{Trace will be reported as 0.01}}
+#'    \item{tn}{Minimum temperature (Degrees Celsius)}
+#'    \item{tx}{Maximum temperature (Degrees Celsius)}
+#'    \item{twd}{Wetbulb depression (Degrees Celsius)}
+#'    \item{ev}{Evaporation (millimetres)}
+#'    \item{tg}{Terrestrial minimum temperature (Degrees Celsius)}
+#'    \item{sn}{Sunshine (Hours)}
+#'    \item{t5}{5cm temperature (Celsius)}
+#'    \item{t10}{10cm temperature (Celsius)}
+#'    \item{t20}{20cm temperature (Celsius)}
+#'    \item{t50}{50cm temperature (Celsius)}
+#'    \item{t1m}{1m temperature (Celsius)}
+#'    \item{wr}{Wind run (kilometres)}
+#'    \item{state}{State name (postal code abbreviation)}
+#'    \item{lat}{Latitude (Decimal degrees)}
+#'    \item{lon}{Longitude (Decimal degrees)}
 #' }
 #'
 #' @examples
@@ -58,11 +50,14 @@
 #' ag_bulletin <- get_bulletin(state = "QLD")
 #' }
 #'
-#' @author Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton \email{keith.pembleton@usq.edu.au}
+#' @author Adam H Sparks, \email{adamhsparks@gmail.com}
 #'
 #' @references
-#' Australian Bureau of Meteorology (BOM) Weather Data Services
-#' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
+#' Australian Bureau of Meteorology (BOM) Weather Data Services Agriculture Bulletins
+#' \url{http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml}
+#'
+#' Australian Bureau of Meteorology (BOM) Weather Data Services Observation of Rainfall
+#' \url{http://www.bom.gov.au/climate/how/observations/rain-measure.shtml}
 #'
 #' @export
 get_bulletin <- function(state = NULL) {
@@ -74,40 +69,22 @@ get_bulletin <- function(state = NULL) {
     readr::read_table(
       "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/lists_by_element/alpha/alphaAUS_122.txt",
       skip = 4,
-      col_names = c(
-        "Site",
-        "Name",
-        "Lat",
-        "Lon",
-        "Start Month",
-        "Start Year",
-        "End Month",
-        "End Year",
-        "Years",
-        "%",
-        "AWS"
-      ),
-      col_types = c(
-        "Site" = readr::col_integer(),
-        "Name" = readr::col_character(),
-        "Lat" = readr::col_double(),
-        "Lon" = readr::col_double(),
-        "`Start Month`" = readr::col_character(),
-        "`Start Year`" = readr::col_integer(),
-        "`End Month`" = readr::col_character(),
-        "`End Year`" = readr::col_integer(),
-        "Years" = readr::col_double(),
-        "`%`" = readr::col_integer(),
-        "AWS" = readr::col_character()
+      col_names = c("site",
+                    "name",
+                    "lat",
+                    "lon"),
+      col_types = readr::cols_only(
+        "site" = readr::col_character(),
+        "name" = readr::col_character(),
+        "lat" = readr::col_double(),
+        "lon" = readr::col_double()
       )
     )
-
-  stations_meta$Site <- as.character(stations_meta$Site)
 
   # ftp server
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
 
-  # State/territory forecast files
+  # State/territory bulletin files
   NT  <- "IDD65176.xml"
   NSW <- "IDN65176.xml"
   QLD <- "IDQ60604.xml"
@@ -157,38 +134,63 @@ get_bulletin <- function(state = NULL) {
     stop(state, " not recognised as a valid state or territory")
 
   if (state != "AUS") {
-    tibble::as_tibble(.parse_bulletin(xmlbulletin, stations_meta))
+    .parse_bulletin(xmlbulletin, stations_meta)
   }
   else if (state == "AUS") {
     xml_list <-
       list.files(tempdir(), pattern = ".xml$", full.names = TRUE)
-    tibble::as_tibble(
-      plyr::ldply(
-        .data = xml_list,
-        .fun = .parse_bulletin,
-        stations_meta,
-        .progress = "text"
-      )
+    plyr::ldply(
+      .data = xml_list,
+      .fun = .parse_bulletin,
+      stations_meta,
+      .progress = "text"
     )
   }
 }
 
-#'@nord
+#' @noRd
 .parse_bulletin <- function(xmlbulletin, stations_meta) {
-  # load the XML forecast ------------------------------------------------------
+  `obs-time-utc` <-
+    `time-zone` <- site <- name <- r <- tn <- tx <- twd <-
+    ev <- state <- tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <-
+    lon <- attrs <- `rep(bulletin_state, nrow(tidy_df))` <- NULL
+
+  # load the XML bulletin ------------------------------------------------------
   xmlbulletin <- xml2::read_xml(xmlbulletin)
   obs <- xml2::xml_find_all(xmlbulletin, "//obs")
+
+  bulletin_state <-
+    xml2::xml_find_first(xmlbulletin, ".//*['name']")
+  bulletin_state <- xml2::xml_attr(bulletin_state, "name")
+  bulletin_state <- stringr::str_sub(bulletin_state, start = 40)
+
+  if (bulletin_state == "New South Wales") {
+    bulletin_state <- "NSW"
+  } else if (bulletin_state == "Queensland") {
+    bulletin_state <- "QLD"
+  } else if (bulletin_state == "Northern Territory") {
+    bulletin_state <- "NT"
+  } else if (bulletin_state == "South Australia") {
+    bulletin_state <- "SA"
+  } else if (bulletin_state == "Tasmania") {
+    bulletin_state <- "TAS"
+  } else if (bulletin_state == "Victoria") {
+    bulletin_state <- "VIC"
+  } else if (bulletin_state == "Western Australia") {
+    bulletin_state <- "WA"
+  }
 
   # get the data from observations ---------------------------------------------
   .get_obs <- function(x) {
     d <- xml2::xml_children(x)
-    value <-
-      as.numeric(unlist(as.character(xml2::xml_contents(d))))
+    value <- unlist(as.character(xml2::xml_contents(d)))
+    value[value == "Tce"] <- 0.01
+    value <- as.numeric(value)
     attrs <- unlist(as.character(xml2::xml_attrs(d)))
 
     location <- unlist(t(as.data.frame(xml2::xml_attrs(x))))
     location <-
-      location[rep(seq_len(nrow(location)), each = length(value)), ]
+      location[rep(seq_len(nrow(location)), each = length(value)),]
 
     out <- cbind(location, attrs, value)
     row.names(out) <- NULL
@@ -197,12 +199,47 @@ get_bulletin <- function(state = NULL) {
     out$value <- as.numeric(as.character(out$value))
     out <- tidyr::spread(out, key = attrs, value = value)
 
+    # some stations don't report sunshine hours, insert the column as necessary
+    if (!"sn" %in% colnames(out))
+    {
+      out$sn <- NA
+    }
+
     # join locations with lat/lon values ---------------------------------------
     return(out)
   }
   tidy_df <- plyr::ldply(.data = obs, .fun = .get_obs)
   tidy_df <- dplyr::left_join(tidy_df,
                               stations_meta,
-                              by = c("site" = "Site"))[-1]
+                              by = c("site" = "site"))[-1]
+  tidy_df <- cbind(tidy_df, rep(bulletin_state, nrow(tidy_df)))
+  tidy_df <-
+    dplyr::rename(tidy_df, state = `rep(bulletin_state, nrow(tidy_df))`)
+  tidy_df$state <- as.character(tidy_df$state)
+  tidy_df <- tibble::as_tibble(
+    dplyr::select(
+      tidy_df,
+      `obs-time-utc`,
+      `time-zone`,
+      site,
+      name,
+      r,
+      tn,
+      tx,
+      twd,
+      ev,
+      tg,
+      sn,
+      t5,
+      t10,
+      t20,
+      t50,
+      t1m,
+      wr,
+      state,
+      lat,
+      lon
+    )
+  )
 
 }

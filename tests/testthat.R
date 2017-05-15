@@ -1,4 +1,4 @@
 library(testthat)
-library(BOMRang)
+library(bomrang)
 
-test_check("BOMRang")
+test_check("bomrang")

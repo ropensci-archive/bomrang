@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get BOM Forecast — get_forecast • bomrang</title>
+<title>Get BOM Agriculture Bulletin — get_bulletin • bomrang</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -79,15 +79,14 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get BOM Forecast</h1>
+    <h1>Get BOM Agriculture Bulletin</h1>
     </div>
 
     
-    <p>Fetch the BOM précis forecast and return a tidy data frame of the daily
-forecast</p>
+    <p>Fetch the BOM agricultural bulletin information</p>
     
 
-    <pre class="usage"><span class='fu'>get_forecast</span>(<span class='kw'>state</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>get_bulletin</span>(<span class='kw'>state</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -101,25 +100,27 @@ instruction.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Data frame of a Australia BOM daily forecast in a data frame with the
-following fields.</p><dl class='dl-horizontal'>
-   <dt>aac</dt><dd><p>AMOC Area Code, e.g. WA_MW008, a unique identifier for each location</p></dd>
-   <dt>index</dt><dd><p>Index value, day 0 to day 7</p></dd>
-   <dt>start_time_local</dt><dd><p>Start of forecast date and time in local TZ</p></dd>
-   <dt>end_time_local</dt><dd><p>End of forecast date and time in local TZ</p></dd>
-   <dt>start_time_utc</dt><dd><p>Start of forecast date and time in UTC</p></dd>
-   <dt>end_time_utc</dt><dd><p>End of forecast date and time in UTC</p></dd>
-   <dt>maximum_temperature</dt><dd><p>Maximum forecasted temperature (degrees Celsius)</p></dd>
-   <dt>minimum_temperature</dt><dd><p>Minimum forecasted temperature (degrees Celsius)</p></dd>
-   <dt>lower_prec_limit</dt><dd><p>Lower forecasted precipitation limit (millimetres)</p></dd>
-   <dt>upper_prec_limit</dt><dd><p>Upper forecasted precipitation limit (millimetres)</p></dd>
-   <dt>precis</dt><dd><p>Précis forecast (a short summary, less than 30 characters)</p></dd>
-   <dt>probability_of_precipitation</dt><dd><p>Probability of precipitation (percent)</p></dd>
-   <dt>location</dt><dd><p>Named location for forecast</p></dd>
+    <p>Data frame of a Australia BOM agricultural bulletin information</p><dl class='dl-horizontal'>
+   <dt>obs-time-utc</dt><dd><p>Observation time (Time in UTC)</p></dd>
+   <dt>time-zone</dt><dd><p>Time zone for observation</p></dd>
+   <dt>site</dt><dd><p>Unique BOM identifier for each station</p></dd>
+   <dt>name</dt><dd><p>BOM station name</p></dd>
+   <dt>r</dt><dd><p>Rain to 9am (millimetres). <strong>Trace will be reported as 0.01</strong></p></dd>
+   <dt>tn</dt><dd><p>Minimum temperature (Degrees Celsius)</p></dd>
+   <dt>tx</dt><dd><p>Maximum temperature (Degrees Celsius)</p></dd>
+   <dt>twd</dt><dd><p>Wetbulb depression (Degrees Celsius)</p></dd>
+   <dt>ev</dt><dd><p>Evaporation (millimetres)</p></dd>
+   <dt>tg</dt><dd><p>Terrestrial minimum temperature (Degrees Celsius)</p></dd>
+   <dt>sn</dt><dd><p>Sunshine (Hours)</p></dd>
+   <dt>t5</dt><dd><p>5cm temperature (Celsius)</p></dd>
+   <dt>t10</dt><dd><p>10cm temperature (Celsius)</p></dd>
+   <dt>t20</dt><dd><p>20cm temperature (Celsius)</p></dd>
+   <dt>t50</dt><dd><p>50cm temperature (Celsius)</p></dd>
+   <dt>t1m</dt><dd><p>1m temperature (Celsius)</p></dd>
+   <dt>wr</dt><dd><p>Wind run (kilometres)</p></dd>
    <dt>state</dt><dd><p>State name (postal code abbreviation)</p></dd>
-   <dt>lon</dt><dd><p>Longitude of named location (decimal Degrees)</p></dd>
-   <dt>lat</dt><dd><p>Latitude of named location (decimal Degrees)</p></dd>
-   <dt>elev</dt><dd><p>Elevation of named location (metres)</p></dd>
+   <dt>lat</dt><dd><p>Latitude (Decimal degrees)</p></dd>
+   <dt>lon</dt><dd><p>Longitude (Decimal degrees)</p></dd>
 </dl>
 
     
@@ -127,7 +128,6 @@ following fields.</p><dl class='dl-horizontal'>
 
     <p>Allowed state and territory postal codes, only one state per request
 or all using <code>AUS</code>.</p><dl class='dl-horizontal'>
-   <dt>ACT</dt><dd><p>Australian Capital Territory (will return NSW)</p></dd>
    <dt>NSW</dt><dd><p>New South Wales</p></dd>
    <dt>NT</dt><dd><p>Northern Territory</p></dd>
    <dt>QLD</dt><dd><p>Queensland</p></dd>
@@ -140,13 +140,15 @@ or all using <code>AUS</code>.</p><dl class='dl-horizontal'>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Australian Bureau of Meteorology (BOM) Weather Data Services
-<a href = 'http://www.bom.gov.au/catalogue/data-feeds.shtml'>http://www.bom.gov.au/catalogue/data-feeds.shtml</a></p>
+    <p>Australian Bureau of Meteorology (BOM) Weather Data Services Agriculture Bulletins
+<a href = 'http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml'>http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml</a></p>
+<p>Australian Bureau of Meteorology (BOM) Weather Data Services Observation of Rainfall
+<a href = 'http://www.bom.gov.au/climate/how/observations/rain-measure.shtml'>http://www.bom.gov.au/climate/how/observations/rain-measure.shtml</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='fu'>not_run</span>({
-  <span class='no'>BOM_forecast</span> <span class='kw'>&lt;-</span> <span class='fu'>get_forecast</span>(<span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"QLD"</span>)
+  <span class='no'>ag_bulletin</span> <span class='kw'>&lt;-</span> <span class='fu'>get_bulletin</span>(<span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"QLD"</span>)
 })</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -165,7 +167,7 @@ or all using <code>AUS</code>.</p><dl class='dl-horizontal'>
 
     <h2>Author</h2>
     
-Adam H Sparks, <a href='mailto:adamhsparks@gmail.com'>adamhsparks@gmail.com</a> and Keith Pembleton <a href='mailto:keith.pembleton@usq.edu.au'>keith.pembleton@usq.edu.au</a>
+Adam H Sparks, <a href='mailto:adamhsparks@gmail.com'>adamhsparks@gmail.com</a>
 
   </div>
 </div>
