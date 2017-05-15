@@ -14,6 +14,7 @@ License: MIT + file LICENSE
 Depends:
     R (>= 3.2.0)
 Imports:
+    curl,
     dplyr,
     foreign,
     lubridate,
