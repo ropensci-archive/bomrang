@@ -5,7 +5,7 @@
 
 [![Travis-CI Build Status](https://travis-ci.org/ToowoombaTrio/bomrang.svg?branch=master)](https://travis-ci.org/ToowoombaTrio/bomrang) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ToowoombaTrio/bomrang?branch=master&svg=true)](https://ci.appveyor.com/project/ToowoombaTrio/bomrang) [![Coverage Status](https://img.shields.io/codecov/c/github/ToowoombaTrio/bomrang/master.svg)](https://codecov.io/github/ToowoombaTrio/bomrang?branch=master) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--05--15-brightgreen.svg)](https://github.com/toowoombatrio/bomrang/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/)
 
-Fetches Australian Government Bureau of Meteorology XML précis forecast and returns a tidy data frame ([Tibble](http://tibble.tidyverse.org)) of the daily weather forecast.
+Fetches Australian Government Bureau of Meteorology XML data and returns a tidy data frame ([Tibble](http://tibble.tidyverse.org)) of the data.
 
 Credit for the name, *bomrang*, goes to [Di Cook](http://dicook.github.io), who suggested it attending the rOpenSci AUUnconf in Brisbane, 2016, when seeing the [vignette](https://github.com/saundersk1/auunconf16/blob/master/Vignette_BoM.pdf) that we had assembled during the Unconf.
 
@@ -24,9 +24,11 @@ devtools::install_github("toowoombatrio/bomrang")
 Using *bomrang*
 ---------------
 
-*bomrang* allows you to fetch forecasts for an individual state or all at once, the national forecast. To fetch an individual state, simply use the official postal code for the state for the `state` parameter. \#\#\# Using `get_forecast()`
+Two functions are provided, `get_forecast()`, which retreives the précis forecast and `get_bulletin()`, which retrives the agriculture bulletin. Both of these functions in *bomrang* allow you to fetch forecasts for an individual state or all at once, i.e., all of Australia. To fetch an individual state, simply use the official postal code for the state for the `state` parameter. To fetch data for all of Australia, use "AUS" in the `state` parameter.
 
-This function only takes one parameter, `state`. The `state` parameter allows the user to select the forecast for just one state or a national forecast. States are specified using the official postal codes,
+### Using `get_forecast()`
+
+This function only takes one parameter, `state`. States are specified using the official postal codes,
 
 -   **ACT** - Australian Capital Territory
 -   **NSW** - New South Wales
@@ -55,8 +57,8 @@ The function, `get_forecast()` will return a Tibble of the weather forecast for 
 -   **prob\_prcp** - Probability of precipitation (percent)
 -   **location** - Named location for forecast
 -   **state** - State name (postal code abbreviation)
--   **lon** - Longitude of named location (decimal Degrees)
--   **lat** - Latitude of named location (decimal Degrees)
+-   **lon** - Longitude of named location (decimal degrees)
+-   **lat** - Latitude of named location (decimal degrees)
 -   **elev** - Elevation of named location (metres)
 
 ### Examples
@@ -116,18 +118,18 @@ The function, `get_bulletin()` will return a Tibble of the agriculture bulletin 
 -   **tn** - Minimum temperature (Degrees Celsius)
 -   **tx** - Maximum temperature (Degrees Celsius)
 -   **twd** - Wetbulb depression (Degress Celsius)
--   **ev** - Evaporation (milimetres)
+-   **ev** - Evaporation (millimetres)
 -   **tg** - Terrestrial minimum temperature (Degress Celsius)
 -   **sn** - Sunshine (Hours)
--   **t5** - 5cm temperature (Celsius)
--   **t10** - 10cm temperature (Celsius)
--   **t20** - 20cm temperature (Celsius)
--   **t50** - 50cm temperature (Celsius)
--   **t1m** - 1m temperature (Celsius)
+-   **t5** - 5cm soil temperature (Celsius)
+-   **t10** - 10cm soil temperature (Celsius)
+-   **t20** - 20cm soil temperature (Celsius)
+-   **t50** - 50cm soil temperature (Celsius)
+-   **t1m** - 1m soil temperature (Celsius)
 -   **wr** - Wind run (kilometres)
 -   **state** - State name (postal code abbreviation)
--   **lat** - Latitude (Decimal degrees)
--   **lon** - Longitude (Decimal degrees)
+-   **lat** - Latitude (decimal degrees)
+-   **lon** - Longitude (decimal degrees)
 
 ``` r
 library("bomrang")
@@ -151,7 +153,7 @@ QLD_forecast
     ## 10  20170514T2300         EST 32078         INGHAM COMPOSITE  0.01  17.3
     ## # ... with 16 more rows, and 14 more variables: tx <dbl>, twd <dbl>,
     ## #   ev <dbl>, tg <dbl>, sn <dbl>, t5 <dbl>, t10 <dbl>, t20 <dbl>,
-    ## #   t50 <dbl>, t1m <dbl>, wr <dbl>, state <fctr>, lat <dbl>, lon <dbl>
+    ## #   t50 <dbl>, t1m <dbl>, wr <dbl>, state <chr>, lat <dbl>, lon <dbl>
 
 Meta
 ----

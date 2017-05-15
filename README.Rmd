@@ -13,9 +13,7 @@ output: github_document
 [![minimal R version](https://img.shields.io/badge/R%3E%3D-`r as.character(getRversion())`-brightgreen.svg)](https://cran.r-project.org/)
 [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) 
 
-Fetches Australian Government Bureau of Meteorology XML précis forecast and
-returns a tidy data frame ([Tibble](http://tibble.tidyverse.org)) of the daily 
-weather forecast.
+Fetches Australian Government Bureau of Meteorology XML data and returns a tidy data frame ([Tibble](http://tibble.tidyverse.org)) of the data.
 
 Credit for the name, _bomrang_, goes to [Di Cook](http://dicook.github.io), who
 suggested it attending the rOpenSci AUUnconf in Brisbane, 2016, when seeing the
@@ -35,12 +33,11 @@ devtools::install_github("toowoombatrio/bomrang")
 
 ## Using _bomrang_
 
-_bomrang_ allows you to fetch forecasts for an individual state or all at once,
-the national forecast. To fetch an individual state, simply use the official postal code
-for the state for the `state` parameter.
+Two functions are provided, `get_forecast()`, which retreives the précis forecast and `get_bulletin()`, which retrives the agriculture bulletin. Both of these functions in _bomrang_ allow you to fetch forecasts for an individual state or all at once, i.e., all of Australia. To fetch an individual state, simply use the official postal code for the state for the `state` parameter. To fetch data for all of Australia, use "AUS" in the `state` parameter.
+
 ### Using `get_forecast()`
 
-This function only takes one parameter, `state`. The `state` parameter allows the user to select the forecast for just one state or a national forecast. States are specified using the official postal codes, 
+This function only takes one parameter, `state`. States are specified using the official postal codes, 
 
 * **ACT** - Australian Capital Territory  
 * **NSW** - New South Wales  
@@ -69,8 +66,8 @@ The function, `get_forecast()` will return a Tibble of the weather forecast for 
 * **prob_prcp** - Probability of precipitation (percent)  
 * **location** - Named location for forecast  
 * **state** - State name (postal code abbreviation)  
-* **lon** - Longitude of named location (decimal Degrees)  
-* **lat** - Latitude of named location (decimal Degrees)  
+* **lon** - Longitude of named location (decimal degrees)  
+* **lat** - Latitude of named location (decimal degrees)  
 * **elev** - Elevation of named location (metres)  
 
 ### Examples
@@ -110,18 +107,18 @@ The function, `get_bulletin()` will return a Tibble of the agriculture bulletin 
 * **tn** - Minimum temperature (Degrees Celsius)  
 * **tx** - Maximum temperature (Degrees Celsius)  
 * **twd** - Wetbulb depression (Degress Celsius)  
-* **ev** - Evaporation (milimetres)  
+* **ev** - Evaporation (millimetres)  
 * **tg** - Terrestrial minimum temperature (Degress Celsius)  
 * **sn** - Sunshine (Hours)  
-* **t5** - 5cm temperature (Celsius)  
-* **t10** - 10cm temperature (Celsius)  
-* **t20** - 20cm temperature (Celsius)  
-* **t50** - 50cm temperature (Celsius)  
-* **t1m** - 1m temperature (Celsius)  
+* **t5** - 5cm soil temperature (Celsius)  
+* **t10** - 10cm soil temperature (Celsius)  
+* **t20** - 20cm soil temperature (Celsius)  
+* **t50** - 50cm soil temperature (Celsius)  
+* **t1m** - 1m soil temperature (Celsius)  
 * **wr** - Wind run (kilometres)  
 * **state** - State name (postal code abbreviation)  
-* **lat** - Latitude (Decimal degrees)  
-* **lon** - Longitude (Decimal degrees)  
+* **lat** - Latitude (decimal degrees)  
+* **lon** - Longitude (decimal degrees)  
 
 ```{r, eval=TRUE}
 library("bomrang")

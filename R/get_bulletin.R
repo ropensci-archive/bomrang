@@ -34,11 +34,11 @@
 #'    \item{ev}{Evaporation (millimetres)}
 #'    \item{tg}{Terrestrial minimum temperature (Celsius)}
 #'    \item{sn}{Sunshine (Hours)}
-#'    \item{t5}{5cm temperature (Celsius)}
-#'    \item{t10}{10cm temperature (Celsius)}
-#'    \item{t20}{20cm temperature (Celsius)}
-#'    \item{t50}{50cm temperature (Celsius)}
-#'    \item{t1m}{1m temperature (Celsius)}
+#'    \item{t5}{5cm soil temperature (Celsius)}
+#'    \item{t10}{10cm soil temperature (Celsius)}
+#'    \item{t20}{20cm soil temperature (Celsius)}
+#'    \item{t50}{50cm soil temperature (Celsius)}
+#'    \item{t1m}{1m soil temperature (Celsius)}
 #'    \item{wr}{Wind run (kilometres)}
 #'    \item{state}{State name (postal code abbreviation)}
 #'    \item{lat}{Latitude (decimal degrees)}

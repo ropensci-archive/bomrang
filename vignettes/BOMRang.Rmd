@@ -49,8 +49,8 @@ The function, `get_forecast()` will return a Tibble of the weather forecast for 
 **prob_prcp** - Probability of precipitation (percent)  
 **location** - Named location for forecast  
 **state** - State name (postal code abbreviation)  
-**lon** - Longitude of named location (decimal Degrees)  
-**lat** - Latitude of named location (decimal Degrees)  
+**lon** - Longitude of named location (decimal degrees)  
+**lat** - Latitude of named location (decimal degrees)  
 **elev** - Elevation of named location (metres)  
 
 ### Examples
@@ -87,21 +87,21 @@ The function, `get_bulletin()` will return a Tibble of the agriculture bulletin 
 **site** - Unique BOM identifier for each station  
 **name** - BOM station name  
 **r** - Rain to 9am (millimetres). \strong{Trace will be reported as 0.01  
-**tn** - Minimum temperature (Degrees Celsius)  
-**tx** - Maximum temperature (Degrees Celsius)  
-**twd** - Wetbulb depression (Degress Celsius)  
-**ev** - Evaporation (milimetres)  
-**tg** - Terrestrial minimum temperature (Degress Celsius)  
+**tn** - Minimum temperature (degrees Celsius)  
+**tx** - Maximum temperature (degrees Celsius)  
+**twd** - Wetbulb depression (degress Celsius)  
+**ev** - Evaporation (millimetres)  
+**tg** - Terrestrial minimum temperature (degress Celsius)  
 **sn** - Sunshine (Hours)  
-**t5** - 5cm temperature (Celsius)  
-**t10** - 10cm temperature (Celsius)  
-**t20** - 20cm temperature (Celsius)  
-**t50** - 50cm temperature (Celsius)  
-**t1m** - 1m temperature (Celsius)  
+**t5** - 5cm soil temperature (Celsius)  
+**t10** - 10cm soil temperature (Celsius)  
+**t20** - 20cm soil temperature (Celsius)  
+**t50** - 50cm soil temperature (Celsius)  
+**t1m** - 1m soil temperature (Celsius)  
 **wr** - Wind run (kilometres)  
 **state** - State name (postal code abbreviation)  
-**lat** - Latitude (Decimal degrees)  
-**lon** - Longitude (Decimal degrees)  
+**lat** - Latitude (decimal degrees)  
+**lon** - Longitude (decimal degrees)  
 
 ```{r, eval=TRUE}
 library("bomrang")

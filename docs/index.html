@@ -66,7 +66,7 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#bomrang-fetch-australian-government-bureau-of-meteorology-bom-data" class="anchor"></a><em>bomrang</em>: Fetch Australian Government Bureau of Meteorology (BOM) Data</h1></div>
 
-<p>Fetches Australian Government Bureau of Meteorology XML précis forecast and returns a tidy data frame (<a href="http://tibble.tidyverse.org">Tibble</a>) of the daily weather forecast.</p>
+<p>Fetches Australian Government Bureau of Meteorology XML data and returns a tidy data frame (<a href="http://tibble.tidyverse.org">Tibble</a>) of the data.</p>
 <p>Credit for the name, <em>bomrang</em>, goes to <a href="http://dicook.github.io">Di Cook</a>, who suggested it attending the rOpenSci AUUnconf in Brisbane, 2016, when seeing the <a href="https://github.com/saundersk1/auunconf16/blob/master/Vignette_BoM.pdf">vignette</a> that we had assembled during the Unconf.</p>
 <div id="quick-start" class="section level2">
 <h2 class="hasAnchor">
@@ -82,8 +82,12 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <h2 class="hasAnchor">
 <a href="#using-bomrang" class="anchor"></a>Using <em>bomrang</em>
 </h2>
-<p><em>bomrang</em> allows you to fetch forecasts for an individual state or all at once, the national forecast. To fetch an individual state, simply use the official postal code for the state for the <code>state</code> parameter. ### Using <code><a href="reference/get_forecast.html">get_forecast()</a></code></p>
-<p>This function only takes one parameter, <code>state</code>. The <code>state</code> parameter allows the user to select the forecast for just one state or a national forecast. States are specified using the official postal codes,</p>
+<p>Two functions are provided, <code><a href="reference/get_forecast.html">get_forecast()</a></code>, which retreives the précis forecast and <code><a href="reference/get_bulletin.html">get_bulletin()</a></code>, which retrives the agriculture bulletin. Both of these functions in <em>bomrang</em> allow you to fetch forecasts for an individual state or all at once, i.e., all of Australia. To fetch an individual state, simply use the official postal code for the state for the <code>state</code> parameter. To fetch data for all of Australia, use “AUS” in the <code>state</code> parameter.</p>
+<div id="using-get_forecast" class="section level3">
+<h3 class="hasAnchor">
+<a href="#using-get_forecast" class="anchor"></a>Using <code><a href="reference/get_forecast.html">get_forecast()</a></code>
+</h3>
+<p>This function only takes one parameter, <code>state</code>. States are specified using the official postal codes,</p>
 <ul>
 <li>
 <strong>ACT</strong> - Australian Capital Territory<br>
@@ -112,6 +116,7 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <li>
 <strong>AUS</strong> - Australia, returns forecast for all states</li>
 </ul>
+</div>
 <div id="results" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results" class="anchor"></a>Results</h3>
@@ -157,10 +162,10 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <strong>state</strong> - State name (postal code abbreviation)<br>
 </li>
 <li>
-<strong>lon</strong> - Longitude of named location (decimal Degrees)<br>
+<strong>lon</strong> - Longitude of named location (decimal degrees)<br>
 </li>
 <li>
-<strong>lat</strong> - Latitude of named location (decimal Degrees)<br>
+<strong>lat</strong> - Latitude of named location (decimal degrees)<br>
 </li>
 <li>
 <strong>elev</strong> - Elevation of named location (metres)</li>
@@ -258,7 +263,7 @@ QLD_forecast</code></pre></div>
 <strong>twd</strong> - Wetbulb depression (Degress Celsius)<br>
 </li>
 <li>
-<strong>ev</strong> - Evaporation (milimetres)<br>
+<strong>ev</strong> - Evaporation (millimetres)<br>
 </li>
 <li>
 <strong>tg</strong> - Terrestrial minimum temperature (Degress Celsius)<br>
@@ -267,19 +272,19 @@ QLD_forecast</code></pre></div>
 <strong>sn</strong> - Sunshine (Hours)<br>
 </li>
 <li>
-<strong>t5</strong> - 5cm temperature (Celsius)<br>
+<strong>t5</strong> - 5cm soil temperature (Celsius)<br>
 </li>
 <li>
-<strong>t10</strong> - 10cm temperature (Celsius)<br>
+<strong>t10</strong> - 10cm soil temperature (Celsius)<br>
 </li>
 <li>
-<strong>t20</strong> - 20cm temperature (Celsius)<br>
+<strong>t20</strong> - 20cm soil temperature (Celsius)<br>
 </li>
 <li>
-<strong>t50</strong> - 50cm temperature (Celsius)<br>
+<strong>t50</strong> - 50cm soil temperature (Celsius)<br>
 </li>
 <li>
-<strong>t1m</strong> - 1m temperature (Celsius)<br>
+<strong>t1m</strong> - 1m soil temperature (Celsius)<br>
 </li>
 <li>
 <strong>wr</strong> - Wind run (kilometres)<br>
@@ -288,10 +293,10 @@ QLD_forecast</code></pre></div>
 <strong>state</strong> - State name (postal code abbreviation)<br>
 </li>
 <li>
-<strong>lat</strong> - Latitude (Decimal degrees)<br>
+<strong>lat</strong> - Latitude (decimal degrees)<br>
 </li>
 <li>
-<strong>lon</strong> - Longitude (Decimal degrees)</li>
+<strong>lon</strong> - Longitude (decimal degrees)</li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"bomrang"</span>)
 
@@ -312,7 +317,7 @@ QLD_forecast</code></pre></div>
 ## 10  20170514T2300         EST 32078         INGHAM COMPOSITE  0.01  17.3
 ## # ... with 16 more rows, and 14 more variables: tx &lt;dbl&gt;, twd &lt;dbl&gt;,
 ## #   ev &lt;dbl&gt;, tg &lt;dbl&gt;, sn &lt;dbl&gt;, t5 &lt;dbl&gt;, t10 &lt;dbl&gt;, t20 &lt;dbl&gt;,
-## #   t50 &lt;dbl&gt;, t1m &lt;dbl&gt;, wr &lt;dbl&gt;, state &lt;fctr&gt;, lat &lt;dbl&gt;, lon &lt;dbl&gt;</code></pre>
+## #   t50 &lt;dbl&gt;, t1m &lt;dbl&gt;, wr &lt;dbl&gt;, state &lt;chr&gt;, lat &lt;dbl&gt;, lon &lt;dbl&gt;</code></pre>
 </div>
 </div>
 <div id="meta" class="section level2">
