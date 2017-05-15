@@ -30,15 +30,15 @@ Two functions are provided, `get_forecast()`, which retreives the précis foreca
 
 This function only takes one parameter, `state`. States are specified using the official postal codes,
 
-**ACT** - Australian Capital Territory
-**NSW** - New South Wales
-**NT** - Northern Territory
-**QLD** - Queensland
-**SA** - South Australia
-**TAS** - Tasmania
-**VIC** - Tasmania
-**WA** - Western Australia
-**AUS** - Australia, returns national forecast including all states
+-   **ACT** - Australian Capital Territory
+-   **NSW** - New South Wales
+-   **NT** - Northern Territory
+-   **QLD** - Queensland
+-   **SA** - South Australia
+-   **TAS** - Tasmania
+-   **VIC** - Victoria
+-   **WA** - Western Australia
+-   **AUS** - Australia, returns national forecast including all states
 
 ### Results
 
@@ -96,15 +96,15 @@ QLD_forecast
 
 This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national bulletin. States are specified using the official postal codes,
 
-**ACT** - Australian Capital Territory
-**NSW** - New South Wales
-**NT** - Northern Territory
-**QLD** - Queensland
-**SA** - South Australia
-**TAS** - Tasmania
-**VIC** - Tasmania
-**WA** - Western Australia
-**AUS** - Australia, returns forecast for all states
+-   **ACT** - Australian Capital Territory
+-   **NSW** - New South Wales
+-   **NT** - Northern Territory
+-   **QLD** - Queensland
+-   **SA** - South Australia
+-   **TAS** - Tasmania
+-   **VIC** - Victoria
+-   **WA** - Western Australia
+-   **AUS** - Australia, returns bulletin for all states
 
 ### Results
 

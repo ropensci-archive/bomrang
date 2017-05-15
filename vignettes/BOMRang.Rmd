@@ -21,15 +21,15 @@ Three functions are provided by _bomrang_. The two main functions are `get_forec
 
 This function only takes one parameter, `state`. The `state` parameter allows the user to select the forecast for just one state or a national forecast. States are specified using the official postal codes, 
 
-**ACT** - Australian Capital Territory  
-**NSW** - New South Wales  
-**NT** - Northern Territory  
-**QLD** - Queensland  
-**SA** - South Australia  
-**TAS** - Tasmania  
-**VIC** - Tasmania  
-**WA** - Western Australia  
-**AUS** - Australia, returns national forecast including all states  
+* **ACT** - Australian Capital Territory  
+* **NSW** - New South Wales  
+* **NT** - Northern Territory  
+* **QLD** - Queensland  
+* **SA** - South Australia  
+* **TAS** - Tasmania  
+* **VIC** - Victoria  
+* **WA** - Western Australia  
+* **AUS** - Australia, returns national forecast including all states  
 
 ### Results
 
@@ -67,15 +67,15 @@ QLD_forecast
 
 This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national forecast. States are specified using the official postal codes, 
 
-**ACT** - Australian Capital Territory  
-**NSW** - New South Wales  
-**NT** - Northern Territory  
-**QLD** - Queensland  
-**SA** - South Australia  
-**TAS** - Tasmania  
-**VIC** - Tasmania  
-**WA** - Western Australia  
-**AUS** - Australia, returns forecast for all states  
+* **ACT** - Australian Capital Territory  
+* **NSW** - New South Wales  
+* **NT** - Northern Territory  
+* **QLD** - Queensland  
+* **SA** - South Australia  
+* **TAS** - Tasmania  
+* **VIC** - Victoria  
+* **WA** - Western Australia  
+* **AUS** - Australia, returns bulletin for all states  
 
 ### Results
 
