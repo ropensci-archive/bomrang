@@ -53,7 +53,7 @@ This function only takes one parameter, `state`. States are specified using the 
 
 The function, `get_forecast()` will return a Tibble of the weather forecast for the daily forecast with the following fields,
 
-* **aac** - AMOC Area Code, e.g. WA_MW008, a unique identifier for each location  
+* **aac** - AMOC Area Code, _e.g._, WA_MW008, a unique identifier for each location  
 * **start_time_local** - Start of forecast date and time in local TZ  
 * **end_time_local** - End of forecast date and time in local TZ  
 * **start_time_utc** - Start of forecast date and time in UTC  
@@ -99,8 +99,8 @@ This function only takes one parameter, `state`. The `state` parameter allows th
 
 The function, `get_bulletin()` will return a tibble of the agriculture bulletin with the following fields,
 
-* **obs-time-utc** - Observation time (Time in UTC)  
-* **time-zone** - Time zone for observation  
+* **obs_time_utc** - Observation time (Time in UTC)  
+* **time_zone** - Time zone for observation  
 * **site** - Unique BOM identifier for each station  
 * **name** - BOM station name  
 * **r** - Rain to 9am (millimetres). _Trace will be reported as 0.01_  

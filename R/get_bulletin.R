@@ -202,18 +202,27 @@ get_bulletin <- function(state = NULL) {
     return(out)
   }
   tidy_df <- plyr::ldply(.data = obs, .fun = .get_obs)
+
   tidy_df <- dplyr::left_join(tidy_df,
                               stations_meta,
                               by = c("site" = "site"))[-1]
+
   tidy_df <- cbind(tidy_df, rep(bulletin_state, nrow(tidy_df)))
+
   tidy_df <-
-    dplyr::rename(tidy_df, state = `rep(bulletin_state, nrow(tidy_df))`)
-  tidy_df$state <- as.character(tidy_df$state)
+    tidy_df %>%
+    dplyr::rename(obs_time_utc = `obs-time-utc`,
+                  time_zone = `time-zone`,
+                  state = `rep(bulletin_state, nrow(tidy_df))`) %>%
+    dplyr::mutate_each(dplyr::funs(as.character), state) %>%
+    dplyr::mutate_each(dplyr::funs(as.character), obs_time_utc) %>%
+    dplyr::mutate_each(dplyr::funs(as.character), time_zone)
+
   tidy_df <- tibble::as_tibble(
     dplyr::select(
       tidy_df,
-      `obs-time-utc`,
-      `time-zone`,
+      obs_time_utc,
+      time_zone,
       site,
       name,
       r,

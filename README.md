@@ -44,7 +44,7 @@ This function only takes one parameter, `state`. States are specified using the 
 
 The function, `get_forecast()` will return a Tibble of the weather forecast for the daily forecast with the following fields,
 
--   **aac** - AMOC Area Code, e.g. WA\_MW008, a unique identifier for each location
+-   **aac** - AMOC Area Code, *e.g.*, WA\_MW008, a unique identifier for each location
 -   **start\_time\_local** - Start of forecast date and time in local TZ
 -   **end\_time\_local** - End of forecast date and time in local TZ
 -   **start\_time\_utc** - Start of forecast date and time in UTC
@@ -110,8 +110,8 @@ This function only takes one parameter, `state`. The `state` parameter allows th
 
 The function, `get_bulletin()` will return a tibble of the agriculture bulletin with the following fields,
 
--   **obs-time-utc** - Observation time (Time in UTC)
--   **time-zone** - Time zone for observation
+-   **obs\_time\_utc** - Observation time (Time in UTC)
+-   **time\_zone** - Time zone for observation
 -   **site** - Unique BOM identifier for each station
 -   **name** - BOM station name
 -   **r** - Rain to 9am (millimetres). *Trace will be reported as 0.01*
@@ -139,18 +139,18 @@ QLD_forecast
 ```
 
     ## # A tibble: 26 × 20
-    ##    `obs-time-utc` `time-zone`  site                     name     r    tn
-    ##            <fctr>      <fctr> <chr>                    <chr> <dbl> <dbl>
-    ## 1   20170514T2300         EST 38026       BIRDSVILLE AIRPORT  0.00  11.6
-    ## 2   20170514T2300         EST 38003           BOULIA AIRPORT  0.00  14.5
-    ## 3   20170514T2300         EST 40842            BRISBANE AERO  0.80  14.9
-    ## 4   20170514T2300         EST 39128           BUNDABERG AERO  0.00  15.0
-    ## 5   20170514T2300         EST 31011              CAIRNS AERO  0.00  19.4
-    ## 6   20170514T2300         EST 44021         CHARLEVILLE AERO  1.20   7.2
-    ## 7   20170514T2300         EST 33013 COLLINSVILLE POST OFFICE  0.01  15.0
-    ## 8   20170514T2300         EST 41522            DALBY AIRPORT  4.60  10.5
-    ## 9   20170514T2300         EST 30124       GEORGETOWN AIRPORT  0.00  13.4
-    ## 10  20170514T2300         EST 32078         INGHAM COMPOSITE  0.01  17.3
+    ##     obs_time_utc time_zone  site                     name     r    tn
+    ##            <chr>     <chr> <chr>                    <chr> <dbl> <dbl>
+    ## 1  20170514T2300       EST 38026       BIRDSVILLE AIRPORT  0.00  11.6
+    ## 2  20170514T2300       EST 38003           BOULIA AIRPORT  0.00  14.5
+    ## 3  20170514T2300       EST 40842            BRISBANE AERO  0.80  14.9
+    ## 4  20170514T2300       EST 39128           BUNDABERG AERO  0.00  15.0
+    ## 5  20170514T2300       EST 31011              CAIRNS AERO  0.00  19.4
+    ## 6  20170514T2300       EST 44021         CHARLEVILLE AERO  1.20   7.2
+    ## 7  20170514T2300       EST 33013 COLLINSVILLE POST OFFICE  0.01  15.0
+    ## 8  20170514T2300       EST 41522            DALBY AIRPORT  4.60  10.5
+    ## 9  20170514T2300       EST 30124       GEORGETOWN AIRPORT  0.00  13.4
+    ## 10 20170514T2300       EST 32078         INGHAM COMPOSITE  0.01  17.3
     ## # ... with 16 more rows, and 14 more variables: tx <dbl>, twd <dbl>,
     ## #   ev <dbl>, tg <dbl>, sn <dbl>, t5 <dbl>, t10 <dbl>, t20 <dbl>,
     ## #   t50 <dbl>, t1m <dbl>, wr <dbl>, state <chr>, lat <dbl>, lon <dbl>

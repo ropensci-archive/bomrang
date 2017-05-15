@@ -1,6 +1,6 @@
 context("get_forecast")
 
-# Test that get_forecast returns a data frame with 13 colums -------------------
+# Test that get_forecast returns a data frame with 17 colums -------------------
 test_that("get_forecast returns 17 columns", {
   skip_on_cran()
   BOM_forecast <- get_forecast(state = "QLD")
