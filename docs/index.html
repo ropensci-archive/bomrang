@@ -66,7 +66,7 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#bomrang-fetch-australian-government-bureau-of-meteorology-bom-data" class="anchor"></a><em>bomrang</em>: Fetch Australian Government Bureau of Meteorology (BOM) Data</h1></div>
 
-<p>Fetches Australian Government Bureau of Meteorology XML data and returns a tidy data frame (<a href="http://tibble.tidyverse.org">Tibble</a>) of the data.</p>
+<p>Fetches Australian Government Bureau of Meteorology XML data and returns a tidy data frame (<a href="http://tibble.tidyverse.org">tibble</a>).</p>
 <p>Credit for the name, <em>bomrang</em>, goes to <a href="http://dicook.github.io">Di Cook</a>, who suggested it attending the rOpenSci AUUnconf in Brisbane, 2016, when seeing the <a href="https://github.com/saundersk1/auunconf16/blob/master/Vignette_BoM.pdf">vignette</a> that we had assembled during the Unconf.</p>
 <div id="quick-start" class="section level2">
 <h2 class="hasAnchor">
@@ -82,40 +82,13 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <h2 class="hasAnchor">
 <a href="#using-bomrang" class="anchor"></a>Using <em>bomrang</em>
 </h2>
-<p>Two functions are provided, <code><a href="reference/get_forecast.html">get_forecast()</a></code>, which retreives the précis forecast and <code><a href="reference/get_bulletin.html">get_bulletin()</a></code>, which retrives the agriculture bulletin. Both of these functions in <em>bomrang</em> allow you to fetch forecasts for an individual state or all at once, i.e., all of Australia. To fetch an individual state, simply use the official postal code for the state for the <code>state</code> parameter. To fetch data for all of Australia, use “AUS” in the <code>state</code> parameter.</p>
+<p>Two functions are provided, <code><a href="reference/get_forecast.html">get_forecast()</a></code>, which retreives the précis forecast and <code><a href="reference/get_bulletin.html">get_bulletin()</a></code>, which retrives the agriculture bulletin. Both of these functions in <em>bomrang</em> allow you to fetch data for an individual state or all at once, i.e., all of Australia. To fetch an individual state, simply use the official postal code for the state for the <code>state</code> parameter. To fetch data for all of Australia, use “AUS” in the <code>state</code> parameter.</p>
 <div id="using-get_forecast" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-get_forecast" class="anchor"></a>Using <code><a href="reference/get_forecast.html">get_forecast()</a></code>
 </h3>
 <p>This function only takes one parameter, <code>state</code>. States are specified using the official postal codes,</p>
-<ul>
-<li>
-<strong>ACT</strong> - Australian Capital Territory<br>
-</li>
-<li>
-<strong>NSW</strong> - New South Wales<br>
-</li>
-<li>
-<strong>NT</strong> - Northern Territory<br>
-</li>
-<li>
-<strong>QLD</strong> - Queensland<br>
-</li>
-<li>
-<strong>SA</strong> - South Australia<br>
-</li>
-<li>
-<strong>TAS</strong> - Tasmania<br>
-</li>
-<li>
-<strong>VIC</strong> - Tasmania<br>
-</li>
-<li>
-<strong>WA</strong> - Western Australia<br>
-</li>
-<li>
-<strong>AUS</strong> - Australia, returns forecast for all states</li>
-</ul>
+<p><strong>ACT</strong> - Australian Capital Territory<br><strong>NSW</strong> - New South Wales<br><strong>NT</strong> - Northern Territory<br><strong>QLD</strong> - Queensland<br><strong>SA</strong> - South Australia<br><strong>TAS</strong> - Tasmania<br><strong>VIC</strong> - Tasmania<br><strong>WA</strong> - Western Australia<br><strong>AUS</strong> - Australia, returns national forecast including all states</p>
 </div>
 <div id="results" class="section level3">
 <h3 class="hasAnchor">
@@ -179,20 +152,20 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 
 QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_forecast.html">get_forecast</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
 QLD_forecast</code></pre></div>
-<pre><code>## # A tibble: 896 × 17
+<pre><code>## # A tibble: 784 × 17
 ##          aac index          start_time_local            end_time_local
 ##        &lt;chr&gt; &lt;chr&gt;                     &lt;chr&gt;                     &lt;chr&gt;
-## 1  QLD_PT038     0 2017-05-15T17:00:00+10:00 2017-05-16T00:00:00+10:00
-## 2  QLD_PT038     1 2017-05-16T00:00:00+10:00 2017-05-17T00:00:00+10:00
-## 3  QLD_PT038     2 2017-05-17T00:00:00+10:00 2017-05-18T00:00:00+10:00
-## 4  QLD_PT038     3 2017-05-18T00:00:00+10:00 2017-05-19T00:00:00+10:00
-## 5  QLD_PT038     4 2017-05-19T00:00:00+10:00 2017-05-20T00:00:00+10:00
-## 6  QLD_PT038     5 2017-05-20T00:00:00+10:00 2017-05-21T00:00:00+10:00
-## 7  QLD_PT038     6 2017-05-21T00:00:00+10:00 2017-05-22T00:00:00+10:00
-## 8  QLD_PT038     7 2017-05-22T00:00:00+10:00 2017-05-23T00:00:00+10:00
-## 9  QLD_PT045     0 2017-05-15T17:00:00+10:00 2017-05-16T00:00:00+10:00
-## 10 QLD_PT045     1 2017-05-16T00:00:00+10:00 2017-05-17T00:00:00+10:00
-## # ... with 886 more rows, and 13 more variables: start_time_utc &lt;chr&gt;,
+## 1  QLD_PT038     0 2017-05-16T05:00:00+10:00 2017-05-17T00:00:00+10:00
+## 2  QLD_PT038     1 2017-05-17T00:00:00+10:00 2017-05-18T00:00:00+10:00
+## 3  QLD_PT038     2 2017-05-18T00:00:00+10:00 2017-05-19T00:00:00+10:00
+## 4  QLD_PT038     3 2017-05-19T00:00:00+10:00 2017-05-20T00:00:00+10:00
+## 5  QLD_PT038     4 2017-05-20T00:00:00+10:00 2017-05-21T00:00:00+10:00
+## 6  QLD_PT038     5 2017-05-21T00:00:00+10:00 2017-05-22T00:00:00+10:00
+## 7  QLD_PT038     6 2017-05-22T00:00:00+10:00 2017-05-23T00:00:00+10:00
+## 8  QLD_PT045     0 2017-05-16T05:00:00+10:00 2017-05-17T00:00:00+10:00
+## 9  QLD_PT045     1 2017-05-17T00:00:00+10:00 2017-05-18T00:00:00+10:00
+## 10 QLD_PT045     2 2017-05-18T00:00:00+10:00 2017-05-19T00:00:00+10:00
+## # ... with 774 more rows, and 13 more variables: start_time_utc &lt;chr&gt;,
 ## #   end_time_utc &lt;chr&gt;, maximum_temperature &lt;dbl&gt;,
 ## #   minimum_temperature &lt;dbl&gt;, lower_prec_limit &lt;dbl&gt;,
 ## #   upper_prec_limit &lt;chr&gt;, precis &lt;chr&gt;,
@@ -203,40 +176,13 @@ QLD_forecast</code></pre></div>
 <h3 class="hasAnchor">
 <a href="#using-get_bulletin" class="anchor"></a>Using <code><a href="reference/get_bulletin.html">get_bulletin()</a></code>
 </h3>
-<p>This function only takes one parameter, <code>state</code>. The <code>state</code> parameter allows the user to select the bulletin for just one state or a national forecast. States are specified using the official postal codes,</p>
-<ul>
-<li>
-<strong>ACT</strong> - Australian Capital Territory<br>
-</li>
-<li>
-<strong>NSW</strong> - New South Wales<br>
-</li>
-<li>
-<strong>NT</strong> - Northern Territory<br>
-</li>
-<li>
-<strong>QLD</strong> - Queensland<br>
-</li>
-<li>
-<strong>SA</strong> - South Australia<br>
-</li>
-<li>
-<strong>TAS</strong> - Tasmania<br>
-</li>
-<li>
-<strong>VIC</strong> - Tasmania<br>
-</li>
-<li>
-<strong>WA</strong> - Western Australia<br>
-</li>
-<li>
-<strong>AUS</strong> - Australia, returns forecast for all states</li>
-</ul>
+<p>This function only takes one parameter, <code>state</code>. The <code>state</code> parameter allows the user to select the bulletin for just one state or a national bulletin. States are specified using the official postal codes,</p>
+<p><strong>ACT</strong> - Australian Capital Territory<br><strong>NSW</strong> - New South Wales<br><strong>NT</strong> - Northern Territory<br><strong>QLD</strong> - Queensland<br><strong>SA</strong> - South Australia<br><strong>TAS</strong> - Tasmania<br><strong>VIC</strong> - Tasmania<br><strong>WA</strong> - Western Australia<br><strong>AUS</strong> - Australia, returns forecast for all states</p>
 </div>
 <div id="results-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results-1" class="anchor"></a>Results</h3>
-<p>The function, <code><a href="reference/get_bulletin.html">get_bulletin()</a></code> will return a Tibble of the agriculture bulletin for Queensland with the following fields,</p>
+<p>The function, <code><a href="reference/get_bulletin.html">get_bulletin()</a></code> will return a tibble of the agriculture bulletin with the following fields,</p>
 <ul>
 <li>
 <strong>obs-time-utc</strong> - Observation time (Time in UTC)<br>
@@ -251,40 +197,40 @@ QLD_forecast</code></pre></div>
 <strong>name</strong> - BOM station name<br>
 </li>
 <li>
-<strong>r</strong> - Rain to 9am (millimetres). \strong{Trace will be reported as 0.01<br>
+<strong>r</strong> - Rain to 9am (millimetres). <em>Trace will be reported as 0.01</em><br>
 </li>
 <li>
-<strong>tn</strong> - Minimum temperature (Degrees Celsius)<br>
+<strong>tn</strong> - Minimum temperature (degrees Celsius)<br>
 </li>
 <li>
-<strong>tx</strong> - Maximum temperature (Degrees Celsius)<br>
+<strong>tx</strong> - Maximum temperature (degrees Celsius)<br>
 </li>
 <li>
-<strong>twd</strong> - Wetbulb depression (Degress Celsius)<br>
+<strong>twd</strong> - Wetbulb depression (degress Celsius)<br>
 </li>
 <li>
 <strong>ev</strong> - Evaporation (millimetres)<br>
 </li>
 <li>
-<strong>tg</strong> - Terrestrial minimum temperature (Degress Celsius)<br>
+<strong>tg</strong> - Terrestrial minimum temperature (degress Celsius)<br>
 </li>
 <li>
 <strong>sn</strong> - Sunshine (Hours)<br>
 </li>
 <li>
-<strong>t5</strong> - 5cm soil temperature (Celsius)<br>
+<strong>t5</strong> - 5cm soil temperature (degrees Celsius)<br>
 </li>
 <li>
-<strong>t10</strong> - 10cm soil temperature (Celsius)<br>
+<strong>t10</strong> - 10cm soil temperature (degrees Celsius)<br>
 </li>
 <li>
-<strong>t20</strong> - 20cm soil temperature (Celsius)<br>
+<strong>t20</strong> - 20cm soil temperature (degrees Celsius)<br>
 </li>
 <li>
-<strong>t50</strong> - 50cm soil temperature (Celsius)<br>
+<strong>t50</strong> - 50cm soil temperature (degrees Celsius)<br>
 </li>
 <li>
-<strong>t1m</strong> - 1m soil temperature (Celsius)<br>
+<strong>t1m</strong> - 1m soil temperature (degrees Celsius)<br>
 </li>
 <li>
 <strong>wr</strong> - Wind run (kilometres)<br>
@@ -338,6 +284,8 @@ Sparks A and Pembleton K (2017). <em>bomrang: Fetch Australian Government Bureau
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
 <p><a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services</a></p>
+<p><a href="http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services Agriculture Bulletins</a></p>
+<p><a href="http://www.bom.gov.au/climate/how/observations/rain-measure.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services Observation of Rainfall</a></p>
 </div>
 </div>
 </div>
@@ -363,7 +311,7 @@ Sparks A and Pembleton K (2017). <em>bomrang: Fetch Australian Government Bureau
 <li><a href="https://travis-ci.org/ToowoombaTrio/bomrang"><img src="https://travis-ci.org/ToowoombaTrio/bomrang.svg?branch=master" alt="Travis-CI Build Status"></a></li>
 <li><a href="https://ci.appveyor.com/project/ToowoombaTrio/bomrang"><img src="https://ci.appveyor.com/api/projects/status/github/ToowoombaTrio/bomrang?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
 <li><a href="https://codecov.io/github/ToowoombaTrio/bomrang?branch=master"><img src="https://img.shields.io/codecov/c/github/ToowoombaTrio/bomrang/master.svg" alt="Coverage Status"></a></li>
-<li><a href="https://github.com/toowoombatrio/bomrang/commits/master"><img src="https://img.shields.io/badge/last%20change-2017--05--15-brightgreen.svg" alt="Last-changedate"></a></li>
+<li><a href="https://github.com/toowoombatrio/bomrang/commits/master"><img src="https://img.shields.io/badge/last%20change-2017--05--16-brightgreen.svg" alt="Last-changedate"></a></li>
 <li><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg" alt="minimal R version"></a></li>
 <li><a href="http://choosealicense.com/licenses/mit/"><img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="Licence"></a></li>
 </ul>

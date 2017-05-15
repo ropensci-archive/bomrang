@@ -37,7 +37,7 @@ Data frame of a Australia BOM agricultural bulletin information
 }
 }
 \description{
-Fetch the BOM agricultural bulletin information
+Fetch the BOM agricultural bulletin information and return a tidy data frame
 }
 \details{
 Allowed state and territory postal codes, only one state per request

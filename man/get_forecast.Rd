@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_forecast.R
 \name{get_forecast}
 \alias{get_forecast}
-\title{Get BOM Forecast}
+\title{Get BOM Daily Précis Forecast}
 \usage{
 get_forecast(state = NULL)
 }
@@ -35,7 +35,7 @@ following fields.
 }
 }
 \description{
-Fetch the BOM précis forecast and return a tidy data frame of the daily
+Fetch the BOM daily précis forecast and return a tidy data frame of the daily
 forecast
 }
 \details{

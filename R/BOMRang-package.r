@@ -1,5 +1,5 @@
-#' Fetches Australian Government Bureau of Meteorology (BOM) XML file and
-#' returns a tidy data frame of the data.
+#' Fetches Australian Government Bureau of Meteorology (BOM) XML weather data
+#' files and returns a tidy data frame of the data.
 #'
 #' @name bomrang
 #' @author Adam H Sparks and Keith Pembleton
