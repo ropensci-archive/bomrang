@@ -138,20 +138,20 @@ QLD_forecast <- get_bulletin(state = "QLD")
 QLD_forecast
 ```
 
-    ## # A tibble: 26 × 20
+    ## # A tibble: 27 × 20
     ##     obs_time_utc time_zone  site                     name     r    tn
     ##            <chr>     <chr> <chr>                    <chr> <dbl> <dbl>
-    ## 1  20170514T2300       EST 38026       BIRDSVILLE AIRPORT  0.00  11.6
-    ## 2  20170514T2300       EST 38003           BOULIA AIRPORT  0.00  14.5
-    ## 3  20170514T2300       EST 40842            BRISBANE AERO  0.80  14.9
-    ## 4  20170514T2300       EST 39128           BUNDABERG AERO  0.00  15.0
-    ## 5  20170514T2300       EST 31011              CAIRNS AERO  0.00  19.4
-    ## 6  20170514T2300       EST 44021         CHARLEVILLE AERO  1.20   7.2
-    ## 7  20170514T2300       EST 33013 COLLINSVILLE POST OFFICE  0.01  15.0
-    ## 8  20170514T2300       EST 41522            DALBY AIRPORT  4.60  10.5
-    ## 9  20170514T2300       EST 30124       GEORGETOWN AIRPORT  0.00  13.4
-    ## 10 20170514T2300       EST 32078         INGHAM COMPOSITE  0.01  17.3
-    ## # ... with 16 more rows, and 14 more variables: tx <dbl>, twd <dbl>,
+    ## 1  20170515T2300       EST 38026       BIRDSVILLE AIRPORT  0.00  10.7
+    ## 2  20170515T2300       EST 38003           BOULIA AIRPORT  0.00  14.0
+    ## 3  20170515T2300       EST 40842            BRISBANE AERO  0.00  11.0
+    ## 4  20170515T2300       EST 39128           BUNDABERG AERO  0.20  13.2
+    ## 5  20170515T2300       EST 31011              CAIRNS AERO  0.00  19.3
+    ## 6  20170515T2300       EST 44021         CHARLEVILLE AERO  0.00   4.1
+    ## 7  20170515T2300       EST 33013 COLLINSVILLE POST OFFICE  0.00  14.0
+    ## 8  20170515T2300       EST 41522            DALBY AIRPORT  0.00   6.6
+    ## 9  20170515T2300       EST 30124       GEORGETOWN AIRPORT  0.00  16.8
+    ## 10 20170515T2300       EST 32078         INGHAM COMPOSITE  0.01  17.0
+    ## # ... with 17 more rows, and 14 more variables: tx <dbl>, twd <dbl>,
     ## #   ev <dbl>, tg <dbl>, sn <dbl>, t5 <dbl>, t10 <dbl>, t20 <dbl>,
     ## #   t50 <dbl>, t1m <dbl>, wr <dbl>, state <chr>, lat <dbl>, lon <dbl>
 
