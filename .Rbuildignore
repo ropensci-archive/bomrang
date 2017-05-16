@@ -10,3 +10,4 @@
 ^data-raw$
 ^cran-comments\.md$
 ^revdep$
+^paper$
