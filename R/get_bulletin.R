@@ -1,6 +1,4 @@
 
-
-
 #' Get BOM Agriculture Bulletin
 #'
 #'Fetch the BOM agricultural bulletin information and return a tidy data frame
@@ -146,12 +144,10 @@ get_bulletin <- function(state = NULL) {
 
 #' @noRd
 .parse_bulletin <- function(xmlbulletin, stations_meta) {
-  `obs-time-utc` <-
-    `time-zone` <- site <- name <- r <- tn <- tx <- twd <-
-    ev <- obs_time_utc <- time_zone <-
-    state <-
-    tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <-
-    lon <- attrs <- `rep(bulletin_state, nrow(tidy_df))` <- NULL
+  obs.time.utc <- obs.time.local <- time.zone <- site <- name <- r <- tn <-
+    tx <- twd <- ev <- obs_time_utc <- time_zone <- state <- tg <- sn <- t5 <-
+    t10 <- t20 <- t50 <- t1m <- wr <- lat <- lon <- attrs <-
+    `rep(bulletin_state, nrow(tidy_df))` <- NULL
 
   # load the XML bulletin ------------------------------------------------------
   xmlbulletin <- xml2::read_xml(xmlbulletin)
@@ -196,8 +192,9 @@ get_bulletin <- function(state = NULL) {
       location <- data.frame(t(location))
     }
 
-    observations <- data.frame(attrs, value)
-    out <- data.frame(location, observations)
+    row.names(location) <- NULL
+
+    out <- data.frame(location, attrs, value)
     row.names(out) <- NULL
     out <- as.data.frame(out)
     out$site <- as.character(out$site)
@@ -265,13 +262,14 @@ get_bulletin <- function(state = NULL) {
 
   tidy_df <- dplyr::left_join(tidy_df,
                               stations_meta,
-                              by = c("site" = "site"))[-1]
+                              by = c("site" = "site"))
 
   tidy_df <- cbind(tidy_df, rep(bulletin_state, nrow(tidy_df)))
 
   tidy_df <-
     tidy_df %>%
     dplyr::rename(
+      obs_time_local = obs.time.local,
       obs_time_utc = obs.time.utc,
       time_zone = time.zone,
       state = `rep(bulletin_state, nrow(tidy_df))`
@@ -305,5 +303,4 @@ get_bulletin <- function(state = NULL) {
       lon
     )
   )
-
 }
