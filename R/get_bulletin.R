@@ -1,4 +1,6 @@
 
+
+
 #' Get BOM Agriculture Bulletin
 #'
 #'Fetch the BOM agricultural bulletin information and return a tidy data frame
@@ -131,12 +133,14 @@ get_bulletin <- function(state = NULL) {
     tibble::as_tibble(.parse_bulletin(xmlbulletin, stations_meta))
   }
   else if (state == "AUS") {
-    tibble::as_tibble(plyr::ldply(
-      .data = file_list,
-      .fun = .parse_bulletin,
-      stations_meta,
-      .progress = "text"
-    ))
+    tibble::as_tibble(
+      plyr::ldply(
+        .data = file_list,
+        .fun = .parse_bulletin,
+        stations_meta,
+        .progress = "text"
+      )
+    )
   }
 }
 
@@ -145,7 +149,8 @@ get_bulletin <- function(state = NULL) {
   `obs-time-utc` <-
     `time-zone` <- site <- name <- r <- tn <- tx <- twd <-
     ev <- obs_time_utc <- time_zone <-
-    state <- tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <-
+    state <-
+    tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <-
     lon <- attrs <- `rep(bulletin_state, nrow(tidy_df))` <- NULL
 
   # load the XML bulletin ------------------------------------------------------
@@ -183,19 +188,74 @@ get_bulletin <- function(state = NULL) {
 
     location <- unlist(t(as.data.frame(xml2::xml_attrs(x))))
     location <-
-      location[rep(seq_len(nrow(location)), each = length(value)), ]
+      trimws(location[rep(seq_len(nrow(location)), each = length(value)), ])
 
-    out <- cbind(location, attrs, value)
+    # if there is only one observation this step means that a data frame is
+    # created, otherwise from here the function breaks
+    if (is.null(nrow(location))) {
+      location <- data.frame(t(location))
+    }
+
+    observations <- data.frame(attrs, value)
+    out <- data.frame(location, observations)
     row.names(out) <- NULL
     out <- as.data.frame(out)
     out$site <- as.character(out$site)
     out$value <- as.numeric(as.character(out$value))
     out <- tidyr::spread(out, key = attrs, value = value)
 
-    # some stations don't report sunshine hours, insert the column as necessary
+    # some stations don't report all values, insert the columns as necessary
+    if (!"tx" %in% colnames(out))
+    {
+      out$tx <- NA
+    }
+    if (!"tn" %in% colnames(out))
+    {
+      out$tn <- NA
+    }
+    if (!"tg" %in% colnames(out))
+    {
+      out$tg <- NA
+    }
+    if (!"twd" %in% colnames(out))
+    {
+      out$twd <- NA
+    }
+    if (!"r" %in% colnames(out))
+    {
+      out$r <- NA
+    }
+    if (!"ev" %in% colnames(out))
+    {
+      out$ev <- NA
+    }
+    if (!"wr" %in% colnames(out))
+    {
+      out$wr <- NA
+    }
     if (!"sn" %in% colnames(out))
     {
       out$sn <- NA
+    }
+    if (!"t5" %in% colnames(out))
+    {
+      out$t5 <- NA
+    }
+    if (!"t10" %in% colnames(out))
+    {
+      out$t10 <- NA
+    }
+    if (!"t20" %in% colnames(out))
+    {
+      out$t20 <- NA
+    }
+    if (!"t50" %in% colnames(out))
+    {
+      out$t50 <- NA
+    }
+    if (!"t1m" %in% colnames(out))
+    {
+      out$t1m <- NA
     }
 
     # join locations with lat/lon values ---------------------------------------
@@ -211,9 +271,11 @@ get_bulletin <- function(state = NULL) {
 
   tidy_df <-
     tidy_df %>%
-    dplyr::rename(obs_time_utc = `obs-time-utc`,
-                  time_zone = `time-zone`,
-                  state = `rep(bulletin_state, nrow(tidy_df))`) %>%
+    dplyr::rename(
+      obs_time_utc = obs.time.utc,
+      time_zone = time.zone,
+      state = `rep(bulletin_state, nrow(tidy_df))`
+    ) %>%
     dplyr::mutate_each(dplyr::funs(as.character), state) %>%
     dplyr::mutate_each(dplyr::funs(as.character), obs_time_utc) %>%
     dplyr::mutate_each(dplyr::funs(as.character), time_zone)
