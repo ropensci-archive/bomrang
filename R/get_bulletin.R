@@ -131,22 +131,23 @@ get_bulletin <- function(state = NULL) {
     tibble::as_tibble(.parse_bulletin(xmlbulletin, stations_meta))
   }
   else if (state == "AUS") {
-    tibble::as_tibble(plyr::ldply(
-      .data = file_list,
-      .fun = .parse_bulletin,
-      stations_meta,
-      .progress = "text"
-    ))
+    tibble::as_tibble(
+      plyr::ldply(
+        .data = file_list,
+        .fun = .parse_bulletin,
+        stations_meta,
+        .progress = "text"
+      )
+    )
   }
 }
 
 #' @noRd
 .parse_bulletin <- function(xmlbulletin, stations_meta) {
-  `obs-time-utc` <-
-    `time-zone` <- site <- name <- r <- tn <- tx <- twd <-
-    ev <- obs_time_utc <- time_zone <-
-    state <- tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <-
-    lon <- attrs <- `rep(bulletin_state, nrow(tidy_df))` <- NULL
+  obs.time.utc <- obs.time.local <- time.zone <- site <- name <- r <- tn <-
+    tx <- twd <- ev <- obs_time_utc <- obs_time_local <- time_zone <- state <-
+    tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <- lon <- attrs <-
+    `rep(bulletin_state, nrow(tidy_df))` <- NULL
 
   # load the XML bulletin ------------------------------------------------------
   xmlbulletin <- xml2::read_xml(xmlbulletin)
@@ -176,26 +177,102 @@ get_bulletin <- function(state = NULL) {
   # get the data from observations ---------------------------------------------
   .get_obs <- function(x) {
     d <- xml2::xml_children(x)
+
+    # location/site information
+    location <- unlist(t(as.data.frame(xml2::xml_attrs(x))))
+
+    # actual weather related data
     value <- unlist(as.character(xml2::xml_contents(d)))
     value[value == "Tce"] <- 0.01
     value <- as.numeric(value)
     attrs <- unlist(as.character(xml2::xml_attrs(d)))
 
-    location <- unlist(t(as.data.frame(xml2::xml_attrs(x))))
-    location <-
-      location[rep(seq_len(nrow(location)), each = length(value)), ]
+    # in some cases a station reports nothing
+    if (length(value) == 0) {
+      value <- NA
+    }
+    if (length(attrs) == 0) {
+      attrs <- NA
+    }
 
-    out <- cbind(location, attrs, value)
+    # if there are no observations, keep a single row for the station ID
+    if (length(value) > 1) {
+      location <-
+        trimws(location[rep(seq_len(nrow(location)), each = length(value)), ])
+    }
+
+    # if there is only one observation this step means that a data frame is
+    # created, otherwise from here the function breaks
+    if (is.null(nrow(location))) {
+      location <- data.frame(t(location))
+    }
+
+    # put everything back together into a data frame
+    row.names(location) <- NULL
+    out <- data.frame(location, attrs, value)
     row.names(out) <- NULL
     out <- as.data.frame(out)
     out$site <- as.character(out$site)
     out$value <- as.numeric(as.character(out$value))
+
+    # spread from long to wide
     out <- tidyr::spread(out, key = attrs, value = value)
 
-    # some stations don't report sunshine hours, insert the column as necessary
+    # some stations don't report all values, insert/remove as necessary
+    if ("<NA>" %in% colnames(out)) {
+      out$`<NA>` <- NULL
+    }
+    if (!"tx" %in% colnames(out))
+    {
+      out$tx <- NA
+    }
+    if (!"tn" %in% colnames(out))
+    {
+      out$tn <- NA
+    }
+    if (!"tg" %in% colnames(out))
+    {
+      out$tg <- NA
+    }
+    if (!"twd" %in% colnames(out))
+    {
+      out$twd <- NA
+    }
+    if (!"r" %in% colnames(out))
+    {
+      out$r <- NA
+    }
+    if (!"ev" %in% colnames(out))
+    {
+      out$ev <- NA
+    }
+    if (!"wr" %in% colnames(out))
+    {
+      out$wr <- NA
+    }
     if (!"sn" %in% colnames(out))
     {
       out$sn <- NA
+    }
+    if (!"t5" %in% colnames(out))
+    {
+      out$t5 <- NA
+    }
+    if (!"t10" %in% colnames(out))
+    {
+      out$t10 <- NA
+    }
+    if (!"t20" %in% colnames(out))
+    {
+      out$t20 <- NA
+    }
+    if (!"t50" %in% colnames(out))
+    {
+      out$t50 <- NA
+    }
+    if (!"t1m" %in% colnames(out))
+    {
+      out$t1m <- NA
     }
 
     # join locations with lat/lon values ---------------------------------------
@@ -205,15 +282,18 @@ get_bulletin <- function(state = NULL) {
 
   tidy_df <- dplyr::left_join(tidy_df,
                               stations_meta,
-                              by = c("site" = "site"))[-1]
+                              by = c("site" = "site"))
 
   tidy_df <- cbind(tidy_df, rep(bulletin_state, nrow(tidy_df)))
 
   tidy_df <-
     tidy_df %>%
-    dplyr::rename(obs_time_utc = `obs-time-utc`,
-                  time_zone = `time-zone`,
-                  state = `rep(bulletin_state, nrow(tidy_df))`) %>%
+    dplyr::rename(
+      obs_time_local = obs.time.local,
+      obs_time_utc = obs.time.utc,
+      time_zone = time.zone,
+      state = `rep(bulletin_state, nrow(tidy_df))`
+    ) %>%
     dplyr::mutate_each(dplyr::funs(as.character), state) %>%
     dplyr::mutate_each(dplyr::funs(as.character), obs_time_utc) %>%
     dplyr::mutate_each(dplyr::funs(as.character), time_zone)
@@ -221,6 +301,7 @@ get_bulletin <- function(state = NULL) {
   tidy_df <- tibble::as_tibble(
     dplyr::select(
       tidy_df,
+      obs_time_local,
       obs_time_utc,
       time_zone,
       site,
@@ -243,5 +324,4 @@ get_bulletin <- function(state = NULL) {
       lon
     )
   )
-
 }
