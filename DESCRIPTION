@@ -15,12 +15,15 @@ Depends:
     R (>= 3.2.0)
 Imports:
     curl,
+    data.table,
     dplyr,
     foreign,
     lubridate,
+    magrittr,
     plyr,
     readr,
     reshape2,
+    rjson,
     stringr,
     tibble,
     tidyr,
