@@ -3,7 +3,7 @@
 *bomrang*: Fetch Australian Government Bureau of Meteorology (BOM) Data
 =======================================================================
 
-[![Travis-CI Build Status](https://travis-ci.org/ToowoombaTrio/bomrang.svg?branch=master)](https://travis-ci.org/ToowoombaTrio/bomrang) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ToowoombaTrio/bomrang?branch=master&svg=true)](https://ci.appveyor.com/project/ToowoombaTrio/bomrang) [![Coverage Status](https://img.shields.io/codecov/c/github/ToowoombaTrio/bomrang/master.svg)](https://codecov.io/github/ToowoombaTrio/bomrang?branch=master) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--05--16-brightgreen.svg)](https://github.com/toowoombatrio/bomrang/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) [![DOI](https://zenodo.org/badge/89690315.svg)](https://zenodo.org/badge/latestdoi/89690315)
+[![Travis-CI Build Status](https://travis-ci.org/ToowoombaTrio/bomrang.svg?branch=master)](https://travis-ci.org/ToowoombaTrio/bomrang) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ToowoombaTrio/bomrang?branch=master&svg=true)](https://ci.appveyor.com/project/ToowoombaTrio/bomrang) [![Coverage Status](https://img.shields.io/codecov/c/github/ToowoombaTrio/bomrang/master.svg)](https://codecov.io/github/ToowoombaTrio/bomrang?branch=master) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--05--19-brightgreen.svg)](https://github.com/toowoombatrio/bomrang/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) [![DOI](https://zenodo.org/badge/89690315.svg)](https://zenodo.org/badge/latestdoi/89690315)
 
 Fetches Australian Government Bureau of Meteorology XML data and returns a tidy data frame ([tibble](http://tibble.tidyverse.org)).
 
@@ -75,16 +75,16 @@ QLD_forecast
     ## # A tibble: 784 × 17
     ##          aac index          start_time_local            end_time_local
     ##        <chr> <chr>                     <chr>                     <chr>
-    ## 1  QLD_PT038     0 2017-05-16T05:00:00+10:00 2017-05-17T00:00:00+10:00
-    ## 2  QLD_PT038     1 2017-05-17T00:00:00+10:00 2017-05-18T00:00:00+10:00
-    ## 3  QLD_PT038     2 2017-05-18T00:00:00+10:00 2017-05-19T00:00:00+10:00
-    ## 4  QLD_PT038     3 2017-05-19T00:00:00+10:00 2017-05-20T00:00:00+10:00
-    ## 5  QLD_PT038     4 2017-05-20T00:00:00+10:00 2017-05-21T00:00:00+10:00
-    ## 6  QLD_PT038     5 2017-05-21T00:00:00+10:00 2017-05-22T00:00:00+10:00
-    ## 7  QLD_PT038     6 2017-05-22T00:00:00+10:00 2017-05-23T00:00:00+10:00
-    ## 8  QLD_PT045     0 2017-05-16T05:00:00+10:00 2017-05-17T00:00:00+10:00
-    ## 9  QLD_PT045     1 2017-05-17T00:00:00+10:00 2017-05-18T00:00:00+10:00
-    ## 10 QLD_PT045     2 2017-05-18T00:00:00+10:00 2017-05-19T00:00:00+10:00
+    ## 1  QLD_PT038     0 2017-05-19T05:00:00+10:00 2017-05-20T00:00:00+10:00
+    ## 2  QLD_PT038     1 2017-05-20T00:00:00+10:00 2017-05-21T00:00:00+10:00
+    ## 3  QLD_PT038     2 2017-05-21T00:00:00+10:00 2017-05-22T00:00:00+10:00
+    ## 4  QLD_PT038     3 2017-05-22T00:00:00+10:00 2017-05-23T00:00:00+10:00
+    ## 5  QLD_PT038     4 2017-05-23T00:00:00+10:00 2017-05-24T00:00:00+10:00
+    ## 6  QLD_PT038     5 2017-05-24T00:00:00+10:00 2017-05-25T00:00:00+10:00
+    ## 7  QLD_PT038     6 2017-05-25T00:00:00+10:00 2017-05-26T00:00:00+10:00
+    ## 8  QLD_PT045     0 2017-05-19T05:00:00+10:00 2017-05-20T00:00:00+10:00
+    ## 9  QLD_PT045     1 2017-05-20T00:00:00+10:00 2017-05-21T00:00:00+10:00
+    ## 10 QLD_PT045     2 2017-05-21T00:00:00+10:00 2017-05-22T00:00:00+10:00
     ## # ... with 774 more rows, and 13 more variables: start_time_utc <chr>,
     ## #   end_time_utc <chr>, maximum_temperature <dbl>,
     ## #   minimum_temperature <dbl>, lower_prec_limit <dbl>,
@@ -138,22 +138,23 @@ QLD_forecast <- get_bulletin(state = "QLD")
 QLD_forecast
 ```
 
-    ## # A tibble: 27 × 20
-    ##     obs_time_utc time_zone  site                     name     r    tn
-    ##            <chr>     <chr> <chr>                    <chr> <dbl> <dbl>
-    ## 1  20170515T2300       EST 38026       BIRDSVILLE AIRPORT  0.00  10.7
-    ## 2  20170515T2300       EST 38003           BOULIA AIRPORT  0.00  14.0
-    ## 3  20170515T2300       EST 40842            BRISBANE AERO  0.00  11.0
-    ## 4  20170515T2300       EST 39128           BUNDABERG AERO  0.20  13.2
-    ## 5  20170515T2300       EST 31011              CAIRNS AERO  0.00  19.3
-    ## 6  20170515T2300       EST 44021         CHARLEVILLE AERO  0.00   4.1
-    ## 7  20170515T2300       EST 33013 COLLINSVILLE POST OFFICE  0.00  14.0
-    ## 8  20170515T2300       EST 41522            DALBY AIRPORT  0.00   6.6
-    ## 9  20170515T2300       EST 30124       GEORGETOWN AIRPORT  0.00  16.8
-    ## 10 20170515T2300       EST 32078         INGHAM COMPOSITE  0.01  17.0
-    ## # ... with 17 more rows, and 14 more variables: tx <dbl>, twd <dbl>,
-    ## #   ev <dbl>, tg <dbl>, sn <dbl>, t5 <dbl>, t10 <dbl>, t20 <dbl>,
-    ## #   t50 <dbl>, t1m <dbl>, wr <dbl>, state <chr>, lat <dbl>, lon <dbl>
+    ## # A tibble: 25 × 21
+    ##    obs_time_local  obs_time_utc time_zone  site
+    ##            <fctr>         <chr>     <chr> <chr>
+    ## 1   20170518T0900 20170517T2300       EST 38026
+    ## 2   20170518T0900 20170517T2300       EST 38003
+    ## 3   20170518T0900 20170517T2300       EST 40842
+    ## 4   20170518T0900 20170517T2300       EST 39128
+    ## 5   20170518T0900 20170517T2300       EST 31011
+    ## 6   20170518T0900 20170517T2300       EST 44021
+    ## 7   20170518T0900 20170517T2300       EST 33013
+    ## 8   20170518T0900 20170517T2300       EST 41522
+    ## 9   20170518T0900 20170517T2300       EST 30124
+    ## 10  20170518T0900 20170517T2300       EST 40854
+    ## # ... with 15 more rows, and 17 more variables: name <chr>, r <dbl>,
+    ## #   tn <dbl>, tx <dbl>, twd <dbl>, ev <dbl>, tg <dbl>, sn <dbl>, t5 <dbl>,
+    ## #   t10 <dbl>, t20 <dbl>, t50 <dbl>, t1m <dbl>, wr <dbl>, state <chr>,
+    ## #   lat <dbl>, lon <dbl>
 
 Meta
 ----
