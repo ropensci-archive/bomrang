@@ -56,7 +56,7 @@
 #' Australian Bureau of Meteorology (BOM) Weather Data Services
 #' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 #'
-#' @importFrom dplyr %>%
+#' @importFrom magrittr %>%
 #'
 #'
 #' @export
