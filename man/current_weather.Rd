@@ -12,7 +12,8 @@ current_weather(station_name, latlon = NULL, raw = FALSE,
 \code{base::agrep} is done.}
 
 \item{latlon}{A length-2 numeric vector. When given instead of \code{station_name}, the nearest station
-(in this package) is used, with a message indicating the nearest such station. Ignored if used in combination with
+(in this package) is used, with a message indicating the nearest such station. (See also \code{\link{sweep_for_stations}}.)
+Ignored if used in combination with
 \code{station_name}, with a warning.}
 
 \item{raw}{Do not convert the columns \code{data.table} to the appropriate classes. (\code{FALSE} by default.)}

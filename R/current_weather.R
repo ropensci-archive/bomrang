@@ -3,7 +3,8 @@
 #' @param station_name The name of the weather station. Fuzzy string matching via
 #' \code{base::agrep} is done.
 #' @param latlon A length-2 numeric vector. When given instead of \code{station_name}, the nearest station
-#' (in this package) is used, with a message indicating the nearest such station. Ignored if used in combination with
+#' (in this package) is used, with a message indicating the nearest such station. (See also \code{\link{sweep_for_stations}}.)
+#' Ignored if used in combination with
 #' \code{station_name}, with a warning.
 #' @param raw Do not convert the columns \code{data.table} to the appropriate classes. (\code{FALSE} by default.)
 #' @param emit_latlon_msg Logical. If \code{TRUE} (the default), and \code{latlon} is selected
