@@ -3,6 +3,7 @@
 export(current_weather)
 export(get_bulletin)
 export(get_forecast)
+export(sweep_for_stations)
 export(update_locations)
 import(data.table)
 importFrom(lubridate,ymd_hms)
