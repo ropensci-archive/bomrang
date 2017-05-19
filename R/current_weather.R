@@ -39,6 +39,9 @@ current_weather <- function(station_name, latlon = NULL, raw = FALSE, emit_latlo
     stopifnot(is.character(station_name),
               length(station_name) == 1)
 
+    # CRAN NOTE avoidance
+    name <- NULL
+
     # If there's an exact match, use it; else, attempt partial match.
     if (station_name %in% JSONurl_latlon_by_station_name[["name"]]) {
       the_station_name <- station_name
