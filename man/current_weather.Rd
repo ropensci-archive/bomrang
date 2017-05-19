@@ -34,5 +34,8 @@ in the local time of the \strong{user}.
 
   # no warning
   Melbourne_forecast <- current_weather("Melbourne (Olympic Park)")
+
+  # Get weather by latitude and longitude:
+  current_weather(latlon = c(-34, 151))
 }
 }
