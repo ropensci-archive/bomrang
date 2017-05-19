@@ -4,13 +4,20 @@
 \alias{current_weather}
 \title{Current weather observations of a station}
 \usage{
-current_weather(station_name, raw = FALSE)
+current_weather(station_name, latlon = NULL, raw = FALSE,
+  emit_latlon_msg = TRUE)
 }
 \arguments{
 \item{station_name}{The name of the weather station. Fuzzy string matching via
 \code{base::agrep} is done.}
 
+\item{latlon}{A length-2 numeric vector. When given instead of \code{station_name}, the nearest station
+(in this package) is used, with a message indicating the nearest such station. Ignored if used in combination with
+\code{station_name}, with a warning.}
+
 \item{raw}{Do not convert the columns \code{data.table} to the appropriate classes. (\code{FALSE} by default.)}
+
+\item{emit_latlon_msg}{Logical. If \code{TRUE} (the default), and \code{latlon} is selected}
 }
 \description{
 Current weather observations of a station
