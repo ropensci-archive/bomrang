@@ -22,6 +22,7 @@ BOWEN AIRPORT AWS,Bowen Airport AWS,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.
 BRADSHAW,Bradshaw,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94130.json,-14.9408,130.8091
 BRIDGETOWN,Bridgetown,http://www.bom.gov.au/fwo/IDW60801/IDW60801.95632.json,-33.9486,116.1311
 BRISBANE,Brisbane,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94576.json,-27.4808,153.0389
+BRISBANE AIRPORT,Brisbane Airport,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94578.json,-27.4808,153.0389
 BROOKTON,Brookton,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94625.json,-32.3728,117.0086
 BROWSE ISLAND,Browse Island,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94103.json,-14.1089,123.5472
 BRUNETTE DOWNS,Brunette Downs,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94242.json,-18.637,135.945
@@ -54,6 +55,7 @@ CHARLES POINT,Charles Point,http://www.bom.gov.au/fwo/IDD60801/IDD60801.99510.js
 CHARLTON,Charlton,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94839.json,-36.2847,143.3341
 CLERMONT AIRPORT,Clermont Airport,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94395.json,-22.7756,147.6217
 CLEVE,Cleve,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94661.json,-33.7011,136.4937
+CLEVE AIRPORT,Cleve Airport,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94662.json,-33.7011,136.4937
 COCONUT ISLAND,Coconut Island,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94182.json,-10.0511,143.0686
 COEN AIRPORT,Coen Airport,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94183.json,-13.7606,143.1183
 COFFS HARBOUR AIRPORT,Coffs Harbour Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95729.json,-30.3189,153.1162
@@ -85,6 +87,7 @@ EILDON FIRE TOWER,Eildon Fire Tower,http://www.bom.gov.au/fwo/IDV60801/IDV60801.
 ELLIOTT,Elliott,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94236.json,-17.5552,133.5439
 ELLISTON,Elliston,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94656.json,-33.6501,134.888
 ESPERANCE,Esperance,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94638.json,-33.83,121.8925
+ESPERANCE AIRPORT,Esperance Airport,http://www.bom.gov.au/fwo/IDW60801/IDW60801.95638.json,-33.83,121.8925
 ESSENDON AIRPORT,Essendon Airport,http://www.bom.gov.au/fwo/IDV60801/IDV60801.95866.json,-37.7276,144.9066
 EUCLA,Eucla,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94647.json,-31.6797,128.8958
 EUDUNDA,Eudunda,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94680.json,-34.1754,139.0847
@@ -117,6 +120,7 @@ HUME RESERVOIR,Hume Reservoir,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94901.
 HUNTERS HILL,Hunters Hill,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94878.json,-36.2136,147.5394
 HYDEN,Hyden,http://www.bom.gov.au/fwo/IDW60801/IDW60801.95627.json,-32.4419,118.8983
 INNISFAIL,Innisfail,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94291.json,-17.5249,146.0345
+INNISFAIL AERO,Innisfail Aero,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94280.json,-17.5249,146.0345
 JACUP,Jacup,http://www.bom.gov.au/fwo/IDW60801/IDW60801.95636.json,-33.8878,119.1092
 JARRAHWOOD,Jarrahwood,http://www.bom.gov.au/fwo/IDW60801/IDW60801.95623.json,-33.7964,115.6658
 JERVOIS,Jervois,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94327.json,-22.9494,136.1442
@@ -149,6 +153,7 @@ LOW HEAD,Low Head,http://www.bom.gov.au/fwo/IDT60801/IDT60801.95964.json,-41.054
 LOW ROCKY POINT,Low Rocky Point,http://www.bom.gov.au/fwo/IDT60801/IDT60801.95961.json,-42.9831,145.5025
 MACQUARIE ISLAND,Macquarie Island,http://www.bom.gov.au/fwo/IDT60801/IDT60801.94998.json,-54.4994,158.9369
 MAITLAND,Maitland,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95775.json,-34.3745,137.6733
+MAITLAND AIRPORT,Maitland Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94650.json,-34.3745,137.6733
 MALLACOOTA,Mallacoota,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94935.json,-37.5976,149.7289
 MANDORA,Mandora,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94200.json,-19.7419,120.8433
 MANDURAH,Mandurah,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94605.json,-32.5219,115.7119
@@ -176,6 +181,7 @@ MOUNT BARKER,Mount Barker,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94806.json
 MOUNT BAW BAW,Mount Baw Baw,http://www.bom.gov.au/fwo/IDV60801/IDV60801.95901.json,-37.8383,146.2747
 MOUNT BULLER,Mount Buller,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94894.json,-37.145,146.4394
 MOUNT HOTHAM,Mount Hotham,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94906.json,-36.9767,147.1342
+MOUNT HOTHAM AIRPORT,Mount Hotham Airport,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94905.json,-36.9767,147.1342
 MOUNT IVE,Mount Ive,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94660.json,-32.4398,136.0671
 MOUNT LOFTY,Mount Lofty,http://www.bom.gov.au/fwo/IDS60801/IDS60801.95678.json,-34.9784,138.7088
 MOUNT MOORNAPA,Mount Moornapa,http://www.bom.gov.au/fwo/IDV60801/IDV60801.95913.json,-37.7481,147.1428
@@ -219,6 +225,7 @@ REDCLIFFE,Redcliffe,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.95591.json,-27.2
 REDESDALE,Redesdale,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94859.json,-37.0194,144.5203
 REDLAND (ALEXANDRA HILLS),Redland (Alexandra Hills),http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94561.json,-27.5433,153.2394
 RHYLL,Rhyll,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94892.json,-38.4612,145.3101
+ROBE AIRPORT,Robe Airport,http://www.bom.gov.au/fwo/IDS60801/IDS60801.95816.json,-37.1628,139.756
 ROLLESTON AIRPORT,Rolleston Airport,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94396.json,-24.4617,148.6264
 ROTTNEST ISLAND,Rottnest Island,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94602.json,-32.0069,115.5022
 ROWLEY SHOALS,Rowley Shoals,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94207.json,-17.5217,118.9531
@@ -269,7 +276,7 @@ YORK,York,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94623.json,-31.8997,116.76
 ADELAIDE,Adelaide,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94675.json,-34.9524,138.5196
 ADELE ISLAND,Adele Island,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94210.json,,
 ALBION PARK,Albion Park,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95748.json,,
-ALBURY,Albury,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95896.json,,
+ALBURY,Albury,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95896.json,-36.069,146.9509
 ALI CURUNG,Ali Curung,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94325.json,,
 ALYANGULA,Alyangula,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94149.json,,
 AMBERLEY,Amberley,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94568.json,,
@@ -277,22 +284,22 @@ ARARAT,Ararat,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94834.json,,
 ARCHERFIELD,Archerfield,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94575.json,-27.5717,153.0078
 ARGYLE,Argyle,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94217.json,,
 ARLINGTON REEF,Arlington Reef,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94284.json,,
-ARMIDALE,Armidale,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94773.json,,
-ARMIDALE AIRPORT,Armidale Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95773.json,,
+ARMIDALE,Armidale,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94773.json,-30.5273,151.6158
+ARMIDALE AIRPORT,Armidale Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95773.json,-30.5273,151.6158
 ARTHUR RIVER (WUTHERING HEIGHTS RD),Arthur River (Wuthering Heights Rd),http://www.bom.gov.au/fwo/IDT60801/IDT60801.99048.json,,
 AVALON,Avalon,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94854.json,-38.0287,144.4783
 AYR,Ayr,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.95295.json,,
-BADGERYS CREEK,Badgerys Creek,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94752.json,-33.8969,150.7281
+BADGERYS CREEK,Badgerys Creek,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94752.json,,
 BADGINGARRA,Badgingarra,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94603.json,,
 BAIRNSDALE,Bairnsdale,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94912.json,-37.8817,147.5669
 BALGAIR,Balgair,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94643.json,,
 BALGO HILLS,Balgo Hills,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94320.json,,
 BALLARAT,Ballarat,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94852.json,,
 BALLERA,Ballera,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.95487.json,,
-BALLINA,Ballina,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94596.json,,
+BALLINA,Ballina,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94596.json,-28.8353,153.5585
 BALRANALD,Balranald,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94696.json,,
 BANANA BANK,Banana Bank,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94591.json,,
-BANKSTOWN,Bankstown,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94765.json,,
+BANKSTOWN,Bankstown,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94765.json,-33.9181,150.9864
 BARCALDINE,Barcaldine,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94350.json,,
 BARIMUNYA,Barimunya,http://www.bom.gov.au/fwo/IDW60801/IDW60801.99313.json,,
 BAROON POCKET,Baroon Pocket,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94548.json,,
@@ -300,15 +307,15 @@ BARRABA,Barraba,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94761.json,,
 BARROW ISLAND,Barrow Island,http://www.bom.gov.au/fwo/IDW60801/IDW60801.95304.json,-20.874,115.4066
 BATCHELOR,Batchelor,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94125.json,-13.0544,131.0252
 BATEMANS BAY,Batemans Bay,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94941.json,,
-BATHURST,Bathurst,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94730.json,,
-BATHURST AIRPORT,Bathurst Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94729.json,,
+BATHURST,Bathurst,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94730.json,-33.4119,149.654
+BATHURST AIRPORT,Bathurst Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94729.json,-33.4119,149.654
 BEAUDESERT AWS,Beaudesert AWS,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.95575.json,,
 BEDOURIE,Bedourie,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94334.json,,
 BEDOUT ISLAND,Bedout Island,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94310.json,,
 BEECHWORTH,Beechworth,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94895.json,,
 BEERBURRUM,Beerburrum,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.95566.json,,
-BEGA,Bega,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95931.json,-36.6722,149.8191
-BELLAMBI,Bellambi,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94749.json,-34.3691,150.9291
+BEGA,Bega,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95931.json,,
+BELLAMBI,Bellambi,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94749.json,,
 BEN NEVIS,Ben Nevis,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94835.json,,
 BENALLA,Benalla,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94884.json,-36.5523,145.9977
 BENDIGO,Bendigo,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94855.json,-36.7395,144.3266
@@ -317,18 +324,17 @@ BILOELA,Biloela,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94376.json,,
 BIRDSVILLE,Birdsville,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.95482.json,-25.8975,139.3472
 BLACKALL,Blackall,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.95351.json,-24.4303,145.4306
 BOLLON,Bollon,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94513.json,,
-BOMBALA,Bombala,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94928.json,-37.0016,149.2336
+BOMBALA,Bombala,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94928.json,,
 BORROLOOLA,Borroloola,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94152.json,-16.0755,136.3041
 BOULIA,Boulia,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94333.json,-22.9117,139.9039
-BOURKE,Bourke,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94703.json,,
-BOWEN AIRPORT,Bowen Airport,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94366.json,,
+BOURKE,Bourke,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94703.json,-30.0362,145.9521
+BOWEN AIRPORT,Bowen Airport,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94366.json,-20.0154,148.2138
 BRAIDWOOD,Braidwood,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94927.json,,
 BREWARRINA,Brewarrina,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95512.json,,
 BREWON,Brewon,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94793.json,,
 BRIDPORT,Bridport,http://www.bom.gov.au/fwo/IDT60801/IDT60801.95973.json,,
-BRISBANE AIRPORT,Brisbane Airport,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94578.json,-27.4808,153.0389
-BROKEN HILL,Broken Hill,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94689.json,,
-BROKEN HILL AIRPORT,Broken Hill Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94691.json,,
+BROKEN HILL,Broken Hill,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94689.json,-32.0012,141.4694
+BROKEN HILL AIRPORT,Broken Hill Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94691.json,-32.0012,141.4694
 BROOME,Broome,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94203.json,-17.9475,122.2353
 BROOME PORT,Broome Port,http://www.bom.gov.au/fwo/IDW60801/IDW60801.95202.json,,
 BUNDABERG,Bundaberg,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94387.json,-24.9069,152.323
@@ -341,7 +347,7 @@ BUSSELTON JETTY,Busselton Jetty,http://www.bom.gov.au/fwo/IDW60801/IDW60801.9560
 BUSSELTON TOWN,Busselton Town,http://www.bom.gov.au/fwo/IDW60801/IDW60801.95630.json,,
 CABRAMURRA,Cabramurra,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95916.json,,
 CAIRNS,Cairns,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94287.json,-16.8736,145.7458
-CAMDEN,Camden,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94755.json,,
+CAMDEN,Camden,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94755.json,-34.039,150.689
 CAMOOWEAL,Camooweal,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94255.json,,
 CAMPANIA,Campania,http://www.bom.gov.au/fwo/IDT60801/IDT60801.95972.json,,
 CAMPBELLTOWN,Campbelltown,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94757.json,,
@@ -358,10 +364,10 @@ CAPE NELSON,Cape Nelson,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94826.json,,
 CAPE OTWAY,Cape Otway,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94842.json,,
 CARDWELL,Cardwell,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94292.json,,
 CARNARVON,Carnarvon,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94300.json,-24.8878,113.67
-CASINO,Casino,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94573.json,,
+CASINO,Casino,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94573.json,-28.8824,153.0618
 CASTLEMAINE,Castlemaine,http://www.bom.gov.au/fwo/IDV60801/IDV60801.95853.json,,
 CEDUNA,Ceduna,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94653.json,,
-CESSNOCK AIRPORT,Cessnock Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95771.json,,
+CESSNOCK AIRPORT,Cessnock Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95771.json,-32.7886,151.3377
 CFS MOBILE A,CFS Mobile A,http://www.bom.gov.au/fwo/IDS60801/IDS60801.99058.json,,
 CFS MOBILE B,CFS Mobile B,http://www.bom.gov.au/fwo/IDS60801/IDS60801.99059.json,,
 CFS MOBILE C,CFS Mobile C,http://www.bom.gov.au/fwo/IDS60801/IDS60801.99060.json,,
@@ -373,27 +379,26 @@ CHRISTMAS CREEK,Christmas Creek,http://www.bom.gov.au/fwo/IDW60801/IDW60801.9973
 CHRISTMAS ISLAND,Christmas Island,http://www.bom.gov.au/fwo/IDW60801/IDW60801.96995.json,-10.4528,105.6875
 CLARE,Clare,http://www.bom.gov.au/fwo/IDS60801/IDS60801.95667.json,,
 CLERMONT,Clermont,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94359.json,-22.7756,147.6217
-CLEVE AIRPORT,Cleve Airport,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94662.json,-33.7011,136.4937
 CLONCURRY,Cloncurry,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94335.json,-20.6664,140.505
-COBAR,Cobar,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94711.json,,
-COBAR AIRPORT,Cobar Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94710.json,,
+COBAR,Cobar,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94711.json,-31.5388,145.7964
+COBAR AIRPORT,Cobar Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94710.json,-31.5388,145.7964
 COCOS ISLAND,Cocos Island,http://www.bom.gov.au/fwo/IDW60801/IDW60801.96996.json,-12.1892,96.8344
 COLES POINT,Coles Point,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94658.json,,
 COLLARENEBRI,Collarenebri,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95520.json,,
 COLLINSVILLE,Collinsville,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94360.json,,
-COMBIENBAR,Combienbar,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94914.json,-37.3417,149.0228
-CONDOBOLIN AIRPORT,Condobolin Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95708.json,,
+COMBIENBAR,Combienbar,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94914.json,,
+CONDOBOLIN AIRPORT,Condobolin Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95708.json,-33.0682,147.2133
 COOKTOWN,Cooktown,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.95283.json,-15.4461,145.1861
-COOMA,Cooma,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94923.json,,
-COOMA AIRPORT,Cooma Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94921.json,,
-COONABARABRAN,Coonabarabran,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94728.json,,
-COONABARABRAN AIRPORT,Coonabarabran Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95728.json,,
-COONAMBLE,Coonamble,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95718.json,,
+COOMA,Cooma,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94923.json,-36.2939,148.9725
+COOMA AIRPORT,Cooma Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94921.json,-36.2939,148.9725
+COONABARABRAN,Coonabarabran,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94728.json,-31.333,149.2699
+COONABARABRAN AIRPORT,Coonabarabran Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95728.json,-31.333,149.2699
+COONAMBLE,Coonamble,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95718.json,-30.9776,148.3798
 COONDEWANNA,Coondewanna,http://www.bom.gov.au/fwo/IDW60801/IDW60801.99312.json,,
 COOTAMUNDRA,Cootamundra,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94714.json,-34.6299,148.0365
 COROWA,Corowa,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95895.json,-35.9887,146.3574
 COWLEY BEACH (DEFENCE),Cowley Beach (Defence),http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.99218.json,,
-COWRA,Cowra,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95721.json,,
+COWRA,Cowra,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95721.json,-33.8382,148.654
 CRANBOURNE,Cranbourne,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94879.json,,
 CRESSY,Cressy,http://www.bom.gov.au/fwo/IDT60801/IDT60801.95969.json,,
 CROYDON,Croydon,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94269.json,,
@@ -407,13 +412,13 @@ DALY WATERS,Daly Waters,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94234.json,-
 DARWIN HARBOUR,Darwin Harbour,http://www.bom.gov.au/fwo/IDD60801/IDD60801.95122.json,,
 DEGRUSSA AERODROME,Degrussa Aerodrome,http://www.bom.gov.au/fwo/IDW60801/IDW60801.99400.json,,
 DELAMERE,Delamere,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94225.json,,
-DENILIQUIN,Deniliquin,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95869.json,,
+DENILIQUIN,Deniliquin,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95869.json,-35.5575,144.9458
 DERBY,Derby,http://www.bom.gov.au/fwo/IDW60801/IDW60801.95205.json,-17.3706,123.6611
 DORRIGO,Dorrigo,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94789.json,,
 DOUBLE ISLAND  POINT,Double Island  Point,http://www.bom.gov.au/fwo/IDQ60901/IDQ60901.94584.json,,
 DOUBLE ISLAND POINT,Double Island Point,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94584.json,,
 DROUGHTY HILL,Droughty Hill,http://www.bom.gov.au/fwo/IDT60901/IDT60901.99971.json,,
-DUBBO,Dubbo,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95719.json,,
+DUBBO,Dubbo,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95719.json,-32.2206,148.5753
 DUM IN MIRRIE,Dum In Mirrie,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94116.json,-12.635,130.3725
 DUNALLEY,Dunalley,http://www.bom.gov.au/fwo/IDT60801/IDT60801.94951.json,,
 DUNEDOO,Dunedoo,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95727.json,,
@@ -427,19 +432,18 @@ EMERALD,Emerald,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94363.json,-23.5694,
 EMU CREEK,Emu Creek,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94318.json,,
 ENEABBA,Eneabba,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94414.json,,
 ERNABELLA/PUKATJA,Ernabella/Pukatja,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94474.json,,
-ESPERANCE AIRPORT,Esperance Airport,http://www.bom.gov.au/fwo/IDW60801/IDW60801.95638.json,-33.83,121.8925
 ESPERANCE HARBOUR,Esperance Harbour,http://www.bom.gov.au/fwo/IDW60801/IDW60801.95648.json,,
 EVANS HEAD,Evans Head,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94598.json,,
 FAWKNER BEACON,Fawkner Beacon,http://www.bom.gov.au/fwo/IDV60801/IDV60801.95872.json,,
 FINGAL,Fingal,http://www.bom.gov.au/fwo/IDT60801/IDT60801.95974.json,,
 FISH REEF,Fish Reef,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94114.json,,
 FITZROY CROSSING,Fitzroy Crossing,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94206.json,-18.1814,125.5619
-FORBES,Forbes,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94715.json,,
+FORBES,Forbes,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94715.json,-33.3627,147.9205
 FORSTER,Forster,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95778.json,,
 FORT DENISON,Fort Denison,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94769.json,,
 FORTESCUE DAVE FORREST,Fortescue Dave Forrest,http://www.bom.gov.au/fwo/IDW60801/IDW60801.99736.json,,
-FOWLERS GAP,Fowlers Gap,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94686.json,-31.0863,141.7008
-FRANKSTON,Frankston,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94871.json,-38.1481,145.1156
+FOWLERS GAP,Fowlers Gap,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94686.json,,
+FRANKSTON,Frankston,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94871.json,,
 GABO ISLAND,Gabo Island,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94933.json,,
 GANNETT CAY,Gannett Cay,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94379.json,,
 GARDEN ISLAND,Garden Island,http://www.bom.gov.au/fwo/IDW60801/IDW60801.95607.json,,
@@ -453,29 +457,29 @@ GILES*,Giles*,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94461.json,,
 GINGIN AIRPORT,Gingin Airport,http://www.bom.gov.au/fwo/IDW60801/IDW60801.95612.json,-31.4628,115.8642
 GIRILAMBONE,Girilambone,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94794.json,,
 GLADSTONE,Gladstone,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94380.json,-23.8697,151.2214
-GLEN INNES AIRPORT,Glen Innes Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94588.json,,
+GLEN INNES AIRPORT,Glen Innes Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94588.json,-29.678,151.694
 GLUEPOT,Gluepot,http://www.bom.gov.au/fwo/IDS60801/IDS60801.95668.json,,
 GOONDIWINDI,Goondiwindi,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94530.json,,
-GOSFORD,Gosford,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94782.json,-33.4351,151.3614
+GOSFORD,Gosford,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94782.json,,
 GOSNELLS,Gosnells,http://www.bom.gov.au/fwo/IDW60801/IDW60801.95604.json,,
-GOULBURN,Goulburn,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94716.json,,
-GOULBURN AIRPORT,Goulburn Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95716.json,,
-GRAFTON AIRPORT,Grafton Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95570.json,,
+GOULBURN,Goulburn,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94716.json,-34.8085,149.7311
+GOULBURN AIRPORT,Goulburn Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95716.json,-34.8085,149.7311
+GRAFTON AIRPORT,Grafton Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95570.json,-29.7583,153.0297
 GRAFTON AGRS,Grafton AgRS,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95571.json,,
-GREEN CAPE,Green Cape,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94934.json,-37.2622,150.0504
+GREEN CAPE,Green Cape,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94934.json,,
 GRENFELL,Grenfell,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94725.json,,
-GRIFFITH,Griffith,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95704.json,,
+GRIFFITH,Griffith,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95704.json,-34.2487,146.0695
 GROVE,Grove,http://www.bom.gov.au/fwo/IDT60801/IDT60801.95977.json,,
 GULGONG,Gulgong,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94732.json,,
 GUNDAGAI,Gundagai,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94890.json,,
-GUNNEDAH,Gunnedah,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94742.json,,
-GUNNEDAH AIRPORT,Gunnedah Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95740.json,,
+GUNNEDAH,Gunnedah,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94742.json,-30.9537,150.2494
+GUNNEDAH AIRPORT,Gunnedah Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95740.json,-30.9537,150.2494
 GUYRA,Guyra,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94772.json,,
 HALLS CREEK,Halls Creek,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94212.json,-18.2336,127.6667
 HAMILTON,Hamilton,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94829.json,-37.6486,142.0636
 HAMILTON ISLAND,Hamilton Island,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94368.json,-20.3658,148.9536
 HARTZ MOUNTAINS,Hartz Mountains,http://www.bom.gov.au/fwo/IDT60801/IDT60801.94977.json,,
-HAY AIRPORT,Hay Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94702.json,,
+HAY AIRPORT,Hay Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94702.json,-34.5412,144.8345
 HAY CSIRO,Hay CSIRO,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94701.json,,
 HAY POINT,Hay Point,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.99367.json,,
 HERON ISLAND,Heron Island,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94386.json,,
@@ -484,7 +488,7 @@ HEYWOOD,Heywood,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94824.json,,
 HIGH RANGE (WANGANDERRY),High Range (Wanganderry),http://www.bom.gov.au/fwo/IDN60801/IDN60801.99742.json,,
 HILLARYS POINT BOAT HARBOUR,Hillarys Point Boat Harbour,http://www.bom.gov.au/fwo/IDW60801/IDW60801.95605.json,,
 HILLSTON,Hillston,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94700.json,-33.4915,145.5248
-HINDMARSH ISLAND,Hindmarsh Island,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94677.json,-35.5194,138.8177
+HINDMARSH ISLAND,Hindmarsh Island,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94677.json,,
 HINZE DAM,Hinze Dam,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94577.json,,
 HOBART,Hobart,http://www.bom.gov.au/fwo/IDT60801/IDT60801.94970.json,-42.8339,147.5033
 HOLSWORTHY,Holsworthy,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95761.json,,
@@ -496,7 +500,6 @@ INGHAM,Ingham,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.95291.json,,
 INGLEWOOD,Inglewood,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.95573.json,,
 INJUNE,Injune,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94511.json,,
 INNER BEACON,Inner Beacon,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94590.json,,
-INNISFAIL AERO,Innisfail Aero,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94280.json,-17.5249,146.0345
 INVERELL,Inverell,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95541.json,,
 INVERELL RS,Inverell RS,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94541.json,,
 ISISFORD,Isisford,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94345.json,,
@@ -505,15 +508,15 @@ JABIRU,Jabiru,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94137.json,-12.6592,13
 JANDAKOT,Jandakot,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94609.json,-32.1011,115.8794
 JIMNA,Jimna,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94557.json,,
 JULIA CREEK,Julia Creek,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94337.json,-20.6672,141.7214
-KADINA,Kadina,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94685.json,-33.9703,137.6628
+KADINA,Kadina,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94685.json,,
 KALGOORLIE-BOULDER,Kalgoorlie-Boulder,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94637.json,-30.7847,121.4533
 KARRATHA,Karratha,http://www.bom.gov.au/fwo/IDW60801/IDW60801.95307.json,-20.7097,116.7742
 KATANNING RS,Katanning RS,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94641.json,,
 KATHERINE,Katherine,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94132.json,,
 KATOOMBA,Katoomba,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94744.json,,
 KEITH WEST,Keith West,http://www.bom.gov.au/fwo/IDS60801/IDS60801.95815.json,,
-KEMPSEY AIRPORT,Kempsey Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94785.json,,
-KHANCOBAN,Khancoban,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94919.json,-36.2304,148.1405
+KEMPSEY AIRPORT,Kempsey Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94785.json,-31.0711,152.7717
+KHANCOBAN,Khancoban,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94919.json,,
 KIAMA,Kiama,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95749.json,,
 KILMORE GAP,Kilmore Gap,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94860.json,,
 KIMBERELY,Kimberely,http://www.bom.gov.au/fwo/IDD60801/IDD60801.95215.json,,
@@ -528,7 +531,7 @@ KURNELL,Kurnell,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95756.json,,
 LAJAMANU,Lajamanu,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94231.json,-18.3324,130.6361
 LAKE CARGELLIGO,Lake Cargelligo,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95707.json,-33.2832,146.3706
 LAKE DARTMOUTH,Lake Dartmouth,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94888.json,,
-LAKE JULIUS,Lake Julius,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94348.json,-20.1167,139.7256
+LAKE JULIUS,Lake Julius,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94348.json,,
 LAKE LEAKE,Lake Leake,http://www.bom.gov.au/fwo/IDT60801/IDT60801.94979.json,,
 LAKE MACQUARIE - COORANBONG,Lake Macquarie - Cooranbong,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95767.json,,
 LAKE ST CLAIR,Lake St Clair,http://www.bom.gov.au/fwo/IDT60801/IDT60801.94976.json,,
@@ -546,7 +549,7 @@ LEINSTER,Leinster,http://www.bom.gov.au/fwo/IDW60801/IDW60801.95448.json,-27.838
 LEONORA,Leonora,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94448.json,-28.8789,121.3186
 LEONORA AIRPORT,Leonora Airport,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94450.json,-28.8789,121.3186
 LIGHTNING RIDGE,Lightning Ridge,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94498.json,,
-LISMORE AIRPORT,Lismore Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94572.json,,
+LISMORE AIRPORT,Lismore Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94572.json,-28.8305,153.2601
 LITHGOW,Lithgow,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94741.json,,
 LITTLE BAY,Little Bay,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94780.json,,
 LIVERPOOL,Liverpool,http://www.bom.gov.au/fwo/IDN60901/IDN60901.95750.json,,
@@ -567,11 +570,10 @@ MACKAY,Mackay,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94367.json,-21.1706,14
 MACKAY AIRPORT,Mackay Airport,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.95367.json,-21.1706,149.1794
 MACKAY RACECOURSE,Mackay Racecourse,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94352.json,,
 MACQUARIE ISLAND*,Macquarie Island*,http://www.bom.gov.au/fwo/IDT60803/IDT60803.94998.json,,
-MAITLAND AIRPORT,Maitland Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94650.json,-34.3745,137.6733
 MALENY,Maleny,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94547.json,,
 MANGALORE,Mangalore,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94874.json,-36.8886,145.1859
 MANGO FARM,Mango Farm,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94117.json,,
-MANGROVE MOUNTAIN,Mangrove Mountain,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95774.json,-33.2894,151.2107
+MANGROVE MOUNTAIN,Mangrove Mountain,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95774.json,,
 MANINGRIDA,Maningrida,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94142.json,-12.0569,134.2339
 MAREEBA,Mareeba,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.95286.json,-17.0704,145.4293
 MARIA ISLAND,Maria Island,http://www.bom.gov.au/fwo/IDT60801/IDT60801.95988.json,,
@@ -585,7 +587,7 @@ MEEKATHARRA,Meekatharra,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94430.json,-
 MELTON MOWBRAY,Melton Mowbray,http://www.bom.gov.au/fwo/IDT60801/IDT60801.94971.json,,
 MELVILLE WATER,Melville Water,http://www.bom.gov.au/fwo/IDW60801/IDW60801.95620.json,,
 MENINDEE,Menindee,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94694.json,,
-MERIMBULA,Merimbula,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95929.json,,
+MERIMBULA,Merimbula,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95929.json,-36.9077,149.8989
 MERRIWA,Merriwa,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95754.json,,
 MILDURA,Mildura,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94693.json,-34.2358,142.0867
 MILES,Miles,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.95529.json,,
@@ -598,17 +600,16 @@ MONTAGUE ISLAND,Montague Island,http://www.bom.gov.au/fwo/IDN60801/IDN60801.9493
 MOORE REEF,Moore Reef,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.95290.json,,
 MOREE,Moree,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95527.json,-29.4898,149.8471
 MORTLAKE,Mortlake,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94840.json,,
-MORUYA AIRPORT,Moruya Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95937.json,,
+MORUYA AIRPORT,Moruya Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95937.json,-35.9004,150.1437
 MORUYA HEADS,Moruya Heads,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94937.json,,
-MOSS VALE,Moss Vale,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94746.json,-34.5253,150.4217
-MOUNT BOYCE,Mount Boyce,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94743.json,-33.6185,150.2741
+MOSS VALE,Moss Vale,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94746.json,,
+MOUNT BOYCE,Mount Boyce,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94743.json,,
 MOUNT BUNDEY,Mount Bundey,http://www.bom.gov.au/fwo/IDD60801/IDD60801.99003.json,,
-MOUNT CRAWFORD,Mount Crawford,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94678.json,-34.7253,138.9278
+MOUNT CRAWFORD,Mount Crawford,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94678.json,,
 MOUNT ELIZABETH,Mount Elizabeth,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94211.json,,
 MOUNT GAMBIER,Mount Gambier,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94821.json,-37.7473,140.7739
 MOUNT GELLIBRAND,Mount Gellibrand,http://www.bom.gov.au/fwo/IDV60801/IDV60801.95845.json,,
-MOUNT GININI,Mount Ginini,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95925.json,-35.5293,148.7721
-MOUNT HOTHAM AIRPORT,Mount Hotham Airport,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94905.json,-36.9767,147.1342
+MOUNT GININI,Mount Ginini,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95925.json,,
 MOUNT ISA,Mount Isa,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94332.json,-20.6778,139.4875
 MOUNT KEITH,Mount Keith,http://www.bom.gov.au/fwo/IDW60801/IDW60801.99434.json,,
 MOUNT MAGNET AIRPORT,Mount Magnet Airport,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94429.json,-28.1156,117.8425
@@ -617,31 +618,31 @@ MOUNT WILLIAM,Mount William,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94833.js
 MT AVOCA,Mt Avoca,http://www.bom.gov.au/fwo/IDV60801/IDV60801.99051.json,,
 MT CULLEN,Mt Cullen,http://www.bom.gov.au/fwo/IDT60801/IDT60801.99049.json,,
 MT SELDOM SEEN,Mt Seldom Seen,http://www.bom.gov.au/fwo/IDV60801/IDV60801.99052.json,,
-MUDGEE,Mudgee,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94727.json,,
+MUDGEE,Mudgee,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94727.json,-32.5628,149.6149
 MUELLER RIDGE,Mueller Ridge,http://www.bom.gov.au/fwo/IDT60801/IDT60801.99975.json,,
 MUNGINDI,Mungindi,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94520.json,,
 MURRAY BRIDGE,Murray Bridge,http://www.bom.gov.au/fwo/IDS60801/IDS60801.95812.json,,
 MURRURUNDI,Murrurundi,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94756.json,,
-MURRURUNDI GAP,Murrurundi Gap,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95747.json,-31.7416,150.7937
+MURRURUNDI GAP,Murrurundi Gap,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95747.json,,
 MURWILLUMBAH,Murwillumbah,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94582.json,,
 NAMBOUR,Nambour,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.95572.json,,
 NARACOORTE,Naracoorte,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94820.json,,
 NAROOMA,Narooma,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95935.json,,
-NARRABRI,Narrabri,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95734.json,,
-NARRANDERA AIRPORT,Narrandera Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95706.json,,
+NARRABRI,Narrabri,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95734.json,-30.3154,149.8302
+NARRANDERA AIRPORT,Narrandera Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95706.json,-34.705,146.514
 NELSON BAY,Nelson Bay,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95779.json,,
-NERRIGA,Nerriga,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94943.json,-35.1103,150.0826
+NERRIGA,Nerriga,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94943.json,,
 NEWCASTLE NOBBYS,Newcastle Nobbys,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94774.json,,
 NEWDEGATE,Newdegate,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94628.json,,
 NEWMAN AIRPORT,Newman Airport,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94317.json,-23.4167,119.7992
 NGAYAWILI (ELCHO ISLAND),Ngayawili (Elcho Island),http://www.bom.gov.au/fwo/IDD60801/IDD60801.95146.json,,
 NGUKURR,Ngukurr,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94148.json,-14.7236,134.7456
-NGUKURR AWS,Ngukurr AWS,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94106.json,-14.7236,134.7456
+NGUKURR AWS,Ngukurr AWS,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94106.json,,
 NHILL,Nhill,http://www.bom.gov.au/fwo/IDV60801/IDV60801.95829.json,,
 NO PORTABLE STATION,No Portable Station,http://www.bom.gov.au/fwo/IDT60801/IDT60801.99999.json,,
 NOOJEE,Noojee,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94880.json,,
 NOONAMAH,Noonamah,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94105.json,-12.6099,131.0474
-NORAH HEAD,Norah Head,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95770.json,-33.2814,151.5766
+NORAH HEAD,Norah Head,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95770.json,,
 NORFOLK ISLAND,Norfolk Island,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94996.json,-29.0389,167.9408
 NORMAN REEF,Norman Reef,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.95287.json,,
 NORMANTON,Normanton,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94266.json,-17.6872,141.0733
@@ -649,7 +650,7 @@ NORSEMAN AIRPORT,Norseman Airport,http://www.bom.gov.au/fwo/IDW60801/IDW60801.95
 NORTH HEAD,North Head,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95768.json,,
 NORTHEAST ISLAND,Northeast Island,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94151.json,,
 NOWRA,Nowra,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94750.json,,
-NULLO MOUNTAIN,Nullo Mountain,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94754.json,-32.7244,150.229
+NULLO MOUNTAIN,Nullo Mountain,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94754.json,,
 NURIOOTPA,Nuriootpa,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94681.json,,
 NYNGAN,Nyngan,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94708.json,-31.5495,147.1961
 OAKEY,Oakey,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94552.json,-27.4034,151.7413
@@ -657,7 +658,7 @@ OBERON,Oberon,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95735.json,,
 OCEAN REEF,Ocean Reef,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94607.json,,
 OENPELLI,Oenpelli,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94138.json,-12.3272,133.0069
 OODNADATTA,Oodnadatta,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94476.json,-27.5553,135.4456
-ORANGE AIRPORT,Orange Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95726.json,,
+ORANGE AIRPORT,Orange Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95726.json,-33.3768,149.1263
 ORANGE AGIN,Orange AgIn,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95725.json,,
 ORFORD,Orford,http://www.bom.gov.au/fwo/IDT60801/IDT60801.95984.json,,
 OUSE,Ouse,http://www.bom.gov.au/fwo/IDT60801/IDT60801.94957.json,,
@@ -671,13 +672,13 @@ PARABURDOO,Paraburdoo,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94316.json,-23
 PARAFIELD,Parafield,http://www.bom.gov.au/fwo/IDS60801/IDS60801.95677.json,-34.7977,138.6281
 PARAWA WEST,Parawa West,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94811.json,,
 PARDOO,Pardoo,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94311.json,,
-PARKES AIRPORT,Parkes Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95717.json,,
+PARKES AIRPORT,Parkes Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95717.json,-33.1281,148.2428
 PARNDANA,Parndana,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94807.json,,
 PARRAMATTA,Parramatta,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94764.json,,
 PEAK HILL,Peak Hill,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94721.json,,
 PEARCE,Pearce,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94612.json,,
 PENRITH,Penrith,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94763.json,,
-PERISHER VALLEY,Perisher Valley,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94915.json,-36.4069,148.4055
+PERISHER VALLEY,Perisher Valley,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94915.json,,
 PERTH,Perth,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94608.json,-31.9275,115.9764
 PHILLIP ISLAND,Phillip Island,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94883.json,,
 PIRLANGIMPI,Pirlangimpi,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94119.json,-11.4021,130.4217
@@ -686,11 +687,11 @@ POINT PERPENDICULAR,Point Perpendicular,http://www.bom.gov.au/fwo/IDN60801/IDN60
 POINT WILSON,Point Wilson,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94847.json,,
 POONCARIE,Pooncarie,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95692.json,,
 PORT AUGUSTA,Port Augusta,http://www.bom.gov.au/fwo/IDS60801/IDS60801.95666.json,-32.5073,137.7169
-PORT FAIRY,Port Fairy,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94830.json,-38.3906,142.2347
+PORT FAIRY,Port Fairy,http://www.bom.gov.au/fwo/IDV60801/IDV60801.94830.json,,
 PORT HEDLAND,Port Hedland,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94312.json,-20.3725,118.6317
 PORT KEMBLA HARBOUR,Port Kembla Harbour,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95745.json,,
 PORT LINCOLN AIRPORT,Port Lincoln Airport,http://www.bom.gov.au/fwo/IDS60801/IDS60801.95661.json,,
-PORT MACQUARIE AIRPORT,Port Macquarie Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94786.json,,
+PORT MACQUARIE AIRPORT,Port Macquarie Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94786.json,-31.4335,152.8655
 PORT PIRIE AIRPORT,Port Pirie Airport,http://www.bom.gov.au/fwo/IDS60801/IDS60801.95657.json,,
 PORT PIRIE AIRPORT AWS,Port Pirie Airport AWS,http://www.bom.gov.au/fwo/IDS60801/IDS60801.99749.json,,
 PORTABLE QFRA,PORTABLE QFRA,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.99082.json,,
@@ -717,12 +718,11 @@ REEFTON,Reefton,http://www.bom.gov.au/fwo/IDV60801/IDV60801.99049.json,,
 RENMARK AIRPORT,Renmark Airport,http://www.bom.gov.au/fwo/IDS60801/IDS60801.95687.json,-34.1983,140.6766
 RICHMOND,Richmond,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95753.json,-20.7017,143.1167
 RIVERVIEW,Riverview,http://www.bom.gov.au/fwo/IDN60901/IDN60901.95764.json,,
-ROBE AIRPORT,Robe Airport,http://www.bom.gov.au/fwo/IDS60801/IDS60801.95816.json,-37.1628,139.756
 ROCKHAMPTON,Rockhampton,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94374.json,-23.3753,150.4775
 ROCKY GULLY SOUTH,Rocky Gully South,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94631.json,,
 ROEBOURNE AIRPORT,Roebourne Airport,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94308.json,-20.7594,117.1583
 ROMA,Roma,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94515.json,-26.5477,148.771
-ROSEWORTHY,Roseworthy,http://www.bom.gov.au/fwo/IDS60801/IDS60801.95671.json,-34.5106,138.6763
+ROSEWORTHY,Roseworthy,http://www.bom.gov.au/fwo/IDS60801/IDS60801.95671.json,,
 ROSS,Ross,http://www.bom.gov.au/fwo/IDT60801/IDT60801.94985.json,,
 ROSSLYN BAY HARBOUR,Rosslyn Bay Harbour,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.95298.json,,
 ROXBY DOWNS,Roxby Downs,http://www.bom.gov.au/fwo/IDS60801/IDS60801.95658.json,,
@@ -732,8 +732,8 @@ SAMUEL HILL,Samuel Hill,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94370.json,-
 SANDY CAPE,Sandy Cape,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94390.json,,
 SAVAGE RIVER MINE,Savage River Mine,http://www.bom.gov.au/fwo/IDT60801/IDT60801.99050.json,,
 SCHERGER,Scherger,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94171.json,,
-SCONE,Scone,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94738.json,,
-SCONE AIRPORT,Scone Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95758.json,,
+SCONE,Scone,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94738.json,-32.0335,150.8264
+SCONE AIRPORT,Scone Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95758.json,-32.0335,150.8264
 SCORESBY,Scoresby,http://www.bom.gov.au/fwo/IDV60801/IDV60801.95867.json,,
 SCOTTS PEAK,Scotts Peak,http://www.bom.gov.au/fwo/IDT60801/IDT60801.95958.json,,
 SCOTTSDALE,Scottsdale,http://www.bom.gov.au/fwo/IDT60801/IDT60801.94972.json,,
@@ -771,17 +771,17 @@ SYDNEY HARBOUR,Sydney Harbour,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95766.
 SYDNEY OLYMPIC PARK,Sydney Olympic Park,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95765.json,,
 TABULAM,Tabulam,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94587.json,,
 TAMBO,Tambo,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94355.json,,
-TAMWORTH AIRPORT,Tamworth Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95762.json,,
+TAMWORTH AIRPORT,Tamworth Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95762.json,-31.0742,150.8362
 TARALGA,Taralga,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94735.json,,
 TARCOOLA,Tarcoola,http://www.bom.gov.au/fwo/IDS60801/IDS60801.94655.json,-30.7051,134.5786
-TAREE AIRPORT,Taree Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95784.json,,
+TAREE AIRPORT,Taree Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95784.json,-31.8895,152.512
 TAROOM,Taroom,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94525.json,,
 TATURA,Tatura,http://www.bom.gov.au/fwo/IDV60801/IDV60801.95836.json,,
 TELFER,Telfer,http://www.bom.gov.au/fwo/IDW60801/IDW60801.94319.json,-21.7125,122.2281
 TEMORA,Temora,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95722.json,-34.4277,147.5117
 TENNANT CREEK,Tennant Creek,http://www.bom.gov.au/fwo/IDD60801/IDD60801.94238.json,-19.6423,134.1833
 TENTERFIELD,Tenterfield,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94556.json,,
-TERREY HILLS,Terrey Hills,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94759.json,-33.6908,151.2253
+TERREY HILLS,Terrey Hills,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94759.json,,
 TEWANTIN,Tewantin,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94570.json,,
 TEXAS,Texas,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.95533.json,,
 THARGOMINDAH,Thargomindah,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.95492.json,-27.9867,143.815
@@ -805,7 +805,7 @@ TUGGERANONG,Tuggeranong,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94925.json,,
 TUMBARUMBA,Tumbarumba,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94918.json,,
 TUNNACK,Tunnack,http://www.bom.gov.au/fwo/IDT60801/IDT60801.94960.json,,
 TURRETFIELD,Turretfield,http://www.bom.gov.au/fwo/IDS60801/IDS60801.95674.json,,
-ULLADULLA,Ulladulla,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94938.json,-35.3635,150.4828
+ULLADULLA,Ulladulla,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94938.json,,
 UPPER RUSSELL,Upper Russell,http://www.bom.gov.au/fwo/IDT60801/IDT60801.99977.json,,
 URANDANGI,Urandangi,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94344.json,,
 VICTOR HARBOR,Victor Harbor,http://www.bom.gov.au/fwo/IDS60801/IDS60801.95811.json,,
@@ -813,7 +813,7 @@ VICTORIA PORTABLE H,Victoria Portable H,http://www.bom.gov.au/fwo/IDV60801/IDV60
 VICTORIAN PORTABLE L,Victorian Portable L,http://www.bom.gov.au/fwo/IDV60801/IDV60801.99066.json,,
 WADEYE (PORT KEATS),Wadeye (Port Keats),http://www.bom.gov.au/fwo/IDD60801/IDD60801.95111.json,,
 WAGGA WAGGA,Wagga Wagga,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94910.json,,
-WALGETT,Walgett,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95715.json,,
+WALGETT,Walgett,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95715.json,-30.0372,148.1223
 WALPEUP,Walpeup,http://www.bom.gov.au/fwo/IDV60801/IDV60801.95831.json,,
 WALPOLE NORTH,Walpole North,http://www.bom.gov.au/fwo/IDW60801/IDW60801.95647.json,,
 WANAARING,Wanaaring,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94497.json,,
@@ -831,8 +831,8 @@ WEEAPROINAH,Weeaproinah,http://www.bom.gov.au/fwo/IDV60801/IDV60801.95855.json,,
 WEIPA,Weipa,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.94170.json,-12.6778,141.9208
 WELLCAMP AIRPORT,Wellcamp Airport,http://www.bom.gov.au/fwo/IDQ60801/IDQ60801.99435.json,,
 WELLINGTON,Wellington,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94723.json,,
-WEST WYALONG,West Wyalong,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95709.json,,
-WHITE CLIFFS,White Cliffs,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94699.json,-30.8522,143.0743
+WEST WYALONG,West Wyalong,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95709.json,-33.9382,147.1962
+WHITE CLIFFS,White Cliffs,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94699.json,,
 WHYALLA,Whyalla,http://www.bom.gov.au/fwo/IDS60801/IDS60801.95664.json,-33.0539,137.5206
 WILCANNIA AIRPORT,Wilcannia Airport,http://www.bom.gov.au/fwo/IDN60801/IDN60801.95695.json,,
 WILLIAMTOWN,Williamtown,http://www.bom.gov.au/fwo/IDN60801/IDN60801.94776.json,,
