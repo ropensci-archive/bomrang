@@ -1,11 +1,8 @@
 library(data.table)
 library(magrittr)
 
-station_name_by_url <-
-  fread("./data-raw/name-by-url.csv", key = "name") %>%
-  .[name != "AAAA"] %>%
-  unique(by = "name") %>%
-  setnames("name", "station_name")
+JSONurl_latlon_by_station_name <-
+  fread("./data-raw/JSONurl-latlon-by-station-name.csv")
 
-devtools::use_data(station_name_by_url, internal = TRUE)
+devtools::use_data(JSONurl_latlon_by_station_name, internal = TRUE, overwrite = TRUE)
 
