@@ -1,6 +1,7 @@
 context("Current weather")
 
 test_that("Error handling", {
+  expect_error(current_weather(), regexp = "station_name.*latlon")
   expect_error(current_weather("sodiuhfosdhfoisdh"), regexp = "No station found")
   expect_warning(current_weather("Melbourne"), regexp = "Multiple stations match station_name.")
   expect_warning(current_weather("Melbourne", latlon = c(-33, 151)),
@@ -12,9 +13,16 @@ test_that("Error handling", {
 })
 
 test_that("Query of 'Melbourne Airport' returns data frame with correct station", {
+  YMML <- current_weather("Melbourne Airport", raw = TRUE)
+  expect_is(YMML, "data.frame")
+  expect_equal(YMML$name[1], "Melbourne Airport")
+})
+
+test_that("Query of 'Melbourne Airport' returns time if cooked.", {
   YMML <- current_weather("Melbourne Airport")
   expect_is(YMML, "data.frame")
   expect_equal(YMML$name[1], "Melbourne Airport")
+  expect_true("POSIXt" %in% class(YMML$aifstime_utc))
 })
 
 test_that("latlon: Query of c(-27, 149) returns Surat (QLD, between Roma and St George).", {
