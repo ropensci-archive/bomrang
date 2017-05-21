@@ -1,16 +1,16 @@
 #' Update Internal Database With Latest BOM Forecast Locations From BOM FTP Server
 #'
 #' Download the latest forecast locations from the BOM server and update
-#' bomrang's internal database of forecast locations.  There is no
+#' bomrang's internal database of précis forecast locations.  There is no
 #' need to use this unless you know that a forecast location exists in a more
-#' current version of the BOM forecast location database that is not available
+#' current version of the BOM précis forecast location database that is not available
 #' in the database distributed with \code{\link{bomrang}}.
 #'
 #' @examples
 #' \dontrun{
 #' update_precis_locations()
 #' }
-#' @return Updated internal database of BOM forecast locations
+#' @return Updated internal database of BOM précis forecast locations
 #'
 #' @references
 #' Australian Bureau of Meteorology (BOM) Weather Data Services
