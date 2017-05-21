@@ -47,7 +47,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' BOM_forecast <- get_forecast(state = "QLD")
+#' BOM_forecast <- get_precis_forecast(state = "QLD")
 #' }
 #'
 #' @author Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton \email{keith.pembleton@usq.edu.au}
@@ -60,7 +60,7 @@
 #'
 #'
 #' @export
-get_forecast <- function(state = NULL) {
+get_precis_forecast <- function(state = NULL) {
   state <- .validate_state(state)
 
   # ftp server

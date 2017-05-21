@@ -8,7 +8,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' update_locations()
+#' update_precis_locations()
 #' }
 #' @return Updated internal database of BOM forecast locations
 #'
@@ -20,13 +20,13 @@
 #' @author Adam H Sparks, \email{adamhsparks@gmail.com}
 #' @export
 #'
-update_locations <- function() {
+update_precis_locations <- function() {
   original_timeout <- options("timeout")[[1]]
   options(timeout = 300)
   on.exit(options(timeout = original_timeout))
 
   # fetch new database from BOM server
- curl::curl_download(
+  curl::curl_download(
     "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf",
     destfile = paste0(tempdir(), "AAC_codes.dbf"),
     mode = "wb"
