@@ -11,11 +11,11 @@ vignette: >
 
 ## Introduction
 
-_bomrang_ provides functions for interacting with [Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BOM serves several types of data data as XML files. This package fetches these files, parses them and return a tidy dataframe.
+_bomrang_ provides functions for interacting with [Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BOM serves several types of data as XML or JSON files. This package fetches these files, parses them and return a tidy dataframe.
 
 ## Using _bomrang_
 
-Three functions are provided by _bomrang_. The two main functions are `get_precis_forecast()`, which creates a data frame of the daily précis forecast from BOM, and `get_ag_bulletin()`, which creates a data frame of agriculture bulletin information. The third function, `update_locations()`, updates an internal database of forecast locations distributed with the package.
+Three functions are provided by _bomrang_. The two main functions are `get_precis_forecast()`, which creates a data frame of the daily précis forecast from BOM, and `get_ag_bulletin()`, which creates a data frame of agriculture bulletin information. The third function, `update_precis_locations()`, updates an internal database of forecast locations distributed with the package.
 
 ### Using `get_precis_forecast()`
 
