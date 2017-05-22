@@ -2,6 +2,7 @@
 
 export(current_weather)
 export(get_ag_bulletin)
+export(get_current_weather)
 export(get_precis_forecast)
 export(sweep_for_stations)
 export(update_precis_locations)
