@@ -4,11 +4,11 @@
 \name{bomrang}
 \alias{bomrang}
 \alias{bomrang-package}
-\title{Fetches Australian Government Bureau of Meteorology (BOM) XML weather data
-files and returns a tidy data frame of the data.}
+\title{Fetches Australian Government Bureau of Meteorology (BOM) weather data files
+and returns a tidy data frame of the data.}
 \description{
-Fetches Australian Government Bureau of Meteorology (BOM) XML weather data
-files and returns a tidy data frame of the data.
+Fetches Australian Government Bureau of Meteorology (BOM) weather data files
+and returns a tidy data frame of the data.
 }
 \seealso{
 \strong{Useful links:}
@@ -18,5 +18,5 @@ files and returns a tidy data frame of the data.
 }
 }
 \author{
-Adam H Sparks and Keith Pembleton
+Adam H Sparks and Hugh Parsonage and Keith Pembleton
 }

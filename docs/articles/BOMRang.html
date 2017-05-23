@@ -62,7 +62,7 @@
 <em>bomrang</em>: Fetch Australian Government Bureau of Meteorology (BOM) Data</h1>
                         <h4 class="author">Adam H Sparks</h4>
             
-            <h4 class="date">2017-05-16</h4>
+            <h4 class="date">2017-05-19</h4>
           </div>
 
     
@@ -177,16 +177,16 @@ QLD_forecast</code></pre></div>
 <pre><code>## # A tibble: 784 × 17
 ##          aac index          start_time_local            end_time_local
 ##        &lt;chr&gt; &lt;chr&gt;                     &lt;chr&gt;                     &lt;chr&gt;
-## 1  QLD_PT038     0 2017-05-16T05:00:00+10:00 2017-05-17T00:00:00+10:00
-## 2  QLD_PT038     1 2017-05-17T00:00:00+10:00 2017-05-18T00:00:00+10:00
-## 3  QLD_PT038     2 2017-05-18T00:00:00+10:00 2017-05-19T00:00:00+10:00
-## 4  QLD_PT038     3 2017-05-19T00:00:00+10:00 2017-05-20T00:00:00+10:00
-## 5  QLD_PT038     4 2017-05-20T00:00:00+10:00 2017-05-21T00:00:00+10:00
-## 6  QLD_PT038     5 2017-05-21T00:00:00+10:00 2017-05-22T00:00:00+10:00
-## 7  QLD_PT038     6 2017-05-22T00:00:00+10:00 2017-05-23T00:00:00+10:00
-## 8  QLD_PT045     0 2017-05-16T05:00:00+10:00 2017-05-17T00:00:00+10:00
-## 9  QLD_PT045     1 2017-05-17T00:00:00+10:00 2017-05-18T00:00:00+10:00
-## 10 QLD_PT045     2 2017-05-18T00:00:00+10:00 2017-05-19T00:00:00+10:00
+## 1  QLD_PT038     0 2017-05-19T05:00:00+10:00 2017-05-20T00:00:00+10:00
+## 2  QLD_PT038     1 2017-05-20T00:00:00+10:00 2017-05-21T00:00:00+10:00
+## 3  QLD_PT038     2 2017-05-21T00:00:00+10:00 2017-05-22T00:00:00+10:00
+## 4  QLD_PT038     3 2017-05-22T00:00:00+10:00 2017-05-23T00:00:00+10:00
+## 5  QLD_PT038     4 2017-05-23T00:00:00+10:00 2017-05-24T00:00:00+10:00
+## 6  QLD_PT038     5 2017-05-24T00:00:00+10:00 2017-05-25T00:00:00+10:00
+## 7  QLD_PT038     6 2017-05-25T00:00:00+10:00 2017-05-26T00:00:00+10:00
+## 8  QLD_PT045     0 2017-05-19T05:00:00+10:00 2017-05-20T00:00:00+10:00
+## 9  QLD_PT045     1 2017-05-20T00:00:00+10:00 2017-05-21T00:00:00+10:00
+## 10 QLD_PT045     2 2017-05-21T00:00:00+10:00 2017-05-22T00:00:00+10:00
 ## # ... with 774 more rows, and 13 more variables: start_time_utc &lt;chr&gt;,
 ## #   end_time_utc &lt;chr&gt;, maximum_temperature &lt;dbl&gt;,
 ## #   minimum_temperature &lt;dbl&gt;, lower_prec_limit &lt;dbl&gt;,
@@ -297,22 +297,23 @@ QLD_forecast</code></pre></div>
 
 QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_bulletin.html">get_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
 QLD_bulletin</code></pre></div>
-<pre><code>## # A tibble: 27 × 20
-##     obs_time_utc time_zone  site                     name     r    tn
-##            &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;                    &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt;
-## 1  20170515T2300       EST 38026       BIRDSVILLE AIRPORT  0.00  10.7
-## 2  20170515T2300       EST 38003           BOULIA AIRPORT  0.00  14.0
-## 3  20170515T2300       EST 40842            BRISBANE AERO  0.00  11.0
-## 4  20170515T2300       EST 39128           BUNDABERG AERO  0.20  13.2
-## 5  20170515T2300       EST 31011              CAIRNS AERO  0.00  19.3
-## 6  20170515T2300       EST 44021         CHARLEVILLE AERO  0.00   4.1
-## 7  20170515T2300       EST 33013 COLLINSVILLE POST OFFICE  0.00  14.0
-## 8  20170515T2300       EST 41522            DALBY AIRPORT  0.00   6.6
-## 9  20170515T2300       EST 30124       GEORGETOWN AIRPORT  0.00  16.8
-## 10 20170515T2300       EST 32078         INGHAM COMPOSITE  0.01  17.0
-## # ... with 17 more rows, and 14 more variables: tx &lt;dbl&gt;, twd &lt;dbl&gt;,
-## #   ev &lt;dbl&gt;, tg &lt;dbl&gt;, sn &lt;dbl&gt;, t5 &lt;dbl&gt;, t10 &lt;dbl&gt;, t20 &lt;dbl&gt;,
-## #   t50 &lt;dbl&gt;, t1m &lt;dbl&gt;, wr &lt;dbl&gt;, state &lt;chr&gt;, lat &lt;dbl&gt;, lon &lt;dbl&gt;</code></pre>
+<pre><code>## # A tibble: 25 × 21
+##    obs_time_local  obs_time_utc time_zone  site
+##            &lt;fctr&gt;         &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt;
+## 1   20170518T0900 20170517T2300       EST 38026
+## 2   20170518T0900 20170517T2300       EST 38003
+## 3   20170518T0900 20170517T2300       EST 40842
+## 4   20170518T0900 20170517T2300       EST 39128
+## 5   20170518T0900 20170517T2300       EST 31011
+## 6   20170518T0900 20170517T2300       EST 44021
+## 7   20170518T0900 20170517T2300       EST 33013
+## 8   20170518T0900 20170517T2300       EST 41522
+## 9   20170518T0900 20170517T2300       EST 30124
+## 10  20170518T0900 20170517T2300       EST 40854
+## # ... with 15 more rows, and 17 more variables: name &lt;chr&gt;, r &lt;dbl&gt;,
+## #   tn &lt;dbl&gt;, tx &lt;dbl&gt;, twd &lt;dbl&gt;, ev &lt;dbl&gt;, tg &lt;dbl&gt;, sn &lt;dbl&gt;, t5 &lt;dbl&gt;,
+## #   t10 &lt;dbl&gt;, t20 &lt;dbl&gt;, t50 &lt;dbl&gt;, t1m &lt;dbl&gt;, wr &lt;dbl&gt;, state &lt;chr&gt;,
+## #   lat &lt;dbl&gt;, lon &lt;dbl&gt;</code></pre>
 </div>
 <div id="using-update_locations" class="section level3">
 <h3 class="hasAnchor">
@@ -347,7 +348,7 @@ QLD_bulletin</code></pre></div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Adam Sparks, Keith Pembleton.</p>
+  <p>Developed by Adam Sparks, Keith Pembleton, Hugh Parsonage.</p>
 </div>
 
 <div class="pkgdown">

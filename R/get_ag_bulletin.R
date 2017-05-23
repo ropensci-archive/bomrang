@@ -47,7 +47,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' ag_bulletin <- get_bulletin(state = "QLD")
+#' ag_bulletin <- get_ag_bulletin(state = "QLD")
 #' }
 #'
 #' @author Adam H Sparks, \email{adamhsparks@gmail.com}
@@ -60,7 +60,7 @@
 #' \url{http://www.bom.gov.au/climate/how/observations/rain-measure.shtml}
 #'
 #' @export
-get_bulletin <- function(state = NULL) {
+get_ag_bulletin <- function(state = NULL) {
   state <- .validate_state(state)
 
   # Agricultural Bulletin Station Locations

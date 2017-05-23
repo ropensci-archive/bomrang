@@ -13,20 +13,20 @@
 #' @examples
 #' \dontrun{
 #'   # warning
-#'   Melbourne_forecast <- current_weather("Melbourne")
+#'   Melbourne_forecast <- get_current_weather("Melbourne")
 #'
 #'   # no warning
-#'   Melbourne_forecast <- current_weather("Melbourne (Olympic Park)")
+#'   Melbourne_forecast <- get_current_weather("Melbourne (Olympic Park)")
 #'
 #'   # Get weather by latitude and longitude:
-#'   current_weather(latlon = c(-34, 151))
+#'   get_current_weather(latlon = c(-34, 151))
 #' }
 #' @import data.table
 #' @importFrom lubridate ymd_hms
 #' @importFrom magrittr use_series
-#' @export current_weather
+#' @export get_current_weather
 
-current_weather <- function(station_name, latlon = NULL, raw = FALSE, emit_latlon_msg = TRUE) {
+get_current_weather <- function(station_name, latlon = NULL, raw = FALSE, emit_latlon_msg = TRUE) {
   if (missing(station_name) && is.null(latlon)) {
     stop("One of 'station_name' and 'latlon' must be provided.")
   }
