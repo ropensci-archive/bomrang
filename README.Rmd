@@ -14,7 +14,7 @@ output: github_document
 [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) 
 [![DOI](https://zenodo.org/badge/89690315.svg)](https://zenodo.org/badge/latestdoi/89690315)
 
-Fetches Australian Government Bureau of Meteorology XML data and returns a tidy data frame ([tibble](http://tibble.tidyverse.org)).
+Fetches Australian Government Bureau of Meteorology data and returns a tidy data frame ([tibble](http://tibble.tidyverse.org)).
 
 Credit for the name, _bomrang_, goes to [Di Cook](http://dicook.github.io), who
 suggested it attending the rOpenSci AUUnconf in Brisbane, 2016, when seeing the
