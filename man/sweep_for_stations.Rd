@@ -7,11 +7,12 @@
 sweep_for_stations(latlon = c(-35.3, 149.2))
 }
 \arguments{
-\item{latlon}{A length-2 numeric vector. By default, Canberra (approximately).}
+\item{latlon}{A length-2 numeric vector. By default, Canberra
+(approximately).}
 }
 \value{
-A \code{data.table} of all weather stations (in this package) sorted by
-distance from \code{latlon}, ascending.
+A \code{data.table} of all weather stations (in this package) sorted
+by distance from \code{latlon}, ascending.
 }
 \description{
 Find nearest weather stations
