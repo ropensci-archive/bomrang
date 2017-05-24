@@ -11,13 +11,15 @@ vignette: >
 
 ## Introduction
 
-_bomrang_ provides functions for interacting with [Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BOM serves several types of data data as XML files. This package fetches these files, parses them and return a tidy dataframe.
+_bomrang_ provides functions for interacting with [Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BOM serves several types of data data as XML and JSON files. This package fetches these files, parses them and return a tidy dataframe.
 
 ## Using _bomrang_
 
-Three functions are provided by _bomrang_. The two main functions are `get_forecast()`, which creates a data frame of the daily précis forecast from BOM, and `get_bulletin()`, which creates a data frame of agriculture bulletin information. The third function, `update_locations()`, updates an internal database of forecast locations distributed with the package.
+Several functions are provided by _bomrang_. The three main functions are `get_forecast()`, which creates a data frame of the daily précis forecast from BOM, `get_bulletin()`, which creates a data frame of agriculture bulletin information, and `get_current_weather()` which returns the last 72 hours of observations at a given location. 
+Other functions include `update_locations()`, which updates an internal database of forecast locations distributed with the package, and
+`sweep_for_stations()` which returns the nearest weather stations to a point in Australia.
 
-### Using `get_forecast()`
+## Using `get_forecast()`
 
 This function only takes one parameter, `state`. The `state` parameter allows the user to select the forecast for just one state or a national forecast. States are specified using the official postal codes, 
 
@@ -63,7 +65,7 @@ QLD_forecast <- get_forecast(state = "QLD")
 QLD_forecast
 ```
 
-### Using `get_bulletin()`
+## Using `get_bulletin()`
 
 This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national forecast. States are specified using the official postal codes, 
 
@@ -109,7 +111,20 @@ QLD_bulletin <- get_bulletin(state = "QLD")
 QLD_bulletin
 ```
 
-### Using `update_locations()`
+## Using `get_current_weather()` 
+The function takes one of two arguments: `station_name` and `latlon`, returning the current weather observations (and the observations of the last 72 hours) for the given location.
+
+If `station_name` is used, the weather observations for the last 72 hours are returned for that station.
+If the string provided is ambiguous, the function returns an observation for one of the possible stations and emits a warning to offer unambiguous station names. 
+
+If `latlon` is used, the observations returned are from the station nearest to that latitude-longitude coordinate. 
+The function also emits a message, to tell the user which station was used.
+
+The table returned will have different fields depending on the station that is selected. 
+
+
+
+## Using `update_locations()`
 
 This function downloads the latest précis forecast locations from the BOM server and updates _bomrang_'s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BOM forecast location database that is not available in the database distributed with _bomrang_. This database is distributed with the package to make the process faster when fetching the forecast.
 
