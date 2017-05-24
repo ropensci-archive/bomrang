@@ -8,8 +8,8 @@ get_current_weather(station_name, latlon = NULL, raw = FALSE,
   emit_latlon_msg = TRUE)
 }
 \arguments{
-\item{station_name}{The name of the weather station. Fuzzy string matching via
-\code{base::agrep} is done.}
+\item{station_name}{The name of the weather station. Fuzzy string matching
+via \code{base::agrep} is done.}
 
 \item{latlon}{A length-2 numeric vector. When given instead of
 \code{station_name}, the nearest station (in this package) is used, with a
@@ -21,10 +21,9 @@ message indicating the nearest such station. (See also
 classes. (\code{FALSE} by default.)}
 
 \item{emit_latlon_msg}{Logical. If \code{TRUE} (the default), and
-\code{latlon} is selected,
-a message is emitted before the table is returned indicating which station
-was actually used (i.e. which station was found to be nearest to the given
-coordinate).}
+\code{latlon} is selected, a message is emitted before the table is returne
+indicating which station was actually used (i.e. which station was found to
+be nearest to the given coordinate).}
 }
 \description{
 Current weather observations of a station
