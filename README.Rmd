@@ -34,9 +34,9 @@ devtools::install_github("toowoombatrio/bomrang")
 
 ## Using _bomrang_
 
-Two functions are provided, `get_forecast()`, which retreives the précis forecast and `get_bulletin()`, which retrives the agriculture bulletin. Both of these functions in _bomrang_ allow you to fetch data for an individual state or all at once, i.e., all of Australia. To fetch an individual state, simply use the official postal code for the state for the `state` parameter. To fetch data for all of Australia, use "AUS" in the `state` parameter.
+Three main functions are provided. `get_precis_forecast()`, which retreives the précis forecast; `get_current_weather()`, which fetches the current weather at a given station; and `get_ag_bulletin()`, which retrives the agriculture bulletin. `get_precis_forecast()` and `get_ag_bulletin()` will allow you to fetch data for an individual state or all at once, i.e., all of Australia. To fetch an individual state, simply use the official postal code for the state for the `state` parameter. To fetch data for all of Australia, use "AUS" in the `state` parameter.
 
-### Using `get_forecast()`
+### Using `get_precis_forecast()`
 
 This function only takes one parameter, `state`. States are specified using the official postal codes, 
 
@@ -52,7 +52,7 @@ This function only takes one parameter, `state`. States are specified using the 
 
 ### Results
 
-The function, `get_forecast()` will return a tidy data frame of the weather forecast for the daily forecast with the following fields,
+The function, `get_precis_forecast()` will return a tidy data frame of the weather forecast for the daily forecast with the following fields,
 
 * **aac** - AMOC Area Code, _e.g._, WA_MW008, a unique identifier for each location  
 * **start_time_local** - Start of forecast date and time in local TZ  
@@ -82,7 +82,7 @@ QLD_forecast <- get_precis_forecast(state = "QLD")
 head(QLD_forecast)
 ```
 
-### Using `get_bulletin()`
+### Using `get_ag_bulletin()`
 
 This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national bulletin. States are specified using the official postal codes, 
 
@@ -96,7 +96,7 @@ This function only takes one parameter, `state`. The `state` parameter allows th
 * **WA** - Western Australia  
 * **AUS** - Australia, returns bulletin for all states  
 
-### Results
+#### Results
 
 The function, `get_bulletin()` will return a tidy data frame of the agriculture bulletin with the following fields,
 
@@ -126,6 +126,21 @@ library("bomrang")
 
 QLD_bulletin <- get_ag_bulletin(state = "QLD")
 head(QLD_bulletin)
+```
+
+### Using `get_current_weather()`
+This function accepts for parameters:
+* `station_name`, The name of the weather station. Fuzzy string matching via `base::agrep` is done.
+
+* `latlon`, A length-2 numeric vector. When given instead of station_name, the nearest station (in this package) is used, with a message indicating the nearest such station. (See also `sweep_for_stations()`.) Ignored if used in combination with station_name, with a warning.
+
+* `raw` Do not convert the columns data.table to the appropriate classes. (FALSE by default.)
+
+* `emit_latlon_msg` Logical. If TRUE (the default), and latlon is selected
+
+```{r, eval=TRUE}
+Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
+head(Melbourne_weather)
 ```
 
 

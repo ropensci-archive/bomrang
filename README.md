@@ -24,9 +24,9 @@ devtools::install_github("toowoombatrio/bomrang")
 Using *bomrang*
 ---------------
 
-Two functions are provided, `get_forecast()`, which retreives the précis forecast and `get_bulletin()`, which retrives the agriculture bulletin. Both of these functions in *bomrang* allow you to fetch data for an individual state or all at once, i.e., all of Australia. To fetch an individual state, simply use the official postal code for the state for the `state` parameter. To fetch data for all of Australia, use "AUS" in the `state` parameter.
+Three main functions are provided. `get_precis_forecast()`, which retreives the précis forecast; `get_current_weather()`, which fetches the current weather at a given station; and `get_ag_bulletin()`, which retrives the agriculture bulletin. `get_precis_forecast()` and `get_ag_bulletin()` will allow you to fetch data for an individual state or all at once, i.e., all of Australia. To fetch an individual state, simply use the official postal code for the state for the `state` parameter. To fetch data for all of Australia, use "AUS" in the `state` parameter.
 
-### Using `get_forecast()`
+### Using `get_precis_forecast()`
 
 This function only takes one parameter, `state`. States are specified using the official postal codes,
 
@@ -42,7 +42,7 @@ This function only takes one parameter, `state`. States are specified using the 
 
 ### Results
 
-The function, `get_forecast()` will return a tidy data frame of the weather forecast for the daily forecast with the following fields,
+The function, `get_precis_forecast()` will return a tidy data frame of the weather forecast for the daily forecast with the following fields,
 
 -   **aac** - AMOC Area Code, *e.g.*, WA\_MW008, a unique identifier for each location
 -   **start\_time\_local** - Start of forecast date and time in local TZ
@@ -101,7 +101,7 @@ head(QLD_forecast)
     ## 5                           20 Beaudesert   QLD 152.9898 -27.9707 48.2
     ## 6                           10 Beaudesert   QLD 152.9898 -27.9707 48.2
 
-### Using `get_bulletin()`
+### Using `get_ag_bulletin()`
 
 This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national bulletin. States are specified using the official postal codes,
 
@@ -115,7 +115,7 @@ This function only takes one parameter, `state`. The `state` parameter allows th
 -   **WA** - Western Australia
 -   **AUS** - Australia, returns bulletin for all states
 
-### Results
+#### Results
 
 The function, `get_bulletin()` will return a tidy data frame of the agriculture bulletin with the following fields,
 
@@ -169,13 +169,64 @@ head(QLD_bulletin)
     ## 5 145.7458
     ## 6 146.2558
 
+### Using `get_current_weather()`
+
+This function accepts for parameters: \* `station_name`, The name of the weather station. Fuzzy string matching via `base::agrep` is done.
+
+-   `latlon`, A length-2 numeric vector. When given instead of station\_name, the nearest station (in this package) is used, with a message indicating the nearest such station. (See also `sweep_for_stations()`.) Ignored if used in combination with station\_name, with a warning.
+
+-   `raw` Do not convert the columns data.table to the appropriate classes. (FALSE by default.)
+
+-   `emit_latlon_msg` Logical. If TRUE (the default), and latlon is selected
+
+``` r
+Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
+head(Melbourne_weather)
+```
+
+    ##   sort_order   wmo                     name history_product
+    ## 1          0 95936 Melbourne (Olympic Park)        IDV60801
+    ## 2          1 95936 Melbourne (Olympic Park)        IDV60801
+    ## 3          2 95936 Melbourne (Olympic Park)        IDV60801
+    ## 4          3 95936 Melbourne (Olympic Park)        IDV60801
+    ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
+    ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
+    ##   local_date_time local_date_time_full        aifstime_utc   lat lon
+    ## 1      24/04:30pm  2017-05-24 16:30:00 2017-05-24 06:30:00 -37.8 145
+    ## 2      24/04:00pm  2017-05-24 16:00:00 2017-05-24 06:00:00 -37.8 145
+    ## 3      24/03:30pm  2017-05-24 15:30:00 2017-05-24 05:30:00 -37.8 145
+    ## 4      24/03:00pm  2017-05-24 15:00:00 2017-05-24 05:00:00 -37.8 145
+    ## 5      24/02:30pm  2017-05-24 14:30:00 2017-05-24 04:30:00 -37.8 145
+    ## 6      24/02:00pm  2017-05-24 14:00:00 2017-05-24 04:00:00 -37.8 145
+    ##   apparent_t cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt
+    ## 1       14.0     -          -     4.7       19      10     16.4   6.8
+    ## 2       13.3     -          -     4.6       24      13     16.4   7.1
+    ## 3       13.8     -          -     4.7       22      12     16.3   6.7
+    ## 4       13.4     -          -     3.9       19      10     15.6   7.9
+    ## 5       12.4     -          -     3.3       28      15     15.5   9.0
+    ## 6       13.1     -          -     4.6       30      16     16.6   7.3
+    ##    press press_msl press_qnh press_tend rain_trace rel_hum sea_state
+    ## 1 1017.8    1017.8    1017.8          -          0      53         -
+    ## 2 1017.5    1017.5    1017.5          -          0      54         -
+    ## 3 1017.0    1017.0    1017.0          -          0      53         -
+    ## 4 1016.8    1016.8    1016.8          -          0      60         -
+    ## 5 1016.6    1016.6    1016.6          -          0      65         -
+    ## 6 1016.1    1016.1    1016.1          -          0      54         -
+    ##   swell_dir_worded vis_km weather wind_dir wind_spd_kmh wind_spd_kt
+    ## 1                -     10       -        W            9           5
+    ## 2                -     10       -      WSW           13           7
+    ## 3                -     10       -        W            9           5
+    ## 4                -     10       -       SW            9           5
+    ## 5                -     10       -      SSW           15           8
+    ## 6                -     10       -      WSW           15           8
+
 Meta
 ----
 
 -   Please [report any issues or bugs](https://github.com/ToowoombaTrio/bomrang/issues).
 -   License: MIT
 -   To cite *bomrang*, please use:
-    Sparks A and Pembleton K (2017). *bomrang: Fetch Australian Government Bureau of Meteorology Weather Data*. R package version 0.0.1-1, &lt;URL: <https://github.com/ToowoombaTrio/bomrang>&gt;.
+    Sparks A, Parsonage H, and Pembleton K (2017). *bomrang: Fetch Australian Government Bureau of Meteorology Weather Data*. R package version 0.0.2-1, &lt;URL: <https://github.com/ToowoombaTrio/bomrang>&gt;.
 -   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 References
