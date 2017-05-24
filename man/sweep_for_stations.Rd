@@ -17,3 +17,6 @@ by distance from \code{latlon}, ascending.
 \description{
 Find nearest weather stations
 }
+\author{
+Hugh Parsonage, \email{hugh.parsonage@gmail.com}
+}

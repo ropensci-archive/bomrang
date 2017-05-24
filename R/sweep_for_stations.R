@@ -4,6 +4,7 @@
 #' @return A \code{data.table} of all weather stations (in this package) sorted
 #' by distance from \code{latlon}, ascending.
 #' @importFrom stats complete.cases
+#' @author Hugh Parsonage, \email{hugh.parsonage@gmail.com}
 #' @export
 
 sweep_for_stations <- function(latlon = c(-35.3, 149.2)) {
