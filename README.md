@@ -171,9 +171,11 @@ head(QLD_bulletin)
 
 ### Using `get_current_weather()`
 
-This function accepts for parameters: \* `station_name`, The name of the weather station. Fuzzy string matching via `base::agrep` is done.
+This function accepts four parameters:
 
--   `latlon`, A length-2 numeric vector. When given instead of station\_name, the nearest station (in this package) is used, with a message indicating the nearest such station. (See also `sweep_for_stations()`.) Ignored if used in combination with station\_name, with a warning.
+-   `station_name`, The name of the weather station. Fuzzy string matching via `base::agrep` is done.
+
+-   `latlon`, A length-2 numeric vector. When given instead of station\_name, the nearest station (in this package) is used, with a message indicating the nearest such station. (See also `sweep_for_stations()`.) Ignored if used in combination with `station_name`, with a warning.
 
 -   `raw` Do not convert the columns data.table to the appropriate classes. (FALSE by default.)
 
