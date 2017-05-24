@@ -171,6 +171,8 @@ head(QLD_bulletin)
 
 ### Using `get_current_weather()`
 
+Returns the latest 72 hours weather observations for a station.
+
 This function accepts four parameters:
 
 -   `station_name`, The name of the weather station. Fuzzy string matching via `base::agrep` is done.
@@ -196,37 +198,41 @@ head(Melbourne_weather)
     ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
     ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
     ##   local_date_time local_date_time_full        aifstime_utc   lat lon
-    ## 1      24/07:30pm  2017-05-24 19:30:00 2017-05-24 09:30:00 -37.8 145
-    ## 2      24/07:00pm  2017-05-24 19:00:00 2017-05-24 09:00:00 -37.8 145
-    ## 3      24/06:30pm  2017-05-24 18:30:00 2017-05-24 08:30:00 -37.8 145
-    ## 4      24/06:00pm  2017-05-24 18:00:00 2017-05-24 08:00:00 -37.8 145
-    ## 5      24/05:30pm  2017-05-24 17:30:00 2017-05-24 07:30:00 -37.8 145
-    ## 6      24/05:00pm  2017-05-24 17:00:00 2017-05-24 07:00:00 -37.8 145
+    ## 1      24/08:00pm  2017-05-24 20:00:00 2017-05-24 10:00:00 -37.8 145
+    ## 2      24/07:30pm  2017-05-24 19:30:00 2017-05-24 09:30:00 -37.8 145
+    ## 3      24/07:00pm  2017-05-24 19:00:00 2017-05-24 09:00:00 -37.8 145
+    ## 4      24/06:30pm  2017-05-24 18:30:00 2017-05-24 08:30:00 -37.8 145
+    ## 5      24/06:00pm  2017-05-24 18:00:00 2017-05-24 08:00:00 -37.8 145
+    ## 6      24/05:30pm  2017-05-24 17:30:00 2017-05-24 07:30:00 -37.8 145
     ##   apparent_t cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt
-    ## 1       13.4     -          -     4.1       11       6     15.3   6.8
-    ## 2       12.9     -          -     4.4       17       9     15.4   6.4
-    ## 3       13.4     -          -     4.2       15       8     15.3   6.6
-    ## 4       13.4     -          -     4.1       13       7     15.3   6.8
-    ## 5       13.1     -          -     4.2       15       8     15.2   6.5
-    ## 6       13.9     -          -     4.4       19      10     15.9   6.9
+    ## 1       13.3     -          -     3.9       11       6     15.1   7.2
+    ## 2       13.4     -          -     4.1       11       6     15.3   6.8
+    ## 3       12.9     -          -     4.4       17       9     15.4   6.4
+    ## 4       13.4     -          -     4.2       15       8     15.3   6.6
+    ## 5       13.4     -          -     4.1       13       7     15.3   6.8
+    ## 6       13.1     -          -     4.2       15       8     15.2   6.5
     ##    press press_msl press_qnh press_tend rain_trace rel_hum sea_state
-    ## 1 1019.4    1019.4    1019.4          -          0      57         -
-    ## 2 1019.1    1019.1    1019.1          -          0      55         -
-    ## 3 1019.0    1019.0    1019.0          -          0      56         -
-    ## 4 1018.7    1018.7    1018.7          -          0      57         -
-    ## 5 1018.4    1018.4    1018.4          -          0      56         -
-    ## 6 1018.1    1018.1    1018.1          -          0      55         -
+    ## 1 1019.6    1019.6    1019.6          -          0      59         -
+    ## 2 1019.4    1019.4    1019.4          -          0      57         -
+    ## 3 1019.1    1019.1    1019.1          -          0      55         -
+    ## 4 1019.0    1019.0    1019.0          -          0      56         -
+    ## 5 1018.7    1018.7    1018.7          -          0      57         -
+    ## 6 1018.4    1018.4    1018.4          -          0      56         -
     ##   swell_dir_worded vis_km weather wind_dir wind_spd_kmh wind_spd_kt
     ## 1                -     10       -      WSW            6           3
-    ## 2                -     10       -        W            9           5
-    ## 3                -     10       -        W            6           3
-    ## 4                -     10       -      WNW            6           3
-    ## 5                -     10       -        W            7           4
+    ## 2                -     10       -      WSW            6           3
+    ## 3                -     10       -        W            9           5
+    ## 4                -     10       -        W            6           3
+    ## 5                -     10       -      WNW            6           3
     ## 6                -     10       -        W            7           4
 
 -   **sort\_order** -
 -   **wmo** -
--   **name** -
+-   **name** - Name used to identify the observation station within this product.
+    Official Bureau names may vary, particularly when a number of different types of stations are closely located.
+    Station name abbreviations:
+    -   RS: Research Station
+    -   AWS: Automatic Weather Station
 -   **history\_product** -
 -   **local\_date\_time** -
 -   **local\_date\_time\_full** -
