@@ -1,4 +1,7 @@
 
+
+
+
 #' Get BOM Daily Précis Forecast
 #'
 #'Fetch the BOM daily précis forecast and return a tidy data frame of the daily
@@ -110,14 +113,12 @@ get_precis_forecast <- function(state = NULL) {
     stop(state, " not recognised as a valid state or territory")
 
   if (state != "AUS") {
-    tibble::as_tibble(.parse_forecast(xmlforecast))
+    .parse_forecast(xmlforecast)
   }
   else if (state == "AUS") {
-    tibble::as_tibble(plyr::ldply(
-      .data = file_list,
-      .fun = .parse_forecast,
-      .progress = "text"
-    ))
+    plyr::ldply(.data = file_list,
+                .fun = .parse_forecast,
+                .progress = "text")
   }
 }
 
@@ -195,7 +196,7 @@ get_precis_forecast <- function(state = NULL) {
   # return final forecast object ---------------------------------------------
   tidy_df <-
     dplyr::left_join(tibble::as_tibble(out),
-                     AAC_codes, by = c("aac" = "AAC")) %>%
+                     AAC_codes, by = c("aac" = "AAC"))%>%
     dplyr::rename(lon = LON,
                   lat = LAT,
                   elev = ELEVATION) %>%
@@ -213,7 +214,8 @@ get_precis_forecast <- function(state = NULL) {
     dplyr::mutate(state = stringr::str_extract(out$aac,
                                                pattern = "[:alpha:]{2,3}")) %>%
     dplyr::rename(location = PT_NAME) %>%
-    dplyr::select(aac:location, state, lon, lat, elev)
+    dplyr::select(aac:location, state, lon, lat, elev) %>%
+    as.data.frame
 
   return(tidy_df)
 }
@@ -240,7 +242,7 @@ get_precis_forecast <- function(state = NULL) {
 
   time_period <- unlist(t(as.data.frame(xml2::xml_attrs(y))))
   time_period <-
-    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)), ]
+    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)),]
 
   sub_out <- cbind(time_period, attrs, values)
   row.names(sub_out) <- NULL

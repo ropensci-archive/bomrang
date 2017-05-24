@@ -121,7 +121,6 @@ get_current_weather <-
       stop("A station was matched but the JSON returned by bom.gov.au was not in expected form.")
     }
 
-
     # Columns which are meant to be numeric
     double_cols <-
       c("lat",
@@ -159,9 +158,8 @@ get_current_weather <-
       rbindlist(use.names = TRUE, fill = TRUE)
 
     if (raw) {
-      return(out)
+      return(as.data.frame(out))
     } else {
-      return(cook(out))
+      return(as.data.frame(cook(out)))
     }
   }
-

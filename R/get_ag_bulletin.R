@@ -1,4 +1,5 @@
 
+
 #' Get BOM Agriculture Bulletin
 #'
 #'Fetch the BOM agricultural bulletin information and return a tidy data frame
@@ -128,25 +129,29 @@ get_ag_bulletin <- function(state = NULL) {
     stop(state, " not recognised as a valid state or territory")
 
   if (state != "AUS") {
-    tibble::as_tibble(.parse_bulletin(xmlbulletin, stations_meta))
+    .parse_bulletin(xmlbulletin, stations_meta)
   }
   else if (state == "AUS") {
-    tibble::as_tibble(
-      plyr::ldply(
-        .data = file_list,
-        .fun = .parse_bulletin,
-        stations_meta,
-        .progress = "text"
-      )
+    plyr::ldply(
+      .data = file_list,
+      .fun = .parse_bulletin,
+      stations_meta,
+      .progress = "text"
     )
   }
 }
 
 #' @noRd
 .parse_bulletin <- function(xmlbulletin, stations_meta) {
-  obs.time.utc <- obs.time.local <- time.zone <- site <- name <- r <- tn <-
-    tx <- twd <- ev <- obs_time_utc <- obs_time_local <- time_zone <- state <-
-    tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <- lon <- attrs <-
+  # CRAN NOTE avoidance
+  obs.time.utc <-
+    obs.time.local <- time.zone <- site <- name <- r <- tn <-
+    tx <-
+    twd <-
+    ev <- obs_time_utc <- obs_time_local <- time_zone <- state <-
+    tg <-
+    sn <-
+    t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <- lon <- attrs <-
     `rep(bulletin_state, nrow(tidy_df))` <- NULL
 
   # load the XML bulletin ------------------------------------------------------
@@ -198,7 +203,7 @@ get_ag_bulletin <- function(state = NULL) {
     # if there are no observations, keep a single row for the station ID
     if (length(value) > 1) {
       location <-
-        trimws(location[rep(seq_len(nrow(location)), each = length(value)), ])
+        trimws(location[rep(seq_len(nrow(location)), each = length(value)),])
     }
 
     # if there is only one observation this step means that a data frame is
@@ -275,9 +280,10 @@ get_ag_bulletin <- function(state = NULL) {
       out$t1m <- NA
     }
 
-    # join locations with lat/lon values ---------------------------------------
+    # return from internal function
     return(out)
   }
+
   tidy_df <- plyr::ldply(.data = obs, .fun = .get_obs)
 
   tidy_df <- dplyr::left_join(tidy_df,
@@ -298,7 +304,7 @@ get_ag_bulletin <- function(state = NULL) {
     dplyr::mutate_each(dplyr::funs(as.character), obs_time_utc) %>%
     dplyr::mutate_each(dplyr::funs(as.character), time_zone)
 
-  tidy_df <- tibble::as_tibble(
+  tidy_df <-
     dplyr::select(
       tidy_df,
       obs_time_local,
@@ -323,5 +329,7 @@ get_ag_bulletin <- function(state = NULL) {
       lat,
       lon
     )
-  )
+
+  # return from main function
+  return(tidy_df)
 }
