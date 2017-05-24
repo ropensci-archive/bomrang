@@ -196,33 +196,64 @@ head(Melbourne_weather)
     ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
     ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
     ##   local_date_time local_date_time_full        aifstime_utc   lat lon
-    ## 1      24/07:00pm  2017-05-24 19:00:00 2017-05-24 09:00:00 -37.8 145
-    ## 2      24/06:30pm  2017-05-24 18:30:00 2017-05-24 08:30:00 -37.8 145
-    ## 3      24/06:00pm  2017-05-24 18:00:00 2017-05-24 08:00:00 -37.8 145
-    ## 4      24/05:30pm  2017-05-24 17:30:00 2017-05-24 07:30:00 -37.8 145
-    ## 5      24/05:00pm  2017-05-24 17:00:00 2017-05-24 07:00:00 -37.8 145
-    ## 6      24/04:30pm  2017-05-24 16:30:00 2017-05-24 06:30:00 -37.8 145
+    ## 1      24/07:30pm  2017-05-24 19:30:00 2017-05-24 09:30:00 -37.8 145
+    ## 2      24/07:00pm  2017-05-24 19:00:00 2017-05-24 09:00:00 -37.8 145
+    ## 3      24/06:30pm  2017-05-24 18:30:00 2017-05-24 08:30:00 -37.8 145
+    ## 4      24/06:00pm  2017-05-24 18:00:00 2017-05-24 08:00:00 -37.8 145
+    ## 5      24/05:30pm  2017-05-24 17:30:00 2017-05-24 07:30:00 -37.8 145
+    ## 6      24/05:00pm  2017-05-24 17:00:00 2017-05-24 07:00:00 -37.8 145
     ##   apparent_t cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt
-    ## 1       12.9     -          -     4.4       17       9     15.4   6.4
-    ## 2       13.4     -          -     4.2       15       8     15.3   6.6
-    ## 3       13.4     -          -     4.1       13       7     15.3   6.8
-    ## 4       13.1     -          -     4.2       15       8     15.2   6.5
-    ## 5       13.9     -          -     4.4       19      10     15.9   6.9
-    ## 6       14.0     -          -     4.7       19      10     16.4   6.8
+    ## 1       13.4     -          -     4.1       11       6     15.3   6.8
+    ## 2       12.9     -          -     4.4       17       9     15.4   6.4
+    ## 3       13.4     -          -     4.2       15       8     15.3   6.6
+    ## 4       13.4     -          -     4.1       13       7     15.3   6.8
+    ## 5       13.1     -          -     4.2       15       8     15.2   6.5
+    ## 6       13.9     -          -     4.4       19      10     15.9   6.9
     ##    press press_msl press_qnh press_tend rain_trace rel_hum sea_state
-    ## 1 1019.1    1019.1    1019.1          -          0      55         -
-    ## 2 1019.0    1019.0    1019.0          -          0      56         -
-    ## 3 1018.7    1018.7    1018.7          -          0      57         -
-    ## 4 1018.4    1018.4    1018.4          -          0      56         -
-    ## 5 1018.1    1018.1    1018.1          -          0      55         -
-    ## 6 1017.8    1017.8    1017.8          -          0      53         -
+    ## 1 1019.4    1019.4    1019.4          -          0      57         -
+    ## 2 1019.1    1019.1    1019.1          -          0      55         -
+    ## 3 1019.0    1019.0    1019.0          -          0      56         -
+    ## 4 1018.7    1018.7    1018.7          -          0      57         -
+    ## 5 1018.4    1018.4    1018.4          -          0      56         -
+    ## 6 1018.1    1018.1    1018.1          -          0      55         -
     ##   swell_dir_worded vis_km weather wind_dir wind_spd_kmh wind_spd_kt
-    ## 1                -     10       -        W            9           5
-    ## 2                -     10       -        W            6           3
-    ## 3                -     10       -      WNW            6           3
-    ## 4                -     10       -        W            7           4
+    ## 1                -     10       -      WSW            6           3
+    ## 2                -     10       -        W            9           5
+    ## 3                -     10       -        W            6           3
+    ## 4                -     10       -      WNW            6           3
     ## 5                -     10       -        W            7           4
-    ## 6                -     10       -        W            9           5
+    ## 6                -     10       -        W            7           4
+
+-   **sort\_order** -
+-   **wmo** -
+-   **name** -
+-   **history\_product** -
+-   **local\_date\_time** -
+-   **local\_date\_time\_full** -
+-   **aifstime\_utc** -
+-   **lat** -
+-   **lon** -
+-   **apparent\_t** -
+-   **cloud** -
+-   **cloud\_type** -
+-   **delta\_t** -
+-   **gust\_kmh** -
+-   **gust\_kt** -
+-   **air\_temp** -
+-   **dewpt** -
+-   **press** -
+-   **press\_msl** -
+-   **press\_qnh** -
+-   **press\_tend** -
+-   **rain\_trace** -
+-   **rel\_hum** -
+-   **sea\_state** -
+-   **swell\_dir\_worded** -
+-   **vis\_km** -
+-   **weather** -
+-   **wind\_dir** -
+-   **wind\_spd\_kmh** -
+-   **wind\_spd\_kt** -
 
 Meta
 ----
@@ -232,6 +263,7 @@ Meta
 -   To cite *bomrang*, please use:
     Sparks A, Parsonage H, and Pembleton K (2017). *bomrang: Fetch Australian Government Bureau of Meteorology Weather Data*. R package version 0.0.1-1, &lt;URL: <https://github.com/ToowoombaTrio/bomrang>&gt;.
 -   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+-   BOM Copyright Notice <http://reg.bom.gov.au/other/copyright.shtml>
 
 References
 ----------

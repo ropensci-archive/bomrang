@@ -146,6 +146,36 @@ Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
 head(Melbourne_weather)
 ```
 
+* **sort_order** -
+* **wmo** -
+* **name** -
+* **history_product** -
+* **local_date_time** -
+* **local_date_time_full** -
+* **aifstime_utc** -
+* **lat** -
+* **lon** -
+* **apparent_t** -
+* **cloud** -
+* **cloud_type** -
+* **delta_t** -
+* **gust_kmh** -
+* **gust_kt** -
+* **air_temp** -
+* **dewpt** -
+* **press** -
+* **press_msl** -
+* **press_qnh** -
+* **press_tend** -
+* **rain_trace** -
+* **rel_hum** -
+* **sea_state** -
+* **swell_dir_worded** -
+* **vis_km** -
+* **weather** -
+* **wind_dir** -
+* **wind_spd_kmh** -
+* **wind_spd_kt** -
 
 ## Meta
 
@@ -155,6 +185,7 @@ head(Melbourne_weather)
   Sparks A, Parsonage H, and Pembleton K (2017). _bomrang: Fetch Australian Government Bureau of Meteorology Weather Data_. R package version 0.0.1-1,
 <URL: https://github.com/ToowoombaTrio/bomrang>.  
 * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.  
+* BOM Copyright Notice http://reg.bom.gov.au/other/copyright.shtml  
 
 ## References
 
