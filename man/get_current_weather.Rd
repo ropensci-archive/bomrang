@@ -42,3 +42,6 @@ Note that the column \code{local_date_time_full} is set to a
   get_current_weather(latlon = c(-34, 151))
 }
 }
+\author{
+Hugh Parsonage, \email{hugh.parsonage@gmail.com}
+}

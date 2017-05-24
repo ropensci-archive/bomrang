@@ -24,6 +24,7 @@
 #'   # Get weather by latitude and longitude:
 #'   get_current_weather(latlon = c(-34, 151))
 #' }
+#' @author Hugh Parsonage, \email{hugh.parsonage@gmail.com}
 #' @import data.table
 #' @importFrom lubridate ymd_hms
 #' @importFrom magrittr use_series
