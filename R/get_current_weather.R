@@ -10,7 +10,7 @@
 #' @param raw Do not convert the columns \code{data.table} to the appropriate
 #' classes. (\code{FALSE} by default.)
 #' @param emit_latlon_msg Logical. If \code{TRUE} (the default), and
-#' \code{latlon} is selected, a message is emitted before the table is returne
+#' \code{latlon} is selected, a message is emitted before the table is returned
 #' indicating which station was actually used (i.e. which station was found to
 #' be nearest to the given coordinate).
 #' @details Note that the column \code{local_date_time_full} is set to a
