@@ -18,7 +18,9 @@ Ignored if used in combination with
 
 \item{raw}{Do not convert the columns \code{data.table} to the appropriate classes. (\code{FALSE} by default.)}
 
-\item{emit_latlon_msg}{Logical. If \code{TRUE} (the default), and \code{latlon} is selected}
+\item{emit_latlon_msg}{Logical. If \code{TRUE} (the default), and \code{latlon} is selected,
+a message is emitted before the table is returned indicating which station was actually used
+(i.e. which station was found to be nearest to the given coordinate).}
 }
 \description{
 Current weather observations of a station
