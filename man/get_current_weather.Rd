@@ -33,10 +33,10 @@ Note that the column \code{local_date_time_full} is set to a
 \examples{
 \dontrun{
   # warning
-  Melbourne_forecast <- get_current_weather("Melbourne")
+  Melbourne_weather <- get_current_weather("Melbourne")
 
   # no warning
-  Melbourne_forecast <- get_current_weather("Melbourne (Olympic Park)")
+  Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
 
   # Get weather by latitude and longitude:
   get_current_weather(latlon = c(-34, 151))
