@@ -33,7 +33,7 @@ This function only takes one parameter, `state`. The `state` parameter allows th
 
 ### Results
 
-The function, `get_precis_forecast()` will return a [tibble](https://CRAN.R-project.org/package=tibble) of the weather forecast for the daily forecast with the following fields,
+The function, `get_precis_forecast()` will return a tidy data frame of the weather forecast for the daily forecast with the following fields,
 
 * **aac** - AMOC Area Code, _e.g._ WA_MW008, a unique identifier for each location  
 * **start_time_local** - Start of forecast date and time in local TZ  
@@ -79,7 +79,7 @@ This function only takes one parameter, `state`. The `state` parameter allows th
 
 ### Results
 
-The function, `get_ag_bulletin()` will return a [tibble](https://CRAN.R-project.org/package=tibble) of the agriculture bulletin with the following fields,
+The function, `get_ag_bulletin()` will return a tidy data frame of the agriculture bulletin with the following fields,
 
 * **obs-time-utc** - Observation time (Time in UTC)  
 * **time-zone** - Time zone for observation  
