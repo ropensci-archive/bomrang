@@ -2,6 +2,13 @@
 
 
 
+
+
+
+
+
+
+
 #' Get BOM Daily Précis Forecast
 #'
 #'Fetch the BOM daily précis forecast and return a tidy data frame of the daily
@@ -122,7 +129,9 @@ get_precis_forecast <- function(state = NULL) {
   }
 }
 
+
 .parse_forecast <- function(xmlforecast) {
+  #CRAN NOTE avoidance
   aac <- location <- state <- lon <- lat <- elev <-
     precipitation_range <- attrs <- values <-
     `c("air_temperature_maximum", "Celsius")` <-
@@ -139,7 +148,14 @@ get_precis_forecast <- function(state = NULL) {
   AAC_codes <- AAC_codes
 
   # load the XML forecast ----------------------------------------------------
-  xmlforecast <- xml2::read_xml(xmlforecast)
+  tryCatch({
+    xmlforecast <- xml2::read_xml(xmlforecast)
+
+  },
+  error = function(x)
+    stop(
+      "\nThe server with the forecast is not responding. Please retry again later.\n"
+    ))
   areas <-
     xml2::xml_find_all(xmlforecast, ".//*[@type='location']")
   xml2::xml_find_all(areas, ".//*[@type='forecast_icon_code']") %>%
@@ -196,7 +212,7 @@ get_precis_forecast <- function(state = NULL) {
   # return final forecast object ---------------------------------------------
   tidy_df <-
     dplyr::left_join(tibble::as_tibble(out),
-                     AAC_codes, by = c("aac" = "AAC"))%>%
+                     AAC_codes, by = c("aac" = "AAC")) %>%
     dplyr::rename(lon = LON,
                   lat = LAT,
                   elev = ELEVATION) %>%
@@ -242,7 +258,7 @@ get_precis_forecast <- function(state = NULL) {
 
   time_period <- unlist(t(as.data.frame(xml2::xml_attrs(y))))
   time_period <-
-    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)),]
+    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)), ]
 
   sub_out <- cbind(time_period, attrs, values)
   row.names(sub_out) <- NULL

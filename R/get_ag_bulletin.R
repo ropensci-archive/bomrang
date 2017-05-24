@@ -1,5 +1,9 @@
 
 
+
+
+
+
 #' Get BOM Agriculture Bulletin
 #'
 #'Fetch the BOM agricultural bulletin information and return a tidy data frame
@@ -66,21 +70,27 @@ get_ag_bulletin <- function(state = NULL) {
 
   # Agricultural Bulletin Station Locations
 
-  stations_meta <-
-    readr::read_table(
-      "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/lists_by_element/alpha/alphaAUS_122.txt",
-      skip = 4,
-      col_names = c("site",
-                    "name",
-                    "lat",
-                    "lon"),
-      col_types = readr::cols_only(
-        "site" = readr::col_character(),
-        "name" = readr::col_character(),
-        "lat" = readr::col_double(),
-        "lon" = readr::col_double()
+  tryCatch({
+    stations_meta <-
+      readr::read_table(
+        "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/lists_by_element/alpha/alphaAUS_122.txt",
+        skip = 4,
+        col_names = c("site",
+                      "name",
+                      "lat",
+                      "lon"),
+        col_types = readr::cols_only(
+          "site" = readr::col_character(),
+          "name" = readr::col_character(),
+          "lat" = readr::col_double(),
+          "lon" = readr::col_double()
+        )
       )
-    )
+  },
+  error = function(x)
+    stop(
+      "\nThe server with the location information is not responding. Please retry again later.\n"
+    ))
 
   # ftp server
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
@@ -94,43 +104,50 @@ get_ag_bulletin <- function(state = NULL) {
   VIC <- "IDV65176.xml"
   WA  <- "IDW65176.xml"
 
-  if (state == "NSW") {
-    xmlbulletin <-
-      paste0(ftp_base, NSW) # nsw
-  }
-  else if (state == "NT") {
-    xmlbulletin <-
-      paste0(ftp_base, NT) # nt
-  }
-  else if (state == "QLD") {
-    xmlbulletin <-
-      paste0(ftp_base, QLD) # qld
-  }
-  else if (state == "SA") {
-    xmlbulletin <-
-      paste0(ftp_base, SA) # sa
-  }
-  else if (state == "TAS") {
-    xmlbulletin <-
-      paste0(ftp_base, TAS) # tas
-  }
-  else if (state == "VIC") {
-    xmlbulletin <-
-      paste0(ftp_base, VIC) # vic
-  }
-  else if (state == "WA") {
-    xmlbulletin <-
-      paste0(ftp_base, WA) # wa
-  }
-  else if (state == "AUS") {
-    AUS <- list(NT, NSW, QLD, SA, TAS, VIC, WA)
-    file_list <- paste0(ftp_base, AUS)
-  } else
-    stop(state, " not recognised as a valid state or territory")
+  tryCatch({
+    if (state == "NSW") {
+      xmlbulletin <-
+        paste0(ftp_base, NSW) # nsw
+    }
+    else if (state == "NT") {
+      xmlbulletin <-
+        paste0(ftp_base, NT) # nt
+    }
+    else if (state == "QLD") {
+      xmlbulletin <-
+        paste0(ftp_base, QLD) # qld
+    }
+    else if (state == "SA") {
+      xmlbulletin <-
+        paste0(ftp_base, SA) # sa
+    }
+    else if (state == "TAS") {
+      xmlbulletin <-
+        paste0(ftp_base, TAS) # tas
+    }
+    else if (state == "VIC") {
+      xmlbulletin <-
+        paste0(ftp_base, VIC) # vic
+    }
+    else if (state == "WA") {
+      xmlbulletin <-
+        paste0(ftp_base, WA) # wa
+    }
+    else if (state == "AUS") {
+      AUS <- list(NT, NSW, QLD, SA, TAS, VIC, WA)
+      file_list <- paste0(ftp_base, AUS)
+    } else
+      stop(state, " not recognised as a valid state or territory")
+  },
+  error = function(x)
+    stop(
+      "\nThe server with the forecast files is not responding. Please retry again later.\n"
+    ))
 
   if (state != "AUS") {
     .parse_bulletin(xmlbulletin, stations_meta)
   }
+
   else if (state == "AUS") {
     plyr::ldply(
       .data = file_list,
