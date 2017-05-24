@@ -22,5 +22,6 @@ sweep_for_stations <- function(latlon = c(-35.3, 149.2)) {
     # Lat Lon are in JSON
     .[, "distance" := haversine_distance(lat, lon, Lat, Lon)] %>%
     setorderv("distance") %>%
-    .[]
+    .[] %>%
+    as.data.frame
 }
