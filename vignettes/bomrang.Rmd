@@ -11,46 +11,48 @@ vignette: >
 
 ## Introduction
 
-_bomrang_ provides functions for interacting with [Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BOM serves several types of data as XML or JSON files. This package fetches these files, parses them and return a tidy dataframe.
+_bomrang_ provides functions for interacting with [Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BOM serves several types of data data as XML and JSON files. This package fetches these files, parses them and return a tidy dataframe.
 
 ## Using _bomrang_
 
-Three functions are provided by _bomrang_. The two main functions are `get_precis_forecast()`, which creates a data frame of the daily précis forecast from BOM, and `get_ag_bulletin()`, which creates a data frame of agriculture bulletin information. The third function, `update_precis_locations()`, updates an internal database of forecast locations distributed with the package.
+Several functions are provided by _bomrang_. The three main functions are `get_forecast()`, which creates a data frame of the daily précis forecast from BOM, `get_bulletin()`, which creates a data frame of agriculture bulletin information, and `get_current_weather()` which returns the last 72 hours of observations at a given location. 
+Other functions include `update_locations()`, which updates an internal database of forecast locations distributed with the package, and
+`sweep_for_stations()` which returns the nearest weather stations to a point in Australia.
 
-### Using `get_precis_forecast()`
+## Using `get_forecast()`
 
-This function only takes one parameter, `state`. The `state` parameter allows the user to select the forecast for just one state or a national forecast. States are specified using the official postal codes,
+This function only takes one parameter, `state`. The `state` parameter allows the user to select the forecast for just one state or a national forecast. States are specified using the official postal codes, 
 
-* **ACT** - Australian Capital Territory
-* **NSW** - New South Wales
-* **NT** - Northern Territory
-* **QLD** - Queensland
-* **SA** - South Australia
-* **TAS** - Tasmania
-* **VIC** - Victoria
-* **WA** - Western Australia
-* **AUS** - Australia, returns national forecast including all states
+* **ACT** - Australian Capital Territory  
+* **NSW** - New South Wales  
+* **NT** - Northern Territory  
+* **QLD** - Queensland  
+* **SA** - South Australia  
+* **TAS** - Tasmania  
+* **VIC** - Victoria  
+* **WA** - Western Australia  
+* **AUS** - Australia, returns national forecast including all states  
 
 ### Results
 
-The function, `get_precis_forecast()` will return a tidy data frame of the weather forecast for the daily forecast with the following fields,
+The function, `get_forecast()` will return a [tibble](https://CRAN.R-project.org/package=tibble) of the weather forecast for the daily forecast with the following fields,
 
-* **aac** - AMOC Area Code, _e.g._ WA_MW008, a unique identifier for each location
-* **start_time_local** - Start of forecast date and time in local TZ
-* **end_time_local** - End of forecast date and time in local TZ
-* **start_time_utc** - Start of forecast date and time in UTC
-* **end_time_utc** - End of forecast date and time in UTC
-* **max_temp** - Maximum forecasted temperature (degrees Celsius)
-* **min_temp** - Minimum forecasted temperature (degrees Celsius)
-* **lower_prcp_limit** - Lower forecasted precipitation limit (millimetres)
-* **upper_prcp_limit** - Upper forecasted precipitation limit (millimetres)
-* **precis** - Précis forecast (a short summary, less than 30 characters)
-* **prob_prcp** - Probability of precipitation (percent)
-* **location** - Named location for forecast
-* **state** - State name (postal code abbreviation)
-* **lon** - Longitude of named location (decimal degrees)
-* **lat** - Latitude of named location (decimal degrees)
-* **elev** - Elevation of named location (metres)
+* **aac** - AMOC Area Code, _e.g._ WA_MW008, a unique identifier for each location  
+* **start_time_local** - Start of forecast date and time in local TZ  
+* **end_time_local** - End of forecast date and time in local TZ  
+* **start_time_utc** - Start of forecast date and time in UTC  
+* **end_time_utc** - End of forecast date and time in UTC  
+* **max_temp** - Maximum forecasted temperature (degrees Celsius)  
+* **min_temp** - Minimum forecasted temperature (degrees Celsius)  
+* **lower_prcp_limit** - Lower forecasted precipitation limit (millimetres)  
+* **upper_prcp_limit** - Upper forecasted precipitation limit (millimetres)  
+* **precis** - Précis forecast (a short summary, less than 30 characters)  
+* **prob_prcp** - Probability of precipitation (percent)  
+* **location** - Named location for forecast  
+* **state** - State name (postal code abbreviation)  
+* **lon** - Longitude of named location (decimal degrees)  
+* **lat** - Latitude of named location (decimal degrees)  
+* **elev** - Elevation of named location (metres)  
 
 ### Examples
 
@@ -59,62 +61,75 @@ Following is an example fetching the forecast for Queensland.
 ```{r, eval=TRUE}
 library("bomrang")
 
-QLD_forecast <- get_precis_forecast(state = "QLD")
+QLD_forecast <- get_forecast(state = "QLD")
 QLD_forecast
 ```
 
-### Using `get_ag_bulletin()`
+## Using `get_bulletin()`
 
-This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national forecast. States are specified using the official postal codes,
+This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national forecast. States are specified using the official postal codes, 
 
-* **ACT** - Australian Capital Territory
-* **NSW** - New South Wales
-* **NT** - Northern Territory
-* **QLD** - Queensland
-* **SA** - South Australia
-* **TAS** - Tasmania
-* **VIC** - Victoria
-* **WA** - Western Australia
-* **AUS** - Australia, returns bulletin for all states
+* **ACT** - Australian Capital Territory  
+* **NSW** - New South Wales  
+* **NT** - Northern Territory  
+* **QLD** - Queensland  
+* **SA** - South Australia  
+* **TAS** - Tasmania  
+* **VIC** - Victoria  
+* **WA** - Western Australia  
+* **AUS** - Australia, returns bulletin for all states  
 
 ### Results
 
-The function, `get_ag_bulletin()` will return a tidy data frame of the agriculture bulletin with the following fields,
+The function, `get_bulletin()` will return a [tibble](https://CRAN.R-project.org/package=tibble) of the agriculture bulletin with the following fields,
 
-* **obs-time-utc** - Observation time (Time in UTC)
-* **time-zone** - Time zone for observation
-* **site** - Unique BOM identifier for each station
-* **name** - BOM station name
-* **r** - Rain to 9am (millimetres). _Trace will be reported as 0.01_
-* **tn** - Minimum temperature (degrees Celsius)
-* **tx** - Maximum temperature (degrees Celsius)
-* **twd** - Wetbulb depression (degress Celsius)
-* **ev** - Evaporation (millimetres)
-* **tg** - Terrestrial minimum temperature (degress Celsius)
-* **sn** - Sunshine (Hours)
-* **t5** - 5cm soil temperature (Celsius)
-* **t10** - 10cm soil temperature (Celsius)
-* **t20** - 20cm soil temperature (Celsius)
-* **t50** - 50cm soil temperature (Celsius)
-* **t1m** - 1m soil temperature (Celsius)
-* **wr** - Wind run (kilometres)
-* **state** - State name (postal code abbreviation)
-* **lat** - Latitude (decimal degrees)
-* **lon** - Longitude (decimal degrees)
+* **obs-time-utc** - Observation time (Time in UTC)  
+* **time-zone** - Time zone for observation  
+* **site** - Unique BOM identifier for each station  
+* **name** - BOM station name  
+* **r** - Rain to 9am (millimetres). _Trace will be reported as 0.01_  
+* **tn** - Minimum temperature (degrees Celsius)  
+* **tx** - Maximum temperature (degrees Celsius)  
+* **twd** - Wetbulb depression (degress Celsius)  
+* **ev** - Evaporation (millimetres)  
+* **tg** - Terrestrial minimum temperature (degress Celsius)  
+* **sn** - Sunshine (Hours)  
+* **t5** - 5cm soil temperature (Celsius)  
+* **t10** - 10cm soil temperature (Celsius)  
+* **t20** - 20cm soil temperature (Celsius)  
+* **t50** - 50cm soil temperature (Celsius)  
+* **t1m** - 1m soil temperature (Celsius)  
+* **wr** - Wind run (kilometres)  
+* **state** - State name (postal code abbreviation)  
+* **lat** - Latitude (decimal degrees)  
+* **lon** - Longitude (decimal degrees)  
 
 ```{r, eval=TRUE}
 library("bomrang")
 
-QLD_bulletin <- get_ag_bulletin(state = "QLD")
+QLD_bulletin <- get_bulletin(state = "QLD")
 QLD_bulletin
 ```
 
-### Using `update_precis_locations()`
+## Using `get_current_weather()` 
+The function takes one of two arguments: `station_name` and `latlon`, returning the current weather observations (and the observations of the last 72 hours) for the given location.
+
+If `station_name` is used, the weather observations for the last 72 hours are returned for that station.
+If the string provided is ambiguous, the function returns an observation for one of the possible stations and emits a warning to offer unambiguous station names. 
+
+If `latlon` is used, the observations returned are from the station nearest to that latitude-longitude coordinate. 
+The function also emits a message, to tell the user which station was used.
+
+The table returned will have different fields depending on the station that is selected. 
+
+
+
+## Using `update_locations()`
 
 This function downloads the latest précis forecast locations from the BOM server and updates _bomrang_'s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BOM forecast location database that is not available in the database distributed with _bomrang_. This database is distributed with the package to make the process faster when fetching the forecast.
 
 ```{r, eval=FALSE}
-update_precis_locations()
+update_locations()
 ```
 
 ## References
