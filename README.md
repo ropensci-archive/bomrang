@@ -179,9 +179,11 @@ This function accepts four parameters:
 
 -   `raw` Do not convert the columns data.table to the appropriate classes. (FALSE by default.)
 
--   `emit_latlon_msg` Logical. If TRUE (the default), and latlon is selected
+-   `emit_latlon_msg` Logical. If `TRUE` (the default), and `latlon`} is selected, a message is emitted before the table is returned indicating which station was actually used (i.e. which station was found to be nearest to the given coordinate).
 
 ``` r
+library("bomrang")
+
 Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
 head(Melbourne_weather)
 ```
@@ -194,33 +196,33 @@ head(Melbourne_weather)
     ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
     ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
     ##   local_date_time local_date_time_full        aifstime_utc   lat lon
-    ## 1      24/04:30pm  2017-05-24 16:30:00 2017-05-24 06:30:00 -37.8 145
-    ## 2      24/04:00pm  2017-05-24 16:00:00 2017-05-24 06:00:00 -37.8 145
-    ## 3      24/03:30pm  2017-05-24 15:30:00 2017-05-24 05:30:00 -37.8 145
-    ## 4      24/03:00pm  2017-05-24 15:00:00 2017-05-24 05:00:00 -37.8 145
-    ## 5      24/02:30pm  2017-05-24 14:30:00 2017-05-24 04:30:00 -37.8 145
-    ## 6      24/02:00pm  2017-05-24 14:00:00 2017-05-24 04:00:00 -37.8 145
+    ## 1      24/07:00pm  2017-05-24 19:00:00 2017-05-24 09:00:00 -37.8 145
+    ## 2      24/06:30pm  2017-05-24 18:30:00 2017-05-24 08:30:00 -37.8 145
+    ## 3      24/06:00pm  2017-05-24 18:00:00 2017-05-24 08:00:00 -37.8 145
+    ## 4      24/05:30pm  2017-05-24 17:30:00 2017-05-24 07:30:00 -37.8 145
+    ## 5      24/05:00pm  2017-05-24 17:00:00 2017-05-24 07:00:00 -37.8 145
+    ## 6      24/04:30pm  2017-05-24 16:30:00 2017-05-24 06:30:00 -37.8 145
     ##   apparent_t cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt
-    ## 1       14.0     -          -     4.7       19      10     16.4   6.8
-    ## 2       13.3     -          -     4.6       24      13     16.4   7.1
-    ## 3       13.8     -          -     4.7       22      12     16.3   6.7
-    ## 4       13.4     -          -     3.9       19      10     15.6   7.9
-    ## 5       12.4     -          -     3.3       28      15     15.5   9.0
-    ## 6       13.1     -          -     4.6       30      16     16.6   7.3
+    ## 1       12.9     -          -     4.4       17       9     15.4   6.4
+    ## 2       13.4     -          -     4.2       15       8     15.3   6.6
+    ## 3       13.4     -          -     4.1       13       7     15.3   6.8
+    ## 4       13.1     -          -     4.2       15       8     15.2   6.5
+    ## 5       13.9     -          -     4.4       19      10     15.9   6.9
+    ## 6       14.0     -          -     4.7       19      10     16.4   6.8
     ##    press press_msl press_qnh press_tend rain_trace rel_hum sea_state
-    ## 1 1017.8    1017.8    1017.8          -          0      53         -
-    ## 2 1017.5    1017.5    1017.5          -          0      54         -
-    ## 3 1017.0    1017.0    1017.0          -          0      53         -
-    ## 4 1016.8    1016.8    1016.8          -          0      60         -
-    ## 5 1016.6    1016.6    1016.6          -          0      65         -
-    ## 6 1016.1    1016.1    1016.1          -          0      54         -
+    ## 1 1019.1    1019.1    1019.1          -          0      55         -
+    ## 2 1019.0    1019.0    1019.0          -          0      56         -
+    ## 3 1018.7    1018.7    1018.7          -          0      57         -
+    ## 4 1018.4    1018.4    1018.4          -          0      56         -
+    ## 5 1018.1    1018.1    1018.1          -          0      55         -
+    ## 6 1017.8    1017.8    1017.8          -          0      53         -
     ##   swell_dir_worded vis_km weather wind_dir wind_spd_kmh wind_spd_kt
     ## 1                -     10       -        W            9           5
-    ## 2                -     10       -      WSW           13           7
-    ## 3                -     10       -        W            9           5
-    ## 4                -     10       -       SW            9           5
-    ## 5                -     10       -      SSW           15           8
-    ## 6                -     10       -      WSW           15           8
+    ## 2                -     10       -        W            6           3
+    ## 3                -     10       -      WNW            6           3
+    ## 4                -     10       -        W            7           4
+    ## 5                -     10       -        W            7           4
+    ## 6                -     10       -        W            9           5
 
 Meta
 ----
@@ -228,7 +230,7 @@ Meta
 -   Please [report any issues or bugs](https://github.com/ToowoombaTrio/bomrang/issues).
 -   License: MIT
 -   To cite *bomrang*, please use:
-    Sparks A, Parsonage H, and Pembleton K (2017). *bomrang: Fetch Australian Government Bureau of Meteorology Weather Data*. R package version 0.0.2-1, &lt;URL: <https://github.com/ToowoombaTrio/bomrang>&gt;.
+    Sparks A, Parsonage H, and Pembleton K (2017). *bomrang: Fetch Australian Government Bureau of Meteorology Weather Data*. R package version 0.0.1-1, &lt;URL: <https://github.com/ToowoombaTrio/bomrang>&gt;.
 -   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 
 References

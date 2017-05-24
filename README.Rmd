@@ -137,9 +137,11 @@ This function accepts four parameters:
 
 * `raw` Do not convert the columns data.table to the appropriate classes. (FALSE by default.)
 
-* `emit_latlon_msg` Logical. If TRUE (the default), and latlon is selected
+* `emit_latlon_msg` Logical. If `TRUE` (the default), and `latlon`} is selected, a message is emitted before the table is returned indicating which station was actually used (i.e. which station was found to be nearest to the given coordinate).
 
 ```{r, eval=TRUE}
+library("bomrang")
+
 Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
 head(Melbourne_weather)
 ```
@@ -150,7 +152,7 @@ head(Melbourne_weather)
 * Please [report any issues or bugs](https://github.com/ToowoombaTrio/bomrang/issues).  
 * License: MIT  
 * To cite _bomrang_, please use:  
-  Sparks A, Parsonage H, and Pembleton K (2017). _bomrang: Fetch Australian Government Bureau of Meteorology Weather Data_. R package version 0.0.2-1,
+  Sparks A, Parsonage H, and Pembleton K (2017). _bomrang: Fetch Australian Government Bureau of Meteorology Weather Data_. R package version 0.0.1-1,
 <URL: https://github.com/ToowoombaTrio/bomrang>.  
 * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.  
 
