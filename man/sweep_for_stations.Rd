@@ -11,7 +11,7 @@ sweep_for_stations(latlon = c(-35.3, 149.2))
 (approximately).}
 }
 \value{
-A \code{data.table} of all weather stations (in this package) sorted
+A data frame of all weather stations (in this package) sorted
 by distance from \code{latlon}, ascending.
 }
 \description{
