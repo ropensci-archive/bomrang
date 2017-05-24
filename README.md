@@ -3,9 +3,9 @@
 *bomrang*: Fetch Australian Government Bureau of Meteorology (BOM) Data
 =======================================================================
 
-[![Travis-CI Build Status](https://travis-ci.org/ToowoombaTrio/bomrang.svg?branch=master)](https://travis-ci.org/ToowoombaTrio/bomrang) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ToowoombaTrio/bomrang?branch=master&svg=true)](https://ci.appveyor.com/project/ToowoombaTrio/bomrang) [![Coverage Status](https://img.shields.io/codecov/c/github/ToowoombaTrio/bomrang/master.svg)](https://codecov.io/github/ToowoombaTrio/bomrang?branch=master) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--05--19-brightgreen.svg)](https://github.com/toowoombatrio/bomrang/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) [![DOI](https://zenodo.org/badge/89690315.svg)](https://zenodo.org/badge/latestdoi/89690315)
+[![Travis-CI Build Status](https://travis-ci.org/ToowoombaTrio/bomrang.svg?branch=master)](https://travis-ci.org/ToowoombaTrio/bomrang) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ToowoombaTrio/bomrang?branch=master&svg=true)](https://ci.appveyor.com/project/ToowoombaTrio/bomrang) [![Coverage Status](https://img.shields.io/codecov/c/github/ToowoombaTrio/bomrang/master.svg)](https://codecov.io/github/ToowoombaTrio/bomrang?branch=master) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--05--24-brightgreen.svg)](https://github.com/toowoombatrio/bomrang/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) [![DOI](https://zenodo.org/badge/89690315.svg)](https://zenodo.org/badge/latestdoi/89690315)
 
-Fetches Australian Government Bureau of Meteorology XML data and returns a tidy data frame ([tibble](http://tibble.tidyverse.org)).
+Fetches Australian Government Bureau of Meteorology data and returns a tidy data frame.
 
 Credit for the name, *bomrang*, goes to [Di Cook](http://dicook.github.io), who suggested it attending the rOpenSci AUUnconf in Brisbane, 2016, when seeing the [vignette](https://github.com/saundersk1/auunconf16/blob/master/Vignette_BoM.pdf) that we had assembled during the Unconf.
 
@@ -42,7 +42,7 @@ This function only takes one parameter, `state`. States are specified using the 
 
 ### Results
 
-The function, `get_forecast()` will return a Tibble of the weather forecast for the daily forecast with the following fields,
+The function, `get_forecast()` will return a tidy data frame of the weather forecast for the daily forecast with the following fields,
 
 -   **aac** - AMOC Area Code, *e.g.*, WA\_MW008, a unique identifier for each location
 -   **start\_time\_local** - Start of forecast date and time in local TZ
@@ -68,29 +68,38 @@ Following is an example fetching the forecast for Queensland.
 ``` r
 library("bomrang")
 
-QLD_forecast <- get_forecast(state = "QLD")
-QLD_forecast
+QLD_forecast <- get_precis_forecast(state = "QLD")
+head(QLD_forecast)
 ```
 
-    ## # A tibble: 784 × 17
-    ##          aac index          start_time_local            end_time_local
-    ##        <chr> <chr>                     <chr>                     <chr>
-    ## 1  QLD_PT038     0 2017-05-19T05:00:00+10:00 2017-05-20T00:00:00+10:00
-    ## 2  QLD_PT038     1 2017-05-20T00:00:00+10:00 2017-05-21T00:00:00+10:00
-    ## 3  QLD_PT038     2 2017-05-21T00:00:00+10:00 2017-05-22T00:00:00+10:00
-    ## 4  QLD_PT038     3 2017-05-22T00:00:00+10:00 2017-05-23T00:00:00+10:00
-    ## 5  QLD_PT038     4 2017-05-23T00:00:00+10:00 2017-05-24T00:00:00+10:00
-    ## 6  QLD_PT038     5 2017-05-24T00:00:00+10:00 2017-05-25T00:00:00+10:00
-    ## 7  QLD_PT038     6 2017-05-25T00:00:00+10:00 2017-05-26T00:00:00+10:00
-    ## 8  QLD_PT045     0 2017-05-19T05:00:00+10:00 2017-05-20T00:00:00+10:00
-    ## 9  QLD_PT045     1 2017-05-20T00:00:00+10:00 2017-05-21T00:00:00+10:00
-    ## 10 QLD_PT045     2 2017-05-21T00:00:00+10:00 2017-05-22T00:00:00+10:00
-    ## # ... with 774 more rows, and 13 more variables: start_time_utc <chr>,
-    ## #   end_time_utc <chr>, maximum_temperature <dbl>,
-    ## #   minimum_temperature <dbl>, lower_prec_limit <dbl>,
-    ## #   upper_prec_limit <chr>, precis <chr>,
-    ## #   probability_of_precipitation <chr>, location <chr>, state <chr>,
-    ## #   lon <dbl>, lat <dbl>, elev <dbl>
+    ##         aac index          start_time_local            end_time_local
+    ## 1 QLD_PT038     0 2017-05-24T17:00:00+10:00 2017-05-25T00:00:00+10:00
+    ## 2 QLD_PT038     1 2017-05-25T00:00:00+10:00 2017-05-26T00:00:00+10:00
+    ## 3 QLD_PT038     2 2017-05-26T00:00:00+10:00 2017-05-27T00:00:00+10:00
+    ## 4 QLD_PT038     3 2017-05-27T00:00:00+10:00 2017-05-28T00:00:00+10:00
+    ## 5 QLD_PT038     4 2017-05-28T00:00:00+10:00 2017-05-29T00:00:00+10:00
+    ## 6 QLD_PT038     5 2017-05-29T00:00:00+10:00 2017-05-30T00:00:00+10:00
+    ##         start_time_utc         end_time_utc maximum_temperature
+    ## 1 2017-05-24T07:00:00Z 2017-05-24T14:00:00Z                  NA
+    ## 2 2017-05-24T14:00:00Z 2017-05-25T14:00:00Z                  24
+    ## 3 2017-05-25T14:00:00Z 2017-05-26T14:00:00Z                  24
+    ## 4 2017-05-26T14:00:00Z 2017-05-27T14:00:00Z                  24
+    ## 5 2017-05-27T14:00:00Z 2017-05-28T14:00:00Z                  25
+    ## 6 2017-05-28T14:00:00Z 2017-05-29T14:00:00Z                  26
+    ##   minimum_temperature lower_prec_limit upper_prec_limit           precis
+    ## 1                  NA               NA             <NA>           Clear.
+    ## 2                  11                0                0    Mostly sunny.
+    ## 3                   9                0                0    Mostly sunny.
+    ## 4                   9                0              0.4 Possible shower.
+    ## 5                  10                0                0   Partly cloudy.
+    ## 6                  11                0                0           Sunny.
+    ##   probability_of_precipitation   location state      lon      lat elev
+    ## 1                            0 Beaudesert   QLD 152.9898 -27.9707 48.2
+    ## 2                            0 Beaudesert   QLD 152.9898 -27.9707 48.2
+    ## 3                           20 Beaudesert   QLD 152.9898 -27.9707 48.2
+    ## 4                           30 Beaudesert   QLD 152.9898 -27.9707 48.2
+    ## 5                           20 Beaudesert   QLD 152.9898 -27.9707 48.2
+    ## 6                           10 Beaudesert   QLD 152.9898 -27.9707 48.2
 
 ### Using `get_bulletin()`
 
@@ -108,7 +117,7 @@ This function only takes one parameter, `state`. The `state` parameter allows th
 
 ### Results
 
-The function, `get_bulletin()` will return a tibble of the agriculture bulletin with the following fields,
+The function, `get_bulletin()` will return a tidy data frame of the agriculture bulletin with the following fields,
 
 -   **obs\_time\_utc** - Observation time (Time in UTC)
 -   **time\_zone** - Time zone for observation
@@ -134,27 +143,31 @@ The function, `get_bulletin()` will return a tibble of the agriculture bulletin 
 ``` r
 library("bomrang")
 
-QLD_forecast <- get_bulletin(state = "QLD")
-QLD_forecast
+QLD_bulletin <- get_ag_bulletin(state = "QLD")
+head(QLD_bulletin)
 ```
 
-    ## # A tibble: 25 × 21
-    ##    obs_time_local  obs_time_utc time_zone  site
-    ##            <fctr>         <chr>     <chr> <chr>
-    ## 1   20170518T0900 20170517T2300       EST 38026
-    ## 2   20170518T0900 20170517T2300       EST 38003
-    ## 3   20170518T0900 20170517T2300       EST 40842
-    ## 4   20170518T0900 20170517T2300       EST 39128
-    ## 5   20170518T0900 20170517T2300       EST 31011
-    ## 6   20170518T0900 20170517T2300       EST 44021
-    ## 7   20170518T0900 20170517T2300       EST 33013
-    ## 8   20170518T0900 20170517T2300       EST 41522
-    ## 9   20170518T0900 20170517T2300       EST 30124
-    ## 10  20170518T0900 20170517T2300       EST 40854
-    ## # ... with 15 more rows, and 17 more variables: name <chr>, r <dbl>,
-    ## #   tn <dbl>, tx <dbl>, twd <dbl>, ev <dbl>, tg <dbl>, sn <dbl>, t5 <dbl>,
-    ## #   t10 <dbl>, t20 <dbl>, t50 <dbl>, t1m <dbl>, wr <dbl>, state <chr>,
-    ## #   lat <dbl>, lon <dbl>
+    ##   obs_time_local  obs_time_utc time_zone  site               name   r   tn
+    ## 1  20170524T0900 20170523T2300       EST 38026 BIRDSVILLE AIRPORT 0.0 14.2
+    ## 2  20170524T0900 20170523T2300       EST 38003     BOULIA AIRPORT 0.0 17.9
+    ## 3  20170524T0900 20170523T2300       EST 40842      BRISBANE AERO 0.2 15.2
+    ## 4  20170524T0900 20170523T2300       EST 39128     BUNDABERG AERO 0.2 14.3
+    ## 5  20170524T0900 20170523T2300       EST 31011        CAIRNS AERO 9.0 21.7
+    ## 6  20170524T0900 20170523T2300       EST 44021   CHARLEVILLE AERO 0.0 13.2
+    ##     tx twd  ev   tg  sn   t5  t10  t20  t50  t1m  wr state      lat
+    ## 1 31.3 6.3  NA   NA  NA   NA   NA   NA   NA   NA  NA   QLD -25.8975
+    ## 2 33.0 8.0 8.0 16.7  NA   NA   NA   NA   NA   NA  NA   QLD -22.9117
+    ## 3 24.2 0.4 2.6 12.0 9.8 20.0 20.0 20.0 21.0 22.0 128   QLD -27.3917
+    ## 4 27.2 1.6  NA   NA  NA 19.6 20.1 21.2 20.8 22.7  NA   QLD -24.9069
+    ## 5 29.4 2.7  NA   NA  NA   NA   NA   NA   NA   NA  NA   QLD -16.8736
+    ## 6 28.7 5.3  NA   NA  NA   NA   NA   NA   NA   NA  NA   QLD -26.4139
+    ##        lon
+    ## 1 139.3472
+    ## 2 139.9039
+    ## 3 153.1292
+    ## 4 152.3230
+    ## 5 145.7458
+    ## 6 146.2558
 
 Meta
 ----
