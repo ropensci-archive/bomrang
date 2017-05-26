@@ -6,8 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Fetches Australian Government Bureau of Meteorology (BOM) weather data files
-and returns a tidy data frame of the data. — bomrang • bomrang</title>
+<title>Current weather observations of a station — get_current_weather • bomrang</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -80,35 +79,77 @@ and returns a tidy data frame of the data. — bomrang • bomrang</title>
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Fetches Australian Government Bureau of Meteorology (BOM) weather data files
-and returns a tidy data frame of the data.</h1>
+    <h1>Current weather observations of a station</h1>
     </div>
 
     
-    <p>Fetches Australian Government Bureau of Meteorology (BOM) weather data files
-and returns a tidy data frame of the data.</p>
+    <p>Current weather observations of a station</p>
     
 
-        
-    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+    <pre class="usage"><span class='fu'>get_current_weather</span>(<span class='no'>station_name</span>, <span class='kw'>latlon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>emit_latlon_msg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>station_name</th>
+      <td><p>The name of the weather station. Fuzzy string matching
+via <code>base::agrep</code> is done.</p></td>
+    </tr>
+    <tr>
+      <th>latlon</th>
+      <td><p>A length-2 numeric vector. When given instead of
+<code>station_name</code>, the nearest station (in this package) is used, with a
+message indicating the nearest such station. (See also
+ <code><a href='sweep_for_stations.html'>sweep_for_stations</a></code>.) Ignored if used in combination with
+<code>station_name</code>, with a warning.</p></td>
+    </tr>
+    <tr>
+      <th>raw</th>
+      <td><p>Do not convert the columns <code>data.table</code> to the appropriate
+classes. (<code>FALSE</code> by default.)</p></td>
+    </tr>
+    <tr>
+      <th>emit_latlon_msg</th>
+      <td><p>Logical. If <code>TRUE</code> (the default), and
+<code>latlon</code> is selected, a message is emitted before the table is returned
+indicating which station was actually used (i.e. which station was found to
+be nearest to the given coordinate).</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p><strong>Useful links:</strong></p><ul>
-<li><p><a href = 'https://github.com/ToowoombaTrio/bomrang'>https://github.com/ToowoombaTrio/bomrang</a></p></li>
-<li><p>Report bugs at <a href = 'https://github.com/ToowoombaTrio/bomrang/issues'>https://github.com/ToowoombaTrio/bomrang/issues</a></p></li>
-</ul>
+    <p>Note that the column <code>local_date_time_full</code> is set to a
+<code>POSIXct</code> object in the local time of the <strong>user</strong>.</p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>not_run</span>({
+    <span class='co'># warning</span>
+    <span class='no'>Melbourne_weather</span> <span class='kw'>&lt;-</span> <span class='fu'>get_current_weather</span>(<span class='st'>"Melbourne"</span>)
+
+    <span class='co'># no warning</span>
+    <span class='no'>Melbourne_weather</span> <span class='kw'>&lt;-</span> <span class='fu'>get_current_weather</span>(<span class='st'>"Melbourne (Olympic Park)"</span>)
+
+    <span class='co'># Get weather by latitude and longitude:</span>
+    <span class='fu'>get_current_weather</span>(<span class='kw'>latlon</span> <span class='kw'>=</span> <span class='fu'>c</span>(-<span class='fl'>34</span>, <span class='fl'>151</span>))
+})</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#see-also">See also</a></li>
-          </ul>
+      <li><a href="#details">Details</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
     <h2>Author</h2>
     
-Adam H Sparks and Hugh Parsonage and Keith Pembleton
+Hugh Parsonage, <a href='mailto:hugh.parsonage@gmail.com'>hugh.parsonage@gmail.com</a>
 
   </div>
 </div>
