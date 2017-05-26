@@ -29,7 +29,6 @@
 #' }
 #' @author Hugh Parsonage, \email{hugh.parsonage@gmail.com}
 #' @import data.table
-#' @importFrom lubridate ymd_hms
 #' @importFrom magrittr use_series
 #' @export get_current_weather
 
@@ -139,12 +138,18 @@ get_current_weather <-
       # CRAN NOTE avoidance
       local_date_time_full <- NULL
       if ("local_date_time_full" %chin% DTnoms) {
-        DT[, local_date_time_full := ymd_hms(local_date_time_full, tz = "")]
+        DT[, local_date_time_full := as.POSIXct(local_date_time_full,
+                                                origin = "1970-1-1",
+                                              format = "%Y-%m-%d %H:%M:%OS",
+                                              tz = "")]
       }
 
       aifstime_utc <- NULL
       if ("aifstime_utc" %chin% DTnoms) {
-        DT[, aifstime_utc := ymd_hms(aifstime_utc)]
+        DT[, aifstime_utc := as.POSIXct(aifstime_utc,
+                                      origin = "1970-1-1",
+                                      format = "%Y-%m-%d %H:%M:%OS",
+                                      tz = "GMT")]
       }
 
       for (j in which(DTnoms %chin% double_cols)) {

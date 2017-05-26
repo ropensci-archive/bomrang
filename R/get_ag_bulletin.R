@@ -219,7 +219,7 @@ get_ag_bulletin <- function(state = NULL) {
       location <- data.frame(t(location))
     }
 
-    # put everything back together into a data frame
+    # put everything back together into a data frame ---------------------------
     row.names(location) <- NULL
     out <- data.frame(location, attrs, value)
     row.names(out) <- NULL
@@ -227,15 +227,18 @@ get_ag_bulletin <- function(state = NULL) {
     out$site <- as.character(out$site)
     out$value <- as.numeric(as.character(out$value))
 
-    # convert dates to POSIXct
+    # convert dates to POSIXct -------------------------------------------------
     out[, 1:2] <- apply(out[, 1:2], 2, function(x) chartr("T", " ", x))
-    out[, 1] <- lubridate::ymd_hm(out[, 1], tz = "")
-    out[, 2] <- lubridate::ymd_hm(out[, 2], tz = "UTC")
+
+    out[, 1] <- as.POSIXct(out[, 1], origin = "1970-1-1",
+                          format = "%Y%m%d %H%M", tz = "")
+    out[, 2] <- as.POSIXct(out[, 2],  origin = "1970-1-1",
+                          format = "%Y%m%d %H%M", tz = "GMT")
 
     # spread from long to wide
     out <- tidyr::spread(out, key = attrs, value = value)
 
-    # some stations don't report all values, insert/remove as necessary
+    # some stations don't report all values, insert/remove as necessary --------
     if ("<NA>" %in% colnames(out)) {
       out$`<NA>` <- NULL
     }

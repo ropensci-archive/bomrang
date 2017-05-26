@@ -134,7 +134,7 @@ get_precis_forecast <- function(state = NULL) {
     `start-time-utc` <- precis <- probability_of_precipitation <-
     PT_NAME <- end_time_local <- end_time_utc <- lower_prec_limit <-
     start_time_local <- start_time_utc <- maximum_temperature <-
-    minimum_temperature <- NULL
+    minimum_temperature <- UTC_offset_drop <- NULL
 
   # load BOM location data ---------------------------------------------------
   utils::data("AAC_codes", package = "bomrang")
@@ -186,9 +186,13 @@ get_precis_forecast <- function(state = NULL) {
 
   out$probability_of_precipitation <-
     gsub("%", "", paste(out$probability_of_precipitation))
+
+  # remove the "T" from the date/time columns
   out[, c(3:4, 6:7)] <-
     apply(out[, c(3:4, 6:7)], 2, function(x)
       chartr("T", " ", x))
+
+  # remove the "Z" from start_time_utc
   out[, 6:7] <-
     apply(out[, 6:7], 2, function(x)
       chartr("Z", " ", x))
@@ -196,8 +200,7 @@ get_precis_forecast <- function(state = NULL) {
   # convert dates to POSIXct ---------------------------------------------------
   out[, c(3:4, 6:7)] <-
     lapply(out[, c(3:4, 6:7)], function(x)
-      lubridate::ymd_hms(x))
-  out[, 5] <- lubridate::hm(out[, 5])
+      as.POSIXct(x, origin = "1970-1-1", format = "%Y-%m-%d %H:%M:%OS"))
 
   # split precipitation forecast values into lower/upper limits --------------
 

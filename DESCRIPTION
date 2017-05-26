@@ -20,7 +20,6 @@ Imports:
     data.table,
     dplyr,
     foreign,
-    lubridate,
     magrittr,
     plyr,
     readr,
