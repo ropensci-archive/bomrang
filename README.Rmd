@@ -98,7 +98,7 @@ This function only takes one parameter, `state`. The `state` parameter allows th
 
 #### Results
 
-The function, `get_bulletin()` will return a tidy data frame of the agriculture bulletin with the following fields,
+The function, `get_ag_bulletin()` will return a tidy data frame of the agriculture bulletin with the following fields,
 
 * **obs_time_utc** - Observation time (Time in UTC)  
 * **time_zone** - Time zone for observation  
