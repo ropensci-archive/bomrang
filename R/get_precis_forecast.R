@@ -1,14 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
 #' Get BOM Daily Précis Forecast
 #'
 #'Fetch the BOM daily précis forecast and return a tidy data frame of the daily
@@ -156,12 +146,25 @@ get_precis_forecast <- function(state = NULL) {
     stop(
       "\nThe server with the forecast is not responding. Please retry again later.\n"
     ))
+
   areas <-
     xml2::xml_find_all(xmlforecast, ".//*[@type='location']")
   xml2::xml_find_all(areas, ".//*[@type='forecast_icon_code']") %>%
     xml2::xml_remove()
 
   out <- plyr::ldply(.data = areas, .fun = .parse_areas)
+
+  # convert dates to POSIXct
+  out[, 3:6] <- apply(out[, 3:6], 2, function(x) chartr("T", " ", x))
+  out <-
+    out %>%
+    tidyr::separate(`end-time-local`, into = c("end_time_local", "UTC_offset"), sep = "\\+")
+
+  out[, 5:6] <- apply(out[, 5:6], 2, function(x) gsub("Z", "", x))
+  out[, 3] <- gsub(".{6}$", "", out$`start-time-local`)
+
+  out[, 3:4] <- lubridate::ymd_hms(out[, 3:4], tz = "")
+  out[, ] <- lubridate::ymd_hms(out[, 2], tz = "UTC")
 
   # This is the actual returned value for the main function. The functions
   # below chunk the xml into locations and then days, this assembles into

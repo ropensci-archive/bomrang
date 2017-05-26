@@ -228,8 +228,7 @@ get_ag_bulletin <- function(state = NULL) {
     out$value <- as.numeric(as.character(out$value))
 
     # convert dates to POSIXct
-    out$obs.time.local <- chartr("T", " ", out$obs.time.local)
-    out$obs.time.utc <- chartr("T", " ", out$obs.time.utc)
+    out[, 1:2] <- apply(out[, 1:2], 2, function(x) chartr("T", " ", x))
     out[, 1] <- lubridate::ymd_hm(out[, 1], tz = "")
     out[, 2] <- lubridate::ymd_hm(out[, 2], tz = "UTC")
 
