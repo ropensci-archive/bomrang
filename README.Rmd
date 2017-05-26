@@ -148,41 +148,9 @@ Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
 head(Melbourne_weather)
 ```
 
-* **sort_order** - 
-* **wmo** - World Meteorological Organization (WMO) assigned a 5-character alpha-numeric station identifier  
-* **name** - Name used to identify the observation station within this product.  
-Official Bureau names may vary, particularly when a number of different types of stations are closely located.  
-Station name abbreviations:  
-    * RS: Research Station
-    * AWS: Automatic Weather Station  
-    
-* **history_product** -
-* **local_date_time** -
-* **local_date_time_full** -
-* **aifstime_utc** -
-* **lat** -
-* **lon** -
-* **apparent_t** - Steadman Apparent Temperature. May also be referred as AT in other observation products. (degrees Celsius)
-* **cloud** -
-* **cloud_type** -
-* **delta_t** - Delta-T is Wet Bulb Depression (Air Temperature - Wet Bulb Temperature).(Not included for Antarctic observations)  (degrees Celsius)
-* **gust_kmh** -
-* **gust_kt** -
-* **air_temp** -
-* **dewpt** - Temperature to which air must be cooled for dew to form. (degrees Celsius)  
-* **press** -
-* **press_msl** -
-* **press_qnh** -
-* **press_tend** -
-* **rain_trace** -
-* **rel_hum** - Relative humidity. (percent)  
-* **sea_state** -
-* **swell_dir_worded** -
-* **vis_km** -
-* **weather** -
-* **wind_dir** - Wind Direction. Direction relative to True North, from which the wind is blowing. (16 Compass Points)
-* **wind_spd_kmh** - Wind observations averaged over 10 minutes. (kilometres per hour)
-* **wind_spd_kt** - Wind observations averaged over 10 minutes. (knots)
+#### Results
+
+The function, `get_current()` will return a tidy data frame of the current and past 72 hours observations for the requested station. The fields returned will vary between stations dependent upon the data that they provide. See the [BOM website](http://www.bom.gov.au/catalogue/observations/about-weather-observations.shtml) for more information.
 
 ## Meta
 

@@ -3,7 +3,7 @@
 *bomrang*: Fetch Australian Government Bureau of Meteorology (BOM) Data
 =======================================================================
 
-[![Travis-CI Build Status](https://travis-ci.org/ToowoombaTrio/bomrang.svg?branch=master)](https://travis-ci.org/ToowoombaTrio/bomrang) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ToowoombaTrio/bomrang?branch=master&svg=true)](https://ci.appveyor.com/project/ToowoombaTrio/bomrang) [![Coverage Status](https://img.shields.io/codecov/c/github/ToowoombaTrio/bomrang/master.svg)](https://codecov.io/github/ToowoombaTrio/bomrang?branch=master) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--05--24-brightgreen.svg)](https://github.com/toowoombatrio/bomrang/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) [![DOI](https://zenodo.org/badge/89690315.svg)](https://zenodo.org/badge/latestdoi/89690315)
+[![Travis-CI Build Status](https://travis-ci.org/ToowoombaTrio/bomrang.svg?branch=master)](https://travis-ci.org/ToowoombaTrio/bomrang) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ToowoombaTrio/bomrang?branch=master&svg=true)](https://ci.appveyor.com/project/ToowoombaTrio/bomrang) [![Coverage Status](https://img.shields.io/codecov/c/github/ToowoombaTrio/bomrang/master.svg)](https://codecov.io/github/ToowoombaTrio/bomrang?branch=master) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--05--26-brightgreen.svg)](https://github.com/toowoombatrio/bomrang/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) [![DOI](https://zenodo.org/badge/89690315.svg)](https://zenodo.org/badge/latestdoi/89690315)
 
 Fetches Australian Government Bureau of Meteorology data and returns a tidy data frame.
 
@@ -73,33 +73,33 @@ head(QLD_forecast)
 ```
 
     ##         aac index          start_time_local            end_time_local
-    ## 1 QLD_PT038     0 2017-05-24T17:00:00+10:00 2017-05-25T00:00:00+10:00
-    ## 2 QLD_PT038     1 2017-05-25T00:00:00+10:00 2017-05-26T00:00:00+10:00
-    ## 3 QLD_PT038     2 2017-05-26T00:00:00+10:00 2017-05-27T00:00:00+10:00
-    ## 4 QLD_PT038     3 2017-05-27T00:00:00+10:00 2017-05-28T00:00:00+10:00
-    ## 5 QLD_PT038     4 2017-05-28T00:00:00+10:00 2017-05-29T00:00:00+10:00
-    ## 6 QLD_PT038     5 2017-05-29T00:00:00+10:00 2017-05-30T00:00:00+10:00
+    ## 1 QLD_PT038     0 2017-05-26T05:00:00+10:00 2017-05-27T00:00:00+10:00
+    ## 2 QLD_PT038     1 2017-05-27T00:00:00+10:00 2017-05-28T00:00:00+10:00
+    ## 3 QLD_PT038     2 2017-05-28T00:00:00+10:00 2017-05-29T00:00:00+10:00
+    ## 4 QLD_PT038     3 2017-05-29T00:00:00+10:00 2017-05-30T00:00:00+10:00
+    ## 5 QLD_PT038     4 2017-05-30T00:00:00+10:00 2017-05-31T00:00:00+10:00
+    ## 6 QLD_PT038     5 2017-05-31T00:00:00+10:00 2017-06-01T00:00:00+10:00
     ##         start_time_utc         end_time_utc maximum_temperature
-    ## 1 2017-05-24T07:00:00Z 2017-05-24T14:00:00Z                  NA
-    ## 2 2017-05-24T14:00:00Z 2017-05-25T14:00:00Z                  24
-    ## 3 2017-05-25T14:00:00Z 2017-05-26T14:00:00Z                  24
-    ## 4 2017-05-26T14:00:00Z 2017-05-27T14:00:00Z                  24
-    ## 5 2017-05-27T14:00:00Z 2017-05-28T14:00:00Z                  25
-    ## 6 2017-05-28T14:00:00Z 2017-05-29T14:00:00Z                  26
+    ## 1 2017-05-25T19:00:00Z 2017-05-26T14:00:00Z                  24
+    ## 2 2017-05-26T14:00:00Z 2017-05-27T14:00:00Z                  24
+    ## 3 2017-05-27T14:00:00Z 2017-05-28T14:00:00Z                  25
+    ## 4 2017-05-28T14:00:00Z 2017-05-29T14:00:00Z                  26
+    ## 5 2017-05-29T14:00:00Z 2017-05-30T14:00:00Z                  23
+    ## 6 2017-05-30T14:00:00Z 2017-05-31T14:00:00Z                  22
     ##   minimum_temperature lower_prec_limit upper_prec_limit           precis
-    ## 1                  NA               NA             <NA>           Clear.
-    ## 2                  11                0                0    Mostly sunny.
-    ## 3                   9                0                0    Mostly sunny.
-    ## 4                   9                0              0.4 Possible shower.
-    ## 5                  10                0                0   Partly cloudy.
-    ## 6                  11                0                0           Sunny.
+    ## 1                  NA               NA             <NA>   Partly cloudy.
+    ## 2                   9                0              0.4 Possible shower.
+    ## 3                   9                0                0   Partly cloudy.
+    ## 4                  10                0                0           Sunny.
+    ## 5                   7                0                0           Sunny.
+    ## 6                   7                0                0           Sunny.
     ##   probability_of_precipitation   location state      lon      lat elev
-    ## 1                            0 Beaudesert   QLD 152.9898 -27.9707 48.2
-    ## 2                            0 Beaudesert   QLD 152.9898 -27.9707 48.2
-    ## 3                           20 Beaudesert   QLD 152.9898 -27.9707 48.2
-    ## 4                           30 Beaudesert   QLD 152.9898 -27.9707 48.2
-    ## 5                           20 Beaudesert   QLD 152.9898 -27.9707 48.2
-    ## 6                           10 Beaudesert   QLD 152.9898 -27.9707 48.2
+    ## 1                            5 Beaudesert   QLD 152.9898 -27.9707 48.2
+    ## 2                           30 Beaudesert   QLD 152.9898 -27.9707 48.2
+    ## 3                           10 Beaudesert   QLD 152.9898 -27.9707 48.2
+    ## 4                            5 Beaudesert   QLD 152.9898 -27.9707 48.2
+    ## 5                            0 Beaudesert   QLD 152.9898 -27.9707 48.2
+    ## 6                            0 Beaudesert   QLD 152.9898 -27.9707 48.2
 
 ### Using `get_ag_bulletin()`
 
@@ -117,7 +117,7 @@ This function only takes one parameter, `state`. The `state` parameter allows th
 
 #### Results
 
-The function, `get_bulletin()` will return a tidy data frame of the agriculture bulletin with the following fields,
+The function, `get_ag_bulletin()` will return a tidy data frame of the agriculture bulletin with the following fields,
 
 -   **obs\_time\_utc** - Observation time (Time in UTC)
 -   **time\_zone** - Time zone for observation
@@ -147,20 +147,20 @@ QLD_bulletin <- get_ag_bulletin(state = "QLD")
 head(QLD_bulletin)
 ```
 
-    ##   obs_time_local  obs_time_utc time_zone  site               name   r   tn
-    ## 1  20170524T0900 20170523T2300       EST 38026 BIRDSVILLE AIRPORT 0.0 14.2
-    ## 2  20170524T0900 20170523T2300       EST 38003     BOULIA AIRPORT 0.0 17.9
-    ## 3  20170524T0900 20170523T2300       EST 40842      BRISBANE AERO 0.2 15.2
-    ## 4  20170524T0900 20170523T2300       EST 39128     BUNDABERG AERO 0.2 14.3
-    ## 5  20170524T0900 20170523T2300       EST 31011        CAIRNS AERO 9.0 21.7
-    ## 6  20170524T0900 20170523T2300       EST 44021   CHARLEVILLE AERO 0.0 13.2
+    ##   obs_time_local  obs_time_utc time_zone  site               name r   tn
+    ## 1  20170526T0900 20170525T2300       EST 38026 BIRDSVILLE AIRPORT 0  8.9
+    ## 2  20170526T0900 20170525T2300       EST 38003     BOULIA AIRPORT 0 11.0
+    ## 3  20170526T0900 20170525T2300       EST 40842      BRISBANE AERO 0 12.7
+    ## 4  20170526T0900 20170525T2300       EST 39128     BUNDABERG AERO 0 14.1
+    ## 5  20170526T0900 20170525T2300       EST 31011        CAIRNS AERO 0 21.7
+    ## 6  20170526T0900 20170525T2300       EST 44021   CHARLEVILLE AERO 0  6.0
     ##     tx twd  ev   tg  sn   t5  t10  t20  t50  t1m  wr state      lat
-    ## 1 31.3 6.3  NA   NA  NA   NA   NA   NA   NA   NA  NA   QLD -25.8975
-    ## 2 33.0 8.0 8.0 16.7  NA   NA   NA   NA   NA   NA  NA   QLD -22.9117
-    ## 3 24.2 0.4 2.6 12.0 9.8 20.0 20.0 20.0 21.0 22.0 128   QLD -27.3917
-    ## 4 27.2 1.6  NA   NA  NA 19.6 20.1 21.2 20.8 22.7  NA   QLD -24.9069
-    ## 5 29.4 2.7  NA   NA  NA   NA   NA   NA   NA   NA  NA   QLD -16.8736
-    ## 6 28.7 5.3  NA   NA  NA   NA   NA   NA   NA   NA  NA   QLD -26.4139
+    ## 1 25.2 4.0  NA   NA  NA   NA   NA   NA   NA   NA  NA   QLD -25.8975
+    ## 2 30.4 6.1 9.2  8.7  NA   NA   NA   NA   NA   NA  NA   QLD -22.9117
+    ## 3 24.0 3.2 3.6 11.1 9.5 18.0 19.0 20.0 21.0 22.0 213   QLD -27.3917
+    ## 4 26.0 2.6  NA   NA  NA 18.9 19.5 20.7 20.3 22.6  NA   QLD -24.9069
+    ## 5 27.9 4.0  NA   NA  NA   NA   NA   NA   NA   NA  NA   QLD -16.8736
+    ## 6 24.5 5.4  NA   NA  NA   NA   NA   NA   NA   NA  NA   QLD -26.4139
     ##        lon
     ## 1 139.3472
     ## 2 139.9039
@@ -198,68 +198,37 @@ head(Melbourne_weather)
     ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
     ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
     ##   local_date_time local_date_time_full        aifstime_utc   lat lon
-    ## 1      24/08:00pm  2017-05-24 20:00:00 2017-05-24 10:00:00 -37.8 145
-    ## 2      24/07:30pm  2017-05-24 19:30:00 2017-05-24 09:30:00 -37.8 145
-    ## 3      24/07:00pm  2017-05-24 19:00:00 2017-05-24 09:00:00 -37.8 145
-    ## 4      24/06:30pm  2017-05-24 18:30:00 2017-05-24 08:30:00 -37.8 145
-    ## 5      24/06:00pm  2017-05-24 18:00:00 2017-05-24 08:00:00 -37.8 145
-    ## 6      24/05:30pm  2017-05-24 17:30:00 2017-05-24 07:30:00 -37.8 145
+    ## 1      26/03:00pm  2017-05-26 15:00:00 2017-05-26 05:00:00 -37.8 145
+    ## 2      26/02:30pm  2017-05-26 14:30:00 2017-05-26 04:30:00 -37.8 145
+    ## 3      26/02:00pm  2017-05-26 14:00:00 2017-05-26 04:00:00 -37.8 145
+    ## 4      26/01:30pm  2017-05-26 13:30:00 2017-05-26 03:30:00 -37.8 145
+    ## 5      26/01:00pm  2017-05-26 13:00:00 2017-05-26 03:00:00 -37.8 145
+    ## 6      26/12:30pm  2017-05-26 12:30:00 2017-05-26 02:30:00 -37.8 145
     ##   apparent_t cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt
-    ## 1       13.3     -          -     3.9       11       6     15.1   7.2
-    ## 2       13.4     -          -     4.1       11       6     15.3   6.8
-    ## 3       12.9     -          -     4.4       17       9     15.4   6.4
-    ## 4       13.4     -          -     4.2       15       8     15.3   6.6
-    ## 5       13.4     -          -     4.1       13       7     15.3   6.8
-    ## 6       13.1     -          -     4.2       15       8     15.2   6.5
+    ## 1       15.2     -          -     4.4       11       6     16.9   8.3
+    ## 2       16.0     -          -     4.8        9       5     17.7   8.3
+    ## 3       14.8     -          -     4.5        7       4     16.5   7.4
+    ## 4       15.1     -          -     4.2        6       3     16.0   7.7
+    ## 5       13.1     -          -     3.9       11       6     14.9   7.0
+    ## 6       13.3     -          -     3.0       15       8     14.8   9.0
     ##    press press_msl press_qnh press_tend rain_trace rel_hum sea_state
-    ## 1 1019.6    1019.6    1019.6          -          0      59         -
-    ## 2 1019.4    1019.4    1019.4          -          0      57         -
-    ## 3 1019.1    1019.1    1019.1          -          0      55         -
-    ## 4 1019.0    1019.0    1019.0          -          0      56         -
-    ## 5 1018.7    1018.7    1018.7          -          0      57         -
-    ## 6 1018.4    1018.4    1018.4          -          0      56         -
+    ## 1 1019.3    1019.3    1019.3          -          0      57         -
+    ## 2 1019.8    1019.8    1019.8          -          0      54         -
+    ## 3 1020.1    1020.1    1020.1          -          0      55         -
+    ## 4 1020.6    1020.6    1020.6          -          0      58         -
+    ## 5 1020.9    1020.9    1020.9          -          0      59         -
+    ## 6 1021.5    1021.5    1021.5          -          0      68         -
     ##   swell_dir_worded vis_km weather wind_dir wind_spd_kmh wind_spd_kt
-    ## 1                -     10       -      WSW            6           3
-    ## 2                -     10       -      WSW            6           3
-    ## 3                -     10       -        W            9           5
-    ## 4                -     10       -        W            6           3
-    ## 5                -     10       -      WNW            6           3
-    ## 6                -     10       -        W            7           4
+    ## 1                -     10       -      SSW            7           4
+    ## 2                -     10       -      SSW            7           4
+    ## 3                -     10       -      SSE            6           3
+    ## 4                -     10       -      SSW            2           1
+    ## 5                -     10       -        S            6           3
+    ## 6                -     10       -      SSW            7           4
 
--   **sort\_order** -
--   **wmo** -
--   **name** - Name used to identify the observation station within this product.
-    Official Bureau names may vary, particularly when a number of different types of stations are closely located.
-    Station name abbreviations:
-    -   RS: Research Station
-    -   AWS: Automatic Weather Station
--   **history\_product** -
--   **local\_date\_time** -
--   **local\_date\_time\_full** -
--   **aifstime\_utc** -
--   **lat** -
--   **lon** -
--   **apparent\_t** -
--   **cloud** -
--   **cloud\_type** -
--   **delta\_t** -
--   **gust\_kmh** -
--   **gust\_kt** -
--   **air\_temp** -
--   **dewpt** -
--   **press** -
--   **press\_msl** -
--   **press\_qnh** -
--   **press\_tend** -
--   **rain\_trace** -
--   **rel\_hum** -
--   **sea\_state** -
--   **swell\_dir\_worded** -
--   **vis\_km** -
--   **weather** -
--   **wind\_dir** -
--   **wind\_spd\_kmh** -
--   **wind\_spd\_kt** -
+#### Results
+
+The function, `get_current()` will return a tidy data frame of the current and past 72 hours observations for the requested station. The fields returned will vary between stations dependent upon the data that they provide. See the [BOM website](http://www.bom.gov.au/catalogue/observations/about-weather-observations.shtml) for more information.
 
 Meta
 ----
