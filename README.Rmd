@@ -57,6 +57,7 @@ The function, `get_precis_forecast()` will return a tidy data frame of the weath
 * **aac** - AMOC Area Code, _e.g._, WA_MW008, a unique identifier for each location  
 * **start_time_local** - Start of forecast date and time in local TZ  
 * **end_time_local** - End of forecast date and time in local TZ  
+* **UTC_offset** -  Hours offset from difference in hours and minutes from Coordinated Universal Time (UTC) for `start_time_local` and `end_time_local`
 * **start_time_utc** - Start of forecast date and time in UTC  
 * **end_time_utc** - End of forecast date and time in UTC  
 * **max_temp** - Maximum forecasted temperature (degrees Celsius)  
