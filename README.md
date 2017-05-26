@@ -40,7 +40,7 @@ This function only takes one parameter, `state`. States are specified using the 
 -   **WA** - Western Australia
 -   **AUS** - Australia, returns national forecast including all states
 
-### Results
+#### Results
 
 The function, `get_precis_forecast()` will return a tidy data frame of the weather forecast for the daily forecast with the following fields,
 
@@ -74,12 +74,12 @@ head(QLD_forecast)
 ```
 
     ##         aac index    start_time_local end_time_local UTC_offset
-    ## 1 QLD_PT038     0 2017-05-26 17:00:00     2017-05-27  10H 0M 0S
-    ## 2 QLD_PT038     1 2017-05-27 00:00:00     2017-05-28  10H 0M 0S
-    ## 3 QLD_PT038     2 2017-05-28 00:00:00     2017-05-29  10H 0M 0S
-    ## 4 QLD_PT038     3 2017-05-29 00:00:00     2017-05-30  10H 0M 0S
-    ## 5 QLD_PT038     4 2017-05-30 00:00:00     2017-05-31  10H 0M 0S
-    ## 6 QLD_PT038     5 2017-05-31 00:00:00     2017-06-01  10H 0M 0S
+    ## 1 QLD_PT038     0 2017-05-26 17:00:00     2017-05-27      10:00
+    ## 2 QLD_PT038     1 2017-05-27 00:00:00     2017-05-28      10:00
+    ## 3 QLD_PT038     2 2017-05-28 00:00:00     2017-05-29      10:00
+    ## 4 QLD_PT038     3 2017-05-29 00:00:00     2017-05-30      10:00
+    ## 5 QLD_PT038     4 2017-05-30 00:00:00     2017-05-31      10:00
+    ## 6 QLD_PT038     5 2017-05-31 00:00:00     2017-06-01      10:00
     ##        start_time_utc        end_time_utc maximum_temperature
     ## 1 2017-05-26 07:00:00 2017-05-26 14:00:00                  NA
     ## 2 2017-05-26 14:00:00 2017-05-27 14:00:00                  24
@@ -198,34 +198,34 @@ head(Melbourne_weather)
     ## 4          3 95936 Melbourne (Olympic Park)        IDV60801
     ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
     ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
-    ##   local_date_time local_date_time_full        aifstime_utc   lat lon
-    ## 1      26/06:00pm  2017-05-26 18:00:00 2017-05-26 08:00:00 -37.8 145
-    ## 2      26/05:30pm  2017-05-26 17:30:00 2017-05-26 07:30:00 -37.8 145
-    ## 3      26/05:00pm  2017-05-26 17:00:00 2017-05-26 07:00:00 -37.8 145
-    ## 4      26/04:30pm  2017-05-26 16:30:00 2017-05-26 06:30:00 -37.8 145
-    ## 5      26/04:00pm  2017-05-26 16:00:00 2017-05-26 06:00:00 -37.8 145
-    ## 6      26/03:30pm  2017-05-26 15:30:00 2017-05-26 05:30:00 -37.8 145
-    ##   apparent_t cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt
-    ## 1       12.2     -          -     1.8        0       0     12.5   8.8
-    ## 2       12.8     -          -     2.2        0       0     13.1   8.8
-    ## 3       13.9     -          -     3.2        0       0     14.4   7.9
-    ## 4       13.7     -          -     3.5        7       4     14.6   7.6
-    ## 5       13.1     -          -     3.7       13       7     15.0   7.5
-    ## 6       13.9     -          -     3.9       13       7     15.7   8.0
-    ##    press press_msl press_qnh press_tend rain_trace rel_hum sea_state
-    ## 1 1019.6    1019.6    1019.6          -          0      78         -
-    ## 2 1019.6    1019.6    1019.6          -          0      75         -
-    ## 3 1019.5    1019.5    1019.5          -          0      65         -
-    ## 4 1019.5    1019.5    1019.5          -          0      63         -
-    ## 5 1019.5    1019.5    1019.5          -          0      61         -
-    ## 6 1019.6    1019.6    1019.6          -          0      60         -
+    ##   local_date_time local_date_time_full aifstime_utc   lat lon apparent_t
+    ## 1      26/10:30pm                 <NA>         <NA> -37.8 145       11.0
+    ## 2      26/10:00pm                 <NA>         <NA> -37.8 145       11.2
+    ## 3      26/09:30pm                 <NA>         <NA> -37.8 145       11.4
+    ## 4      26/09:00pm                 <NA>         <NA> -37.8 145       12.0
+    ## 5      26/08:30pm                 <NA>         <NA> -37.8 145       12.2
+    ## 6      26/08:00pm                 <NA>         <NA> -37.8 145       12.2
+    ##   cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt  press
+    ## 1     -          -     1.3       15       8     12.9  10.4 1019.8
+    ## 2     -          -     1.3       17       9     13.1  10.6 1019.9
+    ## 3     -          -     1.4       13       7     13.0  10.2 1019.9
+    ## 4     -          -     1.7       11       6     13.3   9.9 1019.9
+    ## 5     -          -     1.9       13       7     13.8  10.2 1019.9
+    ## 6     -          -     2.1       15       8     13.9   9.9 1019.8
+    ##   press_msl press_qnh press_tend rain_trace rel_hum sea_state
+    ## 1    1019.8    1019.8          -          0      85         -
+    ## 2    1019.9    1019.9          -          0      85         -
+    ## 3    1019.9    1019.9          -          0      83         -
+    ## 4    1019.9    1019.9          -          0      80         -
+    ## 5    1019.9    1019.9          -          0      79         -
+    ## 6    1019.8    1019.8          -          0      77         -
     ##   swell_dir_worded vis_km weather wind_dir wind_spd_kmh wind_spd_kt
-    ## 1                -     10       -     CALM            0           0
-    ## 2                -     10       -     CALM            0           0
-    ## 3                -     10       -     CALM            0           0
-    ## 4                -     10       -       SW            2           1
-    ## 5                -     10       -       SW            7           4
-    ## 6                -     10       -      WSW            7           4
+    ## 1                -     10       -        N           11           6
+    ## 2                -     10       -        N           11           6
+    ## 3                -     10       -      NNE            9           5
+    ## 4                -     10       -        N            7           4
+    ## 5                -     10       -        N            9           5
+    ## 6                -     10       -        N            9           5
 
 #### Results
 

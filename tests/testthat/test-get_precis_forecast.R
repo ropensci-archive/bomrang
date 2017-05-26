@@ -4,7 +4,7 @@ context("get_precis_forecast")
 test_that("get_precis_forecast returns 17 columns", {
   skip_on_cran()
   BOM_forecast <- get_precis_forecast(state = "QLD")
-  expect_equal(ncol(BOM_forecast), 17)
+  expect_equal(ncol(BOM_forecast), 18)
   expect_named(
     BOM_forecast,
     c(

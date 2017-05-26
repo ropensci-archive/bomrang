@@ -50,7 +50,7 @@ This function only takes one parameter, `state`. States are specified using the 
 * **WA** - Western Australia  
 * **AUS** - Australia, returns national forecast including all states  
 
-### Results
+#### Results
 
 The function, `get_precis_forecast()` will return a tidy data frame of the weather forecast for the daily forecast with the following fields,
 
