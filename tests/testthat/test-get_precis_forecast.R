@@ -83,7 +83,7 @@ test_that("get_precis_forecast returns the forecast for WA", {
 test_that("get_precis_forecast returns the forecast for AUS", {
   skip_on_cran()
   BOM_forecast <- as.data.frame(get_precis_forecast(state = "AUS"))
-  expect_equal(unique(BOM_forecast[, 14]),
+  expect_equal(unique(BOM_forecast[, 15]),
                c("NT", "NSW", "QLD", "SA", "TAS", "VIC", "WA"))
 })
 
