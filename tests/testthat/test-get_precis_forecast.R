@@ -12,6 +12,7 @@ test_that("get_precis_forecast returns 17 columns", {
       "index",
       "start_time_local",
       "end_time_local",
+      "UTC_offset",
       "start_time_utc",
       "end_time_utc",
       "maximum_temperature",
@@ -34,49 +35,49 @@ test_that("get_precis_forecast returns 17 columns", {
 test_that("get_precis_forecast returns the forecast for ACT/NSW", {
   skip_on_cran()
   BOM_forecast <- as.data.frame(get_precis_forecast(state = "ACT"))
-  expect_equal(BOM_forecast[1, 14], "NSW")
+  expect_equal(BOM_forecast[1, 15], "NSW")
 })
 
 test_that("get_precis_forecast returns the forecast for ACT/NSW", {
   skip_on_cran()
   BOM_forecast <- as.data.frame(get_precis_forecast(state = "NSW"))
-  expect_equal(BOM_forecast[1, 14], "NSW")
+  expect_equal(BOM_forecast[1, 15], "NSW")
 })
 
 test_that("get_precis_forecast returns the forecast for NT", {
   skip_on_cran()
   BOM_forecast <- as.data.frame(get_precis_forecast(state = "NT"))
-  expect_equal(BOM_forecast[1, 14], "NT")
+  expect_equal(BOM_forecast[1, 15], "NT")
 })
 
 test_that("get_precis_forecast returns the forecast for QLD", {
   skip_on_cran()
   BOM_forecast <- as.data.frame(get_precis_forecast(state = "QLD"))
-  expect_equal(BOM_forecast[1, 14], "QLD")
+  expect_equal(BOM_forecast[1, 15], "QLD")
 })
 
 test_that("get_precis_forecast returns the forecast for SA", {
   skip_on_cran()
   BOM_forecast <- as.data.frame(get_precis_forecast(state = "SA"))
-  expect_equal(BOM_forecast[1, 14], "SA")
+  expect_equal(BOM_forecast[1, 15], "SA")
 })
 
 test_that("get_precis_forecast returns the forecast for TAS", {
   skip_on_cran()
   BOM_forecast <- as.data.frame(get_precis_forecast(state = "TAS"))
-  expect_equal(BOM_forecast[1, 14], "TAS")
+  expect_equal(BOM_forecast[1, 15], "TAS")
 })
 
 test_that("get_precis_forecast returns the forecast for VIC", {
   skip_on_cran()
   BOM_forecast <- as.data.frame(get_precis_forecast(state = "VIC"))
-  expect_equal(BOM_forecast[1, 14], "VIC")
+  expect_equal(BOM_forecast[1, 15], "VIC")
 })
 
 test_that("get_precis_forecast returns the forecast for WA", {
   skip_on_cran()
   BOM_forecast <- as.data.frame(get_precis_forecast(state = "WA"))
-  expect_equal(BOM_forecast[1, 14], "WA")
+  expect_equal(BOM_forecast[1, 15], "WA")
 })
 
 test_that("get_precis_forecast returns the forecast for AUS", {
