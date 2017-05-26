@@ -26,7 +26,6 @@ Imports:
     reshape2,
     rjson,
     stringr,
-    tibble,
     tidyr,
     xml2
 Encoding: UTF-8
