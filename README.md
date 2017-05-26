@@ -47,6 +47,7 @@ The function, `get_precis_forecast()` will return a tidy data frame of the weath
 -   **aac** - AMOC Area Code, *e.g.*, WA\_MW008, a unique identifier for each location
 -   **start\_time\_local** - Start of forecast date and time in local TZ
 -   **end\_time\_local** - End of forecast date and time in local TZ
+-   **UTC\_offset** - Hours offset from difference in hours and minutes from Coordinated Universal Time (UTC) for `start_time_local` and `end_time_local`
 -   **start\_time\_utc** - Start of forecast date and time in UTC
 -   **end\_time\_utc** - End of forecast date and time in UTC
 -   **max\_temp** - Maximum forecasted temperature (degrees Celsius)
@@ -72,25 +73,25 @@ QLD_forecast <- get_precis_forecast(state = "QLD")
 head(QLD_forecast)
 ```
 
-    ##         aac index          start_time_local            end_time_local
-    ## 1 QLD_PT038     0 2017-05-26T05:00:00+10:00 2017-05-27T00:00:00+10:00
-    ## 2 QLD_PT038     1 2017-05-27T00:00:00+10:00 2017-05-28T00:00:00+10:00
-    ## 3 QLD_PT038     2 2017-05-28T00:00:00+10:00 2017-05-29T00:00:00+10:00
-    ## 4 QLD_PT038     3 2017-05-29T00:00:00+10:00 2017-05-30T00:00:00+10:00
-    ## 5 QLD_PT038     4 2017-05-30T00:00:00+10:00 2017-05-31T00:00:00+10:00
-    ## 6 QLD_PT038     5 2017-05-31T00:00:00+10:00 2017-06-01T00:00:00+10:00
-    ##         start_time_utc         end_time_utc maximum_temperature
-    ## 1 2017-05-25T19:00:00Z 2017-05-26T14:00:00Z                  24
-    ## 2 2017-05-26T14:00:00Z 2017-05-27T14:00:00Z                  24
-    ## 3 2017-05-27T14:00:00Z 2017-05-28T14:00:00Z                  25
-    ## 4 2017-05-28T14:00:00Z 2017-05-29T14:00:00Z                  26
-    ## 5 2017-05-29T14:00:00Z 2017-05-30T14:00:00Z                  23
-    ## 6 2017-05-30T14:00:00Z 2017-05-31T14:00:00Z                  22
+    ##         aac index    start_time_local end_time_local UTC_offset
+    ## 1 QLD_PT038     0 2017-05-26 17:00:00     2017-05-27  10H 0M 0S
+    ## 2 QLD_PT038     1 2017-05-27 00:00:00     2017-05-28  10H 0M 0S
+    ## 3 QLD_PT038     2 2017-05-28 00:00:00     2017-05-29  10H 0M 0S
+    ## 4 QLD_PT038     3 2017-05-29 00:00:00     2017-05-30  10H 0M 0S
+    ## 5 QLD_PT038     4 2017-05-30 00:00:00     2017-05-31  10H 0M 0S
+    ## 6 QLD_PT038     5 2017-05-31 00:00:00     2017-06-01  10H 0M 0S
+    ##        start_time_utc        end_time_utc maximum_temperature
+    ## 1 2017-05-26 07:00:00 2017-05-26 14:00:00                  NA
+    ## 2 2017-05-26 14:00:00 2017-05-27 14:00:00                  24
+    ## 3 2017-05-27 14:00:00 2017-05-28 14:00:00                  25
+    ## 4 2017-05-28 14:00:00 2017-05-29 14:00:00                  25
+    ## 5 2017-05-29 14:00:00 2017-05-30 14:00:00                  24
+    ## 6 2017-05-30 14:00:00 2017-05-31 14:00:00                  22
     ##   minimum_temperature lower_prec_limit upper_prec_limit           precis
-    ## 1                  NA               NA             <NA>   Partly cloudy.
-    ## 2                   9                0              0.4 Possible shower.
-    ## 3                   9                0                0   Partly cloudy.
-    ## 4                  10                0                0           Sunny.
+    ## 1                  NA               NA             <NA>    Mostly clear.
+    ## 2                  10                0              0.4 Possible shower.
+    ## 3                  10                0                0   Partly cloudy.
+    ## 4                  11                0                0           Sunny.
     ## 5                   7                0                0           Sunny.
     ## 6                   7                0                0           Sunny.
     ##   probability_of_precipitation   location state      lon      lat elev
@@ -147,27 +148,27 @@ QLD_bulletin <- get_ag_bulletin(state = "QLD")
 head(QLD_bulletin)
 ```
 
-    ##   obs_time_local  obs_time_utc time_zone  site               name r   tn
-    ## 1  20170526T0900 20170525T2300       EST 38026 BIRDSVILLE AIRPORT 0  8.9
-    ## 2  20170526T0900 20170525T2300       EST 38003     BOULIA AIRPORT 0 11.0
-    ## 3  20170526T0900 20170525T2300       EST 40842      BRISBANE AERO 0 12.7
-    ## 4  20170526T0900 20170525T2300       EST 39128     BUNDABERG AERO 0 14.1
-    ## 5  20170526T0900 20170525T2300       EST 31011        CAIRNS AERO 0 21.7
-    ## 6  20170526T0900 20170525T2300       EST 44021   CHARLEVILLE AERO 0  6.0
-    ##     tx twd  ev   tg  sn   t5  t10  t20  t50  t1m  wr state      lat
-    ## 1 25.2 4.0  NA   NA  NA   NA   NA   NA   NA   NA  NA   QLD -25.8975
-    ## 2 30.4 6.1 9.2  8.7  NA   NA   NA   NA   NA   NA  NA   QLD -22.9117
-    ## 3 24.0 3.2 3.6 11.1 9.5 18.0 19.0 20.0 21.0 22.0 213   QLD -27.3917
-    ## 4 26.0 2.6  NA   NA  NA 18.9 19.5 20.7 20.3 22.6  NA   QLD -24.9069
-    ## 5 27.9 4.0  NA   NA  NA   NA   NA   NA   NA   NA  NA   QLD -16.8736
-    ## 6 24.5 5.4  NA   NA  NA   NA   NA   NA   NA   NA  NA   QLD -26.4139
-    ##        lon
-    ## 1 139.3472
-    ## 2 139.9039
-    ## 3 153.1292
-    ## 4 152.3230
-    ## 5 145.7458
-    ## 6 146.2558
+    ##        obs_time_local        obs_time_utc time_zone  site
+    ## 1 2017-05-26 09:00:00 2017-05-25 23:00:00       EST 38026
+    ## 2 2017-05-26 09:00:00 2017-05-25 23:00:00       EST 38003
+    ## 3 2017-05-26 09:00:00 2017-05-25 23:00:00       EST 40842
+    ## 4 2017-05-26 09:00:00 2017-05-25 23:00:00       EST 39128
+    ## 5 2017-05-26 09:00:00 2017-05-25 23:00:00       EST 31011
+    ## 6 2017-05-26 09:00:00 2017-05-25 23:00:00       EST 44021
+    ##                 name r   tn   tx twd  ev   tg  sn   t5  t10  t20  t50  t1m
+    ## 1 BIRDSVILLE AIRPORT 0  8.9 25.2 4.0  NA   NA  NA   NA   NA   NA   NA   NA
+    ## 2     BOULIA AIRPORT 0 11.0 30.4 6.1 9.2  8.7  NA   NA   NA   NA   NA   NA
+    ## 3      BRISBANE AERO 0 12.7 24.0 3.2 3.6 11.1 9.5 18.0 19.0 20.0 21.0 22.0
+    ## 4     BUNDABERG AERO 0 14.1 26.0 2.6  NA   NA  NA 18.9 19.5 20.7 20.3 22.6
+    ## 5        CAIRNS AERO 0 21.7 27.9 4.0  NA   NA  NA   NA   NA   NA   NA   NA
+    ## 6   CHARLEVILLE AERO 0  6.0 24.5 5.4  NA   NA  NA   NA   NA   NA   NA   NA
+    ##    wr state      lat      lon
+    ## 1  NA   QLD -25.8975 139.3472
+    ## 2  NA   QLD -22.9117 139.9039
+    ## 3 213   QLD -27.3917 153.1292
+    ## 4  NA   QLD -24.9069 152.3230
+    ## 5  NA   QLD -16.8736 145.7458
+    ## 6  NA   QLD -26.4139 146.2558
 
 ### Using `get_current_weather()`
 
@@ -198,33 +199,33 @@ head(Melbourne_weather)
     ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
     ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
     ##   local_date_time local_date_time_full        aifstime_utc   lat lon
-    ## 1      26/03:00pm  2017-05-26 15:00:00 2017-05-26 05:00:00 -37.8 145
-    ## 2      26/02:30pm  2017-05-26 14:30:00 2017-05-26 04:30:00 -37.8 145
-    ## 3      26/02:00pm  2017-05-26 14:00:00 2017-05-26 04:00:00 -37.8 145
-    ## 4      26/01:30pm  2017-05-26 13:30:00 2017-05-26 03:30:00 -37.8 145
-    ## 5      26/01:00pm  2017-05-26 13:00:00 2017-05-26 03:00:00 -37.8 145
-    ## 6      26/12:30pm  2017-05-26 12:30:00 2017-05-26 02:30:00 -37.8 145
+    ## 1      26/06:00pm  2017-05-26 18:00:00 2017-05-26 08:00:00 -37.8 145
+    ## 2      26/05:30pm  2017-05-26 17:30:00 2017-05-26 07:30:00 -37.8 145
+    ## 3      26/05:00pm  2017-05-26 17:00:00 2017-05-26 07:00:00 -37.8 145
+    ## 4      26/04:30pm  2017-05-26 16:30:00 2017-05-26 06:30:00 -37.8 145
+    ## 5      26/04:00pm  2017-05-26 16:00:00 2017-05-26 06:00:00 -37.8 145
+    ## 6      26/03:30pm  2017-05-26 15:30:00 2017-05-26 05:30:00 -37.8 145
     ##   apparent_t cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt
-    ## 1       15.2     -          -     4.4       11       6     16.9   8.3
-    ## 2       16.0     -          -     4.8        9       5     17.7   8.3
-    ## 3       14.8     -          -     4.5        7       4     16.5   7.4
-    ## 4       15.1     -          -     4.2        6       3     16.0   7.7
-    ## 5       13.1     -          -     3.9       11       6     14.9   7.0
-    ## 6       13.3     -          -     3.0       15       8     14.8   9.0
+    ## 1       12.2     -          -     1.8        0       0     12.5   8.8
+    ## 2       12.8     -          -     2.2        0       0     13.1   8.8
+    ## 3       13.9     -          -     3.2        0       0     14.4   7.9
+    ## 4       13.7     -          -     3.5        7       4     14.6   7.6
+    ## 5       13.1     -          -     3.7       13       7     15.0   7.5
+    ## 6       13.9     -          -     3.9       13       7     15.7   8.0
     ##    press press_msl press_qnh press_tend rain_trace rel_hum sea_state
-    ## 1 1019.3    1019.3    1019.3          -          0      57         -
-    ## 2 1019.8    1019.8    1019.8          -          0      54         -
-    ## 3 1020.1    1020.1    1020.1          -          0      55         -
-    ## 4 1020.6    1020.6    1020.6          -          0      58         -
-    ## 5 1020.9    1020.9    1020.9          -          0      59         -
-    ## 6 1021.5    1021.5    1021.5          -          0      68         -
+    ## 1 1019.6    1019.6    1019.6          -          0      78         -
+    ## 2 1019.6    1019.6    1019.6          -          0      75         -
+    ## 3 1019.5    1019.5    1019.5          -          0      65         -
+    ## 4 1019.5    1019.5    1019.5          -          0      63         -
+    ## 5 1019.5    1019.5    1019.5          -          0      61         -
+    ## 6 1019.6    1019.6    1019.6          -          0      60         -
     ##   swell_dir_worded vis_km weather wind_dir wind_spd_kmh wind_spd_kt
-    ## 1                -     10       -      SSW            7           4
-    ## 2                -     10       -      SSW            7           4
-    ## 3                -     10       -      SSE            6           3
-    ## 4                -     10       -      SSW            2           1
-    ## 5                -     10       -        S            6           3
-    ## 6                -     10       -      SSW            7           4
+    ## 1                -     10       -     CALM            0           0
+    ## 2                -     10       -     CALM            0           0
+    ## 3                -     10       -     CALM            0           0
+    ## 4                -     10       -       SW            2           1
+    ## 5                -     10       -       SW            7           4
+    ## 6                -     10       -      WSW            7           4
 
 #### Results
 
