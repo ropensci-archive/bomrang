@@ -226,7 +226,7 @@ get_precis_forecast <- function(state = NULL) {
 
   # return final forecast object ---------------------------------------------
   tidy_df <-
-    dplyr::left_join(out,
+    dplyr::left_join(as.data.frame(out),
                      AAC_codes, by = c("aac" = "AAC")) %>%
     dplyr::rename(lon = LON,
                   lat = LAT,
