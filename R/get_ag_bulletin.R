@@ -1,9 +1,4 @@
 
-
-
-
-
-
 #' Get BOM Agriculture Bulletin
 #'
 #'Fetch the BOM agricultural bulletin information and return a tidy data frame
@@ -161,14 +156,9 @@ get_ag_bulletin <- function(state = NULL) {
 #' @noRd
 .parse_bulletin <- function(xmlbulletin, stations_meta) {
   # CRAN NOTE avoidance
-  obs.time.utc <-
-    obs.time.local <- time.zone <- site <- name <- r <- tn <-
-    tx <-
-    twd <-
-    ev <- obs_time_utc <- obs_time_local <- time_zone <- state <-
-    tg <-
-    sn <-
-    t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <- lon <- attrs <-
+  obs.time.utc <- obs.time.local <- time.zone <- site <- name <- r <- tn <-
+    tx <- twd <- ev <- obs_time_utc <- obs_time_local <- time_zone <- state <-
+    tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <- lon <- attrs <-
     `rep(bulletin_state, nrow(tidy_df))` <- NULL
 
   # load the XML bulletin ------------------------------------------------------
@@ -236,6 +226,12 @@ get_ag_bulletin <- function(state = NULL) {
     out <- as.data.frame(out)
     out$site <- as.character(out$site)
     out$value <- as.numeric(as.character(out$value))
+
+    # convert dates to POSIXct
+    out$obs.time.local <- chartr("T", " ", out$obs.time.local)
+    out$obs.time.utc <- chartr("T", " ", out$obs.time.utc)
+    out[, 1] <- lubridate::ymd_hm(out[, 1], tz = "")
+    out[, 2] <- lubridate::ymd_hm(out[, 2], tz = "UTC")
 
     # spread from long to wide
     out <- tidyr::spread(out, key = attrs, value = value)
