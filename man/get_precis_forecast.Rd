@@ -19,6 +19,9 @@ following fields.
    \item{index}{Index value, day 0 to day 7}
    \item{start_time_local}{Start of forecast date and time in local TZ}
    \item{end_time_local}{End of forecast date and time in local TZ}
+   \item{UTC_offset}{Hours offset from difference in hours and minutes from
+    Coordinated Universal Time (UTC) for \code{start_time_local} and
+     \code{end_time_local}}
    \item{start_time_utc}{Start of forecast date and time in UTC}
    \item{end_time_utc}{End of forecast date and time in UTC}
    \item{maximum_temperature}{Maximum forecasted temperature (Celsius)}

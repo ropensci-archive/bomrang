@@ -30,6 +30,9 @@
 #'    \item{index}{Index value, day 0 to day 7}
 #'    \item{start_time_local}{Start of forecast date and time in local TZ}
 #'    \item{end_time_local}{End of forecast date and time in local TZ}
+#'    \item{UTC_offset}{Hours offset from difference in hours and minutes from
+#'     Coordinated Universal Time (UTC) for \code{start_time_local} and
+#'      \code{end_time_local}}
 #'    \item{start_time_utc}{Start of forecast date and time in UTC}
 #'    \item{end_time_utc}{End of forecast date and time in UTC}
 #'    \item{maximum_temperature}{Maximum forecasted temperature (Celsius)}
@@ -154,18 +157,6 @@ get_precis_forecast <- function(state = NULL) {
 
   out <- plyr::ldply(.data = areas, .fun = .parse_areas)
 
-  # convert dates to POSIXct
-  out[, 3:6] <- apply(out[, 3:6], 2, function(x) chartr("T", " ", x))
-  out <-
-    out %>%
-    tidyr::separate(`end-time-local`, into = c("end_time_local", "UTC_offset"), sep = "\\+")
-
-  out[, 5:6] <- apply(out[, 5:6], 2, function(x) gsub("Z", "", x))
-  out[, 3] <- gsub(".{6}$", "", out$`start-time-local`)
-
-  out[, 3:4] <- lubridate::ymd_hms(out[, 3:4], tz = "")
-  out[, ] <- lubridate::ymd_hms(out[, 2], tz = "UTC")
-
   # This is the actual returned value for the main function. The functions
   # below chunk the xml into locations and then days, this assembles into
   # the final data frame
@@ -180,15 +171,33 @@ get_precis_forecast <- function(state = NULL) {
       end_time_local = `end-time-local`,
       start_time_utc = `start-time-utc`,
       end_time_utc = `end-time-utc`
-    )
+    ) %>%
+    dplyr::mutate_each(dplyr::funs(as.character), aac) %>%
+    dplyr::mutate_each(dplyr::funs(as.character), precipitation_range) %>%
+    tidyr::separate(end_time_local,
+                    into = c("end_time_local", "UTC_offset"),
+                    sep = "\\+") %>%
+    tidyr::separate(
+      start_time_local,
+      into = c("start_time_local", "UTC_offset_drop"),
+      sep = "\\+"
+    ) %>%
+    dplyr::select(-UTC_offset_drop)
 
   out$probability_of_precipitation <-
     gsub("%", "", paste(out$probability_of_precipitation))
+  out[, c(3:4, 6:7)] <-
+    apply(out[, c(3:4, 6:7)], 2, function(x)
+      chartr("T", " ", x))
+  out[, 6:7] <-
+    apply(out[, 6:7], 2, function(x)
+      chartr("Z", " ", x))
 
-  out <-
-    out %>%
-    dplyr::mutate_each(dplyr::funs(as.character), aac) %>%
-    dplyr::mutate_each(dplyr::funs(as.character), precipitation_range)
+  # convert dates to POSIXct ---------------------------------------------------
+  out[, c(3:4, 6:7)] <-
+    lapply(out[, c(3:4, 6:7)], function(x)
+      lubridate::ymd_hms(x))
+  out[, 5] <- lubridate::hm(out[, 5])
 
   # split precipitation forecast values into lower/upper limits --------------
 
