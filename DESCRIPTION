@@ -9,7 +9,7 @@ Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     person("Keith", "Pembleton", role = "aut",
     email = "keith.pembleton@usq.edu.au"))
 Description: Fetches Australian Government Bureau of Meteorology weather data 
-    files and returns a tidy data frame of data.
+    files and returns a tidy data frame.
 URL: https://github.com/ToowoombaTrio/bomrang
 BugReports: https://github.com/ToowoombaTrio/bomrang/issues
 License: MIT + file LICENSE
@@ -21,7 +21,6 @@ Imports:
     dplyr,
     foreign,
     magrittr,
-    plyr,
     readr,
     rjson,
     tidyr,
