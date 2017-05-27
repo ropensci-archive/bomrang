@@ -30,6 +30,9 @@
 #'    \item{index}{Index value, day 0 to day 7}
 #'    \item{start_time_local}{Start of forecast date and time in local TZ}
 #'    \item{end_time_local}{End of forecast date and time in local TZ}
+#'    \item{UTC_offset}{Hours offset from difference in hours and minutes from
+#'     Coordinated Universal Time (UTC) for \code{start_time_local} and
+#'      \code{end_time_local}}
 #'    \item{start_time_utc}{Start of forecast date and time in UTC}
 #'    \item{end_time_utc}{End of forecast date and time in UTC}
 #'    \item{maximum_temperature}{Maximum forecasted temperature (Celsius)}
@@ -47,7 +50,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' BOM_forecast <- get_forecast(state = "QLD")
+#' BOM_forecast <- get_precis_forecast(state = "QLD")
 #' }
 #'
 #' @author Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton \email{keith.pembleton@usq.edu.au}
@@ -60,7 +63,7 @@
 #'
 #'
 #' @export
-get_forecast <- function(state = NULL) {
+get_precis_forecast <- function(state = NULL) {
   state <- .validate_state(state)
 
   # ftp server
@@ -110,18 +113,18 @@ get_forecast <- function(state = NULL) {
     stop(state, " not recognised as a valid state or territory")
 
   if (state != "AUS") {
-    tibble::as_tibble(.parse_forecast(xmlforecast))
+    .parse_forecast(xmlforecast)
   }
   else if (state == "AUS") {
-    tibble::as_tibble(plyr::ldply(
-      .data = file_list,
-      .fun = .parse_forecast,
-      .progress = "text"
-    ))
+    plyr::ldply(.data = file_list,
+                .fun = .parse_forecast,
+                .progress = "text")
   }
 }
 
+
 .parse_forecast <- function(xmlforecast) {
+  #CRAN NOTE avoidance
   aac <- location <- state <- lon <- lat <- elev <-
     precipitation_range <- attrs <- values <-
     `c("air_temperature_maximum", "Celsius")` <-
@@ -131,14 +134,22 @@ get_forecast <- function(state = NULL) {
     `start-time-utc` <- precis <- probability_of_precipitation <-
     PT_NAME <- end_time_local <- end_time_utc <- lower_prec_limit <-
     start_time_local <- start_time_utc <- maximum_temperature <-
-    minimum_temperature <- NULL
+    minimum_temperature <- UTC_offset_drop <- NULL
 
   # load BOM location data ---------------------------------------------------
   utils::data("AAC_codes", package = "bomrang")
   AAC_codes <- AAC_codes
 
   # load the XML forecast ----------------------------------------------------
-  xmlforecast <- xml2::read_xml(xmlforecast)
+  tryCatch({
+    xmlforecast <- xml2::read_xml(xmlforecast)
+
+  },
+  error = function(x)
+    stop(
+      "\nThe server with the forecast is not responding. Please retry again later.\n"
+    ))
+
   areas <-
     xml2::xml_find_all(xmlforecast, ".//*[@type='location']")
   xml2::xml_find_all(areas, ".//*[@type='forecast_icon_code']") %>%
@@ -160,15 +171,36 @@ get_forecast <- function(state = NULL) {
       end_time_local = `end-time-local`,
       start_time_utc = `start-time-utc`,
       end_time_utc = `end-time-utc`
-    )
+    ) %>%
+    dplyr::mutate_each(dplyr::funs(as.character), aac) %>%
+    dplyr::mutate_each(dplyr::funs(as.character), precipitation_range) %>%
+    tidyr::separate(end_time_local,
+                    into = c("end_time_local", "UTC_offset"),
+                    sep = "\\+") %>%
+    tidyr::separate(
+      start_time_local,
+      into = c("start_time_local", "UTC_offset_drop"),
+      sep = "\\+"
+    ) %>%
+    dplyr::select(-UTC_offset_drop)
 
   out$probability_of_precipitation <-
     gsub("%", "", paste(out$probability_of_precipitation))
 
-  out <-
-    out %>%
-    dplyr::mutate_each(dplyr::funs(as.character), aac) %>%
-    dplyr::mutate_each(dplyr::funs(as.character), precipitation_range)
+  # remove the "T" from the date/time columns
+  out[, c(3:4, 6:7)] <-
+    apply(out[, c(3:4, 6:7)], 2, function(x)
+      chartr("T", " ", x))
+
+  # remove the "Z" from start_time_utc
+  out[, 6:7] <-
+    apply(out[, 6:7], 2, function(x)
+      chartr("Z", " ", x))
+
+  # convert dates to POSIXct ---------------------------------------------------
+  out[, c(3:4, 6:7)] <-
+    lapply(out[, c(3:4, 6:7)], function(x)
+      as.POSIXct(x, origin = "1970-1-1", format = "%Y-%m-%d %H:%M:%OS"))
 
   # split precipitation forecast values into lower/upper limits --------------
 
@@ -194,7 +226,7 @@ get_forecast <- function(state = NULL) {
 
   # return final forecast object ---------------------------------------------
   tidy_df <-
-    dplyr::left_join(tibble::as_tibble(out),
+    dplyr::left_join(as.data.frame(out),
                      AAC_codes, by = c("aac" = "AAC")) %>%
     dplyr::rename(lon = LON,
                   lat = LAT,
@@ -213,7 +245,8 @@ get_forecast <- function(state = NULL) {
     dplyr::mutate(state = stringr::str_extract(out$aac,
                                                pattern = "[:alpha:]{2,3}")) %>%
     dplyr::rename(location = PT_NAME) %>%
-    dplyr::select(aac:location, state, lon, lat, elev)
+    dplyr::select(aac:location, state, lon, lat, elev) %>%
+    as.data.frame
 
   return(tidy_df)
 }

@@ -1,15 +1,15 @@
- context("update_locations")
+ context("update_precis_locations")
 
- # Timeout options are reset on update_locations() exit -------------------------
- test_that("Timeout options are reset on update_locations() exit", {
+ # Timeout options are reset on update_precis_locations() exit -------------------------
+ test_that("Timeout options are reset on update_precis_locations() exit", {
    skip_on_cran()
-   update_locations()
+   update_precis_locations()
    expect_equal(options("timeout")[[1]], 60)
  })
 
- # update_locations() downloads and imports the proper file ---------------------
+ # update_precis_locations() downloads and imports the proper file ---------------------
 
- test_that("update_locations() downloads and imports the proper file", {
+ test_that("update_precis_locations() downloads and imports the proper file", {
    skip_on_cran()
    curl::curl_download(
      "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf",

@@ -14,7 +14,7 @@ output: github_document
 [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) 
 [![DOI](https://zenodo.org/badge/89690315.svg)](https://zenodo.org/badge/latestdoi/89690315)
 
-Fetches Australian Government Bureau of Meteorology XML data and returns a tidy data frame ([tibble](http://tibble.tidyverse.org)).
+Fetches Australian Government Bureau of Meteorology data and returns a tidy data frame.
 
 Credit for the name, _bomrang_, goes to [Di Cook](http://dicook.github.io), who
 suggested it attending the rOpenSci AUUnconf in Brisbane, 2016, when seeing the
@@ -34,9 +34,9 @@ devtools::install_github("toowoombatrio/bomrang")
 
 ## Using _bomrang_
 
-Two functions are provided, `get_forecast()`, which retreives the précis forecast and `get_bulletin()`, which retrives the agriculture bulletin. Both of these functions in _bomrang_ allow you to fetch data for an individual state or all at once, i.e., all of Australia. To fetch an individual state, simply use the official postal code for the state for the `state` parameter. To fetch data for all of Australia, use "AUS" in the `state` parameter.
+Three main functions are provided. `get_precis_forecast()`, which retreives the précis forecast; `get_current_weather()`, which fetches the current weather at a given station; and `get_ag_bulletin()`, which retrives the agriculture bulletin. `get_precis_forecast()` and `get_ag_bulletin()` will allow you to fetch data for an individual state or all at once, i.e., all of Australia. To fetch an individual state, simply use the official postal code for the state for the `state` parameter. To fetch data for all of Australia, use "AUS" in the `state` parameter.
 
-### Using `get_forecast()`
+### Using `get_precis_forecast()`
 
 This function only takes one parameter, `state`. States are specified using the official postal codes, 
 
@@ -50,13 +50,14 @@ This function only takes one parameter, `state`. States are specified using the 
 * **WA** - Western Australia  
 * **AUS** - Australia, returns national forecast including all states  
 
-### Results
+#### Results
 
-The function, `get_forecast()` will return a Tibble of the weather forecast for the daily forecast with the following fields,
+The function, `get_precis_forecast()` will return a tidy data frame of the weather forecast for the daily forecast with the following fields,
 
 * **aac** - AMOC Area Code, _e.g._, WA_MW008, a unique identifier for each location  
 * **start_time_local** - Start of forecast date and time in local TZ  
 * **end_time_local** - End of forecast date and time in local TZ  
+* **UTC_offset** -  Hours offset from difference in hours and minutes from Coordinated Universal Time (UTC) for `start_time_local` and `end_time_local`
 * **start_time_utc** - Start of forecast date and time in UTC  
 * **end_time_utc** - End of forecast date and time in UTC  
 * **max_temp** - Maximum forecasted temperature (degrees Celsius)  
@@ -78,11 +79,11 @@ Following is an example fetching the forecast for Queensland.
 ```{r, eval=TRUE}
 library("bomrang")
 
-QLD_forecast <- get_forecast(state = "QLD")
-QLD_forecast
+QLD_forecast <- get_precis_forecast(state = "QLD")
+head(QLD_forecast)
 ```
 
-### Using `get_bulletin()`
+### Using `get_ag_bulletin()`
 
 This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national bulletin. States are specified using the official postal codes, 
 
@@ -96,9 +97,9 @@ This function only takes one parameter, `state`. The `state` parameter allows th
 * **WA** - Western Australia  
 * **AUS** - Australia, returns bulletin for all states  
 
-### Results
+#### Results
 
-The function, `get_bulletin()` will return a tibble of the agriculture bulletin with the following fields,
+The function, `get_ag_bulletin()` will return a tidy data frame of the agriculture bulletin with the following fields,
 
 * **obs_time_utc** - Observation time (Time in UTC)  
 * **time_zone** - Time zone for observation  
@@ -124,19 +125,43 @@ The function, `get_bulletin()` will return a tibble of the agriculture bulletin 
 ```{r, eval=TRUE}
 library("bomrang")
 
-QLD_forecast <- get_bulletin(state = "QLD")
-QLD_forecast
+QLD_bulletin <- get_ag_bulletin(state = "QLD")
+head(QLD_bulletin)
 ```
 
+### Using `get_current_weather()`
+Returns the latest 72 hours weather observations for a station.
+
+This function accepts four parameters:
+
+* `station_name`, The name of the weather station. Fuzzy string matching via `base::agrep` is done.
+
+* `latlon`, A length-2 numeric vector. When given instead of station_name, the nearest station (in this package) is used, with a message indicating the nearest such station. (See also `sweep_for_stations()`.) Ignored if used in combination with `station_name`, with a warning.
+
+* `raw` Do not convert the columns data.table to the appropriate classes. (FALSE by default.)
+
+* `emit_latlon_msg` Logical. If `TRUE` (the default), and `latlon`} is selected, a message is emitted before the table is returned indicating which station was actually used (i.e. which station was found to be nearest to the given coordinate).
+
+```{r, eval=TRUE}
+library("bomrang")
+
+Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
+head(Melbourne_weather)
+```
+
+#### Results
+
+The function, `get_current()` will return a tidy data frame of the current and past 72 hours observations for the requested station. The fields returned will vary between stations dependent upon the data that they provide. See the [BOM website](http://www.bom.gov.au/catalogue/observations/about-weather-observations.shtml) for more information.
 
 ## Meta
 
 * Please [report any issues or bugs](https://github.com/ToowoombaTrio/bomrang/issues).  
 * License: MIT  
 * To cite _bomrang_, please use:  
-  Sparks A and Pembleton K (2017). _bomrang: Fetch Australian Government Bureau of Meteorology Weather Data_. R package version 0.0.1-1,
+  Sparks A, Parsonage H, and Pembleton K (2017). _bomrang: Fetch Australian Government Bureau of Meteorology Weather Data_. R package version 0.0.1-1,
 <URL: https://github.com/ToowoombaTrio/bomrang>.  
 * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.  
+* BOM Copyright Notice http://reg.bom.gov.au/other/copyright.shtml  
 
 ## References
 

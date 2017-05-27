@@ -15,11 +15,11 @@ _bomrang_ provides functions for interacting with [Australian Bureau of Meteorol
 
 ## Using _bomrang_
 
-Several functions are provided by _bomrang_. The three main functions are `get_forecast()`, which creates a data frame of the daily précis forecast from BOM, `get_bulletin()`, which creates a data frame of agriculture bulletin information, and `get_current_weather()` which returns the last 72 hours of observations at a given location. 
+Several functions are provided by _bomrang_. The three main functions are `get_precis_forecast()`, which creates a data frame of the daily précis forecast from BOM, `get_ag_bulletin()`, which creates a data frame of agriculture bulletin information, and `get_current_weather()` which returns the last 72 hours of observations at a given location. 
 Other functions include `update_locations()`, which updates an internal database of forecast locations distributed with the package, and
 `sweep_for_stations()` which returns the nearest weather stations to a point in Australia.
 
-## Using `get_forecast()`
+## Using `get_precis_forecast()`
 
 This function only takes one parameter, `state`. The `state` parameter allows the user to select the forecast for just one state or a national forecast. States are specified using the official postal codes, 
 
@@ -35,11 +35,12 @@ This function only takes one parameter, `state`. The `state` parameter allows th
 
 ### Results
 
-The function, `get_forecast()` will return a [tibble](https://CRAN.R-project.org/package=tibble) of the weather forecast for the daily forecast with the following fields,
+The function, `get_precis_forecast()` will return a data frame of the weather forecast for the daily forecast with the following fields,
 
 * **aac** - AMOC Area Code, _e.g._ WA_MW008, a unique identifier for each location  
 * **start_time_local** - Start of forecast date and time in local TZ  
 * **end_time_local** - End of forecast date and time in local TZ  
+* **UTC_offset** -  Hours offset from difference in hours and minutes from Coordinated Universal Time (UTC) for `start_time_local` and `end_time_local`
 * **start_time_utc** - Start of forecast date and time in UTC  
 * **end_time_utc** - End of forecast date and time in UTC  
 * **max_temp** - Maximum forecasted temperature (degrees Celsius)  
@@ -61,11 +62,11 @@ Following is an example fetching the forecast for Queensland.
 ```{r, eval=TRUE}
 library("bomrang")
 
-QLD_forecast <- get_forecast(state = "QLD")
+QLD_forecast <- get_precis_forecast(state = "QLD")
 QLD_forecast
 ```
 
-## Using `get_bulletin()`
+## Using `get_ag_bulletin()`
 
 This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national forecast. States are specified using the official postal codes, 
 
@@ -81,7 +82,7 @@ This function only takes one parameter, `state`. The `state` parameter allows th
 
 ### Results
 
-The function, `get_bulletin()` will return a [tibble](https://CRAN.R-project.org/package=tibble) of the agriculture bulletin with the following fields,
+The function, `get_ag_bulletin()` will return a data frame of the agriculture bulletin with the following fields,
 
 * **obs-time-utc** - Observation time (Time in UTC)  
 * **time-zone** - Time zone for observation  
@@ -107,7 +108,7 @@ The function, `get_bulletin()` will return a [tibble](https://CRAN.R-project.org
 ```{r, eval=TRUE}
 library("bomrang")
 
-QLD_bulletin <- get_bulletin(state = "QLD")
+QLD_bulletin <- get_ag_bulletin(state = "QLD")
 QLD_bulletin
 ```
 

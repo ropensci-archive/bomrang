@@ -8,36 +8,42 @@ get_current_weather(station_name, latlon = NULL, raw = FALSE,
   emit_latlon_msg = TRUE)
 }
 \arguments{
-\item{station_name}{The name of the weather station. Fuzzy string matching via
-\code{base::agrep} is done.}
+\item{station_name}{The name of the weather station. Fuzzy string matching
+via \code{base::agrep} is done.}
 
-\item{latlon}{A length-2 numeric vector. When given instead of \code{station_name}, the nearest station
-(in this package) is used, with a message indicating the nearest such station. (See also \code{\link{sweep_for_stations}}.)
-Ignored if used in combination with
+\item{latlon}{A length-2 numeric vector. When given instead of
+\code{station_name}, the nearest station (in this package) is used, with a
+message indicating the nearest such station. (See also
+ \code{\link{sweep_for_stations}}.) Ignored if used in combination with
 \code{station_name}, with a warning.}
 
-\item{raw}{Do not convert the columns \code{data.table} to the appropriate classes. (\code{FALSE} by default.)}
+\item{raw}{Do not convert the columns \code{data.table} to the appropriate
+classes. (\code{FALSE} by default.)}
 
-\item{emit_latlon_msg}{Logical. If \code{TRUE} (the default), and \code{latlon} is selected,
-a message is emitted before the table is returned indicating which station was actually used
-(i.e. which station was found to be nearest to the given coordinate).}
+\item{emit_latlon_msg}{Logical. If \code{TRUE} (the default), and
+\code{latlon} is selected, a message is emitted before the table is returned
+indicating which station was actually used (i.e. which station was found to
+be nearest to the given coordinate).}
 }
 \description{
 Current weather observations of a station
 }
 \details{
-Note that the column \code{local_date_time_full} is set to a \code{POSIXct} object
-in the local time of the \strong{user}.
+Note that the column \code{local_date_time_full} is set to a
+\code{POSIXct} object in the local time of the \strong{user}.
 }
 \examples{
 \dontrun{
   # warning
-  Melbourne_forecast <- get_current_weather("Melbourne")
+  Melbourne_weather <- get_current_weather("Melbourne")
 
   # no warning
-  Melbourne_forecast <- get_current_weather("Melbourne (Olympic Park)")
+  Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
 
   # Get weather by latitude and longitude:
   get_current_weather(latlon = c(-34, 151))
 }
+}
+\author{
+Hugh Parsonage, \email{hugh.parsonage@gmail.com}
 }

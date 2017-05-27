@@ -140,7 +140,6 @@ url_ok <- function(url) {
     not
 }
 
-
 name_by_url %<>%
   rowwise %>%
   mutate(url_ok = url_ok(url))
@@ -200,3 +199,4 @@ url_latlon_by_station_name <-
 #   geom_text_repel() +
 #   coord_map() +
 #   theme_map()
+
