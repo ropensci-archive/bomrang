@@ -23,7 +23,6 @@ Imports:
     magrittr,
     plyr,
     readr,
-    reshape2,
     rjson,
     stringr,
     tidyr,
