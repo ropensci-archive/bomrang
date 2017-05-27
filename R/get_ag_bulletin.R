@@ -168,7 +168,8 @@ get_ag_bulletin <- function(state = NULL) {
   bulletin_state <-
     xml2::xml_find_first(xmlbulletin, ".//*['name']")
   bulletin_state <- xml2::xml_attr(bulletin_state, "name")
-  bulletin_state <- stringr::str_sub(bulletin_state, start = 40)
+  bulletin_state <- substr(x = bulletin_state, start = 40,
+                           stop = nchar(bulletin_state))
 
   if (bulletin_state == "New South Wales") {
     bulletin_state <- "NSW"

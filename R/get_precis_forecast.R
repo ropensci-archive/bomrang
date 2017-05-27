@@ -242,11 +242,12 @@ get_precis_forecast <- function(state = NULL) {
     dplyr::mutate_each(dplyr::funs(as.numeric), lower_prec_limit) %>%
     dplyr::mutate_each(dplyr::funs(as.character), precis) %>%
     dplyr::mutate_each(dplyr::funs(as.character), probability_of_precipitation) %>%
-    dplyr::mutate(state = stringr::str_extract(out$aac,
-                                               pattern = "[:alpha:]{2,3}")) %>%
-    dplyr::rename(location = PT_NAME) %>%
-    dplyr::select(aac:location, state, lon, lat, elev) %>%
-    as.data.frame
+    dplyr::rename(location = PT_NAME)
+
+  # add state field
+  tidy_df$state <- gsub("_.*", "", tidy_df$aac)
+  tidy_df <- dplyr::select(.data = tidy_df, aac:location, state, lon, lat, elev)
+  return(tidy_df)
 
   return(tidy_df)
 }

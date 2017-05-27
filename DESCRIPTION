@@ -24,7 +24,6 @@ Imports:
     plyr,
     readr,
     rjson,
-    stringr,
     tidyr,
     xml2
 Encoding: UTF-8
