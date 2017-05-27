@@ -7,8 +7,8 @@
 #' message indicating the nearest such station. (See also
 #'  \code{\link{sweep_for_stations}}.) Ignored if used in combination with
 #' \code{station_name}, with a warning.
-#' @param raw Do not convert the columns \code{data.table} to the appropriate
-#' classes. (\code{FALSE} by default.)
+#' @param raw Logical. Do not convert the columns \code{data.table} to the
+#' appropriate classes. (\code{FALSE} by default.)
 #' @param emit_latlon_msg Logical. If \code{TRUE} (the default), and
 #' \code{latlon} is selected, a message is emitted before the table is returned
 #' indicating which station was actually used (i.e. which station was found to

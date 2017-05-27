@@ -123,8 +123,6 @@ The function also emits a message, to tell the user which station was used.
 
 The table returned will have different fields depending on the station that is selected. 
 
-
-
 ## Using `update_locations()`
 
 This function downloads the latest précis forecast locations from the BOM server and updates _bomrang_'s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BOM forecast location database that is not available in the database distributed with _bomrang_. This database is distributed with the package to make the process faster when fetching the forecast.
