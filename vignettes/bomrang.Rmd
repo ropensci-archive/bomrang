@@ -15,9 +15,7 @@ _bomrang_ provides functions for interacting with [Australian Bureau of Meteorol
 
 ## Using _bomrang_
 
-Several functions are provided by _bomrang_. The three main functions are `get_precis_forecast()`, which creates a data frame of the daily précis forecast from BOM, `get_ag_bulletin()`, which creates a data frame of agriculture bulletin information, and `get_current_weather()` which returns the last 72 hours of observations at a given location. 
-Other functions include `update_locations()`, which updates an internal database of forecast locations distributed with the package, and
-`sweep_for_stations()` which returns the nearest weather stations to a point in Australia.
+Several functions are provided by _bomrang_.The main functionality of _bomrang_ is provided through three functions, `get_precis_forecast()`, which retreives the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; and `get_ag_bulletin()`, which retrives the agriculture bulletin. Other functions include `update_locations()`, which updates an internal database of forecast locations distributed with the package, and `sweep_for_stations()` which returns the nearest weather stations to a point in Australia.
 
 ## Using `get_precis_forecast()`
 
@@ -120,6 +118,7 @@ If the string provided is ambiguous, the function returns an observation for one
 
 If `latlon` is used, the observations returned are from the station nearest to that latitude-longitude coordinate. The function also emits a message, to tell the user which station was used.
 
+### Results
 The table returned will have different fields depending on the station that is selected. 
 
 ## Using `update_locations()`
