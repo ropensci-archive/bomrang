@@ -4,10 +4,10 @@ Title: Fetch Australian Government Bureau of Meteorology Data
 Version: 0.0.1
 Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     email = "adamhsparks@gmail.com"),
-    person("Keith", "Pembleton", role = "aut",
-    email = "keith.pembleton@usq.edu.au"),
     person("Hugh", "Parsonage", role = "aut",
-    email = "hugh.parsonage@gmail.com"))
+    email = "hugh.parsonage@gmail.com"),
+    person("Keith", "Pembleton", role = "aut",
+    email = "keith.pembleton@usq.edu.au"))
 Description: Fetches Australian Government Bureau of Meteorology weather data 
     files and returns a tidy data frame of data.
 URL: https://github.com/ToowoombaTrio/bomrang
