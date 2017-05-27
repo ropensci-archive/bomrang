@@ -144,12 +144,8 @@ get_ag_bulletin <- function(state = NULL) {
   }
 
   else if (state == "AUS") {
-    plyr::ldply(
-      .data = file_list,
-      .fun = .parse_bulletin,
-      stations_meta,
-      .progress = "text"
-    )
+    out <- lapply(X = file_list, FUN = .parse_bulletin, stations_meta)
+    out <- as.data.frame(data.table::rbindlist(out))
   }
 }
 
@@ -300,7 +296,8 @@ get_ag_bulletin <- function(state = NULL) {
     return(out)
   }
 
-  tidy_df <- plyr::ldply(.data = obs, .fun = .get_obs)
+  tidy_df <- lapply(X = obs, FUN = .get_obs)
+  tidy_df <- do.call("rbind", tidy_df)
 
   tidy_df <- dplyr::left_join(tidy_df,
                               stations_meta,

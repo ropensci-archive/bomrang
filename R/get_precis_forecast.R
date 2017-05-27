@@ -1,4 +1,5 @@
 
+
 #' Get BOM Daily Précis Forecast
 #'
 #'Fetch the BOM daily précis forecast and return a tidy data frame of the daily
@@ -113,13 +114,13 @@ get_precis_forecast <- function(state = NULL) {
     stop(state, " not recognised as a valid state or territory")
 
   if (state != "AUS") {
-    .parse_forecast(xmlforecast)
+    out <- .parse_forecast(xmlforecast)
   }
   else if (state == "AUS") {
-    plyr::ldply(.data = file_list,
-                .fun = .parse_forecast,
-                .progress = "text")
+    out <- lapply(X = file_list, FUN = .parse_forecast)
+    out <- as.data.frame(data.table::rbindlist(out))
   }
+  return(out)
 }
 
 
@@ -143,7 +144,6 @@ get_precis_forecast <- function(state = NULL) {
   # load the XML forecast ----------------------------------------------------
   tryCatch({
     xmlforecast <- xml2::read_xml(xmlforecast)
-
   },
   error = function(x)
     stop(
@@ -155,7 +155,8 @@ get_precis_forecast <- function(state = NULL) {
   xml2::xml_find_all(areas, ".//*[@type='forecast_icon_code']") %>%
     xml2::xml_remove()
 
-  out <- plyr::ldply(.data = areas, .fun = .parse_areas)
+  out <- lapply(X = areas, FUN = .parse_areas)
+  out <- as.data.frame(do.call("rbind", out))
 
   # This is the actual returned value for the main function. The functions
   # below chunk the xml into locations and then days, this assembles into
@@ -176,12 +177,11 @@ get_precis_forecast <- function(state = NULL) {
     dplyr::mutate_each(dplyr::funs(as.character), precipitation_range) %>%
     tidyr::separate(end_time_local,
                     into = c("end_time_local", "UTC_offset"),
-                    sep = "\\+") %>%
+                    sep = "\\+",) %>%
     tidyr::separate(
       start_time_local,
       into = c("start_time_local", "UTC_offset_drop"),
-      sep = "\\+"
-    ) %>%
+      sep = "\\+") %>%
     dplyr::select(-UTC_offset_drop)
 
   out$probability_of_precipitation <-
@@ -214,19 +214,21 @@ get_precis_forecast <- function(state = NULL) {
     tidyr::separate(
       precipitation_range,
       into = c("lower_prec_limit", "upper_prec_limit"),
-      sep = "to"
+      sep = "to",
+      fill = "left"
     )
 
   # remove unnecessary text (mm in prcp cols) --------------------------------
-  out <- lapply(out, function(x) {
+  out <- as.data.frame(lapply(out, function(x) {
     gsub(" mm", "", x)
-  })
+  }))
 
   # merge the forecast with the locations ------------------------------------
 
-  # return final forecast object ---------------------------------------------
+  out$aac <- as.character(out$aac)
+  # return final forecast object
   tidy_df <-
-    dplyr::left_join(as.data.frame(out),
+    dplyr::left_join(out,
                      AAC_codes, by = c("aac" = "AAC")) %>%
     dplyr::rename(lon = LON,
                   lat = LAT,
@@ -246,7 +248,8 @@ get_precis_forecast <- function(state = NULL) {
 
   # add state field
   tidy_df$state <- gsub("_.*", "", tidy_df$aac)
-  tidy_df <- dplyr::select(.data = tidy_df, aac:location, state, lon, lat, elev)
+  tidy_df <-
+    dplyr::select(.data = tidy_df, aac:location, state, lon, lat, elev)
   return(tidy_df)
 
   return(tidy_df)
@@ -260,8 +263,8 @@ get_precis_forecast <- function(state = NULL) {
   forecast_periods <- xml2::xml_children(x)
 
   sub_out <-
-    plyr::ldply(.data = forecast_periods, .fun = .extract_values)
-
+    lapply(X = forecast_periods, FUN = .extract_values)
+  sub_out <- do.call(rbind, sub_out)
   sub_out <- cbind(aac, sub_out)
   return(sub_out)
 }
@@ -274,7 +277,7 @@ get_precis_forecast <- function(state = NULL) {
 
   time_period <- unlist(t(as.data.frame(xml2::xml_attrs(y))))
   time_period <-
-    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)), ]
+    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)),]
 
   sub_out <- cbind(time_period, attrs, values)
   row.names(sub_out) <- NULL
