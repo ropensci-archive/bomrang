@@ -118,8 +118,7 @@ The function takes one of two arguments: `station_name` and `latlon`, returning 
 If `station_name` is used, the weather observations for the last 72 hours are returned for that station.
 If the string provided is ambiguous, the function returns an observation for one of the possible stations and emits a warning to offer unambiguous station names. 
 
-If `latlon` is used, the observations returned are from the station nearest to that latitude-longitude coordinate. 
-The function also emits a message, to tell the user which station was used.
+If `latlon` is used, the observations returned are from the station nearest to that latitude-longitude coordinate. The function also emits a message, to tell the user which station was used.
 
 The table returned will have different fields depending on the station that is selected. 
 

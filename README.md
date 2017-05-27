@@ -189,7 +189,7 @@ This function accepts four parameters:
 
 -   `raw` Logical. Do not convert the columns data.table to the appropriate classes. (FALSE by default.)
 
--   `emit_latlon_msg` Logical. If `TRUE` (the default), and `latlon`} is selected, a message is emitted before the table is returned indicating which station was actually used (i.e. which station was found to be nearest to the given coordinate).
+-   `emit_latlon_msg` Logical. If `TRUE` (the default), and `latlon` is selected, a message is emitted before the table is returned indicating which station was actually used (i.e. which station was found to be nearest to the given coordinate).
 
 ``` r
 library("bomrang")
@@ -206,33 +206,33 @@ head(Melbourne_weather)
     ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
     ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
     ##   local_date_time local_date_time_full aifstime_utc   lat lon apparent_t
-    ## 1      27/10:00am                 <NA>         <NA> -37.8 145       11.5
-    ## 2      27/09:30am                 <NA>         <NA> -37.8 145       10.9
-    ## 3      27/09:00am                 <NA>         <NA> -37.8 145       10.2
-    ## 4      27/08:30am                 <NA>         <NA> -37.8 145       10.2
-    ## 5      27/08:00am                 <NA>         <NA> -37.8 145       10.1
-    ## 6      27/07:30am                 <NA>         <NA> -37.8 145       10.7
+    ## 1      27/10:30am                 <NA>         <NA> -37.8 145       12.2
+    ## 2      27/10:00am                 <NA>         <NA> -37.8 145       11.5
+    ## 3      27/09:30am                 <NA>         <NA> -37.8 145       10.9
+    ## 4      27/09:00am                 <NA>         <NA> -37.8 145       10.2
+    ## 5      27/08:30am                 <NA>         <NA> -37.8 145       10.2
+    ## 6      27/08:00am                 <NA>         <NA> -37.8 145       10.1
     ##   cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt  press
-    ## 1     -          -     2.6       32      17     15.2  10.2 1017.1
-    ## 2     -          -     2.2       30      16     14.4  10.2 1017.3
-    ## 3     -          -     2.0       33      18     13.9  10.1 1017.5
-    ## 4     -          -     1.9       30      16     13.7  10.1 1017.7
-    ## 5     -          -     1.8       28      15     13.6  10.2 1017.7
-    ## 6     -          -     1.7       28      15     13.4  10.2 1017.6
+    ## 1     -          -     3.2       33      18     16.0   9.9 1016.7
+    ## 2     -          -     2.6       32      17     15.2  10.2 1017.1
+    ## 3     -          -     2.2       30      16     14.4  10.2 1017.3
+    ## 4     -          -     2.0       33      18     13.9  10.1 1017.5
+    ## 5     -          -     1.9       30      16     13.7  10.1 1017.7
+    ## 6     -          -     1.8       28      15     13.6  10.2 1017.7
     ##   press_msl press_qnh press_tend rain_trace rel_hum sea_state
-    ## 1    1017.1    1017.1          -          0      72         -
-    ## 2    1017.3    1017.3          -          0      76         -
-    ## 3    1017.5    1017.5          -          0      78         -
-    ## 4    1017.7    1017.7          -          0      79         -
-    ## 5    1017.7    1017.7          -          0      80         -
-    ## 6    1017.6    1017.6          -          0      81         -
+    ## 1    1016.7    1016.7          -          0      67         -
+    ## 2    1017.1    1017.1          -          0      72         -
+    ## 3    1017.3    1017.3          -          0      76         -
+    ## 4    1017.5    1017.5          -          0      78         -
+    ## 5    1017.7    1017.7          -          0      79         -
+    ## 6    1017.7    1017.7          -          0      80         -
     ##   swell_dir_worded vis_km weather wind_dir wind_spd_kmh wind_spd_kt
     ## 1                -     10       -        N           20          11
-    ## 2                -      -       -        N           19          10
-    ## 3                -      -       -        N           20          11
-    ## 4                -      -       -        N           19          10
+    ## 2                -     10       -        N           20          11
+    ## 3                -      -       -        N           19          10
+    ## 4                -      -       -        N           20          11
     ## 5                -      -       -        N           19          10
-    ## 6                -      -       -        N           15           8
+    ## 6                -      -       -        N           19          10
 
 #### Results
 
