@@ -17,8 +17,8 @@ message indicating the nearest such station. (See also
  \code{\link{sweep_for_stations}}.) Ignored if used in combination with
 \code{station_name}, with a warning.}
 
-\item{raw}{Do not convert the columns \code{data.table} to the appropriate
-classes. (\code{FALSE} by default.)}
+\item{raw}{Logical. Do not convert the columns \code{data.table} to the
+appropriate classes. (\code{FALSE} by default.)}
 
 \item{emit_latlon_msg}{Logical. If \code{TRUE} (the default), and
 \code{latlon} is selected, a message is emitted before the table is returned

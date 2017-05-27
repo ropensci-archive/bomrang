@@ -34,7 +34,7 @@ devtools::install_github("toowoombatrio/bomrang")
 
 ## Using _bomrang_
 
-Three main functions are provided. `get_precis_forecast()`, which retreives the précis forecast; `get_current_weather()`, which fetches the current weather at a given station; and `get_ag_bulletin()`, which retrives the agriculture bulletin. `get_precis_forecast()` and `get_ag_bulletin()` will allow you to fetch data for an individual state or all at once, i.e., all of Australia. To fetch an individual state, simply use the official postal code for the state for the `state` parameter. To fetch data for all of Australia, use "AUS" in the `state` parameter.
+The main functionality of _bomrang_ is provided through three functions, `get_precis_forecast()`, which retreives the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; and `get_ag_bulletin()`, which retrives the agriculture bulletin. 
 
 ### Using `get_precis_forecast()`
 
@@ -138,9 +138,9 @@ This function accepts four parameters:
 
 * `latlon`, A length-2 numeric vector. When given instead of station_name, the nearest station (in this package) is used, with a message indicating the nearest such station. (See also `sweep_for_stations()`.) Ignored if used in combination with `station_name`, with a warning.
 
-* `raw` Do not convert the columns data.table to the appropriate classes. (FALSE by default.)
+* `raw` Logical. Do not convert the columns data.table to the appropriate classes. (FALSE by default.)
 
-* `emit_latlon_msg` Logical. If `TRUE` (the default), and `latlon`} is selected, a message is emitted before the table is returned indicating which station was actually used (i.e. which station was found to be nearest to the given coordinate).
+* `emit_latlon_msg` Logical. If `TRUE` (the default), and `latlon` is selected, a message is emitted before the table is returned indicating which station was actually used (i.e. which station was found to be nearest to the given coordinate).
 
 ```{r, eval=TRUE}
 library("bomrang")
