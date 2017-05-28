@@ -4,10 +4,10 @@ authors:
 - affiliation: 1
   name: Adam H Sparks
   orcid: 0000-0002-0061-8359
-- afilliation: 3
+- afilliation: 2
   name: Hugh Parsonage
   orcid: 0000-0003-4055-0835
-- affiliation: 2
+- affiliation: 3
   name: Keith Pembleton
   orcid: 0000-0002-1896-4516
 date: "27 May 2017"
@@ -28,10 +28,10 @@ affiliations:
   name: University of Southern Queensland, Centre for Crop Health, Toowoomba Queensland
     4350, Australia
 - index: 2
+  name: Grattan Institute, Carlton Victoria 3053, Australia
+- index: 3
   name: University of Southern Queensland, Institute for Agriculture and the Environment,
     Toowoomba Queensland 4350, Australia
-- index: 3
-  name: Grattan Institute, Carlton Victoria 3053, Australia
 ---
 
 # Summary
