@@ -14,7 +14,7 @@ output: github_document
 [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) 
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.583806.svg)](https://doi.org/10.5281/zenodo.583806)
 
-Fetches Australian Government Bureau of Meteorology data and returns a tidy data frame.
+Provides functions to interface with Australian Government Bureau of Meteorology (BOM) data, fetching data and returning a tidy data frame of précis forecasts, current weather data from stations or ag information bulletins.
 
 Credit for the name, _bomrang_, goes to [Di Cook](http://dicook.github.io), who
 suggested it attending the rOpenSci AUUnconf in Brisbane, 2016, when seeing the
