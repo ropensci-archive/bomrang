@@ -43,7 +43,7 @@ bom_stations <-
                                          end = ends,
                                          col_names = col_names))
 
-fwrite(bom_stations, "bom_stations.csv")
+fwrite(bom_stations, "./data-raw/bom_stations.csv")
 
 bom_stations_by_url <- fread("./data-raw/name-by-url.csv")
 

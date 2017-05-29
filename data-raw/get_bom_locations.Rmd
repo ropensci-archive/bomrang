@@ -31,7 +31,6 @@ Save the stations to disk for use in the R package.
   devtools::use_data(AAC_codes, overwrite = TRUE)
 ```
 
-```
 ## Session Info
 ```{r session_info}
 devtools::session_info()

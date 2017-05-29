@@ -1,8 +1,10 @@
 #' Find nearest weather stations
-#' @param latlon A length-2 numeric vector. By default, Canberra (approximately).
-#' @return A \code{data.table} of all weather stations (in this package) sorted by
-#' distance from \code{latlon}, ascending.
+#' @param latlon A length-2 numeric vector. By default, Canberra
+#' (approximately).
+#' @return A data frame of all weather stations (in this package) sorted
+#' by distance from \code{latlon}, ascending.
 #' @importFrom stats complete.cases
+#' @author Hugh Parsonage, \email{hugh.parsonage@gmail.com}
 #' @export
 
 sweep_for_stations <- function(latlon = c(-35.3, 149.2)) {
@@ -20,8 +22,6 @@ sweep_for_stations <- function(latlon = c(-35.3, 149.2)) {
     # Lat Lon are in JSON
     .[, "distance" := haversine_distance(lat, lon, Lat, Lon)] %>%
     setorderv("distance") %>%
-    .[]
+    .[] %>%
+    as.data.frame
 }
-
-
-

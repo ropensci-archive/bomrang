@@ -5,6 +5,7 @@ note <- sprintf("R package version %s", meta$Version)
 bibentry(bibtype = "Manual",
          title = "{BOMRang}: Fetch Australian Government Bureau of Meteorology Weather Data",
          author = c(person("Adam", "Sparks"),
+                    person("Hugh", "Parsonage"),
                     person("Keith", "Pembleton")),
          year = year,
          note = note,

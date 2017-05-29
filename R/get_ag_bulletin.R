@@ -30,10 +30,10 @@
 #'    \item{r}{Rain to 9am (millimetres). \strong{Trace will be reported as 0.01}}
 #'    \item{tn}{Minimum temperature (Celsius)}
 #'    \item{tx}{Maximum temperature (Celsius)}
-#'    \item{twd}{Wetbulb depression (Celsius)}
+#'    \item{twd}{Wet bulb depression (Celsius)}
 #'    \item{ev}{Evaporation (millimetres)}
 #'    \item{tg}{Terrestrial minimum temperature (Celsius)}
-#'    \item{sn}{Sunshine (Hours)}
+#'    \item{sn}{Sunshine (hours)}
 #'    \item{t5}{5cm soil temperature (Celsius)}
 #'    \item{t10}{10cm soil temperature (Celsius)}
 #'    \item{t20}{20cm soil temperature (Celsius)}
@@ -47,7 +47,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' ag_bulletin <- get_bulletin(state = "QLD")
+#' ag_bulletin <- get_ag_bulletin(state = "QLD")
 #' }
 #'
 #' @author Adam H Sparks, \email{adamhsparks@gmail.com}
@@ -60,26 +60,32 @@
 #' \url{http://www.bom.gov.au/climate/how/observations/rain-measure.shtml}
 #'
 #' @export
-get_bulletin <- function(state = NULL) {
+get_ag_bulletin <- function(state = NULL) {
   state <- .validate_state(state)
 
   # Agricultural Bulletin Station Locations
 
-  stations_meta <-
-    readr::read_table(
-      "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/lists_by_element/alpha/alphaAUS_122.txt",
-      skip = 4,
-      col_names = c("site",
-                    "name",
-                    "lat",
-                    "lon"),
-      col_types = readr::cols_only(
-        "site" = readr::col_character(),
-        "name" = readr::col_character(),
-        "lat" = readr::col_double(),
-        "lon" = readr::col_double()
+  tryCatch({
+    stations_meta <-
+      readr::read_table(
+        "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/lists_by_element/alpha/alphaAUS_122.txt",
+        skip = 4,
+        col_names = c("site",
+                      "name",
+                      "lat",
+                      "lon"),
+        col_types = readr::cols_only(
+          "site" = readr::col_character(),
+          "name" = readr::col_character(),
+          "lat" = readr::col_double(),
+          "lon" = readr::col_double()
+        )
       )
-    )
+  },
+  error = function(x)
+    stop(
+      "\nThe server with the location information is not responding. Please retry again later.\n"
+    ))
 
   # ftp server
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
@@ -93,57 +99,59 @@ get_bulletin <- function(state = NULL) {
   VIC <- "IDV65176.xml"
   WA  <- "IDW65176.xml"
 
-  if (state == "NSW") {
-    xmlbulletin <-
-      paste0(ftp_base, NSW) # nsw
-  }
-  else if (state == "NT") {
-    xmlbulletin <-
-      paste0(ftp_base, NT) # nt
-  }
-  else if (state == "QLD") {
-    xmlbulletin <-
-      paste0(ftp_base, QLD) # qld
-  }
-  else if (state == "SA") {
-    xmlbulletin <-
-      paste0(ftp_base, SA) # sa
-  }
-  else if (state == "TAS") {
-    xmlbulletin <-
-      paste0(ftp_base, TAS) # tas
-  }
-  else if (state == "VIC") {
-    xmlbulletin <-
-      paste0(ftp_base, VIC) # vic
-  }
-  else if (state == "WA") {
-    xmlbulletin <-
-      paste0(ftp_base, WA) # wa
-  }
-  else if (state == "AUS") {
-    AUS <- list(NT, NSW, QLD, SA, TAS, VIC, WA)
-    file_list <- paste0(ftp_base, AUS)
-  } else
-    stop(state, " not recognised as a valid state or territory")
+  tryCatch({
+    if (state == "NSW") {
+      xmlbulletin <-
+        paste0(ftp_base, NSW) # nsw
+    }
+    else if (state == "NT") {
+      xmlbulletin <-
+        paste0(ftp_base, NT) # nt
+    }
+    else if (state == "QLD") {
+      xmlbulletin <-
+        paste0(ftp_base, QLD) # qld
+    }
+    else if (state == "SA") {
+      xmlbulletin <-
+        paste0(ftp_base, SA) # sa
+    }
+    else if (state == "TAS") {
+      xmlbulletin <-
+        paste0(ftp_base, TAS) # tas
+    }
+    else if (state == "VIC") {
+      xmlbulletin <-
+        paste0(ftp_base, VIC) # vic
+    }
+    else if (state == "WA") {
+      xmlbulletin <-
+        paste0(ftp_base, WA) # wa
+    }
+    else if (state == "AUS") {
+      AUS <- list(NT, NSW, QLD, SA, TAS, VIC, WA)
+      file_list <- paste0(ftp_base, AUS)
+    } else
+      stop(state, " not recognised as a valid state or territory")
+  },
+  error = function(x)
+    stop(
+      "\nThe server with the forecast files is not responding. Please retry again later.\n"
+    ))
 
   if (state != "AUS") {
-    tibble::as_tibble(.parse_bulletin(xmlbulletin, stations_meta))
+    .parse_bulletin(xmlbulletin, stations_meta)
   }
+
   else if (state == "AUS") {
-    tibble::as_tibble(
-      plyr::ldply(
-        .data = file_list,
-        .fun = .parse_bulletin,
-        stations_meta,
-        .progress = "text"
-      )
-    )
+    out <- lapply(X = file_list, FUN = .parse_bulletin, stations_meta)
+    out <- as.data.frame(data.table::rbindlist(out))
   }
 }
 
 #' @noRd
 .parse_bulletin <- function(xmlbulletin, stations_meta) {
+  # CRAN NOTE avoidance
   obs.time.utc <- obs.time.local <- time.zone <- site <- name <- r <- tn <-
     tx <- twd <- ev <- obs_time_utc <- obs_time_local <- time_zone <- state <-
     tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <- lon <- attrs <-
@@ -156,7 +164,8 @@ get_bulletin <- function(state = NULL) {
   bulletin_state <-
     xml2::xml_find_first(xmlbulletin, ".//*['name']")
   bulletin_state <- xml2::xml_attr(bulletin_state, "name")
-  bulletin_state <- stringr::str_sub(bulletin_state, start = 40)
+  bulletin_state <- substr(x = bulletin_state, start = 40,
+                           stop = nchar(bulletin_state))
 
   if (bulletin_state == "New South Wales") {
     bulletin_state <- "NSW"
@@ -198,7 +207,7 @@ get_bulletin <- function(state = NULL) {
     # if there are no observations, keep a single row for the station ID
     if (length(value) > 1) {
       location <-
-        trimws(location[rep(seq_len(nrow(location)), each = length(value)), ])
+        trimws(location[rep(seq_len(nrow(location)), each = length(value)),])
     }
 
     # if there is only one observation this step means that a data frame is
@@ -207,7 +216,7 @@ get_bulletin <- function(state = NULL) {
       location <- data.frame(t(location))
     }
 
-    # put everything back together into a data frame
+    # put everything back together into a data frame ---------------------------
     row.names(location) <- NULL
     out <- data.frame(location, attrs, value)
     row.names(out) <- NULL
@@ -215,10 +224,18 @@ get_bulletin <- function(state = NULL) {
     out$site <- as.character(out$site)
     out$value <- as.numeric(as.character(out$value))
 
+    # convert dates to POSIXct -------------------------------------------------
+    out[, 1:2] <- apply(out[, 1:2], 2, function(x) chartr("T", " ", x))
+
+    out[, 1] <- as.POSIXct(out[, 1], origin = "1970-1-1",
+                          format = "%Y%m%d %H%M", tz = "")
+    out[, 2] <- as.POSIXct(out[, 2],  origin = "1970-1-1",
+                          format = "%Y%m%d %H%M", tz = "GMT")
+
     # spread from long to wide
     out <- tidyr::spread(out, key = attrs, value = value)
 
-    # some stations don't report all values, insert/remove as necessary
+    # some stations don't report all values, insert/remove as necessary --------
     if ("<NA>" %in% colnames(out)) {
       out$`<NA>` <- NULL
     }
@@ -275,10 +292,12 @@ get_bulletin <- function(state = NULL) {
       out$t1m <- NA
     }
 
-    # join locations with lat/lon values ---------------------------------------
+    # return from internal function
     return(out)
   }
-  tidy_df <- plyr::ldply(.data = obs, .fun = .get_obs)
+
+  tidy_df <- lapply(X = obs, FUN = .get_obs)
+  tidy_df <- do.call("rbind", tidy_df)
 
   tidy_df <- dplyr::left_join(tidy_df,
                               stations_meta,
@@ -298,7 +317,7 @@ get_bulletin <- function(state = NULL) {
     dplyr::mutate_each(dplyr::funs(as.character), obs_time_utc) %>%
     dplyr::mutate_each(dplyr::funs(as.character), time_zone)
 
-  tidy_df <- tibble::as_tibble(
+  tidy_df <-
     dplyr::select(
       tidy_df,
       obs_time_local,
@@ -323,5 +342,7 @@ get_bulletin <- function(state = NULL) {
       lat,
       lon
     )
-  )
+
+  # return from main function
+  return(tidy_df)
 }
