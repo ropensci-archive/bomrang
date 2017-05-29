@@ -1,3 +1,9 @@
+# bomrang 0.0.2-1
+
+## Minor changes
+
+* Add more information to description field in DESCRIPTION file
+
 # bomrang 0.0.2
 
 ## Major changes
