@@ -15,7 +15,7 @@ _bomrang_ provides functions for interacting with [Australian Bureau of Meteorol
 
 ## Using _bomrang_
 
-Several functions are provided by _bomrang_.The main functionality of _bomrang_ is provided through three functions, `get_precis_forecast()`, which retrieves the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; and `get_ag_bulletin()`, which retries the agriculture bulletin. Other functions include `update_precis_locations()`, which updates an internal database of forecast locations distributed with the package, and `sweep_for_stations()` which returns the nearest weather stations to a point in Australia.
+Several functions are provided by _bomrang_.The main functionality of _bomrang_ is provided through three functions, `get_precis_forecast()`, which retrieves the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; and `get_ag_bulletin()`, which retrieves the agriculture bulletin. Other functions include `update_precis_locations()`, which updates an internal database of forecast locations distributed with the package, and `sweep_for_stations()` which returns the nearest weather stations to a point in Australia.
 
 ## Using `get_precis_forecast()`
 
@@ -102,7 +102,9 @@ The function, `get_ag_bulletin()` will return a data frame of the agriculture bu
 * **lat** - Latitude (decimal degrees)  
 * **lon** - Longitude (decimal degrees)  
 
-#### Example
+### Example
+
+Following is an example fetching the ag bulletin for Queensland.
 
 ```{r, eval=TRUE}
 library("bomrang")
@@ -123,6 +125,8 @@ If `latlon` is used, the observations returned are from the station nearest to t
 The table returned will have different fields depending on the station that is selected. 
 
 ### Example
+Following is an example fetching the current weather for Melbourne.
+
 ```{r, eval=TRUE}
 library("bomrang")
 
@@ -144,6 +148,9 @@ This function will search for weather stations and return a data frame of all we
 **distance** - distance from provided `latlon` value (kilometres)  
 
 #### Example  
+
+Following is an example sweeping for stations starting with Canberra.  
+
 ```{r, eval = TRUE}
 # Show only the first ten stations in the list
 head(sweep_for_stations(latlon = c(-35.3, 149.2)), 10)
@@ -155,6 +162,9 @@ head(sweep_for_stations(latlon = c(-35.3, 149.2)), 10)
 This function downloads the latest précis forecast locations from the BOM server and updates _bomrang_'s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BOM forecast location database that is not available in the database distributed with _bomrang_. This database is distributed with the package to make the process faster when fetching the forecast.
 
 #### Example
+
+Following is an example updating the précis forecast locations internal database.
+
 ```{r, eval=FALSE}
 update_precis_locations()
 ```

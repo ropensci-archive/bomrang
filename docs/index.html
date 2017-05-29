@@ -82,7 +82,7 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <h2 class="hasAnchor">
 <a href="#using-bomrang" class="anchor"></a>Using <em>bomrang</em>
 </h2>
-<p>The main functionality of <em>bomrang</em> is provided through three functions, <code><a href="reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; and <code><a href="reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retries the agriculture bulletin.</p>
+<p>The main functionality of <em>bomrang</em> is provided through three functions, <code><a href="reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; and <code><a href="reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin.</p>
 <div id="using-get_precis_forecast" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-get_precis_forecast" class="anchor"></a>Using <code><a href="reference/get_precis_forecast.html">get_precis_forecast()</a></code>
@@ -173,11 +173,10 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <strong>elev</strong> - Elevation of named location (metres)</li>
 </ul>
 </div>
-</div>
-<div id="examples" class="section level3">
-<h3 class="hasAnchor">
-<a href="#examples" class="anchor"></a>Examples</h3>
-<p>Following is an example fetching the forecast for Queensland.</p>
+<div id="example" class="section level4">
+<h4 class="hasAnchor">
+<a href="#example" class="anchor"></a>Example</h4>
+<p>Following is an example fetching the précis forecast for Queensland.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"bomrang"</span>)
 
 QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_precis_forecast.html">get_precis_forecast</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
@@ -210,6 +209,7 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="reference/g
 ## 4                           10 Brisbane   QLD 153.0389 -27.4808  8.1
 ## 5                           30 Brisbane   QLD 153.0389 -27.4808  8.1
 ## 6                           40 Brisbane   QLD 153.0389 -27.4808  8.1</code></pre>
+</div>
 </div>
 <div id="using-get_ag_bulletin" class="section level3">
 <h3 class="hasAnchor">
@@ -306,6 +306,11 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="reference/g
 <li>
 <strong>lon</strong> - Longitude (decimal degrees)</li>
 </ul>
+</div>
+<div id="example-1" class="section level4">
+<h4 class="hasAnchor">
+<a href="#example-1" class="anchor"></a>Example</h4>
+<p>Following is an example fetching the ag bulletin for Queensland.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"bomrang"</span>)
 
 QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_ag_bulletin.html">get_ag_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
@@ -345,6 +350,15 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="reference/g
 <li><p><code>raw</code> Logical. Do not convert the columns data.table to the appropriate classes. (FALSE by default.)</p></li>
 <li><p><code>emit_latlon_msg</code> Logical. If <code>TRUE</code> (the default), and <code>latlon</code> is selected, a message is emitted before the table is returned indicating which station was actually used (i.e. which station was found to be nearest to the given coordinate).</p></li>
 </ul>
+<div id="results-2" class="section level4">
+<h4 class="hasAnchor">
+<a href="#results-2" class="anchor"></a>Results</h4>
+<p>The function, <code><a href="reference/get_current_weather.html">get_current_weather()</a></code> will return a tidy data frame of the current and past 72 hours observations for the requested station. The fields returned will vary between stations dependent upon the data that they provide. See the <a href="http://www.bom.gov.au/catalogue/observations/about-weather-observations.shtml">BOM website</a> for more information.</p>
+</div>
+<div id="example-2" class="section level4">
+<h4 class="hasAnchor">
+<a href="#example-2" class="anchor"></a>Example</h4>
+<p>Following is an example fetching the current weather for Melbourne.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"bomrang"</span>)
 
 Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_current_weather.html">get_current_weather</a></span>(<span class="st">"Melbourne (Olympic Park)"</span>)
@@ -384,10 +398,6 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="refere
 ## 4                -     10       -      WNW           13           7
 ## 5                -     10       -       NW           13           7
 ## 6                -     10       -       NW           11           6</code></pre>
-<div id="results-2" class="section level4">
-<h4 class="hasAnchor">
-<a href="#results-2" class="anchor"></a>Results</h4>
-<p>The function, <code>get_current()</code> will return a tidy data frame of the current and past 72 hours observations for the requested station. The fields returned will vary between stations dependent upon the data that they provide. See the <a href="http://www.bom.gov.au/catalogue/observations/about-weather-observations.shtml">BOM website</a> for more information.</p>
 </div>
 </div>
 </div>
@@ -400,7 +410,7 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="refere
 <li>License: MIT<br>
 </li>
 <li>To cite <em>bomrang</em>, please use:<br>
-Sparks A, Parsonage H, and Pembleton K (2017). <em>bomrang: Fetch Australian Government Bureau of Meteorology Weather Data</em>. R package version 0.0.1-1, &lt;URL: <a href="https://github.com/ToowoombaTrio/bomrang" class="uri">https://github.com/ToowoombaTrio/bomrang</a>&gt;.<br>
+Sparks A, Parsonage H, and Pembleton K (2017). <em>bomrang: Fetch Australian Government Bureau of Meteorology Weather Data</em>. R package version 0.0.2, &lt;URL: <a href="https://github.com/ToowoombaTrio/bomrang" class="uri">https://github.com/ToowoombaTrio/bomrang</a>&gt;.<br>
 </li>
 <li>Please note that this project is released with a <a href="CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.<br>
 </li>

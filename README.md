@@ -24,7 +24,7 @@ devtools::install_github("toowoombatrio/bomrang")
 Using *bomrang*
 ---------------
 
-The main functionality of *bomrang* is provided through three functions, `get_precis_forecast()`, which retrieves the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; and `get_ag_bulletin()`, which retries the agriculture bulletin.
+The main functionality of *bomrang* is provided through three functions, `get_precis_forecast()`, which retrieves the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; and `get_ag_bulletin()`, which retrieves the agriculture bulletin.
 
 ### Using `get_precis_forecast()`
 
@@ -62,9 +62,9 @@ The function, `get_precis_forecast()` will return a tidy data frame of the weath
 -   **lat** - Latitude of named location (decimal degrees)
 -   **elev** - Elevation of named location (metres)
 
-### Examples
+#### Example
 
-Following is an example fetching the forecast for Queensland.
+Following is an example fetching the précis forecast for Queensland.
 
 ``` r
 library("bomrang")
@@ -140,6 +140,10 @@ The function, `get_ag_bulletin()` will return a tidy data frame of the agricultu
 -   **lat** - Latitude (decimal degrees)
 -   **lon** - Longitude (decimal degrees)
 
+#### Example
+
+Following is an example fetching the ag bulletin for Queensland.
+
 ``` r
 library("bomrang")
 
@@ -182,6 +186,14 @@ This function accepts four parameters:
 -   `raw` Logical. Do not convert the columns data.table to the appropriate classes. (FALSE by default.)
 
 -   `emit_latlon_msg` Logical. If `TRUE` (the default), and `latlon` is selected, a message is emitted before the table is returned indicating which station was actually used (i.e. which station was found to be nearest to the given coordinate).
+
+#### Results
+
+The function, `get_current_weather()` will return a tidy data frame of the current and past 72 hours observations for the requested station. The fields returned will vary between stations dependent upon the data that they provide. See the [BOM website](http://www.bom.gov.au/catalogue/observations/about-weather-observations.shtml) for more information.
+
+#### Example
+
+Following is an example fetching the current weather for Melbourne.
 
 ``` r
 library("bomrang")
@@ -226,17 +238,13 @@ head(Melbourne_weather)
     ## 5                -     10       -       NW           13           7
     ## 6                -     10       -       NW           11           6
 
-#### Results
-
-The function, `get_current()` will return a tidy data frame of the current and past 72 hours observations for the requested station. The fields returned will vary between stations dependent upon the data that they provide. See the [BOM website](http://www.bom.gov.au/catalogue/observations/about-weather-observations.shtml) for more information.
-
 Meta
 ----
 
 -   Please [report any issues or bugs](https://github.com/ToowoombaTrio/bomrang/issues).
 -   License: MIT
 -   To cite *bomrang*, please use:
-    Sparks A, Parsonage H, and Pembleton K (2017). *bomrang: Fetch Australian Government Bureau of Meteorology Weather Data*. R package version 0.0.1-1, &lt;URL: <https://github.com/ToowoombaTrio/bomrang>&gt;.
+    Sparks A, Parsonage H, and Pembleton K (2017). *bomrang: Fetch Australian Government Bureau of Meteorology Weather Data*. R package version 0.0.2, &lt;URL: <https://github.com/ToowoombaTrio/bomrang>&gt;.
 -   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
 -   BOM Copyright Notice <http://reg.bom.gov.au/other/copyright.shtml>
 
