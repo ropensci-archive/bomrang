@@ -178,33 +178,33 @@
 QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_precis_forecast.html">get_precis_forecast</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
 <span class="kw">head</span>(QLD_forecast)</code></pre></div>
 <pre><code>##         aac index    start_time_local end_time_local UTC_offset
-## 1 QLD_PT001     0 2017-05-29 05:00:00     2017-05-30      10:00
+## 1 QLD_PT001     0 2017-05-29 17:00:00     2017-05-30      10:00
 ## 2 QLD_PT001     1 2017-05-30 00:00:00     2017-05-31      10:00
 ## 3 QLD_PT001     2 2017-05-31 00:00:00     2017-06-01      10:00
 ## 4 QLD_PT001     3 2017-06-01 00:00:00     2017-06-02      10:00
 ## 5 QLD_PT001     4 2017-06-02 00:00:00     2017-06-03      10:00
 ## 6 QLD_PT001     5 2017-06-03 00:00:00     2017-06-04      10:00
 ##        start_time_utc        end_time_utc maximum_temperature
-## 1 2017-05-28 19:00:00 2017-05-29 14:00:00                  12
-## 2 2017-05-29 14:00:00 2017-05-30 14:00:00                  10
-## 3 2017-05-30 14:00:00 2017-05-31 14:00:00                   9
-## 4 2017-05-31 14:00:00 2017-06-01 14:00:00                   8
-## 5 2017-06-01 14:00:00 2017-06-02 14:00:00                   8
-## 6 2017-06-02 14:00:00 2017-06-03 14:00:00                   9
-##   minimum_temperature lower_prec_limit upper_prec_limit           precis
-## 1                  NA                1                0           Sunny.
-## 2                   4                1                0           Sunny.
-## 3                   3                1                0           Sunny.
-## 4                   3                1                0   Partly cloudy.
-## 5                   4                1                1 Possible shower.
-## 6                   5                1                1 Possible shower.
+## 1 2017-05-29 07:00:00 2017-05-29 14:00:00                  NA
+## 2 2017-05-29 14:00:00 2017-05-30 14:00:00                   9
+## 3 2017-05-30 14:00:00 2017-05-31 14:00:00                   8
+## 4 2017-05-31 14:00:00 2017-06-01 14:00:00                   7
+## 5 2017-06-01 14:00:00 2017-06-02 14:00:00                   7
+## 6 2017-06-02 14:00:00 2017-06-03 14:00:00                   8
+##   minimum_temperature lower_prec_limit upper_prec_limit         precis
+## 1                  NA               NA             &lt;NA&gt;         Clear.
+## 2                   4                1                0         Sunny.
+## 3                   3                1                0         Sunny.
+## 4                   3                1                0  Mostly sunny.
+## 5                   4                1                0 Partly cloudy.
+## 6                   5                1                0 Partly cloudy.
 ##   probability_of_precipitation location state      lon      lat elev
-## 1                            5 Brisbane   QLD 153.0389 -27.4808  8.1
-## 2                            5 Brisbane   QLD 153.0389 -27.4808  8.1
-## 3                            5 Brisbane   QLD 153.0389 -27.4808  8.1
+## 1                            0 Brisbane   QLD 153.0389 -27.4808  8.1
+## 2                           10 Brisbane   QLD 153.0389 -27.4808  8.1
+## 3                            0 Brisbane   QLD 153.0389 -27.4808  8.1
 ## 4                           10 Brisbane   QLD 153.0389 -27.4808  8.1
-## 5                           30 Brisbane   QLD 153.0389 -27.4808  8.1
-## 6                           40 Brisbane   QLD 153.0389 -27.4808  8.1</code></pre>
+## 5                           20 Brisbane   QLD 153.0389 -27.4808  8.1
+## 6                           20 Brisbane   QLD 153.0389 -27.4808  8.1</code></pre>
 </div>
 </div>
 <div id="using-get_ag_bulletin" class="section level2">
@@ -362,33 +362,33 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
 ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
 ##   local_date_time local_date_time_full aifstime_utc   lat lon apparent_t
-## 1      29/02:30pm                 &lt;NA&gt;         &lt;NA&gt; -37.8 145       11.3
-## 2      29/02:00pm                 &lt;NA&gt;         &lt;NA&gt; -37.8 145       11.2
-## 3      29/01:30pm                 &lt;NA&gt;         &lt;NA&gt; -37.8 145       11.3
-## 4      29/01:00pm                 &lt;NA&gt;         &lt;NA&gt; -37.8 145       10.9
-## 5      29/12:30pm                 &lt;NA&gt;         &lt;NA&gt; -37.8 145       10.3
-## 6      29/12:00pm                 &lt;NA&gt;         &lt;NA&gt; -37.8 145       10.3
+## 1      29/04:00pm                 &lt;NA&gt;         &lt;NA&gt; -37.8 145       11.0
+## 2      29/03:30pm                 &lt;NA&gt;         &lt;NA&gt; -37.8 145       10.5
+## 3      29/03:00pm                 &lt;NA&gt;         &lt;NA&gt; -37.8 145       11.6
+## 4      29/02:30pm                 &lt;NA&gt;         &lt;NA&gt; -37.8 145       11.3
+## 5      29/02:00pm                 &lt;NA&gt;         &lt;NA&gt; -37.8 145       11.2
+## 6      29/01:30pm                 &lt;NA&gt;         &lt;NA&gt; -37.8 145       11.3
 ##   cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt  press
-## 1     -          -     4.8       13       7     14.4   3.8 1019.1
-## 2     -          -     4.8       20      11     14.6   4.0 1019.1
-## 3     -          -     4.5       17       9     14.2   4.5 1019.1
-## 4     -          -     4.7       19      10     14.0   3.5 1019.2
-## 5     -          -     4.3       26      14     14.0   4.6 1019.3
-## 6     -          -     4.3       20      11     14.0   4.6 1019.6
+## 1     -          -     4.7       13       7     13.8   3.3 1019.4
+## 2     -          -     4.8       20      11     14.3   3.7 1019.3
+## 3     -          -     5.0       15       8     14.7   3.8 1019.2
+## 4     -          -     4.8       13       7     14.4   3.8 1019.1
+## 5     -          -     4.8       20      11     14.6   4.0 1019.1
+## 6     -          -     4.5       17       9     14.2   4.5 1019.1
 ##   press_msl press_qnh press_tend rain_trace rel_hum sea_state
-## 1    1019.1    1019.1          -          0      49         -
-## 2    1019.1    1019.1          -          0      49         -
-## 3    1019.1    1019.1          -          0      52         -
-## 4    1019.2    1019.2          -          0      49         -
-## 5    1019.3    1019.3          -          0      53         -
-## 6    1019.6    1019.6          -          0      53         -
+## 1    1019.4    1019.4          -          0      49         -
+## 2    1019.3    1019.3          -          0      49         -
+## 3    1019.2    1019.2          -          0      48         -
+## 4    1019.1    1019.1          -          0      49         -
+## 5    1019.1    1019.1          -          0      49         -
+## 6    1019.1    1019.1          -          0      52         -
 ##   swell_dir_worded vis_km weather wind_dir wind_spd_kmh wind_spd_kt
-## 1                -     10       -        W            9           5
-## 2                -     10       -      WNW           11           6
+## 1                -     10       -      WNW            7           4
+## 2                -     10       -       NW           13           7
 ## 3                -     10       -      WNW            9           5
 ## 4                -     10       -        W            9           5
-## 5                -     10       -      WNW           13           7
-## 6                -     10       -      WNW           13           7</code></pre>
+## 5                -     10       -      WNW           11           6
+## 6                -     10       -      WNW            9           5</code></pre>
 </div>
 </div>
 <div id="other-functions-in-bomrang" class="section level2">
