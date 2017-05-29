@@ -30,10 +30,10 @@
 #'    \item{r}{Rain to 9am (millimetres). \strong{Trace will be reported as 0.01}}
 #'    \item{tn}{Minimum temperature (Celsius)}
 #'    \item{tx}{Maximum temperature (Celsius)}
-#'    \item{twd}{Wetbulb depression (Celsius)}
+#'    \item{twd}{Wet bulb depression (Celsius)}
 #'    \item{ev}{Evaporation (millimetres)}
 #'    \item{tg}{Terrestrial minimum temperature (Celsius)}
-#'    \item{sn}{Sunshine (Hours)}
+#'    \item{sn}{Sunshine (hours)}
 #'    \item{t5}{5cm soil temperature (Celsius)}
 #'    \item{t10}{10cm soil temperature (Celsius)}
 #'    \item{t20}{20cm soil temperature (Celsius)}

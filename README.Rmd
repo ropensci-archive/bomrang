@@ -34,7 +34,7 @@ devtools::install_github("toowoombatrio/bomrang")
 
 ## Using _bomrang_
 
-The main functionality of _bomrang_ is provided through three functions, `get_precis_forecast()`, which retreives the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; and `get_ag_bulletin()`, which retrives the agriculture bulletin. 
+The main functionality of _bomrang_ is provided through three functions, `get_precis_forecast()`, which retrieves the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; and `get_ag_bulletin()`, which retries the agriculture bulletin. 
 
 ### Using `get_precis_forecast()`
 
@@ -108,10 +108,10 @@ The function, `get_ag_bulletin()` will return a tidy data frame of the agricultu
 * **r** - Rain to 9am (millimetres). _Trace will be reported as 0.01_  
 * **tn** - Minimum temperature (degrees Celsius)  
 * **tx** - Maximum temperature (degrees Celsius)  
-* **twd** - Wetbulb depression (degress Celsius)  
+* **twd** - Wet bulb depression (degrees Celsius)  
 * **ev** - Evaporation (millimetres)  
-* **tg** - Terrestrial minimum temperature (degress Celsius)  
-* **sn** - Sunshine (Hours)  
+* **tg** - Terrestrial minimum temperature (degrees Celsius)  
+* **sn** - Sunshine (hours)  
 * **t5** - 5cm soil temperature (degrees Celsius)  
 * **t10** - 10cm soil temperature (degrees Celsius)  
 * **t20** - 20cm soil temperature (degrees Celsius)  
