@@ -19,7 +19,7 @@ Several functions are provided by _bomrang_.The main functionality of _bomrang_ 
 
 ## Using `get_precis_forecast()`
 
-This function only takes one parameter, `state`. The `state` parameter allows the user to select the forecast for just one state or a national forecast. States or territories are specified using the official postal codes, 
+This function only takes one parameter, `state`. The `state` parameter allows the user to select the forecast for just one state or a national forecast. States or territories are specified using the official postal codes:
 
 * **ACT** - Australian Capital Territory  
 * **NSW** - New South Wales  
@@ -29,11 +29,11 @@ This function only takes one parameter, `state`. The `state` parameter allows th
 * **TAS** - Tasmania  
 * **VIC** - Victoria  
 * **WA** - Western Australia  
-* **AUS** - Australia, returns national forecast including all states  
+* **AUS** - Australia, returns national forecast including all states.
 
 ### Results
 
-The function, `get_precis_forecast()` will return a data frame of the weather forecast for the daily forecast with the following fields,
+The function, `get_precis_forecast()`, will return a data frame of the weather forecast for the daily forecast with the following fields:
 
 * **aac** - AMOC Area Code, _e.g._ WA_MW008, a unique identifier for each location  
 * **start_time_local** - Start of forecast date and time in local TZ  
@@ -51,7 +51,7 @@ The function, `get_precis_forecast()` will return a data frame of the weather fo
 * **state** - State name (postal code abbreviation)  
 * **lon** - Longitude of named location (decimal degrees)  
 * **lat** - Latitude of named location (decimal degrees)  
-* **elev** - Elevation of named location (metres)  
+* **elev** - Elevation of named location (metres).
 
 ### Example
 
@@ -66,7 +66,7 @@ head(QLD_forecast)
 
 ## Using `get_ag_bulletin()`
 
-This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national forecast. States or territories are specified using the official postal codes, 
+This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national forecast. States or territories are specified using the official postal codes.
 
 * **NSW** - New South Wales  
 * **NT** - Northern Territory  
@@ -75,11 +75,11 @@ This function only takes one parameter, `state`. The `state` parameter allows th
 * **TAS** - Tasmania  
 * **VIC** - Victoria  
 * **WA** - Western Australia  
-* **AUS** - Australia, returns bulletin for all states  
+* **AUS** - Australia, returns bulletin for all states/territories.
 
 ### Results
 
-The function, `get_ag_bulletin()` will return a data frame of the agriculture bulletin with the following fields,
+The function, `get_ag_bulletin()`, will return a data frame of the agriculture bulletin with the following fields:
 
 * **obs-time-utc** - Observation time (Time in UTC)  
 * **time-zone** - Time zone for observation  
@@ -100,7 +100,7 @@ The function, `get_ag_bulletin()` will return a data frame of the agriculture bu
 * **wr** - Wind run (kilometres)  
 * **state** - State name (postal code abbreviation)  
 * **lat** - Latitude (decimal degrees)  
-* **lon** - Longitude (decimal degrees)  
+* **lon** - Longitude (decimal degrees).
 
 ### Example
 
@@ -140,12 +140,12 @@ head(Melbourne_weather)
 This function only takes one parameter, `latlon`, a length-2 numeric vector. By default, Canberra (approximately).
 
 #### Results
-This function will search for weather stations and return a data frame of all weather stations (in this package) sorted by distance from `latlon`, ascending.
+This function will search for weather stations and return a data frame of all weather stations (in this package) sorted by distance from `latlon`, ascending. The fields in the data frame are:
 
 **name** - station name  
 **Lat** - latitude (decimal degrees)  
 **Lon** - longitude (decimal degrees)  
-**distance** - distance from provided `latlon` value (kilometres)  
+**distance** - distance from provided `latlon` value (kilometres).
 
 #### Example  
 

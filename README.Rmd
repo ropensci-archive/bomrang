@@ -38,7 +38,7 @@ The main functionality of _bomrang_ is provided through three functions, `get_pr
 
 ### Using `get_precis_forecast()`
 
-This function only takes one parameter, `state`. States or territories are specified using the official postal codes, 
+This function only takes one parameter, `state`. States or territories are specified using the official postal codes.
 
 * **ACT** - Australian Capital Territory  
 * **NSW** - New South Wales  
@@ -48,11 +48,11 @@ This function only takes one parameter, `state`. States or territories are speci
 * **TAS** - Tasmania  
 * **VIC** - Victoria  
 * **WA** - Western Australia  
-* **AUS** - Australia, returns national forecast including all states  
+* **AUS** - Australia, returns national forecast including all states/territories.
 
 #### Results
 
-The function, `get_precis_forecast()` will return a tidy data frame of the weather forecast for the daily forecast with the following fields,
+The function, `get_precis_forecast()`, will return a tidy data frame of the weather forecast for the daily forecast with the following fields:
 
 * **aac** - AMOC Area Code, _e.g._, WA_MW008, a unique identifier for each location  
 * **start_time_local** - Start of forecast date and time in local TZ  
@@ -70,7 +70,7 @@ The function, `get_precis_forecast()` will return a tidy data frame of the weath
 * **state** - State name (postal code abbreviation)  
 * **lon** - Longitude of named location (decimal degrees)  
 * **lat** - Latitude of named location (decimal degrees)  
-* **elev** - Elevation of named location (metres)  
+* **elev** - Elevation of named location (metres).
 
 #### Example
 
@@ -85,7 +85,7 @@ head(QLD_forecast)
 
 ### Using `get_ag_bulletin()`
 
-This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national bulletin. States or territories are specified using the official postal codes, 
+This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national bulletin. States or territories are specified using the official postal codes.
 
 * **NSW** - New South Wales  
 * **NT** - Northern Territory  
@@ -94,11 +94,11 @@ This function only takes one parameter, `state`. The `state` parameter allows th
 * **TAS** - Tasmania  
 * **VIC** - Victoria  
 * **WA** - Western Australia  
-* **AUS** - Australia, returns bulletin for all states  
+* **AUS** - Australia, returns bulletin for all states/territories.
 
 #### Results
 
-The function, `get_ag_bulletin()` will return a tidy data frame of the agriculture bulletin with the following fields,
+The function, `get_ag_bulletin()`, will return a tidy data frame of the agriculture bulletin with the following fields:
 
 * **obs_time_utc** - Observation time (Time in UTC)  
 * **time_zone** - Time zone for observation  
@@ -119,7 +119,7 @@ The function, `get_ag_bulletin()` will return a tidy data frame of the agricultu
 * **wr** - Wind run (kilometres)  
 * **state** - State name (postal code abbreviation)  
 * **lat** - Latitude (decimal degrees)  
-* **lon** - Longitude (decimal degrees)  
+* **lon** - Longitude (decimal degrees). 
 
 #### Example
 
