@@ -1,4 +1,4 @@
-# BOMRang 0.0.2
+# bomrang 0.0.2
 
 ## Major changes
 
@@ -25,7 +25,7 @@
 
 ###########
 
-# BOMRang 0.0.1
+# bomrang 0.0.1
 
 * Added a `NEWS.md` file to track changes to the package.
 * New package for fetching BOM forecasts and ag information bulletins
