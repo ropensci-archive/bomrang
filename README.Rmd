@@ -12,7 +12,7 @@ output: github_document
 [![Last-changedate](https://img.shields.io/badge/last%20change-`r gsub('-', '--', Sys.Date())`-brightgreen.svg)](https://github.com/toowoombatrio/bomrang/commits/master) 
 [![minimal R version](https://img.shields.io/badge/R%3E%3D-`r as.character(getRversion())`-brightgreen.svg)](https://cran.r-project.org/)
 [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) 
-[![DOI](https://zenodo.org/badge/89690315.svg)](https://zenodo.org/badge/latestdoi/89690315)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.583806.svg)](https://doi.org/10.5281/zenodo.583806)
 
 Fetches Australian Government Bureau of Meteorology data and returns a tidy data frame.
 
