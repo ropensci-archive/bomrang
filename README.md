@@ -28,7 +28,7 @@ The main functionality of *bomrang* is provided through three functions, `get_pr
 
 ### Using `get_precis_forecast()`
 
-This function only takes one parameter, `state`. States are specified using the official postal codes,
+This function only takes one parameter, `state`. States or territories are specified using the official postal codes,
 
 -   **ACT** - Australian Capital Territory
 -   **NSW** - New South Wales
@@ -104,9 +104,8 @@ head(QLD_forecast)
 
 ### Using `get_ag_bulletin()`
 
-This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national bulletin. States are specified using the official postal codes,
+This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national bulletin. States or territories are specified using the official postal codes,
 
--   **ACT** - Australian Capital Territory
 -   **NSW** - New South Wales
 -   **NT** - Northern Territory
 -   **QLD** - Queensland
@@ -199,32 +198,32 @@ head(Melbourne_weather)
     ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
     ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
     ##   local_date_time local_date_time_full aifstime_utc   lat lon apparent_t
-    ## 1      29/11:30am                 <NA>         <NA> -37.8 145        9.5
-    ## 2      29/11:00am                 <NA>         <NA> -37.8 145        9.3
-    ## 3      29/10:30am                 <NA>         <NA> -37.8 145        8.4
-    ## 4      29/10:00am                 <NA>         <NA> -37.8 145        8.9
-    ## 5      29/09:30am                 <NA>         <NA> -37.8 145        7.3
-    ## 6      29/09:00am                 <NA>         <NA> -37.8 145        6.0
+    ## 1      29/01:30pm                 <NA>         <NA> -37.8 145       11.3
+    ## 2      29/01:00pm                 <NA>         <NA> -37.8 145       10.9
+    ## 3      29/12:30pm                 <NA>         <NA> -37.8 145       10.3
+    ## 4      29/12:00pm                 <NA>         <NA> -37.8 145       10.3
+    ## 5      29/11:30am                 <NA>         <NA> -37.8 145        9.5
+    ## 6      29/11:00am                 <NA>         <NA> -37.8 145        9.3
     ##   cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt  press
-    ## 1     -          -     4.0       22      12     13.2   4.4 1019.9
-    ## 2     -          -     3.4       20      11     12.5   5.2 1020.2
-    ## 3     -          -     3.3       20      11     12.3   5.2 1020.1
-    ## 4     -          -     3.0       15       8     11.7   5.1 1020.0
-    ## 5     -          -     2.5       17       9     10.2   4.6 1019.9
-    ## 6     -          -     2.2       17       9      9.3   4.3 1019.5
+    ## 1     -          -     4.5       17       9     14.2   4.5 1019.1
+    ## 2     -          -     4.7       19      10     14.0   3.5 1019.2
+    ## 3     -          -     4.3       26      14     14.0   4.6 1019.3
+    ## 4     -          -     4.3       20      11     14.0   4.6 1019.6
+    ## 5     -          -     4.0       22      12     13.2   4.4 1019.9
+    ## 6     -          -     3.4       20      11     12.5   5.2 1020.2
     ##   press_msl press_qnh press_tend rain_trace rel_hum sea_state
-    ## 1    1019.9    1019.9          -        0.0      55         -
-    ## 2    1020.2    1020.2          -        0.0      61         -
-    ## 3    1020.1    1020.1          -        0.0      62         -
-    ## 4    1020.0    1020.0          -        0.0      64         -
-    ## 5    1019.9    1019.9          -        0.0      68         -
-    ## 6    1019.5    1019.5          -        1.4      71         -
+    ## 1    1019.1    1019.1          -          0      52         -
+    ## 2    1019.2    1019.2          -          0      49         -
+    ## 3    1019.3    1019.3          -          0      53         -
+    ## 4    1019.6    1019.6          -          0      53         -
+    ## 5    1019.9    1019.9          -          0      55         -
+    ## 6    1020.2    1020.2          -          0      61         -
     ##   swell_dir_worded vis_km weather wind_dir wind_spd_kmh wind_spd_kt
-    ## 1                -     10       -       NW           13           7
-    ## 2                -     10       -       NW           11           6
-    ## 3                -     10       -      NNW           15           8
-    ## 4                -     10       -       NW            9           5
-    ## 5                -     10       -       NW            9           5
+    ## 1                -     10       -      WNW            9           5
+    ## 2                -     10       -        W            9           5
+    ## 3                -     10       -      WNW           13           7
+    ## 4                -     10       -      WNW           13           7
+    ## 5                -     10       -       NW           13           7
     ## 6                -     10       -       NW           11           6
 
 #### Results

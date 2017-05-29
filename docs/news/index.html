@@ -84,6 +84,59 @@
     </div>
 
     <div class="contents">
+    <div id="bomrang-0-0-2" class="section level1">
+<h1 class="hasAnchor">
+<a href="#bomrang-0-0-2" class="anchor"></a>BOMRang 0.0.2</h1>
+<div id="major-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#major-changes" class="anchor"></a>Major changes</h2>
+<ul>
+<li>Hugh Parsonage has joined as a contributor<br>
+</li>
+<li>Added a new function <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> to retrieve weather data from specified BOM weather stations<br>
+</li>
+<li>Added a new function <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> to find stations used in <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> function, based on distance from a specified latitude and longitude</li>
+<li>Renamed existing functions for more clarity.<br>
+</li>
+<li>
+<code>get_forecast()</code> is now <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code><br>
+</li>
+<li>
+<code>get_bulletin()</code> is now <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code><br>
+</li>
+<li>
+<code>update_locations()</code> is now <code><a href="../reference/update_precis_locations.html">update_precis_locations()</a></code>
+</li>
+</ul>
+</div>
+<div id="minor-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#minor-changes" class="anchor"></a>Minor changes</h2>
+<ul>
+<li>All functions will return a <code>data.frame</code> object, not a <code>tibble</code><br>
+</li>
+<li>If a server is not responding, the function returns a more meaningful error message on exit<br>
+</li>
+<li>All date\times are returned in POSIXct format<br>
+</li>
+<li>UTC offset is returned in a separate <code>UTC_offset</code> field for <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code> for both <code>start_time_local</code> and <code>end_time_local</code> fields<br>
+</li>
+<li>Spelling and typo corrections<br>
+</li>
+<li>Enhanced documentation</li>
+</ul>
+</div>
+<div id="bug-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<ul>
+<li>Correct output for ag bulletin where the observation site is listed but has no values. The site will be listed with location data and <code>NA</code> for all meteorological values</li>
+</ul>
+<div id="section" class="section level11">
+<p></p>
+</div>
+</div>
+</div>
     <div id="bomrang-0-0-1" class="section level1">
 <h1 class="hasAnchor">
 <a href="#bomrang-0-0-1" class="anchor"></a>BOMRang 0.0.1</h1>
@@ -99,6 +152,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#bomrang-0-0-2">0.0.2</a></li>
         <li><a href="#bomrang-0-0-1">0.0.1</a></li>
       </ul>
     </div>
