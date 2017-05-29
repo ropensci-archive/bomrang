@@ -19,7 +19,7 @@ Several functions are provided by _bomrang_.The main functionality of _bomrang_ 
 
 ## Using `get_precis_forecast()`
 
-This function only takes one parameter, `state`. The `state` parameter allows the user to select the forecast for just one state or a national forecast. States are specified using the official postal codes, 
+This function only takes one parameter, `state`. The `state` parameter allows the user to select the forecast for just one state or a national forecast. States or territories are specified using the official postal codes, 
 
 * **ACT** - Australian Capital Territory  
 * **NSW** - New South Wales  
@@ -66,9 +66,8 @@ QLD_forecast
 
 ## Using `get_ag_bulletin()`
 
-This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national forecast. States are specified using the official postal codes, 
+This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national forecast. States or territories are specified using the official postal codes, 
 
-* **ACT** - Australian Capital Territory  
 * **NSW** - New South Wales  
 * **NT** - Northern Territory  
 * **QLD** - Queensland  
