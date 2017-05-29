@@ -8,6 +8,7 @@
 * Renamed existing functions for more clarity.  
   * `get_forecast()` is now `get_precis_forecast()`  
   * `get_bulletin()` is now `get_ag_bulletin()`  
+  * `update_locations()` is now `update_precis_locations()`
 
 ## Minor changes
 

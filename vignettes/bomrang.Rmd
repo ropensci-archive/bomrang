@@ -15,7 +15,7 @@ _bomrang_ provides functions for interacting with [Australian Bureau of Meteorol
 
 ## Using _bomrang_
 
-Several functions are provided by _bomrang_.The main functionality of _bomrang_ is provided through three functions, `get_precis_forecast()`, which retrieves the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; and `get_ag_bulletin()`, which retries the agriculture bulletin. Other functions include `update_locations()`, which updates an internal database of forecast locations distributed with the package, and `sweep_for_stations()` which returns the nearest weather stations to a point in Australia.
+Several functions are provided by _bomrang_.The main functionality of _bomrang_ is provided through three functions, `get_precis_forecast()`, which retrieves the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; and `get_ag_bulletin()`, which retries the agriculture bulletin. Other functions include `update_precis_locations()`, which updates an internal database of forecast locations distributed with the package, and `sweep_for_stations()` which returns the nearest weather stations to a point in Australia.
 
 ## Using `get_precis_forecast()`
 
@@ -61,7 +61,7 @@ Following is an example fetching the forecast for Queensland.
 library("bomrang")
 
 QLD_forecast <- get_precis_forecast(state = "QLD")
-QLD_forecast
+head(QLD_forecast)
 ```
 
 ## Using `get_ag_bulletin()`
@@ -106,7 +106,7 @@ The function, `get_ag_bulletin()` will return a data frame of the agriculture bu
 library("bomrang")
 
 QLD_bulletin <- get_ag_bulletin(state = "QLD")
-QLD_bulletin
+head(QLD_bulletin)
 ```
 
 ## Using `get_current_weather()` 
@@ -120,12 +120,19 @@ If `latlon` is used, the observations returned are from the station nearest to t
 ### Results
 The table returned will have different fields depending on the station that is selected. 
 
-## Using `update_locations()`
+```{r, eval=TRUE}
+library("bomrang")
+
+ Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
+head(Melbourne_weather)
+```
+
+## Using `update_precis_locations()`
 
 This function downloads the latest précis forecast locations from the BOM server and updates _bomrang_'s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BOM forecast location database that is not available in the database distributed with _bomrang_. This database is distributed with the package to make the process faster when fetching the forecast.
 
 ```{r, eval=FALSE}
-update_locations()
+update_precis_locations()
 ```
 
 ## References
