@@ -1,5 +1,4 @@
 
-
 #' Get BOM Daily Précis Forecast
 #'
 #'Fetch the BOM daily précis forecast and return a tidy data frame of the daily

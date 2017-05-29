@@ -11,11 +11,11 @@ vignette: >
 
 ## Introduction
 
-_bomrang_ provides functions for interacting with [Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BOM serves several types of data data as XML and JSON files. This package fetches these files, parses them and return a tidy dataframe.
+_bomrang_ provides functions for interacting with [Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BOM serves several types of data data as XML and JSON files. This package fetches these files, parses them and return a tidy data frame.
 
 ## Using _bomrang_
 
-Several functions are provided by _bomrang_.The main functionality of _bomrang_ is provided through three functions, `get_precis_forecast()`, which retreives the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; and `get_ag_bulletin()`, which retrives the agriculture bulletin. Other functions include `update_locations()`, which updates an internal database of forecast locations distributed with the package, and `sweep_for_stations()` which returns the nearest weather stations to a point in Australia.
+Several functions are provided by _bomrang_.The main functionality of _bomrang_ is provided through three functions, `get_precis_forecast()`, which retrieves the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; and `get_ag_bulletin()`, which retries the agriculture bulletin. Other functions include `update_locations()`, which updates an internal database of forecast locations distributed with the package, and `sweep_for_stations()` which returns the nearest weather stations to a point in Australia.
 
 ## Using `get_precis_forecast()`
 
@@ -89,10 +89,10 @@ The function, `get_ag_bulletin()` will return a data frame of the agriculture bu
 * **r** - Rain to 9am (millimetres). _Trace will be reported as 0.01_  
 * **tn** - Minimum temperature (degrees Celsius)  
 * **tx** - Maximum temperature (degrees Celsius)  
-* **twd** - Wetbulb depression (degress Celsius)  
+* **twd** - Wet bulb depression (degrees Celsius)  
 * **ev** - Evaporation (millimetres)  
-* **tg** - Terrestrial minimum temperature (degress Celsius)  
-* **sn** - Sunshine (Hours)  
+* **tg** - Terrestrial minimum temperature (degrees Celsius)  
+* **sn** - Sunshine (hours)  
 * **t5** - 5cm soil temperature (Celsius)  
 * **t10** - 10cm soil temperature (Celsius)  
 * **t20** - 20cm soil temperature (Celsius)  
