@@ -53,7 +53,7 @@ The function, `get_precis_forecast()` will return a data frame of the weather fo
 * **lat** - Latitude of named location (decimal degrees)  
 * **elev** - Elevation of named location (metres)  
 
-### Examples
+### Example
 
 Following is an example fetching the forecast for Queensland.
 
@@ -102,6 +102,8 @@ The function, `get_ag_bulletin()` will return a data frame of the agriculture bu
 * **lat** - Latitude (decimal degrees)  
 * **lon** - Longitude (decimal degrees)  
 
+#### Example
+
 ```{r, eval=TRUE}
 library("bomrang")
 
@@ -120,17 +122,39 @@ If `latlon` is used, the observations returned are from the station nearest to t
 ### Results
 The table returned will have different fields depending on the station that is selected. 
 
+### Example
 ```{r, eval=TRUE}
 library("bomrang")
 
- Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
+Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
 head(Melbourne_weather)
 ```
 
-## Using `update_precis_locations()`
+## Other functions in _bomrang_
+
+### Using `sweep_for_stations()`
+This function only takes one parameter, `latlon`, a length-2 numeric vector. By default, Canberra (approximately).
+
+#### Results
+This function will search for weather stations and return a data frame of all weather stations (in this package) sorted by distance from `latlon`, ascending.
+
+**name** - station name  
+**Lat** - latitude (decimal degrees)  
+**Lon** - longitude (decimal degrees)  
+**distance** - distance from provided `latlon` value (kilometres)  
+
+#### Example  
+```{r, eval = TRUE}
+# Show only the first ten stations in the list
+head(sweep_for_stations(latlon = c(-35.3, 149.2)), 10)
+```
+
+
+### Using `update_precis_locations()`
 
 This function downloads the latest précis forecast locations from the BOM server and updates _bomrang_'s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BOM forecast location database that is not available in the database distributed with _bomrang_. This database is distributed with the package to make the process faster when fetching the forecast.
 
+#### Example
 ```{r, eval=FALSE}
 update_precis_locations()
 ```
