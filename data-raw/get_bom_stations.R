@@ -45,6 +45,8 @@ bom_stations <-
 
 fwrite(bom_stations, "bom_stations.csv")
 
+bom_stations_by_url <- fread("./data-raw/name-by-url.csv")
+
 bom_stations_by_url %>%
   mutate(Name = toupper(name)) %>%
   as.data.table %>%
@@ -140,6 +142,13 @@ url_ok <- function(url) {
     not
 }
 
+url_ok <- function(url) {
+  url_status <- status_code(HEAD(url = url))
+  # print(url_status)
+  # identical(status_code, 200)
+  url_status == 200
+}
+
 
 name_by_url %<>%
   rowwise %>%
@@ -156,7 +165,7 @@ current_bom_stations <-
   as.data.table %>%
   .[End == "May 2017", .(Name, Lat, Lon, Site)] %>%
   .[, NAME := toupper(Name)] %>%
-  .[, NAME_NO_AIRPORT := gsub(" ((AIRPORT)|(AWS)|(AERO)|(AIRSTRIP))$", "", NAME)] %>%
+  .[, NAME_NO_AIRPORT := gsub(" ((AIRPORT)|(AERO)|(AIRSTRIP))?( AWS)?$", "", NAME)] %>%
   .[, .nomatch := TRUE]
 
 uniqueDT <- function(...) data.table:::unique.data.table(...)
@@ -168,7 +177,7 @@ url_latlon_by_station_name <-
   unique %>%
   .[, NAME := toupper(name)] %>%
   merge(current_bom_stations, by = "NAME", all = TRUE) %>%
-  .[, NAME_NO_AIRPORT := gsub(" ((AIRPORT)|(AWS)|(AERO)|(AIRSTRIP))$", "", toupper(name))] %>%
+  .[, NAME_NO_AIRPORT := gsub(" ((AIRPORT)|(AERO)|(AIRSTRIP))?( AWS)?$", "", toupper(name))] %>%
   .[, .nomatch := is.na(Lat)] %>%
   .[] %>%
   merge(current_bom_stations[, .(NAME, Lat, Lon, .nomatch)],
@@ -178,6 +187,7 @@ url_latlon_by_station_name <-
   .[, Lat := coalesce(Lat.x, Lat.y)] %>%
   .[, Lon := coalesce(Lon.x, Lon.y)] %>%
   .[, c("Lat.x", "Lat.y", "Lon.x", "Lon.y") := NULL] %>%
+  .[, .nomatch := is.na(Lat)] %>%
   .[] %>%
   merge(current_bom_stations[, .(NAME_NO_AIRPORT, Lat, Lon, .nomatch)],
         by.x = c(".nomatch", "NAME_NO_AIRPORT"),
@@ -188,7 +198,8 @@ url_latlon_by_station_name <-
   .[, c("Lat.x", "Lat.y", "Lon.x", "Lon.y") := NULL] %>%
   .[, .(NAME, name, url, Lat, Lon)] %>%
   .[!is.na(url)] %>%
-  unique(by = "name") %T>%
+  unique(by = "name") %>%
+  .[order(name)] %T>%
   fwrite("./data-raw/JSONurl-latlon-by-station-name.csv") %>%
   .[]
 
