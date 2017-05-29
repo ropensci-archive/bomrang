@@ -14,7 +14,7 @@
 
 * All functions will return a `data.frame` object, not a `tibble`  
 * If a server is not responding, the function returns a more meaningful error message on exit  
-* All date\times are returned in POSIXct format  
+* All date/times are returned in POSIXct format  
 * UTC offset is returned in a separate `UTC_offset` field for `get_precis_forecast()` for both `start_time_local` and `end_time_local` fields  
 * Spelling and typo corrections  
 * Enhanced documentation  
