@@ -77,7 +77,7 @@
 <h2 class="hasAnchor">
 <a href="#using-bomrang" class="anchor"></a>Using <em>bomrang</em>
 </h2>
-<p>Several functions are provided by <em>bomrang</em>.The main functionality of <em>bomrang</em> is provided through three functions, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retries the agriculture bulletin. Other functions include <code><a href="../reference/update_precis_locations.html">update_precis_locations()</a></code>, which updates an internal database of forecast locations distributed with the package, and <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> which returns the nearest weather stations to a point in Australia.</p>
+<p>Several functions are provided by <em>bomrang</em>.The main functionality of <em>bomrang</em> is provided through three functions, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin. Other functions include <code><a href="../reference/update_precis_locations.html">update_precis_locations()</a></code>, which updates an internal database of forecast locations distributed with the package, and <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> which returns the nearest weather stations to a point in Australia.</p>
 </div>
 <div id="using-get_precis_forecast" class="section level2">
 <h2 class="hasAnchor">
@@ -302,9 +302,11 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <li>
 <strong>lon</strong> - Longitude (decimal degrees)</li>
 </ul>
-<div id="example-1" class="section level4">
-<h4 class="hasAnchor">
-<a href="#example-1" class="anchor"></a>Example</h4>
+</div>
+<div id="example-1" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example-1" class="anchor"></a>Example</h3>
+<p>Following is an example fetching the ag bulletin for Queensland.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"bomrang"</span>)
 
 QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_ag_bulletin.html">get_ag_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
@@ -332,7 +334,6 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 ## 6  NA   QLD -26.4139 146.2558</code></pre>
 </div>
 </div>
-</div>
 <div id="using-get_current_weather" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-get_current_weather" class="anchor"></a>Using <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>
@@ -348,6 +349,7 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <div id="example-2" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example-2" class="anchor"></a>Example</h3>
+<p>Following is an example fetching the current weather for Melbourne.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"bomrang"</span>)
 
 Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_current_weather.html">get_current_weather</a></span>(<span class="st">"Melbourne (Olympic Park)"</span>)
@@ -407,6 +409,7 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 <div id="example-3" class="section level4">
 <h4 class="hasAnchor">
 <a href="#example-3" class="anchor"></a>Example</h4>
+<p>Following is an example sweeping for stations starting with Canberra.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Show only the first ten stations in the list</span>
 <span class="kw">head</span>(<span class="kw"><a href="../reference/sweep_for_stations.html">sweep_for_stations</a></span>(<span class="dt">latlon =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">35.3</span>, <span class="fl">149.2</span>)), <span class="dv">10</span>)</code></pre></div>
 <pre><code>##               name      Lat      Lon    distance
@@ -430,6 +433,7 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 <div id="example-4" class="section level4">
 <h4 class="hasAnchor">
 <a href="#example-4" class="anchor"></a>Example</h4>
+<p>Following is an example updating the précis forecast locations internal database.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/update_precis_locations.html">update_precis_locations</a></span>()</code></pre></div>
 </div>
 </div>
