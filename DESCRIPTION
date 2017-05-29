@@ -1,15 +1,17 @@
 Package: bomrang
 Type: Package
 Title: Fetch Australian Government Bureau of Meteorology Data
-Version: 0.0.2
+Version: 0.0.2-1
 Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     email = "adamhsparks@gmail.com"),
     person("Hugh", "Parsonage", role = "aut",
     email = "hugh.parsonage@gmail.com"),
     person("Keith", "Pembleton", role = "aut",
     email = "keith.pembleton@usq.edu.au"))
-Description: Fetches Australian Government Bureau of Meteorology weather data 
-    files and returns a tidy data frame.
+Description: Provides functions to interface with Australian Government Bureau
+    of Meteorology (BOM) data, fetching data and returning a tidy data frame of
+    précis forecasts, current weather data from stations or ag information
+    bulletins.
 URL: https://github.com/ToowoombaTrio/bomrang
 BugReports: https://github.com/ToowoombaTrio/bomrang/issues
 License: MIT + file LICENSE
