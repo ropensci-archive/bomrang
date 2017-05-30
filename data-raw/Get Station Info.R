@@ -1,12 +1,16 @@
 
+# Refer to these pages for reference:
+# http://www.bom.gov.au/inside/itb/dm/idcodes/struc.shtml
+# http://reg.bom.gov.au/catalogue/data-feeds.shtml
+# http://reg.bom.gov.au/catalogue/anon-ftp.shtml
+
+
     library(httr)
     library(dtplyr)
     library(dplyr)
     library(readr)
     library(data.table)
     library(stringi)
-
-    regenerate_BOM_urls <- FALSE
 
     # This file is a pseudo-fixed width file.
     # Line five contains the headers at fixed widths
@@ -59,26 +63,51 @@
     nrows <- nrow(bom_stations_raw) - 5
     bom_stations_raw <- bom_stations_raw[1:nrows, ]
 
+    # recode the states to match product codes
+    # IDD - NT, IDN - NSW/ACT, IDQ - Qld, IDS - SA, IDT - Tas/Antarctica, IDV - Vic, IDW - WA
+
     bom_stations_raw$state_code <- NA
     bom_stations_raw$state_code[bom_stations_raw$state == "WA"] <- "W"
     bom_stations_raw$state_code[bom_stations_raw$state == "QLD"] <- "Q"
     bom_stations_raw$state_code[bom_stations_raw$state == "VIC"] <- "V"
     bom_stations_raw$state_code[bom_stations_raw$state == "NT"] <- "D"
-    bom_stations_raw$state_code[bom_stations_raw$state == "TAS"] <- "T"
+    bom_stations_raw$state_code[bom_stations_raw$state == "TAS" |
+                                bom_stations_raw$state == "ANT"] <- "T"
     bom_stations_raw$state_code[bom_stations_raw$state == "NSW"] <- "N"
     bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <- "S"
 
+    # Product codes
+    # 60701 - coastal observations (duplicate)
+    # 60801 - all weather observations (we will use this)
+    # 60803 - Antarctica weather observations (and use this)
+    # 60901 - capital city weather observations (duplicate)
+    # 60903 - Canberra area weather observations (duplicate)
 
-    bom_stations_by_url <- fread("./data-raw/name-by-url.csv")
+    # create JSON URLs
+    bom_stations_raw$json_url <- NA
+    bom_stations_raw$json_url[bom_stations_raw$state != "ANT"] <-
+                              paste0("http://www.bom.gov.au/fwo/ID",
+                                     bom_stations_raw$state_code, "60801",
+                                     "/", "ID", bom_stations_raw$state_code,
+                                     "60801", ".", bom_stations_raw$WMO, ".json")
 
-    bom_stations_by_url %>%
-      mutate(Name = toupper(name)) %>%
-      as.data.table %>%
-      unique(by = "Name") %>%
-      merge(bom_stations, by = "Name", all.y = TRUE) %>%
-      as.data.table %>%
-      # Only concerned with those still operating
-      .[End == "May 2017" & is.na(url)]
+    http://www.bom.gov.au/fwo/IDN60801/IDN60801.94596.json
+
+    bom_stations_raw <- mutate(bom_stations_raw, json_url = paste(
+      "http://www.bom.gov.au/fwo/ID", state_code, WMO,
+      "/", "ID", state_code, WMO, ".", WMO, ".json", sep = ""))
+
+    bom_stations_raw$json_url[is.na(bom_stations_raw$WMO)] <- NA
+
+
+    # bom_stations_by_url %>%
+    #   mutate(Name = toupper(name)) %>%
+    #   as.data.table %>%
+    #   unique(by = "Name") %>%
+    #   merge(bom_stations, by = "Name", all.y = TRUE) %>%
+    #   as.data.table %>%
+    #   # Only concerned with those still operating
+    #   .[End == "May 2017" & is.na(url)]
 
     nrow(bom_stations)
 
@@ -107,14 +136,11 @@
       # there is such a URL.
 
       # AS 30/05/2017 - the varying URL is the WMO number, we can make this faster
-      # by using known WMO numbers
+      # by using known WMO numbers and the
 
       name_by_url <- fread("./data-raw/name-by-url.csv")
 
-      # IDD - NT, IDN - NSW/ACT, IDQ - Qld, IDS - SA, IDT - Tas, IDV - Vic, IDW - WA
-      # 60701 - coastal observations
-      # 60801/60803 - weather observations
-      # 60901/60903 - capital city weather observations
+
 
       .closure <- function(bom_stations_raw) {
         for (x in 90e3:100e3) {
