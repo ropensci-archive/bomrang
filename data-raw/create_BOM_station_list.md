@@ -4,7 +4,9 @@ Get BOM Stations
 This document provides details on methods used to create the database of BOM JSON files for stations and corresponding metadata, e.g., latitude, longitude (which are more detailed than what is in the JSON file), start, end, elevation, etc.
 
 Refer to these BOM pages for more reference:
-- <http://www.bom.gov.au/inside/itb/dm/idcodes/struc.shtml> - <http://reg.bom.gov.au/catalogue/data-feeds.shtml> - <http://reg.bom.gov.au/catalogue/anon-ftp.shtml>
+- <http://www.bom.gov.au/inside/itb/dm/idcodes/struc.shtml>
+- <http://reg.bom.gov.au/catalogue/data-feeds.shtml>
+- <http://reg.bom.gov.au/catalogue/anon-ftp.shtml>
 
 Product code definitions
 ------------------------
