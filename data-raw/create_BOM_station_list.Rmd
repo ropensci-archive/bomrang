@@ -7,188 +7,153 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r libraries, eval=TRUE}
-library(httr)
-library(dtplyr)
+This document provides details on methods used to create the database of BOM JSON files for stations and corresponding metadata, e.g., latitude, longitude (which are more detailed than what is in the JSON file), start, end, elevation, etc.
+
+Refer to these BOM pages for more reference:  
+- http://www.bom.gov.au/inside/itb/dm/idcodes/struc.shtml
+- http://reg.bom.gov.au/catalogue/data-feeds.shtml
+- http://reg.bom.gov.au/catalogue/anon-ftp.shtml
+
+## Product code definitions
+### States
+- IDD - NT  
+- IDN - NSW/ACT  
+- IDQ - Qld
+- IDS - SA  
+- IDT - Tas/Antarctica (distinguished by the product number)
+- IDV - Vic  
+- IDW - WA  
+
+### Product code numbers
+- 60701 - coastal observations (duplicated in 60801)  
+- 60801 - all weather observations (we will use this)  
+- 60803 - Antarctica weather observations (and use this, this distinguishes Tas from Antarctica)  
+- 60901 - capital city weather observations (duplicated in 60801)  
+- 60903 - Canberra area weather observations (duplicated in 60801)  
+
+## Get station metadata
+
+```{r get_bom_station_data, eval=TRUE}
 library(dplyr)
 library(readr)
-library(data.table)
-library(stringi)
-```
 
-```{r import_stations, eval=TRUE}
-regenerate_BOM_urls <- FALSE
+# This file is a pseudo-fixed width file. Line five contains the headers at
+# fixed widths which are coded in the read_table() call.
+# The last six lines contain other information that we don't want.
+# For some reason, reading it directly from the BOM website does not work, so
+# we use download.file to fetch it first and then import it from the R tempdir()
+
+download.file(
+"ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
+paste0(tempdir(), "stations.zip")
+)
 
 bom_stations_raw <-
-      readr::read_table(
-        "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/lists_by_element/alpha/alphaAUS_3.txt",
-        skip = 4,
-        col_names = c("site",
-                      "name",
-                      "lat",
-                      "lon"),
-        col_types = readr::cols_only(
-          "site" = readr::col_character(),
-          "name" = readr::col_character(),
-          "lat" = readr::col_double(),
-          "lon" = readr::col_double()
-        )
-      )
+  read_table(
+  paste0(tempdir(), "stations.zip"),
+  skip = 5,
+  guess_max = 20000,
+  col_names = c(
+  "site",
+  "dist",
+  "NAME",
+  "start",
+  "end",
+  "Lat",
+  "Lon",
+  "source",
+  "state",
+  "height",
+  "bar_ht",
+  "WMO"
+  ),
+  col_types = cols(
+  site = col_character(),
+  dist = col_character(),
+  NAME = col_character(),
+  start = col_integer(),
+  end = col_integer(),
+  Lat = col_double(),
+  Lon = col_double(),
+  source = col_character(),
+  state = col_character(),
+  height = col_double(),
+  bar_ht = col_double(),
+  WMO = col_integer()
+  ),
+  na = c("..")
+  )
 
-fwrite(bom_stations, "bom_stations.csv")
+# trim the end of the rows off that have extra info that's not in columns
+nrows <- nrow(bom_stations_raw) - 5
+bom_stations_raw <- bom_stations_raw[1:nrows,]
 
-bom_stations_by_url %>%
-  mutate(Name = toupper(name)) %>%
-  as.data.table %>%
-  unique(by = "Name") %>%
-  merge(bom_stations, by = "Name", all.y = TRUE) %>%
-  as.data.table %>%
-  # Only concerned with those still operating
-  .[End == "May 2017" & is.na(url)]
+# recode the states to match product codes
+# IDD - NT, IDN - NSW/ACT, IDQ - Qld, IDS - SA, IDT - Tas/Antarctica, IDV - Vic, IDW - WA
 
-nrow(bom_stations)
+bom_stations_raw$state_code <- NA
+bom_stations_raw$state_code[bom_stations_raw$state == "WA"] <-
+"W"
+bom_stations_raw$state_code[bom_stations_raw$state == "QLD"] <-
+"Q"
+bom_stations_raw$state_code[bom_stations_raw$state == "VIC"] <-
+"V"
+bom_stations_raw$state_code[bom_stations_raw$state == "NT"] <-
+"D"
+bom_stations_raw$state_code[bom_stations_raw$state == "TAS" |
+bom_stations_raw$state == "ANT"] <-
+"T"
+bom_stations_raw$state_code[bom_stations_raw$state == "NSW"] <-
+"N"
+bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <-
+"S"
 
+# create JSON URLs
+bom_stations_raw$url <- NA
 
-if (regenerate_BOM_urls) {
-  get_BOM_data <- function(url, filename, write = FALSE) {
-    out <-
-      rjson::fromJSON(file = url) %>%
-      use_series("observations") %>%
-      use_series("data") %>%
-      lapply(as.data.table) %>%
-      rbindlist(use.names = TRUE, fill = TRUE)
+bom_stations_raw <-
+bom_stations_raw %>%
+mutate(url = case_when(
+.$state != "ANT" & !is.na(.$WMO) ~
+paste0(
+"http://www.bom.gov.au/fwo/ID",
+.$state_code,
+"60801",
+"/",
+"ID",
+.$state_code,
+"60801",
+".",
+.$WMO,
+".json"
+),
+.$state == "ANT" & !is.na(.$WMO) ~
+paste0(
+"http://www.bom.gov.au/fwo/ID",
+.$state_code,
+"60803",
+"/",
+"ID",
+.$state_code,
+"60803",
+".",
+.$WMO,
+".json"
+)
+))
 
-    if (write) {
-      out %>%
-        fwrite(paste0("./bom/",
-                      gsub("[^0-9]", "-", as.character(the_time)),
-                      filename))
-    }
-  }
+bom_stations_raw
+```
+## Save station metadata
+Now that we have the dataframe of stations and have generated the URLs for the JSON files for stations providing weather data feeds, save the
+data as a database for _bomrang_ to use.
 
-  # By cursory inspection, the varying part of the url runs from 90000 to 99999.
-  # Idea here is to try to retrieve the JSON from each URL. Saving the result if
-  # there is such a URL.
-  name_by_url <- fread("./data-raw/name-by-url.csv")
+```{r save_data, eval=TRUE, message=FALSE}
+JSONurl_latlon_by_station_name <- bom_stations_raw[!is.na(bom_stations_raw$url), ]
+devtools::use_data(JSONurl_latlon_by_station_name, overwrite = TRUE)
+```
 
-  .closure <- function() {
-    for (x in 90e3:100e3) {
-      .first <- TRUE
-      for (STATE in c("V", "N", "Q", "S", "W", "T", "D")) {
-        for (y in c("60801", "60901", "60803", "60901", "60903")) {
-          url <- paste0("http://www.bom.gov.au/fwo/ID", STATE, y, "/ID", STATE, y, ".", x, ".json")
-          if (.first && (x %% 10) == 0) {
-            # Poor man's progress bar
-            cat(".")
-            # if (.first && (x %% 1000) == 0) {
-            #   cat("\n")
-            # }
-          }
-
-          html_status <-
-            HEAD(url = url) %>%
-            status_code
-
-          if (html_status != 404) {
-            out <- rjson::fromJSON(file = url)
-            if ("observations" %in% names(out)) {
-              name <- out$observations$header[[1]]$name
-              data.table(name = name,
-                         url = url) %>%
-                # append, noting to use unique() on the file later.
-                fwrite("./data-raw/name-by-url.csv", append = TRUE)
-
-            }
-          }
-        }
-
-      }
-      .first <- FALSE
-    }
-  }
-  .closure()
-}
-
-name_by_url <-
-  fread("./data-raw/name-by-url.csv") %>%
-  .[url != "AAAA"] %>%
-  .[!grepl("100000", url)] %>%
-  .[order(url)] %>%
-  .[, xx := as.integer(gsub("^.*\\.(9[0-9]{4})\\.json", "\\1", url))] %>%
-  .[, row_id := 1:.N] %>%
-  .[, xx_diff := c(NA, diff(xx))] %>%
-  # unique(by = "xx", fromLast = TRUE) %>%
-  .[, dup_url := duplicated(url)] %>%
-  .[]
-
-urls <- sum(!name_by_url$dup_url)
-
-library(magrittr)
-
-url_ok <- function(url) {
-  HEAD(url = url) %>%
-    status_code %>%
-    equals(404) %>%
-    not
-}
-
-name_by_url %<>%
-  rowwise %>%
-  mutate(url_ok = url_ok(url))
-
-name_by_url %>%
-  as.data.table %>%
-  .[(url_ok)] %>%
-  unique(by = c("name", "url")) %>%
-  fwrite("./data-raw/name-by-url.csv")
-
-current_bom_stations <-
-  bom_stations %>%
-  as.data.table %>%
-  .[End == "May 2017", .(Name, Lat, Lon, Site)] %>%
-  .[, NAME := toupper(Name)] %>%
-  .[, NAME_NO_AIRPORT := gsub(" ((AIRPORT)|(AWS)|(AERO)|(AIRSTRIP))$", "", NAME)] %>%
-  .[, .nomatch := TRUE]
-
-uniqueDT <- function(...) data.table:::unique.data.table(...)
-
-url_latlon_by_station_name <-
-  fread("./data-raw/name-by-url.csv") %>%
-  select(name, url) %>%
-  as.data.table %>%
-  unique %>%
-  .[, NAME := toupper(name)] %>%
-  merge(current_bom_stations, by = "NAME", all = TRUE) %>%
-  .[, NAME_NO_AIRPORT := gsub(" ((AIRPORT)|(AWS)|(AERO)|(AIRSTRIP))$", "", toupper(name))] %>%
-  .[, .nomatch := is.na(Lat)] %>%
-  .[] %>%
-  merge(current_bom_stations[, .(NAME, Lat, Lon, .nomatch)],
-        by.x = c(".nomatch", "NAME_NO_AIRPORT"),
-        by.y = c(".nomatch", "NAME"),
-        all = TRUE) %>%
-  .[, Lat := coalesce(Lat.x, Lat.y)] %>%
-  .[, Lon := coalesce(Lon.x, Lon.y)] %>%
-  .[, c("Lat.x", "Lat.y", "Lon.x", "Lon.y") := NULL] %>%
-  .[] %>%
-  merge(current_bom_stations[, .(NAME_NO_AIRPORT, Lat, Lon, .nomatch)],
-        by.x = c(".nomatch", "NAME_NO_AIRPORT"),
-        by.y = c(".nomatch", "NAME_NO_AIRPORT"),
-        all = TRUE) %>%
-  .[, Lat := coalesce(Lat.x, Lat.y)] %>%
-  .[, Lon := coalesce(Lon.x, Lon.y)] %>%
-  .[, c("Lat.x", "Lat.y", "Lon.x", "Lon.y") := NULL] %>%
-  .[, .(NAME, name, url, Lat, Lon)] %>%
-  .[!is.na(url)] %>%
-  unique(by = "name") %T>%
-  fwrite("JSONurl-latlon-by-station-name.csv") %>%
-  .[]
-
-# url_latlon_by_station_name %>%
-#   filter(between(Lon, 135, 150),
-#          between(Lat, -39, -34)) %>%
-#   ggplot(aes(Lon, Lat, label = name)) +
-#   geom_point() +
-#   geom_text_repel() +
-#   coord_map() +
-#   theme_map()
+## Session Info
+```{r session_info}
+devtools::session_info()
 ```
