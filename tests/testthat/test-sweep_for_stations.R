@@ -2,7 +2,7 @@ context("Sweep for stations")
 
 test_that("sweep_for_stations returns correct default", {
   DT <- sweep_for_stations()
-  expect_equal(DT$name[1], "Canberra Airport")
-  expect_equal(last(DT$name), "Mawson")
+  expect_equal(DT$name[1], "CANBERRA AIRPORT")
+  expect_equal(last(DT$name), "MAWSON")
 })
 
