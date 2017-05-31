@@ -52,6 +52,8 @@ get_current_weather <-
       # CRAN NOTE avoidance
       name <- NULL
 
+      station_name <- toupper(station_name)
+
       # see internal_functions.R for the .get_station_metadata() function
       JSONurl_latlon_by_station_name <- data.table(.get_station_metadata())
 
