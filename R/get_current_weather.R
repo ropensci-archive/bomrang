@@ -97,10 +97,6 @@ get_current_weather <-
       lat <- latlon[1]
       lon <- latlon[2]
 
-      if (lat > 0 || lon < 90) {
-        warning("lat > 0 or lon < 90, which are unlikely values for Australian stations.")
-      }
-
       # CRAN NOTE avoidance: names of JSONurl_latlon_by_station_name
       Lat <- Lon <- NULL
 
