@@ -52,6 +52,8 @@ get_current_weather <-
       # CRAN NOTE avoidance
       name <- NULL
 
+      JSONurl_latlon_by_station_name <- .get_station_metadata()
+
       # If there's an exact match, use it; else, attempt partial match.
       if (station_name %in% JSONurl_latlon_by_station_name[["name"]]) {
         the_station_name <- station_name

@@ -14,10 +14,19 @@ instruction.}
 Data frame of a Australia BOM agricultural bulletin information
 
 \describe{
+   \item{obs-time-local}{Observation time (Time)}
    \item{obs-time-utc}{Observation time (Time in UTC)}
    \item{time-zone}{Time zone for observation}
    \item{site}{Unique BOM identifier for each station}
+   \item{dist}{BOM rainfall district}
    \item{name}{BOM station name}
+   \item{start}{Year data collection starts}
+   \item{state}{State name (postal code abbreviation)}
+   \item{lat}{Latitude (decimal degrees)}
+   \item{lon}{Longitude (decimal degrees)}
+   \item{elev_m}{Station elevation (metres)}
+   \item{bar_ht}{Bar height (metres)}
+   \item{WMO}{World Meteorlogical Society number (Unique ID used worldwide)}
    \item{r}{Rain to 9am (millimetres). \strong{Trace will be reported as 0.01}}
    \item{tn}{Minimum temperature (Celsius)}
    \item{tx}{Maximum temperature (Celsius)}
@@ -31,9 +40,6 @@ Data frame of a Australia BOM agricultural bulletin information
    \item{t50}{50cm soil temperature (Celsius)}
    \item{t1m}{1m soil temperature (Celsius)}
    \item{wr}{Wind run (kilometres)}
-   \item{state}{State name (postal code abbreviation)}
-   \item{lat}{Latitude (decimal degrees)}
-   \item{lon}{Longitude (decimal degrees)}
 }
 }
 \description{

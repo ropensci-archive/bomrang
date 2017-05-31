@@ -7,6 +7,7 @@ Refer to these BOM pages for more reference:
 - <http://www.bom.gov.au/inside/itb/dm/idcodes/struc.shtml>
 - <http://reg.bom.gov.au/catalogue/data-feeds.shtml>
 - <http://reg.bom.gov.au/catalogue/anon-ftp.shtml>
+- <http://www.bom.gov.au/climate/cdo/about/site-num.shtml>
 
 Product code definitions
 ------------------------

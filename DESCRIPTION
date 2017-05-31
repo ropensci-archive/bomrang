@@ -26,6 +26,7 @@ Imports:
     readr,
     rjson,
     tidyr,
+    tools,
     xml2
 Encoding: UTF-8
 LazyData: true
