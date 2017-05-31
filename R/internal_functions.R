@@ -35,7 +35,7 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
 .get_station_metadata <- function() {
 
   # CRAN NOTE avoidance
-  NAME <- site <- name <- end <- NULL
+  name <- site <- NULL
 
   curl::curl_download(url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
                       destfile = paste0(tempdir(), "stations.zip"))
@@ -48,7 +48,7 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
       col_names = c(
         "site",
         "dist",
-        "NAME",
+        "name",
         "start",
         "end",
         "Lat",
@@ -62,7 +62,7 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
       col_types = readr::cols(
         site = readr::col_character(),
         dist = readr::col_character(),
-        NAME = readr::col_character(),
+        name = readr::col_character(),
         start = readr::col_integer(),
         end = readr::col_integer(),
         Lat = readr::col_double(),
@@ -100,12 +100,9 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
   bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <-
     "S"
 
-  # return only current stations listing
-  stations_site_list <-
-    bom_stations_raw[is.na(bom_stations_raw$end),]
-
   stations_site_list <-
     bom_stations_raw %>%
+    dplyr::select(site:name, dplyr::everything()) %>%
     dplyr::mutate(
       url = dplyr::case_when(
         .$state != "ANT" & !is.na(.$WMO) ~
@@ -137,10 +134,17 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
       )
     )
 
+  # There are weather stations that do have a WMO but don't report online,
+  # most of these don't have a "state" value, e.g., KIRIBATI NTC AWS or
+  # MARSHALL ISLANDS NTC AWS, remove these from the list
+
   stations_site_list <-
-    stations_site_list %>%
-    dplyr::mutate(name = tools::toTitleCase(tolower(NAME))) %>%
-    dplyr::select(site:NAME, name, dplyr::everything(), -end)
+    stations_site_list[stations_site_list$state != "null", ]
+
+  # return only current stations listing
+  stations_site_list <-
+    stations_site_list[is.na(stations_site_list$end), ]
+  stations_site_list$end <- format(Sys.Date(), "%Y")
 
   return(stations_site_list)
 }

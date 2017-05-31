@@ -80,7 +80,7 @@ get_ag_bulletin <- function(state = NULL) {
       stations_meta %>%
       dplyr::rename(lat = Lat,
                     lon = Lon) %>%
-      dplyr::select(-NAME, -state_code, -source, -url)
+      dplyr::select(-state_code, -source, -url)
     stations_meta$site <- gsub("^0{1,2}", "", stations_meta$site)
   },
   error = function(x)
@@ -154,12 +154,9 @@ get_ag_bulletin <- function(state = NULL) {
 .parse_bulletin <- function(xmlbulletin, stations_meta) {
   # CRAN NOTE avoidance
   obs.time.utc <-
-    obs.time.local <- time.zone <- site <- name <- r <- tn <-
-    tx <-
-    twd <-
-    ev <- obs_time_utc <- obs_time_local <- time_zone <- state <-
-    tg <-
-    sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <- lon <-
+    obs.time.local <- time.zone <- site <- r <- tn <-
+    tx <- name <- twd <- ev <- obs_time_utc <- obs_time_local <- time_zone <-
+      state <- tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <- lon <-
     attrs <- dist <- start <- elev <- bar_ht <- WMO <- NULL
 
   # load the XML bulletin ------------------------------------------------------
