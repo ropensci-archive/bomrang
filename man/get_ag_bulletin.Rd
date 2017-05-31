@@ -26,7 +26,7 @@ Data frame of a Australia BOM agricultural bulletin information
    \item{lon}{Longitude (decimal degrees)}
    \item{elev_m}{Station elevation (metres)}
    \item{bar_ht}{Bar height (metres)}
-   \item{WMO}{World Meteorlogical Society number (Unique ID used worldwide)}
+   \item{WMO}{World Meteorological Society number (Unique ID used worldwide)}
    \item{r}{Rain to 9am (millimetres). \strong{Trace will be reported as 0.01}}
    \item{tn}{Minimum temperature (Celsius)}
    \item{tx}{Maximum temperature (Celsius)}

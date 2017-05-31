@@ -35,7 +35,7 @@
 #'    \item{lon}{Longitude (decimal degrees)}
 #'    \item{elev_m}{Station elevation (metres)}
 #'    \item{bar_ht}{Bar height (metres)}
-#'    \item{WMO}{World Meteorlogical Society number (Unique ID used worldwide)}
+#'    \item{WMO}{World Meteorological Society number (Unique ID used worldwide)}
 #'    \item{r}{Rain to 9am (millimetres). \strong{Trace will be reported as 0.01}}
 #'    \item{tn}{Minimum temperature (Celsius)}
 #'    \item{tx}{Maximum temperature (Celsius)}
@@ -67,15 +67,18 @@
 #'
 #' @export
 get_ag_bulletin <- function(state = NULL) {
+
+  # CRAN NOTE avoidance
+  Lat <- Lon <- NAME <- state_code <- NULL
+
   state <- .validate_state(state)
 
   # Agricultural Bulletin Station Locations and Other Information
   tryCatch({
-    stations_meta <- .get_station_metadata()
+    stations_meta <- .get_station_metadata() # see internal_functions.R
     stations_meta <-
       stations_meta %>%
-      dplyr::rename(name = NAME,
-                    lat = Lat,
+      dplyr::rename(lat = Lat,
                     lon = Lon) %>%
       dplyr::select(-NAME, -state_code, -source, -url)
     stations_meta$site <- gsub("^0{1,2}", "", stations_meta$site)
@@ -150,10 +153,14 @@ get_ag_bulletin <- function(state = NULL) {
 #' @noRd
 .parse_bulletin <- function(xmlbulletin, stations_meta) {
   # CRAN NOTE avoidance
-  obs.time.utc <- obs.time.local <- time.zone <- site <- name <- r <- tn <-
-    tx <- twd <- ev <- obs_time_utc <- obs_time_local <- time_zone <- state <-
-    tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <- lon <-
-    attrs <- NULL
+  obs.time.utc <-
+    obs.time.local <- time.zone <- site <- name <- r <- tn <-
+    tx <-
+    twd <-
+    ev <- obs_time_utc <- obs_time_local <- time_zone <- state <-
+    tg <-
+    sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <- lon <-
+    attrs <- dist <- start <- elev <- bar_ht <- WMO <- NULL
 
   # load the XML bulletin ------------------------------------------------------
   xmlbulletin <- xml2::read_xml(xmlbulletin)
@@ -183,7 +190,7 @@ get_ag_bulletin <- function(state = NULL) {
     # if there are no observations, keep a single row for the station ID
     if (length(value) > 1) {
       location <-
-        trimws(location[rep(seq_len(nrow(location)), each = length(value)),])
+        trimws(location[rep(seq_len(nrow(location)), each = length(value)), ])
     }
 
     # if there is only one observation this step means that a data frame is
@@ -201,12 +208,18 @@ get_ag_bulletin <- function(state = NULL) {
     out$value <- as.numeric(as.character(out$value))
 
     # convert dates to POSIXct -------------------------------------------------
-    out[, 1:2] <- apply(out[, 1:2], 2, function(x) chartr("T", " ", x))
+    out[, 1:2] <-
+      apply(out[, 1:2], 2, function(x)
+        chartr("T", " ", x))
 
-    out[, 1] <- as.POSIXct(out[, 1], origin = "1970-1-1",
-                           format = "%Y%m%d %H%M", tz = "")
-    out[, 2] <- as.POSIXct(out[, 2],  origin = "1970-1-1",
-                           format = "%Y%m%d %H%M", tz = "GMT")
+    out[, 1] <- as.POSIXct(out[, 1],
+                           origin = "1970-1-1",
+                           format = "%Y%m%d %H%M",
+                           tz = "")
+    out[, 2] <- as.POSIXct(out[, 2],
+                           origin = "1970-1-1",
+                           format = "%Y%m%d %H%M",
+                           tz = "GMT")
 
     # spread from long to wide
     out <- tidyr::spread(out, key = attrs, value = value)
@@ -299,11 +312,10 @@ get_ag_bulletin <- function(state = NULL) {
       dist,
       name,
       start,
-      end,
       state,
       lat,
       lon,
-      height,
+      elev,
       bar_ht,
       WMO,
       r,
@@ -320,6 +332,11 @@ get_ag_bulletin <- function(state = NULL) {
       t1m,
       wr
     )
+
+  # convert dates to POSIXct ---------------------------------------------------
+  tidy_df[, c(1:2)] <-
+    lapply(tidy_df[, c(1:2)], function(x)
+      as.POSIXct(x, origin = "1970-1-1", format = "%Y-%m-%d %H:%M:%OS"))
 
   # return from main function
   return(tidy_df)

@@ -52,7 +52,12 @@ get_current_weather <-
       # CRAN NOTE avoidance
       name <- NULL
 
-      JSONurl_latlon_by_station_name <- .get_station_metadata()
+      # see internal_functions.R for the .get_station_metadata() function
+      JSONurl_latlon_by_station_name <- data.table(.get_station_metadata())
+
+      # select only stations with a JSON url from the list
+      JSONurl_latlon_by_station_name <-
+        JSONurl_latlon_by_station_name[!is.na(JSONurl_latlon_by_station_name$url), ]
 
       # If there's an exact match, use it; else, attempt partial match.
       if (station_name %in% JSONurl_latlon_by_station_name[["name"]]) {
@@ -96,6 +101,13 @@ get_current_weather <-
 
       # CRAN NOTE avoidance: names of JSONurl_latlon_by_station_name
       Lat <- Lon <- NULL
+
+      # see internal_functions.R for the .get_station_metadata() function
+      JSONurl_latlon_by_station_name <- data.table(.get_station_metadata())
+
+      # select only stations with a JSON url from the list
+      JSONurl_latlon_by_station_name <-
+        JSONurl_latlon_by_station_name[!is.na(JSONurl_latlon_by_station_name$url), ]
 
       station_nrst_latlon <-
         JSONurl_latlon_by_station_name %>%

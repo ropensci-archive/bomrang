@@ -11,6 +11,13 @@ sweep_for_stations <- function(latlon = c(-35.3, 149.2)) {
   lat <- latlon[1]
   lon <- latlon[2]
 
+  # see internal_functions.R for the .get_station_metadata() function
+  JSONurl_latlon_by_station_name <- data.table(.get_station_metadata())
+
+  # select only stations with a JSON url from the list
+  JSONurl_latlon_by_station_name <-
+    JSONurl_latlon_by_station_name[!is.na(JSONurl_latlon_by_station_name$url), ]
+
   # CRAN NOTE avoidance:
   Lat <- Lon <- NULL
 

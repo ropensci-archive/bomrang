@@ -33,6 +33,10 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
 #' @importFrom magrittr %>%
 #' @noRd
 .get_station_metadata <- function() {
+
+  # CRAN NOTE avoidance
+  NAME <- site <- name <- end <- NULL
+
   curl::curl_download(url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
                       destfile = paste0(tempdir(), "stations.zip"))
 
@@ -51,7 +55,7 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
         "Lon",
         "source",
         "state",
-        "elev_m",
+        "elev",
         "bar_ht",
         "WMO"
       ),
@@ -65,7 +69,7 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
         Lon = readr::col_double(),
         source = readr::col_character(),
         state = readr::col_character(),
-        elev_m = readr::col_double(),
+        elev = readr::col_double(),
         bar_ht = readr::col_double(),
         WMO = readr::col_integer()
       ),
@@ -74,7 +78,7 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
 
   # trim the end of the rows off that have extra info that's not in columns
   nrows <- nrow(bom_stations_raw) - 5
-  bom_stations_raw <- bom_stations_raw[1:nrows,]
+  bom_stations_raw <- bom_stations_raw[1:nrows, ]
 
   # recode the states to match product codes
   # IDD - NT, IDN - NSW/ACT, IDQ - Qld, IDS - SA, IDT - Tas/Antarctica, IDV - Vic, IDW - WA
@@ -96,12 +100,12 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
   bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <-
     "S"
 
-  # create JSON URLs
-  bom_stations_raw$url <- NA
+  # return only current stations listing
+  stations_site_list <-
+    bom_stations_raw[is.na(bom_stations_raw$end),]
 
   stations_site_list <-
     bom_stations_raw %>%
-    dplyr::mutate(name = tools::toTitleCase(tolower(bom_stations_raw$NAME))) %>%
     dplyr::mutate(
       url = dplyr::case_when(
         .$state != "ANT" & !is.na(.$WMO) ~
@@ -131,8 +135,12 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
             ".json"
           )
       )
-    ) %>%
-    dplyr::select(site:NAME, name, dplyr::everything())
+    )
+
+  stations_site_list <-
+    stations_site_list %>%
+    dplyr::mutate(name = tools::toTitleCase(tolower(NAME))) %>%
+    dplyr::select(site:NAME, name, dplyr::everything(), -end)
 
   return(stations_site_list)
 }
