@@ -181,7 +181,7 @@ update_precis_locations()
 
 ### Using `update_station_locations()`
 
-This function downloads the latest station locations and metadata and updates bomrang's internal database.  There is no need to use this unless you know that a station exists in BOM's database that is not available in the database distributed with _bomrang_
+This function downloads the latest station locations and metadata and updates bomrang's internal databases that support the use of `get_current_weather()` and `get_ag_bulletin()`. There is no need to use this unless you know that a station exists in BOM's database that is not available in the databases distributed with _bomrang_
 
 #### Example
 
