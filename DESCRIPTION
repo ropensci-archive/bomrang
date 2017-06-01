@@ -22,6 +22,7 @@ Imports:
     data.table,
     dplyr,
     foreign,
+    httr,
     magrittr,
     readr,
     rjson,

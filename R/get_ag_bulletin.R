@@ -30,6 +30,7 @@
 #'    \item{dist}{BOM rainfall district}
 #'    \item{station}{BOM station name}
 #'    \item{start}{Year data collection starts}
+#'    \item{end}{Year data collection ends (will always be current)}
 #'    \item{state}{State name (postal code abbreviation)}
 #'    \item{lat}{Latitude (decimal degrees)}
 #'    \item{lon}{Longitude (decimal degrees)}
@@ -67,7 +68,6 @@
 #'
 #' @export
 get_ag_bulletin <- function(state = NULL) {
-
   # CRAN NOTE avoidance
   Lat <- Lon <- state_code <- NULL
 
@@ -155,8 +155,12 @@ get_ag_bulletin <- function(state = NULL) {
   # CRAN NOTE avoidance
   obs.time.utc <-
     obs.time.local <- time.zone <- site <- r <- tn <-
-    tx <- name <- twd <- ev <- obs_time_utc <- obs_time_local <- time_zone <-
-      state <- tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <- lon <-
+    tx <-
+    end <-
+    station <-
+    twd <- ev <- obs_time_utc <- obs_time_local <- time_zone <-
+    state <-
+    tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <- lon <-
     attrs <- dist <- start <- elev <- bar_ht <- WMO <- NULL
 
   # load the XML bulletin ------------------------------------------------------
@@ -187,7 +191,7 @@ get_ag_bulletin <- function(state = NULL) {
     # if there are no observations, keep a single row for the station ID
     if (length(value) > 1) {
       location <-
-        trimws(location[rep(seq_len(nrow(location)), each = length(value)), ])
+        trimws(location[rep(seq_len(nrow(location)), each = length(value)),])
     }
 
     # if there is only one observation this step means that a data frame is

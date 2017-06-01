@@ -129,6 +129,9 @@ get_current_weather <-
 
       json_url <- station_nrst_latlon[["url"]]
     }
+    if (isTRUE(httr::http_error(json_url))) {
+      stop("A station was matched but a corresponding JSON file was not found at bom.gov.au.")
+    }
 
     observations.json <-
       rjson::fromJSON(file = json_url)

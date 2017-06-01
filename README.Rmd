@@ -104,6 +104,7 @@ The function, `get_ag_bulletin()`, will return a tidy data frame of the agricult
 * **dist** - BOM rainfall district  
 * **station** - BOM station name  
 * **start** - Year data collection starts  
+* **end** - Year data collection ends (will always be current)  
 * **state** - State name (postal code abbreviation)  
 * **lat** - Latitude (decimal degrees)  
 * **lon** - Longitude (decimal degrees)  

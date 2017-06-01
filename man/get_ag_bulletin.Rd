@@ -21,6 +21,7 @@ Data frame of a Australia BOM agricultural bulletin information
    \item{dist}{BOM rainfall district}
    \item{station}{BOM station name}
    \item{start}{Year data collection starts}
+   \item{end}{Year data collection ends (will always be current)}
    \item{state}{State name (postal code abbreviation)}
    \item{lat}{Latitude (decimal degrees)}
    \item{lon}{Longitude (decimal degrees)}
