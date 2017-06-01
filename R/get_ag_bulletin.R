@@ -126,17 +126,17 @@ get_ag_bulletin <- function(state = NULL) {
     ))
 
   if (state != "AUS") {
-    .parse_bulletin(xmlbulletin, stations_meta)
+    .parse_bulletin(xmlbulletin, stations_site_list)
   }
 
   else if (state == "AUS") {
-    out <- lapply(X = file_list, FUN = .parse_bulletin, stations_meta)
+    out <- lapply(X = file_list, FUN = .parse_bulletin, stations_site_list)
     out <- as.data.frame(data.table::rbindlist(out))
   }
 }
 
 #' @noRd
-.parse_bulletin <- function(xmlbulletin, stations_meta) {
+.parse_bulletin <- function(xmlbulletin, stations_site_list) {
   # CRAN NOTE avoidance
   obs.time.utc <-
     obs.time.local <- time.zone <- site <- r <- tn <-
