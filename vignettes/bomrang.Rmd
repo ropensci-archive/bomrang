@@ -81,8 +81,8 @@ This function only takes one parameter, `state`. The `state` parameter allows th
 
 The function, `get_ag_bulletin()`, will return a data frame of the agriculture bulletin with the following fields:
 
-* **obs-time-local** - Observation time (Time)  
-* **obs-time-utc** - Observation time (Time in UTC)  
+* **obs-time-local** - Observation time  
+* **obs-time-utc** - Observation time (time in UTC)  
 * **time-zone** - Time zone for observation  
 * **site** - Unique BOM identifier for each station  
 * **dist** - BOM rainfall district  
@@ -93,7 +93,7 @@ The function, `get_ag_bulletin()`, will return a data frame of the agriculture b
 * **lon** - Longitude (decimal degrees)  
 * **elev** - Station elevation (metres)  
 * **bar_ht** - Bar height (metres)  
-* **WMO** - World Meteorlogical Society number (Unique ID used worldwide)
+* **WMO** - World Meteorlogical Organization number (unique ID used worldwide)
 * **r** - Rain to 9am (millimetres). _Trace will be reported as 0.01_  
 * **tn** - Minimum temperature (degrees Celsius)  
 * **tx** - Maximum temperature (degrees Celsius)  
@@ -101,11 +101,11 @@ The function, `get_ag_bulletin()`, will return a data frame of the agriculture b
 * **ev** - Evaporation (millimetres)  
 * **tg** - Terrestrial minimum temperature (degrees Celsius)  
 * **sn** - Sunshine (hours)  
-* **t5** - 5cm soil temperature (Celsius)  
-* **t10** - 10cm soil temperature (Celsius)  
-* **t20** - 20cm soil temperature (Celsius)  
-* **t50** - 50cm soil temperature (Celsius)  
-* **t1m** - 1m soil temperature (Celsius)  
+* **t5** - 5cm soil temperature (degrees Celsius)  
+* **t10** - 10cm soil temperature (degrees Celsius)  
+* **t20** - 20cm soil temperature (degrees Celsius)  
+* **t50** - 50cm soil temperature (degrees Celsius)  
+* **t1m** - 1m soil temperature (degrees Celsius)  
 * **wr** - Wind run (kilometres)  
 * **state** - State name (postal code abbreviation)  
 * **lat** - Latitude (decimal degrees)  
