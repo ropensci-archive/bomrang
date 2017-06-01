@@ -18,7 +18,7 @@
 #'
 "AAC_codes"
 #'stations_site_list
-#'
+#'\describe{
 #'    \item{site}{Unique BOM identifier for each station}
 #'    \item{dist}{BOM rainfall district}
 #'    \item{name}{BOM station name}
@@ -30,10 +30,11 @@
 #'    \item{elev_m}{Station elevation (metres)}
 #'    \item{bar_ht}{Bar height (metres)}
 #'    \item{WMO}{World Meteorological Organization number (unique ID used worldwide)}
+#'    }
 "stations_site_list"
 
 #'JSONurl_latlon_by_station_name
-#'
+#'\describe{
 #'    \item{site}{Unique BOM identifier for each station}
 #'    \item{dist}{BOM rainfall district}
 #'    \item{name}{BOM station name}
@@ -47,4 +48,5 @@
 #'    \item{WMO}{World Meteorological Organization number (unique ID used worldwide)}
 #'    \item{state_code}{BOM code used to identify states and territories}
 #'    \item{url}{URL that serves JSON file of station weather data}
+#'    }
 "JSONurl_latlon_by_station_name"
