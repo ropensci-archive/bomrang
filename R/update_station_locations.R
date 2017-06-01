@@ -23,7 +23,7 @@ update_station_locations <- function() {
 
   # CRAN NOTE avoidance
   name <- site <- NULL
-
+  tryCatch({
   curl::curl_download(url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
                       destfile = paste0(tempdir(), "stations.zip"))
 
@@ -133,5 +133,20 @@ update_station_locations <- function() {
     stations_site_list[is.na(stations_site_list$end), ]
   stations_site_list$end <- format(Sys.Date(), "%Y")
 
-  return(stations_site_list)
+  JSONurl_latlon_by_station_name <- bom_stations_raw[!is.na(stations_site_list$url), ]
+  devtools::use_data(JSONurl_latlon_by_station_name, overwrite = TRUE)
+
+  stations_site_list <-
+    stations_site_list %>%
+    dplyr::rename(lat = Lat,
+                  lon = Lon) %>%
+    dplyr::select(-state_code, -source, -url)
+  stations_site_list$site <-
+    gsub("^0{1,2}", "", stations_site_list$site)
+  devtools::use_data(stations_site_list, overwrite = TRUE)
+  },
+  error = function(x)
+    stop(
+      "\nThe server with the location information is not responding. Please retry again later.\n"
+    ))
 }
