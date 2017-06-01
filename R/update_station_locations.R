@@ -26,6 +26,11 @@ update_station_locations <- function() {
   tryCatch({
     curl::curl_download(url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
                         destfile = paste0(tempdir(), "stations.zip"))
+  },
+  error = function(x)
+    stop(
+      "\nThe server with the location information is not responding. Please retry again later.\n"
+    ))
 
     bom_stations_raw <-
       readr::read_table(
@@ -141,7 +146,10 @@ update_station_locations <- function() {
 
     JSONurl_latlon_by_station_name <-
       bom_stations_raw[!is.na(stations_site_list$url),]
+
+    message("Overwriting existing databases")
     pkg <- system.file(package = "bomrang")
+
     path <-
       file.path(file.path(pkg, "data"),
                 paste0("JSONurl_latlon_by_station_name.rda"))
@@ -160,10 +168,4 @@ update_station_locations <- function() {
     path <-
       file.path(file.path(pkg, "data"), paste0("stations_site_list.rda"))
     save(stations_site_list, file = path, compress = "bzip2")
-
-  },
-  error = function(x)
-    stop(
-      "\nThe server with the location information is not responding. Please retry again later.\n"
-    ))
 }
