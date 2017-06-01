@@ -243,10 +243,10 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <p>The function, <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, will return a data frame of the agriculture bulletin with the following fields:</p>
 <ul>
 <li>
-<strong>obs-time-local</strong> - Observation time (Time)<br>
+<strong>obs-time-local</strong> - Observation time<br>
 </li>
 <li>
-<strong>obs-time-utc</strong> - Observation time (Time in UTC)<br>
+<strong>obs-time-utc</strong> - Observation time (time in UTC)<br>
 </li>
 <li>
 <strong>time-zone</strong> - Time zone for observation<br>
@@ -279,7 +279,7 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <strong>bar_ht</strong> - Bar height (metres)<br>
 </li>
 <li>
-<strong>WMO</strong> - World Meteorlogical Society number (Unique ID used worldwide)</li>
+<strong>WMO</strong> - World Meteorlogical Organization number (unique ID used worldwide)</li>
 <li>
 <strong>r</strong> - Rain to 9am (millimetres). <em>Trace will be reported as 0.01</em><br>
 </li>
@@ -302,19 +302,19 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <strong>sn</strong> - Sunshine (hours)<br>
 </li>
 <li>
-<strong>t5</strong> - 5cm soil temperature (Celsius)<br>
+<strong>t5</strong> - 5cm soil temperature (degrees Celsius)<br>
 </li>
 <li>
-<strong>t10</strong> - 10cm soil temperature (Celsius)<br>
+<strong>t10</strong> - 10cm soil temperature (degrees Celsius)<br>
 </li>
 <li>
-<strong>t20</strong> - 20cm soil temperature (Celsius)<br>
+<strong>t20</strong> - 20cm soil temperature (degrees Celsius)<br>
 </li>
 <li>
-<strong>t50</strong> - 50cm soil temperature (Celsius)<br>
+<strong>t50</strong> - 50cm soil temperature (degrees Celsius)<br>
 </li>
 <li>
-<strong>t1m</strong> - 1m soil temperature (Celsius)<br>
+<strong>t1m</strong> - 1m soil temperature (degrees Celsius)<br>
 </li>
 <li>
 <strong>wr</strong> - Wind run (kilometres)<br>
@@ -387,34 +387,34 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 ## 4          3 95936 Melbourne (Olympic Park)        IDV60801
 ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
 ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
-##   local_date_time local_date_time_full aifstime_utc   lat lon apparent_t
-## 1      01/10:30am                 &lt;NA&gt;         &lt;NA&gt; -37.8 145       10.0
-## 2      01/10:00am                 &lt;NA&gt;         &lt;NA&gt; -37.8 145        9.0
-## 3      01/09:30am                 &lt;NA&gt;         &lt;NA&gt; -37.8 145        8.6
-## 4      01/09:00am                 &lt;NA&gt;         &lt;NA&gt; -37.8 145        8.8
-## 5      01/08:30am                 &lt;NA&gt;         &lt;NA&gt; -37.8 145        8.3
-## 6      01/08:00am                 &lt;NA&gt;         &lt;NA&gt; -37.8 145        7.9
-##   cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt  press
-## 1     -          -     2.2        7       4     11.2   6.5 1037.9
-## 2     -          -     1.9       13       7     10.9   6.8 1037.9
-## 3     -          -     1.7       11       6     10.6   7.1 1037.7
-## 4     -          -     1.4        9       5     10.5   7.6 1037.5
-## 5     -          -     1.3       13       7     10.1   7.3 1037.2
-## 6     -          -     1.2       13       7      9.9   7.3 1037.0
-##   press_msl press_qnh press_tend rain_trace rel_hum sea_state
-## 1    1037.9    1037.9          -        0.0      73         -
-## 2    1037.9    1037.9          -        0.0      76         -
-## 3    1037.7    1037.7          -        0.0      79         -
-## 4    1037.5    1037.5          -        0.4      82         -
-## 5    1037.2    1037.2          -        0.4      83         -
-## 6    1037.0    1037.0          -        0.4      84         -
+##   local_date_time local_date_time_full        aifstime_utc   lat lon
+## 1      01/12:30pm  2017-06-01 12:30:00 2017-06-01 02:30:00 -37.8 145
+## 2      01/12:00pm  2017-06-01 12:00:00 2017-06-01 02:00:00 -37.8 145
+## 3      01/11:30am  2017-06-01 11:30:00 2017-06-01 01:30:00 -37.8 145
+## 4      01/11:00am  2017-06-01 11:00:00 2017-06-01 01:00:00 -37.8 145
+## 5      01/10:30am  2017-06-01 10:30:00 2017-06-01 00:30:00 -37.8 145
+## 6      01/10:00am  2017-06-01 10:00:00 2017-06-01 00:00:00 -37.8 145
+##   apparent_t cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt
+## 1       10.8     -          -     3.6       13       7     13.2   5.4
+## 2       10.3     -          -     3.3       15       8     12.5   5.4
+## 3        9.5     -          -     3.0       20      11     12.2   5.8
+## 4       11.1     -          -     2.3        0       0     11.8   6.9
+## 5       10.0     -          -     2.2        7       4     11.2   6.5
+## 6        9.0     -          -     1.9       13       7     10.9   6.8
+##    press press_msl press_qnh press_tend rain_trace rel_hum sea_state
+## 1 1036.8    1036.8    1036.8          -          0      59         -
+## 2 1037.3    1037.3    1037.3          -          0      62         -
+## 3 1037.8    1037.8    1037.8          -          0      65         -
+## 4 1037.9    1037.9    1037.9          -          0      72         -
+## 5 1037.9    1037.9    1037.9          -          0      73         -
+## 6 1037.9    1037.9    1037.9          -          0      76         -
 ##   swell_dir_worded vis_km weather wind_dir wind_spd_kmh wind_spd_kt
-## 1                -     10       -        W            2           1
-## 2                -     10       -      WNW            6           3
-## 3                -     10       -       SW            7           4
-## 4                -     10       -        S            6           3
-## 5                -     10       -      WSW            6           3
-## 6                -     10       -      WSW            7           4</code></pre>
+## 1                -     10       -      WSW            7           4
+## 2                -     10       -        W            6           3
+## 3                -     10       -      SSW            9           5
+## 4                -     10       -     CALM            0           0
+## 5                -     10       -        W            2           1
+## 6                -     10       -      WNW            6           3</code></pre>
 </div>
 </div>
 <div id="other-functions-in-bomrang" class="section level2">

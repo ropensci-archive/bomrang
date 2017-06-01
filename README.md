@@ -119,8 +119,8 @@ This function only takes one parameter, `state`. The `state` parameter allows th
 
 The function, `get_ag_bulletin()`, will return a tidy data frame of the agriculture bulletin with the following fields:
 
--   **obs-time-local** - Observation time (Time)
--   **obs-time-utc** - Observation time (Time in UTC)
+-   **obs-time-local** - Observation time
+-   **obs-time-utc** - Observation time (time in UTC)
 -   **time-zone** - Time zone for observation
 -   **site** - Unique BOM identifier for each station
 -   **dist** - BOM rainfall district
@@ -131,7 +131,7 @@ The function, `get_ag_bulletin()`, will return a tidy data frame of the agricult
 -   **lon** - Longitude (decimal degrees)
 -   **elev\_m** - Station elevation (metres)
 -   **bar\_ht** - Bar height (metres)
--   **WMO** - World Meteorlogical Society number (Unique ID used worldwide)
+-   **WMO** - World Meteorlogical Organization number (unique ID used worldwide)
 -   **r** - Rain to 9am (millimetres). *Trace will be reported as 0.01*
 -   **tn** - Minimum temperature (degrees Celsius)
 -   **tx** - Maximum temperature (degrees Celsius)
@@ -139,11 +139,11 @@ The function, `get_ag_bulletin()`, will return a tidy data frame of the agricult
 -   **ev** - Evaporation (millimetres)
 -   **tg** - Terrestrial minimum temperature (degrees Celsius)
 -   **sn** - Sunshine (hours)
--   **t5** - 5cm soil temperature (Celsius)
--   **t10** - 10cm soil temperature (Celsius)
--   **t20** - 20cm soil temperature (Celsius)
--   **t50** - 50cm soil temperature (Celsius)
--   **t1m** - 1m soil temperature (Celsius)
+-   **t5** - 5cm soil temperature (degrees Celsius)
+-   **t10** - 10cm soil temperature (degrees Celsius)
+-   **t20** - 20cm soil temperature (degrees Celsius)
+-   **t50** - 50cm soil temperature (degrees Celsius)
+-   **t1m** - 1m soil temperature (degrees Celsius)
 -   **wr** - Wind run (kilometres)
 -   **state** - State name (postal code abbreviation)
 -   **lat** - Latitude (decimal degrees)
@@ -218,34 +218,34 @@ head(Melbourne_weather)
     ## 4          3 95936 Melbourne (Olympic Park)        IDV60801
     ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
     ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
-    ##   local_date_time local_date_time_full aifstime_utc   lat lon apparent_t
-    ## 1      01/10:30am                 <NA>         <NA> -37.8 145       10.0
-    ## 2      01/10:00am                 <NA>         <NA> -37.8 145        9.0
-    ## 3      01/09:30am                 <NA>         <NA> -37.8 145        8.6
-    ## 4      01/09:00am                 <NA>         <NA> -37.8 145        8.8
-    ## 5      01/08:30am                 <NA>         <NA> -37.8 145        8.3
-    ## 6      01/08:00am                 <NA>         <NA> -37.8 145        7.9
-    ##   cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt  press
-    ## 1     -          -     2.2        7       4     11.2   6.5 1037.9
-    ## 2     -          -     1.9       13       7     10.9   6.8 1037.9
-    ## 3     -          -     1.7       11       6     10.6   7.1 1037.7
-    ## 4     -          -     1.4        9       5     10.5   7.6 1037.5
-    ## 5     -          -     1.3       13       7     10.1   7.3 1037.2
-    ## 6     -          -     1.2       13       7      9.9   7.3 1037.0
-    ##   press_msl press_qnh press_tend rain_trace rel_hum sea_state
-    ## 1    1037.9    1037.9          -        0.0      73         -
-    ## 2    1037.9    1037.9          -        0.0      76         -
-    ## 3    1037.7    1037.7          -        0.0      79         -
-    ## 4    1037.5    1037.5          -        0.4      82         -
-    ## 5    1037.2    1037.2          -        0.4      83         -
-    ## 6    1037.0    1037.0          -        0.4      84         -
+    ##   local_date_time local_date_time_full        aifstime_utc   lat lon
+    ## 1      01/12:30pm  2017-06-01 12:30:00 2017-06-01 02:30:00 -37.8 145
+    ## 2      01/12:00pm  2017-06-01 12:00:00 2017-06-01 02:00:00 -37.8 145
+    ## 3      01/11:30am  2017-06-01 11:30:00 2017-06-01 01:30:00 -37.8 145
+    ## 4      01/11:00am  2017-06-01 11:00:00 2017-06-01 01:00:00 -37.8 145
+    ## 5      01/10:30am  2017-06-01 10:30:00 2017-06-01 00:30:00 -37.8 145
+    ## 6      01/10:00am  2017-06-01 10:00:00 2017-06-01 00:00:00 -37.8 145
+    ##   apparent_t cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt
+    ## 1       10.8     -          -     3.6       13       7     13.2   5.4
+    ## 2       10.3     -          -     3.3       15       8     12.5   5.4
+    ## 3        9.5     -          -     3.0       20      11     12.2   5.8
+    ## 4       11.1     -          -     2.3        0       0     11.8   6.9
+    ## 5       10.0     -          -     2.2        7       4     11.2   6.5
+    ## 6        9.0     -          -     1.9       13       7     10.9   6.8
+    ##    press press_msl press_qnh press_tend rain_trace rel_hum sea_state
+    ## 1 1036.8    1036.8    1036.8          -          0      59         -
+    ## 2 1037.3    1037.3    1037.3          -          0      62         -
+    ## 3 1037.8    1037.8    1037.8          -          0      65         -
+    ## 4 1037.9    1037.9    1037.9          -          0      72         -
+    ## 5 1037.9    1037.9    1037.9          -          0      73         -
+    ## 6 1037.9    1037.9    1037.9          -          0      76         -
     ##   swell_dir_worded vis_km weather wind_dir wind_spd_kmh wind_spd_kt
-    ## 1                -     10       -        W            2           1
-    ## 2                -     10       -      WNW            6           3
-    ## 3                -     10       -       SW            7           4
-    ## 4                -     10       -        S            6           3
-    ## 5                -     10       -      WSW            6           3
-    ## 6                -     10       -      WSW            7           4
+    ## 1                -     10       -      WSW            7           4
+    ## 2                -     10       -        W            6           3
+    ## 3                -     10       -      SSW            9           5
+    ## 4                -     10       -     CALM            0           0
+    ## 5                -     10       -        W            2           1
+    ## 6                -     10       -      WNW            6           3
 
 Meta
 ----
