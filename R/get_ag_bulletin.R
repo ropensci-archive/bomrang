@@ -69,24 +69,9 @@
 #' @export
 get_ag_bulletin <- function(state = NULL) {
   # CRAN NOTE avoidance
-  Lat <- Lon <- state_code <- NULL
+  state_code <- NULL
 
   state <- .validate_state(state)
-
-  # Agricultural Bulletin Station Locations and Other Information
-  tryCatch({
-    stations_meta <- .get_station_metadata() # see internal_functions.R
-    stations_meta <-
-      stations_meta %>%
-      dplyr::rename(lat = Lat,
-                    lon = Lon) %>%
-      dplyr::select(-state_code, -source, -url)
-    stations_meta$site <- gsub("^0{1,2}", "", stations_meta$site)
-  },
-  error = function(x)
-    stop(
-      "\nThe server with the location information is not responding. Please retry again later.\n"
-    ))
 
   # ftp server
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
@@ -291,7 +276,7 @@ get_ag_bulletin <- function(state = NULL) {
   tidy_df <- do.call("rbind", tidy_df)
 
   tidy_df <- dplyr::left_join(tidy_df,
-                              stations_meta,
+                              stations_site_list,
                               by = c("site" = "site"))
 
   tidy_df <-
