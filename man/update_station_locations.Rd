@@ -7,13 +7,14 @@
 update_station_locations()
 }
 \value{
-Updated internal database of BOM station locations
+Updated internal databases of BOM station locations and JSON URLs
 }
 \description{
 Download the latest station locations and metadata and update bomrang's
-internal database.  There is no need to use this unless you know that a
-station exists in BOM's database that is not available in the database
-distributed with \code{\link{bomrang}}.
+internal databases that support the use of \code{link{get_current_weather}}
+and \code{\link{get_ag_bulletin}}.  There is no need to use this unless you
+know that a station exists in BOM's database that is not available in the
+databases distributed with \code{\link{bomrang}}.
 }
 \examples{
 \dontrun{
