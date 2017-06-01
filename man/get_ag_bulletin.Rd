@@ -19,7 +19,7 @@ Data frame of a Australia BOM agricultural bulletin information
    \item{time-zone}{Time zone for observation}
    \item{site}{Unique BOM identifier for each station}
    \item{dist}{BOM rainfall district}
-   \item{name}{BOM station name}
+   \item{station}{BOM station name}
    \item{start}{Year data collection starts}
    \item{state}{State name (postal code abbreviation)}
    \item{lat}{Latitude (decimal degrees)}

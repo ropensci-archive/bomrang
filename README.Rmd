@@ -102,7 +102,7 @@ The function, `get_ag_bulletin()`, will return a tidy data frame of the agricult
 * **time-zone** - Time zone for observation  
 * **site** - Unique BOM identifier for each station  
 * **dist** - BOM rainfall district  
-* **name** - BOM station name  
+* **station** - BOM station name  
 * **start** - Year data collection starts  
 * **state** - State name (postal code abbreviation)  
 * **lat** - Latitude (decimal degrees)  

@@ -28,7 +28,7 @@
 #'    \item{time-zone}{Time zone for observation}
 #'    \item{site}{Unique BOM identifier for each station}
 #'    \item{dist}{BOM rainfall district}
-#'    \item{name}{BOM station name}
+#'    \item{station}{BOM station name}
 #'    \item{start}{Year data collection starts}
 #'    \item{state}{State name (postal code abbreviation)}
 #'    \item{lat}{Latitude (decimal degrees)}
@@ -202,6 +202,7 @@ get_ag_bulletin <- function(state = NULL) {
     row.names(out) <- NULL
     out <- as.data.frame(out)
     out$site <- as.character(out$site)
+    out$station <- as.character(out$station)
     out$value <- as.numeric(as.character(out$value))
 
     # convert dates to POSIXct -------------------------------------------------
@@ -307,8 +308,9 @@ get_ag_bulletin <- function(state = NULL) {
       time_zone,
       site,
       dist,
-      name,
+      station,
       start,
+      end,
       state,
       lat,
       lon,
