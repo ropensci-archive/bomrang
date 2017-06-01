@@ -22,7 +22,7 @@
 #'
 update_station_locations <- function() {
   # CRAN NOTE avoidance
-  name <- site <- NULL
+  name <- site <- Lat <- Lon <- state_code <-  NULL
   tryCatch({
     curl::curl_download(url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
                         destfile = paste0(tempdir(), "stations.zip"))
