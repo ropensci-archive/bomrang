@@ -6,7 +6,22 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Function reference • bomrang</title>
+<title>JSONurl_latlon_by_station_name
+<dl class='dl-horizontal'>
+   <dt>site</dt><dd><p>Unique BOM identifier for each station</p></dd>
+   <dt>dist</dt><dd><p>BOM rainfall district</p></dd>
+   <dt>name</dt><dd><p>BOM station name</p></dd>
+   <dt>start</dt><dd><p>Year data collection starts</p></dd>
+   <dt>end</dt><dd><p>Year data collection ends (will always be current)</p></dd>
+   <dt>state</dt><dd><p>State name (postal code abbreviation)</p></dd>
+   <dt>lat</dt><dd><p>Latitude (decimal degrees)</p></dd>
+   <dt>lon</dt><dd><p>Longitude (decimal degrees)</p></dd>
+   <dt>elev_m</dt><dd><p>Station elevation (metres)</p></dd>
+   <dt>bar_ht</dt><dd><p>Bar height (metres)</p></dd>
+   <dt>WMO</dt><dd><p>World Meteorological Organization number (unique ID used worldwide)</p></dd>
+   <dt>state_code</dt><dd><p>BOM code used to identify states and territories</p></dd>
+   <dt>url</dt><dd><p>URL that serves JSON file of station weather data</p></dd>
+   </dl> — JSONurl_latlon_by_station_name • bomrang</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -36,7 +51,7 @@
   </head>
 
   <body>
-    <div class="container template-reference-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -77,66 +92,9 @@
       </header>
 
       <div class="row">
-  <div class="col-md-9">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>
-        Reference
-        <small>version&nbsp;0.0.2-1</small>
-      </h1>
-    </div>
-
-    <div class="contents">
-      <table class="ref-index">
-
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
-
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="AAC_codes.html">AAC_codes</a></code> </p>
-          </td>
-          <td><p>AAC_codes</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="bomrang.html">bomrang</a></code> </p>
-          </td>
-          <td><p>Fetches Australian Government Bureau of Meteorology (BOM) weather data files
-and returns a tidy data frame of the data.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_ag_bulletin.html">get_ag_bulletin</a></code> </p>
-          </td>
-          <td><p>Get BOM Agriculture Bulletin</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_current_weather.html">get_current_weather</a></code> </p>
-          </td>
-          <td><p>Current weather observations of a station</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_precis_forecast.html">get_precis_forecast</a></code> </p>
-          </td>
-          <td><p>Get BOM Daily Précis Forecast</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="JSONurl_latlon_by_station_name.html">JSONurl_latlon_by_station_name</a></code> </p>
-          </td>
-          <td><p>JSONurl_latlon_by_station_name
+    <h1>JSONurl_latlon_by_station_name
 <dl class='dl-horizontal'>
    <dt>site</dt><dd><p>Unique BOM identifier for each station</p></dd>
    <dt>dist</dt><dd><p>BOM rainfall district</p></dd>
@@ -151,14 +109,11 @@ and returns a tidy data frame of the data.</p></td>
    <dt>WMO</dt><dd><p>World Meteorological Organization number (unique ID used worldwide)</p></dd>
    <dt>state_code</dt><dd><p>BOM code used to identify states and territories</p></dd>
    <dt>url</dt><dd><p>URL that serves JSON file of station weather data</p></dd>
-   </dl></p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="stations_site_list.html">stations_site_list</a></code> </p>
-          </td>
-          <td><p>stations_site_list
-<dl class='dl-horizontal'>
+   </dl></h1>
+    </div>
+
+    
+    <p>JSONurl_latlon_by_station_name</p><dl class='dl-horizontal'>
    <dt>site</dt><dd><p>Unique BOM identifier for each station</p></dd>
    <dt>dist</dt><dd><p>BOM rainfall district</p></dd>
    <dt>name</dt><dd><p>BOM station name</p></dd>
@@ -170,36 +125,26 @@ and returns a tidy data frame of the data.</p></td>
    <dt>elev_m</dt><dd><p>Station elevation (metres)</p></dd>
    <dt>bar_ht</dt><dd><p>Bar height (metres)</p></dd>
    <dt>WMO</dt><dd><p>World Meteorological Organization number (unique ID used worldwide)</p></dd>
-   </dl></p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="sweep_for_stations.html">sweep_for_stations</a></code> </p>
-          </td>
-          <td><p>Find nearest weather stations</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="update_precis_locations.html">update_precis_locations</a></code> </p>
-          </td>
-          <td><p>Update Internal Database With Latest BOM Forecast Locations From BOM FTP Server</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="update_station_locations.html">update_station_locations</a></code> </p>
-          </td>
-          <td><p>Update Internal Database With Latest BOM Station Locations and Metadata</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
-  </div>
+   <dt>state_code</dt><dd><p>BOM code used to identify states and territories</p></dd>
+   <dt>url</dt><dd><p>URL that serves JSON file of station weather data</p></dd>
+   </dl>
+    
 
+    <pre class="usage"><span class='no'>JSONurl_latlon_by_station_name</span></pre>
+        
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>An object of class <code>data.table</code> (inherits from <code>data.frame</code>) with 866 rows and 14 columns.</p>
+    
+
+  </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#section-all-functions">All functions</a></li>
-    </ul>
+      
+      <li><a href="#format">Format</a></li>
+          </ul>
+
   </div>
 </div>
 
