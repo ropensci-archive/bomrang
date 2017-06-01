@@ -1,7 +1,7 @@
 Package: bomrang
 Type: Package
 Title: Fetch Australian Government Bureau of Meteorology Data
-Version: 0.0.2-1
+Version: 0.0.3
 Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     email = "adamhsparks@gmail.com"),
     person("Hugh", "Parsonage", role = "aut",
