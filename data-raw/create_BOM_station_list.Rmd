@@ -163,7 +163,7 @@ data as a database for _bomrang_ to use.
 ### Save JSON URL database for `get_current_weather()`
 
 ```{r save_url_data, eval=TRUE, message=FALSE}
-JSONurl_latlon_by_station_name <- bom_stations_raw[!is.na(stations_site_list$url), ]
+JSONurl_latlon_by_station_name <- stations_site_list[!is.na(stations_site_list$url), ]
 devtools::use_data(JSONurl_latlon_by_station_name, overwrite = TRUE)
 ```
 

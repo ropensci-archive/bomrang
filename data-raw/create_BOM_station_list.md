@@ -179,7 +179,7 @@ Now that we have the dataframe of stations and have generated the URLs for the J
 ### Save JSON URL database for `get_current_weather()`
 
 ``` r
-JSONurl_latlon_by_station_name <- bom_stations_raw[!is.na(stations_site_list$url), ]
+JSONurl_latlon_by_station_name <- stations_site_list[!is.na(stations_site_list$url), ]
 devtools::use_data(JSONurl_latlon_by_station_name, overwrite = TRUE)
 ```
 
