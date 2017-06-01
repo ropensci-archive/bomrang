@@ -1,5 +1,5 @@
 ---
-title: "Get BOM Stations"
+title: "Build BOM Station Locations and JSON URL Database"
 output: github_document
 ---
 
@@ -35,8 +35,8 @@ Refer to these BOM pages for more reference:
 ## Get station metadata
 
 ```{r get_bom_station_data, eval=TRUE}
-library(dplyr)
-library(readr)
+
+library(magrittr)
 
 # This file is a pseudo-fixed width file. Line five contains the headers at
 # fixed widths which are coded in the read_table() call.
@@ -44,114 +44,140 @@ library(readr)
 # For some reason, reading it directly from the BOM website does not work, so
 # we use download.file to fetch it first and then import it from the R tempdir()
 
-download.file(
-"ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
-paste0(tempdir(), "stations.zip")
-)
+  curl::curl_download(url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
+                      destfile = paste0(tempdir(), "stations.zip"))
 
-bom_stations_raw <-
-  read_table(
-  paste0(tempdir(), "stations.zip"),
-  skip = 5,
-  guess_max = 20000,
-  col_names = c(
-  "site",
-  "dist",
-  "NAME",
-  "start",
-  "end",
-  "Lat",
-  "Lon",
-  "source",
-  "state",
-  "height",
-  "bar_ht",
-  "WMO"
-  ),
-  col_types = cols(
-  site = col_character(),
-  dist = col_character(),
-  NAME = col_character(),
-  start = col_integer(),
-  end = col_integer(),
-  Lat = col_double(),
-  Lon = col_double(),
-  source = col_character(),
-  state = col_character(),
-  height = col_double(),
-  bar_ht = col_double(),
-  WMO = col_integer()
-  ),
-  na = c("..")
-  )
+  bom_stations_raw <-
+    readr::read_table(
+      paste0(tempdir(), "stations.zip"),
+      skip = 5,
+      guess_max = 20000,
+      col_names = c(
+        "site",
+        "dist",
+        "name",
+        "start",
+        "end",
+        "Lat",
+        "Lon",
+        "source",
+        "state",
+        "elev",
+        "bar_ht",
+        "WMO"
+      ),
+      col_types = readr::cols(
+        site = readr::col_character(),
+        dist = readr::col_character(),
+        name = readr::col_character(),
+        start = readr::col_integer(),
+        end = readr::col_integer(),
+        Lat = readr::col_double(),
+        Lon = readr::col_double(),
+        source = readr::col_character(),
+        state = readr::col_character(),
+        elev = readr::col_double(),
+        bar_ht = readr::col_double(),
+        WMO = readr::col_integer()
+      ),
+      na = c("..")
+    )
 
-# trim the end of the rows off that have extra info that's not in columns
-nrows <- nrow(bom_stations_raw) - 5
-bom_stations_raw <- bom_stations_raw[1:nrows,]
+  # trim the end of the rows off that have extra info that's not in columns
+  nrows <- nrow(bom_stations_raw) - 5
+  bom_stations_raw <- bom_stations_raw[1:nrows, ]
 
-# recode the states to match product codes
-# IDD - NT, IDN - NSW/ACT, IDQ - Qld, IDS - SA, IDT - Tas/Antarctica, IDV - Vic, IDW - WA
+  # recode the states to match product codes
+  # IDD - NT, IDN - NSW/ACT, IDQ - Qld, IDS - SA, IDT - Tas/Antarctica, IDV - Vic, IDW - WA
 
-bom_stations_raw$state_code <- NA
-bom_stations_raw$state_code[bom_stations_raw$state == "WA"] <-
-"W"
-bom_stations_raw$state_code[bom_stations_raw$state == "QLD"] <-
-"Q"
-bom_stations_raw$state_code[bom_stations_raw$state == "VIC"] <-
-"V"
-bom_stations_raw$state_code[bom_stations_raw$state == "NT"] <-
-"D"
-bom_stations_raw$state_code[bom_stations_raw$state == "TAS" |
-bom_stations_raw$state == "ANT"] <-
-"T"
-bom_stations_raw$state_code[bom_stations_raw$state == "NSW"] <-
-"N"
-bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <-
-"S"
+  bom_stations_raw$state_code <- NA
+  bom_stations_raw$state_code[bom_stations_raw$state == "WA"] <-
+    "W"
+  bom_stations_raw$state_code[bom_stations_raw$state == "QLD"] <-
+    "Q"
+  bom_stations_raw$state_code[bom_stations_raw$state == "VIC"] <-
+    "V"
+  bom_stations_raw$state_code[bom_stations_raw$state == "NT"] <-
+    "D"
+  bom_stations_raw$state_code[bom_stations_raw$state == "TAS" |
+                                bom_stations_raw$state == "ANT"] <-
+    "T"
+  bom_stations_raw$state_code[bom_stations_raw$state == "NSW"] <-
+    "N"
+  bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <-
+    "S"
 
-# create JSON URLs
-bom_stations_raw$url <- NA
+  stations_site_list <-
+    bom_stations_raw %>%
+    dplyr::select(site:name, dplyr::everything()) %>%
+    dplyr::mutate(
+      url = dplyr::case_when(
+        .$state != "ANT" & !is.na(.$WMO) ~
+          paste0(
+            "http://www.bom.gov.au/fwo/ID",
+            .$state_code,
+            "60801",
+            "/",
+            "ID",
+            .$state_code,
+            "60801",
+            ".",
+            .$WMO,
+            ".json"
+          ),
+        .$state == "ANT" & !is.na(.$WMO) ~
+          paste0(
+            "http://www.bom.gov.au/fwo/ID",
+            .$state_code,
+            "60803",
+            "/",
+            "ID",
+            .$state_code,
+            "60803",
+            ".",
+            .$WMO,
+            ".json"
+          )
+      )
+    )
 
-bom_stations_raw <-
-bom_stations_raw %>%
-mutate(url = case_when(
-.$state != "ANT" & !is.na(.$WMO) ~
-paste0(
-"http://www.bom.gov.au/fwo/ID",
-.$state_code,
-"60801",
-"/",
-"ID",
-.$state_code,
-"60801",
-".",
-.$WMO,
-".json"
-),
-.$state == "ANT" & !is.na(.$WMO) ~
-paste0(
-"http://www.bom.gov.au/fwo/ID",
-.$state_code,
-"60803",
-"/",
-"ID",
-.$state_code,
-"60803",
-".",
-.$WMO,
-".json"
-)
-))
+  # There are weather stations that do have a WMO but don't report online,
+  # most of these don't have a "state" value, e.g., KIRIBATI NTC AWS or
+  # MARSHALL ISLANDS NTC AWS, remove these from the list
 
-bom_stations_raw
+  stations_site_list <-
+    stations_site_list[stations_site_list$state != "null", ]
+
+  # return only current stations listing
+  stations_site_list <-
+    stations_site_list[is.na(stations_site_list$end), ]
+  stations_site_list$end <- format(Sys.Date(), "%Y")
+
+
+stations_site_list
 ```
-## Save station metadata
+## Save data
 Now that we have the dataframe of stations and have generated the URLs for the JSON files for stations providing weather data feeds, save the
 data as a database for _bomrang_ to use.
 
-```{r save_data, eval=TRUE, message=FALSE}
-JSONurl_latlon_by_station_name <- bom_stations_raw[!is.na(bom_stations_raw$url), ]
+### Save JSON URL database for `get_current_weather()`
+
+```{r save_url_data, eval=TRUE, message=FALSE}
+JSONurl_latlon_by_station_name <- bom_stations_raw[!is.na(stations_site_list$url), ]
 devtools::use_data(JSONurl_latlon_by_station_name, overwrite = TRUE)
+```
+
+### Save station location data for `get_ag_bulletin()`
+
+```{r save_location_data, eval=TRUE, message=FALSE}
+stations_site_list <-
+  stations_site_list %>%
+  dplyr::rename(lat = Lat,
+  lon = Lon) %>%
+  dplyr::select(-state_code, -source, -url)
+  stations_site_list$site <-
+  gsub("^0{1,2}", "", stations_site_list$site)
+  devtools::use_data(stations_site_list, overwrite = TRUE)
 ```
 
 ## Session Info
