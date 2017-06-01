@@ -179,7 +179,8 @@ Now that we have the dataframe of stations and have generated the URLs for the J
 ### Save JSON URL database for `get_current_weather()`
 
 ``` r
-JSONurl_latlon_by_station_name <- stations_site_list[!is.na(stations_site_list$url), ]
+JSONurl_latlon_by_station_name <- data.table::data.table(
+  stations_site_list[!is.na(stations_site_list$url), ])
 devtools::use_data(JSONurl_latlon_by_station_name, overwrite = TRUE)
 ```
 
@@ -222,6 +223,7 @@ devtools::session_info()
     ##  base       * 3.4.0      2017-05-05 local                        
     ##  compiler     3.4.0      2017-05-05 local                        
     ##  curl         2.6        2017-04-27 CRAN (R 3.4.0)               
+    ##  data.table   1.10.4     2017-02-01 CRAN (R 3.4.0)               
     ##  datasets   * 3.4.0      2017-05-05 local                        
     ##  DBI          0.6-1      2017-04-01 CRAN (R 3.4.0)               
     ##  devtools     1.13.1     2017-05-13 cran (@1.13.1)               
