@@ -1,4 +1,5 @@
-#' Update Internal Database With Latest BOM Station Locations and Metadata
+
+#' Update internal databases with latest BOM station locations and metadata
 #'
 #' Download the latest station locations and metadata and update bomrang's
 #' internal databases that support the use of \code{link{get_current_weather}}

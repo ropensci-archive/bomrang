@@ -2,7 +2,7 @@
 % Please edit documentation in R/update_precis_locations.R
 \name{update_precis_locations}
 \alias{update_precis_locations}
-\title{Update Internal Database With Latest BOM Forecast Locations From BOM FTP Server}
+\title{Update internal database with latest BOM forecast locations}
 \usage{
 update_precis_locations()
 }

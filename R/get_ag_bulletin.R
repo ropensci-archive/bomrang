@@ -1,5 +1,5 @@
 
-#' Get BOM Agriculture Bulletin
+#' BOM agriculture bulletin information
 #'
 #'Fetch the BOM agricultural bulletin information and return a tidy data frame
 #'

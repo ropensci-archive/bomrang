@@ -1,4 +1,5 @@
-#' Update Internal Database With Latest BOM Forecast Locations From BOM FTP Server
+
+#' Update internal database with latest BOM forecast locations
 #'
 #' Download the latest forecast locations from the BOM server and update
 #' bomrang's internal database of précis forecast locations.  There is no
