@@ -173,8 +173,7 @@ head(Melbourne_weather)
 * Please [report any issues or bugs](https://github.com/ToowoombaTrio/bomrang/issues).  
 * License: MIT  
 * To cite _bomrang_, please use:  
-  Sparks A, Parsonage H, and Pembleton K (2017). _bomrang: Fetch Australian Government Bureau of Meteorology Weather Data_. R package version 0.0.2,
-<URL: https://github.com/ToowoombaTrio/bomrang>.  
+  Sparks A, Parsonage H and Pembleton K (2017). _BOMRang: Fetch Australian Government Bureau of Meteorology Weather Data_. doi: 10.5281/zenodo.802315 (URL: http://doi.org/10.5281/zenodo.802315), R package version 0.0.3-1, <URL: https://github.com/ToowoombaTrio/BOMRang>.  
 * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.  
 * BOM Copyright Notice http://reg.bom.gov.au/other/copyright.shtml  
 
