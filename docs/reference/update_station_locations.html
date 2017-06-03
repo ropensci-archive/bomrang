@@ -6,14 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AAC_codes
-<dl class='dl-horizontal'>
-  <dt>AAC</dt><dd><p>Unique identifier for each location</p></dd>
-  <dt>PT_NAME</dt><dd><p>Human readable location name</p></dd>
-  <dt>ELEVATION</dt><dd><p>Elevation (metres)</p></dd>
-  <dt>LON</dt><dd><p>Longitude</p></dd>
-  <dt>LAT</dt><dd><p>Latitude</p></dd>
-</dl> — AAC_codes • bomrang</title>
+<title>Update internal databases with latest BOM station locations and metadata — update_station_locations • bomrang</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -86,42 +79,48 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>AAC_codes
-<dl class='dl-horizontal'>
-  <dt>AAC</dt><dd><p>Unique identifier for each location</p></dd>
-  <dt>PT_NAME</dt><dd><p>Human readable location name</p></dd>
-  <dt>ELEVATION</dt><dd><p>Elevation (metres)</p></dd>
-  <dt>LON</dt><dd><p>Longitude</p></dd>
-  <dt>LAT</dt><dd><p>Latitude</p></dd>
-</dl></h1>
+    <h1>Update internal databases with latest BOM station locations and metadata</h1>
     </div>
 
     
-    <p>The <code>AAC_codes</code> data are automatically loaded with the
-<code><a href='bomrang.html'>bomrang</a></code> package and merged with the latest available forecast
-from the BOM.</p>
+    <p>Download the latest station locations and metadata and update bomrang's
+internal databases that support the use of <code>link{get_current_weather}</code>
+and <code><a href='get_ag_bulletin.html'>get_ag_bulletin</a></code>.  There is no need to use this unless you
+know that a station exists in BOM's database that is not available in the
+databases distributed with <code><a href='bomrang.html'>bomrang</a></code>.</p>
     
 
-    <pre class="usage"><span class='no'>AAC_codes</span></pre>
+    <pre class="usage"><span class='fu'>update_station_locations</span>()</pre>
         
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>An object of class <code>data.frame</code> with 1369 rows and 5 columns.</p>
+    <p>Updated internal databases of BOM station locations and JSON URLs</p>
     
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p><a href = 'ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf'>ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf</a></p>
+    <p>Australian Bureau of Meteorology (BOM) Site Numbers
+<a href = 'http://www.bom.gov.au/climate/cdo/about/site-num.shtml'>http://www.bom.gov.au/climate/cdo/about/site-num.shtml</a></p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'><span class='fu'>not_run</span>({
+  <span class='fu'>update_station_locations</span>()
+})</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       
-      <li><a href="#format">Format</a></li>
+      <li><a href="#value">Value</a></li>
 
-      <li><a href="#source">Source</a></li>
-          </ul>
+      <li><a href="#references">References</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
+    <h2>Author</h2>
+    
+Adam H Sparks, <a href='mailto:adamhsparks@gmail.com'>adamhsparks@gmail.com</a>
 
   </div>
 </div>

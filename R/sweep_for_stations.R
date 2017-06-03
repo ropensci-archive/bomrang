@@ -1,4 +1,5 @@
-#' Find nearest weather stations
+
+#' Find nearest BOM weather stations
 #' @param latlon A length-2 numeric vector. By default, Canberra
 #' (approximately).
 #' @return A data frame of all weather stations (in this package) sorted
@@ -16,9 +17,6 @@ sweep_for_stations <- function(latlon = c(-35.3, 149.2)) {
 
   JSONurl_latlon_by_station_name %>%
     copy %>%
-    # distracting for this purpose
-    .[, c("NAME", "url") := NULL] %>%
-    .[complete.cases(.)] %>%
     # Lat Lon are in JSON
     .[, "distance" := haversine_distance(lat, lon, Lat, Lon)] %>%
     setorderv("distance") %>%

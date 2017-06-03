@@ -1,4 +1,5 @@
-#' Current weather observations of a station
+
+#' Current weather observations of a BOM station
 #'
 #' @param station_name The name of the weather station. Fuzzy string matching
 #' via \code{base::agrep} is done.
@@ -52,6 +53,8 @@ get_current_weather <-
       # CRAN NOTE avoidance
       name <- NULL
 
+      station_name <- toupper(station_name)
+
       # If there's an exact match, use it; else, attempt partial match.
       if (station_name %in% JSONurl_latlon_by_station_name[["name"]]) {
         the_station_name <- station_name
@@ -88,10 +91,6 @@ get_current_weather <-
       lat <- latlon[1]
       lon <- latlon[2]
 
-      if (lat > 0 || lon < 90) {
-        warning("lat > 0 or lon < 90, which are unlikely values for Australian stations.")
-      }
-
       # CRAN NOTE avoidance: names of JSONurl_latlon_by_station_name
       Lat <- Lon <- NULL
 
@@ -113,6 +112,9 @@ get_current_weather <-
       )
 
       json_url <- station_nrst_latlon[["url"]]
+    }
+    if (isTRUE(httr::http_error(json_url))) {
+      stop("A station was matched but a corresponding JSON file was not found at bom.gov.au.")
     }
 
     observations.json <-
@@ -138,18 +140,20 @@ get_current_weather <-
       # CRAN NOTE avoidance
       local_date_time_full <- NULL
       if ("local_date_time_full" %chin% DTnoms) {
-        DT[, local_date_time_full := as.POSIXct(local_date_time_full,
-                                                origin = "1970-1-1",
-                                              format = "%Y-%m-%d %H:%M:%OS",
-                                              tz = "")]
+        DT[, local_date_time_full := as.POSIXct(
+          local_date_time_full,
+          origin = "1970-1-1",
+          format = "%Y%m%d%H%M%OS",
+          tz = ""
+        )]
       }
 
       aifstime_utc <- NULL
       if ("aifstime_utc" %chin% DTnoms) {
         DT[, aifstime_utc := as.POSIXct(aifstime_utc,
-                                      origin = "1970-1-1",
-                                      format = "%Y-%m-%d %H:%M:%OS",
-                                      tz = "GMT")]
+                                        origin = "1970-1-1",
+                                        format = "%Y%m%d%H%M%OS",
+                                        tz = "GMT")]
       }
 
       for (j in which(DTnoms %chin% double_cols)) {

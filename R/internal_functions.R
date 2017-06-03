@@ -25,11 +25,7 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
   delta_lon <- abs(lon1 - lon2)
 
   # radius of earth
-  6371 * 2 * asin(
-    sqrt(
-      `+`((sin(delta_lat / 2)) ^ 2,
-          cos(lat1) * cos(lat2) * (sin(delta_lon / 2)) ^ 2
-      )
-    )
-  )
+  6371 * 2 * asin(sqrt(`+`((sin(delta_lat / 2)) ^ 2,
+                           cos(lat1) * cos(lat2) * (sin(delta_lon / 2)) ^ 2
+  )))
 }

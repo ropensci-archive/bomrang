@@ -1,3 +1,15 @@
+# bomrang 0.0.3
+
+## Major changes
+
+* Include internal databases of station locations and metadata for `get_current_weather()` and `get_ag_bulletin()` both derived from the same BOM station master list  
+* The new database includes a more complete list of JSON URLs and ag bulletin station locations  
+* Generation of the JSON URL list is much faster, now can be updated by the user in a few seconds as desired using the new `update_station_locations()` function  
+
+## Minor changes
+* Better tests written for the package  
+* Add a new file describing internal database creation for station locations, metadata and JSON URLs, create_BOM_station_list.md  
+
 # bomrang 0.0.2-1
 
 ## Minor changes

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get BOM Agriculture Bulletin — get_ag_bulletin • bomrang</title>
+<title>BOM agriculture bulletin information — get_ag_bulletin • bomrang</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -79,7 +79,7 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get BOM Agriculture Bulletin</h1>
+    <h1>BOM agriculture bulletin information</h1>
     </div>
 
     
@@ -101,26 +101,33 @@ instruction.</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>Data frame of a Australia BOM agricultural bulletin information</p><dl class='dl-horizontal'>
-   <dt>obs-time-utc</dt><dd><p>Observation time (Time in UTC)</p></dd>
+   <dt>obs-time-local</dt><dd><p>Observation time</p></dd>
+   <dt>obs-time-utc</dt><dd><p>Observation time (time in UTC)</p></dd>
    <dt>time-zone</dt><dd><p>Time zone for observation</p></dd>
    <dt>site</dt><dd><p>Unique BOM identifier for each station</p></dd>
-   <dt>name</dt><dd><p>BOM station name</p></dd>
-   <dt>r</dt><dd><p>Rain to 9am (millimetres). <strong>Trace will be reported as 0.01</strong></p></dd>
-   <dt>tn</dt><dd><p>Minimum temperature (Celsius)</p></dd>
-   <dt>tx</dt><dd><p>Maximum temperature (Celsius)</p></dd>
-   <dt>twd</dt><dd><p>Wet bulb depression (Celsius)</p></dd>
-   <dt>ev</dt><dd><p>Evaporation (millimetres)</p></dd>
-   <dt>tg</dt><dd><p>Terrestrial minimum temperature (Celsius)</p></dd>
-   <dt>sn</dt><dd><p>Sunshine (hours)</p></dd>
-   <dt>t5</dt><dd><p>5cm soil temperature (Celsius)</p></dd>
-   <dt>t10</dt><dd><p>10cm soil temperature (Celsius)</p></dd>
-   <dt>t20</dt><dd><p>20cm soil temperature (Celsius)</p></dd>
-   <dt>t50</dt><dd><p>50cm soil temperature (Celsius)</p></dd>
-   <dt>t1m</dt><dd><p>1m soil temperature (Celsius)</p></dd>
-   <dt>wr</dt><dd><p>Wind run (kilometres)</p></dd>
+   <dt>dist</dt><dd><p>BOM rainfall district</p></dd>
+   <dt>station</dt><dd><p>BOM station name</p></dd>
+   <dt>start</dt><dd><p>Year data collection starts</p></dd>
+   <dt>end</dt><dd><p>Year data collection ends (will always be current)</p></dd>
    <dt>state</dt><dd><p>State name (postal code abbreviation)</p></dd>
    <dt>lat</dt><dd><p>Latitude (decimal degrees)</p></dd>
    <dt>lon</dt><dd><p>Longitude (decimal degrees)</p></dd>
+   <dt>elev_m</dt><dd><p>Station elevation (metres)</p></dd>
+   <dt>bar_ht</dt><dd><p>Bar height (metres)</p></dd>
+   <dt>WMO</dt><dd><p>World Meteorological Organization number (unique ID used worldwide)</p></dd>
+   <dt>r</dt><dd><p>Rain to 9am (millimetres). <strong>Trace will be reported as 0.01</strong></p></dd>
+   <dt>tn</dt><dd><p>Minimum temperature (degrees Celsius)</p></dd>
+   <dt>tx</dt><dd><p>Maximum temperature (degrees Celsius)</p></dd>
+   <dt>twd</dt><dd><p>Wet bulb depression (degrees Celsius)</p></dd>
+   <dt>ev</dt><dd><p>Evaporation (millimetres)</p></dd>
+   <dt>tg</dt><dd><p>Terrestrial minimum temperature (degrees Celsius)</p></dd>
+   <dt>sn</dt><dd><p>Sunshine (hours)</p></dd>
+   <dt>t5</dt><dd><p>5cm soil temperature (degrees Celsius)</p></dd>
+   <dt>t10</dt><dd><p>10cm soil temperature (degrees Celsius)</p></dd>
+   <dt>t20</dt><dd><p>20cm soil temperature (degrees Celsius)</p></dd>
+   <dt>t50</dt><dd><p>50cm soil temperature (degrees Celsius)</p></dd>
+   <dt>t1m</dt><dd><p>1m soil temperature (degrees Celsius)</p></dd>
+   <dt>wr</dt><dd><p>Wind run (kilometres)</p></dd>
 </dl>
 
     

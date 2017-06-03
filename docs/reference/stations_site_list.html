@@ -6,14 +6,20 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AAC_codes
+<title>stations_site_list
 <dl class='dl-horizontal'>
-  <dt>AAC</dt><dd><p>Unique identifier for each location</p></dd>
-  <dt>PT_NAME</dt><dd><p>Human readable location name</p></dd>
-  <dt>ELEVATION</dt><dd><p>Elevation (metres)</p></dd>
-  <dt>LON</dt><dd><p>Longitude</p></dd>
-  <dt>LAT</dt><dd><p>Latitude</p></dd>
-</dl> — AAC_codes • bomrang</title>
+   <dt>site</dt><dd><p>Unique BOM identifier for each station</p></dd>
+   <dt>dist</dt><dd><p>BOM rainfall district</p></dd>
+   <dt>name</dt><dd><p>BOM station name</p></dd>
+   <dt>start</dt><dd><p>Year data collection starts</p></dd>
+   <dt>end</dt><dd><p>Year data collection ends (will always be current)</p></dd>
+   <dt>state</dt><dd><p>State name (postal code abbreviation)</p></dd>
+   <dt>lat</dt><dd><p>Latitude (decimal degrees)</p></dd>
+   <dt>lon</dt><dd><p>Longitude (decimal degrees)</p></dd>
+   <dt>elev_m</dt><dd><p>Station elevation (metres)</p></dd>
+   <dt>bar_ht</dt><dd><p>Bar height (metres)</p></dd>
+   <dt>WMO</dt><dd><p>World Meteorological Organization number (unique ID used worldwide)</p></dd>
+   </dl> — stations_site_list • bomrang</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -86,31 +92,47 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>AAC_codes
+    <h1>stations_site_list
 <dl class='dl-horizontal'>
-  <dt>AAC</dt><dd><p>Unique identifier for each location</p></dd>
-  <dt>PT_NAME</dt><dd><p>Human readable location name</p></dd>
-  <dt>ELEVATION</dt><dd><p>Elevation (metres)</p></dd>
-  <dt>LON</dt><dd><p>Longitude</p></dd>
-  <dt>LAT</dt><dd><p>Latitude</p></dd>
-</dl></h1>
+   <dt>site</dt><dd><p>Unique BOM identifier for each station</p></dd>
+   <dt>dist</dt><dd><p>BOM rainfall district</p></dd>
+   <dt>name</dt><dd><p>BOM station name</p></dd>
+   <dt>start</dt><dd><p>Year data collection starts</p></dd>
+   <dt>end</dt><dd><p>Year data collection ends (will always be current)</p></dd>
+   <dt>state</dt><dd><p>State name (postal code abbreviation)</p></dd>
+   <dt>lat</dt><dd><p>Latitude (decimal degrees)</p></dd>
+   <dt>lon</dt><dd><p>Longitude (decimal degrees)</p></dd>
+   <dt>elev_m</dt><dd><p>Station elevation (metres)</p></dd>
+   <dt>bar_ht</dt><dd><p>Bar height (metres)</p></dd>
+   <dt>WMO</dt><dd><p>World Meteorological Organization number (unique ID used worldwide)</p></dd>
+   </dl></h1>
     </div>
 
     
-    <p>The <code>AAC_codes</code> data are automatically loaded with the
-<code><a href='bomrang.html'>bomrang</a></code> package and merged with the latest available forecast
-from the BOM.</p>
+    <p>stations_site_list</p><dl class='dl-horizontal'>
+   <dt>site</dt><dd><p>Unique BOM identifier for each station</p></dd>
+   <dt>dist</dt><dd><p>BOM rainfall district</p></dd>
+   <dt>name</dt><dd><p>BOM station name</p></dd>
+   <dt>start</dt><dd><p>Year data collection starts</p></dd>
+   <dt>end</dt><dd><p>Year data collection ends (will always be current)</p></dd>
+   <dt>state</dt><dd><p>State name (postal code abbreviation)</p></dd>
+   <dt>lat</dt><dd><p>Latitude (decimal degrees)</p></dd>
+   <dt>lon</dt><dd><p>Longitude (decimal degrees)</p></dd>
+   <dt>elev_m</dt><dd><p>Station elevation (metres)</p></dd>
+   <dt>bar_ht</dt><dd><p>Bar height (metres)</p></dd>
+   <dt>WMO</dt><dd><p>World Meteorological Organization number (unique ID used worldwide)</p></dd>
+   </dl>
     
 
-    <pre class="usage"><span class='no'>AAC_codes</span></pre>
+    <pre class="usage"><span class='no'>stations_site_list</span></pre>
         
     <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>An object of class <code>data.frame</code> with 1369 rows and 5 columns.</p>
+    <p>An object of class <code>tbl_df</code> (inherits from <code>tbl</code>, <code>data.frame</code>) with 7434 rows and 11 columns.</p>
     
     <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p><a href = 'ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf'>ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf</a></p>
+    <p><a href = 'ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip'>ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip</a></p>
     
 
   </div>

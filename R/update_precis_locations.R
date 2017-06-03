@@ -1,4 +1,5 @@
-#' Update Internal Database With Latest BOM Forecast Locations From BOM FTP Server
+
+#' Update internal database with latest BOM forecast locations
 #'
 #' Download the latest forecast locations from the BOM server and update
 #' bomrang's internal database of précis forecast locations.  There is no
@@ -39,6 +40,7 @@ update_precis_locations <- function() {
 
   # overwrite the existing isd_history.rda file on disk
   message("Overwriting existing database")
+
   pkg <- system.file(package = "bomrang")
   path <-
     file.path(file.path(pkg, "data"), paste0("AAC_codes.rda"))

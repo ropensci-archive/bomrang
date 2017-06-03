@@ -1,5 +1,5 @@
 
-#' Get BOM Agriculture Bulletin
+#' BOM agriculture bulletin information
 #'
 #'Fetch the BOM agricultural bulletin information and return a tidy data frame
 #'
@@ -23,26 +23,33 @@
 #' Data frame of a Australia BOM agricultural bulletin information
 #'
 #'\describe{
-#'    \item{obs-time-utc}{Observation time (Time in UTC)}
+#'    \item{obs-time-local}{Observation time}
+#'    \item{obs-time-utc}{Observation time (time in UTC)}
 #'    \item{time-zone}{Time zone for observation}
 #'    \item{site}{Unique BOM identifier for each station}
-#'    \item{name}{BOM station name}
-#'    \item{r}{Rain to 9am (millimetres). \strong{Trace will be reported as 0.01}}
-#'    \item{tn}{Minimum temperature (Celsius)}
-#'    \item{tx}{Maximum temperature (Celsius)}
-#'    \item{twd}{Wet bulb depression (Celsius)}
-#'    \item{ev}{Evaporation (millimetres)}
-#'    \item{tg}{Terrestrial minimum temperature (Celsius)}
-#'    \item{sn}{Sunshine (hours)}
-#'    \item{t5}{5cm soil temperature (Celsius)}
-#'    \item{t10}{10cm soil temperature (Celsius)}
-#'    \item{t20}{20cm soil temperature (Celsius)}
-#'    \item{t50}{50cm soil temperature (Celsius)}
-#'    \item{t1m}{1m soil temperature (Celsius)}
-#'    \item{wr}{Wind run (kilometres)}
+#'    \item{dist}{BOM rainfall district}
+#'    \item{station}{BOM station name}
+#'    \item{start}{Year data collection starts}
+#'    \item{end}{Year data collection ends (will always be current)}
 #'    \item{state}{State name (postal code abbreviation)}
 #'    \item{lat}{Latitude (decimal degrees)}
 #'    \item{lon}{Longitude (decimal degrees)}
+#'    \item{elev_m}{Station elevation (metres)}
+#'    \item{bar_ht}{Bar height (metres)}
+#'    \item{WMO}{World Meteorological Organization number (unique ID used worldwide)}
+#'    \item{r}{Rain to 9am (millimetres). \strong{Trace will be reported as 0.01}}
+#'    \item{tn}{Minimum temperature (degrees Celsius)}
+#'    \item{tx}{Maximum temperature (degrees Celsius)}
+#'    \item{twd}{Wet bulb depression (degrees Celsius)}
+#'    \item{ev}{Evaporation (millimetres)}
+#'    \item{tg}{Terrestrial minimum temperature (degrees Celsius)}
+#'    \item{sn}{Sunshine (hours)}
+#'    \item{t5}{5cm soil temperature (degrees Celsius)}
+#'    \item{t10}{10cm soil temperature (degrees Celsius)}
+#'    \item{t20}{20cm soil temperature (degrees Celsius)}
+#'    \item{t50}{50cm soil temperature (degrees Celsius)}
+#'    \item{t1m}{1m soil temperature (degrees Celsius)}
+#'    \item{wr}{Wind run (kilometres)}
 #' }
 #'
 #' @examples
@@ -61,31 +68,10 @@
 #'
 #' @export
 get_ag_bulletin <- function(state = NULL) {
+  # CRAN NOTE avoidance
+  state_code <- NULL
+
   state <- .validate_state(state)
-
-  # Agricultural Bulletin Station Locations
-
-  tryCatch({
-    stations_meta <-
-      readr::read_table(
-        "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/lists_by_element/alpha/alphaAUS_122.txt",
-        skip = 4,
-        col_names = c("site",
-                      "name",
-                      "lat",
-                      "lon"),
-        col_types = readr::cols_only(
-          "site" = readr::col_character(),
-          "name" = readr::col_character(),
-          "lat" = readr::col_double(),
-          "lon" = readr::col_double()
-        )
-      )
-  },
-  error = function(x)
-    stop(
-      "\nThe server with the location information is not responding. Please retry again later.\n"
-    ))
 
   # ftp server
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
@@ -140,48 +126,31 @@ get_ag_bulletin <- function(state = NULL) {
     ))
 
   if (state != "AUS") {
-    .parse_bulletin(xmlbulletin, stations_meta)
+    .parse_bulletin(xmlbulletin, stations_site_list)
   }
 
   else if (state == "AUS") {
-    out <- lapply(X = file_list, FUN = .parse_bulletin, stations_meta)
+    out <- lapply(X = file_list, FUN = .parse_bulletin, stations_site_list)
     out <- as.data.frame(data.table::rbindlist(out))
   }
 }
 
 #' @noRd
-.parse_bulletin <- function(xmlbulletin, stations_meta) {
+.parse_bulletin <- function(xmlbulletin, stations_site_list) {
   # CRAN NOTE avoidance
-  obs.time.utc <- obs.time.local <- time.zone <- site <- name <- r <- tn <-
-    tx <- twd <- ev <- obs_time_utc <- obs_time_local <- time_zone <- state <-
-    tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <- lon <- attrs <-
-    `rep(bulletin_state, nrow(tidy_df))` <- NULL
+  obs.time.utc <-
+    obs.time.local <- time.zone <- site <- r <- tn <-
+    tx <-
+    end <-
+    station <-
+    twd <- ev <- obs_time_utc <- obs_time_local <- time_zone <-
+    state <-
+    tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <- lon <-
+    attrs <- dist <- start <- elev <- bar_ht <- WMO <- NULL
 
   # load the XML bulletin ------------------------------------------------------
   xmlbulletin <- xml2::read_xml(xmlbulletin)
   obs <- xml2::xml_find_all(xmlbulletin, "//obs")
-
-  bulletin_state <-
-    xml2::xml_find_first(xmlbulletin, ".//*['name']")
-  bulletin_state <- xml2::xml_attr(bulletin_state, "name")
-  bulletin_state <- substr(x = bulletin_state, start = 40,
-                           stop = nchar(bulletin_state))
-
-  if (bulletin_state == "New South Wales") {
-    bulletin_state <- "NSW"
-  } else if (bulletin_state == "Queensland") {
-    bulletin_state <- "QLD"
-  } else if (bulletin_state == "Northern Territory") {
-    bulletin_state <- "NT"
-  } else if (bulletin_state == "South Australia") {
-    bulletin_state <- "SA"
-  } else if (bulletin_state == "Tasmania") {
-    bulletin_state <- "TAS"
-  } else if (bulletin_state == "Victoria") {
-    bulletin_state <- "VIC"
-  } else if (bulletin_state == "Western Australia") {
-    bulletin_state <- "WA"
-  }
 
   # get the data from observations ---------------------------------------------
   .get_obs <- function(x) {
@@ -222,15 +191,22 @@ get_ag_bulletin <- function(state = NULL) {
     row.names(out) <- NULL
     out <- as.data.frame(out)
     out$site <- as.character(out$site)
+    out$station <- as.character(out$station)
     out$value <- as.numeric(as.character(out$value))
 
     # convert dates to POSIXct -------------------------------------------------
-    out[, 1:2] <- apply(out[, 1:2], 2, function(x) chartr("T", " ", x))
+    out[, 1:2] <-
+      apply(out[, 1:2], 2, function(x)
+        chartr("T", " ", x))
 
-    out[, 1] <- as.POSIXct(out[, 1], origin = "1970-1-1",
-                          format = "%Y%m%d %H%M", tz = "")
-    out[, 2] <- as.POSIXct(out[, 2],  origin = "1970-1-1",
-                          format = "%Y%m%d %H%M", tz = "GMT")
+    out[, 1] <- as.POSIXct(out[, 1],
+                           origin = "1970-1-1",
+                           format = "%Y%m%d %H%M",
+                           tz = "")
+    out[, 2] <- as.POSIXct(out[, 2],
+                           origin = "1970-1-1",
+                           format = "%Y%m%d %H%M",
+                           tz = "GMT")
 
     # spread from long to wide
     out <- tidyr::spread(out, key = attrs, value = value)
@@ -300,20 +276,16 @@ get_ag_bulletin <- function(state = NULL) {
   tidy_df <- do.call("rbind", tidy_df)
 
   tidy_df <- dplyr::left_join(tidy_df,
-                              stations_meta,
+                              stations_site_list,
                               by = c("site" = "site"))
-
-  tidy_df <- cbind(tidy_df, rep(bulletin_state, nrow(tidy_df)))
 
   tidy_df <-
     tidy_df %>%
     dplyr::rename(
       obs_time_local = obs.time.local,
       obs_time_utc = obs.time.utc,
-      time_zone = time.zone,
-      state = `rep(bulletin_state, nrow(tidy_df))`
+      time_zone = time.zone
     ) %>%
-    dplyr::mutate_each(dplyr::funs(as.character), state) %>%
     dplyr::mutate_each(dplyr::funs(as.character), obs_time_utc) %>%
     dplyr::mutate_each(dplyr::funs(as.character), time_zone)
 
@@ -324,7 +296,16 @@ get_ag_bulletin <- function(state = NULL) {
       obs_time_utc,
       time_zone,
       site,
-      name,
+      dist,
+      station,
+      start,
+      end,
+      state,
+      lat,
+      lon,
+      elev,
+      bar_ht,
+      WMO,
       r,
       tn,
       tx,
@@ -337,11 +318,13 @@ get_ag_bulletin <- function(state = NULL) {
       t20,
       t50,
       t1m,
-      wr,
-      state,
-      lat,
-      lon
+      wr
     )
+
+  # convert dates to POSIXct ---------------------------------------------------
+  tidy_df[, c(1:2)] <-
+    lapply(tidy_df[, c(1:2)], function(x)
+      as.POSIXct(x, origin = "1970-1-1", format = "%Y-%m-%d %H:%M:%OS"))
 
   # return from main function
   return(tidy_df)

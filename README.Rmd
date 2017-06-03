@@ -97,10 +97,20 @@ This function only takes one parameter, `state`. The `state` parameter allows th
 
 The function, `get_ag_bulletin()`, will return a tidy data frame of the agriculture bulletin with the following fields:
 
-* **obs_time_utc** - Observation time (Time in UTC)  
-* **time_zone** - Time zone for observation  
+* **obs-time-local** - Observation time  
+* **obs-time-utc** - Observation time (time in UTC)  
+* **time-zone** - Time zone for observation  
 * **site** - Unique BOM identifier for each station  
-* **name** - BOM station name  
+* **dist** - BOM rainfall district  
+* **station** - BOM station name  
+* **start** - Year data collection starts  
+* **end** - Year data collection ends (will always be current)  
+* **state** - State name (postal code abbreviation)  
+* **lat** - Latitude (decimal degrees)  
+* **lon** - Longitude (decimal degrees)  
+* **elev_m** - Station elevation (metres)  
+* **bar_ht** - Bar height (metres)  
+* **WMO** - World Meteorlogical Organization number (unique ID used worldwide)
 * **r** - Rain to 9am (millimetres). _Trace will be reported as 0.01_  
 * **tn** - Minimum temperature (degrees Celsius)  
 * **tx** - Maximum temperature (degrees Celsius)  
@@ -116,7 +126,8 @@ The function, `get_ag_bulletin()`, will return a tidy data frame of the agricult
 * **wr** - Wind run (kilometres)  
 * **state** - State name (postal code abbreviation)  
 * **lat** - Latitude (decimal degrees)  
-* **lon** - Longitude (decimal degrees). 
+* **lon** - Longitude (decimal degrees).
+
 
 #### Example
 
