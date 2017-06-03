@@ -1,4 +1,5 @@
 
+
 #' BOM agriculture bulletin information
 #'
 #'Fetch the BOM agricultural bulletin information and return a tidy data frame
@@ -85,54 +86,49 @@ get_ag_bulletin <- function(state = NULL) {
   VIC <- "IDV65176.xml"
   WA  <- "IDW65176.xml"
 
-  tryCatch({
-    if (state == "NSW") {
-      xmlbulletin <-
-        paste0(ftp_base, NSW) # nsw
-    }
-    else if (state == "NT") {
-      xmlbulletin <-
-        paste0(ftp_base, NT) # nt
-    }
-    else if (state == "QLD") {
-      xmlbulletin <-
-        paste0(ftp_base, QLD) # qld
-    }
-    else if (state == "SA") {
-      xmlbulletin <-
-        paste0(ftp_base, SA) # sa
-    }
-    else if (state == "TAS") {
-      xmlbulletin <-
-        paste0(ftp_base, TAS) # tas
-    }
-    else if (state == "VIC") {
-      xmlbulletin <-
-        paste0(ftp_base, VIC) # vic
-    }
-    else if (state == "WA") {
-      xmlbulletin <-
-        paste0(ftp_base, WA) # wa
-    }
-    else if (state == "AUS") {
-      AUS <- list(NT, NSW, QLD, SA, TAS, VIC, WA)
-      file_list <- paste0(ftp_base, AUS)
-    } else
-      stop(state, " not recognised as a valid state or territory")
-  },
-  error = function(x)
-    stop(
-      "\nThe server with the forecast files is not responding. Please retry again later.\n"
-    ))
-
-  if (state != "AUS") {
-    .parse_bulletin(xmlbulletin, stations_site_list)
+  if (state == "NSW") {
+    xmlbulletin <-
+      paste0(ftp_base, NSW) # nsw
   }
-
+  else if (state == "NT") {
+    xmlbulletin <-
+      paste0(ftp_base, NT) # nt
+  }
+  else if (state == "QLD") {
+    xmlbulletin <-
+      paste0(ftp_base, QLD) # qld
+  }
+  else if (state == "SA") {
+    xmlbulletin <-
+      paste0(ftp_base, SA) # sa
+  }
+  else if (state == "TAS") {
+    xmlbulletin <-
+      paste0(ftp_base, TAS) # tas
+  }
+  else if (state == "VIC") {
+    xmlbulletin <-
+      paste0(ftp_base, VIC) # vic
+  }
+  else if (state == "WA") {
+    xmlbulletin <-
+      paste0(ftp_base, WA) # wa
+  }
   else if (state == "AUS") {
-    out <- lapply(X = file_list, FUN = .parse_bulletin, stations_site_list)
-    out <- as.data.frame(data.table::rbindlist(out))
-  }
+    AUS <- list(NT, NSW, QLD, SA, TAS, VIC, WA)
+    file_list <- paste0(ftp_base, AUS)
+  } else
+    stop(state, "is not recognised as a valid state or territory")
+
+if (state != "AUS") {
+  .parse_bulletin(xmlbulletin, stations_site_list)
+}
+
+else if (state == "AUS") {
+  out <-
+    lapply(X = file_list, FUN = .parse_bulletin, stations_site_list)
+  out <- as.data.frame(data.table::rbindlist(out))
+}
 }
 
 #' @noRd
@@ -145,11 +141,19 @@ get_ag_bulletin <- function(state = NULL) {
     station <-
     twd <- ev <- obs_time_utc <- obs_time_local <- time_zone <-
     state <-
-    tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <- lon <-
+    tg <-
+    sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <- lon <-
     attrs <- dist <- start <- elev <- bar_ht <- WMO <- NULL
 
   # load the XML bulletin ------------------------------------------------------
-  xmlbulletin <- xml2::read_xml(xmlbulletin)
+
+  tryCatch({
+    xmlbulletin <- xml2::read_xml(xmlbulletin)
+  },
+  error = function(x)
+    stop(
+      "\nThe server with the bulletin files is not responding. Please retry again later.\n"
+    ))
   obs <- xml2::xml_find_all(xmlbulletin, "//obs")
 
   # get the data from observations ---------------------------------------------
@@ -176,7 +180,7 @@ get_ag_bulletin <- function(state = NULL) {
     # if there are no observations, keep a single row for the station ID
     if (length(value) > 1) {
       location <-
-        trimws(location[rep(seq_len(nrow(location)), each = length(value)),])
+        trimws(location[rep(seq_len(nrow(location)), each = length(value)), ])
     }
 
     # if there is only one observation this step means that a data frame is
