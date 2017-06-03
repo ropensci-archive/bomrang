@@ -48,26 +48,9 @@ This function only takes one parameter, `state`. States or territories are speci
 * **AUS** - Australia, returns national forecast including all states/territories.
 
 #### Results
-
-The function, `get_precis_forecast()`, will return a tidy data frame of the weather forecast for the daily forecast with the following fields:
-
-* **aac** - AMOC Area Code, _e.g._, WA_MW008, a unique identifier for each location  
-* **start_time_local** - Start of forecast date and time in local TZ  
-* **end_time_local** - End of forecast date and time in local TZ  
-* **UTC_offset** -  Hours offset from difference in hours and minutes from Coordinated Universal Time (UTC) for `start_time_local` and `end_time_local`
-* **start_time_utc** - Start of forecast date and time in UTC  
-* **end_time_utc** - End of forecast date and time in UTC  
-* **max_temp** - Maximum forecasted temperature (degrees Celsius)  
-* **min_temp** - Minimum forecasted temperature (degrees Celsius)  
-* **lower_prcp_limit** - Lower forecasted precipitation limit (millimetres)  
-* **upper_prcp_limit** - Upper forecasted precipitation limit (millimetres)  
-* **precis** - Précis forecast (a short summary, less than 30 characters)  
-* **prob_prcp** - Probability of precipitation (percent)  
-* **location** - Named location for forecast  
-* **state** - State name (postal code abbreviation)  
-* **lon** - Longitude of named location (decimal degrees)  
-* **lat** - Latitude of named location (decimal degrees)  
-* **elev** - Elevation of named location (metres).
+The function `get_precis_forecast()` will return a tidy data frame of BOM data for
+the requested state(s) or territory.  For a complete listing of the fields in
+the data frame see the `Précis Forecast Fields` vignette.
 
 #### Example
 
@@ -94,40 +77,9 @@ This function only takes one parameter, `state`. The `state` parameter allows th
 * **AUS** - Australia, returns bulletin for all states/territories.
 
 #### Results
-
-The function, `get_ag_bulletin()`, will return a tidy data frame of the agriculture bulletin with the following fields:
-
-* **obs-time-local** - Observation time  
-* **obs-time-utc** - Observation time (time in UTC)  
-* **time-zone** - Time zone for observation  
-* **site** - Unique BOM identifier for each station  
-* **dist** - BOM rainfall district  
-* **station** - BOM station name  
-* **start** - Year data collection starts  
-* **end** - Year data collection ends (will always be current)  
-* **state** - State name (postal code abbreviation)  
-* **lat** - Latitude (decimal degrees)  
-* **lon** - Longitude (decimal degrees)  
-* **elev_m** - Station elevation (metres)  
-* **bar_ht** - Bar height (metres)  
-* **WMO** - World Meteorlogical Organization number (unique ID used worldwide)
-* **r** - Rain to 9am (millimetres). _Trace will be reported as 0.01_  
-* **tn** - Minimum temperature (degrees Celsius)  
-* **tx** - Maximum temperature (degrees Celsius)  
-* **twd** - Wet bulb depression (degrees Celsius)  
-* **ev** - Evaporation (millimetres)  
-* **tg** - Terrestrial minimum temperature (degrees Celsius)  
-* **sn** - Sunshine (hours)  
-* **t5** - 5cm soil temperature (degrees Celsius)  
-* **t10** - 10cm soil temperature (degrees Celsius)  
-* **t20** - 20cm soil temperature (degrees Celsius)  
-* **t50** - 50cm soil temperature (degrees Celsius)  
-* **t1m** - 1m soil temperature (degrees Celsius)  
-* **wr** - Wind run (kilometres)  
-* **state** - State name (postal code abbreviation)  
-* **lat** - Latitude (decimal degrees)  
-* **lon** - Longitude (decimal degrees).
-
+The function `get_ag_bulletin()` will return a tidy data frame of BOM data for
+the requested state(s) or territory.  For a complete listing of the fields in
+the data frame see the `Ag Bulletin Fields` vignette.
 
 #### Example
 
@@ -155,7 +107,8 @@ This function accepts four parameters:
 
 #### Results
 
-The function, `get_current_weather()` will return a tidy data frame of the current and past 72 hours observations for the requested station. The fields returned will vary between stations dependent upon the data that they provide. See the [BOM website](http://www.bom.gov.au/catalogue/observations/about-weather-observations.shtml) for more information.
+The function, `get_current_weather()` will return a tidy data frame of the current and past 72 hours observations for the requested station.  For a complete listing of the fields in
+the data frame see the `Current Weather Fields` vignette.
 
 #### Example
 
@@ -173,8 +126,11 @@ head(Melbourne_weather)
 * Please [report any issues or bugs](https://github.com/ToowoombaTrio/bomrang/issues).  
 * License: MIT  
 * To cite _bomrang_, please use:  
-  Sparks A, Parsonage H, and Pembleton K (2017). _bomrang: Fetch Australian Government Bureau of Meteorology Weather Data_. R package version 0.0.2,
-<URL: https://github.com/ToowoombaTrio/bomrang>.  
+  Sparks A, Parsonage H and Pembleton K (2017). _BOMRang: Fetch Australian Government Bureau of Meteorology Weather Data_. doi: 10.5281/zenodo.802315 (URL: http://doi.org/10.5281/zenodo.802315), R package version 0.0.3-1, <URL: https://github.com/ToowoombaTrio/BOMRang>.  
+<<<<<<< HEAD
+  
+=======
+>>>>>>> master
 * Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.  
 * BOM Copyright Notice http://reg.bom.gov.au/other/copyright.shtml  
 

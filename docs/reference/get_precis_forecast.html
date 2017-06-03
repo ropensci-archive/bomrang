@@ -96,30 +96,10 @@ instruction.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Data frame of a Australia BOM daily forecast in a data frame with the
-following fields.</p><dl class='dl-horizontal'>
-   <dt>aac</dt><dd><p>AMOC Area Code, <em>e.g.</em>, WA_MW008, a unique identifier for each location</p></dd>
-   <dt>index</dt><dd><p>Index value, day 0 to day 7</p></dd>
-   <dt>start_time_local</dt><dd><p>Start of forecast date and time in local TZ</p></dd>
-   <dt>end_time_local</dt><dd><p>End of forecast date and time in local TZ</p></dd>
-   <dt>UTC_offset</dt><dd><p>Hours offset from difference in hours and minutes from
-    Coordinated Universal Time (UTC) for <code>start_time_local</code> and
-     <code>end_time_local</code></p></dd>
-   <dt>start_time_utc</dt><dd><p>Start of forecast date and time in UTC</p></dd>
-   <dt>end_time_utc</dt><dd><p>End of forecast date and time in UTC</p></dd>
-   <dt>maximum_temperature</dt><dd><p>Maximum forecasted temperature (Celsius)</p></dd>
-   <dt>minimum_temperature</dt><dd><p>Minimum forecasted temperature (Celsius)</p></dd>
-   <dt>lower_prec_limit</dt><dd><p>Lower forecasted precipitation limit (millimetres)</p></dd>
-   <dt>upper_prec_limit</dt><dd><p>Upper forecasted precipitation limit (millimetres)</p></dd>
-   <dt>precis</dt><dd><p>Précis forecast (a short summary, less than 30 characters)</p></dd>
-   <dt>probability_of_precipitation</dt><dd><p>Probability of precipitation (percent)</p></dd>
-   <dt>location</dt><dd><p>Named location for forecast</p></dd>
-   <dt>state</dt><dd><p>State name (postal code abbreviation)</p></dd>
-   <dt>lon</dt><dd><p>Longitude of named location (decimal degrees)</p></dd>
-   <dt>lat</dt><dd><p>Latitude of named location (decimal degrees)</p></dd>
-   <dt>elev</dt><dd><p>Elevation of named location (metres)</p></dd>
-</dl>
-
+    <p>Data frame of a Australia BOM daily forecast in a tidy data frame.  For
+more details see the vignette "Précis Forecast Fields":
+<code>NA</code>
+for a complete list of fields and units.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 

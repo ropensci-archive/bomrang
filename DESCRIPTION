@@ -1,7 +1,7 @@
 Package: bomrang
 Type: Package
 Title: Fetch Australian Government Bureau of Meteorology Data
-Version: 0.0.3-1
+Version: 0.0.3-2
 Date: 2017-06-03
 Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     email = "adamhsparks@gmail.com"),
@@ -33,7 +33,8 @@ Imports:
     xml2
 Encoding: UTF-8
 LazyData: true
-Suggests: covr,
+Suggests:
+    covr,
     testthat,
     knitr,
     rmarkdown
