@@ -11,7 +11,6 @@
 #' \code{\link{bomrang}} package and merged with the latest available forecast
 #' from the BOM.
 #'
-#'
 #' @source \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 #'
 "AAC_codes"
@@ -30,6 +29,9 @@
 #'    \item{bar_ht}{Bar height (metres)}
 #'    \item{WMO}{World Meteorological Organization number (unique ID used worldwide)}
 #'    }
+#'
+#'@source \url{ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip}
+#'
 "stations_site_list"
 
 #'JSONurl_latlon_by_station_name
@@ -48,4 +50,6 @@
 #'    \item{state_code}{BOM code used to identify states and territories}
 #'    \item{url}{URL that serves JSON file of station weather data}
 #'    }
+#'@source \url{ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip}
+#'
 "JSONurl_latlon_by_station_name"

@@ -18,6 +18,9 @@
    \item{WMO}{World Meteorological Organization number (unique ID used worldwide)}
    }}
 \format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 7434 rows and 11 columns.}
+\source{
+\url{ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip}
+}
 \usage{
 stations_site_list
 }
