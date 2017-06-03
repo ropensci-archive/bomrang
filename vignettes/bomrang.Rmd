@@ -1,5 +1,5 @@
 ---
-title: "_bomrang_: Fetch Australian Government Bureau of Meteorology (BOM) Data"
+title: "bomrang"
 author: "Adam H Sparks"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette

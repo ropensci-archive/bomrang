@@ -16,6 +16,8 @@
 #' be nearest to the given coordinate).
 #' @details Note that the column \code{local_date_time_full} is set to a
 #' \code{POSIXct} object in the local time of the \strong{user}.
+#' See the \code{vignette("Current Weather Fields", package = "bomrang")}
+#' vignette for a description of the fields and values in the returned database.
 
 #' @examples
 #' \dontrun{
