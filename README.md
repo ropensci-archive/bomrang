@@ -42,25 +42,7 @@ This function only takes one parameter, `state`. States or territories are speci
 
 #### Results
 
-The function, `get_precis_forecast()`, will return a tidy data frame of the weather forecast for the daily forecast with the following fields:
-
--   **aac** - AMOC Area Code, *e.g.*, WA\_MW008, a unique identifier for each location
--   **start\_time\_local** - Start of forecast date and time in local TZ
--   **end\_time\_local** - End of forecast date and time in local TZ
--   **UTC\_offset** - Hours offset from difference in hours and minutes from Coordinated Universal Time (UTC) for `start_time_local` and `end_time_local`
--   **start\_time\_utc** - Start of forecast date and time in UTC
--   **end\_time\_utc** - End of forecast date and time in UTC
--   **max\_temp** - Maximum forecasted temperature (degrees Celsius)
--   **min\_temp** - Minimum forecasted temperature (degrees Celsius)
--   **lower\_prcp\_limit** - Lower forecasted precipitation limit (millimetres)
--   **upper\_prcp\_limit** - Upper forecasted precipitation limit (millimetres)
--   **precis** - Précis forecast (a short summary, less than 30 characters)
--   **prob\_prcp** - Probability of precipitation (percent)
--   **location** - Named location for forecast
--   **state** - State name (postal code abbreviation)
--   **lon** - Longitude of named location (decimal degrees)
--   **lat** - Latitude of named location (decimal degrees)
--   **elev** - Elevation of named location (metres).
+The function `get_precis_forecast()` will return a tidy data frame of BOM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see the `Précis Forecast Fields` vignette.
 
 #### Example
 
@@ -117,38 +99,7 @@ This function only takes one parameter, `state`. The `state` parameter allows th
 
 #### Results
 
-The function, `get_ag_bulletin()`, will return a tidy data frame of the agriculture bulletin with the following fields:
-
--   **obs-time-local** - Observation time
--   **obs-time-utc** - Observation time (time in UTC)
--   **time-zone** - Time zone for observation
--   **site** - Unique BOM identifier for each station
--   **dist** - BOM rainfall district
--   **station** - BOM station name
--   **start** - Year data collection starts
--   **end** - Year data collection ends (will always be current)
--   **state** - State name (postal code abbreviation)
--   **lat** - Latitude (decimal degrees)
--   **lon** - Longitude (decimal degrees)
--   **elev\_m** - Station elevation (metres)
--   **bar\_ht** - Bar height (metres)
--   **WMO** - World Meteorlogical Organization number (unique ID used worldwide)
--   **r** - Rain to 9am (millimetres). *Trace will be reported as 0.01*
--   **tn** - Minimum temperature (degrees Celsius)
--   **tx** - Maximum temperature (degrees Celsius)
--   **twd** - Wet bulb depression (degrees Celsius)
--   **ev** - Evaporation (millimetres)
--   **tg** - Terrestrial minimum temperature (degrees Celsius)
--   **sn** - Sunshine (hours)
--   **t5** - 5cm soil temperature (degrees Celsius)
--   **t10** - 10cm soil temperature (degrees Celsius)
--   **t20** - 20cm soil temperature (degrees Celsius)
--   **t50** - 50cm soil temperature (degrees Celsius)
--   **t1m** - 1m soil temperature (degrees Celsius)
--   **wr** - Wind run (kilometres)
--   **state** - State name (postal code abbreviation)
--   **lat** - Latitude (decimal degrees)
--   **lon** - Longitude (decimal degrees).
+The function `get_ag_bulletin()` will return a tidy data frame of BOM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see the `Ag Bulletin Fields` vignette.
 
 #### Example
 
@@ -199,7 +150,7 @@ This function accepts four parameters:
 
 #### Results
 
-The function, `get_current_weather()` will return a tidy data frame of the current and past 72 hours observations for the requested station. The fields returned will vary between stations dependent upon the data that they provide. See the [BOM website](http://www.bom.gov.au/catalogue/observations/about-weather-observations.shtml) for more information.
+The function, `get_current_weather()` will return a tidy data frame of the current and past 72 hours observations for the requested station. For a complete listing of the fields in the data frame see the `Current Weather Fields` vignette.
 
 #### Example
 
@@ -220,26 +171,26 @@ head(Melbourne_weather)
     ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
     ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
     ##   local_date_time local_date_time_full        aifstime_utc   lat lon
-    ## 1      03/09:30pm  2017-06-03 21:30:00 2017-06-03 11:30:00 -37.8 145
-    ## 2      03/09:00pm  2017-06-03 21:00:00 2017-06-03 11:00:00 -37.8 145
-    ## 3      03/08:30pm  2017-06-03 20:30:00 2017-06-03 10:30:00 -37.8 145
-    ## 4      03/08:00pm  2017-06-03 20:00:00 2017-06-03 10:00:00 -37.8 145
-    ## 5      03/07:30pm  2017-06-03 19:30:00 2017-06-03 09:30:00 -37.8 145
-    ## 6      03/07:00pm  2017-06-03 19:00:00 2017-06-03 09:00:00 -37.8 145
+    ## 1      03/10:00pm  2017-06-03 22:00:00 2017-06-03 12:00:00 -37.8 145
+    ## 2      03/09:30pm  2017-06-03 21:30:00 2017-06-03 11:30:00 -37.8 145
+    ## 3      03/09:00pm  2017-06-03 21:00:00 2017-06-03 11:00:00 -37.8 145
+    ## 4      03/08:30pm  2017-06-03 20:30:00 2017-06-03 10:30:00 -37.8 145
+    ## 5      03/08:00pm  2017-06-03 20:00:00 2017-06-03 10:00:00 -37.8 145
+    ## 6      03/07:30pm  2017-06-03 19:30:00 2017-06-03 09:30:00 -37.8 145
     ##   apparent_t cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt
-    ## 1        7.8     -          -     0.1        0       0      8.3   8.0
-    ## 2        7.9     -          -     0.2        0       0      8.4   8.0
-    ## 3        8.2     -          -     0.4        0       0      8.7   7.9
-    ## 4        8.5     -          -     0.5        0       0      9.0   7.9
-    ## 5        9.1     -          -     0.7        0       0      9.5   8.1
-    ## 6        9.6     -          -     0.9        0       0     10.0   8.1
+    ## 1        7.9     -          -     0.0        0       0      8.3   8.2
+    ## 2        7.8     -          -     0.1        0       0      8.3   8.0
+    ## 3        7.9     -          -     0.2        0       0      8.4   8.0
+    ## 4        8.2     -          -     0.4        0       0      8.7   7.9
+    ## 5        8.5     -          -     0.5        0       0      9.0   7.9
+    ## 6        9.1     -          -     0.7        0       0      9.5   8.1
     ##    press press_msl press_qnh press_tend rain_trace rel_hum sea_state
-    ## 1 1030.8    1030.8    1030.8          -          0      98         -
-    ## 2 1030.8    1030.8    1030.8          -          0      97         -
-    ## 3 1031.0    1031.0    1031.0          -          0      95         -
-    ## 4 1031.2    1031.2    1031.2          -          0      93         -
-    ## 5 1031.3    1031.3    1031.3          -          0      91         -
-    ## 6 1031.3    1031.3    1031.3          -          0      88         -
+    ## 1 1030.8    1030.8    1030.8          -          0      99         -
+    ## 2 1030.8    1030.8    1030.8          -          0      98         -
+    ## 3 1030.8    1030.8    1030.8          -          0      97         -
+    ## 4 1031.0    1031.0    1031.0          -          0      95         -
+    ## 5 1031.2    1031.2    1031.2          -          0      93         -
+    ## 6 1031.3    1031.3    1031.3          -          0      91         -
     ##   swell_dir_worded vis_km weather wind_dir wind_spd_kmh wind_spd_kt
     ## 1                -     10       -     CALM            0           0
     ## 2                -     10       -     CALM            0           0

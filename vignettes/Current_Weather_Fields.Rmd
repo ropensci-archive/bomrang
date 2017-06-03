@@ -1,22 +1,20 @@
 ---
-title: "Current_Weather_Fields"
+title: "Current Weather Fields"
 author: "Australian Bureau of Meteorology"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-  %\VignetteIndexEntry{Current_Weather_Fields}
+  %\VignetteIndexEntry{Current Weather Fields}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---
 
-`get_current_weather()` will return a dataframe that will contain some or all of the following fields.
+The function `get_current_weather()` will return a dataframe that will contain some or all of the following fields.
 
 ## Fields and descriptions
 
 <table>
-<tr>
-<th>Field Name</th><th>Description</th>
-</tr>
+<tr><th>Field Name</th><th>Description</th></tr>
 <tr><td>WMO_id</td><td>WMO station index number, uniquely identifies station</td></tr>
 <tr><td>Name[31]</td><td>Observing station name</td></tr>
 <tr><td>Abbr[6]</td><td>An abbeviated name (normally 4 characters) used for the station</td></tr>
@@ -65,7 +63,7 @@ vignette: >
 <tr><td>Plain_lang[51]</td><td>Plain language comments</td></tr>
 </table>
 
-## Codes:
+### Codes:
 
 P_tend_typ:
 
@@ -116,6 +114,7 @@ Also, some other abbreviations used include
 - RIA<5k  Precipitation in the area, less then 5km distant  
 
 ## Code figures
+
 (This is a subset of a larger table, not all values of which are used)
 WMO international BUFR code table 0 20 003, CREX code table B 20 003
 
@@ -315,7 +314,7 @@ WMO international BUFR code table 0 20 003, CREX code table B 20 003
 	509 Data not available
 	510 Data should have been reported but wasn't
 
-Pw1 and Pw2 - Past weather
+###Pw1 and Pw2 - Past weather
         WMO international BUFR code table 0 20 004, CREX code table B 20 004
 
 	If only one type of weather has occurred in the last 3-6 hours,
@@ -346,7 +345,7 @@ automated weather stations.
 	18 Showers or intermittent precipitation
 	19 Thunderstorm
 	 
-Low_cld_code:
+### Low_cld_code:
 	(This is a subset of a larger table, not all values of which are used)
 	WMO international BUFR code table 0 20 012, CREX code table B 20 012
 
@@ -365,7 +364,7 @@ Low_cld_code:
 	39 Cumulonimbus capillatus with or without Cumulonimbus calvus
 	   Cumulus, Stratocumulus, Stratus or pannus
 
-Mid_cld_code:
+### Mid_cld_code:
 	(This is a subset of a larger table, not all values of which are used)
 	WMO international BUFR code table 0 20 012, CREX code table B 20 012
 
@@ -385,7 +384,7 @@ Mid_cld_code:
 	28 Altocumulus castellanus or floccus
 	29 Altocumulus of a chaotic sky, usually at several levels
 
-Hi_cld_code:
+### Hi_cld_code:
 	(This is a subset of a larger table, not all values of which are used)
 	WMO international BUFR code table 0 20 012, CREX code table B 20 012
 

@@ -112,59 +112,7 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <div id="results" class="section level4">
 <h4 class="hasAnchor">
 <a href="#results" class="anchor"></a>Results</h4>
-<p>The function, <code><a href="reference/get_precis_forecast.html">get_precis_forecast()</a></code>, will return a tidy data frame of the weather forecast for the daily forecast with the following fields:</p>
-<ul>
-<li>
-<strong>aac</strong> - AMOC Area Code, <em>e.g.</em>, WA_MW008, a unique identifier for each location<br>
-</li>
-<li>
-<strong>start_time_local</strong> - Start of forecast date and time in local TZ<br>
-</li>
-<li>
-<strong>end_time_local</strong> - End of forecast date and time in local TZ<br>
-</li>
-<li>
-<strong>UTC_offset</strong> - Hours offset from difference in hours and minutes from Coordinated Universal Time (UTC) for <code>start_time_local</code> and <code>end_time_local</code>
-</li>
-<li>
-<strong>start_time_utc</strong> - Start of forecast date and time in UTC<br>
-</li>
-<li>
-<strong>end_time_utc</strong> - End of forecast date and time in UTC<br>
-</li>
-<li>
-<strong>max_temp</strong> - Maximum forecasted temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>min_temp</strong> - Minimum forecasted temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>lower_prcp_limit</strong> - Lower forecasted precipitation limit (millimetres)<br>
-</li>
-<li>
-<strong>upper_prcp_limit</strong> - Upper forecasted precipitation limit (millimetres)<br>
-</li>
-<li>
-<strong>precis</strong> - Précis forecast (a short summary, less than 30 characters)<br>
-</li>
-<li>
-<strong>prob_prcp</strong> - Probability of precipitation (percent)<br>
-</li>
-<li>
-<strong>location</strong> - Named location for forecast<br>
-</li>
-<li>
-<strong>state</strong> - State name (postal code abbreviation)<br>
-</li>
-<li>
-<strong>lon</strong> - Longitude of named location (decimal degrees)<br>
-</li>
-<li>
-<strong>lat</strong> - Latitude of named location (decimal degrees)<br>
-</li>
-<li>
-<strong>elev</strong> - Elevation of named location (metres).</li>
-</ul>
+<p>The function <code><a href="reference/get_precis_forecast.html">get_precis_forecast()</a></code> will return a tidy data frame of BOM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see the <code>Précis Forecast Fields</code> vignette.</p>
 </div>
 <div id="example" class="section level4">
 <h4 class="hasAnchor">
@@ -237,97 +185,7 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="reference/g
 <div id="results-1" class="section level4">
 <h4 class="hasAnchor">
 <a href="#results-1" class="anchor"></a>Results</h4>
-<p>The function, <code><a href="reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, will return a tidy data frame of the agriculture bulletin with the following fields:</p>
-<ul>
-<li>
-<strong>obs-time-local</strong> - Observation time<br>
-</li>
-<li>
-<strong>obs-time-utc</strong> - Observation time (time in UTC)<br>
-</li>
-<li>
-<strong>time-zone</strong> - Time zone for observation<br>
-</li>
-<li>
-<strong>site</strong> - Unique BOM identifier for each station<br>
-</li>
-<li>
-<strong>dist</strong> - BOM rainfall district<br>
-</li>
-<li>
-<strong>station</strong> - BOM station name<br>
-</li>
-<li>
-<strong>start</strong> - Year data collection starts<br>
-</li>
-<li>
-<strong>end</strong> - Year data collection ends (will always be current)<br>
-</li>
-<li>
-<strong>state</strong> - State name (postal code abbreviation)<br>
-</li>
-<li>
-<strong>lat</strong> - Latitude (decimal degrees)<br>
-</li>
-<li>
-<strong>lon</strong> - Longitude (decimal degrees)<br>
-</li>
-<li>
-<strong>elev_m</strong> - Station elevation (metres)<br>
-</li>
-<li>
-<strong>bar_ht</strong> - Bar height (metres)<br>
-</li>
-<li>
-<strong>WMO</strong> - World Meteorlogical Organization number (unique ID used worldwide)</li>
-<li>
-<strong>r</strong> - Rain to 9am (millimetres). <em>Trace will be reported as 0.01</em><br>
-</li>
-<li>
-<strong>tn</strong> - Minimum temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>tx</strong> - Maximum temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>twd</strong> - Wet bulb depression (degrees Celsius)<br>
-</li>
-<li>
-<strong>ev</strong> - Evaporation (millimetres)<br>
-</li>
-<li>
-<strong>tg</strong> - Terrestrial minimum temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>sn</strong> - Sunshine (hours)<br>
-</li>
-<li>
-<strong>t5</strong> - 5cm soil temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>t10</strong> - 10cm soil temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>t20</strong> - 20cm soil temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>t50</strong> - 50cm soil temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>t1m</strong> - 1m soil temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>wr</strong> - Wind run (kilometres)<br>
-</li>
-<li>
-<strong>state</strong> - State name (postal code abbreviation)<br>
-</li>
-<li>
-<strong>lat</strong> - Latitude (decimal degrees)<br>
-</li>
-<li>
-<strong>lon</strong> - Longitude (decimal degrees).</li>
-</ul>
+<p>The function <code><a href="reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> will return a tidy data frame of BOM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see the <code>Ag Bulletin Fields</code> vignette.</p>
 </div>
 <div id="example-1" class="section level4">
 <h4 class="hasAnchor">
@@ -375,7 +233,7 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="reference/g
 <div id="results-2" class="section level4">
 <h4 class="hasAnchor">
 <a href="#results-2" class="anchor"></a>Results</h4>
-<p>The function, <code><a href="reference/get_current_weather.html">get_current_weather()</a></code> will return a tidy data frame of the current and past 72 hours observations for the requested station. The fields returned will vary between stations dependent upon the data that they provide. See the <a href="http://www.bom.gov.au/catalogue/observations/about-weather-observations.shtml">BOM website</a> for more information.</p>
+<p>The function, <code><a href="reference/get_current_weather.html">get_current_weather()</a></code> will return a tidy data frame of the current and past 72 hours observations for the requested station. For a complete listing of the fields in the data frame see the <code>Current Weather Fields</code> vignette.</p>
 </div>
 <div id="example-2" class="section level4">
 <h4 class="hasAnchor">
@@ -393,26 +251,26 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="refere
 ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
 ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
 ##   local_date_time local_date_time_full        aifstime_utc   lat lon
-## 1      03/09:30pm  2017-06-03 21:30:00 2017-06-03 11:30:00 -37.8 145
-## 2      03/09:00pm  2017-06-03 21:00:00 2017-06-03 11:00:00 -37.8 145
-## 3      03/08:30pm  2017-06-03 20:30:00 2017-06-03 10:30:00 -37.8 145
-## 4      03/08:00pm  2017-06-03 20:00:00 2017-06-03 10:00:00 -37.8 145
-## 5      03/07:30pm  2017-06-03 19:30:00 2017-06-03 09:30:00 -37.8 145
-## 6      03/07:00pm  2017-06-03 19:00:00 2017-06-03 09:00:00 -37.8 145
+## 1      03/10:00pm  2017-06-03 22:00:00 2017-06-03 12:00:00 -37.8 145
+## 2      03/09:30pm  2017-06-03 21:30:00 2017-06-03 11:30:00 -37.8 145
+## 3      03/09:00pm  2017-06-03 21:00:00 2017-06-03 11:00:00 -37.8 145
+## 4      03/08:30pm  2017-06-03 20:30:00 2017-06-03 10:30:00 -37.8 145
+## 5      03/08:00pm  2017-06-03 20:00:00 2017-06-03 10:00:00 -37.8 145
+## 6      03/07:30pm  2017-06-03 19:30:00 2017-06-03 09:30:00 -37.8 145
 ##   apparent_t cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt
-## 1        7.8     -          -     0.1        0       0      8.3   8.0
-## 2        7.9     -          -     0.2        0       0      8.4   8.0
-## 3        8.2     -          -     0.4        0       0      8.7   7.9
-## 4        8.5     -          -     0.5        0       0      9.0   7.9
-## 5        9.1     -          -     0.7        0       0      9.5   8.1
-## 6        9.6     -          -     0.9        0       0     10.0   8.1
+## 1        7.9     -          -     0.0        0       0      8.3   8.2
+## 2        7.8     -          -     0.1        0       0      8.3   8.0
+## 3        7.9     -          -     0.2        0       0      8.4   8.0
+## 4        8.2     -          -     0.4        0       0      8.7   7.9
+## 5        8.5     -          -     0.5        0       0      9.0   7.9
+## 6        9.1     -          -     0.7        0       0      9.5   8.1
 ##    press press_msl press_qnh press_tend rain_trace rel_hum sea_state
-## 1 1030.8    1030.8    1030.8          -          0      98         -
-## 2 1030.8    1030.8    1030.8          -          0      97         -
-## 3 1031.0    1031.0    1031.0          -          0      95         -
-## 4 1031.2    1031.2    1031.2          -          0      93         -
-## 5 1031.3    1031.3    1031.3          -          0      91         -
-## 6 1031.3    1031.3    1031.3          -          0      88         -
+## 1 1030.8    1030.8    1030.8          -          0      99         -
+## 2 1030.8    1030.8    1030.8          -          0      98         -
+## 3 1030.8    1030.8    1030.8          -          0      97         -
+## 4 1031.0    1031.0    1031.0          -          0      95         -
+## 5 1031.2    1031.2    1031.2          -          0      93         -
+## 6 1031.3    1031.3    1031.3          -          0      91         -
 ##   swell_dir_worded vis_km weather wind_dir wind_spd_kmh wind_spd_kt
 ## 1                -     10       -     CALM            0           0
 ## 2                -     10       -     CALM            0           0

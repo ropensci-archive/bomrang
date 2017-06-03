@@ -21,37 +21,10 @@
 #'  }
 #'
 #' @return
-#' Data frame of a Australia BOM agricultural bulletin information
-#'
-#'\describe{
-#'    \item{obs-time-local}{Observation time}
-#'    \item{obs-time-utc}{Observation time (time in UTC)}
-#'    \item{time-zone}{Time zone for observation}
-#'    \item{site}{Unique BOM identifier for each station}
-#'    \item{dist}{BOM rainfall district}
-#'    \item{station}{BOM station name}
-#'    \item{start}{Year data collection starts}
-#'    \item{end}{Year data collection ends (will always be current)}
-#'    \item{state}{State name (postal code abbreviation)}
-#'    \item{lat}{Latitude (decimal degrees)}
-#'    \item{lon}{Longitude (decimal degrees)}
-#'    \item{elev_m}{Station elevation (metres)}
-#'    \item{bar_ht}{Bar height (metres)}
-#'    \item{WMO}{World Meteorological Organization number (unique ID used worldwide)}
-#'    \item{r}{Rain to 9am (millimetres). \strong{Trace will be reported as 0.01}}
-#'    \item{tn}{Minimum temperature (degrees Celsius)}
-#'    \item{tx}{Maximum temperature (degrees Celsius)}
-#'    \item{twd}{Wet bulb depression (degrees Celsius)}
-#'    \item{ev}{Evaporation (millimetres)}
-#'    \item{tg}{Terrestrial minimum temperature (degrees Celsius)}
-#'    \item{sn}{Sunshine (hours)}
-#'    \item{t5}{5cm soil temperature (degrees Celsius)}
-#'    \item{t10}{10cm soil temperature (degrees Celsius)}
-#'    \item{t20}{20cm soil temperature (degrees Celsius)}
-#'    \item{t50}{50cm soil temperature (degrees Celsius)}
-#'    \item{t1m}{1m soil temperature (degrees Celsius)}
-#'    \item{wr}{Wind run (kilometres)}
-#' }
+#' Data frame of a Australia BOM agricultural bulletin information.  For more
+#' details see the vignette "Ag Bulletin Fields":
+#' \code{vignette("Ag_Bulletin Fields", package = "bomrang")} for a complete
+#' list of fields and units.
 #'
 #' @examples
 #' \dontrun{

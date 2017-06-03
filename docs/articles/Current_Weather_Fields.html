@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Current_Weather_Fields • bomrang</title>
+<title>Current Weather Fields • bomrang</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
@@ -50,7 +50,7 @@
       </header><div class="row">
   <div class="col-md-9">
     <div class="page-header toc-ignore">
-      <h1>Current_Weather_Fields</h1>
+      <h1>Current Weather Fields</h1>
                         <h4 class="author">Australian Bureau of Meteorology</h4>
             
             <h4 class="date">2017-06-03</h4>
@@ -59,7 +59,7 @@
     
     
 <div class="contents">
-<p><code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> will return a dataframe that will contain some or all of the following fields.</p>
+<p>The function <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> will return a dataframe that will contain some or all of the following fields.</p>
 <div id="fields-and-descriptions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#fields-and-descriptions" class="anchor"></a>Fields and descriptions</h2>
@@ -441,10 +441,9 @@ Plain language comments
 </td>
 </tr>
 </table>
-</div>
-<div id="codes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#codes" class="anchor"></a>Codes:</h2>
+<div id="codes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#codes" class="anchor"></a>Codes:</h3>
 <p>P_tend_typ:</p>
 <ul>
 <li>0 Increasing, then decreasing, current pressure same or higher<br>
@@ -468,6 +467,7 @@ Plain language comments
 </li>
 <li>Decreasing, then decreasing more rapidly</li>
 </ul>
+</div>
 </div>
 <div id="wx9---present-weather" class="section level2">
 <h2 class="hasAnchor">
@@ -724,8 +724,12 @@ Plain language comments
 508 No significant weather
 509 Data not available
 510 Data should have been reported but wasn't</code></pre>
-<p>Pw1 and Pw2 - Past weather WMO international BUFR code table 0 20 004, CREX code table B 20 004</p>
-<pre><code>If only one type of weather has occurred in the last 3-6 hours,</code></pre>
+<div id="pw1-and-pw2---past-weather" class="section level3">
+<h3 class="hasAnchor">
+<a href="#pw1-and-pw2---past-weather" class="anchor"></a>Pw1 and Pw2 - Past weather</h3>
+<pre><code>    WMO international BUFR code table 0 20 004, CREX code table B 20 004
+
+If only one type of weather has occurred in the last 3-6 hours,</code></pre>
 <p>only Pw1 and Pw2 will be the same. If there has been more than one, Pw1 and Pw2 should be different, with Pw1 reflecting the “more important” past weather. Code figures 0-9 normally apply to manned stations, 10-19 to automated weather stations.</p>
 <pre><code> 0 Cloud covering less than 1/2 the sky
  1 Cloud covering more than 1/2 the sky part of the time
@@ -749,8 +753,14 @@ Plain language comments
 18 Showers or intermittent precipitation
 19 Thunderstorm
  </code></pre>
-<p>Low_cld_code: (This is a subset of a larger table, not all values of which are used) WMO international BUFR code table 0 20 012, CREX code table B 20 012</p>
-<pre><code>30 No low level cloud
+</div>
+<div id="low_cld_code" class="section level3">
+<h3 class="hasAnchor">
+<a href="#low_cld_code" class="anchor"></a>Low_cld_code:</h3>
+<pre><code>(This is a subset of a larger table, not all values of which are used)
+WMO international BUFR code table 0 20 012, CREX code table B 20 012
+
+30 No low level cloud
 31 Cumulus humilis, or Cumulus fractus (not of bad weather), or both
 32 Cumulus mediocris or congestus, with or without Cumulus humilis
    or fractus or Stratocumulus, all bases at the same level
@@ -764,8 +774,14 @@ Plain language comments
    with bases at different levels
 39 Cumulonimbus capillatus with or without Cumulonimbus calvus
    Cumulus, Stratocumulus, Stratus or pannus</code></pre>
-<p>Mid_cld_code: (This is a subset of a larger table, not all values of which are used) WMO international BUFR code table 0 20 012, CREX code table B 20 012</p>
-<pre><code>20 No middle level cloud
+</div>
+<div id="mid_cld_code" class="section level3">
+<h3 class="hasAnchor">
+<a href="#mid_cld_code" class="anchor"></a>Mid_cld_code:</h3>
+<pre><code>(This is a subset of a larger table, not all values of which are used)
+WMO international BUFR code table 0 20 012, CREX code table B 20 012
+
+20 No middle level cloud
 21 Altostratus translucidus
 22 Altostratus opacus or Nimbostratus
 23 Altocumulus translucidus at a single level
@@ -780,8 +796,14 @@ Plain language comments
    the sky, or Altocumulus with Altostratus or Nimbostratus
 28 Altocumulus castellanus or floccus
 29 Altocumulus of a chaotic sky, usually at several levels</code></pre>
-<p>Hi_cld_code: (This is a subset of a larger table, not all values of which are used) WMO international BUFR code table 0 20 012, CREX code table B 20 012</p>
-<pre><code>10 No high level cloud
+</div>
+<div id="hi_cld_code" class="section level3">
+<h3 class="hasAnchor">
+<a href="#hi_cld_code" class="anchor"></a>Hi_cld_code:</h3>
+<pre><code>(This is a subset of a larger table, not all values of which are used)
+WMO international BUFR code table 0 20 012, CREX code table B 20 012
+
+10 No high level cloud
 11 Cirrus fibratus, sometimes unicus, not progressively invading
    the sky
 12 Cirrus spissatus in patches or entangled sheaves. which usually
@@ -800,6 +822,7 @@ Plain language comments
 19 Cirrocumulus alone, or Cirrocumulus predominant</code></pre>
 </div>
 </div>
+</div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -807,7 +830,6 @@ Plain language comments
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#fields-and-descriptions">Fields and descriptions</a></li>
-      <li><a href="#codes">Codes:</a></li>
       <li><a href="#wx9---present-weather">Wx[9] - Present weather</a></li>
       <li><a href="#code-figures">Code figures</a></li>
       </ul>

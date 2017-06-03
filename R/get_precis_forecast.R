@@ -22,31 +22,10 @@
 #'  }
 #'
 #' @return
-#' Data frame of a Australia BOM daily forecast in a data frame with the
-#' following fields.
-#'
-#'\describe{
-#'    \item{aac}{AMOC Area Code, \emph{e.g.}, WA_MW008, a unique identifier for each location}
-#'    \item{index}{Index value, day 0 to day 7}
-#'    \item{start_time_local}{Start of forecast date and time in local TZ}
-#'    \item{end_time_local}{End of forecast date and time in local TZ}
-#'    \item{UTC_offset}{Hours offset from difference in hours and minutes from
-#'     Coordinated Universal Time (UTC) for \code{start_time_local} and
-#'      \code{end_time_local}}
-#'    \item{start_time_utc}{Start of forecast date and time in UTC}
-#'    \item{end_time_utc}{End of forecast date and time in UTC}
-#'    \item{maximum_temperature}{Maximum forecasted temperature (Celsius)}
-#'    \item{minimum_temperature}{Minimum forecasted temperature (Celsius)}
-#'    \item{lower_prec_limit}{Lower forecasted precipitation limit (millimetres)}
-#'    \item{upper_prec_limit}{Upper forecasted precipitation limit (millimetres)}
-#'    \item{precis}{Précis forecast (a short summary, less than 30 characters)}
-#'    \item{probability_of_precipitation}{Probability of precipitation (percent)}
-#'    \item{location}{Named location for forecast}
-#'    \item{state}{State name (postal code abbreviation)}
-#'    \item{lon}{Longitude of named location (decimal degrees)}
-#'    \item{lat}{Latitude of named location (decimal degrees)}
-#'    \item{elev}{Elevation of named location (metres)}
-#' }
+#' Data frame of a Australia BOM daily forecast in a tidy data frame.  For
+#' more details see the vignette "Précis Forecast Fields":
+#' \code{vignette("Précis Forecast Fields", package = "bomrang")}
+#' for a complete list of fields and units.
 #'
 #' @examples
 #' \dontrun{
