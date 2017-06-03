@@ -1,8 +1,8 @@
 # bomrang 0.0.3-2 2017-06-03
 
 ## Minor changes
-* Add vignettes describing the data returned from `get_precis_forecast()` and `get_ag_bulletin()`, remove this from function help files
-* Correct documentation reference in README file
+* Add vignettes describing the data returned from `get_precis_forecast()` and `get_ag_bulletin()`, remove this from function help files  
+* Correct documentation reference in README file  
 
 # bomrang 0.0.3-1 2017-06-03
 
