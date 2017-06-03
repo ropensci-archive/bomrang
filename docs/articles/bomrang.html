@@ -53,7 +53,7 @@
       <h1>bomrang</h1>
                         <h4 class="author">Adam H Sparks</h4>
             
-            <h4 class="date">2017-06-03</h4>
+            <h4 class="date">2017-06-04</h4>
           </div>
 
     
@@ -72,7 +72,7 @@
 </div>
 <div id="using-get_precis_forecast" class="section level2">
 <h2 class="hasAnchor">
-<a href="#using-get_precis_forecast" class="anchor"></a>Using <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>
+<a href="#using-get_precis_forecast" class="anchor"></a>Using <code>get_precis_forecast</code>
 </h2>
 <p>This function only takes one parameter, <code>state</code>. The <code>state</code> parameter allows the user to select the forecast for just one state or a national forecast. States or territories are specified using the official postal codes:</p>
 <ul>
@@ -106,59 +106,7 @@
 <div id="results" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results" class="anchor"></a>Results</h3>
-<p>The function, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, will return a data frame of the weather forecast for the daily forecast with the following fields:</p>
-<ul>
-<li>
-<strong>aac</strong> - AMOC Area Code, <em>e.g.</em> WA_MW008, a unique identifier for each location<br>
-</li>
-<li>
-<strong>start_time_local</strong> - Start of forecast date and time in local TZ<br>
-</li>
-<li>
-<strong>end_time_local</strong> - End of forecast date and time in local TZ<br>
-</li>
-<li>
-<strong>UTC_offset</strong> - Hours offset from difference in hours and minutes from Coordinated Universal Time (UTC) for <code>start_time_local</code> and <code>end_time_local</code>
-</li>
-<li>
-<strong>start_time_utc</strong> - Start of forecast date and time in UTC<br>
-</li>
-<li>
-<strong>end_time_utc</strong> - End of forecast date and time in UTC<br>
-</li>
-<li>
-<strong>max_temp</strong> - Maximum forecasted temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>min_temp</strong> - Minimum forecasted temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>lower_prcp_limit</strong> - Lower forecasted precipitation limit (millimetres)<br>
-</li>
-<li>
-<strong>upper_prcp_limit</strong> - Upper forecasted precipitation limit (millimetres)<br>
-</li>
-<li>
-<strong>precis</strong> - Précis forecast (a short summary, less than 30 characters)<br>
-</li>
-<li>
-<strong>prob_prcp</strong> - Probability of precipitation (percent)<br>
-</li>
-<li>
-<strong>location</strong> - Named location for forecast<br>
-</li>
-<li>
-<strong>state</strong> - State name (postal code abbreviation)<br>
-</li>
-<li>
-<strong>lon</strong> - Longitude of named location (decimal degrees)<br>
-</li>
-<li>
-<strong>lat</strong> - Latitude of named location (decimal degrees)<br>
-</li>
-<li>
-<strong>elev</strong> - Elevation of named location (metres).</li>
-</ul>
+<p>The function, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, will return a data frame of the weather forecast. See the <a href="Precis_Forecast_Fields.html">Précis Forecast Fields</a> for detailed documentation.</p>
 </div>
 <div id="example" class="section level3">
 <h3 class="hasAnchor">
@@ -169,38 +117,38 @@
 QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_precis_forecast.html">get_precis_forecast</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
 <span class="kw">head</span>(QLD_forecast)</code></pre></div>
 <pre><code>##         aac index    start_time_local end_time_local UTC_offset
-## 1 QLD_PT001     0 2017-06-03 17:00:00     2017-06-04      10:00
-## 2 QLD_PT001     1 2017-06-04 00:00:00     2017-06-05      10:00
-## 3 QLD_PT001     2 2017-06-05 00:00:00     2017-06-06      10:00
-## 4 QLD_PT001     3 2017-06-06 00:00:00     2017-06-07      10:00
-## 5 QLD_PT001     4 2017-06-07 00:00:00     2017-06-08      10:00
-## 6 QLD_PT001     5 2017-06-08 00:00:00     2017-06-09      10:00
+## 1 QLD_PT001     0 2017-06-04 05:00:00     2017-06-05      10:00
+## 2 QLD_PT001     1 2017-06-05 00:00:00     2017-06-06      10:00
+## 3 QLD_PT001     2 2017-06-06 00:00:00     2017-06-07      10:00
+## 4 QLD_PT001     3 2017-06-07 00:00:00     2017-06-08      10:00
+## 5 QLD_PT001     4 2017-06-08 00:00:00     2017-06-09      10:00
+## 6 QLD_PT001     5 2017-06-09 00:00:00     2017-06-10      10:00
 ##        start_time_utc        end_time_utc maximum_temperature
-## 1 2017-06-03 07:00:00 2017-06-03 14:00:00                  NA
-## 2 2017-06-03 14:00:00 2017-06-04 14:00:00                   9
-## 3 2017-06-04 14:00:00 2017-06-05 14:00:00                  10
-## 4 2017-06-05 14:00:00 2017-06-06 14:00:00                   9
-## 5 2017-06-06 14:00:00 2017-06-07 14:00:00                   7
-## 6 2017-06-07 14:00:00 2017-06-08 14:00:00                   9
-##   minimum_temperature lower_prec_limit upper_prec_limit        precis
-## 1                  NA               NA             &lt;NA&gt; Mostly clear.
-## 2                   5                1                0 Mostly sunny.
-## 3                   5                1                0 Mostly sunny.
-## 4                   5                1                0        Sunny.
-## 5                   3                1                0        Sunny.
-## 6                   4                1                0        Sunny.
+## 1 2017-06-03 19:00:00 2017-06-04 14:00:00                   9
+## 2 2017-06-04 14:00:00 2017-06-05 14:00:00                   9
+## 3 2017-06-05 14:00:00 2017-06-06 14:00:00                   9
+## 4 2017-06-06 14:00:00 2017-06-07 14:00:00                   7
+## 5 2017-06-07 14:00:00 2017-06-08 14:00:00                   9
+## 6 2017-06-08 14:00:00 2017-06-09 14:00:00                   9
+##   minimum_temperature lower_prec_limit upper_prec_limit         precis
+## 1                  NA                1                0  Mostly sunny.
+## 2                   3                1                0         Sunny.
+## 3                   4                1                0         Sunny.
+## 4                   2                1                0         Sunny.
+## 5                   3                1                0         Sunny.
+## 6                   5                1              0.2 Partly cloudy.
 ##   probability_of_precipitation location state      lon      lat elev
-## 1                            0 Brisbane   QLD 153.0389 -27.4808  8.1
+## 1                           10 Brisbane   QLD 153.0389 -27.4808  8.1
 ## 2                            5 Brisbane   QLD 153.0389 -27.4808  8.1
-## 3                           10 Brisbane   QLD 153.0389 -27.4808  8.1
+## 3                            5 Brisbane   QLD 153.0389 -27.4808  8.1
 ## 4                            5 Brisbane   QLD 153.0389 -27.4808  8.1
-## 5                            5 Brisbane   QLD 153.0389 -27.4808  8.1
-## 6                           10 Brisbane   QLD 153.0389 -27.4808  8.1</code></pre>
+## 5                           10 Brisbane   QLD 153.0389 -27.4808  8.1
+## 6                           30 Brisbane   QLD 153.0389 -27.4808  8.1</code></pre>
 </div>
 </div>
 <div id="using-get_ag_bulletin" class="section level2">
 <h2 class="hasAnchor">
-<a href="#using-get_ag_bulletin" class="anchor"></a>Using <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>
+<a href="#using-get_ag_bulletin" class="anchor"></a>Using <code>get_ag_bulletin</code>
 </h2>
 <p>This function only takes one parameter, <code>state</code>. The <code>state</code> parameter allows the user to select the bulletin for just one state or a national forecast. States or territories are specified using the official postal codes.</p>
 <ul>
@@ -231,97 +179,7 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <div id="results-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results-1" class="anchor"></a>Results</h3>
-<p>The function, <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, will return a data frame of the agriculture bulletin with the following fields:</p>
-<ul>
-<li>
-<strong>obs-time-local</strong> - Observation time<br>
-</li>
-<li>
-<strong>obs-time-utc</strong> - Observation time (time in UTC)<br>
-</li>
-<li>
-<strong>time-zone</strong> - Time zone for observation<br>
-</li>
-<li>
-<strong>site</strong> - Unique BOM identifier for each station<br>
-</li>
-<li>
-<strong>dist</strong> - BOM rainfall district<br>
-</li>
-<li>
-<strong>station</strong> - BOM station name<br>
-</li>
-<li>
-<strong>start</strong> - Year data collection starts<br>
-</li>
-<li>
-<strong>end</strong> - Year data collection ends (will always be current)<br>
-</li>
-<li>
-<strong>state</strong> - State name (postal code abbreviation)<br>
-</li>
-<li>
-<strong>lat</strong> - Latitude (decimal degrees)<br>
-</li>
-<li>
-<strong>lon</strong> - Longitude (decimal degrees)<br>
-</li>
-<li>
-<strong>elev</strong> - Station elevation (metres)<br>
-</li>
-<li>
-<strong>bar_ht</strong> - Bar height (metres)<br>
-</li>
-<li>
-<strong>WMO</strong> - World Meteorlogical Organization number (unique ID used worldwide)</li>
-<li>
-<strong>r</strong> - Rain to 9am (millimetres). <em>Trace will be reported as 0.01</em><br>
-</li>
-<li>
-<strong>tn</strong> - Minimum temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>tx</strong> - Maximum temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>twd</strong> - Wet bulb depression (degrees Celsius)<br>
-</li>
-<li>
-<strong>ev</strong> - Evaporation (millimetres)<br>
-</li>
-<li>
-<strong>tg</strong> - Terrestrial minimum temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>sn</strong> - Sunshine (hours)<br>
-</li>
-<li>
-<strong>t5</strong> - 5cm soil temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>t10</strong> - 10cm soil temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>t20</strong> - 20cm soil temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>t50</strong> - 50cm soil temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>t1m</strong> - 1m soil temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>wr</strong> - Wind run (kilometres)<br>
-</li>
-<li>
-<strong>state</strong> - State name (postal code abbreviation)<br>
-</li>
-<li>
-<strong>lat</strong> - Latitude (decimal degrees)<br>
-</li>
-<li>
-<strong>lon</strong> - Longitude (decimal degrees).</li>
-</ul>
+<p>The function, <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, will return a data frame of the ag bulletin for the state(s) or territory requested. See the <a href="Ag_Bulletin_Fields.html">Ag Bulletin Fields</a> for detailed documentation.</p>
 </div>
 <div id="example-1" class="section level3">
 <h3 class="hasAnchor">
@@ -356,7 +214,7 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 </div>
 <div id="using-get_current_weather" class="section level2">
 <h2 class="hasAnchor">
-<a href="#using-get_current_weather" class="anchor"></a>Using <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>
+<a href="#using-get_current_weather" class="anchor"></a>Using <code>get_current_weather</code>
 </h2>
 <p>The function takes one of two arguments: <code>station_name</code> and <code>latlon</code>, returning the current weather observations (and the observations of the last 72 hours) for the given location.</p>
 <p>If <code>station_name</code> is used, the weather observations for the last 72 hours are returned for that station. If the string provided is ambiguous, the function returns an observation for one of the possible stations and emits a warning to offer unambiguous station names.</p>
@@ -364,7 +222,7 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <div id="results-2" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results-2" class="anchor"></a>Results</h3>
-<p>The table returned will have different fields depending on the station that is selected.</p>
+<p>The function, <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, will return a data frame of the hourly observations for the last 72 hours for the requested station. See the <a href="Current_Weather_Fields.html">Current Weather Fields</a> for detailed documentation.</p>
 </div>
 <div id="example-2" class="section level3">
 <h3 class="hasAnchor">
@@ -382,33 +240,33 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
 ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
 ##   local_date_time local_date_time_full        aifstime_utc   lat lon
-## 1      03/10:00pm  2017-06-03 22:00:00 2017-06-03 12:00:00 -37.8 145
-## 2      03/09:30pm  2017-06-03 21:30:00 2017-06-03 11:30:00 -37.8 145
-## 3      03/09:00pm  2017-06-03 21:00:00 2017-06-03 11:00:00 -37.8 145
-## 4      03/08:30pm  2017-06-03 20:30:00 2017-06-03 10:30:00 -37.8 145
-## 5      03/08:00pm  2017-06-03 20:00:00 2017-06-03 10:00:00 -37.8 145
-## 6      03/07:30pm  2017-06-03 19:30:00 2017-06-03 09:30:00 -37.8 145
+## 1      04/08:30am  2017-06-04 08:30:00 2017-06-03 22:30:00 -37.8 145
+## 2      04/08:00am  2017-06-04 08:00:00 2017-06-03 22:00:00 -37.8 145
+## 3      04/07:30am  2017-06-04 07:30:00 2017-06-03 21:30:00 -37.8 145
+## 4      04/07:00am  2017-06-04 07:00:00 2017-06-03 21:00:00 -37.8 145
+## 5      04/06:31am  2017-06-04 06:31:00 2017-06-03 20:31:00 -37.8 145
+## 6      04/06:30am  2017-06-04 06:30:00 2017-06-03 20:30:00 -37.8 145
 ##   apparent_t cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt
-## 1        7.9     -          -     0.0        0       0      8.3   8.2
-## 2        7.8     -          -     0.1        0       0      8.3   8.0
-## 3        7.9     -          -     0.2        0       0      8.4   8.0
-## 4        8.2     -          -     0.4        0       0      8.7   7.9
-## 5        8.5     -          -     0.5        0       0      9.0   7.9
-## 6        9.1     -          -     0.7        0       0      9.5   8.1
+## 1        2.5     -          -       0       11       6      5.3   5.3
+## 2        3.0     -          -       0       11       6      5.2   5.2
+## 3        2.6     -          -       0        9       5      4.9   4.9
+## 4        2.1     -          -       0        9       5      4.6   4.6
+## 5        1.4     -          -       0       13       7      4.7   4.6
+## 6        1.5     -          -       0       13       7      4.8   4.7
 ##    press press_msl press_qnh press_tend rain_trace rel_hum sea_state
-## 1 1030.8    1030.8    1030.8          -          0      99         -
-## 2 1030.8    1030.8    1030.8          -          0      98         -
-## 3 1030.8    1030.8    1030.8          -          0      97         -
-## 4 1031.0    1031.0    1031.0          -          0      95         -
-## 5 1031.2    1031.2    1031.2          -          0      93         -
-## 6 1031.3    1031.3    1031.3          -          0      91         -
+## 1 1029.7    1029.7    1029.7          -          0     100         -
+## 2 1029.7    1029.7    1029.7          -          0     100         -
+## 3 1029.7    1029.7    1029.7          -          0     100         -
+## 4 1029.6    1029.6    1029.6          -          0     100         -
+## 5 1029.5    1029.5    1029.5          -          0      99         -
+## 6 1029.5    1029.5    1029.5          -          0      99         -
 ##   swell_dir_worded vis_km weather wind_dir wind_spd_kmh wind_spd_kt
-## 1                -     10       -     CALM            0           0
-## 2                -     10       -     CALM            0           0
-## 3                -     10       -     CALM            0           0
-## 4                -     10       -     CALM            0           0
-## 5                -     10       -     CALM            0           0
-## 6                -     10       -     CALM            0           0</code></pre>
+## 1                -      1       -      NNE            9           5
+## 2                -    0.6       -        N            6           3
+## 3                -      2       -        N            6           3
+## 4                -      2       -      NNE            7           4
+## 5                -      7       -       NE           11           6
+## 6                -      8       -       NE           11           6</code></pre>
 </div>
 </div>
 <div id="other-functions-in-bomrang" class="section level2">
@@ -417,7 +275,7 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 </h2>
 <div id="using-sweep_for_stations" class="section level3">
 <h3 class="hasAnchor">
-<a href="#using-sweep_for_stations" class="anchor"></a>Using <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code>
+<a href="#using-sweep_for_stations" class="anchor"></a>Using <code>sweep_for_stations</code>
 </h3>
 <p>This function only takes one parameter, <code>latlon</code>, a length-2 numeric vector. By default, Canberra (approximately).</p>
 <div id="results-3" class="section level4">
@@ -469,7 +327,7 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 </div>
 <div id="using-update_precis_locations" class="section level3">
 <h3 class="hasAnchor">
-<a href="#using-update_precis_locations" class="anchor"></a>Using <code><a href="../reference/update_precis_locations.html">update_precis_locations()</a></code>
+<a href="#using-update_precis_locations" class="anchor"></a>Using <code>update_precis_locations</code>
 </h3>
 <p>This function downloads the latest précis forecast locations from the BOM server and updates <em>bomrang</em>’s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BOM forecast location database that is not available in the database distributed with <em>bomrang</em>. This database is distributed with the package to make the process faster when fetching the forecast.</p>
 <div id="example-4" class="section level4">
@@ -481,7 +339,7 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 </div>
 <div id="using-update_station_locations" class="section level3">
 <h3 class="hasAnchor">
-<a href="#using-update_station_locations" class="anchor"></a>Using <code><a href="../reference/update_station_locations.html">update_station_locations()</a></code>
+<a href="#using-update_station_locations" class="anchor"></a>Using <code>update_station_locations</code>
 </h3>
 <p>This function downloads the latest station locations and metadata and updates bomrang’s internal databases that support the use of <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>. There is no need to use this unless you know that a station exists in BOM’s database that is not available in the databases distributed with <em>bomrang</em></p>
 <div id="example-5" class="section level4">
@@ -508,9 +366,9 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#introduction">Introduction</a></li>
       <li><a href="#using-bomrang">Using <em>bomrang</em></a></li>
-      <li><a href="#using-get_precis_forecast">Using <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code></a></li>
-      <li><a href="#using-get_ag_bulletin">Using <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code></a></li>
-      <li><a href="#using-get_current_weather">Using <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code></a></li>
+      <li><a href="#using-get_precis_forecast">Using <code>get_precis_forecast</code></a></li>
+      <li><a href="#using-get_ag_bulletin">Using <code>get_ag_bulletin</code></a></li>
+      <li><a href="#using-get_current_weather">Using <code>get_current_weather</code></a></li>
       <li><a href="#other-functions-in-bomrang">Other functions in <em>bomrang</em></a></li>
       <li><a href="#references">References</a></li>
       </ul>
