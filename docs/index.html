@@ -182,31 +182,31 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_precis_forecast.html">get_precis_forecast</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
 <span class="kw">head</span>(QLD_forecast)</code></pre></div>
 <pre><code>##         aac index    start_time_local end_time_local UTC_offset
-## 1 QLD_PT001     0 2017-06-02 05:00:00     2017-06-03      10:00
-## 2 QLD_PT001     1 2017-06-03 00:00:00     2017-06-04      10:00
-## 3 QLD_PT001     2 2017-06-04 00:00:00     2017-06-05      10:00
-## 4 QLD_PT001     3 2017-06-05 00:00:00     2017-06-06      10:00
-## 5 QLD_PT001     4 2017-06-06 00:00:00     2017-06-07      10:00
-## 6 QLD_PT001     5 2017-06-07 00:00:00     2017-06-08      10:00
+## 1 QLD_PT001     0 2017-06-03 05:00:00     2017-06-04      10:00
+## 2 QLD_PT001     1 2017-06-04 00:00:00     2017-06-05      10:00
+## 3 QLD_PT001     2 2017-06-05 00:00:00     2017-06-06      10:00
+## 4 QLD_PT001     3 2017-06-06 00:00:00     2017-06-07      10:00
+## 5 QLD_PT001     4 2017-06-07 00:00:00     2017-06-08      10:00
+## 6 QLD_PT001     5 2017-06-08 00:00:00     2017-06-09      10:00
 ##        start_time_utc        end_time_utc maximum_temperature
-## 1 2017-06-01 19:00:00 2017-06-02 14:00:00                  11
-## 2 2017-06-02 14:00:00 2017-06-03 14:00:00                  11
-## 3 2017-06-03 14:00:00 2017-06-04 14:00:00                  11
-## 4 2017-06-04 14:00:00 2017-06-05 14:00:00                  12
-## 5 2017-06-05 14:00:00 2017-06-06 14:00:00                  11
-## 6 2017-06-06 14:00:00 2017-06-07 14:00:00                   7
+## 1 2017-06-02 19:00:00 2017-06-03 14:00:00                  10
+## 2 2017-06-03 14:00:00 2017-06-04 14:00:00                  10
+## 3 2017-06-04 14:00:00 2017-06-05 14:00:00                  11
+## 4 2017-06-05 14:00:00 2017-06-06 14:00:00                  10
+## 5 2017-06-06 14:00:00 2017-06-07 14:00:00                   7
+## 6 2017-06-07 14:00:00 2017-06-08 14:00:00                   9
 ##   minimum_temperature lower_prec_limit upper_prec_limit        precis
-## 1                  NA                1                0        Sunny.
-## 2                   4                1                0 Mostly sunny.
+## 1                  NA                1                0 Mostly sunny.
+## 2                   5                1                0 Mostly sunny.
 ## 3                   5                1                0 Mostly sunny.
-## 4                   5                1                0 Mostly sunny.
-## 5                   5                1                0        Sunny.
-## 6                   3                1                0        Sunny.
+## 4                   5                1                0        Sunny.
+## 5                   3                1                0        Sunny.
+## 6                   3                1                0 Mostly sunny.
 ##   probability_of_precipitation location state      lon      lat elev
-## 1                            5 Brisbane   QLD 153.0389 -27.4808  8.1
-## 2                           10 Brisbane   QLD 153.0389 -27.4808  8.1
-## 3                           20 Brisbane   QLD 153.0389 -27.4808  8.1
-## 4                           20 Brisbane   QLD 153.0389 -27.4808  8.1
+## 1                            0 Brisbane   QLD 153.0389 -27.4808  8.1
+## 2                            5 Brisbane   QLD 153.0389 -27.4808  8.1
+## 3                           10 Brisbane   QLD 153.0389 -27.4808  8.1
+## 4                            5 Brisbane   QLD 153.0389 -27.4808  8.1
 ## 5                            5 Brisbane   QLD 153.0389 -27.4808  8.1
 ## 6                            5 Brisbane   QLD 153.0389 -27.4808  8.1</code></pre>
 </div>
@@ -345,12 +345,12 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="reference/g
 QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_ag_bulletin.html">get_ag_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
 <span class="kw">head</span>(QLD_bulletin)</code></pre></div>
 <pre><code>##        obs_time_local        obs_time_utc time_zone  site dist
-## 1 2017-06-02 09:00:00 2017-06-01 23:00:00       EST 38026   38
-## 2 2017-06-02 09:00:00 2017-06-01 23:00:00       EST 38003   38
-## 3 2017-06-02 09:00:00 2017-06-01 23:00:00       EST 40842   40
-## 4 2017-06-02 09:00:00 2017-06-01 23:00:00       EST 39128   39
-## 5 2017-06-02 09:00:00 2017-06-01 23:00:00       EST 31011   31
-## 6 2017-06-02 09:00:00 2017-06-01 23:00:00       EST 44021   44
+## 1 2017-06-03 09:00:00 2017-06-02 23:00:00       EST 38026   38
+## 2 2017-06-03 09:00:00 2017-06-02 23:00:00       EST 38003   38
+## 3 2017-06-03 09:00:00 2017-06-02 23:00:00       EST 40842   40
+## 4 2017-06-03 09:00:00 2017-06-02 23:00:00       EST 39128   39
+## 5 2017-06-03 09:00:00 2017-06-02 23:00:00       EST 31011   31
+## 6 2017-06-03 09:00:00 2017-06-02 23:00:00       EST 44021   44
 ##            station start  end state      lat      lon  elev bar_ht   WMO r
 ## 1       Birdsville  2000 2017   QLD -25.8975 139.3472  46.6   47.0 95482 0
 ## 2           Boulia  1886 2017   QLD -22.9117 139.9039 161.8  158.3 94333 0
@@ -358,13 +358,13 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="reference/g
 ## 4        Bundaberg  1942 2017   QLD -24.9069 152.3230  30.8   31.5 94387 0
 ## 5           Cairns  1941 2017   QLD -16.8736 145.7458   2.2    8.3 94287 0
 ## 6      Charleville  1942 2017   QLD -26.4139 146.2558 301.6  303.3 94510 0
-##     tn   tx twd   ev  tg  sn   t5  t10 t20  t50  t1m  wr
-## 1  5.9 19.1 4.8   NA  NA  NA   NA   NA  NA   NA   NA  NA
-## 2  4.8 22.6 5.5 10.7 2.5  NA   NA   NA  NA   NA   NA  NA
-## 3 10.8 21.3 5.2  4.0 8.8 9.4 16.0 16.0  18 20.0 21.0 256
-## 4 12.0 22.5 3.9   NA  NA  NA 16.9 17.6  19 18.5 21.7 222
-## 5 20.5 26.1 3.6   NA  NA  NA   NA   NA  NA   NA   NA  NA
-## 6  1.7 18.3 5.3   NA  NA  NA   NA   NA  NA   NA   NA  NA</code></pre>
+##     tn   tx twd  ev  tg  sn   t5  t10  t20  t50  t1m  wr
+## 1  5.9 21.9 5.0  NA  NA  NA   NA   NA   NA   NA   NA  NA
+## 2  9.4 23.8 6.7 8.0 8.2  NA   NA   NA   NA   NA   NA  NA
+## 3 10.0 22.1 4.6 4.6 7.4 9.9 16.0 17.0 18.0 20.0 21.0 238
+## 4 11.6 23.1 4.9  NA  NA  NA 16.5 17.3 18.7 18.1 21.5  NA
+## 5 20.2 25.2 2.0  NA  NA  NA   NA   NA   NA   NA   NA  NA
+## 6  1.2 21.4 5.7  NA  NA  NA   NA   NA   NA   NA   NA  NA</code></pre>
 </div>
 </div>
 <div id="using-get_current_weather" class="section level3">
@@ -399,34 +399,34 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="refere
 ## 4          3 95936 Melbourne (Olympic Park)        IDV60801
 ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
 ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
-##   local_date_time local_date_time_full aifstime_utc   lat lon apparent_t
-## 1      02/11:30am                 &lt;NA&gt;         &lt;NA&gt; -37.8 145       11.4
-## 2      02/11:00am                 &lt;NA&gt;         &lt;NA&gt; -37.8 145       11.8
-## 3      02/10:30am                 &lt;NA&gt;         &lt;NA&gt; -37.8 145       10.3
-## 4      02/10:00am                 &lt;NA&gt;         &lt;NA&gt; -37.8 145        9.4
-## 5      02/09:30am                 &lt;NA&gt;         &lt;NA&gt; -37.8 145        9.4
-## 6      02/09:00am                 &lt;NA&gt;         &lt;NA&gt; -37.8 145        8.5
-##   cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt  press
-## 1     -          -     3.9       15       8     13.8   5.4 1036.8
-## 2     -          -     3.7        6       3     13.3   5.2 1037.2
-## 3     -          -     3.5        9       5     12.3   4.5 1037.4
-## 4     -          -     3.3        9       5     11.5   4.0 1037.5
-## 5     -          -     3.2        7       4     11.1   3.9 1037.4
-## 6     -          -     2.9        9       5     10.6   4.1 1037.2
-##   press_msl press_qnh press_tend rain_trace rel_hum sea_state
-## 1    1036.8    1036.8          -          0      57         -
-## 2    1037.2    1037.2          -          0      58         -
-## 3    1037.4    1037.4          -          0      59         -
-## 4    1037.5    1037.5          -          0      60         -
-## 5    1037.4    1037.4          -          0      61         -
-## 6    1037.2    1037.2          -          0      64         -
+##   local_date_time local_date_time_full        aifstime_utc   lat lon
+## 1      03/03:00pm  2017-06-03 15:00:00 2017-06-03 05:00:00 -37.8 145
+## 2      03/02:30pm  2017-06-03 14:30:00 2017-06-03 04:30:00 -37.8 145
+## 3      03/02:00pm  2017-06-03 14:00:00 2017-06-03 04:00:00 -37.8 145
+## 4      03/01:30pm  2017-06-03 13:30:00 2017-06-03 03:30:00 -37.8 145
+## 5      03/01:00pm  2017-06-03 13:00:00 2017-06-03 03:00:00 -37.8 145
+## 6      03/12:30pm  2017-06-03 12:30:00 2017-06-03 02:30:00 -37.8 145
+##   apparent_t cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt
+## 1       10.6     -          -     2.3       19      10     13.1   8.4
+## 2       11.2     -          -     2.5       15       8     13.3   8.2
+## 3       11.7     -          -     3.0       13       7     13.9   7.7
+## 4       11.2     -          -     3.0       13       7     13.5   7.3
+## 5       10.8     -          -     3.2       15       8     13.3   6.6
+## 6       11.3     -          -     3.0       13       7     13.3   7.1
+##    press press_msl press_qnh press_tend rain_trace rel_hum sea_state
+## 1 1031.3    1031.3    1031.3          -          0      73         -
+## 2 1031.4    1031.4    1031.4          -          0      71         -
+## 3 1031.7    1031.7    1031.7          -          0      66         -
+## 4 1032.1    1032.1    1032.1          -          0      66         -
+## 5 1032.5    1032.5    1032.5          -          0      64         -
+## 6 1032.9    1032.9    1032.9          -          0      66         -
 ##   swell_dir_worded vis_km weather wind_dir wind_spd_kmh wind_spd_kt
-## 1                -     10       -       SW            7           4
-## 2                -     10       -      WSW            2           1
-## 3                -     10       -        S            4           2
-## 4                -     10       -        W            4           2
-## 5                -     10       -      WSW            2           1
-## 6                -     10       -        W            4           2</code></pre>
+## 1                -     10       -      SSW           11           6
+## 2                -     10       -        S            9           5
+## 3                -     10       -      SSW            9           5
+## 4                -     10       -      SSW            9           5
+## 5                -     10       -        S            9           5
+## 6                -     10       -        S            7           4</code></pre>
 </div>
 </div>
 </div>
@@ -479,7 +479,7 @@ Sparks A, Parsonage H, and Pembleton K (2017). <em>bomrang: Fetch Australian Gov
 <li><a href="https://travis-ci.org/ToowoombaTrio/bomrang"><img src="https://travis-ci.org/ToowoombaTrio/bomrang.svg?branch=master" alt="Travis-CI Build Status"></a></li>
 <li><a href="https://ci.appveyor.com/project/ToowoombaTrio/bomrang"><img src="https://ci.appveyor.com/api/projects/status/github/ToowoombaTrio/bomrang?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
 <li><a href="https://codecov.io/github/ToowoombaTrio/bomrang?branch=master"><img src="https://img.shields.io/codecov/c/github/ToowoombaTrio/bomrang/master.svg" alt="Coverage Status"></a></li>
-<li><a href="https://github.com/toowoombatrio/bomrang/commits/master"><img src="https://img.shields.io/badge/last%20change-2017--06--02-brightgreen.svg" alt="Last-changedate"></a></li>
+<li><a href="https://github.com/toowoombatrio/bomrang/commits/master"><img src="https://img.shields.io/badge/last%20change-2017--06--03-brightgreen.svg" alt="Last-changedate"></a></li>
 <li><a href="https://cran.r-project.org/"><img src="https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg" alt="minimal R version"></a></li>
 <li><a href="http://choosealicense.com/licenses/mit/"><img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="Licence"></a></li>
 <li><a href="https://doi.org/10.5281/zenodo.583811"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.583811.svg" alt="DOI"></a></li>

@@ -1,6 +1,4 @@
 #'AAC_codes
-#'
-#' @format A data frame with 1369 observations of 4 elements:
 #' \describe{
 #'   \item{AAC}{Unique identifier for each location}
 #'   \item{PT_NAME}{Human readable location name}
@@ -17,6 +15,7 @@
 #' @source \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 #'
 "AAC_codes"
+
 #'stations_site_list
 #'\describe{
 #'    \item{site}{Unique BOM identifier for each station}
