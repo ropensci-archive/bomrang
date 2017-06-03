@@ -1,4 +1,6 @@
 
+
+
 #' Update internal databases with latest BOM station locations and metadata
 #'
 #' Download the latest station locations and metadata and update bomrang's
@@ -133,17 +135,23 @@ update_station_locations <- function() {
       )
     )
 
-  # There are weather stations that do have a WMO but don't report online,
-  # most of these don't have a "state" value, e.g., KIRIBATI NTC AWS or
-  # MARSHALL ISLANDS NTC AWS, remove these from the list
-
-  stations_site_list <-
-    stations_site_list[stations_site_list$state != "null", ]
 
   # return only current stations listing
   stations_site_list <-
     stations_site_list[is.na(stations_site_list$end), ]
   stations_site_list$end <- format(Sys.Date(), "%Y")
+
+  # There are weather stations that do have a WMO but don't report online,
+  # most of these don't have a "state" value, e.g., KIRIBATI NTC AWS or
+  # MARSHALL ISLANDS NTC AWS, remove these from the list
+
+  JSONurl_latlon_by_station_name <-
+    stations_site_list[!is.na(stations_site_list$url),]
+
+  JSONurl_latlon_by_station_name <-
+    JSONurl_latlon_by_station_name %>%
+    dplyr::rowwise() %>%
+    dplyr::mutate(url = dplyr::if_else(httr::http_error(url), NA_character_, url))
 
   JSONurl_latlon_by_station_name <-
     data.table::data.table(bom_stations_raw[!is.na(stations_site_list$url), ])
