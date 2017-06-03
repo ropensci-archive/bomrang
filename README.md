@@ -3,7 +3,7 @@
 *bomrang*: Fetch Australian Government Bureau of Meteorology (BOM) Data
 =======================================================================
 
-[![Travis-CI Build Status](https://travis-ci.org/ToowoombaTrio/bomrang.svg?branch=master)](https://travis-ci.org/ToowoombaTrio/bomrang) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ToowoombaTrio/bomrang?branch=master&svg=true)](https://ci.appveyor.com/project/ToowoombaTrio/bomrang) [![Coverage Status](https://img.shields.io/codecov/c/github/ToowoombaTrio/bomrang/master.svg)](https://codecov.io/github/ToowoombaTrio/bomrang?branch=master) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--06--03-brightgreen.svg)](https://github.com/toowoombatrio/bomrang/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.598301.svg)](https://doi.org/10.5281/zenodo.598301)
+[![Travis-CI Build Status](https://travis-ci.org/ToowoombaTrio/bomrang.svg?branch=master)](https://travis-ci.org/ToowoombaTrio/bomrang) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ToowoombaTrio/bomrang?branch=master&svg=true)](https://ci.appveyor.com/project/ToowoombaTrio/bomrang) [![Coverage Status](https://img.shields.io/codecov/c/github/ToowoombaTrio/bomrang/master.svg)](https://codecov.io/github/ToowoombaTrio/bomrang?branch=master) [![Last-changedate](https://img.shields.io/badge/last%20change-2017--06--03-brightgreen.svg)](https://github.com/toowoombatrio/bomrang/commits/master) [![minimal R version](https://img.shields.io/badge/R%3E%3D-3.4.0-brightgreen.svg)](https://cran.r-project.org/) [![Licence](https://img.shields.io/github/license/mashape/apistatus.svg)](http://choosealicense.com/licenses/mit/) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.802320.svg)](https://doi.org/10.5281/zenodo.802320)
 
 Provides functions to interface with Australian Government Bureau of Meteorology (BOM) data, fetching data and returning a tidy data frame of précis forecasts, current weather data from stations or ag information bulletins.
 
@@ -220,33 +220,33 @@ head(Melbourne_weather)
     ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
     ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
     ##   local_date_time local_date_time_full        aifstime_utc   lat lon
-    ## 1      03/05:30pm  2017-06-03 17:30:00 2017-06-03 07:30:00 -37.8 145
-    ## 2      03/05:00pm  2017-06-03 17:00:00 2017-06-03 07:00:00 -37.8 145
-    ## 3      03/04:30pm  2017-06-03 16:30:00 2017-06-03 06:30:00 -37.8 145
-    ## 4      03/04:00pm  2017-06-03 16:00:00 2017-06-03 06:00:00 -37.8 145
-    ## 5      03/03:30pm  2017-06-03 15:30:00 2017-06-03 05:30:00 -37.8 145
-    ## 6      03/03:00pm  2017-06-03 15:00:00 2017-06-03 05:00:00 -37.8 145
+    ## 1      03/06:30pm  2017-06-03 18:30:00 2017-06-03 08:30:00 -37.8 145
+    ## 2      03/06:00pm  2017-06-03 18:00:00 2017-06-03 08:00:00 -37.8 145
+    ## 3      03/05:30pm  2017-06-03 17:30:00 2017-06-03 07:30:00 -37.8 145
+    ## 4      03/05:00pm  2017-06-03 17:00:00 2017-06-03 07:00:00 -37.8 145
+    ## 5      03/04:30pm  2017-06-03 16:30:00 2017-06-03 06:30:00 -37.8 145
+    ## 6      03/04:00pm  2017-06-03 16:00:00 2017-06-03 06:00:00 -37.8 145
     ##   apparent_t cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt
-    ## 1       11.1     -          -     1.6        7       4     11.8   8.5
-    ## 2       10.9     -          -     1.9        9       5     12.4   8.5
-    ## 3       11.4     -          -     2.0       11       6     12.8   8.7
-    ## 4       10.6     -          -     2.0       15       8     12.6   8.5
-    ## 5       11.4     -          -     2.4       11       6     13.1   8.2
-    ## 6       10.6     -          -     2.3       19      10     13.1   8.4
+    ## 1       10.2     -          -     1.3        0       0     10.7   7.9
+    ## 2       10.6     -          -     1.4        6       3     11.3   8.5
+    ## 3       11.1     -          -     1.6        7       4     11.8   8.5
+    ## 4       10.9     -          -     1.9        9       5     12.4   8.5
+    ## 5       11.4     -          -     2.0       11       6     12.8   8.7
+    ## 6       10.6     -          -     2.0       15       8     12.6   8.5
     ##    press press_msl press_qnh press_tend rain_trace rel_hum sea_state
-    ## 1 1031.2    1031.2    1031.2          -          0      80         -
-    ## 2 1031.2    1031.2    1031.2          -          0      77         -
-    ## 3 1031.2    1031.2    1031.2          -          0      76         -
-    ## 4 1031.4    1031.4    1031.4          -          0      76         -
-    ## 5 1031.4    1031.4    1031.4          -          0      72         -
-    ## 6 1031.3    1031.3    1031.3          -          0      73         -
+    ## 1 1031.2    1031.2    1031.2          -          0      83         -
+    ## 2 1031.3    1031.3    1031.3          -          0      83         -
+    ## 3 1031.2    1031.2    1031.2          -          0      80         -
+    ## 4 1031.2    1031.2    1031.2          -          0      77         -
+    ## 5 1031.2    1031.2    1031.2          -          0      76         -
+    ## 6 1031.4    1031.4    1031.4          -          0      76         -
     ##   swell_dir_worded vis_km weather wind_dir wind_spd_kmh wind_spd_kt
-    ## 1                -     10       -      SSW            2           1
-    ## 2                -     10       -      SSW            6           3
-    ## 3                -     10       -      SSW            6           3
-    ## 4                -     10       -      SSW            9           5
-    ## 5                -     10       -      SSW            7           4
-    ## 6                -     10       -      SSW           11           6
+    ## 1                -     10       -     CALM            0           0
+    ## 2                -     10       -      SSW            2           1
+    ## 3                -     10       -      SSW            2           1
+    ## 4                -     10       -      SSW            6           3
+    ## 5                -     10       -      SSW            6           3
+    ## 6                -     10       -      SSW            9           5
 
 Meta
 ----
