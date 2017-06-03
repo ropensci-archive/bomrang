@@ -163,9 +163,6 @@ JSONurl_latlon_by_station_name <-
   JSONurl_latlon_by_station_name %>%
   dplyr::rowwise() %>%
   dplyr::mutate(url = dplyr::if_else(httr::http_error(url), NA_character_, url))
-
-JSONurl_latlon_by_station_name <-
-    data.table::data.table(bom_stations_raw[!is.na(stations_site_list$url),])
   
 devtools::use_data(JSONurl_latlon_by_station_name, overwrite = TRUE)
 ```
