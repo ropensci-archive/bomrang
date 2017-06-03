@@ -1,3 +1,9 @@
+# bomrang 0.0.3-3 2017-06-03
+
+## Minor changes
+* Add links to vignettes documenting the fields returned in the data frames from the `get_*()` functions  
+* Use the DOI that always points to latest version  
+
 # bomrang 0.0.3-2 2017-06-03
 
 ## Minor changes
