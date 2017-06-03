@@ -10,4 +10,4 @@ bibentry(bibtype = "Manual",
          year = year,
          note = note,
          url = "https://github.com/ToowoombaTrio/BOMRang",
-         doi = "10.5281/zenodo.802315")
+         doi = "10.5281/zenodo.802349")
