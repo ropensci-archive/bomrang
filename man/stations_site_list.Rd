@@ -3,20 +3,7 @@
 \docType{data}
 \name{stations_site_list}
 \alias{stations_site_list}
-\title{stations_site_list
-\describe{
-   \item{site}{Unique BOM identifier for each station}
-   \item{dist}{BOM rainfall district}
-   \item{name}{BOM station name}
-   \item{start}{Year data collection starts}
-   \item{end}{Year data collection ends (will always be current)}
-   \item{state}{State name (postal code abbreviation)}
-   \item{lat}{Latitude (decimal degrees)}
-   \item{lon}{Longitude (decimal degrees)}
-   \item{elev_m}{Station elevation (metres)}
-   \item{bar_ht}{Bar height (metres)}
-   \item{WMO}{World Meteorological Organization number (unique ID used worldwide)}
-   }}
+\title{stations_site_list}
 \format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 7434 rows and 11 columns.}
 \source{
 \url{ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip}
@@ -25,7 +12,9 @@
 stations_site_list
 }
 \description{
-stations_site_list
+A database of station locations and other metadata used for the ag bulletin
+}
+\details{
 \describe{
    \item{site}{Unique BOM identifier for each station}
    \item{dist}{BOM rainfall district}

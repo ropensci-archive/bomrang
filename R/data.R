@@ -1,4 +1,9 @@
 #'AAC_codes
+#'
+#'@description
+#'BOM forecast locations and longitude and latitude
+#'
+#'@details
 #' \describe{
 #'   \item{AAC}{Unique identifier for each location}
 #'   \item{PT_NAME}{Human readable location name}
@@ -16,6 +21,11 @@
 "AAC_codes"
 
 #'stations_site_list
+#'
+#'@description
+#'A database of station locations and other metadata used for the ag bulletin
+#'
+#'@details
 #'\describe{
 #'    \item{site}{Unique BOM identifier for each station}
 #'    \item{dist}{BOM rainfall district}
@@ -35,6 +45,12 @@
 "stations_site_list"
 
 #'JSONurl_latlon_by_station_name
+#'
+#'@description
+#'A database of URLs that provide a JSON file of current weather conditions
+#'for BOM weather stations.
+#'
+#'@details
 #'\describe{
 #'    \item{site}{Unique BOM identifier for each station}
 #'    \item{dist}{BOM rainfall district}

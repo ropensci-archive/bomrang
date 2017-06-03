@@ -3,14 +3,7 @@
 \docType{data}
 \name{AAC_codes}
 \alias{AAC_codes}
-\title{AAC_codes
-\describe{
-  \item{AAC}{Unique identifier for each location}
-  \item{PT_NAME}{Human readable location name}
-  \item{ELEVATION}{Elevation (metres)}
-  \item{LON}{Longitude}
-  \item{LAT}{Latitude}
-}}
+\title{AAC_codes}
 \format{An object of class \code{data.frame} with 1369 rows and 5 columns.}
 \source{
 \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
@@ -19,6 +12,17 @@
 AAC_codes
 }
 \description{
+BOM forecast locations and longitude and latitude
+}
+\details{
+\describe{
+  \item{AAC}{Unique identifier for each location}
+  \item{PT_NAME}{Human readable location name}
+  \item{ELEVATION}{Elevation (metres)}
+  \item{LON}{Longitude}
+  \item{LAT}{Latitude}
+}
+
 The \code{AAC_codes} data are automatically loaded with the
 \code{\link{bomrang}} package and merged with the latest available forecast
 from the BOM.
