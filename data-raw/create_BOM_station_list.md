@@ -175,12 +175,17 @@ There are weather stations that do have a WMO but don't report online, e.g., KIR
 ``` r
 JSONurl_latlon_by_station_name <-
   stations_site_list[!is.na(stations_site_list$url), ]
-  
+
 JSONurl_latlon_by_station_name <-
   JSONurl_latlon_by_station_name %>%
   dplyr::rowwise() %>%
   dplyr::mutate(url = dplyr::if_else(httr::http_error(url), NA_character_, url))
   
+# Remove new NA values from invalid URLs and convert to data.table
+JSONurl_latlon_by_station_name <-
+  data.table::data.table(stations_site_list[!is.na(stations_site_list$url), ])
+  
+# Save database
 devtools::use_data(JSONurl_latlon_by_station_name, overwrite = TRUE)
 ```
 
@@ -206,10 +211,6 @@ devtools::use_data(stations_site_list, overwrite = TRUE)
 Session Info
 ------------
 
-``` r
-devtools::session_info()
-```
-
     ## Session info -------------------------------------------------------------
 
     ##  setting  value                       
@@ -229,6 +230,7 @@ devtools::session_info()
     ##  base       * 3.4.0      2017-05-05 local                        
     ##  compiler     3.4.0      2017-05-05 local                        
     ##  curl         2.6        2017-04-27 CRAN (R 3.4.0)               
+    ##  data.table   1.10.4     2017-02-01 CRAN (R 3.4.0)               
     ##  datasets   * 3.4.0      2017-05-05 local                        
     ##  DBI          0.6-1      2017-04-01 CRAN (R 3.4.0)               
     ##  devtools     1.13.2     2017-06-02 cran (@1.13.2)               

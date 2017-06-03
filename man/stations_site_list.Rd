@@ -17,7 +17,7 @@
    \item{bar_ht}{Bar height (metres)}
    \item{WMO}{World Meteorological Organization number (unique ID used worldwide)}
    }}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 7411 rows and 11 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 7434 rows and 11 columns.}
 \usage{
 stations_site_list
 }

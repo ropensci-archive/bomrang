@@ -19,7 +19,7 @@
    \item{state_code}{BOM code used to identify states and territories}
    \item{url}{URL that serves JSON file of station weather data}
    }}
-\format{An object of class \code{data.table} (inherits from \code{data.frame}) with 866 rows and 14 columns.}
+\format{An object of class \code{data.table} (inherits from \code{data.frame}) with 885 rows and 14 columns.}
 \usage{
 JSONurl_latlon_by_station_name
 }
