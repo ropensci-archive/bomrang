@@ -1,4 +1,4 @@
-# bomrang 0.0.3
+# bomrang 0.0.3 2017-06-03
 
 ## Major changes
 
