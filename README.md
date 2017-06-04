@@ -28,7 +28,7 @@ The main functionality of *bomrang* is provided through three functions, `get_pr
 
 ### Using `get_precis_forecast()`
 
-This function only takes one parameter, `state`. States or territories are specified using the official postal codes.
+This function only takes one argument, `state`. States or territories are specified using the official postal codes.
 
 -   **ACT** - Australian Capital Territory
 -   **NSW** - New South Wales
@@ -86,7 +86,7 @@ head(QLD_forecast)
 
 ### Using `get_ag_bulletin()`
 
-This function only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national bulletin. States or territories are specified using the official postal codes.
+This function only takes one argument, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national bulletin. States or territories are specified using the official postal codes.
 
 -   **NSW** - New South Wales
 -   **NT** - Northern Territory
@@ -138,7 +138,7 @@ head(QLD_bulletin)
 
 Returns the latest 72 hours weather observations for a station.
 
-This function accepts four parameters:
+This function accepts four arguments:
 
 -   `station_name`, The name of the weather station. Fuzzy string matching via `base::agrep` is done.
 
@@ -171,33 +171,33 @@ head(Melbourne_weather)
     ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
     ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
     ##   local_date_time local_date_time_full        aifstime_utc   lat lon
-    ## 1      04/02:00pm  2017-06-04 14:00:00 2017-06-04 04:00:00 -37.8 145
-    ## 2      04/01:30pm  2017-06-04 13:30:00 2017-06-04 03:30:00 -37.8 145
-    ## 3      04/01:00pm  2017-06-04 13:00:00 2017-06-04 03:00:00 -37.8 145
-    ## 4      04/12:30pm  2017-06-04 12:30:00 2017-06-04 02:30:00 -37.8 145
-    ## 5      04/12:00pm  2017-06-04 12:00:00 2017-06-04 02:00:00 -37.8 145
-    ## 6      04/11:30am  2017-06-04 11:30:00 2017-06-04 01:30:00 -37.8 145
+    ## 1      04/02:30pm  2017-06-04 14:30:00 2017-06-04 04:30:00 -37.8 145
+    ## 2      04/02:00pm  2017-06-04 14:00:00 2017-06-04 04:00:00 -37.8 145
+    ## 3      04/01:30pm  2017-06-04 13:30:00 2017-06-04 03:30:00 -37.8 145
+    ## 4      04/01:00pm  2017-06-04 13:00:00 2017-06-04 03:00:00 -37.8 145
+    ## 5      04/12:30pm  2017-06-04 12:30:00 2017-06-04 02:30:00 -37.8 145
+    ## 6      04/12:00pm  2017-06-04 12:00:00 2017-06-04 02:00:00 -37.8 145
     ##   apparent_t cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt
-    ## 1       12.4     -          -     4.1        9       5     14.5   5.8
-    ## 2       13.1     -          -     4.0        7       4     14.4   6.0
-    ## 3       11.9     -          -     3.6        9       5     13.9   6.3
-    ## 4       12.5     -          -     3.3        7       4     13.6   6.7
-    ## 5       10.9     -          -     2.3        7       4     12.0   7.1
-    ## 6       10.7     -          -     2.2        6       3     11.7   7.2
+    ## 1       13.4     -          -     4.1        6       3     14.7   6.0
+    ## 2       12.4     -          -     4.1        9       5     14.5   5.8
+    ## 3       13.1     -          -     4.0        7       4     14.4   6.0
+    ## 4       11.9     -          -     3.6        9       5     13.9   6.3
+    ## 5       12.5     -          -     3.3        7       4     13.6   6.7
+    ## 6       10.9     -          -     2.3        7       4     12.0   7.1
     ##    press press_msl press_qnh press_tend rain_trace rel_hum sea_state
-    ## 1 1026.5    1026.5    1026.5          -          0      56         -
-    ## 2 1026.9    1026.9    1026.9          -          0      57         -
-    ## 3 1027.3    1027.3    1027.3          -          0      60         -
-    ## 4 1027.9    1027.9    1027.9          -          0      63         -
-    ## 5 1028.5    1028.5    1028.5          -          0      72         -
-    ## 6 1029.1    1029.1    1029.1          -          0      74         -
+    ## 1 1026.3    1026.3    1026.3          -          0      56         -
+    ## 2 1026.5    1026.5    1026.5          -          0      56         -
+    ## 3 1026.9    1026.9    1026.9          -          0      57         -
+    ## 4 1027.3    1027.3    1027.3          -          0      60         -
+    ## 5 1027.9    1027.9    1027.9          -          0      63         -
+    ## 6 1028.5    1028.5    1028.5          -          0      72         -
     ##   swell_dir_worded vis_km weather wind_dir wind_spd_kmh wind_spd_kt
-    ## 1                -     10       -      NNW            6           3
-    ## 2                -     10       -       NE            2           1
-    ## 3                -     10       -        N            6           3
-    ## 4                -     10       -      NNW            2           1
-    ## 5                -     10       -        N            2           1
-    ## 6                -     10       -       NE            2           1
+    ## 1                -     10       -      ENE            2           1
+    ## 2                -     10       -      NNW            6           3
+    ## 3                -     10       -       NE            2           1
+    ## 4                -     10       -        N            6           3
+    ## 5                -     10       -      NNW            2           1
+    ## 6                -     10       -        N            2           1
 
 Meta
 ----
