@@ -34,9 +34,7 @@ or all using \code{AUS}.
  }
 }
 \examples{
-\dontrun{
 ag_bulletin <- get_ag_bulletin(state = "QLD")
-}
 
 }
 \references{

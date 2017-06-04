@@ -28,9 +28,7 @@
 #' for a complete list of fields and units.
 #'
 #' @examples
-#' \dontrun{
 #' BOM_forecast <- get_precis_forecast(state = "QLD")
-#' }
 #'
 #' @author Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton \email{keith.pembleton@usq.edu.au}
 #'
@@ -39,7 +37,6 @@
 #' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 #'
 #' @importFrom magrittr %>%
-#'
 #'
 #' @export
 get_precis_forecast <- function(state = NULL) {

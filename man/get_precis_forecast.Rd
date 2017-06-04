@@ -36,9 +36,7 @@ or all using \code{AUS}.
  }
 }
 \examples{
-\dontrun{
 BOM_forecast <- get_precis_forecast(state = "QLD")
-}
 
 }
 \references{
