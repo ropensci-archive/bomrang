@@ -1,3 +1,9 @@
+# bomrang 0.0.3-4 2017-06-03
+
+## Major changes
+* Run examples for all `get_*` functions in package  
+* `update_precis_locations()` is now `update_forecast_locations()`  
+
 # bomrang 0.0.3-3 2017-06-03
 
 ## Minor changes
