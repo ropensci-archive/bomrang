@@ -11,7 +11,7 @@
 #'
 #' @examples
 #' \dontrun{
-#' update_precis_locations()
+#' update_forecast_locations()
 #' }
 #' @return Updated internal database of BOM précis forecast locations
 #'
@@ -23,7 +23,7 @@
 #' @author Adam H Sparks, \email{adamhsparks@gmail.com}
 #' @export
 #'
-update_precis_locations <- function() {
+update_forecast_locations <- function() {
   original_timeout <- options("timeout")[[1]]
   options(timeout = 300)
   on.exit(options(timeout = original_timeout))

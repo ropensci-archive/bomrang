@@ -68,7 +68,7 @@
 <h2 class="hasAnchor">
 <a href="#using-bomrang" class="anchor"></a>Using <em>bomrang</em>
 </h2>
-<p>Several functions are provided by <em>bomrang</em>.The main functionality of <em>bomrang</em> is provided through three functions, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin. Other functions include <code><a href="../reference/update_precis_locations.html">update_precis_locations()</a></code>, which updates an internal database of forecast locations distributed with the package, and <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> which returns the nearest weather stations to a point in Australia.</p>
+<p>Several functions are provided by <em>bomrang</em>.The main functionality of <em>bomrang</em> is provided through three functions, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin. Other functions include <code><a href="../reference/update_forecast_locations.html">update_forecast_locations()</a></code>, which updates an internal database of forecast locations distributed with the package, and <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> which returns the nearest weather stations to a point in Australia.</p>
 </div>
 <div id="using-get_precis_forecast" class="section level2">
 <h2 class="hasAnchor">
@@ -106,7 +106,59 @@
 <div id="results" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results" class="anchor"></a>Results</h3>
-<p>The function, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, will return a data frame of the weather forecast. See the <a href="Precis_Forecast_Fields.html">Précis Forecast Fields</a> for detailed documentation.</p>
+<p>The function, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, will return a data frame of the weather forecast for the daily forecast with the following fields:</p>
+<ul>
+<li>
+<strong>aac</strong> - AMOC Area Code, <em>e.g.</em> WA_MW008, a unique identifier for each location<br>
+</li>
+<li>
+<strong>start_time_local</strong> - Start of forecast date and time in local TZ<br>
+</li>
+<li>
+<strong>end_time_local</strong> - End of forecast date and time in local TZ<br>
+</li>
+<li>
+<strong>UTC_offset</strong> - Hours offset from difference in hours and minutes from Coordinated Universal Time (UTC) for <code>start_time_local</code> and <code>end_time_local</code>
+</li>
+<li>
+<strong>start_time_utc</strong> - Start of forecast date and time in UTC<br>
+</li>
+<li>
+<strong>end_time_utc</strong> - End of forecast date and time in UTC<br>
+</li>
+<li>
+<strong>max_temp</strong> - Maximum forecasted temperature (degrees Celsius)<br>
+</li>
+<li>
+<strong>min_temp</strong> - Minimum forecasted temperature (degrees Celsius)<br>
+</li>
+<li>
+<strong>lower_prcp_limit</strong> - Lower forecasted precipitation limit (millimetres)<br>
+</li>
+<li>
+<strong>upper_prcp_limit</strong> - Upper forecasted precipitation limit (millimetres)<br>
+</li>
+<li>
+<strong>precis</strong> - Précis forecast (a short summary, less than 30 characters)<br>
+</li>
+<li>
+<strong>prob_prcp</strong> - Probability of precipitation (percent)<br>
+</li>
+<li>
+<strong>location</strong> - Named location for forecast<br>
+</li>
+<li>
+<strong>state</strong> - State name (postal code abbreviation)<br>
+</li>
+<li>
+<strong>lon</strong> - Longitude of named location (decimal degrees)<br>
+</li>
+<li>
+<strong>lat</strong> - Latitude of named location (decimal degrees)<br>
+</li>
+<li>
+<strong>elev</strong> - Elevation of named location (metres).</li>
+</ul>
 </div>
 <div id="example" class="section level3">
 <h3 class="hasAnchor">
@@ -150,7 +202,7 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <h2 class="hasAnchor">
 <a href="#using-get_ag_bulletin" class="anchor"></a>Using <code>get_ag_bulletin</code>
 </h2>
-<p>This function only takes one parameter, <code>state</code>. The <code>state</code> parameter allows the user to select the bulletin for just one state or a national forecast. States or territories are specified using the official postal codes.</p>
+<p><code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> only takes one parameter, <code>state</code>. The <code>state</code> parameter allows the user to select the bulletin for just one state or a national forecast. States or territories are specified using the official postal codes.</p>
 <ul>
 <li>
 <strong>NSW</strong> - New South Wales<br>
@@ -179,7 +231,97 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <div id="results-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results-1" class="anchor"></a>Results</h3>
-<p>The function, <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, will return a data frame of the ag bulletin for the state(s) or territory requested. See the <a href="Ag_Bulletin_Fields.html">Ag Bulletin Fields</a> for detailed documentation.</p>
+<p>The function, <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, will return a data frame of the agriculture bulletin with the following fields:</p>
+<ul>
+<li>
+<strong>obs-time-local</strong> - Observation time<br>
+</li>
+<li>
+<strong>obs-time-utc</strong> - Observation time (time in UTC)<br>
+</li>
+<li>
+<strong>time-zone</strong> - Time zone for observation<br>
+</li>
+<li>
+<strong>site</strong> - Unique BOM identifier for each station<br>
+</li>
+<li>
+<strong>dist</strong> - BOM rainfall district<br>
+</li>
+<li>
+<strong>station</strong> - BOM station name<br>
+</li>
+<li>
+<strong>start</strong> - Year data collection starts<br>
+</li>
+<li>
+<strong>end</strong> - Year data collection ends (will always be current)<br>
+</li>
+<li>
+<strong>state</strong> - State name (postal code abbreviation)<br>
+</li>
+<li>
+<strong>lat</strong> - Latitude (decimal degrees)<br>
+</li>
+<li>
+<strong>lon</strong> - Longitude (decimal degrees)<br>
+</li>
+<li>
+<strong>elev</strong> - Station elevation (metres)<br>
+</li>
+<li>
+<strong>bar_ht</strong> - Bar height (metres)<br>
+</li>
+<li>
+<strong>WMO</strong> - World Meteorlogical Organization number (unique ID used worldwide)</li>
+<li>
+<strong>r</strong> - Rain to 9am (millimetres). <em>Trace will be reported as 0.01</em><br>
+</li>
+<li>
+<strong>tn</strong> - Minimum temperature (degrees Celsius)<br>
+</li>
+<li>
+<strong>tx</strong> - Maximum temperature (degrees Celsius)<br>
+</li>
+<li>
+<strong>twd</strong> - Wet bulb depression (degrees Celsius)<br>
+</li>
+<li>
+<strong>ev</strong> - Evaporation (millimetres)<br>
+</li>
+<li>
+<strong>tg</strong> - Terrestrial minimum temperature (degrees Celsius)<br>
+</li>
+<li>
+<strong>sn</strong> - Sunshine (hours)<br>
+</li>
+<li>
+<strong>t5</strong> - 5cm soil temperature (degrees Celsius)<br>
+</li>
+<li>
+<strong>t10</strong> - 10cm soil temperature (degrees Celsius)<br>
+</li>
+<li>
+<strong>t20</strong> - 20cm soil temperature (degrees Celsius)<br>
+</li>
+<li>
+<strong>t50</strong> - 50cm soil temperature (degrees Celsius)<br>
+</li>
+<li>
+<strong>t1m</strong> - 1m soil temperature (degrees Celsius)<br>
+</li>
+<li>
+<strong>wr</strong> - Wind run (kilometres)<br>
+</li>
+<li>
+<strong>state</strong> - State name (postal code abbreviation)<br>
+</li>
+<li>
+<strong>lat</strong> - Latitude (decimal degrees)<br>
+</li>
+<li>
+<strong>lon</strong> - Longitude (decimal degrees).</li>
+</ul>
 </div>
 <div id="example-1" class="section level3">
 <h3 class="hasAnchor">
@@ -216,13 +358,13 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <h2 class="hasAnchor">
 <a href="#using-get_current_weather" class="anchor"></a>Using <code>get_current_weather</code>
 </h2>
-<p>The function takes one of two arguments: <code>station_name</code> and <code>latlon</code>, returning the current weather observations (and the observations of the last 72 hours) for the given location.</p>
+<p><code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> takes one of two arguments: <code>station_name</code> and <code>latlon</code>, returning the current weather observations (and the observations of the last 72 hours) for the given location.</p>
 <p>If <code>station_name</code> is used, the weather observations for the last 72 hours are returned for that station. If the string provided is ambiguous, the function returns an observation for one of the possible stations and emits a warning to offer unambiguous station names.</p>
 <p>If <code>latlon</code> is used, the observations returned are from the station nearest to that latitude-longitude coordinate. The function also emits a message, to tell the user which station was used.</p>
 <div id="results-2" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results-2" class="anchor"></a>Results</h3>
-<p>The function, <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, will return a data frame of the hourly observations for the last 72 hours for the requested station. See the <a href="Current_Weather_Fields.html">Current Weather Fields</a> for detailed documentation.</p>
+<p>The table returned will have different fields depending on the station that is selected.</p>
 </div>
 <div id="example-2" class="section level3">
 <h3 class="hasAnchor">
@@ -240,33 +382,33 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
 ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
 ##   local_date_time local_date_time_full        aifstime_utc   lat lon
-## 1      04/01:30pm  2017-06-04 13:30:00 2017-06-04 03:30:00 -37.8 145
-## 2      04/01:00pm  2017-06-04 13:00:00 2017-06-04 03:00:00 -37.8 145
-## 3      04/12:30pm  2017-06-04 12:30:00 2017-06-04 02:30:00 -37.8 145
-## 4      04/12:00pm  2017-06-04 12:00:00 2017-06-04 02:00:00 -37.8 145
-## 5      04/11:30am  2017-06-04 11:30:00 2017-06-04 01:30:00 -37.8 145
-## 6      04/11:00am  2017-06-04 11:00:00 2017-06-04 01:00:00 -37.8 145
+## 1      04/02:00pm  2017-06-04 14:00:00 2017-06-04 04:00:00 -37.8 145
+## 2      04/01:30pm  2017-06-04 13:30:00 2017-06-04 03:30:00 -37.8 145
+## 3      04/01:00pm  2017-06-04 13:00:00 2017-06-04 03:00:00 -37.8 145
+## 4      04/12:30pm  2017-06-04 12:30:00 2017-06-04 02:30:00 -37.8 145
+## 5      04/12:00pm  2017-06-04 12:00:00 2017-06-04 02:00:00 -37.8 145
+## 6      04/11:30am  2017-06-04 11:30:00 2017-06-04 01:30:00 -37.8 145
 ##   apparent_t cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt
-## 1       13.1     -          -     4.0        7       4     14.4   6.0
-## 2       11.9     -          -     3.6        9       5     13.9   6.3
-## 3       12.5     -          -     3.3        7       4     13.6   6.7
-## 4       10.9     -          -     2.3        7       4     12.0   7.1
-## 5       10.7     -          -     2.2        6       3     11.7   7.2
-## 6        9.4     -          -     1.2        7       4     10.3   7.7
+## 1       12.4     -          -     4.1        9       5     14.5   5.8
+## 2       13.1     -          -     4.0        7       4     14.4   6.0
+## 3       11.9     -          -     3.6        9       5     13.9   6.3
+## 4       12.5     -          -     3.3        7       4     13.6   6.7
+## 5       10.9     -          -     2.3        7       4     12.0   7.1
+## 6       10.7     -          -     2.2        6       3     11.7   7.2
 ##    press press_msl press_qnh press_tend rain_trace rel_hum sea_state
-## 1 1026.9    1026.9    1026.9          -          0      57         -
-## 2 1027.3    1027.3    1027.3          -          0      60         -
-## 3 1027.9    1027.9    1027.9          -          0      63         -
-## 4 1028.5    1028.5    1028.5          -          0      72         -
-## 5 1029.1    1029.1    1029.1          -          0      74         -
-## 6 1029.7    1029.7    1029.7          -          0      84         -
+## 1 1026.5    1026.5    1026.5          -          0      56         -
+## 2 1026.9    1026.9    1026.9          -          0      57         -
+## 3 1027.3    1027.3    1027.3          -          0      60         -
+## 4 1027.9    1027.9    1027.9          -          0      63         -
+## 5 1028.5    1028.5    1028.5          -          0      72         -
+## 6 1029.1    1029.1    1029.1          -          0      74         -
 ##   swell_dir_worded vis_km weather wind_dir wind_spd_kmh wind_spd_kt
-## 1                -     10       -       NE            2           1
-## 2                -     10       -        N            6           3
-## 3                -     10       -      NNW            2           1
-## 4                -     10       -        N            2           1
-## 5                -     10       -       NE            2           1
-## 6                -     10       -      ENE            2           1</code></pre>
+## 1                -     10       -      NNW            6           3
+## 2                -     10       -       NE            2           1
+## 3                -     10       -        N            6           3
+## 4                -     10       -      NNW            2           1
+## 5                -     10       -        N            2           1
+## 6                -     10       -       NE            2           1</code></pre>
 </div>
 </div>
 <div id="other-functions-in-bomrang" class="section level2">
@@ -277,7 +419,7 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 <h3 class="hasAnchor">
 <a href="#using-sweep_for_stations" class="anchor"></a>Using <code>sweep_for_stations</code>
 </h3>
-<p>This function only takes one parameter, <code>latlon</code>, a length-2 numeric vector. By default, Canberra (approximately).</p>
+<p><code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> only takes one parameter, <code>latlon</code>, a length-2 numeric vector. By default, Canberra (approximately).</p>
 <div id="results-3" class="section level4">
 <h4 class="hasAnchor">
 <a href="#results-3" class="anchor"></a>Results</h4>
@@ -325,23 +467,23 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 ## 10 http://www.bom.gov.au/fwo/IDN60801/IDN60801.94943.json 82.9176026</code></pre>
 </div>
 </div>
-<div id="using-update_precis_locations" class="section level3">
+<div id="using-update_forecast_locations" class="section level3">
 <h3 class="hasAnchor">
-<a href="#using-update_precis_locations" class="anchor"></a>Using <code>update_precis_locations</code>
+<a href="#using-update_forecast_locations" class="anchor"></a>Using <code>update_forecast_locations</code>
 </h3>
-<p>This function downloads the latest précis forecast locations from the BOM server and updates <em>bomrang</em>’s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BOM forecast location database that is not available in the database distributed with <em>bomrang</em>. This database is distributed with the package to make the process faster when fetching the forecast.</p>
+<p><code><a href="../reference/update_forecast_locations.html">update_forecast_locations()</a></code> downloads the latest précis forecast locations from the BOM server and updates <em>bomrang</em>’s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BOM forecast location database that is not available in the database distributed with <em>bomrang</em>. This database is distributed with the package to make the process faster when fetching the forecast.</p>
 <div id="example-4" class="section level4">
 <h4 class="hasAnchor">
 <a href="#example-4" class="anchor"></a>Example</h4>
 <p>Following is an example updating the précis forecast locations internal database.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/update_precis_locations.html">update_precis_locations</a></span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/update_forecast_locations.html">update_forecast_locations</a></span>()</code></pre></div>
 </div>
 </div>
 <div id="using-update_station_locations" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-update_station_locations" class="anchor"></a>Using <code>update_station_locations</code>
 </h3>
-<p>This function downloads the latest station locations and metadata and updates bomrang’s internal databases that support the use of <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>. There is no need to use this unless you know that a station exists in BOM’s database that is not available in the databases distributed with <em>bomrang</em></p>
+<p><code><a href="../reference/update_station_locations.html">update_station_locations()</a></code> downloads the latest station locations and metadata and updates bomrang’s internal databases that support the use of <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>. There is no need to use this unless you know that a station exists in BOM’s database that is not available in the databases distributed with <em>bomrang</em></p>
 <div id="example-5" class="section level4">
 <h4 class="hasAnchor">
 <a href="#example-5" class="anchor"></a>Example</h4>
