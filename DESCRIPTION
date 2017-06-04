@@ -13,7 +13,7 @@ Description: Provides functions to interface with Australian Government Bureau
     of Meteorology (BOM) data, fetching data and returning a tidy data frame of
     précis forecasts, current weather data from stations or agriculture 
     bulletin data.
-URL: https://toowoombatrio.github.io/bomrang/
+URL: https://toowoombatrio.github.io/bomrang
 BugReports: https://github.com/ToowoombaTrio/bomrang/issues
 License: MIT + file LICENSE
 Depends:
