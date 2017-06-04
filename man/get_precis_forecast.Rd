@@ -44,5 +44,5 @@ Australian Bureau of Meteorology (BOM) Weather Data Services
 \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 }
 \author{
-Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton \email{keith.pembleton@usq.edu.au}
+Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton, \email{keith.pembleton@usq.edu.au}
 }

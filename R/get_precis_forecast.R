@@ -30,7 +30,7 @@
 #' @examples
 #' BOM_forecast <- get_precis_forecast(state = "QLD")
 #'
-#' @author Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton \email{keith.pembleton@usq.edu.au}
+#' @author Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton, \email{keith.pembleton@usq.edu.au}
 #'
 #' @references
 #' Australian Bureau of Meteorology (BOM) Weather Data Services
