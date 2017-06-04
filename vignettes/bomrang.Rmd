@@ -19,7 +19,7 @@ Several functions are provided by _bomrang_.The main functionality of _bomrang_ 
 
 ## Using `get_precis_forecast`
 
-This function only takes one parameter, `state`. The `state` parameter allows the user to select the forecast for just one state or a national forecast. States or territories are specified using the official postal codes:
+This function only takes one argument, `state`. The `state` parameter allows the user to select the forecast for just one state or a national forecast. States or territories are specified using the official postal codes:
 
 * **ACT** - Australian Capital Territory  
 * **NSW** - New South Wales  
@@ -66,7 +66,7 @@ head(QLD_forecast)
 
 ## Using `get_ag_bulletin`
 
-`get_ag_bulletin()` only takes one parameter, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national forecast. States or territories are specified using the official postal codes.
+`get_ag_bulletin()` only takes one argument, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national forecast. States or territories are specified using the official postal codes.
 
 * **NSW** - New South Wales  
 * **NT** - Northern Territory  
@@ -147,7 +147,7 @@ head(Melbourne_weather)
 ## Other functions in _bomrang_
 
 ### Using `sweep_for_stations`
-`sweep_for_stations()` only takes one parameter, `latlon`, a length-2 numeric vector. By default, Canberra (approximately).
+`sweep_for_stations()` only takes one argument, `latlon`, a length-2 numeric vector. By default, Canberra (approximately).
 
 #### Results
 This function will search for weather stations and return a data frame of all weather stations (in this package) sorted by distance from `latlon`, ascending. The fields in the data frame are:
