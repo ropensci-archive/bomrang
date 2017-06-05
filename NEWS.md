@@ -1,3 +1,9 @@
+# bomrang 0.0.3-5 2017-06-03
+
+## Major changes
+* Wrap examples for `get_precis_forecast()` in a \dontrun{} tag due to CRAN NOTE taking too long to run  
+* Use proper GitHub URL in DESCRIPTION file  
+
 # bomrang 0.0.3-4 2017-06-03
 
 ## Major changes
