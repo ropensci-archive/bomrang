@@ -5,7 +5,7 @@
 \title{Current weather observations of a BOM station}
 \usage{
 get_current_weather(station_name, latlon = NULL, raw = FALSE,
-  emit_latlon_msg = TRUE)
+  emit_latlon_msg = TRUE, as.data.table = FALSE)
 }
 \arguments{
 \item{station_name}{The name of the weather station. Fuzzy string matching
@@ -24,6 +24,8 @@ appropriate classes. (\code{FALSE} by default.)}
 \code{latlon} is selected, a message is emitted before the table is returned
 indicating which station was actually used (i.e. which station was found to
 be nearest to the given coordinate).}
+
+\item{as.data.table}{Return result as a \code{data.table}.}
 }
 \description{
 Current weather observations of a BOM station
