@@ -29,3 +29,8 @@ test_that("latlon: Query of c(-27, 149) returns Surat (QLD, between Roma and St 
   expect_equal(unique(Surat$name), "Surat")
 })
 
+test_that("Data table if requested", {
+  YMML <- get_current_weather("Melbourne Airport", as.data.table = TRUE)
+  expect_true("data.table" %in% class(YMML))
+})
+

@@ -14,6 +14,7 @@
 #' \code{latlon} is selected, a message is emitted before the table is returned
 #' indicating which station was actually used (i.e. which station was found to
 #' be nearest to the given coordinate).
+#' @param as.data.table Return result as a \code{data.table}.
 #' @details Note that the column \code{local_date_time_full} is set to a
 #' \code{POSIXct} object in the local time of the \strong{user}.
 #' For more details see the vignette "Current Weather Fields":
@@ -39,7 +40,8 @@ get_current_weather <-
   function(station_name,
            latlon = NULL,
            raw = FALSE,
-           emit_latlon_msg = TRUE) {
+           emit_latlon_msg = TRUE,
+           as.data.table = FALSE) {
     if (missing(station_name) && is.null(latlon)) {
       stop("One of 'station_name' or 'latlon' must be provided.")
     }
@@ -120,7 +122,7 @@ get_current_weather <-
     }
 
     observations.json <-
-      rjson::fromJSON(file = json_url)
+      jsonlite::fromJSON(txt = json_url)
 
     if ("observations" %notin% names(observations.json) ||
         "data" %notin% names(observations.json$observations)) {
@@ -136,7 +138,11 @@ get_current_weather <-
         "cloud_oktas",
         "rain_trace")
     # (i.e. not raw)
-    cook <- function(DT) {
+    cook <- function(DT, as.DT) {
+      if (!is.data.table(DT)) {
+        setDT(DT)
+      }
+
       DTnoms <- names(DT)
 
       # CRAN NOTE avoidance
@@ -161,19 +167,26 @@ get_current_weather <-
       for (j in which(DTnoms %chin% double_cols)) {
         set(DT, j = j, value = force_double(DT[[j]]))
       }
+
+      if (!as.DT) {
+        DT <- as.data.frame(DT)
+      }
+
       DT[]
     }
 
     out <-
       observations.json %>%
       use_series("observations") %>%
-      use_series("data") %>%
-      lapply(as.data.table) %>%
-      rbindlist(use.names = TRUE, fill = TRUE)
+      use_series("data")
+
+    if (as.data.table) {
+      setDT(out)
+    }
 
     if (raw) {
-      return(as.data.frame(out))
+      return(out)
     } else {
-      return(as.data.frame(cook(out)))
+      return(cook(out, as.DT = as.data.table))
     }
   }
