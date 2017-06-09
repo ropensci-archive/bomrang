@@ -87,7 +87,7 @@
     
 
     <pre class="usage"><span class='fu'>get_current_weather</span>(<span class='no'>station_name</span>, <span class='kw'>latlon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>emit_latlon_msg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+  <span class='kw'>emit_latlon_msg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>as.data.table</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -116,6 +116,10 @@ appropriate classes. (<code>FALSE</code> by default.)</p></td>
 <code>latlon</code> is selected, a message is emitted before the table is returned
 indicating which station was actually used (i.e. which station was found to
 be nearest to the given coordinate).</p></td>
+    </tr>
+    <tr>
+      <th>as.data.table</th>
+      <td><p>Return result as a <code>data.table</code>.</p></td>
     </tr>
     </table>
     

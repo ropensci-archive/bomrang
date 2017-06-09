@@ -1,3 +1,8 @@
+# bomrange 0.0.4 2017-06-09
+
+## Major changes
+* Use _jsonlite_ library rather than _rjson_
+
 # bomrang 0.0.3-5 2017-06-03
 
 ## Major changes
