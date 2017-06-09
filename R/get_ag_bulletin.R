@@ -27,8 +27,9 @@
 #' list of fields and units.
 #'
 #' @examples
+#' \dontrun{
 #' ag_bulletin <- get_ag_bulletin(state = "QLD")
-#'
+#' }
 #' @author Adam H Sparks, \email{adamhsparks@gmail.com}
 #'
 #' @references
