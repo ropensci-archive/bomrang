@@ -13,7 +13,7 @@ instruction.}
 \value{
 Data frame of a Australia BOM agricultural bulletin information.  For more
 details see the vignette "Ag Bulletin Fields":
-\code{vignette("Ag_Bulletin Fields", package = "bomrang")} for a complete
+\code{vignette("Ag Bulletin Fields", package = "bomrang")} for a complete
 list of fields and units.
 }
 \description{
@@ -34,8 +34,9 @@ or all using \code{AUS}.
  }
 }
 \examples{
+\dontrun{
 ag_bulletin <- get_ag_bulletin(state = "QLD")
-
+}
 }
 \references{
 Australian Bureau of Meteorology (BOM) Weather Data Services Agriculture Bulletins

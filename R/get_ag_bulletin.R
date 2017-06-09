@@ -23,7 +23,7 @@
 #' @return
 #' Data frame of a Australia BOM agricultural bulletin information.  For more
 #' details see the vignette "Ag Bulletin Fields":
-#' \code{vignette("Ag_Bulletin Fields", package = "bomrang")} for a complete
+#' \code{vignette("Ag Bulletin Fields", package = "bomrang")} for a complete
 #' list of fields and units.
 #'
 #' @examples
