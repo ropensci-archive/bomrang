@@ -1,4 +1,6 @@
 
+
+
 #' BOM daily précis forecast
 #'
 #'Fetch the BOM daily précis forecast and return a tidy data frame of the daily
@@ -136,8 +138,8 @@ get_precis_forecast <- function(state = NULL) {
 
   out <- tidyr::spread(out, key = attrs, value = values)
   out <-
+    out %>%
     dplyr::rename(
-      out,
       maximum_temperature = `c("air_temperature_maximum", "Celsius")`,
       minimum_temperature = `c("air_temperature_minimum", "Celsius")`,
       start_time_local = `start-time-local`,
@@ -145,15 +147,17 @@ get_precis_forecast <- function(state = NULL) {
       start_time_utc = `start-time-utc`,
       end_time_utc = `end-time-utc`
     ) %>%
-    dplyr::mutate_each(dplyr::funs(as.character), aac) %>%
-    dplyr::mutate_each(dplyr::funs(as.character), precipitation_range) %>%
+    dplyr::mutate_at(.funs = as.character,
+                     .vars = c("aac",
+                               "precipitation_range")) %>%
     tidyr::separate(end_time_local,
                     into = c("end_time_local", "UTC_offset"),
-                    sep = "\\+",) %>%
+                    sep = "\\+") %>%
     tidyr::separate(
       start_time_local,
       into = c("start_time_local", "UTC_offset_drop"),
-      sep = "\\+") %>%
+      sep = "\\+"
+    ) %>%
     dplyr::select(-UTC_offset_drop)
 
   out$probability_of_precipitation <-
@@ -205,17 +209,26 @@ get_precis_forecast <- function(state = NULL) {
     dplyr::rename(lon = LON,
                   lat = LAT,
                   elev = ELEVATION) %>%
-    dplyr::mutate_each(dplyr::funs(as.character), start_time_local) %>%
-    dplyr::mutate_each(dplyr::funs(as.character), start_time_local) %>%
-    dplyr::mutate_each(dplyr::funs(as.character), end_time_local) %>%
-    dplyr::mutate_each(dplyr::funs(as.character), start_time_utc) %>%
-    dplyr::mutate_each(dplyr::funs(as.character), end_time_utc) %>%
-    dplyr::mutate_each(dplyr::funs(as.numeric), maximum_temperature) %>%
-    dplyr::mutate_each(dplyr::funs(as.numeric), minimum_temperature) %>%
-    dplyr::mutate_each(dplyr::funs(as.numeric), lower_prec_limit) %>%
-    dplyr::mutate_each(dplyr::funs(as.numeric), lower_prec_limit) %>%
-    dplyr::mutate_each(dplyr::funs(as.character), precis) %>%
-    dplyr::mutate_each(dplyr::funs(as.character), probability_of_precipitation) %>%
+    dplyr::mutate_at(
+      .funs = as.character,
+      .vars = c(
+        "start_time_local",
+        "end_time_local",
+        "start_time_utc",
+        "end_time_utc",
+        "precis",
+        "probability_of_precipitation"
+      )
+    ) %>%
+    dplyr::mutate_at(
+      .funs = as.numeric,
+      .vars = c(
+        "maximum_temperature",
+        "minimum_temperature",
+        "lower_prec_limit",
+        "lower_prec_limit"
+      )
+    ) %>%
     dplyr::rename(location = PT_NAME)
 
   # add state field

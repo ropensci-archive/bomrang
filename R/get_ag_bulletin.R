@@ -1,5 +1,4 @@
 
-
 #' BOM agriculture bulletin information
 #'
 #'Fetch the BOM agricultural bulletin information and return a tidy data frame
@@ -257,13 +256,12 @@ else if (state == "AUS") {
 
   tidy_df <-
     tidy_df %>%
+    dplyr::mutate_at(tidy_df, .funs = as.character, .vars = "time.zone") %>%
     dplyr::rename(
       obs_time_local = obs.time.local,
       obs_time_utc = obs.time.utc,
       time_zone = time.zone
-    ) %>%
-    dplyr::mutate_each(dplyr::funs(as.character), obs_time_utc) %>%
-    dplyr::mutate_each(dplyr::funs(as.character), time_zone)
+    )
 
   tidy_df <-
     dplyr::select(
