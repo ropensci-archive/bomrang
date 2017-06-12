@@ -1,16 +1,19 @@
-# bomrange 0.0.4-1 2017-06-12
-
-# Major changes
-* Update internal functionality for _dplyr_ 0.7.0  
-
-# bomrange 0.0.4 2017-06-09
+# bomrang 0.0.4-1 2017-06-12
 
 ## Major changes
+
+* Update internal functionality for _dplyr_ 0.7.0  
+
+# bomrang 0.0.4 2017-06-09
+
+## Major changes
+
 * Use _jsonlite_ library rather than _rjson_
 
 # bomrang 0.0.3-5 2017-06-03
 
 ## Major changes
+
 * Wrap examples for `get_precis_forecast()` in a \dontrun{} tag due to CRAN NOTE taking too long to run  
 * Use proper GitHub URL in DESCRIPTION file  
 
