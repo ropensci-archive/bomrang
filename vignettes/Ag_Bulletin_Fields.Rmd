@@ -16,9 +16,9 @@ The function, `get_ag_bulletin()`, will return a tidy data frame of the agricult
 <tr><td>obs-time-local</td><td>Observation time</td></tr>
 <tr><td>obs-time-utc</td><td>Observation time (time in UTC)</td></tr>
 <tr><td>time-zone</td><td>Time zone for observation</td></tr>
-<tr><td>site</td><td>Unique BOM identifier for each station</td></tr>
-<tr><td>dist</td><td>BOM rainfall district</td></tr>
-<tr><td>station</td><td>BOM station name</td></tr>
+<tr><td>site</td><td>Unique BoM identifier for each station</td></tr>
+<tr><td>dist</td><td>BoM rainfall district</td></tr>
+<tr><td>station</td><td>BoM station name</td></tr>
 <tr><td>start</td><td>Year data collection starts</td></tr>
 <tr><td>end</td><td>Year data collection ends (will always be current)</td></tr>
 <tr><td>state</td><td>State name (postal code abbreviation)</td></tr>

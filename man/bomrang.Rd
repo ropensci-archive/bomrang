@@ -4,10 +4,10 @@
 \name{bomrang}
 \alias{bomrang}
 \alias{bomrang-package}
-\title{Fetches Australian Government Bureau of Meteorology (BOM) weather data files
+\title{Fetches Australian Government Bureau of Meteorology (BoM) weather data files
 and returns a tidy data frame of the data.}
 \description{
-Fetches Australian Government Bureau of Meteorology (BOM) weather data files
+Fetches Australian Government Bureau of Meteorology (BoM) weather data files
 and returns a tidy data frame of the data.
 }
 \seealso{

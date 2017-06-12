@@ -69,7 +69,7 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p><em>bomrang</em> provides functions for interacting with <a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services</a> forecasts. BOM serves several types of data data as XML and JSON files. This package fetches these files, parses them and return a tidy data frame.</p>
+<p><em>bomrang</em> provides functions for interacting with <a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services</a> forecasts. BoM serves several types of data data as XML and JSON files. This package fetches these files, parses them and return a tidy data frame.</p>
 </div>
 <div id="using-bomrang" class="section level2">
 <h2 class="hasAnchor">
@@ -222,13 +222,13 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <strong>time-zone</strong> - Time zone for observation<br>
 </li>
 <li>
-<strong>site</strong> - Unique BOM identifier for each station<br>
+<strong>site</strong> - Unique BoM identifier for each station<br>
 </li>
 <li>
-<strong>dist</strong> - BOM rainfall district<br>
+<strong>dist</strong> - BoM rainfall district<br>
 </li>
 <li>
-<strong>station</strong> - BOM station name<br>
+<strong>station</strong> - BoM station name<br>
 </li>
 <li>
 <strong>start</strong> - Year data collection starts<br>
@@ -361,7 +361,7 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 <h3 class="hasAnchor">
 <a href="#using-update_forecast_locations" class="anchor"></a>Using <code>update_forecast_locations</code>
 </h3>
-<p><code><a href="../reference/update_forecast_locations.html">update_forecast_locations()</a></code> downloads the latest précis forecast locations from the BOM server and updates <em>bomrang</em>’s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BOM forecast location database that is not available in the database distributed with <em>bomrang</em>. This database is distributed with the package to make the process faster when fetching the forecast.</p>
+<p><code><a href="../reference/update_forecast_locations.html">update_forecast_locations()</a></code> downloads the latest précis forecast locations from the BoM server and updates <em>bomrang</em>’s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BoM forecast location database that is not available in the database distributed with <em>bomrang</em>. This database is distributed with the package to make the process faster when fetching the forecast.</p>
 <div id="example-4" class="section level4">
 <h4 class="hasAnchor">
 <a href="#example-4" class="anchor"></a>Example</h4>
@@ -373,7 +373,7 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 <h3 class="hasAnchor">
 <a href="#using-update_station_locations" class="anchor"></a>Using <code>update_station_locations</code>
 </h3>
-<p><code><a href="../reference/update_station_locations.html">update_station_locations()</a></code> downloads the latest station locations and metadata and updates bomrang’s internal databases that support the use of <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>. There is no need to use this unless you know that a station exists in BOM’s database that is not available in the databases distributed with <em>bomrang</em></p>
+<p><code><a href="../reference/update_station_locations.html">update_station_locations()</a></code> downloads the latest station locations and metadata and updates bomrang’s internal databases that support the use of <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>. There is no need to use this unless you know that a station exists in BoM’s database that is not available in the databases distributed with <em>bomrang</em></p>
 <div id="example-5" class="section level4">
 <h4 class="hasAnchor">
 <a href="#example-5" class="anchor"></a>Example</h4>
@@ -385,9 +385,9 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
-<p><a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services</a></p>
-<p><a href="http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services Agriculture Bulletins</a></p>
-<p><a href="http://www.bom.gov.au/climate/how/observations/rain-measure.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services Observation of Rainfall</a></p>
+<p><a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services</a></p>
+<p><a href="http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services Agriculture Bulletins</a></p>
+<p><a href="http://www.bom.gov.au/climate/how/observations/rain-measure.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services Observation of Rainfall</a></p>
 </div>
 </div>
   </div>

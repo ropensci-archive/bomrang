@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_current_weather.R
 \name{get_current_weather}
 \alias{get_current_weather}
-\title{Current weather observations of a BOM station}
+\title{Current weather observations of a BoM station}
 \usage{
 get_current_weather(station_name, latlon = NULL, raw = FALSE,
   emit_latlon_msg = TRUE, as.data.table = FALSE)
@@ -28,7 +28,7 @@ be nearest to the given coordinate).}
 \item{as.data.table}{Return result as a \code{data.table}.}
 }
 \description{
-Current weather observations of a BOM station
+Current weather observations of a BoM station
 }
 \details{
 Note that the column \code{local_date_time_full} is set to a

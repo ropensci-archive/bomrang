@@ -1,9 +1,9 @@
 
 
 
-#' BOM daily précis forecast
+#' BoM daily précis forecast
 #'
-#'Fetch the BOM daily précis forecast and return a tidy data frame of the daily
+#'Fetch the BoM daily précis forecast and return a tidy data frame of the daily
 #'forecast
 #'
 #' @param state Australian state or territory as postal code, see details for
@@ -24,19 +24,19 @@
 #'  }
 #'
 #' @return
-#' Data frame of a Australia BOM daily forecast in a tidy data frame.  For
+#' Data frame of a Australia BoM daily forecast in a tidy data frame.  For
 #' more details see the vignette "Précis Forecast Fields":
 #' \code{vignette("Précis Forecast Fields", package = "bomrang")}
 #' for a complete list of fields and units.
 #'
 #' @examples
 #' \dontrun{
-#' BOM_forecast <- get_precis_forecast(state = "QLD")
+#' BoM_forecast <- get_precis_forecast(state = "QLD")
 #'}
 #' @author Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton, \email{keith.pembleton@usq.edu.au}
 #'
 #' @references
-#' Australian Bureau of Meteorology (BOM) Weather Data Services
+#' Australian Bureau of Meteorology (BoM) Weather Data Services
 #' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 #'
 #' @importFrom magrittr %>%
