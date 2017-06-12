@@ -113,10 +113,6 @@ get_precis_forecast <- function(state = NULL) {
     start_time_local <- start_time_utc <- maximum_temperature <-
     minimum_temperature <- UTC_offset_drop <- NULL
 
-  # load BOM location data ---------------------------------------------------
-  utils::data("AAC_codes", package = "bomrang")
-  AAC_codes <- AAC_codes
-
   # load the XML forecast ----------------------------------------------------
   tryCatch({
     xmlforecast <- xml2::read_xml(xmlforecast)
