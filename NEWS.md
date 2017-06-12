@@ -1,3 +1,8 @@
+# bomrange 0.0.4-1 2017-06-12
+
+# Major changes
+* Update internal functionality for _dplyr_ 0.7.0  
+
 # bomrange 0.0.4 2017-06-09
 
 ## Major changes
