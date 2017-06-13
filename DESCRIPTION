@@ -13,7 +13,7 @@ Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     email = "keith.pembleton@usq.edu.au",
     comment = "https://orcid.org/0000-0002-1896-4516"))
 Description: Provides functions to interface with Australian Government Bureau
-    of Meteorology (BOM) data, fetching data and returning a tidy data frame of
+    of Meteorology (BoM) data, fetching data and returning a tidy data frame of
     précis forecasts, current weather data from stations or agriculture 
     bulletin data.
 URL: https://github.com/ToowoombaTrio/bomrang

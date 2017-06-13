@@ -1,5 +1,5 @@
 
-#' Find nearest BOM weather stations
+#' Find nearest BoM weather stations
 #' @param latlon A length-2 numeric vector. By default, Canberra
 #' (approximately).
 #' @return A data frame of all weather stations (in this package) sorted

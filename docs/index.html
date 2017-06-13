@@ -58,9 +58,9 @@
   <div class="contents col-md-9">
     <div id="bomrang-fetch-australian-government-bureau-of-meteorology-bom-data" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#bomrang-fetch-australian-government-bureau-of-meteorology-bom-data" class="anchor"></a><em>bomrang</em>: Fetch Australian Government Bureau of Meteorology (BOM) Data</h1></div>
+<a href="#bomrang-fetch-australian-government-bureau-of-meteorology-bom-data" class="anchor"></a><em>bomrang</em>: Fetch Australian Government Bureau of Meteorology (BoM) Data</h1></div>
 
-<p>Provides functions to interface with Australian Government Bureau of Meteorology (BOM) data, fetching data and returning a tidy data frame of précis forecasts, current weather data from stations or ag information bulletins.</p>
+<p>Provides functions to interface with Australian Government Bureau of Meteorology (BoM) data, fetching data and returning a tidy data frame of précis forecasts, current weather data from stations or ag information bulletins.</p>
 <p>Credit for the name, <em>bomrang</em>, goes to <a href="http://dicook.github.io">Di Cook</a>, who suggested it attending the rOpenSci AUUnconf in Brisbane, 2016, when seeing the <a href="https://github.com/saundersk1/auunconf16/blob/master/Vignette_BoM.pdf">vignette</a> that we had assembled during the Unconf.</p>
 <div id="quick-start" class="section level2">
 <h2 class="hasAnchor">
@@ -105,7 +105,7 @@ devtools<span class="op">::</span><span class="kw">install_github</span>(<span c
 <div id="results" class="section level4">
 <h4 class="hasAnchor">
 <a href="#results" class="anchor"></a>Results</h4>
-<p>The function <code><a href="reference/get_precis_forecast.html">get_precis_forecast()</a></code> will return a tidy data frame of BOM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see the <code>Précis Forecast Fields</code> vignette.</p>
+<p>The function <code><a href="reference/get_precis_forecast.html">get_precis_forecast()</a></code> will return a tidy data frame of BoM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see the <code>Précis Forecast Fields</code> vignette.</p>
 </div>
 <div id="example" class="section level4">
 <h4 class="hasAnchor">
@@ -171,7 +171,7 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="reference/g
 <div id="results-1" class="section level4">
 <h4 class="hasAnchor">
 <a href="#results-1" class="anchor"></a>Results</h4>
-<p>The function <code><a href="reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> will return a tidy data frame of BOM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see the <code>Ag Bulletin Fields</code> vignette.</p>
+<p>The function <code><a href="reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> will return a tidy data frame of BoM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see the <code>Ag Bulletin Fields</code> vignette.</p>
 </div>
 <div id="example-1" class="section level4">
 <h4 class="hasAnchor">
@@ -280,18 +280,18 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="refere
 <ul>
 <li>Please <a href="https://github.com/ToowoombaTrio/bomrang/issues">report any issues or bugs</a>.</li>
 <li>License: MIT</li>
-<li>To cite <em>bomrang</em>, please use: Sparks A, Parsonage H and Pembleton K (2017). <em>BOMRang: Fetch Australian Government Bureau of Meteorology Weather Data</em>. doi: 10.5281/zenodo.598301 (URL: <a href="http://doi.org/10.5281/zenodo.598301" class="uri">http://doi.org/10.5281/zenodo.598301</a>), R package version 0.0.3-3, &lt;URL: <a href="https://github.com/ToowoombaTrio/BOMRang" class="uri">https://github.com/ToowoombaTrio/BOMRang</a>&gt;.</li>
+<li>To cite <em>bomrang</em>, please use: Sparks A, Parsonage H and Pembleton K (2017). <em>BoMRang: Fetch Australian Government Bureau of Meteorology Weather Data</em>. doi: 10.5281/zenodo.598301 (URL: <a href="http://doi.org/10.5281/zenodo.598301" class="uri">http://doi.org/10.5281/zenodo.598301</a>), R package version 0.0.3-3, &lt;URL: <a href="https://github.com/ToowoombaTrio/BoMRang" class="uri">https://github.com/ToowoombaTrio/BoMRang</a>&gt;.</li>
 <li>Please note that this project is released with a <a href="CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</li>
-<li>BOM Copyright Notice <a href="http://reg.bom.gov.au/other/copyright.shtml" class="uri">http://reg.bom.gov.au/other/copyright.shtml</a>
+<li>BoM Copyright Notice <a href="http://reg.bom.gov.au/other/copyright.shtml" class="uri">http://reg.bom.gov.au/other/copyright.shtml</a>
 </li>
 </ul>
 </div>
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
-<p><a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services</a></p>
-<p><a href="http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services Agriculture Bulletins</a></p>
-<p><a href="http://www.bom.gov.au/climate/how/observations/rain-measure.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services Observation of Rainfall</a></p>
+<p><a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services</a></p>
+<p><a href="http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services Agriculture Bulletins</a></p>
+<p><a href="http://www.bom.gov.au/climate/how/observations/rain-measure.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services Observation of Rainfall</a></p>
 </div>
 </div>
   </div>

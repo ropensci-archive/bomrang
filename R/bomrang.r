@@ -1,4 +1,4 @@
-#' Fetches Australian Government Bureau of Meteorology (BOM) weather data files
+#' Fetches Australian Government Bureau of Meteorology (BoM) weather data files
 #' and returns a tidy data frame of the data.
 #'
 #' @name bomrang

@@ -1,5 +1,5 @@
 
-#' Current weather observations of a BOM station
+#' Current weather observations of a BoM station
 #'
 #' @param station_name The name of the weather station. Fuzzy string matching
 #' via \code{base::agrep} is done.

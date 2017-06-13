@@ -1,10 +1,10 @@
-Get BOM Locations
+Get BoM Locations
 ================
 
-Get BOM Forecast Locations
+Get BoM Forecast Locations
 --------------------------
 
-BOM maintains a shapefile of forecast locations. For ease, we'll just use the .dbf file part of th shapefile to extract AAC codes that can be used to add lat/lon to the forecast.
+BoM maintains a shapefile of forecast locations. For ease, we'll just use the .dbf file part of th shapefile to extract AAC codes that can be used to add lat/lon to the forecast.
 
 ``` r
   utils::download.file(
@@ -24,7 +24,7 @@ Save the stations to disk for use in the R package.
   devtools::use_data(AAC_codes, overwrite = TRUE)
 ```
 
-    ## Saving AAC_codes as AAC_codes.rda to /Users/asparks/Development/bomrang/data
+    ## Saving AAC_codes as AAC_codes.rda to /Users/U8004755/Development/bomrang/data
 
 Session Info
 ------------
@@ -37,12 +37,12 @@ devtools::session_info()
 
     ##  setting  value                       
     ##  version  R version 3.4.0 (2017-04-21)
-    ##  system   x86_64, darwin16.5.0        
+    ##  system   x86_64, darwin15.6.0        
     ##  ui       unknown                     
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2017-05-29
+    ##  date     2017-06-13
 
     ## Packages -----------------------------------------------------------------
 
@@ -51,19 +51,19 @@ devtools::session_info()
     ##  base      * 3.4.0   2017-05-11 local          
     ##  compiler    3.4.0   2017-05-11 local          
     ##  datasets  * 3.4.0   2017-05-11 local          
-    ##  devtools    1.13.1  2017-05-13 CRAN (R 3.4.0) 
+    ##  devtools    1.13.2  2017-06-02 cran (@1.13.2) 
     ##  digest      0.6.12  2017-01-27 CRAN (R 3.4.0) 
-    ##  evaluate    0.10    2016-10-11 cran (@0.10)   
+    ##  evaluate    0.10    2016-10-11 CRAN (R 3.4.0) 
     ##  foreign     0.8-67  2016-09-13 CRAN (R 3.4.0) 
     ##  graphics  * 3.4.0   2017-05-11 local          
     ##  grDevices * 3.4.0   2017-05-11 local          
-    ##  htmltools   0.3.6   2017-04-28 cran (@0.3.6)  
+    ##  htmltools   0.3.6   2017-04-28 CRAN (R 3.4.0) 
     ##  knitr       1.16    2017-05-18 cran (@1.16)   
     ##  magrittr    1.5     2014-11-22 CRAN (R 3.4.0) 
     ##  memoise     1.1.0   2017-04-21 CRAN (R 3.4.0) 
     ##  methods   * 3.4.0   2017-05-11 local          
     ##  Rcpp        0.12.11 2017-05-22 cran (@0.12.11)
-    ##  rmarkdown   1.5     2017-04-26 cran (@1.5)    
+    ##  rmarkdown   1.5     2017-04-26 CRAN (R 3.4.0) 
     ##  rprojroot   1.2     2017-01-16 CRAN (R 3.4.0) 
     ##  stats     * 3.4.0   2017-05-11 local          
     ##  stringi     1.1.5   2017-04-07 CRAN (R 3.4.0) 
@@ -71,4 +71,4 @@ devtools::session_info()
     ##  tools       3.4.0   2017-05-11 local          
     ##  utils     * 3.4.0   2017-05-11 local          
     ##  withr       1.0.2   2016-06-20 CRAN (R 3.4.0) 
-    ##  yaml        2.1.14  2016-11-12 cran (@2.1.14)
+    ##  yaml        2.1.14  2016-11-12 CRAN (R 3.4.0)

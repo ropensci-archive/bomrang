@@ -12,7 +12,7 @@
 AAC_codes
 }
 \description{
-BOM forecast locations and longitude and latitude
+BoM forecast locations and longitude and latitude
 }
 \details{
 \describe{
@@ -25,6 +25,6 @@ BOM forecast locations and longitude and latitude
 
 The \code{AAC_codes} data are automatically loaded with the
 \code{\link{bomrang}} package and merged with the latest available forecast
-from the BOM.
+from the BoM.
 }
 \keyword{datasets}

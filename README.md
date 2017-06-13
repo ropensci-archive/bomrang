@@ -1,10 +1,10 @@
 
-*bomrang*: Fetch Australian Government Bureau of Meteorology (BOM) Data
+*bomrang*: Fetch Australian Government Bureau of Meteorology (BoM) Data
 =======================================================================
 
 [![Travis-CI Build Status](https://travis-ci.org/ToowoombaTrio/bomrang.svg?branch=master)](https://travis-ci.org/ToowoombaTrio/bomrang) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ToowoombaTrio/bomrang?branch=master&svg=true)](https://ci.appveyor.com/project/ToowoombaTrio/bomrang) [![codecov](https://codecov.io/gh/ToowoombaTrio/bomrang/branch/master/graph/badge.svg)](https://codecov.io/gh/ToowoombaTrio/bomrang) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.598301.svg)](https://doi.org/10.5281/zenodo.598301)
 
-Provides functions to interface with Australian Government Bureau of Meteorology (BOM) data, fetching data and returning a tidy data frame of précis forecasts, current weather data from stations or ag information bulletins.
+Provides functions to interface with Australian Government Bureau of Meteorology (BoM) data, fetching data and returning a tidy data frame of précis forecasts, current weather data from stations or ag information bulletins.
 
 Credit for the name, *bomrang*, goes to [Di Cook](http://dicook.github.io), who suggested it attending the rOpenSci AUUnconf in Brisbane, 2016, when seeing the [vignette](https://github.com/saundersk1/auunconf16/blob/master/Vignette_BoM.pdf) that we had assembled during the Unconf.
 
@@ -41,7 +41,7 @@ This function only takes one argument, `state`. States or territories are specif
 
 #### Results
 
-The function `get_precis_forecast()` will return a tidy data frame of BOM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see the `Précis Forecast Fields` vignette.
+The function `get_precis_forecast()` will return a tidy data frame of BoM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see the `Précis Forecast Fields` vignette.
 
 #### Example
 
@@ -98,7 +98,7 @@ This function only takes one argument, `state`. The `state` parameter allows the
 
 #### Results
 
-The function `get_ag_bulletin()` will return a tidy data frame of BOM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see the `Ag Bulletin Fields` vignette.
+The function `get_ag_bulletin()` will return a tidy data frame of BoM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see the `Ag Bulletin Fields` vignette.
 
 #### Example
 
@@ -211,15 +211,15 @@ Meta
 -   Please [report any issues or bugs](https://github.com/ToowoombaTrio/bomrang/issues).
 -   License: MIT
 -   To cite *bomrang*, please use:
-    Sparks A, Parsonage H and Pembleton K (2017). *BOMRang: Fetch Australian Government Bureau of Meteorology Weather Data*. doi: 10.5281/zenodo.598301 (URL: <http://doi.org/10.5281/zenodo.598301>), R package version 0.0.3-3, &lt;URL: <https://github.com/ToowoombaTrio/BOMRang>&gt;.
+    Sparks A, Parsonage H and Pembleton K (2017). *BoMRang: Fetch Australian Government Bureau of Meteorology Weather Data*. doi: 10.5281/zenodo.598301 (URL: <http://doi.org/10.5281/zenodo.598301>), R package version 0.0.3-3, &lt;URL: <https://github.com/ToowoombaTrio/BoMRang>&gt;.
 -   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
--   BOM Copyright Notice <http://reg.bom.gov.au/other/copyright.shtml>
+-   BoM Copyright Notice <http://reg.bom.gov.au/other/copyright.shtml>
 
 References
 ----------
 
-[Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml)
+[Australian Bureau of Meteorology (BoM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml)
 
-[Australian Bureau of Meteorology (BOM) Weather Data Services Agriculture Bulletins](http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml)
+[Australian Bureau of Meteorology (BoM) Weather Data Services Agriculture Bulletins](http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml)
 
-[Australian Bureau of Meteorology (BOM) Weather Data Services Observation of Rainfall](http://www.bom.gov.au/climate/how/observations/rain-measure.shtml)
+[Australian Bureau of Meteorology (BoM) Weather Data Services Observation of Rainfall](http://www.bom.gov.au/climate/how/observations/rain-measure.shtml)
