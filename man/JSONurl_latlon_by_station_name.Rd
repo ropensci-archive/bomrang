@@ -4,7 +4,7 @@
 \name{JSONurl_latlon_by_station_name}
 \alias{JSONurl_latlon_by_station_name}
 \title{JSONurl_latlon_by_station_name}
-\format{An object of class \code{data.table} (inherits from \code{data.frame}) with 885 rows and 14 columns.}
+\format{An object of class \code{data.table} (inherits from \code{data.frame}) with 886 rows and 14 columns.}
 \source{
 \url{ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip}
 }

@@ -30,7 +30,6 @@ Imports:
     readr,
     jsonlite,
     tidyr,
-    tools,
     utils,
     xml2
 Encoding: UTF-8
