@@ -29,10 +29,34 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="/index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="articles/index.html">Articles</a>
+  <a href="articles/bomrang.html">Get Started</a>
+</li>
+<li>
+  <a href="reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="articles/Ag_Bulletin_Fields.html">Ag Bulletin Fields</a>
+    </li>
+    <li>
+      <a href="articles/Current_Weather_Fields.html">Current Weather Fields</a>
+    </li>
+    <li>
+      <a href="articles/Precis_Forecast_Fields.html">Précis Forecast Fields</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="news/index.html">News</a>
@@ -70,7 +94,7 @@
   <span class="kw">library</span>(<span class="st">"devtools"</span>)
 }
 
-devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"toowoombatrio/bomrang"</span>)</code></pre></div>
+devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"toowoombatrio/bomrang"</span>)</code></pre></div>
 </div>
 <div id="using-bomrang" class="section level2">
 <h2 class="hasAnchor">
@@ -211,7 +235,7 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="reference/g
 <p>Returns the latest 72 hours weather observations for a station.</p>
 <p>This function accepts four arguments:</p>
 <ul>
-<li><p><code>station_name</code>, The name of the weather station. Fuzzy string matching via <code>base::agrep</code> is done.</p></li>
+<li><p><code>station_name</code>, The name of the weather station. Fuzzy string matching via <code><a href="http://www.rdocumentation.org/packages/base/topics/agrep">base::agrep</a></code> is done.</p></li>
 <li><p><code>latlon</code>, A length-2 numeric vector. When given instead of station_name, the nearest station (in this package) is used, with a message indicating the nearest such station. (See also <code><a href="reference/sweep_for_stations.html">sweep_for_stations()</a></code>.) Ignored if used in combination with <code>station_name</code>, with a warning.</p></li>
 <li><p><code>raw</code> Logical. Do not convert the columns data.table to the appropriate classes. (FALSE by default.)</p></li>
 <li><p><code>emit_latlon_msg</code> Logical. If <code>TRUE</code> (the default), and <code>latlon</code> is selected, a message is emitted before the table is returned indicating which station was actually used (i.e. which station was found to be nearest to the given coordinate).</p></li>
