@@ -121,7 +121,8 @@ get_precis_forecast <- function(state = NULL) {
   },
   error = function(x)
     stop(
-      "\nThe server with the forecast is not responding. Please retry again later.\n"
+      "\nThe server with the forecast is not responding.",
+      "Please retry again later.\n"
     ))
 
   areas <-

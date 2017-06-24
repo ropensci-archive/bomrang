@@ -118,7 +118,8 @@ get_current_weather <-
       json_url <- station_nrst_latlon[["url"]]
     }
     if (isTRUE(httr::http_error(json_url))) {
-      stop("A station was matched but a corresponding JSON file was not found at bom.gov.au.")
+      stop("\nA station was matched.",
+           "However a corresponding JSON file was not found at bom.gov.au.\n")
     }
 
     observations.json <-
@@ -126,7 +127,8 @@ get_current_weather <-
 
     if ("observations" %notin% names(observations.json) ||
         "data" %notin% names(observations.json$observations)) {
-      stop("A station was matched but the JSON returned by bom.gov.au was not in expected form.")
+      stop("\nA station was matched",
+           "but the JSON returned by bom.gov.au was not in expected form.\n")
     }
 
     # Columns which are meant to be numeric

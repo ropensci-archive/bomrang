@@ -123,7 +123,8 @@ else if (state == "AUS") {
   },
   error = function(x)
     stop(
-      "\nThe server with the bulletin files is not responding. Please retry again later.\n"
+      "\nThe server with the bulletin files is not responding.",
+      "Please retry again later.\n"
     ))
   obs <- xml2::xml_find_all(xmlbulletin, "//obs")
 
