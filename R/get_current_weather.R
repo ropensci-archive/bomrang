@@ -103,18 +103,20 @@ get_current_weather <-
         JSONurl_latlon_by_station_name %>%
         # Lat Lon are in JSON
         .[which.min(haversine_distance(lat, lon, Lat, Lon))]
-
-      on.exit(
-        message(
-          "Using station_name = '",
-          station_nrst_latlon$name,
-          "', at latitude = ",
-          station_nrst_latlon$Lat,
-          ", ",
-          "longitude = ",
-          station_nrst_latlon$Lon
+      
+      if (emit_latlon_msg) {
+        on.exit(
+          message(
+            "Using station_name = '",
+            station_nrst_latlon$name,
+            "', at latitude = ",
+            station_nrst_latlon$Lat,
+            ", ",
+            "longitude = ",
+            station_nrst_latlon$Lon
+          )
         )
-      )
+      }
 
       json_url <- station_nrst_latlon[["url"]]
     }
