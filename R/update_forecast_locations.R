@@ -31,13 +31,13 @@ update_forecast_locations <- function() {
   # fetch new database from BoM server
   curl::curl_download(
     "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf",
-    destfile = paste0(tempdir(), "AAC_codes.dbf"),
+    destfile = file.path(tempdir(), "AAC_codes.dbf"),
     mode = "wb"
   )
 
   # import BoM dbf file
   AAC_codes <-
-    foreign::read.dbf(paste0(tempdir(), "AAC_codes.dbf"), as.is = TRUE)
+    foreign::read.dbf(file.path(tempdir(), "AAC_codes.dbf"), as.is = TRUE)
   AAC_codes <- AAC_codes[, c(2:3, 7:9)]
 
   # overwrite the existing isd_history.rda file on disk

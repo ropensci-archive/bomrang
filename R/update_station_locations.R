@@ -27,7 +27,7 @@ update_station_locations <- function() {
   name <- site <- Lat <- Lon <- state_code <-  NULL
   tryCatch({
     curl::curl_download(url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
-                        destfile = paste0(tempdir(), "stations.zip"))
+                        destfile = file.path(tempdir(), "stations.zip"))
   },
   error = function(x)
     stop(
@@ -36,7 +36,7 @@ update_station_locations <- function() {
 
   bom_stations_raw <-
     readr::read_table(
-      paste0(tempdir(), "stations.zip"),
+      file.path(tempdir(), "stations.zip"),
       skip = 5,
       guess_max = 20000,
       col_names = c(
