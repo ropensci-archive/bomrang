@@ -246,6 +246,19 @@ head(Melbourne_weather)
 
 - To cite *bomrang*, please use:
     Sparks A, Parsonage H and Pembleton K (2017). *BoMRang: Fetch Australian Government Bureau of Meteorology Weather Data*. doi: 10.5281/zenodo.598301 (URL: <http://doi.org/10.5281/zenodo.598301>), R package version 0.0.3-3, &lt;URL: <https://github.com/ToowoombaTrio/BoMRang>&gt;.
+    
+    or the BibTeX entry:
+```bibtex
+@Manual{R-pkg-bomrang,
+  author       = {Adam Sparks and Hugh Parsonage and Keith Pembleton},
+  title        = {bomrang: Fetch Australian Government Bureau of Meteorology Weather Data},
+  year         = {2017},
+  doi          = {10.5281/zenodo.598301},
+  url          = {https://github.com/ToowoombaTrio/bomrang},
+}
+
+```
+    
 - Please note that this project is released with a
 [Contributor Code of Conduct](CONDUCT.md). By participating in this project you
 agree to abide by its terms.
