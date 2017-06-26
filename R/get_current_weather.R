@@ -32,8 +32,9 @@
 #'   get_current_weather(latlon = c(-34, 151))
 #' }
 #' @author Hugh Parsonage, \email{hugh.parsonage@gmail.com}
-#' @import data.table
 #' @importFrom magrittr use_series
+#' @importFrom data.table :=
+#' @importFrom data.table %chin%
 #' @export get_current_weather
 
 get_current_weather <-
@@ -103,17 +104,19 @@ get_current_weather <-
         # Lat Lon are in JSON
         .[which.min(haversine_distance(lat, lon, Lat, Lon))]
 
-      on.exit(
-        message(
-          "Using station_name = '",
-          station_nrst_latlon$name,
-          "', at latitude = ",
-          station_nrst_latlon$Lat,
-          ", ",
-          "longitude = ",
-          station_nrst_latlon$Lon
+      if (emit_latlon_msg) {
+        on.exit(
+          message(
+            "Using station_name = '",
+            station_nrst_latlon$name,
+            "', at latitude = ",
+            station_nrst_latlon$Lat,
+            ", ",
+            "longitude = ",
+            station_nrst_latlon$Lon
+          )
         )
-      )
+      }
 
       json_url <- station_nrst_latlon[["url"]]
     }
@@ -141,8 +144,8 @@ get_current_weather <-
         "rain_trace")
     # (i.e. not raw)
     cook <- function(DT, as.DT) {
-      if (!is.data.table(DT)) {
-        setDT(DT)
+      if (!data.table::is.data.table(DT)) {
+        data.table::setDT(DT)
       }
 
       DTnoms <- names(DT)
@@ -167,7 +170,7 @@ get_current_weather <-
       }
 
       for (j in which(DTnoms %chin% double_cols)) {
-        set(DT, j = j, value = force_double(DT[[j]]))
+        data.table::set(DT, j = j, value = force_double(DT[[j]]))
       }
 
       if (!as.DT) {
@@ -183,7 +186,7 @@ get_current_weather <-
       use_series("data")
 
     if (as.data.table) {
-      setDT(out)
+      data.table::setDT(out)
     }
 
     if (raw) {

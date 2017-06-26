@@ -70,9 +70,9 @@
 <p>Credit for the name, <em>bomrang</em>, goes to <a href="http://dicook.github.io">Di Cook</a>, who suggested it attending the rOpenSci AUUnconf in Brisbane, 2016, when seeing the <a href="https://github.com/saundersk1/auunconf16/blob/master/Vignette_BoM.pdf">vignette</a> that we had assembled during the Unconf.</p>
 <div id="quick-start" class="section level2">
 <h2 class="hasAnchor">
-<a href="#quick-start" class="anchor"></a>Quick start</h2>
+<a href="#quick-start" class="anchor"></a>Quick Start</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"devtools"</span>)) {
-  <span class="kw">install.packages</span>(<span class="st">"devtools"</span>, <span class="dt">repos =</span> <span class="st">"http://cran.rstudio.com/"</span>) 
+  <span class="kw">install.packages</span>(<span class="st">"devtools"</span>, <span class="dt">repos =</span> <span class="st">"http://cran.rstudio.com/"</span>)
   <span class="kw">library</span>(<span class="st">"devtools"</span>)
 }
 
@@ -89,66 +89,59 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 </h3>
 <p>This function only takes one argument, <code>state</code>. States or territories are specified using the official postal codes.</p>
 <ul>
-<li>
-<strong>ACT</strong> - Australian Capital Territory</li>
-<li>
-<strong>NSW</strong> - New South Wales</li>
-<li>
-<strong>NT</strong> - Northern Territory</li>
-<li>
-<strong>QLD</strong> - Queensland</li>
-<li>
-<strong>SA</strong> - South Australia</li>
-<li>
-<strong>TAS</strong> - Tasmania</li>
-<li>
-<strong>VIC</strong> - Victoria</li>
-<li>
-<strong>WA</strong> - Western Australia</li>
-<li>
-<strong>AUS</strong> - Australia, returns national forecast including all states/territories.</li>
+<li><p><strong>ACT</strong> - Australian Capital Territory</p></li>
+<li><p><strong>NSW</strong> - New South Wales</p></li>
+<li><p><strong>NT</strong> - Northern Territory</p></li>
+<li><p><strong>QLD</strong> - Queensland</p></li>
+<li><p><strong>SA</strong> - South Australia</p></li>
+<li><p><strong>TAS</strong> - Tasmania</p></li>
+<li><p><strong>VIC</strong> - Victoria</p></li>
+<li><p><strong>WA</strong> - Western Australia</p></li>
+<li><p><strong>AUS</strong> - Australia, returns national forecast including all states/territories.</p></li>
 </ul>
-<div id="results" class="section level4">
+<div id="get_precis_forecast-results" class="section level4">
 <h4 class="hasAnchor">
-<a href="#results" class="anchor"></a>Results</h4>
+<a href="#get_precis_forecast-results" class="anchor"></a><code><a href="reference/get_precis_forecast.html">get_precis_forecast()</a></code> Results</h4>
 <p>The function <code><a href="reference/get_precis_forecast.html">get_precis_forecast()</a></code> will return a tidy data frame of BoM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see the <code>Précis Forecast Fields</code> vignette.</p>
 </div>
-<div id="example" class="section level4">
+<div id="example-using-get_precis_forecast" class="section level4">
 <h4 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h4>
+<a href="#example-using-get_precis_forecast" class="anchor"></a>Example Using <code><a href="reference/get_precis_forecast.html">get_precis_forecast()</a></code>
+</h4>
 <p>Following is an example fetching the précis forecast for Queensland.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"bomrang"</span>)
 
 QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_precis_forecast.html">get_precis_forecast</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
-<span class="kw">head</span>(QLD_forecast)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode R"><code class="sourceCode r">##         aac index    start_time_local end_time_local UTC_offset
-## 1 QLD_PT001     0 2017-06-12 17:00:00     2017-06-13      10:00
-## 2 QLD_PT001     1 2017-06-13 00:00:00     2017-06-14      10:00
-## 3 QLD_PT001     2 2017-06-14 00:00:00     2017-06-15      10:00
-## 4 QLD_PT001     3 2017-06-15 00:00:00     2017-06-16      10:00
-## 5 QLD_PT001     4 2017-06-16 00:00:00     2017-06-17      10:00
-## 6 QLD_PT001     5 2017-06-17 00:00:00     2017-06-18      10:00
-##        start_time_utc        end_time_utc maximum_temperature
-## 1 2017-06-12 07:00:00 2017-06-12 14:00:00                  NA
-## 2 2017-06-12 14:00:00 2017-06-13 14:00:00                   7
-## 3 2017-06-13 14:00:00 2017-06-14 14:00:00                   8
-## 4 2017-06-14 14:00:00 2017-06-15 14:00:00                   9
-## 5 2017-06-15 14:00:00 2017-06-16 14:00:00                  10
-## 6 2017-06-16 14:00:00 2017-06-17 14:00:00                  10
-##   minimum_temperature lower_prec_limit upper_prec_limit           precis
-## 1                  NA               NA             &lt;NA&gt;   Shower or two.
-## 2                   7                7               50   Rain at times.
-## 3                   8                3               25  Showers easing.
-## 4                   8                1                8   Shower or two.
-## 5                   7                1                2 Possible shower.
-## 6                   7                1                1 Possible shower.
-##   probability_of_precipitation location state      lon      lat elev
-## 1                           50 Brisbane   QLD 153.0389 -27.4808  8.1
-## 2                           95 Brisbane   QLD 153.0389 -27.4808  8.1
-## 3                           80 Brisbane   QLD 153.0389 -27.4808  8.1
-## 4                           50 Brisbane   QLD 153.0389 -27.4808  8.1
-## 5                           40 Brisbane   QLD 153.0389 -27.4808  8.1
-## 6                           40 Brisbane   QLD 153.0389 -27.4808  8.1</code></pre></div>
+<span class="kw">head</span>(QLD_forecast)
+
+    ##         aac index    start_time_local end_time_local UTC_offset
+    ## 1 QLD_PT001     0 2017-06-12 17:00:00     2017-06-13      10:00
+    ## 2 QLD_PT001     1 2017-06-13 00:00:00     2017-06-14      10:00
+    ## 3 QLD_PT001     2 2017-06-14 00:00:00     2017-06-15      10:00
+    ## 4 QLD_PT001     3 2017-06-15 00:00:00     2017-06-16      10:00
+    ## 5 QLD_PT001     4 2017-06-16 00:00:00     2017-06-17      10:00
+    ## 6 QLD_PT001     5 2017-06-17 00:00:00     2017-06-18      10:00
+    ##        start_time_utc        end_time_utc maximum_temperature
+    ## 1 2017-06-12 07:00:00 2017-06-12 14:00:00                  NA
+    ## 2 2017-06-12 14:00:00 2017-06-13 14:00:00                   7
+    ## 3 2017-06-13 14:00:00 2017-06-14 14:00:00                   8
+    ## 4 2017-06-14 14:00:00 2017-06-15 14:00:00                   9
+    ## 5 2017-06-15 14:00:00 2017-06-16 14:00:00                  10
+    ## 6 2017-06-16 14:00:00 2017-06-17 14:00:00                  10
+    ##   minimum_temperature lower_prec_limit upper_prec_limit           precis
+    ## 1                  NA               NA             &lt;NA&gt;   Shower or two.
+    ## 2                   7                7               50   Rain at times.
+    ## 3                   8                3               25  Showers easing.
+    ## 4                   8                1                8   Shower or two.
+    ## 5                   7                1                2 Possible shower.
+    ## 6                   7                1                1 Possible shower.
+    ##   probability_of_precipitation location state      lon      lat elev
+    ## 1                           50 Brisbane   QLD 153.0389 -27.4808  8.1
+    ## 2                           95 Brisbane   QLD 153.0389 -27.4808  8.1
+    ## 3                           80 Brisbane   QLD 153.0389 -27.4808  8.1
+    ## 4                           50 Brisbane   QLD 153.0389 -27.4808  8.1
+    ## 5                           40 Brisbane   QLD 153.0389 -27.4808  8.1
+    ## 6                           40 Brisbane   QLD 153.0389 -27.4808  8.1</code></pre></div>
 </div>
 </div>
 <div id="using-get_ag_bulletin" class="section level3">
@@ -157,57 +150,51 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="reference/g
 </h3>
 <p>This function only takes one argument, <code>state</code>. The <code>state</code> parameter allows the user to select the bulletin for just one state or a national bulletin. States or territories are specified using the official postal codes.</p>
 <ul>
-<li>
-<strong>NSW</strong> - New South Wales</li>
-<li>
-<strong>NT</strong> - Northern Territory</li>
-<li>
-<strong>QLD</strong> - Queensland</li>
-<li>
-<strong>SA</strong> - South Australia</li>
-<li>
-<strong>TAS</strong> - Tasmania</li>
-<li>
-<strong>VIC</strong> - Victoria</li>
-<li>
-<strong>WA</strong> - Western Australia</li>
-<li>
-<strong>AUS</strong> - Australia, returns bulletin for all states/territories.</li>
+<li><p><strong>NSW</strong> - New South Wales</p></li>
+<li><p><strong>NT</strong> - Northern Territory</p></li>
+<li><p><strong>QLD</strong> - Queensland</p></li>
+<li><p><strong>SA</strong> - South Australia</p></li>
+<li><p><strong>TAS</strong> - Tasmania</p></li>
+<li><p><strong>VIC</strong> - Victoria</p></li>
+<li><p><strong>WA</strong> - Western Australia</p></li>
+<li><p><strong>AUS</strong> - Australia, returns bulletin for all states/territories.</p></li>
 </ul>
-<div id="results-1" class="section level4">
+<div id="get_ag_bulletin-results" class="section level4">
 <h4 class="hasAnchor">
-<a href="#results-1" class="anchor"></a>Results</h4>
+<a href="#get_ag_bulletin-results" class="anchor"></a><code><a href="reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> Results</h4>
 <p>The function <code><a href="reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> will return a tidy data frame of BoM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see the <code>Ag Bulletin Fields</code> vignette.</p>
 </div>
-<div id="example-1" class="section level4">
+<div id="example-using-get_ag_bulletin" class="section level4">
 <h4 class="hasAnchor">
-<a href="#example-1" class="anchor"></a>Example</h4>
+<a href="#example-using-get_ag_bulletin" class="anchor"></a>Example Using <code><a href="reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>
+</h4>
 <p>Following is an example fetching the ag bulletin for Queensland.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"bomrang"</span>)
 
 QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_ag_bulletin.html">get_ag_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
-<span class="kw">head</span>(QLD_bulletin)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode R"><code class="sourceCode r">##        obs_time_local        obs_time_utc time_zone  site dist
-## 1 2017-06-12 09:00:00 2017-06-11 23:00:00       EST 38026   38
-## 2 2017-06-12 09:00:00 2017-06-11 23:00:00       EST 38003   38
-## 3 2017-06-12 09:00:00 2017-06-11 23:00:00       EST 40842   40
-## 4 2017-06-12 09:00:00 2017-06-11 23:00:00       EST 39128   39
-## 5 2017-06-12 09:00:00 2017-06-11 23:00:00       EST 31011   31
-## 6 2017-06-12 09:00:00 2017-06-11 23:00:00       EST 44021   44
-##            station start  end state      lat      lon  elev bar_ht   WMO
-## 1       Birdsville  2000 2017   QLD -25.8975 139.3472  46.6   47.0 95482
-## 2           Boulia  1886 2017   QLD -22.9117 139.9039 161.8  158.3 94333
-## 3 Brisbane Airport  1992 2017   QLD -27.3917 153.1292   4.5    9.5 94578
-## 4        Bundaberg  1942 2017   QLD -24.9069 152.3230  30.8   31.5 94387
-## 5           Cairns  1941 2017   QLD -16.8736 145.7458   2.2    8.3 94287
-## 6      Charleville  1942 2017   QLD -26.4139 146.2558 301.6  303.3 94510
-##      r   tn   tx twd  ev   tg  sn   t5  t10  t20  t50  t1m  wr
-## 1  0.0  6.2 21.0 2.7  NA   NA  NA   NA   NA   NA   NA   NA  NA
-## 2  0.0  7.4 20.6 3.8 6.9  5.9  NA   NA   NA   NA   NA   NA  NA
-## 3 16.4 13.7 20.5 2.0 0.8 11.1 2.4 17.0 17.0 18.0 19.0 20.0 179
-## 4  1.4 15.7 23.7 1.3  NA   NA  NA 18.4 18.8 19.5 19.1 20.5  73
-## 5  1.4 17.7 23.3 3.3  NA   NA  NA   NA   NA   NA   NA   NA  NA
-## 6  0.6 11.2 22.5 3.2  NA   NA  NA   NA   NA   NA   NA   NA  NA</code></pre></div>
+<span class="kw">head</span>(QLD_bulletin)
+
+    ##        obs_time_local        obs_time_utc time_zone  site dist
+    ## 1 2017-06-12 09:00:00 2017-06-11 23:00:00       EST 38026   38
+    ## 2 2017-06-12 09:00:00 2017-06-11 23:00:00       EST 38003   38
+    ## 3 2017-06-12 09:00:00 2017-06-11 23:00:00       EST 40842   40
+    ## 4 2017-06-12 09:00:00 2017-06-11 23:00:00       EST 39128   39
+    ## 5 2017-06-12 09:00:00 2017-06-11 23:00:00       EST 31011   31
+    ## 6 2017-06-12 09:00:00 2017-06-11 23:00:00       EST 44021   44
+    ##            station start  end state      lat      lon  elev bar_ht   WMO
+    ## 1       Birdsville  2000 2017   QLD -25.8975 139.3472  46.6   47.0 95482
+    ## 2           Boulia  1886 2017   QLD -22.9117 139.9039 161.8  158.3 94333
+    ## 3 Brisbane Airport  1992 2017   QLD -27.3917 153.1292   4.5    9.5 94578
+    ## 4        Bundaberg  1942 2017   QLD -24.9069 152.3230  30.8   31.5 94387
+    ## 5           Cairns  1941 2017   QLD -16.8736 145.7458   2.2    8.3 94287
+    ## 6      Charleville  1942 2017   QLD -26.4139 146.2558 301.6  303.3 94510
+    ##      r   tn   tx twd  ev   tg  sn   t5  t10  t20  t50  t1m  wr
+    ## 1  0.0  6.2 21.0 2.7  NA   NA  NA   NA   NA   NA   NA   NA  NA
+    ## 2  0.0  7.4 20.6 3.8 6.9  5.9  NA   NA   NA   NA   NA   NA  NA
+    ## 3 16.4 13.7 20.5 2.0 0.8 11.1 2.4 17.0 17.0 18.0 19.0 20.0 179
+    ## 4  1.4 15.7 23.7 1.3  NA   NA  NA 18.4 18.8 19.5 19.1 20.5  73
+    ## 5  1.4 17.7 23.3 3.3  NA   NA  NA   NA   NA   NA   NA   NA  NA
+    ## 6  0.6 11.2 22.5 3.2  NA   NA  NA   NA   NA   NA   NA   NA  NA</code></pre></div>
 </div>
 </div>
 <div id="using-get_current_weather" class="section level3">
@@ -222,61 +209,64 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="reference/g
 <li><p><code>raw</code> Logical. Do not convert the columns data.table to the appropriate classes. (FALSE by default.)</p></li>
 <li><p><code>emit_latlon_msg</code> Logical. If <code>TRUE</code> (the default), and <code>latlon</code> is selected, a message is emitted before the table is returned indicating which station was actually used (i.e. which station was found to be nearest to the given coordinate).</p></li>
 </ul>
-<div id="results-2" class="section level4">
+<div id="results-of-get_current_weather" class="section level4">
 <h4 class="hasAnchor">
-<a href="#results-2" class="anchor"></a>Results</h4>
+<a href="#results-of-get_current_weather" class="anchor"></a>Results of <code><a href="reference/get_current_weather.html">get_current_weather()</a></code>
+</h4>
 <p>The function, <code><a href="reference/get_current_weather.html">get_current_weather()</a></code> will return a tidy data frame of the current and past 72 hours observations for the requested station. For a complete listing of the fields in the data frame see the <code>Current Weather Fields</code> vignette.</p>
 </div>
-<div id="example-2" class="section level4">
+<div id="example-using-get_current_weather" class="section level4">
 <h4 class="hasAnchor">
-<a href="#example-2" class="anchor"></a>Example</h4>
+<a href="#example-using-get_current_weather" class="anchor"></a>Example Using <code><a href="reference/get_current_weather.html">get_current_weather()</a></code>
+</h4>
 <p>Following is an example fetching the current weather for Melbourne.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"bomrang"</span>)
 
 Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_current_weather.html">get_current_weather</a></span>(<span class="st">"Melbourne (Olympic Park)"</span>)
-<span class="kw">head</span>(Melbourne_weather)</code></pre></div>
-<div class="sourceCode"><pre class="sourceCode R"><code class="sourceCode r">##   sort_order   wmo                     name history_product
-## 1          0 95936 Melbourne (Olympic Park)        IDV60801
-## 2          1 95936 Melbourne (Olympic Park)        IDV60801
-## 3          2 95936 Melbourne (Olympic Park)        IDV60801
-## 4          3 95936 Melbourne (Olympic Park)        IDV60801
-## 5          4 95936 Melbourne (Olympic Park)        IDV60801
-## 6          5 95936 Melbourne (Olympic Park)        IDV60801
-##   local_date_time local_date_time_full        aifstime_utc   lat lon
-## 1      12/07:00pm  2017-06-12 19:00:00 2017-06-12 09:00:00 -37.8 145
-## 2      12/06:30pm  2017-06-12 18:30:00 2017-06-12 08:30:00 -37.8 145
-## 3      12/06:00pm  2017-06-12 18:00:00 2017-06-12 08:00:00 -37.8 145
-## 4      12/05:30pm  2017-06-12 17:30:00 2017-06-12 07:30:00 -37.8 145
-## 5      12/05:00pm  2017-06-12 17:00:00 2017-06-12 07:00:00 -37.8 145
-## 6      12/04:30pm  2017-06-12 16:30:00 2017-06-12 06:30:00 -37.8 145
-##   apparent_t cloud cloud_base_m cloud_oktas cloud_type cloud_type_id
-## 1       12.7     -           NA          NA          -            NA
-## 2       13.4     -           NA          NA          -            NA
-## 3       14.2     -           NA          NA          -            NA
-## 4       14.8     -           NA          NA          -            NA
-## 5       14.8     -           NA          NA          -            NA
-## 6       13.9     -           NA          NA          -            NA
-##   delta_t gust_kmh gust_kt air_temp dewpt  press press_msl press_qnh
-## 1     0.3        0       0     12.2  11.6 1027.9    1027.9    1027.9
-## 2     0.7        7       4     13.2  11.9 1027.4    1027.4    1027.4
-## 3     0.7        0       0     13.5  12.1 1027.4    1027.4    1027.4
-## 4     1.4        0       0     14.3  11.6 1027.0    1027.0    1027.0
-## 5     1.6        0       0     14.4  11.4 1026.8    1026.8    1026.8
-## 6     1.7        9       5     14.6  11.4 1026.7    1026.7    1026.7
-##   press_tend rain_trace rel_hum sea_state swell_dir_worded swell_height
-## 1          -          0      96         -                -           NA
-## 2          -          0      92         -                -           NA
-## 3          -          0      91         -                -           NA
-## 4          -          0      84         -                -           NA
-## 5          -          0      82         -                -           NA
-## 6          -          0      81         -                -           NA
-##   swell_period vis_km weather wind_dir wind_spd_kmh wind_spd_kt
-## 1           NA     10       -     CALM            0           0
-## 2           NA     10       -       NW            2           1
-## 3           NA     10       -     CALM            0           0
-## 4           NA     10       -     CALM            0           0
-## 5           NA     10       -     CALM            0           0
-## 6           NA     10       -      WSW            6           3</code></pre></div>
+<span class="kw">head</span>(Melbourne_weather)
+
+    ##   sort_order   wmo                     name history_product
+    ## 1          0 95936 Melbourne (Olympic Park)        IDV60801
+    ## 2          1 95936 Melbourne (Olympic Park)        IDV60801
+    ## 3          2 95936 Melbourne (Olympic Park)        IDV60801
+    ## 4          3 95936 Melbourne (Olympic Park)        IDV60801
+    ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
+    ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
+    ##   local_date_time local_date_time_full        aifstime_utc   lat lon
+    ## 1      12/07:00pm  2017-06-12 19:00:00 2017-06-12 09:00:00 -37.8 145
+    ## 2      12/06:30pm  2017-06-12 18:30:00 2017-06-12 08:30:00 -37.8 145
+    ## 3      12/06:00pm  2017-06-12 18:00:00 2017-06-12 08:00:00 -37.8 145
+    ## 4      12/05:30pm  2017-06-12 17:30:00 2017-06-12 07:30:00 -37.8 145
+    ## 5      12/05:00pm  2017-06-12 17:00:00 2017-06-12 07:00:00 -37.8 145
+    ## 6      12/04:30pm  2017-06-12 16:30:00 2017-06-12 06:30:00 -37.8 145
+    ##   apparent_t cloud cloud_base_m cloud_oktas cloud_type cloud_type_id
+    ## 1       12.7     -           NA          NA          -            NA
+    ## 2       13.4     -           NA          NA          -            NA
+    ## 3       14.2     -           NA          NA          -            NA
+    ## 4       14.8     -           NA          NA          -            NA
+    ## 5       14.8     -           NA          NA          -            NA
+    ## 6       13.9     -           NA          NA          -            NA
+    ##   delta_t gust_kmh gust_kt air_temp dewpt  press press_msl press_qnh
+    ## 1     0.3        0       0     12.2  11.6 1027.9    1027.9    1027.9
+    ## 2     0.7        7       4     13.2  11.9 1027.4    1027.4    1027.4
+    ## 3     0.7        0       0     13.5  12.1 1027.4    1027.4    1027.4
+    ## 4     1.4        0       0     14.3  11.6 1027.0    1027.0    1027.0
+    ## 5     1.6        0       0     14.4  11.4 1026.8    1026.8    1026.8
+    ## 6     1.7        9       5     14.6  11.4 1026.7    1026.7    1026.7
+    ##   press_tend rain_trace rel_hum sea_state swell_dir_worded swell_height
+    ## 1          -          0      96         -                -           NA
+    ## 2          -          0      92         -                -           NA
+    ## 3          -          0      91         -                -           NA
+    ## 4          -          0      84         -                -           NA
+    ## 5          -          0      82         -                -           NA
+    ## 6          -          0      81         -                -           NA
+    ##   swell_period vis_km weather wind_dir wind_spd_kmh wind_spd_kt
+    ## 1           NA     10       -     CALM            0           0
+    ## 2           NA     10       -       NW            2           1
+    ## 3           NA     10       -     CALM            0           0
+    ## 4           NA     10       -     CALM            0           0
+    ## 5           NA     10       -     CALM            0           0
+    ## 6           NA     10       -      WSW            6           3</code></pre></div>
 </div>
 </div>
 </div>
@@ -284,12 +274,17 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="refere
 <h2 class="hasAnchor">
 <a href="#meta" class="anchor"></a>Meta</h2>
 <ul>
-<li>Please <a href="https://github.com/ToowoombaTrio/bomrang/issues">report any issues or bugs</a>.</li>
-<li>License: MIT</li>
-<li>To cite <em>bomrang</em>, please use: Sparks A, Parsonage H and Pembleton K (2017). <em>BoMRang: Fetch Australian Government Bureau of Meteorology Weather Data</em>. doi: 10.5281/zenodo.598301 (URL: <a href="http://doi.org/10.5281/zenodo.598301" class="uri">http://doi.org/10.5281/zenodo.598301</a>), R package version 0.0.3-3, &lt;URL: <a href="https://github.com/ToowoombaTrio/BoMRang" class="uri">https://github.com/ToowoombaTrio/BoMRang</a>&gt;.</li>
-<li>Please note that this project is released with a <a href="CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</li>
-<li>BoM Copyright Notice <a href="http://reg.bom.gov.au/other/copyright.shtml" class="uri">http://reg.bom.gov.au/other/copyright.shtml</a>
+<li><p>Please <a href="https://github.com/ToowoombaTrio/bomrang/issues">report any issues or bugs</a>.</p></li>
+<li><p>License: MIT</p></li>
+<li>
+<p>To cite <em>bomrang</em>, please use: Sparks A, Parsonage H and Pembleton K (2017). <em>BoMRang: Fetch Australian Government Bureau of Meteorology Weather Data</em>. doi: 10.5281/zenodo.598301 (URL: <a href="http://doi.org/10.5281/zenodo.598301" class="uri">http://doi.org/10.5281/zenodo.598301</a>), R package version 0.0.3-3, &lt;URL: <a href="https://github.com/ToowoombaTrio/BoMRang" class="uri">https://github.com/ToowoombaTrio/BoMRang</a>&gt;.</p>
+<p>or the BibTeX entry: ```bibtex @Manual{R-pkg-bomrang, author = {Adam Sparks and Hugh Parsonage and Keith Pembleton}, title = {bomrang: Fetch Australian Government Bureau of Meteorology Weather Data}, year = {2017}, doi = {10.5281/zenodo.598301}, url = {<a href="https://github.com/ToowoombaTrio/bomrang" class="uri">https://github.com/ToowoombaTrio/bomrang</a>}, }</p>
 </li>
+</ul>
+<p>```</p>
+<ul>
+<li><p>Please note that this project is released with a <a href="CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p></li>
+<li><p>BoM Copyright Notice <a href="http://reg.bom.gov.au/other/copyright.shtml" class="uri">http://reg.bom.gov.au/other/copyright.shtml</a></p></li>
 </ul>
 </div>
 <div id="references" class="section level2">
