@@ -29,7 +29,6 @@ Imports:
     magrittr,
     readr,
     jsonlite,
-    tibble,
     tidyr,
     utils,
     xml2
