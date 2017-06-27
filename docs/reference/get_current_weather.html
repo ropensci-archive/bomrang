@@ -93,24 +93,24 @@
     <p>Current Weather Observations of a BoM Station</p>
     
 
-    <pre class="usage"><span class='fu'>get_current_weather</span>(<span class='no'>station_name</span>, <span class='kw'>latlon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+    <pre class="usage"><span class='fu'>get_current_weather</span>(<span class='no'>station</span>, <span class='kw'>latlon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>emit_latlon_msg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>as.data.table</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>station_name</th>
+      <th>station</th>
       <td><p>The name of the weather station. Fuzzy string matching
 via <code><a href='http://www.rdocumentation.org/packages/base/topics/agrep'>base::agrep</a></code> is done.</p></td>
     </tr>
     <tr>
       <th>latlon</th>
       <td><p>A length-2 numeric vector. When given instead of
-<code>station_name</code>, the nearest station (in this package) is used, with a
+<code>station</code>, the nearest station (in this package) is used, with a
 message indicating the nearest such station. (See also
  <code><a href='sweep_for_stations.html'>sweep_for_stations</a></code>.) Ignored if used in combination with
-<code>station_name</code>, with a warning.</p></td>
+<code>station</code>, with a warning.</p></td>
     </tr>
     <tr>
       <th>raw</th>
