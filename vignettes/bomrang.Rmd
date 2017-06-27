@@ -77,7 +77,7 @@ territories are specified using the official postal codes:
 ### Results
 
 The function, `get_precis_forecast()`, will return a data frame of the weather
-forecast for the daily forecast with the following fields:
+forecast for the daily forecast for selected towns with the following fields:
 
 - **aac*- - AMOC Area Code, _e.g._ WA_MW008, a unique identifier for each
 location
