@@ -1,13 +1,13 @@
 
 #' Current Weather Observations of a BoM Station
 #'
-#' @param station The name of the weather station. Fuzzy string matching
+#' @param station_name The name of the weather station. Fuzzy string matching
 #' via \code{base::agrep} is done.
 #' @param latlon A length-2 numeric vector. When given instead of
-#' \code{station}, the nearest station (in this package) is used, with a
+#' \code{station_name}, the nearest station (in this package) is used, with a
 #' message indicating the nearest such station. (See also
 #'  \code{\link{sweep_for_stations}}.) Ignored if used in combination with
-#' \code{station}, with a warning.
+#' \code{station_name}, with a warning.
 #' @param raw Logical. Do not convert the columns \code{data.table} to the
 #' appropriate classes. (\code{FALSE} by default.)
 #' @param emit_latlon_msg Logical. If \code{TRUE} (the default), and
@@ -44,33 +44,33 @@
 #' @export get_current_weather
 
 get_current_weather <-
-  function(station,
+  function(station_name,
            latlon = NULL,
            raw = FALSE,
            emit_latlon_msg = TRUE,
            as.data.table = FALSE) {
-    if (missing(station) && is.null(latlon)) {
-      stop("One of 'station' or 'latlon' must be provided.")
+    if (missing(station_name) && is.null(latlon)) {
+      stop("One of 'station_name' or 'latlon' must be provided.")
     }
 
-    if (!missing(station)) {
+    if (!missing(station_name)) {
       if (!is.null(latlon)) {
         latlon <- NULL
-        warning("Both station and latlon provided. Ignoring latlon.")
+        warning("Both station_name and latlon provided. Ignoring latlon.")
       }
-      stopifnot(is.character(station),
-                length(station) == 1)
+      stopifnot(is.character(station_name),
+                length(station_name) == 1)
 
       # CRAN NOTE avoidance
       name <- NULL
 
-      station <- toupper(station)
+      station_name <- toupper(station_name)
 
       # If there's an exact match, use it; else, attempt partial match.
-      if (station %in% JSONurl_latlon_by_station_name[["name"]]) {
-        the_station <- station
+      if (station_name %in% JSONurl_latlon_by_station_name[["name"]]) {
+        the_station_name <- station_name
       } else {
-        likely_stations <- agrep(pattern = station,
+        likely_stations <- agrep(pattern = station_name,
                                  x = JSONurl_latlon_by_station_name[["name"]],
                                  value = TRUE)
 
@@ -78,12 +78,12 @@ get_current_weather <-
           stop("No station found.")
         }
 
-        the_station <- likely_stations[1]
+        the_station_name <- likely_stations[1]
         if (length(likely_stations) > 1) {
           warning(
-            "Multiple stations match station. Using\n\tstation = '",
-            the_station,
-            "'\ndid you mean:\n\tstation = '",
+            "Multiple stations match station_name. Using\n\tstation_name = '",
+            the_station_name,
+            "'\ndid you mean:\n\tstation_name = '",
             likely_stations[-1],
             "'?"
           )
@@ -91,7 +91,7 @@ get_current_weather <-
       }
 
       json_url <-
-        JSONurl_latlon_by_station_name[name == the_station][["url"]]
+        JSONurl_latlon_by_station_name[name == the_station_name][["url"]]
 
     } else {
       # We have established latlon is not NULL
@@ -113,7 +113,7 @@ get_current_weather <-
       if (emit_latlon_msg) {
         on.exit(
           message(
-            "Using station = '",
+            "Using station_name = '",
             station_nrst_latlon$name,
             "', at latitude = ",
             station_nrst_latlon$Lat,
