@@ -4,18 +4,18 @@
 \alias{get_current_weather}
 \title{Current Weather Observations of a BoM Station}
 \usage{
-get_current_weather(station_name, latlon = NULL, raw = FALSE,
+get_current_weather(station, latlon = NULL, raw = FALSE,
   emit_latlon_msg = TRUE, as.data.table = FALSE)
 }
 \arguments{
-\item{station_name}{The name of the weather station. Fuzzy string matching
+\item{station}{The name of the weather station. Fuzzy string matching
 via \code{base::agrep} is done.}
 
 \item{latlon}{A length-2 numeric vector. When given instead of
-\code{station_name}, the nearest station (in this package) is used, with a
+\code{station}, the nearest station (in this package) is used, with a
 message indicating the nearest such station. (See also
  \code{\link{sweep_for_stations}}.) Ignored if used in combination with
-\code{station_name}, with a warning.}
+\code{station}, with a warning.}
 
 \item{raw}{Logical. Do not convert the columns \code{data.table} to the
 appropriate classes. (\code{FALSE} by default.)}
