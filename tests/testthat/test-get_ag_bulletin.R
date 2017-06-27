@@ -43,43 +43,43 @@ test_that("get_ag_bulletin returns 27 columns", {
 test_that("get_ag_bulletin returns the bulletin for ACT/NSW", {
   skip_on_cran()
   BoM_bulletin <- get_ag_bulletin(state = "NSW")
-  expect_equal(BoM_bulletin[1, "state"], "NSW")
+  expect_equal(BoM_bulletin[["state"]][1], "NSW")
 })
 
 test_that("get_ag_bulletin returns the bulletin for NT", {
   skip_on_cran()
   BoM_bulletin <- get_ag_bulletin(state = "NT")
-  expect_equal(BoM_bulletin[1, 9], "NT")
+  expect_equal(BoM_bulletin[["state"]][1], "NT")
 })
 
 test_that("get_ag_bulletin returns the bulletin for QLD", {
   skip_on_cran()
   BoM_bulletin <- get_ag_bulletin(state = "QLD")
-  expect_equal(BoM_bulletin[1, "state"], "QLD")
+  expect_equal(BoM_bulletin[["state"]][1], "QLD")
 })
 
 test_that("get_ag_bulletin returns the bulletin for SA", {
   skip_on_cran()
   BoM_bulletin <- get_ag_bulletin(state = "SA")
-  expect_equal(BoM_bulletin[1, "state"], "SA")
+  expect_equal(BoM_bulletin[["state"]][1], "SA")
 })
 
 test_that("get_ag_bulletin returns the bulletin for TAS", {
   skip_on_cran()
   BoM_bulletin <- get_ag_bulletin(state = "TAS")
-  expect_equal(BoM_bulletin[1, "state"], "TAS")
+  expect_equal(BoM_bulletin[["state"]][1], "TAS")
 })
 
 test_that("get_ag_bulletin returns the bulletin for VIC", {
   skip_on_cran()
   BoM_bulletin <- get_ag_bulletin(state = "VIC")
-  expect_equal(BoM_bulletin[1, "state"], "VIC")
+  expect_equal(BoM_bulletin[["state"]][1], "VIC")
 })
 
 test_that("get_ag_bulletin returns the bulletin for WA", {
   skip_on_cran()
   BoM_bulletin <- get_ag_bulletin(state = "WA")
-  expect_equal(BoM_bulletin[1, "state"], "WA")
+  expect_equal(BoM_bulletin[["state"]][1], "WA")
 })
 
 test_that("get_ag_bulletin returns the bulletin for AUS", {
