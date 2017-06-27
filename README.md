@@ -1,11 +1,16 @@
 
 # *bomrang*: Fetch Australian Government Bureau of Meteorology (BoM) Data
 
-[![Travis-CI Build Status](https://travis-ci.org/ToowoombaTrio/bomrang.svg?branch=master)](https://travis-ci.org/ToowoombaTrio/bomrang) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ToowoombaTrio/bomrang?branch=master&svg=true)](https://ci.appveyor.com/project/ToowoombaTrio/bomrang) [![codecov](https://codecov.io/gh/ToowoombaTrio/bomrang/branch/master/graph/badge.svg)](https://codecov.io/gh/ToowoombaTrio/bomrang) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.598301.svg)](https://doi.org/10.5281/zenodo.598301)
+[![Travis-CI Build Status](https://travis-ci.org/ToowoombaTrio/bomrang.svg?branch=master)](https://travis-ci.org/ToowoombaTrio/bomrang)
+[![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ToowoombaTrio/bomrang?branch=master&svg=true)](https://ci.appveyor.com/project/ToowoombaTrio/bomrang) [![codecov](https://codecov.io/gh/ToowoombaTrio/bomrang/branch/master/graph/badge.svg)](https://codecov.io/gh/ToowoombaTrio/bomrang) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.598301.svg)](https://doi.org/10.5281/zenodo.598301)
 
-Provides functions to interface with Australian Government Bureau of Meteorology (BoM) data, fetching data and returning a tidy data frame of précis forecasts, current weather data from stations or ag information bulletins.
+Provides functions to interface with Australian Government Bureau of Meteorology
+(BoM) data, fetching data and returning a tidy data frame of précis forecasts,
+current weather data from stations or ag information bulletins.
 
-Credit for the name, *bomrang*, goes to [Di Cook](http://dicook.github.io), who suggested it attending the rOpenSci AUUnconf in Brisbane, 2016, when seeing the [vignette](https://github.com/saundersk1/auunconf16/blob/master/Vignette_BoM.pdf) that we had assembled during the Unconf.
+Credit for the name, *bomrang*, goes to [Di Cook](http://dicook.github.io), who
+suggested it attending the rOpenSci AUUnconf in Brisbane, 2016, when seeing the [vignette](https://github.com/saundersk1/auunconf16/blob/master/Vignette_BoM.pdf)
+that we had assembled during the Unconf.
 
 ## Quick Start
 
@@ -46,7 +51,8 @@ specified using the official postal codes.
 
 - **WA** - Western Australia
 
-- **AUS** - Australia, returns national forecast including all states/territories.
+- **AUS** - Australia, returns national forecast including all states or
+territories.
 
 #### `get_precis_forecast()` Results
 
@@ -245,8 +251,10 @@ head(Melbourne_weather)
 - License: MIT
 
 - To cite *bomrang*, please use:
-    Sparks A, Parsonage H and Pembleton K (2017). *BoMRang: Fetch Australian Government Bureau of Meteorology Weather Data*. doi: 10.5281/zenodo.598301 (URL: <http://doi.org/10.5281/zenodo.598301>), R package version 0.0.3-3, &lt;URL: <https://github.com/ToowoombaTrio/BoMRang>&gt;.
-    
+    Sparks A, Parsonage H and Pembleton K (2017). *BoMRang: Fetch Australian
+    Government Bureau of Meteorology Weather Data*. doi: 10.5281/zenodo.598301
+    (URL: <http://doi.org/10.5281/zenodo.598301>), R package version 0.0.4-1,
+
     or the BibTeX entry:
 ```bibtex
 @Manual{R-pkg-bomrang,

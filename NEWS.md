@@ -1,8 +1,27 @@
+# bomrang 0.0.5
+
+## Major changes
+
+- Welcome message included with statement regarding BoM copyright
+
+- Use `file.path()` in place of `paste0()`
+
+- Concatenate vignettes into a single file with appendices for descriptions of
+data returned by functions
+
+## Minor changes
+
+- Shorten code line lengths to be <= 80 chars
+
+- Lint md files
+
+--------------------------------------------------------------------------------
+
 # bomrang 0.0.4-1 2017-06-12
 
 ## Major changes
 
-- Update internal functionality for _dplyr_ 0.7.0  
+- Update internal functionality for _dplyr_ 0.7.0
 
 --------------------------------------------------------------------------------
 
