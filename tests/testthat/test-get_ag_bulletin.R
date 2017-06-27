@@ -85,8 +85,8 @@ test_that("get_ag_bulletin returns the bulletin for WA", {
 test_that("get_ag_bulletin returns the bulletin for AUS", {
   skip_on_cran()
   BoM_bulletin <- get_ag_bulletin(state = "AUS")
-  state <- na.omit(BoM_bulletin["state"])
-  expect_equal(nrow(unique(state)), 7)
+  state <- na.omit(BoM_bulletin[["state"]])
+  expect_equal(length(unique(state)), 7)
 })
 
 # Test that .validate_state stops if the state recognised ----------------------
