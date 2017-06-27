@@ -256,7 +256,7 @@ update_station_locations()
 
 [Australian Bureau of Meteorology (BoM) Weather Data Services Observation of Rainfall](http://www.bom.gov.au/climate/how/observations/rain-measure.shtml)
 
-## Appendix 1 - Output from get_current_weather
+## Appendix 1 - Output from get_current_weather()
 
 The function `get_current_weather()` will return a dataframe that will contain
 some or all of the following fields.
@@ -675,7 +675,7 @@ automated weather stations.
 	   invading it
 	19 Cirrocumulus alone, or Cirrocumulus predominant
 	
-## Appendix 2 - Output from get_précis_forecast
+## Appendix 2 - Output from get_précis_forecast()
 
 The function, `get_precis_forecast()`, will return a tidy data frame of the
 agriculture bulletin with the following fields:
@@ -711,7 +711,7 @@ characters)</td></tr>
 <tr><td>elev</td><td>Elevation of named location (metres)</td></tr>
 </table>
 
-## Appendix 3 - Output from get_ag_bulletin
+## Appendix 3 - Output from get_ag_bulletin()
 
 
 The function, `get_ag_bulletin()`, will return a tidy data frame of the

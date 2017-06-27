@@ -1,5 +1,5 @@
 
-#' BoM Agriculture Bulletin Information for Select Stations
+#' BoM agriculture bulletin information
 #'
 #'Fetch the BoM agricultural bulletin information and return a tidy data frame
 #'
@@ -20,10 +20,10 @@
 #'  }
 #'
 #' @return
-#' Tidy data frame of a Australia BoM agricultural bulletin information as a
-#' \code{\link{tibble}}.  For full details of fields and units returned see
-#' Appendix 3 in the \emph{bomrang} vignette, use
-#' \code{vignette("bomrang", package = "bomrang")} to view.
+#' Data frame of a Australia BoM agricultural bulletin information.  For more
+#' details see the vignette "Ag Bulletin Fields":
+#' \code{vignette("Ag Bulletin Fields", package = "bomrang")} for a complete
+#' list of fields and units.
 #'
 #' @examples
 #' \dontrun{
@@ -302,5 +302,5 @@ else if (state == "AUS") {
       as.POSIXct(x, origin = "1970-1-1", format = "%Y-%m-%d %H:%M:%OS"))
 
   # return from main function
-  return(tibble::as_tibble(tidy_df))
+  return(tidy_df)
 }
