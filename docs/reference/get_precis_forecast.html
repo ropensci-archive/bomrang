@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BoM daily précis forecast — get_precis_forecast • bomrang</title>
+<title>BoM Daily Précis Forecast for Select Towns — get_precis_forecast • bomrang</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -86,12 +86,12 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>BoM daily précis forecast</h1>
+    <h1>BoM Daily Précis Forecast for Select Towns</h1>
     </div>
 
     
-    <p>Fetch the BoM daily précis forecast and return a tidy data frame of the daily
-forecast</p>
+    <p>Fetch the BoM daily précis forecast and return a tidy data frame of the seven
+day town forecast for a specified state or territory.</p>
     
 
     <pre class="usage"><span class='fu'>get_precis_forecast</span>(<span class='kw'>state</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
@@ -108,10 +108,10 @@ instruction.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Data frame of a Australia BoM daily forecast in a tidy data frame.  For
-more details see the vignette "Précis Forecast Fields":
-<code>vignette("Précis Forecast Fields", package = "bomrang")</code>
-for a complete list of fields and units.</p>
+    <p>Tidy data frame of a Australia BoM précis seven day forecasts for select
+towns.  For full details of fields and units returned see Appendix 2 in the
+<em>bomrang</em> vignette, use <code><a href='https://cran.rstudio.com/web/packages/bomrang/vignettes/bomrang.html'>vignette("bomrang", package = "bomrang")</a></code>
+to view.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -155,7 +155,8 @@ or all using <code>AUS</code>.</p><dl class='dl-horizontal'>
 
     <h2>Author</h2>
     
-Adam H Sparks, <a href='mailto:adamhsparks@gmail.com'>adamhsparks@gmail.com</a> and Keith Pembleton, <a href='mailto:keith.pembleton@usq.edu.au'>keith.pembleton@usq.edu.au</a>
+Adam H Sparks, <a href='mailto:adamhsparks@gmail.com'>adamhsparks@gmail.com</a> and
+Keith Pembleton, <a href='mailto:keith.pembleton@usq.edu.au'>keith.pembleton@usq.edu.au</a>
 
   </div>
 </div>

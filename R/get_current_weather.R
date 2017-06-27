@@ -1,5 +1,5 @@
 
-#' Current weather observations of a BoM station
+#' Current Weather Observations of a BoM Station
 #'
 #' @param station_name The name of the weather station. Fuzzy string matching
 #' via \code{base::agrep} is done.
@@ -20,6 +20,11 @@
 #' For more details see the vignette "Current Weather Fields":
 #' \code{vignette("Current Weather Fields", package = "bomrang")}
 #' for a complete list of fields and units.
+#' @return
+# Tidy data frame of requested BoM station's current and prior 72hr data.  For
+#' full details of fields and units returned, see Appendix 1 in the
+#' \emph{bomrang} vignette, use \code{vignette("bomrang", package = "bomrang")}
+#' to view.
 #' @examples
 #' \dontrun{
 #'   # warning

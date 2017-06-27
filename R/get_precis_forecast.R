@@ -1,5 +1,5 @@
 
-#' BoM Daily Précis Forecast
+#' BoM Daily Précis Forecast for Select Towns
 #'
 #' Fetch the BoM daily précis forecast and return a tidy data frame of the seven
 #' day town forecast for a specified state or territory.
@@ -22,9 +22,10 @@
 #'  }
 #'
 #' @return
-#' Tidy data frame of a Australia BoM daily forecast for select towns.  For full
-#' details of fields and units. see Appendix 2 in the \emph{bomrang} vignette,
-#' use \code{vignette("bomrang", package = "bomrang")}.
+#' Tidy data frame of a Australia BoM précis seven day forecasts for select
+#' towns.  For full details of fields and units returned see Appendix 2 in the
+#' \emph{bomrang} vignette, use \code{vignette("bomrang", package = "bomrang")}
+#' to view.
 #'
 #' @examples
 #' \dontrun{
