@@ -1,5 +1,5 @@
 
-#' Current weather observations of a BoM station
+#' Current Weather Observations of a BoM Station
 #'
 #' @param station_name The name of the weather station. Fuzzy string matching
 #' via \code{base::agrep} is done.
@@ -31,6 +31,12 @@
 #'   # Get weather by latitude and longitude:
 #'   get_current_weather(latlon = c(-34, 151))
 #' }
+#' @return
+# Tidy data frame of requested BoM station's current and prior 72hr data as a
+#' \code{\link{tibble}}.  For full details of fields and units returned, see
+#' Appendix 1 in the \emph{bomrang} vignette, use
+#' \code{vignette("bomrang", package = "bomrang")} to view.
+#'
 #' @author Hugh Parsonage, \email{hugh.parsonage@gmail.com}
 #' @importFrom magrittr use_series
 #' @importFrom data.table :=
@@ -121,8 +127,10 @@ get_current_weather <-
       json_url <- station_nrst_latlon[["url"]]
     }
     if (isTRUE(httr::http_error(json_url))) {
-      stop("\nA station was matched.",
-           "However a corresponding JSON file was not found at bom.gov.au.\n")
+      stop(
+        "\nA station was matched.",
+        "However a corresponding JSON file was not found at bom.gov.au.\n"
+      )
     }
 
     observations.json <-
@@ -130,8 +138,10 @@ get_current_weather <-
 
     if ("observations" %notin% names(observations.json) ||
         "data" %notin% names(observations.json$observations)) {
-      stop("\nA station was matched",
-           "but the JSON returned by bom.gov.au was not in expected form.\n")
+      stop(
+        "\nA station was matched",
+        "but the JSON returned by bom.gov.au was not in expected form.\n"
+      )
     }
 
     # Columns which are meant to be numeric
@@ -190,8 +200,8 @@ get_current_weather <-
     }
 
     if (raw) {
-      return(out)
+      return(tibble::as_tibble(out))
     } else {
-      return(cook(out, as.DT = as.data.table))
+      return(tibble::as_tibble(cook(out, as.DT = as.data.table)))
     }
   }

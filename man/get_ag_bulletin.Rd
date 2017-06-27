@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_ag_bulletin.R
 \name{get_ag_bulletin}
 \alias{get_ag_bulletin}
-\title{BoM agriculture bulletin information}
+\title{BoM Agriculture Bulletin Information for Select Stations}
 \usage{
 get_ag_bulletin(state = NULL)
 }
@@ -11,10 +11,10 @@ get_ag_bulletin(state = NULL)
 instruction.}
 }
 \value{
-Data frame of a Australia BoM agricultural bulletin information.  For more
-details see the vignette "Ag Bulletin Fields":
-\code{vignette("Ag Bulletin Fields", package = "bomrang")} for a complete
-list of fields and units.
+Tidy data frame of a Australia BoM agricultural bulletin information as a
+\code{\link{tibble}}.  For full details of fields and units returned see
+Appendix 3 in the \emph{bomrang} vignette, use
+\code{vignette("bomrang", package = "bomrang")} to view.
 }
 \description{
 Fetch the BoM agricultural bulletin information and return a tidy data frame
