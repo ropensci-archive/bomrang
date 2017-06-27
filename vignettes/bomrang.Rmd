@@ -11,47 +11,109 @@ vignette: >
 
 ## Introduction
 
-_bomrang_ provides functions for interacting with [Australian Bureau of Meteorology (BoM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BoM serves several types of data data as XML and JSON files. This package fetches these files, parses them and return a tidy data frame.
+_bomrang_ provides functions for interacting with 
+[Australian Bureau of Meteorology (BoM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BoM serves several types of data data as XML and JSON files. This
+package fetches these files, parses them and return a tidy data frame.
 
 ## Using _bomrang_
 
-Several functions are provided by _bomrang_.The main functionality of _bomrang_ is provided through three functions, `get_precis_forecast()`, which retrieves the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; and `get_ag_bulletin()`, which retrieves the agriculture bulletin. Other functions include `update_forecast_locations()`, which updates an internal database of forecast locations distributed with the package, and `sweep_for_stations()` which returns the nearest weather stations to a point in Australia.
+Several functions are provided by _bomrang_.The main functionality of _bomrang_
+is provided through three functions, `get_precis_forecast()`, which retrieves
+the précis (short) forecast; `get_current_weather()`, which fetches the current
+weather from a given station; and `get_ag_bulletin()`, which retrieves the
+agriculture bulletin. Other functions include `update_forecast_locations()`, 
+which updates an internal database of forecast locations distributed with the
+package, and `sweep_for_stations()` which returns the nearest weather stations
+to a point in Australia.
 
-## Using `get_precis_forecast`
 
-This function only takes one argument, `state`. The `state` parameter allows the user to select the forecast for just one state or a national forecast. States or territories are specified using the official postal codes:
+## Using `get_current_weather`
 
-* **ACT** - Australian Capital Territory  
-* **NSW** - New South Wales  
-* **NT** - Northern Territory  
-* **QLD** - Queensland  
-* **SA** - South Australia  
-* **TAS** - Tasmania  
-* **VIC** - Victoria  
-* **WA** - Western Australia  
-* **AUS** - Australia, returns national forecast including all states.
+`get_current_weather()` takes one of two arguments: `station_name` and `latlon`,
+returning the current weather observations (and the observations of the last 72
+hours) for the given location.
+
+If `station_name` is used, the weather observations for the last 72 hours are
+returned for that station. If the string provided is ambiguous, the function
+returns an observation for one of the possible stations and emits a warning to
+offer unambiguous station names. 
+
+If `latlon` is used, the observations returned are from the station nearest to
+that latitude-longitude coordinate. The function also emits a message, to tell
+the user which station was used.
 
 ### Results
 
-The function, `get_precis_forecast()`, will return a data frame of the weather forecast for the daily forecast with the following fields:
+The table returned will have different fields depending on the station that is
+selected. 
 
-* **aac** - AMOC Area Code, _e.g._ WA_MW008, a unique identifier for each location  
-* **start_time_local** - Start of forecast date and time in local TZ  
-* **end_time_local** - End of forecast date and time in local TZ  
-* **UTC_offset** -  Hours offset from difference in hours and minutes from Coordinated Universal Time (UTC) for `start_time_local` and `end_time_local`
-* **start_time_utc** - Start of forecast date and time in UTC  
-* **end_time_utc** - End of forecast date and time in UTC  
-* **max_temp** - Maximum forecasted temperature (degrees Celsius)  
-* **min_temp** - Minimum forecasted temperature (degrees Celsius)  
-* **lower_prcp_limit** - Lower forecasted precipitation limit (millimetres)  
-* **upper_prcp_limit** - Upper forecasted precipitation limit (millimetres)  
-* **precis** - Précis forecast (a short summary, less than 30 characters)  
-* **prob_prcp** - Probability of precipitation (percent)  
-* **location** - Named location for forecast  
-* **state** - State name (postal code abbreviation)  
-* **lon** - Longitude of named location (decimal degrees)  
-* **lat** - Latitude of named location (decimal degrees)  
-* **elev** - Elevation of named location (metres).
+### Example
+
+Following is an example fetching the current weather for Melbourne.
+
+```{r, eval=FALSE}
+library("bomrang")
+
+Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
+head(Melbourne_weather)
+```
+
+## Using `get_precis_forecast`
+
+This function only takes one argument, `state`. The `state` parameter allows the
+user to select the forecast for just one state or a national forecast. States or
+territories are specified using the official postal codes:
+
+- **ACT*- - Australian Capital Territory  
+- **NSW*- - New South Wales  
+- **NT*- - Northern Territory  
+- **QLD*- - Queensland  
+- **SA*- - South Australia  
+- **TAS*- - Tasmania  
+- **VIC*- - Victoria  
+- **WA*- - Western Australia  
+- **AUS*- - Australia, returns national forecast including all states.
+
+### Results
+
+The function, `get_precis_forecast()`, will return a data frame of the weather
+forecast for the daily forecast with the following fields:
+
+- **aac*- - AMOC Area Code, _e.g._ WA_MW008, a unique identifier for each
+location
+
+- **start_time_local*- - Start of forecast date and time in local TZ
+
+- **end_time_local*- - End of forecast date and time in local TZ
+
+- **UTC_offset*- -  Hours offset from difference in hours and minutes from
+Coordinated Universal Time (UTC) for `start_time_local` and `end_time_local`
+
+- **start_time_utc*- - Start of forecast date and time in UTC 
+
+- **end_time_utc*- - End of forecast date and time in UTC
+
+- **max_temp*- - Maximum forecasted temperature (degrees Celsius)
+
+- **min_temp*- - Minimum forecasted temperature (degrees Celsius)
+
+- **lower_prcp_limit*- - Lower forecasted precipitation limit (millimetres)
+
+- **upper_prcp_limit*- - Upper forecasted precipitation limit (millimetres)
+
+- **precis*- - Précis forecast (a short summary, less than 30 characters)
+
+- **prob_prcp*- - Probability of precipitation (percent)
+
+- **town*- - A disaggretated district forecast for select towns
+
+- **state*- - State name (postal code abbreviation)
+
+- **lon*- - Longitude of named location (decimal degrees)
+
+- **lat*- - Latitude of named location (decimal degrees)
+
+- **elev*- - Elevation of named location (metres).
 
 ### Example
 
@@ -66,51 +128,54 @@ head(QLD_forecast)
 
 ## Using `get_ag_bulletin`
 
-`get_ag_bulletin()` only takes one argument, `state`. The `state` parameter allows the user to select the bulletin for just one state or a national forecast. States or territories are specified using the official postal codes.
+`get_ag_bulletin()` only takes one argument, `state`. The `state` parameter
+allows the user to select the bulletin for just one state or a national
+forecast. States or territories are specified using the official postal codes.
 
-* **NSW** - New South Wales  
-* **NT** - Northern Territory  
-* **QLD** - Queensland  
-* **SA** - South Australia  
-* **TAS** - Tasmania  
-* **VIC** - Victoria  
-* **WA** - Western Australia  
-* **AUS** - Australia, returns bulletin for all states/territories.
+- **NSW*- - New South Wales  
+- **NT*- - Northern Territory  
+- **QLD*- - Queensland  
+- **SA*- - South Australia  
+- **TAS*- - Tasmania  
+- **VIC*- - Victoria  
+- **WA*- - Western Australia  
+- **AUS*- - Australia, returns bulletin for all states/territories.
 
 ### Results
 
-The function, `get_ag_bulletin()`, will return a data frame of the agriculture bulletin with the following fields:
+The function, `get_ag_bulletin()`, will return a data frame of the agriculture
+bulletin with the following fields:
 
-* **obs-time-local** - Observation time  
-* **obs-time-utc** - Observation time (time in UTC)  
-* **time-zone** - Time zone for observation  
-* **site** - Unique BoM identifier for each station  
-* **dist** - BoM rainfall district  
-* **station** - BoM station name  
-* **start** - Year data collection starts  
-* **end** - Year data collection ends (will always be current)  
-* **state** - State name (postal code abbreviation)  
-* **lat** - Latitude (decimal degrees)  
-* **lon** - Longitude (decimal degrees)  
-* **elev** - Station elevation (metres)  
-* **bar_ht** - Bar height (metres)  
-* **WMO** - World Meteorlogical Organization number (unique ID used worldwide)
-* **r** - Rain to 9am (millimetres). _Trace will be reported as 0.01_  
-* **tn** - Minimum temperature (degrees Celsius)  
-* **tx** - Maximum temperature (degrees Celsius)  
-* **twd** - Wet bulb depression (degrees Celsius)  
-* **ev** - Evaporation (millimetres)  
-* **tg** - Terrestrial minimum temperature (degrees Celsius)  
-* **sn** - Sunshine (hours)  
-* **t5** - 5cm soil temperature (degrees Celsius)  
-* **t10** - 10cm soil temperature (degrees Celsius)  
-* **t20** - 20cm soil temperature (degrees Celsius)  
-* **t50** - 50cm soil temperature (degrees Celsius)  
-* **t1m** - 1m soil temperature (degrees Celsius)  
-* **wr** - Wind run (kilometres)  
-* **state** - State name (postal code abbreviation)  
-* **lat** - Latitude (decimal degrees)  
-* **lon** - Longitude (decimal degrees).
+- **obs-time-local*- - Observation time  
+- **obs-time-utc*- - Observation time (time in UTC)  
+- **time-zone*- - Time zone for observation  
+- **site*- - Unique BoM identifier for each station  
+- **dist*- - BoM rainfall district  
+- **station*- - BoM station name  
+- **start*- - Year data collection starts  
+- **end*- - Year data collection ends (will always be current)  
+- **state*- - State name (postal code abbreviation)  
+- **lat*- - Latitude (decimal degrees)  
+- **lon*- - Longitude (decimal degrees)  
+- **elev*- - Station elevation (metres)  
+- **bar_ht*- - Bar height (metres)  
+- **WMO*- - World Meteorlogical Organization number (unique ID used worldwide)
+- **r*- - Rain to 9am (millimetres). _Trace will be reported as 0.01_  
+- **tn*- - Minimum temperature (degrees Celsius)  
+- **tx*- - Maximum temperature (degrees Celsius)  
+- **twd*- - Wet bulb depression (degrees Celsius)  
+- **ev*- - Evaporation (millimetres)  
+- **tg*- - Terrestrial minimum temperature (degrees Celsius)  
+- **sn*- - Sunshine (hours)  
+- **t5*- - 5cm soil temperature (degrees Celsius)  
+- **t10*- - 10cm soil temperature (degrees Celsius)  
+- **t20*- - 20cm soil temperature (degrees Celsius)  
+- **t50*- - 50cm soil temperature (degrees Celsius)  
+- **t1m*- - 1m soil temperature (degrees Celsius)  
+- **wr*- - Wind run (kilometres)  
+- **state*- - State name (postal code abbreviation)  
+- **lat*- - Latitude (decimal degrees)  
+- **lon*- - Longitude (decimal degrees).
 
 ### Example
 
@@ -123,39 +188,21 @@ QLD_bulletin <- get_ag_bulletin(state = "QLD")
 head(QLD_bulletin)
 ```
 
-## Using `get_current_weather` 
-`get_current_weather()` takes one of two arguments: `station_name` and `latlon`, returning the current weather observations (and the observations of the last 72 hours) for the given location.
-
-If `station_name` is used, the weather observations for the last 72 hours are returned for that station.
-If the string provided is ambiguous, the function returns an observation for one of the possible stations and emits a warning to offer unambiguous station names. 
-
-If `latlon` is used, the observations returned are from the station nearest to that latitude-longitude coordinate. The function also emits a message, to tell the user which station was used.
-
-### Results
-The table returned will have different fields depending on the station that is selected. 
-
-### Example
-Following is an example fetching the current weather for Melbourne.
-
-```{r, eval=FALSE}
-library("bomrang")
-
-Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
-head(Melbourne_weather)
-```
-
 ## Other functions in _bomrang_
 
 ### Using `sweep_for_stations`
-`sweep_for_stations()` only takes one argument, `latlon`, a length-2 numeric vector. By default, Canberra (approximately).
+`sweep_for_stations()` only takes one argument, `latlon`, a length-2 numeric
+vector. By default, Canberra (approximately).
 
 #### Results
-This function will search for weather stations and return a data frame of all weather stations (in this package) sorted by distance from `latlon`, ascending. The fields in the data frame are:
+This function will search for weather stations and return a data frame of all
+weather stations (in this package) sorted by distance from `latlon`, ascending.
+The fields in the data frame are:
 
-**name** - station name  
-**Lat** - latitude (decimal degrees)  
-**Lon** - longitude (decimal degrees)  
-**distance** - distance from provided `latlon` value (kilometres).
+**name*- - station name  
+**Lat*- - latitude (decimal degrees)  
+**Lon*- - longitude (decimal degrees)  
+**distance*- - distance from provided `latlon` value (kilometres).
 
 #### Example  
 
@@ -169,7 +216,13 @@ head(sweep_for_stations(latlon = c(-35.3, 149.2)), 10)
 
 ### Using `update_forecast_locations`
 
-`update_forecast_locations()` downloads the latest précis forecast locations from the BoM server and updates _bomrang_'s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BoM forecast location database that is not available in the database distributed with _bomrang_. This database is distributed with the package to make the process faster when fetching the forecast.
+`update_forecast_locations()` downloads the latest précis forecast locations
+from the BoM server and updates _bomrang_'s internal database of forecast
+locations. There is no need to use this unless you know that a forecast location
+exists in a more current version of the BoM forecast location database that is
+not available in the database distributed with _bomrang_. This database is
+distributed with the package to make the process faster when fetching the
+forecast.
 
 #### Example
 
@@ -181,7 +234,11 @@ update_forecast_locations()
 
 ### Using `update_station_locations`
 
-`update_station_locations()` downloads the latest station locations and metadata and updates bomrang's internal databases that support the use of `get_current_weather()` and `get_ag_bulletin()`. There is no need to use this unless you know that a station exists in BoM's database that is not available in the databases distributed with _bomrang_
+`update_station_locations()` downloads the latest station locations and metadata
+and updates bomrang's internal databases that support the use of
+`get_current_weather()` and `get_ag_bulletin()`. There is no need to use this
+unless you know that a station exists in BoM's database that is not available in
+the databases distributed with _bomrang_
 
 #### Example
 
@@ -201,57 +258,77 @@ update_station_locations()
 
 ## Appendix 1 - Output from get_current_weather()
 
-The function `get_current_weather()` will return a dataframe that will contain some or all of the following fields.
+The function `get_current_weather()` will return a dataframe that will contain
+some or all of the following fields.
 
 ### Fields and descriptions
 
 <table>
 <tr><th>Field Name</th><th>Description</th></tr>
-<tr><td>WMO_id</td><td>WMO station index number, uniquely identifies station</td></tr>
+<tr><td>WMO_id</td><td>WMO station index number, uniquely identifies
+station</td></tr>
 <tr><td>Name[31]</td><td>Observing station name</td></tr>
-<tr><td>Abbr[6]</td><td>An abbeviated name (normally 4 characters) used for the station</td></tr>
-<tr><td>Date</td><td>Date, Year (4 digits), month (2 digits), day (2 digits)</td></tr>
+<tr><td>Abbr[6]</td><td>An abbeviated name (normally 4 characters) used for the
+station</td></tr>
+<tr><td>Date</td><td>Date, Year (4 digits), month (2 digits), day (2
+digits)</td></tr>
 <tr><td>Time</td><td>Time, Hours (2 digits), minutes (2 digits), UTC</td></tr>
 <tr><td>Lat</td><td>Latitude, decimal degrees, S -ve, N +ve</td></tr>
 <tr><td>Lon</td><td>Longitude, decimal degrees, E +ve, W -ve</td></tr>
 <tr><td>Stn_typ</td><td>Station type</td></tr>
 <tr><td>Stn_ht_m</td><td>Station height (in metres)</td></tr>
-<tr><td>Total_cld</td><td>Total cloud cover in oktas, 9=Sky Obscured by smoke, fog, ...</td></tr>
+<tr><td>Total_cld</td><td>Total cloud cover in oktas, 9=Sky Obscured by smoke,
+fog, ...</td></tr>
 <tr><td>Wdir</td><td>Wind direction, degrees true</td></tr>
 <tr><td>Wspd_mps</td><td>Wind speed, metres per second</td></tr>
 <tr><td>Vis_m</td><td>Visibility, metres</td></tr>
 <tr><td>Wx[9]</td><td>Present weather, abbreviated</td></tr>
 <tr><td>Pw1</td><td>Past weather (last 3-6 hours), see below</td></tr>
-<tr><td>Pw2</td><td>Past weather (Used so more than one variation can be reported)</td></tr>
+<tr><td>Pw2</td><td>Past weather (Used so more than one variation can be
+reported)</td></tr>
 <tr><td>Msl_P</td><td>Mean Sea Level Pressure, hPa</td></tr>
 <tr><td>Stn_P</td><td>Station level pressure, hPa</td></tr>
-<tr><td>P_tend_typ</td><td>Type of the pressure tendency, numerical code, see below</td></tr>
-<tr><td>P_tend_val</td><td>Pressure tendency (change) in last 3 hours, hPa</td></tr>
-<tr><td>Cor_P_tend</td><td>Pressure tendency in last 3 hours corrected for diurnal variation</td></tr>
+<tr><td>P_tend_typ</td><td>Type of the pressure tendency, numerical code, see
+below</td></tr>
+<tr><td>P_tend_val</td><td>Pressure tendency (change) in last 3 hours,
+hPa</td></tr>
+<tr><td>Cor_P_tend</td><td>Pressure tendency in last 3 hours corrected for
+diurnal variation</td></tr>
 <tr><td>T_DB</td><td>Temperature (dry bulb), degrees C</td></tr>
 <tr><td>DP</td><td>Dew point, degrees C</td></tr>
-<tr><td>Low_cld_amt</td><td>Amount of low cloud, oktas, 9=Sky obscured by fog, smoke, ...</td></tr>
+<tr><td>Low_cld_amt</td><td>Amount of low cloud, oktas, 9=Sky obscured by fog,
+smoke, ...</td></tr>
 <tr><td>Low_cld_typ[4]</td><td>Type of low cloud, abbreviation</td></tr>
 <tr><td>Cld_base_m</td><td>Base of lowest cloud, m</td></tr>
-<tr><td>Cld_dir[4]</td><td>Direction of motion of low cloud, compass point</td></tr>
+<tr><td>Cld_dir[4]</td><td>Direction of motion of low cloud, compass
+point</td></tr>
 <tr><td>Mid_cld_typ[4]</td><td>Type of middle level cloud, abbreviation</td></tr>
 <tr><td>Hi_cld_typ[4]</td><td>Type of high cloud, abbreviation</td></tr>
-<tr><td>Rf_int_h6</td><td>Interval for which rain is reported in next field, hours</td></tr>
+<tr><td>Rf_int_h6</td><td>Interval for which rain is reported in next field,
+hours</td></tr>
 <tr><td>Rainfall6</td><td>Rainfall, mm, usually at 9 or 3 AM/PM</td></tr>
-<tr><td>Rf_int_h4</td><td>Interval for which rain is reported in next field, hours</td></tr>
-<tr><td>Rainfall4</td><td>Rainfall, mm, usually since last observastion</td></tr>
+<tr><td>Rf_int_h4</td><td>Interval for which rain is reported in next field,
+hours</td></tr>
+<tr><td>Rainfall4</td><td>Rainfall, mm, usually since last
+observastion</td></tr>
 <tr><td>Sea_state[5]</td><td>Sea state, abbreviation</td></tr>
 <tr><td>Swl_state[9]</td><td>Swell state, abbreviation</td></tr>
 <tr><td>Swl_dir[4]</td><td>Swell direction, abbreviation</td></tr>
-<tr><td>Max_T</td><td>Maximum temperature, 24h to 9AM or 6h to 3PM local time, degree C</td></tr>
-<tr><td>Min_T</td><td>Minimum temperature, 24h to 9AM local time, degree C</td></tr>
-<tr><td>Min_grnd_T</td><td>Minimum ground temperature, 24 h to (AM local time, degree C</td></tr>
+<tr><td>Max_T</td><td>Maximum temperature, 24h to 9AM or 6h to 3PM local time,
+degree C</td></tr>
+<tr><td>Min_T</td><td>Minimum temperature, 24h to 9AM local time, degree
+C</td></tr>
+<tr><td>Min_grnd_T</td><td>Minimum ground temperature, 24 h to (AM local time,
+degree C</td></tr>
 <tr><td>Snow_depth_m</td><td>Depth of snow on ground, metres</td></tr>
 <tr><td>Low_cld_code</td><td>Code for low level cloud type, see below</td></tr>
-<tr><td>Mid_cld_code</td><td>Code for middle level cloud type, see below</td></tr>
+<tr><td>Mid_cld_code</td><td>Code for middle level cloud type, see
+below</td></tr>
 <tr><td>Hi_cld_code</td><td>Code for high level cloud type, see below</td></tr>
-<tr><td>Max_T(Int)</td><td>Maximum temperature for international exchange</td></tr>
-<tr><td>Min_T(Int)</td><td>Minimum temperature for international exchange</td></tr>
+<tr><td>Max_T(Int)</td><td>Maximum temperature for international
+exchange</td></tr>
+<tr><td>Min_T(Int)</td><td>Minimum temperature for international
+exchange</td></tr>
 <tr><td>Plain_lang[51]</td><td>Plain language comments</td></tr>
 </table>
 
@@ -600,21 +677,32 @@ automated weather stations.
 	
 ## Appendix 2 - Output from get_précis_forecast()
 
-The function, `get_precis_forecast()`, will return a tidy data frame of the agriculture bulletin with the following fields:
+The function, `get_precis_forecast()`, will return a tidy data frame of the
+agriculture bulletin with the following fields:
 
 <table>
 <tr><th>Field Name</th><th>Description</th></tr>
-<tr><td>aac</td><td>AMOC Area Code, _e.g._, WA_MW008, a unique identifier for each location</td></tr>
-<tr><td>start_time_local</td><td>Start of forecast date and time in local TZ</td></tr>
-<tr><td>end_time_local</td><td>End of forecast date and time in local TZ</td></tr>
-<tr><td>UTC_offset</td><td> Hours offset from difference in hours and minutes from Coordinated Universal Time (UTC) for `start_time_local` and `end_time_local`</td></tr>
+<tr><td>aac</td><td>AMOC Area Code, _e.g._, WA_MW008, a unique identifier for
+each location</td></tr>
+<tr><td>start_time_local</td><td>Start of forecast date and time in local
+TZ</td></tr>
+<tr><td>end_time_local</td><td>End of forecast date and time in local
+TZ</td></tr>
+<tr><td>UTC_offset</td><td> Hours offset from difference in hours and minutes
+from Coordinated Universal Time (UTC) for `start_time_local` and
+`end_time_local`</td></tr>
 <tr><td>start_time_utc</td><td>Start of forecast date and time in UTC</td></tr>
 <tr><td>end_time_utc</td><td>End of forecast date and time in UTC</td></tr>
-<tr><td>max_temp</td><td>Maximum forecasted temperature (degrees Celsius)</td></tr>
-<tr><td>min_temp</td><td>Minimum forecasted temperature (degrees Celsius)</td></tr>
-<tr><td>lower_prcp_limit</td><td>Lower forecasted precipitation limit (millimetres)</td></tr>
-<tr><td>upper_prcp_limit</td><td>Upper forecasted precipitation limit (millimetres)</td></tr>
-<tr><td>precis</td><td>Précis forecast (a short summary, less than 30 characters)</td></tr>
+<tr><td>max_temp</td><td>Maximum forecasted temperature (degrees
+Celsius)</td></tr>
+<tr><td>min_temp</td><td>Minimum forecasted temperature (degrees
+Celsius)</td></tr>
+<tr><td>lower_prcp_limit</td><td>Lower forecasted precipitation limit
+(millimetres)</td></tr>
+<tr><td>upper_prcp_limit</td><td>Upper forecasted precipitation limit
+(millimetres)</td></tr>
+<tr><td>precis</td><td>Précis forecast (a short summary, less than 30
+characters)</td></tr>
 <tr><td>prob_prcp</td><td>Probability of precipitation (percent)</td></tr>
 <tr><td>location</td><td>Named location for forecast</td></tr>
 <tr><td>state</td><td>State name (postal code abbreviation)</td></tr>
@@ -626,7 +714,8 @@ The function, `get_precis_forecast()`, will return a tidy data frame of the agri
 ## Appendix 3 - Output from get_ag_bulletin()
 
 
-The function, `get_ag_bulletin()`, will return a tidy data frame of the agriculture bulletin with the following fields:
+The function, `get_ag_bulletin()`, will return a tidy data frame of the
+agriculture bulletin with the following fields:
 
 <table>
 <tr><th>Field Name</th><th>Description</th></tr>
@@ -643,8 +732,10 @@ The function, `get_ag_bulletin()`, will return a tidy data frame of the agricult
 <tr><td>lon</td><td>Longitude (decimal degrees)</td></tr>
 <tr><td>elev_m</td><td>Station elevation (metres)</td></tr>
 <tr><td>bar_ht</td><td>Bar height (metres)</td></tr>
-<tr><td>WMO</td><td>World Meteorlogical Organization number (unique ID used worldwide)
-<tr><td>r</td><td>Rain to 9am (millimetres). _Trace will be reported as 0.01_</td></tr>
+<tr><td>WMO</td><td>World Meteorlogical Organization number (unique ID used
+worldwide)
+<tr><td>r</td><td>Rain to 9am (millimetres). _Trace will be reported as
+0.01_</td></tr>
 <tr><td>tn</td><td>Minimum temperature (degrees Celsius)</td></tr>
 <tr><td>tx</td><td>Maximum temperature (degrees Celsius)</td></tr>
 <tr><td>twd</td><td>Wet bulb depression (degrees Celsius)</td></tr>
