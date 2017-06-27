@@ -66,7 +66,7 @@
       <h1>bomrang</h1>
                         <h4 class="author">Adam H Sparks</h4>
             
-            <h4 class="date">2017-06-27</h4>
+            <h4 class="date">2017-06-28</h4>
           </div>
 
     
@@ -82,6 +82,28 @@
 <a href="#using-bomrang" class="anchor"></a>Using <em>bomrang</em>
 </h2>
 <p>Several functions are provided by <em>bomrang</em>.The main functionality of <em>bomrang</em> is provided through three functions, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin. Other functions include <code><a href="../reference/update_forecast_locations.html">update_forecast_locations()</a></code>, which updates an internal database of forecast locations distributed with the package, and <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> which returns the nearest weather stations to a point in Australia.</p>
+</div>
+<div id="using-get_current_weather" class="section level2">
+<h2 class="hasAnchor">
+<a href="#using-get_current_weather" class="anchor"></a>Using <code>get_current_weather</code>
+</h2>
+<p><code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> takes one of two arguments: <code>station_name</code> and <code>latlon</code>, returning the current weather observations (and the observations of the last 72 hours) for the given location.</p>
+<p>If <code>station_name</code> is used, the weather observations for the last 72 hours are returned for that station. If the string provided is ambiguous, the function returns an observation for one of the possible stations and emits a warning to offer unambiguous station names.</p>
+<p>If <code>latlon</code> is used, the observations returned are from the station nearest to that latitude-longitude coordinate. The function also emits a message, to tell the user which station was used.</p>
+<div id="results" class="section level3">
+<h3 class="hasAnchor">
+<a href="#results" class="anchor"></a>Results</h3>
+<p>The table returned will have different fields depending on the station that is selected.</p>
+</div>
+<div id="example" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example" class="anchor"></a>Example</h3>
+<p>Following is an example fetching the current weather for Melbourne.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"bomrang"</span>)
+
+Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_current_weather.html">get_current_weather</a></span>(<span class="st">"Melbourne (Olympic Park)"</span>)
+<span class="kw">head</span>(Melbourne_weather)</code></pre></div>
+</div>
 </div>
 <div id="using-get_precis_forecast" class="section level2">
 <h2 class="hasAnchor">
@@ -116,66 +138,33 @@
 <li>
 <strong>AUS</strong> - Australia, returns national forecast including all states.</li>
 </ul>
-<div id="results" class="section level3">
+<div id="results-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#results" class="anchor"></a>Results</h3>
-<p>The function, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, will return a data frame of the weather forecast for the daily forecast with the following fields:</p>
+<a href="#results-1" class="anchor"></a>Results</h3>
+<p>The function, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, will return a data frame of the weather forecast for the daily forecast for selected towns with the following fields:</p>
 <ul>
-<li>
-<strong>aac</strong> - AMOC Area Code, <em>e.g.</em> WA_MW008, a unique identifier for each location<br>
-</li>
-<li>
-<strong>start_time_local</strong> - Start of forecast date and time in local TZ<br>
-</li>
-<li>
-<strong>end_time_local</strong> - End of forecast date and time in local TZ<br>
-</li>
-<li>
-<strong>UTC_offset</strong> - Hours offset from difference in hours and minutes from Coordinated Universal Time (UTC) for <code>start_time_local</code> and <code>end_time_local</code>
-</li>
-<li>
-<strong>start_time_utc</strong> - Start of forecast date and time in UTC<br>
-</li>
-<li>
-<strong>end_time_utc</strong> - End of forecast date and time in UTC<br>
-</li>
-<li>
-<strong>max_temp</strong> - Maximum forecasted temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>min_temp</strong> - Minimum forecasted temperature (degrees Celsius)<br>
-</li>
-<li>
-<strong>lower_prcp_limit</strong> - Lower forecasted precipitation limit (millimetres)<br>
-</li>
-<li>
-<strong>upper_prcp_limit</strong> - Upper forecasted precipitation limit (millimetres)<br>
-</li>
-<li>
-<strong>precis</strong> - Précis forecast (a short summary, less than 30 characters)<br>
-</li>
-<li>
-<strong>prob_prcp</strong> - Probability of precipitation (percent)<br>
-</li>
-<li>
-<strong>location</strong> - Named location for forecast<br>
-</li>
-<li>
-<strong>state</strong> - State name (postal code abbreviation)<br>
-</li>
-<li>
-<strong>lon</strong> - Longitude of named location (decimal degrees)<br>
-</li>
-<li>
-<strong>lat</strong> - Latitude of named location (decimal degrees)<br>
-</li>
-<li>
-<strong>elev</strong> - Elevation of named location (metres).</li>
+<li><p><strong>aac</strong> - AMOC Area Code, <em>e.g.</em> WA_MW008, a unique identifier for each location</p></li>
+<li><p><strong>start_time_local</strong> - Start of forecast date and time in local TZ</p></li>
+<li><p><strong>end_time_local</strong> - End of forecast date and time in local TZ</p></li>
+<li><p><strong>UTC_offset</strong> - Hours offset from difference in hours and minutes from Coordinated Universal Time (UTC) for <code>start_time_local</code> and <code>end_time_local</code></p></li>
+<li><p><strong>start_time_utc</strong> - Start of forecast date and time in UTC</p></li>
+<li><p><strong>end_time_utc</strong> - End of forecast date and time in UTC</p></li>
+<li><p><strong>max_temp</strong> - Maximum forecasted temperature (degrees Celsius)</p></li>
+<li><p><strong>min_temp</strong> - Minimum forecasted temperature (degrees Celsius)</p></li>
+<li><p><strong>lower_prcp_limit</strong> - Lower forecasted precipitation limit (millimetres)</p></li>
+<li><p><strong>upper_prcp_limit</strong> - Upper forecasted precipitation limit (millimetres)</p></li>
+<li><p><strong>precis</strong> - Précis forecast (a short summary, less than 30 characters)</p></li>
+<li><p><strong>prob_prcp</strong> - Probability of precipitation (percent)</p></li>
+<li><p><strong>town</strong> - A disaggretated district forecast for select towns</p></li>
+<li><p><strong>state</strong> - State name (postal code abbreviation)</p></li>
+<li><p><strong>lon</strong> - Longitude of named location (decimal degrees)</p></li>
+<li><p><strong>lat</strong> - Latitude of named location (decimal degrees)</p></li>
+<li><p><strong>elev</strong> - Elevation of named location (metres).</p></li>
 </ul>
 </div>
-<div id="example" class="section level3">
+<div id="example-1" class="section level3">
 <h3 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h3>
+<a href="#example-1" class="anchor"></a>Example</h3>
 <p>Following is an example fetching the forecast for Queensland.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"bomrang"</span>)
 
@@ -213,9 +202,9 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <li>
 <strong>AUS</strong> - Australia, returns bulletin for all states/territories.</li>
 </ul>
-<div id="results-1" class="section level3">
+<div id="results-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#results-1" class="anchor"></a>Results</h3>
+<a href="#results-2" class="anchor"></a>Results</h3>
 <p>The function, <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, will return a data frame of the agriculture bulletin with the following fields:</p>
 <ul>
 <li>
@@ -308,36 +297,14 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <strong>lon</strong> - Longitude (decimal degrees).</li>
 </ul>
 </div>
-<div id="example-1" class="section level3">
+<div id="example-2" class="section level3">
 <h3 class="hasAnchor">
-<a href="#example-1" class="anchor"></a>Example</h3>
+<a href="#example-2" class="anchor"></a>Example</h3>
 <p>Following is an example fetching the ag bulletin for Queensland.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"bomrang"</span>)
 
 QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_ag_bulletin.html">get_ag_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
 <span class="kw">head</span>(QLD_bulletin)</code></pre></div>
-</div>
-</div>
-<div id="using-get_current_weather" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-get_current_weather" class="anchor"></a>Using <code>get_current_weather</code>
-</h2>
-<p><code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> takes one of two arguments: <code>station_name</code> and <code>latlon</code>, returning the current weather observations (and the observations of the last 72 hours) for the given location.</p>
-<p>If <code>station_name</code> is used, the weather observations for the last 72 hours are returned for that station. If the string provided is ambiguous, the function returns an observation for one of the possible stations and emits a warning to offer unambiguous station names.</p>
-<p>If <code>latlon</code> is used, the observations returned are from the station nearest to that latitude-longitude coordinate. The function also emits a message, to tell the user which station was used.</p>
-<div id="results-2" class="section level3">
-<h3 class="hasAnchor">
-<a href="#results-2" class="anchor"></a>Results</h3>
-<p>The table returned will have different fields depending on the station that is selected.</p>
-</div>
-<div id="example-2" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-2" class="anchor"></a>Example</h3>
-<p>Following is an example fetching the current weather for Melbourne.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"bomrang"</span>)
-
-Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_current_weather.html">get_current_weather</a></span>(<span class="st">"Melbourne (Olympic Park)"</span>)
-<span class="kw">head</span>(Melbourne_weather)</code></pre></div>
 </div>
 </div>
 <div id="other-functions-in-bomrang" class="section level2">
@@ -1578,9 +1545,9 @@ Longitude (decimal degrees)
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#introduction">Introduction</a></li>
       <li><a href="#using-bomrang">Using <em>bomrang</em></a></li>
+      <li><a href="#using-get_current_weather">Using <code>get_current_weather</code></a></li>
       <li><a href="#using-get_precis_forecast">Using <code>get_precis_forecast</code></a></li>
       <li><a href="#using-get_ag_bulletin">Using <code>get_ag_bulletin</code></a></li>
-      <li><a href="#using-get_current_weather">Using <code>get_current_weather</code></a></li>
       <li><a href="#other-functions-in-bomrang">Other functions in <em>bomrang</em></a></li>
       <li><a href="#references">References</a></li>
       <li><a href="#appendix-1---output-from-get_current_weather">Appendix 1 - Output from get_current_weather()</a></li>

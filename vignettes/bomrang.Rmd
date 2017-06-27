@@ -64,56 +64,56 @@ This function only takes one argument, `state`. The `state` parameter allows the
 user to select the forecast for just one state or a national forecast. States or
 territories are specified using the official postal codes:
 
-- **ACT*- - Australian Capital Territory  
-- **NSW*- - New South Wales  
-- **NT*- - Northern Territory  
-- **QLD*- - Queensland  
-- **SA*- - South Australia  
-- **TAS*- - Tasmania  
-- **VIC*- - Victoria  
-- **WA*- - Western Australia  
-- **AUS*- - Australia, returns national forecast including all states.
+- **ACT** - Australian Capital Territory  
+- **NSW** - New South Wales  
+- **NT** - Northern Territory  
+- **QLD** - Queensland  
+- **SA** - South Australia  
+- **TAS** - Tasmania  
+- **VIC** - Victoria  
+- **WA** - Western Australia  
+- **AUS** - Australia, returns national forecast including all states.
 
 ### Results
 
 The function, `get_precis_forecast()`, will return a data frame of the weather
 forecast for the daily forecast for selected towns with the following fields:
 
-- **aac*- - AMOC Area Code, _e.g._ WA_MW008, a unique identifier for each
+- **aac** - AMOC Area Code, _e.g._ WA_MW008, a unique identifier for each
 location
 
-- **start_time_local*- - Start of forecast date and time in local TZ
+- **start_time_local** - Start of forecast date and time in local TZ
 
-- **end_time_local*- - End of forecast date and time in local TZ
+- **end_time_local** - End of forecast date and time in local TZ
 
-- **UTC_offset*- -  Hours offset from difference in hours and minutes from
+- **UTC_offset** -  Hours offset from difference in hours and minutes from
 Coordinated Universal Time (UTC) for `start_time_local` and `end_time_local`
 
-- **start_time_utc*- - Start of forecast date and time in UTC 
+- **start_time_utc** - Start of forecast date and time in UTC 
 
-- **end_time_utc*- - End of forecast date and time in UTC
+- **end_time_utc** - End of forecast date and time in UTC
 
-- **max_temp*- - Maximum forecasted temperature (degrees Celsius)
+- **max_temp** - Maximum forecasted temperature (degrees Celsius)
 
-- **min_temp*- - Minimum forecasted temperature (degrees Celsius)
+- **min_temp** - Minimum forecasted temperature (degrees Celsius)
 
-- **lower_prcp_limit*- - Lower forecasted precipitation limit (millimetres)
+- **lower_prcp_limit** - Lower forecasted precipitation limit (millimetres)
 
-- **upper_prcp_limit*- - Upper forecasted precipitation limit (millimetres)
+- **upper_prcp_limit** - Upper forecasted precipitation limit (millimetres)
 
-- **precis*- - Précis forecast (a short summary, less than 30 characters)
+- **precis** - Précis forecast (a short summary, less than 30 characters)
 
-- **prob_prcp*- - Probability of precipitation (percent)
+- **prob_prcp** - Probability of precipitation (percent)
 
-- **town*- - A disaggretated district forecast for select towns
+- **town** - A disaggretated district forecast for select towns
 
-- **state*- - State name (postal code abbreviation)
+- **state** - State name (postal code abbreviation)
 
-- **lon*- - Longitude of named location (decimal degrees)
+- **lon** - Longitude of named location (decimal degrees)
 
-- **lat*- - Latitude of named location (decimal degrees)
+- **lat** - Latitude of named location (decimal degrees)
 
-- **elev*- - Elevation of named location (metres).
+- **elev** - Elevation of named location (metres).
 
 ### Example
 
@@ -132,50 +132,50 @@ head(QLD_forecast)
 allows the user to select the bulletin for just one state or a national
 forecast. States or territories are specified using the official postal codes.
 
-- **NSW*- - New South Wales  
-- **NT*- - Northern Territory  
-- **QLD*- - Queensland  
-- **SA*- - South Australia  
-- **TAS*- - Tasmania  
-- **VIC*- - Victoria  
-- **WA*- - Western Australia  
-- **AUS*- - Australia, returns bulletin for all states/territories.
+- **NSW** - New South Wales  
+- **NT** - Northern Territory  
+- **QLD** - Queensland  
+- **SA** - South Australia  
+- **TAS** - Tasmania  
+- **VIC** - Victoria  
+- **WA** - Western Australia  
+- **AUS** - Australia, returns bulletin for all states/territories.
 
 ### Results
 
 The function, `get_ag_bulletin()`, will return a data frame of the agriculture
 bulletin with the following fields:
 
-- **obs-time-local*- - Observation time  
-- **obs-time-utc*- - Observation time (time in UTC)  
-- **time-zone*- - Time zone for observation  
-- **site*- - Unique BoM identifier for each station  
-- **dist*- - BoM rainfall district  
-- **station*- - BoM station name  
-- **start*- - Year data collection starts  
-- **end*- - Year data collection ends (will always be current)  
-- **state*- - State name (postal code abbreviation)  
-- **lat*- - Latitude (decimal degrees)  
-- **lon*- - Longitude (decimal degrees)  
-- **elev*- - Station elevation (metres)  
-- **bar_ht*- - Bar height (metres)  
-- **WMO*- - World Meteorlogical Organization number (unique ID used worldwide)
-- **r*- - Rain to 9am (millimetres). _Trace will be reported as 0.01_  
-- **tn*- - Minimum temperature (degrees Celsius)  
-- **tx*- - Maximum temperature (degrees Celsius)  
-- **twd*- - Wet bulb depression (degrees Celsius)  
-- **ev*- - Evaporation (millimetres)  
-- **tg*- - Terrestrial minimum temperature (degrees Celsius)  
-- **sn*- - Sunshine (hours)  
-- **t5*- - 5cm soil temperature (degrees Celsius)  
-- **t10*- - 10cm soil temperature (degrees Celsius)  
-- **t20*- - 20cm soil temperature (degrees Celsius)  
-- **t50*- - 50cm soil temperature (degrees Celsius)  
-- **t1m*- - 1m soil temperature (degrees Celsius)  
-- **wr*- - Wind run (kilometres)  
-- **state*- - State name (postal code abbreviation)  
-- **lat*- - Latitude (decimal degrees)  
-- **lon*- - Longitude (decimal degrees).
+- **obs-time-local** - Observation time  
+- **obs-time-utc** - Observation time (time in UTC)  
+- **time-zone** - Time zone for observation  
+- **site** - Unique BoM identifier for each station  
+- **dist** - BoM rainfall district  
+- **station** - BoM station name  
+- **start** - Year data collection starts  
+- **end** - Year data collection ends (will always be current)  
+- **state** - State name (postal code abbreviation)  
+- **lat** - Latitude (decimal degrees)  
+- **lon** - Longitude (decimal degrees)  
+- **elev** - Station elevation (metres)  
+- **bar_ht** - Bar height (metres)  
+- **WMO** - World Meteorlogical Organization number (unique ID used worldwide)
+- **r** - Rain to 9am (millimetres). _Trace will be reported as 0.01_  
+- **tn** - Minimum temperature (degrees Celsius)  
+- **tx** - Maximum temperature (degrees Celsius)  
+- **twd** - Wet bulb depression (degrees Celsius)  
+- **ev** - Evaporation (millimetres)  
+- **tg** - Terrestrial minimum temperature (degrees Celsius)  
+- **sn** - Sunshine (hours)  
+- **t5** - 5cm soil temperature (degrees Celsius)  
+- **t10** - 10cm soil temperature (degrees Celsius)  
+- **t20** - 20cm soil temperature (degrees Celsius)  
+- **t50** - 50cm soil temperature (degrees Celsius)  
+- **t1m** - 1m soil temperature (degrees Celsius)  
+- **wr** - Wind run (kilometres)  
+- **state** - State name (postal code abbreviation)  
+- **lat** - Latitude (decimal degrees)  
+- **lon** - Longitude (decimal degrees).
 
 ### Example
 
@@ -199,10 +199,10 @@ This function will search for weather stations and return a data frame of all
 weather stations (in this package) sorted by distance from `latlon`, ascending.
 The fields in the data frame are:
 
-**name*- - station name  
-**Lat*- - latitude (decimal degrees)  
-**Lon*- - longitude (decimal degrees)  
-**distance*- - distance from provided `latlon` value (kilometres).
+**name** - station name  
+**Lat** - latitude (decimal degrees)  
+**Lon** - longitude (decimal degrees)  
+**distance** - distance from provided `latlon` value (kilometres).
 
 #### Example  
 
