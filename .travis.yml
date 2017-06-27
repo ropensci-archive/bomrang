@@ -3,7 +3,6 @@
 language: R
 sudo: false
 cache: packages
-install: travis_wait mvn install
 
 ## Set up the matrix of different runs
 env:
