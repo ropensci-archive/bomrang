@@ -1,10 +1,8 @@
 
-
-
-#' BoM daily précis forecast
+#' BoM Daily Précis Forecast
 #'
-#'Fetch the BoM daily précis forecast and return a tidy data frame of the daily
-#'forecast
+#' Fetch the BoM daily précis forecast and return a tidy data frame of the seven
+#' day town forecast for a specified state or territory.
 #'
 #' @param state Australian state or territory as postal code, see details for
 #' instruction.
@@ -24,16 +22,16 @@
 #'  }
 #'
 #' @return
-#' Data frame of a Australia BoM daily forecast in a tidy data frame.  For
-#' more details see the vignette "Précis Forecast Fields":
-#' \code{vignette("Précis Forecast Fields", package = "bomrang")}
-#' for a complete list of fields and units.
+#' Tidy data frame of a Australia BoM daily forecast for select towns.  For full
+#' details of fields and units. see Appendix 2 in the \emph{bomrang} vignette,
+#' use \code{vignette("bomrang", package = "bomrang")}.
 #'
 #' @examples
 #' \dontrun{
 #' BoM_forecast <- get_precis_forecast(state = "QLD")
 #'}
-#' @author Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton, \email{keith.pembleton@usq.edu.au}
+#' @author Adam H Sparks, \email{adamhsparks@gmail.com} and
+#' Keith Pembleton, \email{keith.pembleton@usq.edu.au}
 #'
 #' @references
 #' Australian Bureau of Meteorology (BoM) Weather Data Services
@@ -104,7 +102,7 @@ get_precis_forecast <- function(state = NULL) {
 
 .parse_forecast <- function(xmlforecast) {
   #CRAN NOTE avoidance
-  aac <- location <- state <- lon <- lat <- elev <-
+  aac <- town <- state <- lon <- lat <- elev <-
     precipitation_range <- attrs <- values <-
     `c("air_temperature_maximum", "Celsius")` <-
     `start-time-local` <-
@@ -230,13 +228,12 @@ get_precis_forecast <- function(state = NULL) {
         "lower_prec_limit"
       )
     ) %>%
-    dplyr::rename(location = PT_NAME)
+    dplyr::rename(town = PT_NAME)
 
   # add state field
   tidy_df$state <- gsub("_.*", "", tidy_df$aac)
   tidy_df <-
-    dplyr::select(.data = tidy_df, aac:location, state, lon, lat, elev)
-  return(tidy_df)
+    dplyr::select(.data = tidy_df, aac:town, state, lon, lat, elev)
 
   return(tidy_df)
 }

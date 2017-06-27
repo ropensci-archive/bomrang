@@ -1,7 +1,7 @@
 context("get_precis_forecast")
 
-# Test that get_precis_forecast returns a data frame with 17 colums -------------------
-test_that("get_precis_forecast returns 17 columns", {
+# Test that get_precis_forecast returns a data frame with 18 colums -------------------
+test_that("get_precis_forecast returns 18 columns", {
   skip_on_cran()
   BoM_forecast <- get_precis_forecast(state = "QLD")
   expect_equal(ncol(BoM_forecast), 18)
@@ -21,7 +21,7 @@ test_that("get_precis_forecast returns 17 columns", {
       "upper_prec_limit",
       "precis",
       "probability_of_precipitation",
-      "location",
+      "town",
       "state",
       "lon",
       "lat",
@@ -29,7 +29,6 @@ test_that("get_precis_forecast returns 17 columns", {
     )
   )
 })
-
 
 # Test that get_precis_forecast returns the requested state forecast ------------------
 test_that("get_precis_forecast returns the forecast for ACT/NSW", {

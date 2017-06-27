@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_precis_forecast.R
 \name{get_precis_forecast}
 \alias{get_precis_forecast}
-\title{BoM daily précis forecast}
+\title{BoM Daily Précis Forecast}
 \usage{
 get_precis_forecast(state = NULL)
 }
@@ -11,14 +11,13 @@ get_precis_forecast(state = NULL)
 instruction.}
 }
 \value{
-Data frame of a Australia BoM daily forecast in a tidy data frame.  For
-more details see the vignette "Précis Forecast Fields":
-\code{vignette("Précis Forecast Fields", package = "bomrang")}
-for a complete list of fields and units.
+Tidy data frame of a Australia BoM daily forecast for select towns.  For full
+details of fields and units. see Appendix 2 in the \emph{bomrang} vignette,
+use \code{vignette("bomrang", package = "bomrang")}.
 }
 \description{
-Fetch the BoM daily précis forecast and return a tidy data frame of the daily
-forecast
+Fetch the BoM daily précis forecast and return a tidy data frame of the seven
+day town forecast for a specified state or territory.
 }
 \details{
 Allowed state and territory postal codes, only one state per request
@@ -45,5 +44,6 @@ Australian Bureau of Meteorology (BoM) Weather Data Services
 \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 }
 \author{
-Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton, \email{keith.pembleton@usq.edu.au}
+Adam H Sparks, \email{adamhsparks@gmail.com} and
+Keith Pembleton, \email{keith.pembleton@usq.edu.au}
 }
