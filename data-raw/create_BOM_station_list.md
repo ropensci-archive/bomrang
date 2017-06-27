@@ -147,7 +147,7 @@ library(magrittr)
 stations_site_list
 ```
 
-    ## # A tibble: 7,437 x 14
+    ## # A tibble: 7,439 x 14
     ##      site  dist             name start   end      Lat      Lon source
     ##     <chr> <chr>            <chr> <int> <chr>    <dbl>    <dbl>  <chr>
     ##  1 001006    01     WYNDHAM AERO  1951  2017 -15.5100 128.1503    GPS
@@ -160,7 +160,7 @@ stations_site_list
     ##  8 001020    01         TRUSCOTT  1944  2017 -14.0900 126.3867    GPS
     ##  9 001023    01       EL QUESTRO  1967  2017 -16.0086 127.9806    GPS
     ## 10 001024    01        ELLENBRAE  1986  2017 -15.9572 127.0628    GPS
-    ## # ... with 7,427 more rows, and 6 more variables: state <chr>, elev <dbl>,
+    ## # ... with 7,429 more rows, and 6 more variables: state <chr>, elev <dbl>,
     ## #   bar_ht <dbl>, WMO <int>, state_code <chr>, url <chr>
 
 Save data
@@ -200,7 +200,8 @@ stations_site_list <-
   stations_site_list %>%
   dplyr::rename(lat = Lat,
   lon = Lon) %>%
-  dplyr::select(-state_code, -source, -url)
+  dplyr::select(-state_code, -source, -url) %>% 
+  as.data.frame()
 
 stations_site_list$site <-
   gsub("^0{1,2}", "", stations_site_list$site)
@@ -215,50 +216,51 @@ Session Info
 
     ##  setting  value                       
     ##  version  R version 3.4.0 (2017-04-21)
-    ##  system   x86_64, darwin15.6.0        
+    ##  system   x86_64, darwin16.5.0        
     ##  ui       unknown                     
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2017-06-13
+    ##  date     2017-06-28
 
     ## Packages -----------------------------------------------------------------
 
     ##  package    * version    date       source                       
     ##  assertthat   0.2.0      2017-04-11 CRAN (R 3.4.0)               
     ##  backports    1.1.0      2017-05-22 cran (@1.1.0)                
-    ##  base       * 3.4.0      2017-05-11 local                        
+    ##  base       * 3.4.0      2017-05-05 local                        
     ##  bindr        0.1        2016-11-13 cran (@0.1)                  
-    ##  bindrcpp   * 0.1        2016-12-11 cran (@0.1)                  
-    ##  compiler     3.4.0      2017-05-11 local                        
-    ##  curl         2.6        2017-04-27 CRAN (R 3.4.0)               
+    ##  bindrcpp   * 0.2        2017-06-17 cran (@0.2)                  
+    ##  compiler     3.4.0      2017-05-05 local                        
+    ##  curl         2.7        2017-06-26 cran (@2.7)                  
     ##  data.table   1.10.4     2017-02-01 CRAN (R 3.4.0)               
-    ##  datasets   * 3.4.0      2017-05-11 local                        
+    ##  datasets   * 3.4.0      2017-05-05 local                        
     ##  devtools     1.13.2     2017-06-02 cran (@1.13.2)               
     ##  digest       0.6.12     2017-01-27 CRAN (R 3.4.0)               
-    ##  dplyr        0.7.0      2017-06-09 cran (@0.7.0)                
-    ##  evaluate     0.10       2016-10-11 CRAN (R 3.4.0)               
-    ##  glue         1.0.0      2017-04-17 cran (@1.0.0)                
-    ##  graphics   * 3.4.0      2017-05-11 local                        
-    ##  grDevices  * 3.4.0      2017-05-11 local                        
+    ##  dplyr        0.7.1      2017-06-22 cran (@0.7.1)                
+    ##  evaluate     0.10.1     2017-06-24 cran (@0.10.1)               
+    ##  glue         1.1.1      2017-06-21 cran (@1.1.1)                
+    ##  graphics   * 3.4.0      2017-05-05 local                        
+    ##  grDevices  * 3.4.0      2017-05-05 local                        
     ##  hms          0.3        2016-11-22 CRAN (R 3.4.0)               
     ##  htmltools    0.3.6      2017-04-28 CRAN (R 3.4.0)               
     ##  httr         1.2.1      2016-07-03 CRAN (R 3.4.0)               
     ##  knitr        1.16       2017-05-18 cran (@1.16)                 
     ##  magrittr   * 1.5        2014-11-22 CRAN (R 3.4.0)               
     ##  memoise      1.1.0      2017-04-21 CRAN (R 3.4.0)               
-    ##  methods    * 3.4.0      2017-05-11 local                        
-    ##  R6           2.2.1      2017-05-10 cran (@2.2.1)                
+    ##  methods    * 3.4.0      2017-05-05 local                        
+    ##  pkgconfig    2.0.1      2017-03-21 cran (@2.0.1)                
+    ##  R6           2.2.2      2017-06-17 cran (@2.2.2)                
     ##  Rcpp         0.12.11    2017-05-22 cran (@0.12.11)              
     ##  readr        1.1.1      2017-05-16 cran (@1.1.1)                
-    ##  rlang        0.1.1.9000 2017-06-07 Github (hadley/rlang@7f53e56)
-    ##  rmarkdown    1.5        2017-04-26 CRAN (R 3.4.0)               
+    ##  rlang        0.1.1.9000 2017-06-26 Github (hadley/rlang@8594edf)
+    ##  rmarkdown    1.6        2017-06-15 cran (@1.6)                  
     ##  rprojroot    1.2        2017-01-16 CRAN (R 3.4.0)               
-    ##  stats      * 3.4.0      2017-05-11 local                        
+    ##  stats      * 3.4.0      2017-05-05 local                        
     ##  stringi      1.1.5      2017-04-07 CRAN (R 3.4.0)               
     ##  stringr      1.2.0      2017-02-18 CRAN (R 3.4.0)               
-    ##  tibble       1.3.3      2017-05-28 cran (@1.3.3)                
-    ##  tools        3.4.0      2017-05-11 local                        
-    ##  utils      * 3.4.0      2017-05-11 local                        
+    ##  tibble       1.3.3      2017-05-28 CRAN (R 3.4.0)               
+    ##  tools        3.4.0      2017-05-05 local                        
+    ##  utils      * 3.4.0      2017-05-05 local                        
     ##  withr        1.0.2      2016-06-20 CRAN (R 3.4.0)               
     ##  yaml         2.1.14     2016-11-12 CRAN (R 3.4.0)
