@@ -12,12 +12,12 @@
 AAC_codes
 }
 \description{
-BoM forecast locations and longitude and latitude
+BoM Précis Forecast Town Names and Longitude and Latitude
 }
 \details{
 \describe{
-  \item{AAC}{Unique identifier for each location}
-  \item{PT_NAME}{Human readable location name}
+  \item{AAC}{Unique identifier for each town}
+  \item{PT_NAME}{Human readable town name}
   \item{ELEVATION}{Elevation (metres)}
   \item{LON}{Longitude}
   \item{LAT}{Latitude}

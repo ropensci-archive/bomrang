@@ -194,12 +194,12 @@ get_precis_forecast <- function(state = NULL) {
       fill = "left"
     )
 
-  # remove unnecessary text (mm in prcp cols) --------------------------------
+  # remove unnecessary text (mm in prcp cols) ----------------------------------
   out <- as.data.frame(lapply(out, function(x) {
     gsub(" mm", "", x)
   }))
 
-  # merge the forecast with the locations ------------------------------------
+  # merge the forecast with the town names -------------------------------------
 
   out$aac <- as.character(out$aac)
   # return final forecast object

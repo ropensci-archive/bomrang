@@ -1,19 +1,19 @@
 
-#' Update internal database with latest BoM forecast locations
+#' Update bomrang Database With Latest BoM Forecast Towns
 #'
 #' @description
-#' Download the latest forecast locations from the BoM server and update
-#' bomrang's internal database of précis forecast locations,
+#' Download the latest select forecast towns from the BoM server and update
+#' bomrang's internal database of précis forecast town names and
 #' \code{\link{AAC_codes}} used by \code{\link{get_precis_forecast}}.  There is
-#' no need to use this unless you know that a forecast location exists in a
-#' more current version of the BoM précis forecast location database that is not
-#' available in the database distributed with \code{\link{bomrang}}.
+#' no need to use this unless you know that a forecast town exists in a
+#' more current version of the BoM précis forecast town name database that is
+#' not available in the database distributed with \code{\link{bomrang}}.
 #'
 #' @examples
 #' \dontrun{
-#' update_forecast_locations()
+#' update_forecast_towns()
 #' }
-#' @return Updated internal database of BoM précis forecast locations
+#' @return Updated database of BoM précis forecast towns
 #'
 #' @references
 #' Australian Bureau of Meteorology (BoM) Weather Data Services
@@ -23,7 +23,7 @@
 #' @author Adam H Sparks, \email{adamhsparks@gmail.com}
 #' @export
 #'
-update_forecast_locations <- function() {
+update_forecast_towns <- function() {
   original_timeout <- options("timeout")[[1]]
   options(timeout = 300)
   on.exit(options(timeout = original_timeout))

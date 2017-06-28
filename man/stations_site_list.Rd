@@ -12,7 +12,8 @@
 stations_site_list
 }
 \description{
-A database of station locations and other metadata used for the ag bulletin
+A database of station names, locations and other metadata used for the ag
+bulletin
 }
 \details{
 \describe{
