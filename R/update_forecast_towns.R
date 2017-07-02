@@ -4,7 +4,7 @@
 #' @description
 #' Download the latest select forecast towns from the BoM server and update
 #' bomrang's internal database of précis forecast town names and
-#' \code{\link{AAC_codes}} used by \code{\link{get_precis_forecast}}.  There is
+#' AAC codes used by \code{\link{get_precis_forecast}}.  There is
 #' no need to use this unless you know that a forecast town exists in a
 #' more current version of the BoM précis forecast town name database that is
 #' not available in the database distributed with \code{\link{bomrang}}.
@@ -18,7 +18,6 @@
 #' @references
 #' Australian Bureau of Meteorology (BoM) Weather Data Services
 #' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
-#'
 #'
 #' @author Adam H Sparks, \email{adamhsparks@gmail.com}
 #' @export
@@ -41,10 +40,7 @@ update_forecast_towns <- function() {
   AAC_codes <- AAC_codes[, c(2:3, 7:9)]
 
   # overwrite the existing isd_history.rda file on disk
-  message("Overwriting existing database")
-
-  pkg <- system.file(package = "bomrang")
-  path <-
-    file.path(file.path(pkg, "data"), paste0("AAC_codes.rda"))
-  save(AAC_codes, file = path, compress = "bzip2")
+  message("\nOverwriting existing database of forecast towns and AAC codes.\n")
+  fname <- system.file("extdata", "AAC_codes.rda", package = "bomrang")
+  save(AAC_codes, file = fname, compress = "bzip2")
 }

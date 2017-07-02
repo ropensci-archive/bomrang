@@ -1,5 +1,5 @@
 ---
-title: "Get BoM Locations"
+title: "Get BoM Précis Forecast Town Names"
 output: github_document
 ---
 
@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 BoM maintains a shapefile of forecast town names and their geographic locations.
 For ease, we'll just use the .dbf file part of the shapefile to extract AAC
-codes that can be used to add lat/lon values to the forecast that 
+codes that can be used to add lat/lon values to the forecast `data.frame` that 
 `get_precis_forecast()` returns.
 
 ```{r get_forecast_towns}
@@ -29,11 +29,15 @@ codes that can be used to add lat/lon values to the forecast that
 Save the stations to disk for use in the R package.
 
 ```{r create_data}
-  devtools::use_data(AAC_codes, overwrite = TRUE)
+ if (!dir.exists("../inst/extdata")) {
+      dir.create("../inst/extdata", recursive = TRUE)
+    }
+
+  save(AAC_codes, file = "../inst/extdata/AAC_codes.rda",
+     compress = "bzip2")
 ```
 
 ## Session Info
 ```{r session_info}
 devtools::session_info()
 ```
-
