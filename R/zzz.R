@@ -7,7 +7,6 @@
       utils::globalVariables(c("."))
 
       utils::data(
-        "AAC_codes",
         "stations_site_list",
         "JSONurl_latlon_by_station_name",
         package = pkgname,
