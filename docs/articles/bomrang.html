@@ -66,7 +66,7 @@
       <h1>bomrang</h1>
                         <h4 class="author">Adam H Sparks</h4>
             
-            <h4 class="date">2017-07-02</h4>
+            <h4 class="date">2017-06-28</h4>
           </div>
 
     
@@ -81,7 +81,7 @@
 <h2 class="hasAnchor">
 <a href="#using-bomrang" class="anchor"></a>Using <em>bomrang</em>
 </h2>
-<p>Several functions are provided by <em>bomrang</em>.The main functionality of <em>bomrang</em> is provided through three functions, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin. Other functions include <code>update_forecast_locations()</code>, which updates an internal database of forecast locations distributed with the package, and <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> which returns the nearest weather stations to a point in Australia.</p>
+<p>Several functions are provided by <em>bomrang</em>.The main functionality of <em>bomrang</em> is provided through three functions, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin. Other functions include <code><a href="../reference/update_forecast_locations.html">update_forecast_locations()</a></code>, which updates an internal database of forecast locations distributed with the package, and <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> which returns the nearest weather stations to a point in Australia.</p>
 </div>
 <div id="using-get_current_weather" class="section level2">
 <h2 class="hasAnchor">
@@ -334,12 +334,12 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <h3 class="hasAnchor">
 <a href="#using-update_forecast_locations" class="anchor"></a>Using <code>update_forecast_locations</code>
 </h3>
-<p><code>update_forecast_locations()</code> downloads the latest précis forecast locations from the BoM server and updates <em>bomrang</em>’s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BoM forecast location database that is not available in the database distributed with <em>bomrang</em>. This database is distributed with the package to make the process faster when fetching the forecast.</p>
+<p><code><a href="../reference/update_forecast_locations.html">update_forecast_locations()</a></code> downloads the latest précis forecast locations from the BoM server and updates <em>bomrang</em>’s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BoM forecast location database that is not available in the database distributed with <em>bomrang</em>. This database is distributed with the package to make the process faster when fetching the forecast.</p>
 <div id="example-4" class="section level4">
 <h4 class="hasAnchor">
 <a href="#example-4" class="anchor"></a>Example</h4>
 <p>Following is an example updating the précis forecast locations internal database.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">update_forecast_locations</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/update_forecast_locations.html">update_forecast_locations</a></span>()</code></pre></div>
 </div>
 </div>
 <div id="using-update_station_locations" class="section level3">

@@ -1,5 +1,4 @@
 
-
 #' BoM Daily Précis Forecast for Select Towns
 #'
 #' Fetch the BoM daily précis forecast and return a tidy data frame of the seven
@@ -205,13 +204,8 @@ get_precis_forecast <- function(state = NULL) {
   out$aac <- as.character(out$aac)
   # return final forecast object
   tidy_df <-
-    # Load AAC code/town name list
-    # CRAN NOTE avoidance
-    AAC_codes <- NULL
-  load(system.file("extdata", "AAC_codes.rda", package = "bomrang"))
-
-  dplyr::left_join(out,
-                   AAC_codes, by = c("aac" = "AAC")) %>%
+    dplyr::left_join(out,
+                     AAC_codes, by = c("aac" = "AAC")) %>%
     dplyr::rename(lon = LON,
                   lat = LAT,
                   elev = ELEVATION) %>%
@@ -267,7 +261,7 @@ get_precis_forecast <- function(state = NULL) {
 
   time_period <- unlist(t(as.data.frame(xml2::xml_attrs(y))))
   time_period <-
-    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)), ]
+    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)),]
 
   sub_out <- cbind(time_period, attrs, values)
   row.names(sub_out) <- NULL

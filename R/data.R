@@ -1,3 +1,24 @@
+#'AAC_codes
+#'
+#'@description
+#'BoM Précis Forecast Town Names and Longitude and Latitude
+#'
+#'@details
+#' \describe{
+#'   \item{AAC}{Unique identifier for each town}
+#'   \item{PT_NAME}{Human readable town name}
+#'   \item{ELEVATION}{Elevation (metres)}
+#'   \item{LON}{Longitude}
+#'   \item{LAT}{Latitude}
+#' }
+#'
+#' The \code{AAC_codes} data are automatically loaded with the
+#' \code{\link{bomrang}} package and merged with the latest available forecast
+#' from the BoM.
+#'
+#' @source \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
+#'
+"AAC_codes"
 
 #'stations_site_list
 #'
