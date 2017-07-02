@@ -203,13 +203,14 @@ get_precis_forecast <- function(state = NULL) {
   # merge the forecast with the town names -------------------------------------
 
   out$aac <- as.character(out$aac)
-  # return final forecast object
-  tidy_df <-
-    # Load AAC code/town name list
-    # CRAN NOTE avoidance
-    AAC_codes <- NULL
+
+  # Load AAC code/town name list to join with final output
+  # CRAN NOTE avoidance
+  AAC_codes <- NULL
   load(system.file("extdata", "AAC_codes.rda", package = "bomrang"))
 
+  # return final forecast object
+  tidy_df <-
   dplyr::left_join(out,
                    AAC_codes, by = c("aac" = "AAC")) %>%
     dplyr::rename(lon = LON,
