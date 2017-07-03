@@ -1,4 +1,4 @@
-Build BoM Station Locations and JSON URL Database
+Create Databases of BoM Station Locations and JSON URLs
 ================
 
 This document provides details on methods used to create the database of BoM JSON files for stations and corresponding metadata, e.g., latitude, longitude (which are more detailed than what is in the JSON file), start, end, elevation, etc.
@@ -40,9 +40,11 @@ library(magrittr)
 # fixed widths which are coded in the read_table() call.
 # The last six lines contain other information that we don't want.
 # For some reason, reading it directly from the BoM website does not work, so
-# we use download.file to fetch it first and then import it from the R tempdir()
+# we use download.file to fetch it first and then import it from the R
+# tempdir()
 
-  curl::curl_download(url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
+  curl::curl_download(
+    url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
                       destfile = paste0(tempdir(), "stations.zip"))
 
   bom_stations_raw <-
@@ -86,7 +88,12 @@ library(magrittr)
   bom_stations_raw <- bom_stations_raw[1:nrows, ]
 
   # recode the states to match product codes
-  # IDD - NT, IDN - NSW/ACT, IDQ - Qld, IDS - SA, IDT - Tas/Antarctica, IDV - Vic, IDW - WA
+  # IDD - NT,
+  # IDN - NSW/ACT,
+  # IDQ - Qld,
+  # IDS - SA,
+  # IDT - Tas/Antarctica,
+  # IDV - Vic, IDW - WA
 
   bom_stations_raw$state_code <- NA
   bom_stations_raw$state_code[bom_stations_raw$state == "WA"] <-
@@ -147,7 +154,7 @@ library(magrittr)
 stations_site_list
 ```
 
-    ## # A tibble: 7,439 x 14
+    ## # A tibble: 7,441 x 14
     ##      site  dist             name start   end      Lat      Lon source
     ##     <chr> <chr>            <chr> <int> <chr>    <dbl>    <dbl>  <chr>
     ##  1 001006    01     WYNDHAM AERO  1951  2017 -15.5100 128.1503    GPS
@@ -160,7 +167,7 @@ stations_site_list
     ##  8 001020    01         TRUSCOTT  1944  2017 -14.0900 126.3867    GPS
     ##  9 001023    01       EL QUESTRO  1967  2017 -16.0086 127.9806    GPS
     ## 10 001024    01        ELLENBRAE  1986  2017 -15.9572 127.0628    GPS
-    ## # ... with 7,429 more rows, and 6 more variables: state <chr>, elev <dbl>,
+    ## # ... with 7,431 more rows, and 6 more variables: state <chr>, elev <dbl>,
     ## #   bar_ht <dbl>, WMO <int>, state_code <chr>, url <chr>
 
 Save data
@@ -184,7 +191,11 @@ JSONurl_latlon_by_station_name <-
 # Remove new NA values from invalid URLs and convert to data.table
 JSONurl_latlon_by_station_name <-
   data.table::data.table(stations_site_list[!is.na(stations_site_list$url), ])
-  
+
+ if (!dir.exists("../inst/extdata")) {
+      dir.create("../inst/extdata", recursive = TRUE)
+    }
+
 # Save database
 devtools::use_data(JSONurl_latlon_by_station_name, overwrite = TRUE)
 ```
@@ -206,7 +217,8 @@ stations_site_list <-
 stations_site_list$site <-
   gsub("^0{1,2}", "", stations_site_list$site)
 
-devtools::use_data(stations_site_list, overwrite = TRUE)
+  save(stations_site_list, file = "../inst/extdata/stations_site_list.rda",
+     compress = "bzip2")
 ```
 
 Session Info
@@ -221,7 +233,7 @@ Session Info
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2017-06-28
+    ##  date     2017-07-02
 
     ## Packages -----------------------------------------------------------------
 
@@ -253,7 +265,7 @@ Session Info
     ##  R6           2.2.2      2017-06-17 cran (@2.2.2)                
     ##  Rcpp         0.12.11    2017-05-22 cran (@0.12.11)              
     ##  readr        1.1.1      2017-05-16 cran (@1.1.1)                
-    ##  rlang        0.1.1.9000 2017-06-26 Github (hadley/rlang@8594edf)
+    ##  rlang        0.1.1.9000 2017-07-01 Github (hadley/rlang@ff87439)
     ##  rmarkdown    1.6        2017-06-15 cran (@1.6)                  
     ##  rprojroot    1.2        2017-01-16 CRAN (R 3.4.0)               
     ##  stats      * 3.4.0      2017-05-05 local                        

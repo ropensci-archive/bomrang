@@ -1,5 +1,5 @@
 ---
-title: "Build BoM Station Locations and JSON URL Database"
+title: "Create Databases of BoM Station Locations and JSON URLs"
 output: github_document
 ---
 
@@ -7,7 +7,10 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This document provides details on methods used to create the database of BoM JSON files for stations and corresponding metadata, e.g., latitude, longitude (which are more detailed than what is in the JSON file), start, end, elevation, etc.
+This document provides details on methods used to create the database of BoM
+JSON files for stations and corresponding metadata, e.g., latitude, longitude
+(which are more detailed than what is in the JSON file), start, end, elevation,
+etc.
 
 Refer to these BoM pages for more reference:  
 - http://www.bom.gov.au/inside/itb/dm/idcodes/struc.shtml  
@@ -28,7 +31,8 @@ Refer to these BoM pages for more reference:
 ### Product code numbers
 - 60701 - coastal observations (duplicated in 60801)  
 - 60801 - all weather observations (we will use this)  
-- 60803 - Antarctica weather observations (and use this, this distinguishes Tas from Antarctica)  
+- 60803 - Antarctica weather observations (and use this, this distinguishes
+          Tas from Antarctica)  
 - 60901 - capital city weather observations (duplicated in 60801)  
 - 60903 - Canberra area weather observations (duplicated in 60801)  
 
@@ -42,9 +46,11 @@ library(magrittr)
 # fixed widths which are coded in the read_table() call.
 # The last six lines contain other information that we don't want.
 # For some reason, reading it directly from the BoM website does not work, so
-# we use download.file to fetch it first and then import it from the R tempdir()
+# we use download.file to fetch it first and then import it from the R
+# tempdir()
 
-  curl::curl_download(url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
+  curl::curl_download(
+    url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
                       destfile = paste0(tempdir(), "stations.zip"))
 
   bom_stations_raw <-
@@ -88,7 +94,12 @@ library(magrittr)
   bom_stations_raw <- bom_stations_raw[1:nrows, ]
 
   # recode the states to match product codes
-  # IDD - NT, IDN - NSW/ACT, IDQ - Qld, IDS - SA, IDT - Tas/Antarctica, IDV - Vic, IDW - WA
+  # IDD - NT,
+  # IDN - NSW/ACT,
+  # IDQ - Qld,
+  # IDS - SA,
+  # IDT - Tas/Antarctica,
+  # IDV - Vic, IDW - WA
 
   bom_stations_raw$state_code <- NA
   bom_stations_raw$state_code[bom_stations_raw$state == "WA"] <-
@@ -149,9 +160,14 @@ library(magrittr)
 stations_site_list
 ```
 ## Save data
-Now that we have the dataframe of stations and have generated the URLs for the JSON files for stations providing weather data feeds, save the data as a database for _bomrang_ to use.
+Now that we have the dataframe of stations and have generated the URLs for the
+JSON files for stations providing weather data feeds, save the data as a
+database for _bomrang_ to use.
 
-There are weather stations that do have a WMO but don't report online, e.g., KIRIBATI NTC AWS or MARSHALL ISLANDS NTC AWS, in this section remove these from the list and then create a database for use with the current weather information from BoM.
+There are weather stations that do have a WMO but don't report online, e.g.,
+KIRIBATI NTC AWS or MARSHALL ISLANDS NTC AWS, in this section remove these from
+the list and then create a database for use with the current weather information
+from BoM.
 
 ### Save JSON URL database for `get_current_weather()`
 
@@ -167,14 +183,20 @@ JSONurl_latlon_by_station_name <-
 # Remove new NA values from invalid URLs and convert to data.table
 JSONurl_latlon_by_station_name <-
   data.table::data.table(stations_site_list[!is.na(stations_site_list$url), ])
-  
+
+ if (!dir.exists("../inst/extdata")) {
+      dir.create("../inst/extdata", recursive = TRUE)
+    }
+
 # Save database
 devtools::use_data(JSONurl_latlon_by_station_name, overwrite = TRUE)
 ```
 
 ### Save station location data for `get_ag_bulletin()`
 
-First, rename columns and drop a few that aren't necessary for the ag bulletin information. Then pad the `site` field with 0 to match the data in the XML file that holds the bulletin information.
+First, rename columns and drop a few that aren't necessary for the ag bulletin
+information. Then pad the `site` field with 0 to match the data in the XML file
+that holds the bulletin information.
 
 Lastly, create the database for use in the package.
 
@@ -189,7 +211,8 @@ stations_site_list <-
 stations_site_list$site <-
   gsub("^0{1,2}", "", stations_site_list$site)
 
-devtools::use_data(stations_site_list, overwrite = TRUE)
+  save(stations_site_list, file = "../inst/extdata/stations_site_list.rda",
+     compress = "bzip2")
 ```
 
 ## Session Info

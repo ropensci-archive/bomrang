@@ -26,12 +26,14 @@ update_station_locations <- function() {
   # CRAN NOTE avoidance
   name <- site <- Lat <- Lon <- state_code <-  NULL
   tryCatch({
-    curl::curl_download(url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
+    curl::curl_download(
+      url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
                         destfile = file.path(tempdir(), "stations.zip"))
   },
   error = function(x)
     stop(
-      "\nThe server with the location information is not responding. Please retry again later.\n"
+      "\nThe server with the location information is not responding.",
+      "Please retry again later.\n"
     ))
 
   bom_stations_raw <-
@@ -175,7 +177,6 @@ update_station_locations <- function() {
   stations_site_list$site <-
     gsub("^0{1,2}", "", stations_site_list$site)
 
-  path <-
-    file.path(file.path(pkg, "data"), paste0("stations_site_list.rda"))
-  save(stations_site_list, file = path, compress = "bzip2")
+  fname <- system.file("extdata", "stations_site_list.rda", package = "bomrang")
+  save(stations_site_list, file = fname, compress = "bzip2")
 }

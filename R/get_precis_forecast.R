@@ -113,7 +113,7 @@ get_precis_forecast <- function(state = NULL) {
     `start-time-utc` <- precis <- probability_of_precipitation <-
     PT_NAME <- end_time_local <- end_time_utc <- lower_prec_limit <-
     start_time_local <- start_time_utc <- maximum_temperature <-
-    minimum_temperature <- UTC_offset_drop <- NULL
+    minimum_temperature <- UTC_offset_drop <- AAC_codes <- NULL
 
   # load the XML forecast ----------------------------------------------------
   tryCatch({
@@ -205,8 +205,6 @@ get_precis_forecast <- function(state = NULL) {
   out$aac <- as.character(out$aac)
 
   # Load AAC code/town name list to join with final output
-  # CRAN NOTE avoidance
-  AAC_codes <- NULL
   load(system.file("extdata", "AAC_codes.rda", package = "bomrang"))
 
   # return final forecast object
