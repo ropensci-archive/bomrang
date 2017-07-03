@@ -24,7 +24,7 @@
 #'
 update_station_locations <- function() {
   # CRAN NOTE avoidance
-  name <- site <- Lat <- Lon <- state_code <-  NULL
+  name <- site <- lat <- lon <- state_code <-  NULL
   tryCatch({
     curl::curl_download(
       url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
@@ -47,13 +47,13 @@ update_station_locations <- function() {
         "name",
         "start",
         "end",
-        "Lat",
-        "Lon",
+        "lat",
+        "lon",
         "source",
         "state",
         "elev",
         "bar_ht",
-        "WMO"
+        "wmo"
       ),
       col_types = readr::cols(
         site = readr::col_character(),
@@ -61,13 +61,13 @@ update_station_locations <- function() {
         name = readr::col_character(),
         start = readr::col_integer(),
         end = readr::col_integer(),
-        Lat = readr::col_double(),
-        Lon = readr::col_double(),
+        lat = readr::col_double(),
+        lon = readr::col_double(),
         source = readr::col_character(),
         state = readr::col_character(),
         elev = readr::col_double(),
         bar_ht = readr::col_double(),
-        WMO = readr::col_integer()
+        wmo = readr::col_integer()
       ),
       na = c("..")
     )
@@ -107,7 +107,7 @@ update_station_locations <- function() {
     dplyr::select(site:name, dplyr::everything()) %>%
     dplyr::mutate(
       url = dplyr::case_when(
-        .$state != "ANT" & !is.na(.$WMO) ~
+        .$state != "ANT" & !is.na(.$wmo) ~
           paste0(
             "http://www.bom.gov.au/fwo/ID",
             .$state_code,
@@ -117,10 +117,10 @@ update_station_locations <- function() {
             .$state_code,
             "60801",
             ".",
-            .$WMO,
+            .$wmo,
             ".json"
           ),
-        .$state == "ANT" & !is.na(.$WMO) ~
+        .$state == "ANT" & !is.na(.$wmo) ~
           paste0(
             "http://www.bom.gov.au/fwo/ID",
             .$state_code,
@@ -130,7 +130,7 @@ update_station_locations <- function() {
             .$state_code,
             "60803",
             ".",
-            .$WMO,
+            .$wmo,
             ".json"
           )
       )
@@ -141,7 +141,7 @@ update_station_locations <- function() {
     stations_site_list[is.na(stations_site_list$end), ]
   stations_site_list$end <- format(Sys.Date(), "%Y")
 
-  # There are weather stations that do have a WMO but don't report online,
+  # There are weather stations that do have a wmo but don't report online,
   # most of these don't have a "state" value, e.g., KIRIBATI NTC AWS or
   # MARSHALL ISLANDS NTC AWS, remove these from the list
 
@@ -171,8 +171,6 @@ update_station_locations <- function() {
 
   stations_site_list <-
     stations_site_list %>%
-    dplyr::rename(lat = Lat,
-                  lon = Lon) %>%
     dplyr::select(-state_code, -source, -url)
   stations_site_list$site <-
     gsub("^0{1,2}", "", stations_site_list$site)

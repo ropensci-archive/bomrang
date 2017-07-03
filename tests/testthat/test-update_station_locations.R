@@ -22,7 +22,7 @@ test_that("update_station_locations() downloads and imports the proper file",
                 "state",
                 "elev",
                 "bar_ht",
-                "WMO"
+                "wmo"
               )
             )
 
@@ -41,7 +41,7 @@ test_that("update_station_locations() downloads and imports the proper file",
                 "state",
                 "elev",
                 "bar_ht",
-                "WMO",
+                "wmo",
                 "state_code",
                 "url"
               ))

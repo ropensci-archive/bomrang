@@ -114,7 +114,7 @@ else if (state == "AUS") {
     state <-
     tg <-
     sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <- lon <-
-    attrs <- dist <- start <- elev <- bar_ht <- WMO <- NULL
+    attrs <- dist <- start <- elev <- bar_ht <- wmo <- NULL
 
   # load the XML bulletin ------------------------------------------------------
 
@@ -280,7 +280,7 @@ else if (state == "AUS") {
       lon,
       elev,
       bar_ht,
-      WMO,
+      wmo,
       r,
       tn,
       tx,

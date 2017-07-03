@@ -21,7 +21,7 @@ test_that("get_ag_bulletin returns 27 columns", {
       "lon",
       "elev",
       "bar_ht",
-      "WMO",
+      "wmo",
       "r",
       "tn",
       "tx",

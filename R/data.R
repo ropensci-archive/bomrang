@@ -17,7 +17,7 @@
 #'    \item{lon}{Longitude (decimal degrees)}
 #'    \item{elev_m}{Station elevation (metres)}
 #'    \item{bar_ht}{Bar height (metres)}
-#'    \item{WMO}{World Meteorological Organization number (unique ID used worldwide)}
+#'    \item{wmo}{World Meteorological Organization number (unique ID used worldwide)}
 #'    \item{state_code}{BoM code used to identify states and territories}
 #'    \item{url}{URL that serves JSON file of station weather data}
 #'    }
