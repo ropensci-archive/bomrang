@@ -64,13 +64,13 @@ library(magrittr)
         "name",
         "start",
         "end",
-        "Lat",
-        "Lon",
+        "lat",
+        "lon",
         "source",
         "state",
         "elev",
         "bar_ht",
-        "WMO"
+        "wmo"
       ),
       col_types = readr::cols(
         site = readr::col_character(),
@@ -78,13 +78,13 @@ library(magrittr)
         name = readr::col_character(),
         start = readr::col_integer(),
         end = readr::col_integer(),
-        Lat = readr::col_double(),
-        Lon = readr::col_double(),
+        lat = readr::col_double(),
+        lon = readr::col_double(),
         source = readr::col_character(),
         state = readr::col_character(),
         elev = readr::col_double(),
         bar_ht = readr::col_double(),
-        WMO = readr::col_integer()
+        wmo = readr::col_integer()
       ),
       na = c("..")
     )
@@ -123,7 +123,7 @@ library(magrittr)
     dplyr::select(site:name, dplyr::everything()) %>%
     dplyr::mutate(
       url = dplyr::case_when(
-        .$state != "ANT" & !is.na(.$WMO) ~
+        .$state != "ANT" & !is.na(.$wmo) ~
           paste0(
             "http://www.bom.gov.au/fwo/ID",
             .$state_code,
@@ -133,10 +133,10 @@ library(magrittr)
             .$state_code,
             "60801",
             ".",
-            .$WMO,
+            .$wmo,
             ".json"
           ),
-        .$state == "ANT" & !is.na(.$WMO) ~
+        .$state == "ANT" & !is.na(.$wmo) ~
           paste0(
             "http://www.bom.gov.au/fwo/ID",
             .$state_code,
@@ -146,7 +146,7 @@ library(magrittr)
             .$state_code,
             "60803",
             ".",
-            .$WMO,
+            .$wmo,
             ".json"
           )
       )
@@ -203,8 +203,6 @@ Lastly, create the database for use in the package.
 ```{r save_location_data, eval=TRUE, message=FALSE}
 stations_site_list <-
   stations_site_list %>%
-  dplyr::rename(lat = Lat,
-  lon = Lon) %>%
   dplyr::select(-state_code, -source, -url) %>% 
   as.data.frame()
 

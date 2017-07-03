@@ -58,13 +58,13 @@ library(magrittr)
         "name",
         "start",
         "end",
-        "Lat",
-        "Lon",
+        "lat",
+        "lon",
         "source",
         "state",
         "elev",
         "bar_ht",
-        "WMO"
+        "wmo"
       ),
       col_types = readr::cols(
         site = readr::col_character(),
@@ -72,13 +72,13 @@ library(magrittr)
         name = readr::col_character(),
         start = readr::col_integer(),
         end = readr::col_integer(),
-        Lat = readr::col_double(),
-        Lon = readr::col_double(),
+        lat = readr::col_double(),
+        lon = readr::col_double(),
         source = readr::col_character(),
         state = readr::col_character(),
         elev = readr::col_double(),
         bar_ht = readr::col_double(),
-        WMO = readr::col_integer()
+        wmo = readr::col_integer()
       ),
       na = c("..")
     )
@@ -117,7 +117,7 @@ library(magrittr)
     dplyr::select(site:name, dplyr::everything()) %>%
     dplyr::mutate(
       url = dplyr::case_when(
-        .$state != "ANT" & !is.na(.$WMO) ~
+        .$state != "ANT" & !is.na(.$wmo) ~
           paste0(
             "http://www.bom.gov.au/fwo/ID",
             .$state_code,
@@ -127,10 +127,10 @@ library(magrittr)
             .$state_code,
             "60801",
             ".",
-            .$WMO,
+            .$wmo,
             ".json"
           ),
-        .$state == "ANT" & !is.na(.$WMO) ~
+        .$state == "ANT" & !is.na(.$wmo) ~
           paste0(
             "http://www.bom.gov.au/fwo/ID",
             .$state_code,
@@ -140,7 +140,7 @@ library(magrittr)
             .$state_code,
             "60803",
             ".",
-            .$WMO,
+            .$wmo,
             ".json"
           )
       )
@@ -155,7 +155,7 @@ stations_site_list
 ```
 
     ## # A tibble: 7,441 x 14
-    ##      site  dist             name start   end      Lat      Lon source
+    ##      site  dist             name start   end      lat      lon source
     ##     <chr> <chr>            <chr> <int> <chr>    <dbl>    <dbl>  <chr>
     ##  1 001006    01     WYNDHAM AERO  1951  2017 -15.5100 128.1503    GPS
     ##  2 001007    01 TROUGHTON ISLAND  1956  2017 -13.7542 126.1485    GPS
@@ -168,7 +168,7 @@ stations_site_list
     ##  9 001023    01       EL QUESTRO  1967  2017 -16.0086 127.9806    GPS
     ## 10 001024    01        ELLENBRAE  1986  2017 -15.9572 127.0628    GPS
     ## # ... with 7,431 more rows, and 6 more variables: state <chr>, elev <dbl>,
-    ## #   bar_ht <dbl>, WMO <int>, state_code <chr>, url <chr>
+    ## #   bar_ht <dbl>, wmo <int>, state_code <chr>, url <chr>
 
 Save data
 ---------
@@ -209,8 +209,6 @@ Lastly, create the database for use in the package.
 ``` r
 stations_site_list <-
   stations_site_list %>%
-  dplyr::rename(lat = Lat,
-  lon = Lon) %>%
   dplyr::select(-state_code, -source, -url) %>% 
   as.data.frame()
 
@@ -233,7 +231,7 @@ Session Info
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2017-07-02
+    ##  date     2017-07-03
 
     ## Packages -----------------------------------------------------------------
 
