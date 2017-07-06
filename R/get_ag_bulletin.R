@@ -40,10 +40,68 @@
 #'
 #' @export
 get_ag_bulletin <- function(state = NULL) {
-  # CRAN NOTE avoidance
-  state_code <- NULL
 
-  state <- .validate_state(state)
+  # CRAN NOTE avoidance
+  stations_site_list <- NULL
+
+  # Load AAC code/town name list to join with final output
+  load(system.file("extdata", "stations_site_list.rda", package = "bomrang"))
+
+  states <- c(
+    "NSW",
+    "NT",
+    "QLD",
+    "SA",
+    "TAS",
+    "VIC",
+    "WA",
+    "New South Wales",
+    "Northern Territory",
+    "Queensland",
+    "South Australia",
+    "Tasmania",
+    "Victoria",
+    "Western Australia",
+    "Australia",
+    "AU",
+    "AUS",
+    "Oz"
+  )
+
+  # If there's an exact match, use it; else, attempt partial match.
+  if (state %in% states) {
+    the_state <- state
+  } else {
+    likely_states <- agrep(pattern = state,
+                           x = states,
+                           value = TRUE)
+
+    if (length(likely_states) == 0) {
+      stop(
+        "\nA state or territory matching what you entered was not found.",
+        "Please check and try again.\n"
+      )
+    }
+
+    the_state <- likely_states[1]
+
+    if (length(likely_states) > 1) {
+      warning(
+        "Multiple states match state.",
+        "'\ndid you mean:\n\tstate = '",
+        paste(
+          likely_states[[1]],
+          "or",
+          likely_states[length(likely_states) - 1],
+          "or",
+          likely_states[length(likely_states)]
+        ),
+        "'?"
+      )
+    }
+  }
+
+
 
   # ftp server
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
@@ -57,49 +115,77 @@ get_ag_bulletin <- function(state = NULL) {
   VIC <- "IDV65176.xml"
   WA  <- "IDW65176.xml"
 
-  if (state == "NSW") {
+  if (the_state == "New South Wales") {
     xmlbulletin <-
       paste0(ftp_base, NSW) # nsw
   }
-  else if (state == "NT") {
+  else if (the_state == "Northern Territory") {
     xmlbulletin <-
       paste0(ftp_base, NT) # nt
   }
-  else if (state == "QLD") {
+  else if (the_state == "Queensland") {
     xmlbulletin <-
       paste0(ftp_base, QLD) # qld
   }
-  else if (state == "SA") {
+  else if (the_state == "South Australia") {
     xmlbulletin <-
       paste0(ftp_base, SA) # sa
   }
-  else if (state == "TAS") {
+  else if (the_state == "Tasmania") {
     xmlbulletin <-
       paste0(ftp_base, TAS) # tas
   }
-  else if (state == "VIC") {
+  else if (the_state == "Victoria") {
     xmlbulletin <-
       paste0(ftp_base, VIC) # vic
   }
-  else if (state == "WA") {
+  else if (the_state == "Western Australia") {
     xmlbulletin <-
       paste0(ftp_base, WA) # wa
   }
-  else if (state == "AUS") {
+  else if (the_state == "NSW") {
+    xmlbulletin <-
+      paste0(ftp_base, NSW) # nsw
+  }
+  else if (the_state == "NT") {
+    xmlbulletin <-
+      paste0(ftp_base, NT) # nt
+  }
+  else if (the_state == "QLD") {
+    xmlbulletin <-
+      paste0(ftp_base, QLD) # qld
+  }
+  else if (the_state == "SA") {
+    xmlbulletin <-
+      paste0(ftp_base, SA) # sa
+  }
+  else if (the_state == "TAS") {
+    xmlbulletin <-
+      paste0(ftp_base, TAS) # tas
+  }
+  else if (the_state == "VIC") {
+    xmlbulletin <-
+      paste0(ftp_base, VIC) # vic
+  }
+  else if (the_state == "WA") {
+    xmlbulletin <-
+      paste0(ftp_base, WA) # wa
+  }
+  else if (the_state == "AUS") {
     AUS <- list(NT, NSW, QLD, SA, TAS, VIC, WA)
     file_list <- paste0(ftp_base, AUS)
   } else
     stop(state, "is not recognised as a valid state or territory")
 
-if (state != "AUS") {
-  .parse_bulletin(xmlbulletin, stations_site_list)
-}
+  if (the_state != "AUS") {
+    .parse_bulletin(xmlbulletin, stations_site_list)
+  }
 
-else if (state == "AUS") {
-  out <-
-    lapply(X = file_list, FUN = .parse_bulletin, stations_site_list)
-  out <- as.data.frame(data.table::rbindlist(out))
-}
+  else if (the_state == "AUS") {
+    out <-
+      lapply(X = file_list, FUN = .parse_bulletin, stations_site_list)
+    out <- as.data.frame(data.table::rbindlist(out))
+  }
 }
 
 #' @noRd

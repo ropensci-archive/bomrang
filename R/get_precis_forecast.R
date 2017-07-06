@@ -1,5 +1,4 @@
 
-
 #' BoM Daily Précis Forecast for Select Towns
 #'
 #' Fetch the BoM daily précis forecast and return a tidy data frame of the seven
