@@ -9,16 +9,16 @@
 #' @export
 
 sweep_for_stations <- function(latlon = c(-35.3, 149.2)) {
-  lat <- latlon[1]
-  lon <- latlon[2]
+  Lat <- latlon[1]
+  Lon <- latlon[2]
 
   # CRAN NOTE avoidance:
-  Lat <- Lon <- NULL
+  lat <- lon <- NULL
 
   JSONurl_latlon_by_station_name %>%
     copy %>%
     # Lat Lon are in JSON
-    .[, "distance" := haversine_distance(lat, lon, Lat, Lon)] %>%
+    .[, "distance" := haversine_distance(Lat, Lon, lat, lon)] %>%
     setorderv("distance") %>%
     .[] %>%
     as.data.frame

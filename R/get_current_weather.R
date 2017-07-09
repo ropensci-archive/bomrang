@@ -98,16 +98,16 @@ get_current_weather <-
         stop("latlon must be a length-2 numeric vector.")
       }
 
-      lat <- latlon[1]
-      lon <- latlon[2]
+      Lat <- latlon[1]
+      Lon <- latlon[2]
 
       # CRAN NOTE avoidance: names of JSONurl_latlon_by_station_name
-      Lat <- Lon <- NULL
+      lat <- lon <- NULL
 
       station_nrst_latlon <-
         JSONurl_latlon_by_station_name %>%
         # Lat Lon are in JSON
-        .[which.min(haversine_distance(lat, lon, Lat, Lon))]
+        .[which.min(haversine_distance(Lat, Lon, lat, lon))]
 
       if (emit_latlon_msg) {
         on.exit(
@@ -115,10 +115,10 @@ get_current_weather <-
             "Using station_name = '",
             station_nrst_latlon$name,
             "', at latitude = ",
-            station_nrst_latlon$Lat,
+            station_nrst_latlon$lat,
             ", ",
             "longitude = ",
-            station_nrst_latlon$Lon
+            station_nrst_latlon$lon
           )
         )
       }

@@ -102,21 +102,14 @@ library(magrittr)
   # IDV - Vic, IDW - WA
 
   bom_stations_raw$state_code <- NA
-  bom_stations_raw$state_code[bom_stations_raw$state == "WA"] <-
-    "W"
-  bom_stations_raw$state_code[bom_stations_raw$state == "QLD"] <-
-    "Q"
-  bom_stations_raw$state_code[bom_stations_raw$state == "VIC"] <-
-    "V"
-  bom_stations_raw$state_code[bom_stations_raw$state == "NT"] <-
-    "D"
+  bom_stations_raw$state_code[bom_stations_raw$state == "WA"] <- "W"
+  bom_stations_raw$state_code[bom_stations_raw$state == "QLD"] <- "Q"
+  bom_stations_raw$state_code[bom_stations_raw$state == "VIC"] <- "V"
+  bom_stations_raw$state_code[bom_stations_raw$state == "NT"] <- "D"
   bom_stations_raw$state_code[bom_stations_raw$state == "TAS" |
-                                bom_stations_raw$state == "ANT"] <-
-    "T"
-  bom_stations_raw$state_code[bom_stations_raw$state == "NSW"] <-
-    "N"
-  bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <-
-    "S"
+                              bom_stations_raw$state == "ANT"] <- "T"
+  bom_stations_raw$state_code[bom_stations_raw$state == "NSW"] <- "N"
+  bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <- "S"
 
   stations_site_list <-
     bom_stations_raw %>%
