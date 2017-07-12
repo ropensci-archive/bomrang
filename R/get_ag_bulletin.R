@@ -114,38 +114,38 @@ get_ag_bulletin <- function(state = "AUS") {
   VIC <- "IDV65176.xml"
   WA  <- "IDW65176.xml"
 
-  switch (
-    state,
+  switch(
+    the_state,
     "ACT" = {
-      xmlforecast <-
+      xmlbulletin <-
         paste0(ftp_base, NSW) # nsw
     },
     "NSW" = {
-      xmlforecast <-
+      xmlbulletin <-
         paste0(ftp_base, NSW) # nsw
     },
     "NT" = {
-      xmlforecast <-
+      xmlbulletin <-
         paste0(ftp_base, NT) # nt
     },
     "QLD" = {
-      xmlforecast <-
+      xmlbulletin <-
         paste0(ftp_base, QLD) # qld
     },
     "SA" = {
-      xmlforecast <-
+      xmlbulletin <-
         paste0(ftp_base, SA) # sa
     },
     "TAS" = {
-      xmlforecast <-
+      xmlbulletin <-
         paste0(ftp_base, TAS) # tas
     },
     "VIC" = {
-      xmlforecast <-
+      xmlbulletin <-
         paste0(ftp_base, VIC) # vic
     },
     "WA" = {
-      xmlforecast <-
+      xmlbulletin <-
         paste0(ftp_base, WA) # wa
     },
     "AUS" = {

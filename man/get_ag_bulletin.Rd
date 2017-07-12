@@ -4,7 +4,7 @@
 \alias{get_ag_bulletin}
 \title{BoM Agriculture Bulletin Information for Select Stations}
 \usage{
-get_ag_bulletin(state = NULL)
+get_ag_bulletin(state = "AUS")
 }
 \arguments{
 \item{state}{Australian state or territory as full name or postal code.

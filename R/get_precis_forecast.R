@@ -112,7 +112,7 @@ get_precis_forecast <- function(state = "AUS") {
   WA  <- "IDW14199.xml"
 
   switch (
-    state,
+    the_state,
     "ACT" = {
       xmlforecast <-
         paste0(ftp_base, NSW) # nsw
