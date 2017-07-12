@@ -40,10 +40,12 @@ ag_bulletin <- get_ag_bulletin(state = "QLD")
 }
 }
 \references{
-Australian Bureau of Meteorology (BoM) Weather Data Services Agriculture Bulletins
+Australian Bureau of Meteorology (BoM) Weather Data Services Agriculture
+ Bulletins
 \url{http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml}
 
-Australian Bureau of Meteorology (BoM) Weather Data Services Observation of Rainfall
+Australian Bureau of Meteorology (BoM) Weather Data Services Observation of
+ Rainfall
 \url{http://www.bom.gov.au/climate/how/observations/rain-measure.shtml}
 }
 \author{
