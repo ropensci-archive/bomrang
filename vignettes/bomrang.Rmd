@@ -12,7 +12,8 @@ vignette: >
 ## Introduction
 
 _bomrang_ provides functions for interacting with 
-[Australian Bureau of Meteorology (BoM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BoM serves several types of data data as XML and JSON files. This
+[Australian Bureau of Meteorology (BoM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BoM
+serves several types of data data as XML and JSON files. This
 package fetches these files, parses them and return a tidy data frame.
 
 ## Using _bomrang_
@@ -62,17 +63,26 @@ head(Melbourne_weather)
 
 This function only takes one argument, `state`. The `state` parameter allows the
 user to select the forecast for just one state or a national forecast. States or
-territories are specified using the official postal codes:
+territories are specified using the official postal codes or full name:
 
-- **ACT** - Australian Capital Territory  
-- **NSW** - New South Wales  
-- **NT** - Northern Territory  
-- **QLD** - Queensland  
-- **SA** - South Australia  
-- **TAS** - Tasmania  
-- **VIC** - Victoria  
-- **WA** - Western Australia  
-- **AUS** - Australia, returns national forecast including all states.
+- **ACT** - Australian Capital Territory
+
+- **NSW** - New South Wales
+
+- **NT** - Northern Territory
+
+- **QLD** - Queensland
+
+- **SA** - South Australia
+
+- **TAS** - Tasmania
+
+- **VIC** - Victoria
+
+- **WA** - Western Australia
+
+- **AUS** - Australia, returns national forecast including all states, NT and
+ACT.
 
 ### Results
 
@@ -130,51 +140,88 @@ head(QLD_forecast)
 
 `get_ag_bulletin()` only takes one argument, `state`. The `state` parameter
 allows the user to select the bulletin for just one state or a national
-forecast. States or territories are specified using the official postal codes.
+forecast. States or territories are specified using the official postal codes or
+full name.
 
-- **NSW** - New South Wales  
-- **NT** - Northern Territory  
-- **QLD** - Queensland  
-- **SA** - South Australia  
-- **TAS** - Tasmania  
-- **VIC** - Victoria  
-- **WA** - Western Australia  
-- **AUS** - Australia, returns bulletin for all states/territories.
+- **NSW** - New South Wales
+
+- **NT** - Northern Territory
+
+- **QLD** - Queensland
+
+- **SA** - South Australia
+
+- **TAS** - Tasmania
+
+- **VIC** - Victoria
+
+- **WA** - Western Australia
+
+- **AUS** - Australia, returns bulletin for all states and NT.
 
 ### Results
 
 The function, `get_ag_bulletin()`, will return a data frame of the agriculture
 bulletin with the following fields:
 
-- **obs-time-local** - Observation time  
-- **obs-time-utc** - Observation time (time in UTC)  
-- **time-zone** - Time zone for observation  
-- **site** - Unique BoM identifier for each station  
-- **dist** - BoM rainfall district  
-- **station** - BoM station name  
-- **start** - Year data collection starts  
-- **end** - Year data collection ends (will always be current)  
-- **state** - State name (postal code abbreviation)  
-- **lat** - Latitude (decimal degrees)  
-- **lon** - Longitude (decimal degrees)  
-- **elev** - Station elevation (metres)  
-- **bar_ht** - Bar height (metres)  
+- **obs-time-local** - Observation time
+
+- **obs-time-utc** - Observation time (time in UTC)
+
+- **time-zone** - Time zone for observation
+
+- **site** - Unique BoM identifier for each station
+
+- **dist** - BoM rainfall district
+
+- **station** - BoM station name
+
+- **start** - Year data collection starts
+
+- **end** - Year data collection ends (will always be current)
+
+- **state** - State name (postal code abbreviation)
+
+- **lat** - Latitude (decimal degrees)
+
+- **lon** - Longitude (decimal degrees)
+
+- **elev** - Station elevation (metres)
+
+- **bar_ht** - Bar height (metres)
+
 - **WMO** - World Meteorlogical Organization number (unique ID used worldwide)
-- **r** - Rain to 9am (millimetres). _Trace will be reported as 0.01_  
-- **tn** - Minimum temperature (degrees Celsius)  
-- **tx** - Maximum temperature (degrees Celsius)  
-- **twd** - Wet bulb depression (degrees Celsius)  
-- **ev** - Evaporation (millimetres)  
-- **tg** - Terrestrial minimum temperature (degrees Celsius)  
-- **sn** - Sunshine (hours)  
-- **t5** - 5cm soil temperature (degrees Celsius)  
-- **t10** - 10cm soil temperature (degrees Celsius)  
-- **t20** - 20cm soil temperature (degrees Celsius)  
-- **t50** - 50cm soil temperature (degrees Celsius)  
-- **t1m** - 1m soil temperature (degrees Celsius)  
-- **wr** - Wind run (kilometres)  
-- **state** - State name (postal code abbreviation)  
-- **lat** - Latitude (decimal degrees)  
+
+- **r** - Rain to 9am (millimetres). _Trace will be reported as 0.01_
+
+- **tn** - Minimum temperature (degrees Celsius)
+
+- **tx** - Maximum temperature (degrees Celsius)
+
+- **twd** - Wet bulb depression (degrees Celsius)
+
+- **ev** - Evaporation (millimetres)
+
+- **tg** - Terrestrial minimum temperature (degrees Celsius)
+
+- **sn** - Sunshine (hours)
+
+- **t5** - 5cm soil temperature (degrees Celsius)
+
+- **t10** - 10cm soil temperature (degrees Celsius)
+
+- **t20** - 20cm soil temperature (degrees Celsius)
+
+- **t50** - 50cm soil temperature (degrees Celsius)
+
+- **t1m** - 1m soil temperature (degrees Celsius)
+
+- **wr** - Wind run (kilometres)
+
+- **state** - State name (postal code abbreviation)
+
+- **lat** - Latitude (decimal degrees)
+
 - **lon** - Longitude (decimal degrees).
 
 ### Example
@@ -199,14 +246,17 @@ This function will search for weather stations and return a data frame of all
 weather stations (in this package) sorted by distance from `latlon`, ascending.
 The fields in the data frame are:
 
-**name** - station name  
-**Lat** - latitude (decimal degrees)  
-**Lon** - longitude (decimal degrees)  
+**name** - station name
+
+**Lat** - latitude (decimal degrees)
+
+**Lon** - longitude (decimal degrees)
+
 **distance** - distance from provided `latlon` value (kilometres).
 
 #### Example  
 
-Following is an example sweeping for stations starting with Canberra.  
+Following is an example sweeping for stations starting with Canberra.
 
 ```{r, eval=FALSE}
 # Show only the first ten stations in the list
@@ -226,7 +276,8 @@ forecast.
 
 #### Example
 
-Following is an example updating the précis forecast locations internal database.
+Following is an example updating the précis forecast locations internal
+database.
 
 ```{r, eval=FALSE}
 update_forecast_locations()
@@ -242,7 +293,8 @@ the databases distributed with _bomrang_
 
 #### Example
 
-Following is an example updating the précis forecast locations internal database.
+Following is an example updating the précis forecast locations internal
+database.
 
 ```{r, eval=FALSE}
 update_station_locations()

@@ -7,8 +7,9 @@
 get_ag_bulletin(state = NULL)
 }
 \arguments{
-\item{state}{Australian state or territory as postal code, see details for
-instruction.}
+\item{state}{Australian state or territory as full name or postal code.
+Fuzzy string matching via \code{base::agrep} is done.  Defaults to "AUS"
+returning all state bulletins, see details for further detail.}
 }
 \value{
 Tidy data frame of a Australia BoM agricultural bulletin information.  For
@@ -30,7 +31,7 @@ or all using \code{AUS}.
    \item{TAS}{Tasmania}
    \item{VIC}{Victoria}
    \item{WA}{Western Australia}
-   \item{AUS}{Australia, returns bulletin for all states}
+   \item{AUS}{Australia, returns bulletin for all states and NT}
  }
 }
 \examples{

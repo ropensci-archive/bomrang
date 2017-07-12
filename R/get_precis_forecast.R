@@ -4,8 +4,9 @@
 #' Fetch the BoM daily précis forecast and return a tidy data frame of the seven
 #' day town forecast for a specified state or territory.
 #'
-#' @param state Australian state or territory as postal code, see details for
-#' instruction.
+#' @param state Australian state or territory as full name or postal code.
+#' Fuzzy string matching via \code{base::agrep} is done.  Defaults to "AUS"
+#' returning all state bulletins, see details for further detail.
 #'
 #' @details Allowed state and territory postal codes, only one state per request
 #' or all using \code{AUS}.
@@ -18,7 +19,7 @@
 #'    \item{TAS}{Tasmania}
 #'    \item{VIC}{Victoria}
 #'    \item{WA}{Western Australia}
-#'    \item{AUS}{Australia, returns forecast for all states}
+#'    \item{AUS}{Australia, returns forecast for all states and NT}
 #'  }
 #'
 #' @return
@@ -41,8 +42,62 @@
 #' @importFrom magrittr %>%
 #'
 #' @export
-get_precis_forecast <- function(state = NULL) {
-  state <- .validate_state(state)
+get_precis_forecast <- function(state = "AUS") {
+
+  states <- c(
+    "NSW",
+    "NT",
+    "QLD",
+    "SA",
+    "TAS",
+    "VIC",
+    "WA",
+    "New South Wales",
+    "Northern Territory",
+    "Queensland",
+    "South Australia",
+    "Tasmania",
+    "Victoria",
+    "Western Australia",
+    "Australia",
+    "AU",
+    "AUS",
+    "Oz"
+  )
+
+  # If there's an exact match, use it; else, attempt partial match.
+  if (state %in% states) {
+    the_state <- state
+  } else {
+    likely_states <- agrep(pattern = state,
+                           x = states,
+                           value = TRUE)
+
+    if (length(likely_states) == 0) {
+      stop(
+        "\nA state or territory matching what you entered was not found.",
+        "Please check and try again.\n"
+      )
+    }
+
+    the_state <- likely_states[1]
+
+    if (length(likely_states) > 1) {
+      warning(
+        "Multiple states match state.",
+        "'\ndid you mean:\n\tstate = '",
+        paste(
+          likely_states[[1]],
+          "or",
+          likely_states[length(likely_states) - 1],
+          "or",
+          likely_states[length(likely_states)]
+        ),
+        "'?"
+      )
+    }
+  }
+
 
   # ftp server
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
@@ -56,39 +111,46 @@ get_precis_forecast <- function(state = NULL) {
   VIC <- "IDV10753.xml"
   WA  <- "IDW14199.xml"
 
-  if (state == "NSW" | state == "ACT") {
-    xmlforecast <-
-      paste0(ftp_base, NSW) # nsw
-  }
-  else if (state == "NT") {
-    xmlforecast <-
-      paste0(ftp_base, NT) # nt
-  }
-  else if (state == "QLD") {
-    xmlforecast <-
-      paste0(ftp_base, QLD) # qld
-  }
-  else if (state == "SA") {
-    xmlforecast <-
-      paste0(ftp_base, SA) # sa
-  }
-  else if (state == "TAS") {
-    xmlforecast <-
-      paste0(ftp_base, TAS) # tas
-  }
-  else if (state == "VIC") {
-    xmlforecast <-
-      paste0(ftp_base, VIC) # vic
-  }
-  else if (state == "WA") {
-    xmlforecast <-
-      paste0(ftp_base, WA) # wa
-  }
-  else if (state == "AUS") {
-    AUS <- list(NT, NSW, QLD, SA, TAS, VIC, WA)
-    file_list <- paste0(ftp_base, AUS)
-  } else
+  switch (
+    state,
+    "ACT" = {
+      xmlforecast <-
+        paste0(ftp_base, NSW) # nsw
+    },
+    "NSW" = {
+      xmlforecast <-
+        paste0(ftp_base, NSW) # nsw
+    },
+    "NT" = {
+      xmlforecast <-
+        paste0(ftp_base, NT) # nt
+    },
+    "QLD" = {
+      xmlforecast <-
+        paste0(ftp_base, QLD) # qld
+    },
+    "SA" = {
+      xmlforecast <-
+        paste0(ftp_base, SA) # sa
+    },
+    "TAS" = {
+      xmlforecast <-
+        paste0(ftp_base, TAS) # tas
+    },
+    "VIC" = {
+      xmlforecast <-
+        paste0(ftp_base, VIC) # vic
+    },
+    "WA" = {
+      xmlforecast <-
+        paste0(ftp_base, WA) # wa
+    },
+    "AUS" = {
+      AUS <- list(NT, NSW, QLD, SA, TAS, VIC, WA)
+      file_list <- paste0(ftp_base, AUS)
+    },
     stop(state, " not recognised as a valid state or territory")
+  )
 
   if (state != "AUS") {
     out <- .parse_forecast(xmlforecast)
@@ -99,7 +161,6 @@ get_precis_forecast <- function(state = NULL) {
   }
   return(out)
 }
-
 
 .parse_forecast <- function(xmlforecast) {
   #CRAN NOTE avoidance
@@ -208,8 +269,8 @@ get_precis_forecast <- function(state = NULL) {
 
   # return final forecast object
   tidy_df <-
-  dplyr::left_join(out,
-                   AAC_codes, by = c("aac" = "AAC")) %>%
+    dplyr::left_join(out,
+                     AAC_codes, by = c("aac" = "AAC")) %>%
     dplyr::rename(lon = LON,
                   lat = LAT,
                   elev = ELEVATION) %>%
@@ -265,7 +326,7 @@ get_precis_forecast <- function(state = NULL) {
 
   time_period <- unlist(t(as.data.frame(xml2::xml_attrs(y))))
   time_period <-
-    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)), ]
+    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)),]
 
   sub_out <- cbind(time_period, attrs, values)
   row.names(sub_out) <- NULL

@@ -256,16 +256,16 @@ head(Melbourne_weather)
     (URL: <http://doi.org/10.5281/zenodo.598301>), R package version 0.0.4-1,
 
     or the BibTeX entry:
-```bibtex
-@Manual{R-pkg-bomrang,
-  author       = {Adam Sparks and Hugh Parsonage and Keith Pembleton},
-  title        = {bomrang: Fetch Australian Government Bureau of Meteorology Weather Data},
-  year         = {2017},
-  doi          = {10.5281/zenodo.598301},
-  url          = {https://github.com/ToowoombaTrio/bomrang},
-}
-
-```
+    
+    ```tex
+    @Manual{R-pkg-bomrang,
+    author       = {Adam Sparks and Hugh Parsonage and Keith Pembleton},
+    title        = {bomrang: Fetch Australian Government Bureau of Meteorology
+    Weather Data},
+    year         = {2017},
+    doi          = {10.5281/zenodo.598301},
+    url          = {https://github.com/ToowoombaTrio/bomrang}
+    ```
     
 - Please note that this project is released with a
 [Contributor Code of Conduct](CONDUCT.md). By participating in this project you

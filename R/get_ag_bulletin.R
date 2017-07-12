@@ -3,8 +3,9 @@
 #'
 #'Fetch the BoM agricultural bulletin information and return a tidy data frame
 #'
-#' @param state Australian state or territory as postal code, see details for
-#' instruction.
+#' @param state Australian state or territory as full name or postal code.
+#' Fuzzy string matching via \code{base::agrep} is done.  Defaults to "AUS"
+#' returning all state bulletins, see details for further detail.
 #'
 #' @details Allowed state and territory postal codes, only one state per request
 #' or all using \code{AUS}.
@@ -16,7 +17,7 @@
 #'    \item{TAS}{Tasmania}
 #'    \item{VIC}{Victoria}
 #'    \item{WA}{Western Australia}
-#'    \item{AUS}{Australia, returns bulletin for all states}
+#'    \item{AUS}{Australia, returns bulletin for all states and NT}
 #'  }
 #'
 #' @return
@@ -101,8 +102,6 @@ get_ag_bulletin <- function(state = NULL) {
     }
   }
 
-
-
   # ftp server
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
 
@@ -115,67 +114,46 @@ get_ag_bulletin <- function(state = NULL) {
   VIC <- "IDV65176.xml"
   WA  <- "IDW65176.xml"
 
-  if (the_state == "New South Wales") {
-    xmlbulletin <-
-      paste0(ftp_base, NSW) # nsw
-  }
-  else if (the_state == "Northern Territory") {
-    xmlbulletin <-
-      paste0(ftp_base, NT) # nt
-  }
-  else if (the_state == "Queensland") {
-    xmlbulletin <-
-      paste0(ftp_base, QLD) # qld
-  }
-  else if (the_state == "South Australia") {
-    xmlbulletin <-
-      paste0(ftp_base, SA) # sa
-  }
-  else if (the_state == "Tasmania") {
-    xmlbulletin <-
-      paste0(ftp_base, TAS) # tas
-  }
-  else if (the_state == "Victoria") {
-    xmlbulletin <-
-      paste0(ftp_base, VIC) # vic
-  }
-  else if (the_state == "Western Australia") {
-    xmlbulletin <-
-      paste0(ftp_base, WA) # wa
-  }
-  else if (the_state == "NSW") {
-    xmlbulletin <-
-      paste0(ftp_base, NSW) # nsw
-  }
-  else if (the_state == "NT") {
-    xmlbulletin <-
-      paste0(ftp_base, NT) # nt
-  }
-  else if (the_state == "QLD") {
-    xmlbulletin <-
-      paste0(ftp_base, QLD) # qld
-  }
-  else if (the_state == "SA") {
-    xmlbulletin <-
-      paste0(ftp_base, SA) # sa
-  }
-  else if (the_state == "TAS") {
-    xmlbulletin <-
-      paste0(ftp_base, TAS) # tas
-  }
-  else if (the_state == "VIC") {
-    xmlbulletin <-
-      paste0(ftp_base, VIC) # vic
-  }
-  else if (the_state == "WA") {
-    xmlbulletin <-
-      paste0(ftp_base, WA) # wa
-  }
-  else if (the_state == "AUS") {
-    AUS <- list(NT, NSW, QLD, SA, TAS, VIC, WA)
-    file_list <- paste0(ftp_base, AUS)
-  } else
-    stop(state, "is not recognised as a valid state or territory")
+  switch (
+    state,
+    "ACT" = {
+      xmlforecast <-
+        paste0(ftp_base, NSW) # nsw
+    },
+    "NSW" = {
+      xmlforecast <-
+        paste0(ftp_base, NSW) # nsw
+    },
+    "NT" = {
+      xmlforecast <-
+        paste0(ftp_base, NT) # nt
+    },
+    "QLD" = {
+      xmlforecast <-
+        paste0(ftp_base, QLD) # qld
+    },
+    "SA" = {
+      xmlforecast <-
+        paste0(ftp_base, SA) # sa
+    },
+    "TAS" = {
+      xmlforecast <-
+        paste0(ftp_base, TAS) # tas
+    },
+    "VIC" = {
+      xmlforecast <-
+        paste0(ftp_base, VIC) # vic
+    },
+    "WA" = {
+      xmlforecast <-
+        paste0(ftp_base, WA) # wa
+    },
+    "AUS" = {
+      AUS <- list(NT, NSW, QLD, SA, TAS, VIC, WA)
+      file_list <- paste0(ftp_base, AUS)
+    },
+    stop(state, " not recognised as a valid state or territory")
+  )
 
   if (the_state != "AUS") {
     .parse_bulletin(xmlbulletin, stations_site_list)
