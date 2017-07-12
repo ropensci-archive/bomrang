@@ -12,8 +12,7 @@ vignette: >
 ## Introduction
 
 _bomrang_ provides functions for interacting with 
-[Australian Bureau of Meteorology (BoM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BoM
-serves several types of data data as XML and JSON files. This
+[Australian Bureau of Meteorology (BoM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BoM serves several types of data data as XML and JSON files. This
 package fetches these files, parses them and return a tidy data frame.
 
 ## Using _bomrang_
@@ -63,7 +62,8 @@ head(Melbourne_weather)
 
 This function only takes one argument, `state`. The `state` parameter allows the
 user to select the forecast for just one state or a national forecast. States or
-territories are specified using the official postal codes or full name:
+territories are specified using the official postal codes or full name with
+fuzzy matching performed via `agrep()`
 
 - **ACT** - Australian Capital Territory
 
@@ -141,7 +141,7 @@ head(QLD_forecast)
 `get_ag_bulletin()` only takes one argument, `state`. The `state` parameter
 allows the user to select the bulletin for just one state or a national
 forecast. States or territories are specified using the official postal codes or
-full name.
+full name with fuzzy matching performed via `agrep()`.
 
 - **NSW** - New South Wales
 
