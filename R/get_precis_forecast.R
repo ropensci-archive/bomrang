@@ -6,7 +6,7 @@
 #'
 #' @param state Australian state or territory as full name or postal code.
 #' Fuzzy string matching via \code{base::agrep} is done.  Defaults to "AUS"
-#' returning all state bulletins, see details for further detail.
+#' returning all state bulletins, see details for further information.
 #'
 #' @details Allowed state and territory postal codes, only one state per request
 #' or all using \code{AUS}.
@@ -19,7 +19,7 @@
 #'    \item{TAS}{Tasmania}
 #'    \item{VIC}{Victoria}
 #'    \item{WA}{Western Australia}
-#'    \item{AUS}{Australia, returns forecast for all states and NT}
+#'    \item{AUS}{Australia, returns forecast for all states, NT and ACT}
 #'  }
 #'
 #' @return
@@ -45,6 +45,7 @@
 get_precis_forecast <- function(state = "AUS") {
 
   states <- c(
+    "ACT",
     "NSW",
     "NT",
     "QLD",
@@ -52,6 +53,7 @@ get_precis_forecast <- function(state = "AUS") {
     "TAS",
     "VIC",
     "WA",
+    "Australian Capital Territory",
     "New South Wales",
     "Northern Territory",
     "Queensland",
@@ -111,7 +113,7 @@ get_precis_forecast <- function(state = "AUS") {
   VIC <- "IDV10753.xml"
   WA  <- "IDW14199.xml"
 
-  switch (
+  switch(
     the_state,
     "ACT" = {
       xmlforecast <-
