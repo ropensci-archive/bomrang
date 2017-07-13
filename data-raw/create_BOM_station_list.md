@@ -4,10 +4,14 @@ Create Databases of BoM Station Locations and JSON URLs
 This document provides details on methods used to create the database of BoM JSON files for stations and corresponding metadata, e.g., latitude, longitude (which are more detailed than what is in the JSON file), start, end, elevation, etc.
 
 Refer to these BoM pages for more reference:
-- <http://www.bom.gov.au/inside/itb/dm/idcodes/struc.shtml>
-- <http://reg.bom.gov.au/catalogue/data-feeds.shtml>
-- <http://reg.bom.gov.au/catalogue/anon-ftp.shtml>
-- <http://www.bom.gov.au/climate/cdo/about/site-num.shtml>
+
+-   <http://www.bom.gov.au/inside/itb/dm/idcodes/struc.shtml>
+
+-   <http://reg.bom.gov.au/catalogue/data-feeds.shtml>
+
+-   <http://reg.bom.gov.au/catalogue/anon-ftp.shtml>
+
+-   <http://www.bom.gov.au/climate/cdo/about/site-num.shtml>
 
 Product code definitions
 ------------------------
@@ -15,23 +19,35 @@ Product code definitions
 ### States
 
 -   IDD - NT
+
 -   IDN - NSW/ACT
+
 -   IDQ - Qld
+
 -   IDS - SA
+
 -   IDT - Tas/Antarctica (distinguished by the product number)
+
 -   IDV - Vic
+
 -   IDW - WA
 
 ### Product code numbers
 
 -   60701 - coastal observations (duplicated in 60801)
+
 -   60801 - all weather observations (we will use this)
+
 -   60803 - Antarctica weather observations (and use this, this distinguishes Tas from Antarctica)
+
 -   60901 - capital city weather observations (duplicated in 60801)
+
 -   60903 - Canberra area weather observations (duplicated in 60801)
 
 Get station metadata
 --------------------
+
+The station metadata are downloaded from a zip file linked from the "[Bureau of Meteorology Site Numbers](http://www.bom.gov.au/climate/cdo/about/site-num.shtml)" website. The zip file may be directly downloaded, [file of site details](ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip).
 
 ``` r
 library(magrittr)
@@ -147,7 +163,7 @@ library(magrittr)
 stations_site_list
 ```
 
-    ## # A tibble: 7,442 x 14
+    ## # A tibble: 7,439 x 14
     ##      site  dist             name start   end      lat      lon source
     ##     <chr> <chr>            <chr> <int> <chr>    <dbl>    <dbl>  <chr>
     ##  1 001006    01     WYNDHAM AERO  1951  2017 -15.5100 128.1503    GPS
@@ -160,13 +176,13 @@ stations_site_list
     ##  8 001020    01         TRUSCOTT  1944  2017 -14.0900 126.3867    GPS
     ##  9 001023    01       EL QUESTRO  1967  2017 -16.0086 127.9806    GPS
     ## 10 001024    01        ELLENBRAE  1986  2017 -15.9572 127.0628    GPS
-    ## # ... with 7,432 more rows, and 6 more variables: state <chr>, elev <dbl>,
+    ## # ... with 7,429 more rows, and 6 more variables: state <chr>, elev <dbl>,
     ## #   bar_ht <dbl>, wmo <int>, state_code <chr>, url <chr>
 
 Save data
 ---------
 
-Now that we have the dataframe of stations and have generated the URLs for the JSON files for stations providing weather data feeds, save the data as a database for *bomrang* to use.
+Now that we have the data frame of stations and have generated the URLs for the JSON files for stations providing weather data feeds, save the data as a database for *bomrang* to use.
 
 There are weather stations that do have a WMO but don't report online, e.g., KIRIBATI NTC AWS or MARSHALL ISLANDS NTC AWS, in this section remove these from the list and then create a database for use with the current weather information from BoM.
 
@@ -224,7 +240,7 @@ Session Info
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2017-07-09
+    ##  date     2017-07-13
 
     ## Packages -----------------------------------------------------------------
 
@@ -256,13 +272,13 @@ Session Info
     ##  R6           2.2.2      2017-06-17 cran (@2.2.2)                
     ##  Rcpp         0.12.11    2017-05-22 cran (@0.12.11)              
     ##  readr        1.1.1      2017-05-16 cran (@1.1.1)                
-    ##  rlang        0.1.1.9000 2017-07-01 Github (hadley/rlang@ff87439)
+    ##  rlang        0.1.1.9000 2017-07-02 Github (hadley/rlang@ff87439)
     ##  rmarkdown    1.6        2017-06-15 cran (@1.6)                  
     ##  rprojroot    1.2        2017-01-16 CRAN (R 3.4.0)               
     ##  stats      * 3.4.1      2017-07-07 local                        
     ##  stringi      1.1.5      2017-04-07 CRAN (R 3.4.0)               
     ##  stringr      1.2.0      2017-02-18 CRAN (R 3.4.0)               
-    ##  tibble       1.3.3      2017-05-28 CRAN (R 3.4.0)               
+    ##  tibble       1.3.3      2017-05-28 cran (@1.3.3)                
     ##  tools        3.4.1      2017-07-07 local                        
     ##  utils      * 3.4.1      2017-07-07 local                        
     ##  withr        1.0.2      2016-06-20 CRAN (R 3.4.0)               

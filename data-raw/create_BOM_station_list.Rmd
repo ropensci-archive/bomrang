@@ -8,7 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 This document provides details on methods used to create the database of BoM
-JSON files for stations and corresponding metadata, e.g., latitude, longitude
+JSON files for stations and corresponding metadata, _e.g._, latitude, longitude
 (which are more detailed than what is in the JSON file), start, end, elevation,
 etc.
 
@@ -175,7 +175,7 @@ library(magrittr)
 stations_site_list
 ```
 ## Save data
-Now that we have the dataframe of stations and have generated the URLs for the
+Now that we have the data frame of stations and have generated the URLs for the
 JSON files for stations providing weather data feeds, save the data as a
 database for _bomrang_ to use.
 
