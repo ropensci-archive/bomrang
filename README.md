@@ -243,7 +243,7 @@ head(Melbourne_weather)
 - Please [report any issues or bugs](https://github.com/ToowoombaTrio/bomrang/issues).
 
 - License: 
-    - Code - MIT + file
+    - All code is licenced MIT
     
     - All data is copyright Australia Bureau of Meteorology, BoM Copyright
       Notice <http://reg.bom.gov.au/other/copyright.shtml>
