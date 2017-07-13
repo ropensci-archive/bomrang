@@ -42,8 +42,14 @@ BoM_forecast <- get_precis_forecast(state = "QLD")
 }
 }
 \references{
-Australian Bureau of Meteorology (BoM) Weather Data Services
-\url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
+Forecast data come from Australian Bureau of Meteorology (BoM) Weather Data
+Services \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
+
+Location data and other metadata for towns come from
+the BoM anonymous FTP server with spatial data
+\url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/}, specifically the DBF
+file portion of a shapefile,
+\url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 }
 \author{
 Adam H Sparks, \email{adamhsparks@gmail.com} and

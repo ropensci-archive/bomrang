@@ -23,7 +23,8 @@ update_station_locations()
 }
 }
 \references{
-Australian Bureau of Meteorology (BoM) Site Numbers
+Station location and other metadata are sourced from the Australian Bureau of
+Meteorology (BoM) webpage, Bureau of Meteorology Site Numbers:
 \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 }
 \author{

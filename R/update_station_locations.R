@@ -15,9 +15,9 @@
 #' @return Updated internal databases of BoM station locations and JSON URLs
 #'
 #' @references
-#' Australian Bureau of Meteorology (BoM) Site Numbers
+#' Station location and other metadata are sourced from the Australian Bureau of
+#' Meteorology (BoM) webpage, Bureau of Meteorology Site Numbers:
 #' \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
-#'
 #'
 #' @author Adam H Sparks, \email{adamhsparks@gmail.com}
 #' @export

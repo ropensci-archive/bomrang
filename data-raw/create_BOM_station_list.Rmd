@@ -12,31 +12,53 @@ JSON files for stations and corresponding metadata, e.g., latitude, longitude
 (which are more detailed than what is in the JSON file), start, end, elevation,
 etc.
 
-Refer to these BoM pages for more reference:  
-- http://www.bom.gov.au/inside/itb/dm/idcodes/struc.shtml  
-- http://reg.bom.gov.au/catalogue/data-feeds.shtml  
-- http://reg.bom.gov.au/catalogue/anon-ftp.shtml  
-- http://www.bom.gov.au/climate/cdo/about/site-num.shtml  
+Refer to these BoM pages for more reference:
+
+- http://www.bom.gov.au/inside/itb/dm/idcodes/struc.shtml
+
+- http://reg.bom.gov.au/catalogue/data-feeds.shtml
+
+- http://reg.bom.gov.au/catalogue/anon-ftp.shtml
+
+- http://www.bom.gov.au/climate/cdo/about/site-num.shtml
 
 ## Product code definitions
+
 ### States
-- IDD - NT  
-- IDN - NSW/ACT  
+
+- IDD - NT
+
+- IDN - NSW/ACT
+
 - IDQ - Qld
-- IDS - SA  
+
+- IDS - SA
+
 - IDT - Tas/Antarctica (distinguished by the product number)
-- IDV - Vic  
-- IDW - WA  
+
+- IDV - Vic
+
+- IDW - WA
 
 ### Product code numbers
-- 60701 - coastal observations (duplicated in 60801)  
-- 60801 - all weather observations (we will use this)  
+
+- 60701 - coastal observations (duplicated in 60801)
+
+- 60801 - all weather observations (we will use this)
+
 - 60803 - Antarctica weather observations (and use this, this distinguishes
-          Tas from Antarctica)  
-- 60901 - capital city weather observations (duplicated in 60801)  
-- 60903 - Canberra area weather observations (duplicated in 60801)  
+          Tas from Antarctica)
+
+- 60901 - capital city weather observations (duplicated in 60801)
+
+- 60903 - Canberra area weather observations (duplicated in 60801)
 
 ## Get station metadata
+
+The station metadata are downloaded from a zip file linked from the 
+"[Bureau of Meteorology Site Numbers](http://www.bom.gov.au/climate/cdo/about/site-num.shtml)"
+website. The zip file may be directly downloaded, 
+[file of site details](ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip).
 
 ```{r get_bom_station_data, eval=TRUE}
 

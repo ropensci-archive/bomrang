@@ -109,7 +109,7 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 <h2 class="hasAnchor">
 <a href="#using-get_precis_forecast" class="anchor"></a>Using <code>get_precis_forecast</code>
 </h2>
-<p>This function only takes one argument, <code>state</code>. The <code>state</code> parameter allows the user to select the forecast for just one state or a national forecast. States or territories are specified using the official postal codes or full name:</p>
+<p>This function only takes one argument, <code>state</code>. The <code>state</code> parameter allows the user to select the forecast for just one state or a national forecast. States or territories are specified using the official postal codes or full name with fuzzy matching performed via <code>agrep()</code></p>
 <ul>
 <li><p><strong>ACT</strong> - Australian Capital Territory</p></li>
 <li><p><strong>NSW</strong> - New South Wales</p></li>
@@ -159,7 +159,7 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <h2 class="hasAnchor">
 <a href="#using-get_ag_bulletin" class="anchor"></a>Using <code>get_ag_bulletin</code>
 </h2>
-<p><code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> only takes one argument, <code>state</code>. The <code>state</code> parameter allows the user to select the bulletin for just one state or a national forecast. States or territories are specified using the official postal codes or full name.</p>
+<p><code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> only takes one argument, <code>state</code>. The <code>state</code> parameter allows the user to select the bulletin for just one state or a national forecast. States or territories are specified using the official postal codes or full name with fuzzy matching performed via <code>agrep()</code>.</p>
 <ul>
 <li><p><strong>NSW</strong> - New South Wales</p></li>
 <li><p><strong>NT</strong> - Northern Territory</p></li>

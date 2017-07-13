@@ -23,7 +23,8 @@ update_forecast_towns()
 }
 }
 \references{
-Australian Bureau of Meteorology (BoM) Weather Data Services
+Data are sourced from: Australian Bureau of Meteorology (BoM) webpage,
+"Weather Data Services",
 \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 }
 \author{

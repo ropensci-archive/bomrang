@@ -36,6 +36,16 @@
 #'   # Get weather by latitude and longitude:
 #'   get_current_weather(latlon = c(-34, 151))
 #' }
+#' @references
+#' Weather data observations are retrieved from:
+#' Australian Bureau of Meteorology (BoM) Weather Data Services,
+#' Observations - individual stations:
+#' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
+#'
+#' Station location and other metadata are sourced from the Australian Bureau of
+#' Meteorology (BoM) webpage, Bureau of Meteorology Site Numbers:
+#' \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
+#'
 #' @author Hugh Parsonage, \email{hugh.parsonage@gmail.com}
 #' @importFrom magrittr use_series
 #' @importFrom data.table :=
