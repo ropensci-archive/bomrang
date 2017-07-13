@@ -58,6 +58,14 @@ get_current_weather <-
            raw = FALSE,
            emit_latlon_msg = TRUE,
            as.data.table = FALSE) {
+
+    # CRAN NOTE avoidance
+    JSONurl_latlon_by_station_name <- NULL
+
+        # Load JSON URL list
+    load(system.file("extdata", "JSONurl_latlon_by_station_name.rda",
+                     package = "bomrang"))
+
     if (missing(station_name) && is.null(latlon)) {
       stop("One of 'station_name' or 'latlon' must be provided.")
     }

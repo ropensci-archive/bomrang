@@ -204,7 +204,9 @@ JSONurl_latlon_by_station_name <-
     }
 
 # Save database
-devtools::use_data(JSONurl_latlon_by_station_name, overwrite = TRUE)
+  save(JSONurl_latlon_by_station_name,
+       file = "../inst/extdata/JSONurl_latlon_by_station_name.rda",
+     compress = "bzip2")
 ```
 
 ### Save station location data for `get_ag_bulletin()`

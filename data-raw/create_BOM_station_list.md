@@ -1,7 +1,7 @@
 Create Databases of BoM Station Locations and JSON URLs
 ================
 
-This document provides details on methods used to create the database of BoM JSON files for stations and corresponding metadata, e.g., latitude, longitude (which are more detailed than what is in the JSON file), start, end, elevation, etc.
+This document provides details on methods used to create the database of BoM JSON files for stations and corresponding metadata, *e.g.*, latitude, longitude (which are more detailed than what is in the JSON file), start, end, elevation, etc.
 
 Refer to these BoM pages for more reference:
 
@@ -206,7 +206,9 @@ JSONurl_latlon_by_station_name <-
     }
 
 # Save database
-devtools::use_data(JSONurl_latlon_by_station_name, overwrite = TRUE)
+  save(JSONurl_latlon_by_station_name,
+       file = "../inst/extdata/JSONurl_latlon_by_station_name.rda",
+     compress = "bzip2")
 ```
 
 ### Save station location data for `get_ag_bulletin()`
@@ -272,13 +274,13 @@ Session Info
     ##  R6           2.2.2      2017-06-17 cran (@2.2.2)                
     ##  Rcpp         0.12.11    2017-05-22 cran (@0.12.11)              
     ##  readr        1.1.1      2017-05-16 cran (@1.1.1)                
-    ##  rlang        0.1.1.9000 2017-07-02 Github (hadley/rlang@ff87439)
+    ##  rlang        0.1.1.9000 2017-07-01 Github (hadley/rlang@ff87439)
     ##  rmarkdown    1.6        2017-06-15 cran (@1.6)                  
     ##  rprojroot    1.2        2017-01-16 CRAN (R 3.4.0)               
     ##  stats      * 3.4.1      2017-07-07 local                        
     ##  stringi      1.1.5      2017-04-07 CRAN (R 3.4.0)               
     ##  stringr      1.2.0      2017-02-18 CRAN (R 3.4.0)               
-    ##  tibble       1.3.3      2017-05-28 cran (@1.3.3)                
+    ##  tibble       1.3.3      2017-05-28 CRAN (R 3.4.0)               
     ##  tools        3.4.1      2017-07-07 local                        
     ##  utils      * 3.4.1      2017-07-07 local                        
     ##  withr        1.0.2      2016-06-20 CRAN (R 3.4.0)               

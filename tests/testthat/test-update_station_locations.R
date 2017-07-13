@@ -12,6 +12,10 @@ test_that("update_station_locations() downloads and imports the proper file",
             load(system.file("extdata", "stations_site_list.rda",
                              package = "bomrang"))
 
+            # Load JSON URL list
+            load(system.file("extdata", "JSONurl_latlon_by_station_name.rda",
+                             package = "bomrang"))
+
             expect_equal(ncol(stations_site_list), 11)
             expect_named(
               stations_site_list,

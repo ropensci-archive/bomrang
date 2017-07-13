@@ -5,12 +5,6 @@
     # CRAN Note avoidance
     if (getRversion() >= "2.15.1") {
       utils::globalVariables(c("."))
-
-      utils::data(
-        "JSONurl_latlon_by_station_name",
-        package = pkgname,
-        envir = parent.env(environment())
-      )
     }
   }
 

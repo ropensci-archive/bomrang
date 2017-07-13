@@ -13,7 +13,11 @@ sweep_for_stations <- function(latlon = c(-35.3, 149.2)) {
   Lon <- latlon[2]
 
   # CRAN NOTE avoidance:
-  lat <- lon <- NULL
+  JSONurl_latlon_by_station_name <- lat <- lon <- NULL
+
+  # Load JSON URL list
+  load(system.file("extdata", "JSONurl_latlon_by_station_name.rda",
+                   package = "bomrang"))
 
   JSONurl_latlon_by_station_name %>%
     copy %>%

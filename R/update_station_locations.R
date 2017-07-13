@@ -2,10 +2,9 @@
 #' Update internal databases with latest BoM station locations and metadata
 #'
 #' Download the latest station locations and metadata and update bomrang's
-#' internal databases that support the use of \code{\link{get_current_weather}},
-#' (\code{\link{JSONurl_latlon_by_station_name}}) and
-#' \code{\link{get_ag_bulletin}}.  There is no need to use this unless you know
-#' that a station exists in BoM's database that is not available in the
+#' internal databases that support the use of \code{\link{get_current_weather}}
+#' and \code{\link{get_ag_bulletin}}.  There is no need to use this unless you
+#' know that a station exists in BoM's database that is not available in the
 #' databases distributed with \code{\link{bomrang}}.
 #'
 #' @examples
@@ -161,14 +160,10 @@ update_station_locations <- function() {
     data.table::data.table(stations_site_list[!is.na(stations_site_list$url), ])
 
   message("Overwriting existing databases")
-  pkg <- system.file(package = "bomrang")
 
-  path <-
-    file.path(file.path(pkg, "data"),
-              paste0("JSONurl_latlon_by_station_name.rda"))
-  save(JSONurl_latlon_by_station_name,
-       file = path,
-       compress = "bzip2")
+  fname <- system.file("extdata", "JSONurl_latlon_by_station_name.rda",
+                       package = "bomrang")
+  save(JSONurl_latlon_by_station_name, file = fname, compress = "bzip2")
 
   stations_site_list <-
     stations_site_list %>%
