@@ -172,16 +172,14 @@ get_precis_forecast <- function(state = "AUS") {
 
 .parse_forecast <- function(xmlforecast) {
   #CRAN NOTE avoidance
-  aac <- town <- state <- lon <- lat <- elev <-
-    precipitation_range <- attrs <- values <-
-    `c("air_temperature_maximum", "Celsius")` <-
-    `start-time-local` <-
-    `end-time-local` <- `c("air_temperature_minimum", "Celsius")` <-
-    LON <- LAT <- ELEVATION <- `end-time-utc` <-
-    `start-time-utc` <- precis <- probability_of_precipitation <-
-    PT_NAME <- end_time_local <- end_time_utc <- lower_prec_limit <-
-    start_time_local <- start_time_utc <- maximum_temperature <-
-    minimum_temperature <- UTC_offset_drop <- AAC_codes <- NULL
+  aac <- town <- state <- lon <- lat <- elev <- precipitation_range <- attrs <-
+    values <- `c("air_temperature_maximum", "Celsius")` <- `start-time-local` <-
+    `end-time-local` <- `c("air_temperature_minimum", "Celsius")` <- LON <-
+    LAT <- ELEVATION <- `end-time-utc` <- `start-time-utc` <- precis <-
+    probability_of_precipitation <- PT_NAME <- end_time_local <- end_time_utc <-
+    lower_prec_limit <- start_time_local <- start_time_utc <-
+    maximum_temperature <- minimum_temperature <- UTC_offset_drop <-
+    AAC_codes <- NULL
 
   # load the XML forecast ----------------------------------------------------
   tryCatch({

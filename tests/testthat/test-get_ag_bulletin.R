@@ -1,19 +1,21 @@
 context("get_ag_bulletin")
 
 # Test that get_ag_bulletin returns a data frame with 20 columns ---------------
-test_that("get_ag_bulletin returns 27 columns", {
+test_that("get_ag_bulletin returns 29 columns", {
   skip_on_cran()
   BoM_bulletin <- get_ag_bulletin(state = "QLD")
-  expect_equal(ncol(BoM_bulletin), 27)
+  expect_equal(ncol(BoM_bulletin), 28)
   expect_named(
     BoM_bulletin,
     c(
+      "wmo",
+      "station",
+      "product_id",
       "obs_time_local",
       "obs_time_utc",
       "time_zone",
       "site",
       "dist",
-      "station",
       "start",
       "end",
       "state",
@@ -21,7 +23,6 @@ test_that("get_ag_bulletin returns 27 columns", {
       "lon",
       "elev",
       "bar_ht",
-      "wmo",
       "r",
       "tn",
       "tx",

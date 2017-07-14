@@ -125,19 +125,19 @@ get_ag_bulletin <- function(state = "AUS") {
   switch(
     the_state,
     "ACT" = {
-      xmlbulletin <-
+      xmlbulletin_url <-
         paste0(ftp_base, NSW) # nsw
     },
     "NSW" = {
-      xmlbulletin <-
+      xmlbulletin_url <-
         paste0(ftp_base, NSW) # nsw
     },
     "NT" = {
-      xmlbulletin <-
+      xmlbulletin_url <-
         paste0(ftp_base, NT) # nt
     },
     "QLD" = {
-      xmlbulletin <-
+      xmlbulletin_url <-
         paste0(ftp_base, QLD) # qld
     },
     "SA" = {
@@ -145,15 +145,15 @@ get_ag_bulletin <- function(state = "AUS") {
         paste0(ftp_base, SA) # sa
     },
     "TAS" = {
-      xmlbulletin <-
+      xmlbulletin_url <-
         paste0(ftp_base, TAS) # tas
     },
     "VIC" = {
-      xmlbulletin <-
+      xmlbulletin_url <-
         paste0(ftp_base, VIC) # vic
     },
     "WA" = {
-      xmlbulletin <-
+      xmlbulletin_url <-
         paste0(ftp_base, WA) # wa
     },
     "AUS" = {
@@ -164,7 +164,7 @@ get_ag_bulletin <- function(state = "AUS") {
   )
 
   if (the_state != "AUS") {
-    .parse_bulletin(xmlbulletin, stations_site_list)
+    .parse_bulletin(xmlbulletin_url, stations_site_list)
   }
 
   else if (the_state == "AUS") {
@@ -175,23 +175,18 @@ get_ag_bulletin <- function(state = "AUS") {
 }
 
 #' @noRd
-.parse_bulletin <- function(xmlbulletin, stations_site_list) {
+.parse_bulletin <- function(xmlbulletin_url, stations_site_list) {
   # CRAN NOTE avoidance
-  obs.time.utc <-
-    obs.time.local <- time.zone <- site <- r <- tn <-
-    tx <-
-    end <-
-    station <-
-    twd <- ev <- obs_time_utc <- obs_time_local <- time_zone <-
-    state <-
-    tg <-
-    sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <- lat <- lon <-
-    attrs <- dist <- start <- elev <- bar_ht <- wmo <- NULL
+  obs.time.utc <- obs.time.local <- time.zone <- site <- r <- tn <-
+    tx <- end <- station <- twd <- ev <- obs_time_utc <- obs_time_local <-
+    time_zone <- state <- tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <-
+    lat <- lon <- attrs <- dist <- start <- elev <- bar_ht <- wmo <-
+    product_id <- NULL
 
   # load the XML bulletin ------------------------------------------------------
 
   tryCatch({
-    xmlbulletin <- xml2::read_xml(xmlbulletin)
+    xmlbulletin <- xml2::read_xml(xmlbulletin_url)
   },
   error = function(x)
     stop(
@@ -243,21 +238,23 @@ get_ag_bulletin <- function(state = "AUS") {
     out$value <- as.numeric(as.character(out$value))
 
     # convert dates to POSIXct -------------------------------------------------
-    out[, 1:2] <-
-      apply(out[, 1:2], 2, function(x)
+    out[, c("obs.time.local", "obs.time.utc")] <-
+      apply(out[, c("obs.time.local", "obs.time.utc")], 2, function(x)
         chartr("T", " ", x))
 
-    out[, 1] <- as.POSIXct(out[, 1],
+    out[, "obs.time.local"] <- as.POSIXct(out[, "obs.time.local"],
                            origin = "1970-1-1",
                            format = "%Y%m%d %H%M",
                            tz = "")
-    out[, 2] <- as.POSIXct(out[, 2],
+    out[, "obs.time.utc"] <- as.POSIXct(out[, "obs.time.utc"],
                            origin = "1970-1-1",
                            format = "%Y%m%d %H%M",
                            tz = "GMT")
 
     # spread from long to wide
+    out$row <- 1:nrow(out)
     out <- tidyr::spread(out, key = attrs, value = value)
+    out <- subset(out, select = -row)
 
     # some stations don't report all values, insert/remove as necessary --------
     if ("<NA>" %in% colnames(out)) {
@@ -322,6 +319,9 @@ get_ag_bulletin <- function(state = "AUS") {
 
   tidy_df <- lapply(X = obs, FUN = .get_obs)
   tidy_df <- do.call("rbind", tidy_df)
+  tidy_df$product_id <- substr(basename(xmlbulletin_url),
+                               1,
+                               nchar(basename(xmlbulletin_url)) - 4)
 
   tidy_df <- dplyr::left_join(tidy_df,
                               stations_site_list,
@@ -339,12 +339,14 @@ get_ag_bulletin <- function(state = "AUS") {
   tidy_df <-
     dplyr::select(
       tidy_df,
+      wmo,
+      station,
+      product_id,
       obs_time_local,
       obs_time_utc,
       time_zone,
       site,
       dist,
-      station,
       start,
       end,
       state,
@@ -352,7 +354,6 @@ get_ag_bulletin <- function(state = "AUS") {
       lon,
       elev,
       bar_ht,
-      wmo,
       r,
       tn,
       tx,
@@ -369,8 +370,8 @@ get_ag_bulletin <- function(state = "AUS") {
     )
 
   # convert dates to POSIXct ---------------------------------------------------
-  tidy_df[, c(1:2)] <-
-    lapply(tidy_df[, c(1:2)], function(x)
+  tidy_df[, c("obs_time_local", "obs_time_utc")] <-
+    lapply(tidy_df[, c("obs_time_local", "obs_time_utc")], function(x)
       as.POSIXct(x, origin = "1970-1-1", format = "%Y-%m-%d %H:%M:%OS"))
 
   # return from main function

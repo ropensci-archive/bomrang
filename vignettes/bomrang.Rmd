@@ -765,12 +765,16 @@ characters)</td></tr>
 
 ## Appendix 3 - Output from get_ag_bulletin()
 
-
 The function, `get_ag_bulletin()`, will return a tidy data frame of the
 agriculture bulletin with the following fields:
 
 <table>
 <tr><th>Field Name</th><th>Description</th></tr>
+<tr><td>wmo</td><td>World Meteorlogical Organization number (unique ID used
+worldwide)</td></tr>
+<tr><td>station</td><td>Station name</td></tr>
+<tr><td>product_id</td><td>BoM Product ID from which the data are derived</td>
+</tr>
 <tr><td>obs-time-local</td><td>Observation time</td></tr>
 <tr><td>obs-time-utc</td><td>Observation time (time in UTC)</td></tr>
 <tr><td>time-zone</td><td>Time zone for observation</td></tr>
@@ -784,8 +788,6 @@ agriculture bulletin with the following fields:
 <tr><td>lon</td><td>Longitude (decimal degrees)</td></tr>
 <tr><td>elev_m</td><td>Station elevation (metres)</td></tr>
 <tr><td>bar_ht</td><td>Bar height (metres)</td></tr>
-<tr><td>WMO</td><td>World Meteorlogical Organization number (unique ID used
-worldwide)
 <tr><td>r</td><td>Rain to 9am (millimetres). _Trace will be reported as
 0.01_</td></tr>
 <tr><td>tn</td><td>Minimum temperature (degrees Celsius)</td></tr>
