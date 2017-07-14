@@ -734,8 +734,14 @@ agriculture bulletin with the following fields:
 
 <table>
 <tr><th>Field Name</th><th>Description</th></tr>
+<tr><td>index</td><td>Forecast index number, 0 = current day ... 7 day</td></tr>
+<tr><td>state</td><td>State name (postal code abbreviation)</td></tr>
+<tr><td>town</td><td>Town name for forecast location</td></tr>
 <tr><td>aac</td><td>AMOC Area Code, _e.g._, WA_MW008, a unique identifier for
 each location</td></tr>
+<tr><td>lon</td><td>Longitude of named location (decimal degrees)</td></tr>
+<tr><td>lat</td><td>Latitude of named location (decimal degrees)</td></tr>
+<tr><td>elev</td><td>Elevation of named location (metres)</td></tr>
 <tr><td>start_time_local</td><td>Start of forecast date and time in local
 TZ</td></tr>
 <tr><td>end_time_local</td><td>End of forecast date and time in local
@@ -745,22 +751,18 @@ from Coordinated Universal Time (UTC) for `start_time_local` and
 `end_time_local`</td></tr>
 <tr><td>start_time_utc</td><td>Start of forecast date and time in UTC</td></tr>
 <tr><td>end_time_utc</td><td>End of forecast date and time in UTC</td></tr>
-<tr><td>max_temp</td><td>Maximum forecasted temperature (degrees
+<tr><td>maximum_temperature</td><td>Maximum forecasted temperature (degrees
 Celsius)</td></tr>
-<tr><td>min_temp</td><td>Minimum forecasted temperature (degrees
+<tr><td>minimum_temperature</td><td>Minimum forecasted temperature (degrees
 Celsius)</td></tr>
-<tr><td>lower_prcp_limit</td><td>Lower forecasted precipitation limit
+<tr><td>lower_precipitation_limit</td><td>Lower forecasted precipitation limit
 (millimetres)</td></tr>
-<tr><td>upper_prcp_limit</td><td>Upper forecasted precipitation limit
+<tr><td>upper_precipitation_limit</td><td>Upper forecasted precipitation limit
 (millimetres)</td></tr>
 <tr><td>precis</td><td>Précis forecast (a short summary, less than 30
 characters)</td></tr>
-<tr><td>prob_prcp</td><td>Probability of precipitation (percent)</td></tr>
-<tr><td>location</td><td>Named location for forecast</td></tr>
-<tr><td>state</td><td>State name (postal code abbreviation)</td></tr>
-<tr><td>lon</td><td>Longitude of named location (decimal degrees)</td></tr>
-<tr><td>lat</td><td>Latitude of named location (decimal degrees)</td></tr>
-<tr><td>elev</td><td>Elevation of named location (metres)</td></tr>
+<tr><td>probability_of_precipitation</td><td>Probability of precipitation
+(percent)</td></tr>
 </table>
 
 ## Appendix 3 - Output from get_ag_bulletin()

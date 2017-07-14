@@ -8,8 +8,13 @@ test_that("get_precis_forecast returns 18 columns", {
   expect_named(
     BoM_forecast,
     c(
-      "aac",
       "index",
+      "state",
+      "town",
+      "aac",
+      "lon",
+      "lat",
+      "elev",
       "start_time_local",
       "end_time_local",
       "UTC_offset",
@@ -17,15 +22,10 @@ test_that("get_precis_forecast returns 18 columns", {
       "end_time_utc",
       "maximum_temperature",
       "minimum_temperature",
-      "lower_prec_limit",
-      "upper_prec_limit",
+      "lower_precipitation_limit",
+      "upper_precipitation_limit",
       "precis",
-      "probability_of_precipitation",
-      "town",
-      "state",
-      "lon",
-      "lat",
-      "elev"
+      "probability_of_precipitation"
     )
   )
 })

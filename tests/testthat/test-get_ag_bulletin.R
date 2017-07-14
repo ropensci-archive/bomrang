@@ -1,6 +1,6 @@
 context("get_ag_bulletin")
 
-# Test that get_ag_bulletin returns a data frame with 20 columns ---------------
+# Test that get_ag_bulletin returns a data frame with 29 columns ---------------
 test_that("get_ag_bulletin returns 29 columns", {
   skip_on_cran()
   BoM_bulletin <- get_ag_bulletin(state = "QLD")
@@ -10,6 +10,7 @@ test_that("get_ag_bulletin returns 29 columns", {
     c(
       "product_id",
       "state",
+      "dist",
       "wmo",
       "site",
       "station",
@@ -21,7 +22,6 @@ test_that("get_ag_bulletin returns 29 columns", {
       "lon",
       "elev",
       "bar_ht",
-      "dist",
       "start",
       "end",
       "r",

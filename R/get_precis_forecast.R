@@ -122,35 +122,35 @@ get_precis_forecast <- function(state = "AUS") {
   switch(
     the_state,
     "ACT" = {
-      xmlforecast <-
+      xmlforecast_url <-
         paste0(ftp_base, NSW) # nsw
     },
     "NSW" = {
-      xmlforecast <-
+      xmlforecast_url <-
         paste0(ftp_base, NSW) # nsw
     },
     "NT" = {
-      xmlforecast <-
+      xmlforecast_url <-
         paste0(ftp_base, NT) # nt
     },
     "QLD" = {
-      xmlforecast <-
+      xmlforecast_url <-
         paste0(ftp_base, QLD) # qld
     },
     "SA" = {
-      xmlforecast <-
+      xmlforecast_url <-
         paste0(ftp_base, SA) # sa
     },
     "TAS" = {
-      xmlforecast <-
+      xmlforecast_url <-
         paste0(ftp_base, TAS) # tas
     },
     "VIC" = {
-      xmlforecast <-
+      xmlforecast_url <-
         paste0(ftp_base, VIC) # vic
     },
     "WA" = {
-      xmlforecast <-
+      xmlforecast_url <-
         paste0(ftp_base, WA) # wa
     },
     "AUS" = {
@@ -161,7 +161,7 @@ get_precis_forecast <- function(state = "AUS") {
   )
 
   if (state != "AUS") {
-    out <- .parse_forecast(xmlforecast)
+    out <- .parse_forecast(xmlforecast_url)
   }
   else if (state == "AUS") {
     out <- lapply(X = file_list, FUN = .parse_forecast)
@@ -170,20 +170,21 @@ get_precis_forecast <- function(state = "AUS") {
   return(out)
 }
 
-.parse_forecast <- function(xmlforecast) {
+.parse_forecast <- function(xmlforecast_url) {
   #CRAN NOTE avoidance
   aac <- town <- state <- lon <- lat <- elev <- precipitation_range <- attrs <-
     values <- `c("air_temperature_maximum", "Celsius")` <- `start-time-local` <-
     `end-time-local` <- `c("air_temperature_minimum", "Celsius")` <- LON <-
     LAT <- ELEVATION <- `end-time-utc` <- `start-time-utc` <- precis <-
     probability_of_precipitation <- PT_NAME <- end_time_local <- end_time_utc <-
-    lower_prec_limit <- start_time_local <- start_time_utc <-
-    maximum_temperature <- minimum_temperature <- UTC_offset_drop <-
-    AAC_codes <- NULL
+    lower_precipitation_limit <- upper_precipitation_limit <-
+    start_time_local <- start_time_utc <- maximum_temperature <-
+    minimum_temperature <- UTC_offset_drop <- AAC_codes <- UTC_offset <-
+    index <- NULL
 
   # load the XML forecast ----------------------------------------------------
   tryCatch({
-    xmlforecast <- xml2::read_xml(xmlforecast)
+    xmlforecast <- xml2::read_xml(xmlforecast_url)
   },
   error = function(x)
     stop(
@@ -256,7 +257,7 @@ get_precis_forecast <- function(state = "AUS") {
     out %>%
     tidyr::separate(
       precipitation_range,
-      into = c("lower_prec_limit", "upper_prec_limit"),
+      into = c("lower_precipitation_limit", "upper_precipitation_limit"),
       sep = "to",
       fill = "left"
     )
@@ -296,8 +297,8 @@ get_precis_forecast <- function(state = "AUS") {
       .vars = c(
         "maximum_temperature",
         "minimum_temperature",
-        "lower_prec_limit",
-        "lower_prec_limit"
+        "lower_precipitation_limit",
+        "lower_precipitation_limit"
       )
     ) %>%
     dplyr::rename(town = PT_NAME)
@@ -306,6 +307,29 @@ get_precis_forecast <- function(state = "AUS") {
   tidy_df$state <- gsub("_.*", "", tidy_df$aac)
   tidy_df <-
     dplyr::select(.data = tidy_df, aac:town, state, lon, lat, elev)
+
+  tidy_df <-
+    tidy_df %>%
+    dplyr::select(
+      index,
+      state,
+      town,
+      aac,
+      lon,
+      lat,
+      elev,
+      start_time_local,
+      end_time_local,
+      UTC_offset,
+      start_time_utc,
+      end_time_utc,
+      maximum_temperature,
+      minimum_temperature,
+      lower_precipitation_limit,
+      upper_precipitation_limit,
+      precis,
+      probability_of_precipitation
+    )
 
   return(tidy_df)
 }
