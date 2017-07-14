@@ -51,7 +51,7 @@
 get_ag_bulletin <- function(state = "AUS") {
 
   # CRAN NOTE avoidance
-  stations_site_list <- xmlbulletin <- NULL
+  stations_site_list <- NULL
 
   # Load AAC code/town name list to join with final output
   load(system.file("extdata", "stations_site_list.rda", package = "bomrang"))
@@ -181,7 +181,7 @@ get_ag_bulletin <- function(state = "AUS") {
     tx <- end <- station <- twd <- ev <- obs_time_utc <- obs_time_local <-
     time_zone <- state <- tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <-
     lat <- lon <- attrs <- dist <- start <- elev <- bar_ht <- wmo <-
-    product_id <- NULL
+    product_id <- full_name <- name <- NULL
 
   # load the XML bulletin ------------------------------------------------------
 
@@ -333,27 +333,29 @@ get_ag_bulletin <- function(state = "AUS") {
     dplyr::rename(
       obs_time_local = obs.time.local,
       obs_time_utc = obs.time.utc,
-      time_zone = time.zone
+      time_zone = time.zone,
+      full_name = name
     )
 
   tidy_df <-
     dplyr::select(
       tidy_df,
-      wmo,
-      station,
       product_id,
+      state,
+      dist,
+      wmo,
+      site,
+      station,
+      full_name,
       obs_time_local,
       obs_time_utc,
       time_zone,
-      site,
-      dist,
-      start,
-      end,
-      state,
       lat,
       lon,
       elev,
       bar_ht,
+      start,
+      end,
       r,
       tn,
       tx,

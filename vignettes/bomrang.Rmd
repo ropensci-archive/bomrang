@@ -190,7 +190,7 @@ bulletin with the following fields:
 
 - **bar_ht** - Bar height (metres)
 
-- **WMO** - World Meteorlogical Organization number (unique ID used worldwide)
+- **wmo** - World Meteorlogical Organization number (unique ID used worldwide)
 
 - **r** - Rain to 9am (millimetres). _Trace will be reported as 0.01_
 
@@ -317,7 +317,7 @@ some or all of the following fields.
 
 <table>
 <tr><th>Field Name</th><th>Description</th></tr>
-<tr><td>WMO_id</td><td>WMO station index number, uniquely identifies
+<tr><td>wmo_id</td><td>wmo station index number, uniquely identifies
 station</td></tr>
 <tr><td>Name[31]</td><td>Observing station name</td></tr>
 <tr><td>Abbr[6]</td><td>An abbeviated name (normally 4 characters) used for the
@@ -437,7 +437,7 @@ Also, some other abbreviations used include
 ### Code figures
 
 (This is a subset of a larger table, not all values of which are used)
-WMO international BUFR code table 0 20 003, CREX code table B 20 003
+wmo international BUFR code table 0 20 003, CREX code table B 20 003
 
 	 00 Clouds not observed
 	 01 Cloud decreasing
@@ -636,7 +636,7 @@ WMO international BUFR code table 0 20 003, CREX code table B 20 003
 	510 Data should have been reported but wasn't
 
 #### Pw1 and Pw2 - Past weather
-        WMO international BUFR code table 0 20 004, CREX code table B 20 004
+        wmo international BUFR code table 0 20 004, CREX code table B 20 004
 
 	If only one type of weather has occurred in the last 3-6 hours,
 only Pw1 and Pw2 will be the same. If there has been more than one, Pw1
@@ -668,7 +668,7 @@ automated weather stations.
 	 
 #### Low_cld_code:
 	(This is a subset of a larger table, not all values of which are used)
-	WMO international BUFR code table 0 20 012, CREX code table B 20 012
+	wmo international BUFR code table 0 20 012, CREX code table B 20 012
 
 	30 No low level cloud
 	31 Cumulus humilis, or Cumulus fractus (not of bad weather), or both
@@ -687,7 +687,7 @@ automated weather stations.
 
 #### Mid_cld_code:
 	(This is a subset of a larger table, not all values of which are used)
-	WMO international BUFR code table 0 20 012, CREX code table B 20 012
+	wmo international BUFR code table 0 20 012, CREX code table B 20 012
 
 	20 No middle level cloud
 	21 Altostratus translucidus
@@ -707,7 +707,7 @@ automated weather stations.
 
 #### Hi_cld_code:
 	(This is a subset of a larger table, not all values of which are used)
-	WMO international BUFR code table 0 20 012, CREX code table B 20 012
+	wmo international BUFR code table 0 20 012, CREX code table B 20 012
 
 	10 No high level cloud
 	11 Cirrus fibratus, sometimes unicus, not progressively invading
@@ -770,24 +770,26 @@ agriculture bulletin with the following fields:
 
 <table>
 <tr><th>Field Name</th><th>Description</th></tr>
-<tr><td>wmo</td><td>World Meteorlogical Organization number (unique ID used
-worldwide)</td></tr>
-<tr><td>station</td><td>Station name</td></tr>
 <tr><td>product_id</td><td>BoM Product ID from which the data are derived</td>
 </tr>
+<tr><td>state</td><td>State name (postal code abbreviation)</td></tr>
+<tr><td>dist</td><td>BoM rainfall district</td></tr>
+<tr><td>wmo</td><td>World Meteorlogical Organization number (unique ID used
+worldwide)</td></tr>
+<tr><td>site</td><td>Unique BoM identifier for each station</td></tr>
+<tr><td>station</td><td>Station name</td></tr>
+<tr><td>full_name</td><td>Full station name (some stations have been retired so
+"name" will be same, this is the full designation</td></tr>
 <tr><td>obs-time-local</td><td>Observation time</td></tr>
 <tr><td>obs-time-utc</td><td>Observation time (time in UTC)</td></tr>
 <tr><td>time-zone</td><td>Time zone for observation</td></tr>
-<tr><td>site</td><td>Unique BoM identifier for each station</td></tr>
-<tr><td>dist</td><td>BoM rainfall district</td></tr>
-<tr><td>station</td><td>BoM station name</td></tr>
-<tr><td>start</td><td>Year data collection starts</td></tr>
-<tr><td>end</td><td>Year data collection ends (will always be current)</td></tr>
-<tr><td>state</td><td>State name (postal code abbreviation)</td></tr>
 <tr><td>lat</td><td>Latitude (decimal degrees)</td></tr>
 <tr><td>lon</td><td>Longitude (decimal degrees)</td></tr>
 <tr><td>elev_m</td><td>Station elevation (metres)</td></tr>
 <tr><td>bar_ht</td><td>Bar height (metres)</td></tr>
+<tr><td>station</td><td>BoM station name</td></tr>
+<tr><td>start</td><td>Year data collection starts</td></tr>
+<tr><td>end</td><td>Year data collection ends (will always be current)</td></tr>
 <tr><td>r</td><td>Rain to 9am (millimetres). _Trace will be reported as
 0.01_</td></tr>
 <tr><td>tn</td><td>Minimum temperature (degrees Celsius)</td></tr>
@@ -802,7 +804,4 @@ worldwide)</td></tr>
 <tr><td>t50</td><td>50cm soil temperature (degrees Celsius)</td></tr>
 <tr><td>t1m</td><td>1m soil temperature (degrees Celsius)</td></tr>
 <tr><td>wr</td><td>Wind run (kilometres)</td></tr>
-<tr><td>state</td><td>State name (postal code abbreviation)</td></tr>
-<tr><td>lat</td><td>Latitude (decimal degrees)</td></tr>
-<tr><td>lon</td><td>Longitude (decimal degrees)</td></tr>
 </table>

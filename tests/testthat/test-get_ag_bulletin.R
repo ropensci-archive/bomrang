@@ -4,25 +4,26 @@ context("get_ag_bulletin")
 test_that("get_ag_bulletin returns 29 columns", {
   skip_on_cran()
   BoM_bulletin <- get_ag_bulletin(state = "QLD")
-  expect_equal(ncol(BoM_bulletin), 28)
+  expect_equal(ncol(BoM_bulletin), 29)
   expect_named(
     BoM_bulletin,
     c(
-      "wmo",
-      "station",
       "product_id",
+      "state",
+      "wmo",
+      "site",
+      "station",
+      "full_name",
       "obs_time_local",
       "obs_time_utc",
       "time_zone",
-      "site",
-      "dist",
-      "start",
-      "end",
-      "state",
       "lat",
       "lon",
       "elev",
       "bar_ht",
+      "dist",
+      "start",
+      "end",
       "r",
       "tn",
       "tx",

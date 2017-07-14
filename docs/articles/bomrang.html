@@ -66,7 +66,7 @@
       <h1>bomrang</h1>
                         <h4 class="author">Adam H Sparks</h4>
             
-            <h4 class="date">2017-07-13</h4>
+            <h4 class="date">2017-07-14</h4>
           </div>
 
     
@@ -188,7 +188,7 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <li><p><strong>lon</strong> - Longitude (decimal degrees)</p></li>
 <li><p><strong>elev</strong> - Station elevation (metres)</p></li>
 <li><p><strong>bar_ht</strong> - Bar height (metres)</p></li>
-<li><p><strong>WMO</strong> - World Meteorlogical Organization number (unique ID used worldwide)</p></li>
+<li><p><strong>wmo</strong> - World Meteorlogical Organization number (unique ID used worldwide)</p></li>
 <li><p><strong>r</strong> - Rain to 9am (millimetres). <em>Trace will be reported as 0.01</em></p></li>
 <li><p><strong>tn</strong> - Minimum temperature (degrees Celsius)</p></li>
 <li><p><strong>tx</strong> - Maximum temperature (degrees Celsius)</p></li>
@@ -293,10 +293,10 @@ Description
 </tr>
 <tr>
 <td>
-WMO_id
+wmo_id
 </td>
 <td>
-WMO station index number, uniquely identifies station
+wmo station index number, uniquely identifies station
 </td>
 </tr>
 <tr>
@@ -747,7 +747,7 @@ Plain language comments
 <div id="code-figures" class="section level3">
 <h3 class="hasAnchor">
 <a href="#code-figures" class="anchor"></a>Code figures</h3>
-<p>(This is a subset of a larger table, not all values of which are used) WMO international BUFR code table 0 20 003, CREX code table B 20 003</p>
+<p>(This is a subset of a larger table, not all values of which are used) wmo international BUFR code table 0 20 003, CREX code table B 20 003</p>
 <pre><code> 00 Clouds not observed
  01 Cloud decreasing
  02 State of sky generally unchangeing
@@ -946,7 +946,7 @@ Plain language comments
 <div id="pw1-and-pw2---past-weather" class="section level4">
 <h4 class="hasAnchor">
 <a href="#pw1-and-pw2---past-weather" class="anchor"></a>Pw1 and Pw2 - Past weather</h4>
-<pre><code>    WMO international BUFR code table 0 20 004, CREX code table B 20 004
+<pre><code>    wmo international BUFR code table 0 20 004, CREX code table B 20 004
 
 If only one type of weather has occurred in the last 3-6 hours,</code></pre>
 <p>only Pw1 and Pw2 will be the same. If there has been more than one, Pw1 and Pw2 should be different, with Pw1 reflecting the “more important” past weather. Code figures 0-9 normally apply to manned stations, 10-19 to automated weather stations.</p>
@@ -977,7 +977,7 @@ If only one type of weather has occurred in the last 3-6 hours,</code></pre>
 <h4 class="hasAnchor">
 <a href="#low_cld_code" class="anchor"></a>Low_cld_code:</h4>
 <pre><code>(This is a subset of a larger table, not all values of which are used)
-WMO international BUFR code table 0 20 012, CREX code table B 20 012
+wmo international BUFR code table 0 20 012, CREX code table B 20 012
 
 30 No low level cloud
 31 Cumulus humilis, or Cumulus fractus (not of bad weather), or both
@@ -998,7 +998,7 @@ WMO international BUFR code table 0 20 012, CREX code table B 20 012
 <h4 class="hasAnchor">
 <a href="#mid_cld_code" class="anchor"></a>Mid_cld_code:</h4>
 <pre><code>(This is a subset of a larger table, not all values of which are used)
-WMO international BUFR code table 0 20 012, CREX code table B 20 012
+wmo international BUFR code table 0 20 012, CREX code table B 20 012
 
 20 No middle level cloud
 21 Altostratus translucidus
@@ -1020,7 +1020,7 @@ WMO international BUFR code table 0 20 012, CREX code table B 20 012
 <h4 class="hasAnchor">
 <a href="#hi_cld_code" class="anchor"></a>Hi_cld_code:</h4>
 <pre><code>(This is a subset of a larger table, not all values of which are used)
-WMO international BUFR code table 0 20 012, CREX code table B 20 012
+wmo international BUFR code table 0 20 012, CREX code table B 20 012
 
 10 No high level cloud
 11 Cirrus fibratus, sometimes unicus, not progressively invading
@@ -1208,6 +1208,62 @@ Description
 </tr>
 <tr>
 <td>
+product_id
+</td>
+<td>
+BoM Product ID from which the data are derived
+</td>
+</tr>
+<tr>
+<td>
+state
+</td>
+<td>
+State name (postal code abbreviation)
+</td>
+</tr>
+<tr>
+<td>
+dist
+</td>
+<td>
+BoM rainfall district
+</td>
+</tr>
+<tr>
+<td>
+wmo
+</td>
+<td>
+World Meteorlogical Organization number (unique ID used worldwide)
+</td>
+</tr>
+<tr>
+<td>
+site
+</td>
+<td>
+Unique BoM identifier for each station
+</td>
+</tr>
+<tr>
+<td>
+station
+</td>
+<td>
+Station name
+</td>
+</tr>
+<tr>
+<td>
+full_name
+</td>
+<td>
+Full station name (some stations have been retired so “name” will be same, this is the full designation
+</td>
+</tr>
+<tr>
+<td>
 obs-time-local
 </td>
 <td>
@@ -1228,54 +1284,6 @@ time-zone
 </td>
 <td>
 Time zone for observation
-</td>
-</tr>
-<tr>
-<td>
-site
-</td>
-<td>
-Unique BoM identifier for each station
-</td>
-</tr>
-<tr>
-<td>
-dist
-</td>
-<td>
-BoM rainfall district
-</td>
-</tr>
-<tr>
-<td>
-station
-</td>
-<td>
-BoM station name
-</td>
-</tr>
-<tr>
-<td>
-start
-</td>
-<td>
-Year data collection starts
-</td>
-</tr>
-<tr>
-<td>
-end
-</td>
-<td>
-Year data collection ends (will always be current)
-</td>
-</tr>
-<tr>
-<td>
-state
-</td>
-<td>
-State name (postal code abbreviation)
 </td>
 </tr>
 <tr>
@@ -1312,10 +1320,26 @@ Bar height (metres)
 </tr>
 <tr>
 <td>
-WMO
+station
 </td>
 <td>
-World Meteorlogical Organization number (unique ID used worldwide)
+BoM station name
+</td>
+</tr>
+<tr>
+<td>
+start
+</td>
+<td>
+Year data collection starts
+</td>
+</tr>
+<tr>
+<td>
+end
+</td>
+<td>
+Year data collection ends (will always be current)
 </td>
 </tr>
 <tr>
@@ -1420,30 +1444,6 @@ wr
 </td>
 <td>
 Wind run (kilometres)
-</td>
-</tr>
-<tr>
-<td>
-state
-</td>
-<td>
-State name (postal code abbreviation)
-</td>
-</tr>
-<tr>
-<td>
-lat
-</td>
-<td>
-Latitude (decimal degrees)
-</td>
-</tr>
-<tr>
-<td>
-lon
-</td>
-<td>
-Longitude (decimal degrees)
 </td>
 </tr>
 </table>
