@@ -35,6 +35,7 @@
 #' @importFrom magrittr use_series
 #' @importFrom data.table :=
 #' @importFrom data.table %chin%
+#' @importFrom data.table setnames
 #' @export get_current_weather
 
 get_current_weather <-
