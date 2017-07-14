@@ -13,20 +13,20 @@ test_that("Error handling", {
 test_that("Query of 'Melbourne Airport' returns data frame with correct station", {
   YMML <- get_current_weather("Melbourne Airport", raw = TRUE)
   expect_is(YMML, "data.frame")
-  expect_equal(YMML$name[1], "Melbourne Airport")
+  expect_equal(YMML$full_name[1], "Melbourne Airport")
 })
 
 test_that("Query of 'Melbourne Airport' returns time if cooked.", {
   YMML <- get_current_weather("Melbourne Airport")
   expect_is(YMML, "data.frame")
-  expect_equal(YMML$name[1], "Melbourne Airport")
+  expect_equal(YMML$full_name[1], "Melbourne Airport")
   expect_true("POSIXt" %in% class(YMML$aifstime_utc))
 })
 
 test_that("latlon: Query of c(-27, 149) returns Surat (QLD, between Roma and St George).", {
   expect_message(get_current_weather(latlon = c(-27, 149)), regexp = "SURAT")
   Surat <- get_current_weather(latlon = c(-27, 149), emit_latlon_msg = FALSE)
-  expect_equal(unique(Surat$name), "Surat")
+  expect_equal(unique(Surat$full_name), "Surat")
 })
 
 test_that("Data table if requested", {
