@@ -141,7 +141,7 @@ get_ag_bulletin <- function(state = "AUS") {
         paste0(ftp_base, QLD) # qld
     },
     "SA" = {
-      xmlbulletin <-
+      xmlbulletin_url <-
         paste0(ftp_base, SA) # sa
     },
     "TAS" = {
