@@ -172,6 +172,11 @@ get_current_weather <-
       for (j in which(DTnoms %chin% double_cols)) {
         data.table::set(DT, j = j, value = force_double(DT[[j]]))
       }
+      
+      # BoM raw JSON uses `name`, which is ambiguous (see #27)
+      if ("name" %in% names(DT)) {
+        setnames(DT, "name", "full_name")
+      }
 
       if (!as.DT) {
         DT <- as.data.frame(DT)
