@@ -191,8 +191,8 @@ get_current_weather <-
     }
     
     # BoM raw JSON uses `name`, which is ambiguous (see #27)
-    if ("name" %in% names(DT)) {
-      setnames(DT, "name", "full_name")
+    if ("name" %in% names(out)) {
+      setnames(out, "name", "full_name")
     }
 
     if (raw) {
