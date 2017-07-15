@@ -1,4 +1,3 @@
-
 *bomrang*: Fetch Australian Government Bureau of Meteorology (BoM) Data
 =======================================================================
 
@@ -70,41 +69,41 @@ QLD_forecast <- get_precis_forecast(state = "QLD")
 head(QLD_forecast)
 ```
 
-    ##   index state     town       aac      lon      lat elev
-    ## 1     0   QLD Brisbane QLD_PT001 153.0389 -27.4808  8.1
-    ## 2     1   QLD Brisbane QLD_PT001 153.0389 -27.4808  8.1
-    ## 3     2   QLD Brisbane QLD_PT001 153.0389 -27.4808  8.1
-    ## 4     3   QLD Brisbane QLD_PT001 153.0389 -27.4808  8.1
-    ## 5     4   QLD Brisbane QLD_PT001 153.0389 -27.4808  8.1
-    ## 6     5   QLD Brisbane QLD_PT001 153.0389 -27.4808  8.1
+    ##   index product_id state     town       aac      lon      lat elev
+    ## 1     0   IDQ11295   QLD Brisbane QLD_PT001 153.0389 -27.4808  8.1
+    ## 2     1   IDQ11295   QLD Brisbane QLD_PT001 153.0389 -27.4808  8.1
+    ## 3     2   IDQ11295   QLD Brisbane QLD_PT001 153.0389 -27.4808  8.1
+    ## 4     3   IDQ11295   QLD Brisbane QLD_PT001 153.0389 -27.4808  8.1
+    ## 5     4   IDQ11295   QLD Brisbane QLD_PT001 153.0389 -27.4808  8.1
+    ## 6     5   IDQ11295   QLD Brisbane QLD_PT001 153.0389 -27.4808  8.1
     ##      start_time_local end_time_local UTC_offset      start_time_utc
-    ## 1 2017-07-14 17:00:00     2017-07-15      10:00 2017-07-14 07:00:00
-    ## 2 2017-07-15 00:00:00     2017-07-16      10:00 2017-07-14 14:00:00
-    ## 3 2017-07-16 00:00:00     2017-07-17      10:00 2017-07-15 14:00:00
-    ## 4 2017-07-17 00:00:00     2017-07-18      10:00 2017-07-16 14:00:00
-    ## 5 2017-07-18 00:00:00     2017-07-19      10:00 2017-07-17 14:00:00
-    ## 6 2017-07-19 00:00:00     2017-07-20      10:00 2017-07-18 14:00:00
+    ## 1 2017-07-15 05:00:00     2017-07-16      10:00 2017-07-14 19:00:00
+    ## 2 2017-07-16 00:00:00     2017-07-17      10:00 2017-07-15 14:00:00
+    ## 3 2017-07-17 00:00:00     2017-07-18      10:00 2017-07-16 14:00:00
+    ## 4 2017-07-18 00:00:00     2017-07-19      10:00 2017-07-17 14:00:00
+    ## 5 2017-07-19 00:00:00     2017-07-20      10:00 2017-07-18 14:00:00
+    ## 6 2017-07-20 00:00:00     2017-07-21      10:00 2017-07-19 14:00:00
     ##          end_time_utc maximum_temperature minimum_temperature
-    ## 1 2017-07-14 14:00:00                  NA                  NA
-    ## 2 2017-07-15 14:00:00                  13                   5
-    ## 3 2017-07-16 14:00:00                  11                   7
-    ## 4 2017-07-17 14:00:00                  12                   6
-    ## 5 2017-07-18 14:00:00                  14                   6
-    ## 6 2017-07-19 14:00:00                   9                   6
+    ## 1 2017-07-15 14:00:00                  13                  NA
+    ## 2 2017-07-16 14:00:00                  11                   7
+    ## 3 2017-07-17 14:00:00                  12                   6
+    ## 4 2017-07-18 14:00:00                  14                   6
+    ## 5 2017-07-19 14:00:00                   9                   6
+    ## 6 2017-07-20 14:00:00                   9                   3
     ##   lower_precipitation_limit upper_precipitation_limit
-    ## 1                        NA                      <NA>
-    ## 2                         1                         4
-    ## 3                         1                         1
-    ## 4                         1                         0
-    ## 5                         1                         1
+    ## 1                         2                         4
+    ## 2                         3                         6
+    ## 3                         1                         0
+    ## 4                         1                         1
+    ## 5                         1                         0
     ## 6                         1                         0
-    ##                   precis probability_of_precipitation
-    ## 1          Mostly clear.                            0
-    ## 2    Late shower or two.                           50
-    ## 3 Possible early shower.                           40
-    ## 4         Partly cloudy.                           10
-    ## 5  Possible late shower.                           30
-    ## 6                 Sunny.                            5
+    ##                                precis probability_of_precipitation
+    ## 1 Mostly sunny. Possible late shower.                           60
+    ## 2      Early rain then partly cloudy.                           70
+    ## 3                      Partly cloudy.                           10
+    ## 4               Possible late shower.                           30
+    ## 5                              Sunny.                            5
+    ## 6                              Sunny.                            0
 
 ### Using `get_ag_bulletin()`
 
