@@ -30,7 +30,7 @@ test_that("Query of 'Melbourne Airport' returns time if cooked.", {
 test_that("Query of 'Sydney' defaults to Observatory Hill", {
   expect_warning(get_current_weather("Sydney"), regexp = "Multiple stations match")
   SYD <- suppressWarnings(get_current_weather("Sydney"))
-  expect_equal(unique(SYD$name), "Sydney - Observatory Hill")
+  expect_equal(unique(SYD$full_name), "Sydney - Observatory Hill")
 })
 
 test_that("latlon: Query of c(-27, 149) returns Surat (QLD, between Roma and St George).", {
