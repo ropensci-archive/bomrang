@@ -48,7 +48,7 @@ This function only takes one argument, `state`. States or territories are specif
 
 #### `get_precis_forecast()` Results
 
-The function `get_precis_forecast()` will return a tidy data frame of BoM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see the `Précis Forecast Fields` vignette.
+The function `get_precis_forecast()` will return a tidy data frame of BoM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see Appendix 2, `Output from get_precis_forecast()` in the _bomrang_ vignette.
 
 #### Example Using `get_precis_forecast()`
 
@@ -127,7 +127,7 @@ This function only takes one argument, `state`. The `state` parameter allows the
 
 #### `get_ag_bulletin()` Results
 
-The function `get_ag_bulletin()` will return a tidy data frame of BoM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see the `Ag Bulletin Fields` vignette.
+The function `get_ag_bulletin()` will return a tidy data frame of BoM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see Appendix 3, `Output from get_ag_bulletin()` in the _bomrang_ vignette.
 
 #### Example Using `get_ag_bulletin()`
 
@@ -178,7 +178,7 @@ This function accepts four arguments:
 
 #### Results of `get_current_weather()`
 
-The function, `get_current_weather()` will return a tidy data frame of the current and past 72 hours observations for the requested station. For a complete listing of the fields in the data frame see the `Current Weather Fields` vignette.
+The function, `get_current_weather()` will return a tidy data frame of the current and past 72 hours observations for the requested station. For a complete listing of the fields in the data frame see Appendix 1, `Output from get_current_weather()` in the _bomrang_ vignette.
 
 #### Example Using `get_current_weather()`
 
