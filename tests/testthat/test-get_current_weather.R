@@ -17,24 +17,29 @@ test_that("Error handling", {
 test_that("Query 'Melbourne Airport' returns data frame w/ correct station", {
   YMML <- get_current_weather("Melbourne Airport", raw = TRUE)
   expect_is(YMML, "data.frame")
-  expect_equal(YMML$name[1], "Melbourne Airport")
+  expect_equal(YMML$full_name[1], "Melbourne Airport")
 })
 
 test_that("Query of 'Melbourne Airport' returns time if cooked.", {
   YMML <- get_current_weather("Melbourne Airport")
   expect_is(YMML, "data.frame")
-  expect_equal(YMML$name[1], "Melbourne Airport")
+  expect_equal(YMML$full_name[1], "Melbourne Airport")
   expect_true("POSIXt" %in% class(YMML$aifstime_utc))
 })
 
-test_that("latlon: c(-27, 149) returns Surat (QLD, b/n Roma and St George).", {
+test_that("Query of 'Sydney' defaults to Observatory Hill", {
+  expect_warning(get_current_weather("Sydney"), regexp = "Multiple stations match")
+  SYD <- suppressWarnings(get_current_weather("Sydney"))
+  expect_equal(unique(SYD$name), "Sydney - Observatory Hill")
+})
+
+test_that("latlon: Query of c(-27, 149) returns Surat (QLD, between Roma and St George).", {
   expect_message(get_current_weather(latlon = c(-27, 149)), regexp = "SURAT")
   Surat <- get_current_weather(latlon = c(-27, 149), emit_latlon_msg = FALSE)
-  expect_equal(unique(Surat$name), "Surat")
+  expect_equal(unique(Surat$full_name), "Surat")
 })
 
 test_that("Data table if requested", {
   YMML <- get_current_weather("Melbourne Airport", as.data.table = TRUE)
   expect_true("data.table" %in% class(YMML))
 })
-

@@ -50,6 +50,7 @@
 #' @importFrom magrittr use_series
 #' @importFrom data.table :=
 #' @importFrom data.table %chin%
+#' @importFrom data.table setnames
 #' @export get_current_weather
 
 get_current_weather <-
@@ -97,13 +98,23 @@ get_current_weather <-
 
         the_station_name <- likely_stations[1]
         if (length(likely_stations) > 1) {
-          warning(
-            "Multiple stations match station_name. Using\n\tstation_name = '",
-            the_station_name,
-            "'\ndid you mean:\n\tstation_name = '",
-            likely_stations[-1],
-            "'?"
-          )
+          # Likely common use case
+          # (otherwise defaults to KURNELL RADAR which does not provide observations)
+          if (toupper(station_name) == "SYDNEY" && 'SYDNEY (OBSERVATORY HILL)' %in% likely_stations) {
+            likely_stations <- c('SYDNEY (OBSERVATORY HILL)',
+                                 setdiff(likely_stations,
+                                         'SYDNEY (OBSERVATORY HILL)'))
+            the_station_name <- 'SYDNEY (OBSERVATORY HILL)'
+          }
+
+          warning("Multiple stations match station_name. ",
+                  "Using\n\tstation_name = '",
+                  the_station_name,
+                  "'\n\nDid you mean any of the following?\n",
+                  paste0("\tstation_name = '",
+                         likely_stations[-1],
+                         "'",
+                         collapse = "\n"))
         }
       }
 
@@ -210,6 +221,11 @@ get_current_weather <-
 
     if (as.data.table) {
       data.table::setDT(out)
+    }
+    
+    # BoM raw JSON uses `name`, which is ambiguous (see #27)
+    if ("name" %in% names(out)) {
+      setnames(out, "name", "full_name")
     }
 
     if (raw) {
