@@ -1,5 +1,5 @@
 
-#' Current weather observations of a BoM station
+#' Current Weather Observations of a BoM Station
 #'
 #' @param station_name The name of the weather station. Fuzzy string matching
 #' via \code{base::agrep} is done.
@@ -20,6 +20,11 @@
 #' For more details see the vignette "Current Weather Fields":
 #' \code{vignette("Current Weather Fields", package = "bomrang")}
 #' for a complete list of fields and units.
+#' @return
+# Tidy data frame of requested BoM station's current and prior 72hr data.  For
+#' full details of fields and units returned, see Appendix 1 in the
+#' \emph{bomrang} vignette, use \code{vignette("bomrang", package = "bomrang")}
+#' to view.
 #' @examples
 #' \dontrun{
 #'   # warning
@@ -31,10 +36,21 @@
 #'   # Get weather by latitude and longitude:
 #'   get_current_weather(latlon = c(-34, 151))
 #' }
+#' @references
+#' Weather data observations are retrieved from:
+#' Australian Bureau of Meteorology (BoM) Weather Data Services,
+#' Observations - individual stations:
+#' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
+#'
+#' Station location and other metadata are sourced from the Australian Bureau of
+#' Meteorology (BoM) webpage, Bureau of Meteorology Site Numbers:
+#' \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
+#'
 #' @author Hugh Parsonage, \email{hugh.parsonage@gmail.com}
 #' @importFrom magrittr use_series
 #' @importFrom data.table :=
 #' @importFrom data.table %chin%
+#' @importFrom data.table setnames
 #' @export get_current_weather
 
 get_current_weather <-
@@ -43,6 +59,14 @@ get_current_weather <-
            raw = FALSE,
            emit_latlon_msg = TRUE,
            as.data.table = FALSE) {
+
+    # CRAN NOTE avoidance
+    JSONurl_latlon_by_station_name <- NULL
+
+        # Load JSON URL list
+    load(system.file("extdata", "JSONurl_latlon_by_station_name.rda",
+                     package = "bomrang"))
+
     if (missing(station_name) && is.null(latlon)) {
       stop("One of 'station_name' or 'latlon' must be provided.")
     }
@@ -103,27 +127,27 @@ get_current_weather <-
         stop("latlon must be a length-2 numeric vector.")
       }
 
-      lat <- latlon[1]
-      lon <- latlon[2]
+      Lat <- latlon[1]
+      Lon <- latlon[2]
 
       # CRAN NOTE avoidance: names of JSONurl_latlon_by_station_name
-      Lat <- Lon <- NULL
+      lat <- lon <- NULL
 
       station_nrst_latlon <-
         JSONurl_latlon_by_station_name %>%
         # Lat Lon are in JSON
-        .[which.min(haversine_distance(lat, lon, Lat, Lon))]
-      
+        .[which.min(haversine_distance(Lat, Lon, lat, lon))]
+
       if (emit_latlon_msg) {
         on.exit(
           message(
             "Using station_name = '",
             station_nrst_latlon$name,
             "', at latitude = ",
-            station_nrst_latlon$Lat,
+            station_nrst_latlon$lat,
             ", ",
             "longitude = ",
-            station_nrst_latlon$Lon
+            station_nrst_latlon$lon
           )
         )
       }
@@ -131,8 +155,8 @@ get_current_weather <-
       json_url <- station_nrst_latlon[["url"]]
     }
     if (isTRUE(httr::http_error(json_url))) {
-      stop("A station was matched but a corresponding JSON file was not found at
-           bom.gov.au.")
+      stop("\nA station was matched.",
+           "However a corresponding JSON file was not found at bom.gov.au.\n")
     }
 
     observations.json <-
@@ -140,8 +164,8 @@ get_current_weather <-
 
     if ("observations" %notin% names(observations.json) ||
         "data" %notin% names(observations.json$observations)) {
-      stop("A station was matched but the JSON returned by bom.gov.au was not in
-           expected form.")
+      stop("\nA station was matched",
+           "but the JSON returned by bom.gov.au was not in expected form.\n")
     }
 
     # Columns which are meant to be numeric
@@ -197,6 +221,11 @@ get_current_weather <-
 
     if (as.data.table) {
       data.table::setDT(out)
+    }
+    
+    # BoM raw JSON uses `name`, which is ambiguous (see #27)
+    if ("name" %in% names(out)) {
+      setnames(out, "name", "full_name")
     }
 
     if (raw) {

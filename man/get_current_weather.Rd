@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_current_weather.R
 \name{get_current_weather}
 \alias{get_current_weather}
-\title{Current weather observations of a BoM station}
+\title{Current Weather Observations of a BoM Station}
 \usage{
 get_current_weather(station_name, latlon = NULL, raw = FALSE,
   emit_latlon_msg = TRUE, as.data.table = FALSE)
@@ -27,8 +27,13 @@ be nearest to the given coordinate).}
 
 \item{as.data.table}{Return result as a \code{data.table}.}
 }
+\value{
+full details of fields and units returned, see Appendix 1 in the
+\emph{bomrang} vignette, use \code{vignette("bomrang", package = "bomrang")}
+to view.
+}
 \description{
-Current weather observations of a BoM station
+Current Weather Observations of a BoM Station
 }
 \details{
 Note that the column \code{local_date_time_full} is set to a
@@ -48,6 +53,16 @@ for a complete list of fields and units.
   # Get weather by latitude and longitude:
   get_current_weather(latlon = c(-34, 151))
 }
+}
+\references{
+Weather data observations are retrieved from:
+Australian Bureau of Meteorology (BoM) Weather Data Services,
+Observations - individual stations:
+\url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
+
+Station location and other metadata are sourced from the Australian Bureau of
+Meteorology (BoM) webpage, Bureau of Meteorology Site Numbers:
+\url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 }
 \author{
 Hugh Parsonage, \email{hugh.parsonage@gmail.com}

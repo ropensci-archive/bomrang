@@ -3,10 +3,9 @@
 #'
 #' Download the latest station locations and metadata and update bomrang's
 #' internal databases that support the use of \code{\link{get_current_weather}}
-#' (\code{\link{stations_site_list}}) and \code{\link{get_ag_bulletin}} (
-#' \code{\link{JSONurl_latlon_by_station_name}}).  There is no need to use this
-#' unless you know that a station exists in BoM's database that is not available
-#' in the databases distributed with \code{\link{bomrang}}.
+#' and \code{\link{get_ag_bulletin}}.  There is no need to use this unless you
+#' know that a station exists in BoM's database that is not available in the
+#' databases distributed with \code{\link{bomrang}}.
 #'
 #' @examples
 #' \dontrun{
@@ -15,28 +14,31 @@
 #' @return Updated internal databases of BoM station locations and JSON URLs
 #'
 #' @references
-#' Australian Bureau of Meteorology (BoM) Site Numbers
+#' Station location and other metadata are sourced from the Australian Bureau of
+#' Meteorology (BoM) webpage, Bureau of Meteorology Site Numbers:
 #' \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
-#'
 #'
 #' @author Adam H Sparks, \email{adamhsparks@gmail.com}
 #' @export
 #'
 update_station_locations <- function() {
   # CRAN NOTE avoidance
-  name <- site <- Lat <- Lon <- state_code <-  NULL
+  name <- site <- lat <- lon <- state_code <-  NULL
   tryCatch({
-    curl::curl_download(url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
-                        destfile = paste0(tempdir(), "stations.zip"))
+    curl::curl_download(
+      url =
+        "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
+                        destfile = file.path(tempdir(), "stations.zip"))
   },
   error = function(x)
     stop(
-      "\nThe server with the location information is not responding. Please retry again later.\n"
+      "\nThe server with the location information is not responding.",
+      "Please retry again later.\n"
     ))
 
   bom_stations_raw <-
     readr::read_table(
-      paste0(tempdir(), "stations.zip"),
+      file.path(tempdir(), "stations.zip"),
       skip = 5,
       guess_max = 20000,
       col_names = c(
@@ -45,13 +47,13 @@ update_station_locations <- function() {
         "name",
         "start",
         "end",
-        "Lat",
-        "Lon",
+        "lat",
+        "lon",
         "source",
         "state",
         "elev",
         "bar_ht",
-        "WMO"
+        "wmo"
       ),
       col_types = readr::cols(
         site = readr::col_character(),
@@ -59,13 +61,13 @@ update_station_locations <- function() {
         name = readr::col_character(),
         start = readr::col_integer(),
         end = readr::col_integer(),
-        Lat = readr::col_double(),
-        Lon = readr::col_double(),
+        lat = readr::col_double(),
+        lon = readr::col_double(),
         source = readr::col_character(),
         state = readr::col_character(),
         elev = readr::col_double(),
         bar_ht = readr::col_double(),
-        WMO = readr::col_integer()
+        wmo = readr::col_integer()
       ),
       na = c("..")
     )
@@ -105,7 +107,7 @@ update_station_locations <- function() {
     dplyr::select(site:name, dplyr::everything()) %>%
     dplyr::mutate(
       url = dplyr::case_when(
-        .$state != "ANT" & !is.na(.$WMO) ~
+        .$state != "ANT" & !is.na(.$wmo) ~
           paste0(
             "http://www.bom.gov.au/fwo/ID",
             .$state_code,
@@ -115,10 +117,10 @@ update_station_locations <- function() {
             .$state_code,
             "60801",
             ".",
-            .$WMO,
+            .$wmo,
             ".json"
           ),
-        .$state == "ANT" & !is.na(.$WMO) ~
+        .$state == "ANT" & !is.na(.$wmo) ~
           paste0(
             "http://www.bom.gov.au/fwo/ID",
             .$state_code,
@@ -128,7 +130,7 @@ update_station_locations <- function() {
             .$state_code,
             "60803",
             ".",
-            .$WMO,
+            .$wmo,
             ".json"
           )
       )
@@ -139,7 +141,7 @@ update_station_locations <- function() {
     stations_site_list[is.na(stations_site_list$end), ]
   stations_site_list$end <- format(Sys.Date(), "%Y")
 
-  # There are weather stations that do have a WMO but don't report online,
+  # There are weather stations that do have a wmo but don't report online,
   # most of these don't have a "state" value, e.g., KIRIBATI NTC AWS or
   # MARSHALL ISLANDS NTC AWS, remove these from the list
 
@@ -158,24 +160,17 @@ update_station_locations <- function() {
     data.table::data.table(stations_site_list[!is.na(stations_site_list$url), ])
 
   message("Overwriting existing databases")
-  pkg <- system.file(package = "bomrang")
 
-  path <-
-    file.path(file.path(pkg, "data"),
-              paste0("JSONurl_latlon_by_station_name.rda"))
-  save(JSONurl_latlon_by_station_name,
-       file = path,
-       compress = "bzip2")
+  fname <- system.file("extdata", "JSONurl_latlon_by_station_name.rda",
+                       package = "bomrang")
+  save(JSONurl_latlon_by_station_name, file = fname, compress = "bzip2")
 
   stations_site_list <-
     stations_site_list %>%
-    dplyr::rename(lat = Lat,
-                  lon = Lon) %>%
     dplyr::select(-state_code, -source, -url)
   stations_site_list$site <-
     gsub("^0{1,2}", "", stations_site_list$site)
 
-  path <-
-    file.path(file.path(pkg, "data"), paste0("stations_site_list.rda"))
-  save(stations_site_list, file = path, compress = "bzip2")
+  fname <- system.file("extdata", "stations_site_list.rda", package = "bomrang")
+  save(stations_site_list, file = fname, compress = "bzip2")
 }

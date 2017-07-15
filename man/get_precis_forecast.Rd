@@ -2,23 +2,24 @@
 % Please edit documentation in R/get_precis_forecast.R
 \name{get_precis_forecast}
 \alias{get_precis_forecast}
-\title{BoM daily précis forecast}
+\title{BoM Daily Précis Forecast for Select Towns}
 \usage{
-get_precis_forecast(state = NULL)
+get_precis_forecast(state = "AUS")
 }
 \arguments{
-\item{state}{Australian state or territory as postal code, see details for
-instruction.}
+\item{state}{Australian state or territory as full name or postal code.
+Fuzzy string matching via \code{base::agrep} is done.  Defaults to "AUS"
+returning all state bulletins, see details for further information.}
 }
 \value{
-Data frame of a Australia BoM daily forecast in a tidy data frame.  For
-more details see the vignette "Précis Forecast Fields":
-\code{vignette("Précis Forecast Fields", package = "bomrang")}
-for a complete list of fields and units.
+Tidy data frame of a Australia BoM précis seven day forecasts for select
+towns.  For full details of fields and units returned see Appendix 2 in the
+\emph{bomrang} vignette, use \code{vignette("bomrang", package = "bomrang")}
+to view.
 }
 \description{
-Fetch the BoM daily précis forecast and return a tidy data frame of the daily
-forecast
+Fetch the BoM daily précis forecast and return a tidy data frame of the seven
+day town forecast for a specified state or territory.
 }
 \details{
 Allowed state and territory postal codes, only one state per request
@@ -32,7 +33,7 @@ or all using \code{AUS}.
    \item{TAS}{Tasmania}
    \item{VIC}{Victoria}
    \item{WA}{Western Australia}
-   \item{AUS}{Australia, returns forecast for all states}
+   \item{AUS}{Australia, returns forecast for all states, NT and ACT}
  }
 }
 \examples{
@@ -41,9 +42,16 @@ BoM_forecast <- get_precis_forecast(state = "QLD")
 }
 }
 \references{
-Australian Bureau of Meteorology (BoM) Weather Data Services
-\url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
+Forecast data come from Australian Bureau of Meteorology (BoM) Weather Data
+Services \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
+
+Location data and other metadata for towns come from
+the BoM anonymous FTP server with spatial data
+\url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/}, specifically the DBF
+file portion of a shapefile,
+\url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 }
 \author{
-Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton, \email{keith.pembleton@usq.edu.au}
+Adam H Sparks, \email{adamhsparks@gmail.com} and
+Keith Pembleton, \email{keith.pembleton@usq.edu.au}
 }

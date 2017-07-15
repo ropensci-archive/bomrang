@@ -1,13 +1,17 @@
-Build BoM Station Locations and JSON URL Database
+Create Databases of BoM Station Locations and JSON URLs
 ================
 
-This document provides details on methods used to create the database of BoM JSON files for stations and corresponding metadata, e.g., latitude, longitude (which are more detailed than what is in the JSON file), start, end, elevation, etc.
+This document provides details on methods used to create the database of BoM JSON files for stations and corresponding metadata, *e.g.*, latitude, longitude (which are more detailed than what is in the JSON file), start, end, elevation, etc.
 
 Refer to these BoM pages for more reference:
-- <http://www.bom.gov.au/inside/itb/dm/idcodes/struc.shtml>
-- <http://reg.bom.gov.au/catalogue/data-feeds.shtml>
-- <http://reg.bom.gov.au/catalogue/anon-ftp.shtml>
-- <http://www.bom.gov.au/climate/cdo/about/site-num.shtml>
+
+-   <http://www.bom.gov.au/inside/itb/dm/idcodes/struc.shtml>
+
+-   <http://reg.bom.gov.au/catalogue/data-feeds.shtml>
+
+-   <http://reg.bom.gov.au/catalogue/anon-ftp.shtml>
+
+-   <http://www.bom.gov.au/climate/cdo/about/site-num.shtml>
 
 Product code definitions
 ------------------------
@@ -15,23 +19,35 @@ Product code definitions
 ### States
 
 -   IDD - NT
+
 -   IDN - NSW/ACT
+
 -   IDQ - Qld
+
 -   IDS - SA
+
 -   IDT - Tas/Antarctica (distinguished by the product number)
+
 -   IDV - Vic
+
 -   IDW - WA
 
 ### Product code numbers
 
 -   60701 - coastal observations (duplicated in 60801)
+
 -   60801 - all weather observations (we will use this)
+
 -   60803 - Antarctica weather observations (and use this, this distinguishes Tas from Antarctica)
+
 -   60901 - capital city weather observations (duplicated in 60801)
+
 -   60903 - Canberra area weather observations (duplicated in 60801)
 
 Get station metadata
 --------------------
+
+The station metadata are downloaded from a zip file linked from the "[Bureau of Meteorology Site Numbers](http://www.bom.gov.au/climate/cdo/about/site-num.shtml)" website. The zip file may be directly downloaded, [file of site details](ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip).
 
 ``` r
 library(magrittr)
@@ -40,9 +56,11 @@ library(magrittr)
 # fixed widths which are coded in the read_table() call.
 # The last six lines contain other information that we don't want.
 # For some reason, reading it directly from the BoM website does not work, so
-# we use download.file to fetch it first and then import it from the R tempdir()
+# we use download.file to fetch it first and then import it from the R
+# tempdir()
 
-  curl::curl_download(url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
+  curl::curl_download(
+    url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
                       destfile = paste0(tempdir(), "stations.zip"))
 
   bom_stations_raw <-
@@ -56,13 +74,13 @@ library(magrittr)
         "name",
         "start",
         "end",
-        "Lat",
-        "Lon",
+        "lat",
+        "lon",
         "source",
         "state",
         "elev",
         "bar_ht",
-        "WMO"
+        "wmo"
       ),
       col_types = readr::cols(
         site = readr::col_character(),
@@ -70,13 +88,13 @@ library(magrittr)
         name = readr::col_character(),
         start = readr::col_integer(),
         end = readr::col_integer(),
-        Lat = readr::col_double(),
-        Lon = readr::col_double(),
+        lat = readr::col_double(),
+        lon = readr::col_double(),
         source = readr::col_character(),
         state = readr::col_character(),
         elev = readr::col_double(),
         bar_ht = readr::col_double(),
-        WMO = readr::col_integer()
+        wmo = readr::col_integer()
       ),
       na = c("..")
     )
@@ -86,31 +104,29 @@ library(magrittr)
   bom_stations_raw <- bom_stations_raw[1:nrows, ]
 
   # recode the states to match product codes
-  # IDD - NT, IDN - NSW/ACT, IDQ - Qld, IDS - SA, IDT - Tas/Antarctica, IDV - Vic, IDW - WA
+  # IDD - NT,
+  # IDN - NSW/ACT,
+  # IDQ - Qld,
+  # IDS - SA,
+  # IDT - Tas/Antarctica,
+  # IDV - Vic, IDW - WA
 
   bom_stations_raw$state_code <- NA
-  bom_stations_raw$state_code[bom_stations_raw$state == "WA"] <-
-    "W"
-  bom_stations_raw$state_code[bom_stations_raw$state == "QLD"] <-
-    "Q"
-  bom_stations_raw$state_code[bom_stations_raw$state == "VIC"] <-
-    "V"
-  bom_stations_raw$state_code[bom_stations_raw$state == "NT"] <-
-    "D"
+  bom_stations_raw$state_code[bom_stations_raw$state == "WA"] <- "W"
+  bom_stations_raw$state_code[bom_stations_raw$state == "QLD"] <- "Q"
+  bom_stations_raw$state_code[bom_stations_raw$state == "VIC"] <- "V"
+  bom_stations_raw$state_code[bom_stations_raw$state == "NT"] <- "D"
   bom_stations_raw$state_code[bom_stations_raw$state == "TAS" |
-                                bom_stations_raw$state == "ANT"] <-
-    "T"
-  bom_stations_raw$state_code[bom_stations_raw$state == "NSW"] <-
-    "N"
-  bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <-
-    "S"
+                              bom_stations_raw$state == "ANT"] <- "T"
+  bom_stations_raw$state_code[bom_stations_raw$state == "NSW"] <- "N"
+  bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <- "S"
 
   stations_site_list <-
     bom_stations_raw %>%
     dplyr::select(site:name, dplyr::everything()) %>%
     dplyr::mutate(
       url = dplyr::case_when(
-        .$state != "ANT" & !is.na(.$WMO) ~
+        .$state != "ANT" & !is.na(.$wmo) ~
           paste0(
             "http://www.bom.gov.au/fwo/ID",
             .$state_code,
@@ -120,10 +136,10 @@ library(magrittr)
             .$state_code,
             "60801",
             ".",
-            .$WMO,
+            .$wmo,
             ".json"
           ),
-        .$state == "ANT" & !is.na(.$WMO) ~
+        .$state == "ANT" & !is.na(.$wmo) ~
           paste0(
             "http://www.bom.gov.au/fwo/ID",
             .$state_code,
@@ -133,7 +149,7 @@ library(magrittr)
             .$state_code,
             "60803",
             ".",
-            .$WMO,
+            .$wmo,
             ".json"
           )
       )
@@ -147,8 +163,8 @@ library(magrittr)
 stations_site_list
 ```
 
-    ## # A tibble: 7,437 x 14
-    ##      site  dist             name start   end      Lat      Lon source
+    ## # A tibble: 7,439 x 14
+    ##      site  dist             name start   end      lat      lon source
     ##     <chr> <chr>            <chr> <int> <chr>    <dbl>    <dbl>  <chr>
     ##  1 001006    01     WYNDHAM AERO  1951  2017 -15.5100 128.1503    GPS
     ##  2 001007    01 TROUGHTON ISLAND  1956  2017 -13.7542 126.1485    GPS
@@ -160,13 +176,13 @@ stations_site_list
     ##  8 001020    01         TRUSCOTT  1944  2017 -14.0900 126.3867    GPS
     ##  9 001023    01       EL QUESTRO  1967  2017 -16.0086 127.9806    GPS
     ## 10 001024    01        ELLENBRAE  1986  2017 -15.9572 127.0628    GPS
-    ## # ... with 7,427 more rows, and 6 more variables: state <chr>, elev <dbl>,
-    ## #   bar_ht <dbl>, WMO <int>, state_code <chr>, url <chr>
+    ## # ... with 7,429 more rows, and 6 more variables: state <chr>, elev <dbl>,
+    ## #   bar_ht <dbl>, wmo <int>, state_code <chr>, url <chr>
 
 Save data
 ---------
 
-Now that we have the dataframe of stations and have generated the URLs for the JSON files for stations providing weather data feeds, save the data as a database for *bomrang* to use.
+Now that we have the data frame of stations and have generated the URLs for the JSON files for stations providing weather data feeds, save the data as a database for *bomrang* to use.
 
 There are weather stations that do have a WMO but don't report online, e.g., KIRIBATI NTC AWS or MARSHALL ISLANDS NTC AWS, in this section remove these from the list and then create a database for use with the current weather information from BoM.
 
@@ -184,9 +200,15 @@ JSONurl_latlon_by_station_name <-
 # Remove new NA values from invalid URLs and convert to data.table
 JSONurl_latlon_by_station_name <-
   data.table::data.table(stations_site_list[!is.na(stations_site_list$url), ])
-  
+
+ if (!dir.exists("../inst/extdata")) {
+      dir.create("../inst/extdata", recursive = TRUE)
+    }
+
 # Save database
-devtools::use_data(JSONurl_latlon_by_station_name, overwrite = TRUE)
+  save(JSONurl_latlon_by_station_name,
+       file = "../inst/extdata/JSONurl_latlon_by_station_name.rda",
+     compress = "bzip2")
 ```
 
 ### Save station location data for `get_ag_bulletin()`
@@ -198,14 +220,14 @@ Lastly, create the database for use in the package.
 ``` r
 stations_site_list <-
   stations_site_list %>%
-  dplyr::rename(lat = Lat,
-  lon = Lon) %>%
-  dplyr::select(-state_code, -source, -url)
+  dplyr::select(-state_code, -source, -url) %>% 
+  as.data.frame()
 
 stations_site_list$site <-
   gsub("^0{1,2}", "", stations_site_list$site)
 
-devtools::use_data(stations_site_list, overwrite = TRUE)
+  save(stations_site_list, file = "../inst/extdata/stations_site_list.rda",
+     compress = "bzip2")
 ```
 
 Session Info
@@ -214,51 +236,52 @@ Session Info
     ## Session info -------------------------------------------------------------
 
     ##  setting  value                       
-    ##  version  R version 3.4.0 (2017-04-21)
-    ##  system   x86_64, darwin15.6.0        
+    ##  version  R version 3.4.1 (2017-06-30)
+    ##  system   x86_64, darwin16.6.0        
     ##  ui       unknown                     
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2017-06-13
+    ##  date     2017-07-13
 
     ## Packages -----------------------------------------------------------------
 
     ##  package    * version    date       source                       
     ##  assertthat   0.2.0      2017-04-11 CRAN (R 3.4.0)               
     ##  backports    1.1.0      2017-05-22 cran (@1.1.0)                
-    ##  base       * 3.4.0      2017-05-11 local                        
+    ##  base       * 3.4.1      2017-07-07 local                        
     ##  bindr        0.1        2016-11-13 cran (@0.1)                  
-    ##  bindrcpp   * 0.1        2016-12-11 cran (@0.1)                  
-    ##  compiler     3.4.0      2017-05-11 local                        
-    ##  curl         2.6        2017-04-27 CRAN (R 3.4.0)               
+    ##  bindrcpp   * 0.2        2017-06-17 cran (@0.2)                  
+    ##  compiler     3.4.1      2017-07-07 local                        
+    ##  curl         2.7        2017-06-26 cran (@2.7)                  
     ##  data.table   1.10.4     2017-02-01 CRAN (R 3.4.0)               
-    ##  datasets   * 3.4.0      2017-05-11 local                        
+    ##  datasets   * 3.4.1      2017-07-07 local                        
     ##  devtools     1.13.2     2017-06-02 cran (@1.13.2)               
     ##  digest       0.6.12     2017-01-27 CRAN (R 3.4.0)               
-    ##  dplyr        0.7.0      2017-06-09 cran (@0.7.0)                
-    ##  evaluate     0.10       2016-10-11 CRAN (R 3.4.0)               
-    ##  glue         1.0.0      2017-04-17 cran (@1.0.0)                
-    ##  graphics   * 3.4.0      2017-05-11 local                        
-    ##  grDevices  * 3.4.0      2017-05-11 local                        
+    ##  dplyr        0.7.1      2017-06-22 cran (@0.7.1)                
+    ##  evaluate     0.10.1     2017-06-24 cran (@0.10.1)               
+    ##  glue         1.1.1      2017-06-21 cran (@1.1.1)                
+    ##  graphics   * 3.4.1      2017-07-07 local                        
+    ##  grDevices  * 3.4.1      2017-07-07 local                        
     ##  hms          0.3        2016-11-22 CRAN (R 3.4.0)               
     ##  htmltools    0.3.6      2017-04-28 CRAN (R 3.4.0)               
     ##  httr         1.2.1      2016-07-03 CRAN (R 3.4.0)               
     ##  knitr        1.16       2017-05-18 cran (@1.16)                 
     ##  magrittr   * 1.5        2014-11-22 CRAN (R 3.4.0)               
     ##  memoise      1.1.0      2017-04-21 CRAN (R 3.4.0)               
-    ##  methods    * 3.4.0      2017-05-11 local                        
-    ##  R6           2.2.1      2017-05-10 cran (@2.2.1)                
+    ##  methods    * 3.4.1      2017-07-07 local                        
+    ##  pkgconfig    2.0.1      2017-03-21 cran (@2.0.1)                
+    ##  R6           2.2.2      2017-06-17 cran (@2.2.2)                
     ##  Rcpp         0.12.11    2017-05-22 cran (@0.12.11)              
     ##  readr        1.1.1      2017-05-16 cran (@1.1.1)                
-    ##  rlang        0.1.1.9000 2017-06-07 Github (hadley/rlang@7f53e56)
-    ##  rmarkdown    1.5        2017-04-26 CRAN (R 3.4.0)               
+    ##  rlang        0.1.1.9000 2017-07-01 Github (hadley/rlang@ff87439)
+    ##  rmarkdown    1.6        2017-06-15 cran (@1.6)                  
     ##  rprojroot    1.2        2017-01-16 CRAN (R 3.4.0)               
-    ##  stats      * 3.4.0      2017-05-11 local                        
+    ##  stats      * 3.4.1      2017-07-07 local                        
     ##  stringi      1.1.5      2017-04-07 CRAN (R 3.4.0)               
     ##  stringr      1.2.0      2017-02-18 CRAN (R 3.4.0)               
-    ##  tibble       1.3.3      2017-05-28 cran (@1.3.3)                
-    ##  tools        3.4.0      2017-05-11 local                        
-    ##  utils      * 3.4.0      2017-05-11 local                        
+    ##  tibble       1.3.3      2017-05-28 CRAN (R 3.4.0)               
+    ##  tools        3.4.1      2017-07-07 local                        
+    ##  utils      * 3.4.1      2017-07-07 local                        
     ##  withr        1.0.2      2016-06-20 CRAN (R 3.4.0)               
     ##  yaml         2.1.14     2016-11-12 CRAN (R 3.4.0)

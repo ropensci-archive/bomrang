@@ -1,27 +1,29 @@
 context("get_ag_bulletin")
 
-# Test that get_ag_bulletin returns a data frame with 20 columns ---------------
-test_that("get_ag_bulletin returns 27 columns", {
+# Test that get_ag_bulletin returns a data frame with 29 columns ---------------
+test_that("get_ag_bulletin returns 29 columns", {
   skip_on_cran()
   BoM_bulletin <- get_ag_bulletin(state = "QLD")
-  expect_equal(ncol(BoM_bulletin), 27)
+  expect_equal(ncol(BoM_bulletin), 29)
   expect_named(
     BoM_bulletin,
     c(
+      "product_id",
+      "state",
+      "dist",
+      "wmo",
+      "site",
+      "station",
+      "full_name",
       "obs_time_local",
       "obs_time_utc",
       "time_zone",
-      "site",
-      "dist",
-      "station",
-      "start",
-      "end",
-      "state",
       "lat",
       "lon",
       "elev",
       "bar_ht",
-      "WMO",
+      "start",
+      "end",
       "r",
       "tn",
       "tx",
@@ -43,50 +45,50 @@ test_that("get_ag_bulletin returns 27 columns", {
 test_that("get_ag_bulletin returns the bulletin for ACT/NSW", {
   skip_on_cran()
   BoM_bulletin <- get_ag_bulletin(state = "NSW")
-  expect_equal(BoM_bulletin[1, "state"], "NSW")
+  expect_equal(BoM_bulletin[["state"]][1], "NSW")
 })
 
 test_that("get_ag_bulletin returns the bulletin for NT", {
   skip_on_cran()
   BoM_bulletin <- get_ag_bulletin(state = "NT")
-  expect_equal(BoM_bulletin[1, 9], "NT")
+  expect_equal(BoM_bulletin[["state"]][1], "NT")
 })
 
 test_that("get_ag_bulletin returns the bulletin for QLD", {
   skip_on_cran()
   BoM_bulletin <- get_ag_bulletin(state = "QLD")
-  expect_equal(BoM_bulletin[1, "state"], "QLD")
+  expect_equal(BoM_bulletin[["state"]][1], "QLD")
 })
 
 test_that("get_ag_bulletin returns the bulletin for SA", {
   skip_on_cran()
   BoM_bulletin <- get_ag_bulletin(state = "SA")
-  expect_equal(BoM_bulletin[1, "state"], "SA")
+  expect_equal(BoM_bulletin[["state"]][1], "SA")
 })
 
 test_that("get_ag_bulletin returns the bulletin for TAS", {
   skip_on_cran()
   BoM_bulletin <- get_ag_bulletin(state = "TAS")
-  expect_equal(BoM_bulletin[1, "state"], "TAS")
+  expect_equal(BoM_bulletin[["state"]][1], "TAS")
 })
 
 test_that("get_ag_bulletin returns the bulletin for VIC", {
   skip_on_cran()
   BoM_bulletin <- get_ag_bulletin(state = "VIC")
-  expect_equal(BoM_bulletin[1, "state"], "VIC")
+  expect_equal(BoM_bulletin[["state"]][1], "VIC")
 })
 
 test_that("get_ag_bulletin returns the bulletin for WA", {
   skip_on_cran()
   BoM_bulletin <- get_ag_bulletin(state = "WA")
-  expect_equal(BoM_bulletin[1, "state"], "WA")
+  expect_equal(BoM_bulletin[["state"]][1], "WA")
 })
 
 test_that("get_ag_bulletin returns the bulletin for AUS", {
   skip_on_cran()
   BoM_bulletin <- get_ag_bulletin(state = "AUS")
-  state <- na.omit(BoM_bulletin["state"])
-  expect_equal(nrow(unique(state)), 7)
+  state <- na.omit(BoM_bulletin[["state"]])
+  expect_equal(length(unique(state)), 7)
 })
 
 # Test that .validate_state stops if the state recognised ----------------------
