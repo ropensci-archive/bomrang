@@ -206,6 +206,8 @@ database.
 update_station_locations()
 ```
 
+
+
 ## References
 
 [Australian Bureau of Meteorology (BoM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml)
@@ -715,3 +717,38 @@ worldwide)</td></tr>
 <tr><td>t1m</td><td>1m soil temperature (degrees Celsius)</td></tr>
 <tr><td>wr</td><td>Wind run (kilometres)</td></tr>
 </table>
+
+### Appendix 4 - Map of station locations
+
+```{r station-locations-map, fig.width = 7, fig.height = 7}
+if (requireNamespace("ggplot2", quietly = TRUE) &&
+    requireNamespace("ggthemes", quietly = TRUE) &&
+    requireNamespace("maps", quietly = TRUE) &&
+    requireNamespace("mapproj", quietly = TRUE)) {
+  library(ggplot2)
+  library(mapproj)
+  library(ggthemes)
+  library(maps)
+  library(data.table)
+  load(system.file("extdata", "stations_site_list.rda", package = "bomrang"))
+  setDT(stations_site_list)
+
+  Aust_stations <- 
+    stations_site_list[(!(state %in% c("ANT", "null"))) & !grepl("VANUATU|HONIARA", name)]
+  
+  Aust_map <- map_data("world", region = "Australia")
+  
+  ggplot(Aust_stations, aes(x = lon, y = lat)) + 
+    geom_polygon(data = Aust_map, aes(x = long, y = lat, group = group), 
+                 color = grey(0.7),
+                 fill = NA) +
+    geom_point(color = "red",
+               size = 0.05) +
+    coord_map(ylim = c(-45, -5),
+              xlim = c(96, 167)) +
+    theme_map() + 
+    ggtitle("BoM Station Locations",
+            subtitle = "Australia, outlying islands and buoys (excl. Antarctic stations)")
+}
+```
+  
