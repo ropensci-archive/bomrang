@@ -1,5 +1,5 @@
 
-#' Current Weather Observations of a BoM Station
+#' Get Current Weather Observations of a BoM Station
 #'
 #' @param station_name The name of the weather station. Fuzzy string matching
 #' via \code{base::agrep} is done.
@@ -222,7 +222,7 @@ get_current_weather <-
     if (as.data.table) {
       data.table::setDT(out)
     }
-    
+
     # BoM raw JSON uses `name`, which is ambiguous (see #27)
     if ("name" %in% names(out)) {
       setnames(out, "name", "full_name")

@@ -1,5 +1,5 @@
 
-#' BoM Agriculture Bulletin Information for Select Stations
+#' Get BoM Agriculture Bulletin Information for Select Stations
 #'
 #'Fetch the BoM agricultural bulletin information and return a tidy data frame
 #'

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_current_weather.R
 \name{get_current_weather}
 \alias{get_current_weather}
-\title{Current Weather Observations of a BoM Station}
+\title{Get Current Weather Observations of a BoM Station}
 \usage{
 get_current_weather(station_name, latlon = NULL, raw = FALSE,
   emit_latlon_msg = TRUE, as.data.table = FALSE)
@@ -33,7 +33,7 @@ full details of fields and units returned, see Appendix 1 in the
 to view.
 }
 \description{
-Current Weather Observations of a BoM Station
+Get Current Weather Observations of a BoM Station
 }
 \details{
 Note that the column \code{local_date_time_full} is set to a
