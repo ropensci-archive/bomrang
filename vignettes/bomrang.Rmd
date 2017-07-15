@@ -300,6 +300,8 @@ database.
 update_station_locations()
 ```
 
+
+
 ## References
 
 [Australian Bureau of Meteorology (BoM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml)
@@ -809,3 +811,24 @@ worldwide)</td></tr>
 <tr><td>t1m</td><td>1m soil temperature (degrees Celsius)</td></tr>
 <tr><td>wr</td><td>Wind run (kilometres)</td></tr>
 </table>
+
+### Appendix 4 - Map of station locations
+
+```{r station-locations-map, fig.width = 7, fig.height = 7}
+library(ggplot2)
+library(ggthemes)
+library(maps)
+load(system.file("extdata", "stations_site_list.rda", package = "bomrang"))
+
+Aust_map <- map_data("world", region = "Australia")
+
+ggplot(stations_site_list, aes(x = lon, y = lat)) + 
+  geom_polygon(data = Aust_map, aes(x = long, y = lat, group = group), 
+               color = grey(0.7),
+               fill = NA) +
+  geom_point(color = "red",
+             size = 0.05) +
+  coord_map(ylim = c(-45, -5),
+            xlim = c(100, 160)) +
+  theme_map()
+```

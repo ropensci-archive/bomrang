@@ -38,7 +38,10 @@ Suggests:
     covr,
     testthat,
     knitr,
-    rmarkdown
+    rmarkdown,
+    ggplot2,
+    ggthemes,
+    maps
 RoxygenNote: 6.0.1
 NeedsCompilation: no
 ByteCompile: TRUE
