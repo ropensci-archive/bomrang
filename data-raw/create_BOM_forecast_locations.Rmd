@@ -1,5 +1,5 @@
 ---
-title: "Get BOM Locations"
+title: "Get BoM Locations"
 output: github_document
 ---
 
@@ -7,9 +7,9 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Get BOM Forecast Locations
+## Get BoM Forecast Locations
 
-BOM maintains a shapefile of forecast locations. For ease, we'll just use the .dbf 
+BoM maintains a shapefile of forecast locations. For ease, we'll just use the .dbf 
 file part of th shapefile to extract AAC codes that can be used to add lat/lon
 to the forecast.
 

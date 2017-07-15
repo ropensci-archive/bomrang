@@ -1,6 +1,19 @@
+# bomrang 0.0.4-1 2017-06-12
+
+## Major changes
+
+* Update internal functionality for _dplyr_ 0.7.0  
+
+# bomrang 0.0.4 2017-06-09
+
+## Major changes
+
+* Use _jsonlite_ library rather than _rjson_
+
 # bomrang 0.0.3-5 2017-06-03
 
 ## Major changes
+
 * Wrap examples for `get_precis_forecast()` in a \dontrun{} tag due to CRAN NOTE taking too long to run  
 * Use proper GitHub URL in DESCRIPTION file  
 
@@ -31,13 +44,13 @@
 
 ## Major changes
 
-* Include internal databases of station locations and metadata for `get_current_weather()` and `get_ag_bulletin()` both derived from the same BOM station master list  
+* Include internal databases of station locations and metadata for `get_current_weather()` and `get_ag_bulletin()` both derived from the same BoM station master list  
 * The new database includes a more complete list of JSON URLs and ag bulletin station locations  
 * Generation of the JSON URL list is much faster, now can be updated by the user in a few seconds as desired using the new `update_station_locations()` function  
 
 ## Minor changes
 * Better tests written for the package  
-* Add a new file describing internal database creation for station locations, metadata and JSON URLs, create_BOM_station_list.md  
+* Add a new file describing internal database creation for station locations, metadata and JSON URLs, create_BoM_station_list.md  
 
 # bomrang 0.0.2-1
 
@@ -50,7 +63,7 @@
 ## Major changes
 
 * Hugh Parsonage has joined as a contributor  
-* Added a new function `get_current_weather()` to retrieve weather data from specified BOM weather stations  
+* Added a new function `get_current_weather()` to retrieve weather data from specified BoM weather stations  
 * Added a new function `sweep_for_stations()` to find stations used in `get_current_weather()` function, based on distance from a specified latitude and longitude
 * Renamed existing functions for more clarity.  
   * `get_forecast()` is now `get_precis_forecast()`  
@@ -75,6 +88,6 @@
 # bomrang 0.0.1
 
 * Added a `NEWS.md` file to track changes to the package.
-* New package for fetching BOM forecasts and ag information bulletins
+* New package for fetching BoM forecasts and ag information bulletins
 
 

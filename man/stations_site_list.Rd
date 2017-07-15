@@ -4,7 +4,7 @@
 \name{stations_site_list}
 \alias{stations_site_list}
 \title{stations_site_list}
-\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 7434 rows and 11 columns.}
+\format{An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 7437 rows and 11 columns.}
 \source{
 \url{ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip}
 }
@@ -16,9 +16,9 @@ A database of station locations and other metadata used for the ag bulletin
 }
 \details{
 \describe{
-   \item{site}{Unique BOM identifier for each station}
-   \item{dist}{BOM rainfall district}
-   \item{name}{BOM station name}
+   \item{site}{Unique BoM identifier for each station}
+   \item{dist}{BoM rainfall district}
+   \item{name}{BoM station name}
    \item{start}{Year data collection starts}
    \item{end}{Year data collection ends (will always be current)}
    \item{state}{State name (postal code abbreviation)}

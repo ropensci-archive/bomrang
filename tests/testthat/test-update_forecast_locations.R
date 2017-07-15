@@ -1,14 +1,14 @@
  context("update_forecast_locations")
 
- # Timeout options are reset on update_forecast_locations() exit -----------------
+ # Timeout options are reset on update_forecast_locations() exit ---------------
  test_that("Timeout options are reset on update_forecast_locations() exit", {
    skip_on_cran()
    update_forecast_locations()
    expect_equal(options("timeout")[[1]], 60)
  })
 
- # update_forecast_locations() downloads and imports the proper file -------------
- test_that("update_forecast_locations() downloads and imports the proper file", {
+ # update_forecast_locations() downloads and imports the proper file -----------
+ test_that("update_forecast_locations() downloads and imports proper file", {
    skip_on_cran()
 
    update_forecast_locations()

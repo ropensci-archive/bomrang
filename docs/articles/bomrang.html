@@ -29,10 +29,34 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../articles/bomrang.html">Get Started</a>
+</li>
+<li>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/Ag_Bulletin_Fields.html">Ag Bulletin Fields</a>
+    </li>
+    <li>
+      <a href="../articles/Current_Weather_Fields.html">Current Weather Fields</a>
+    </li>
+    <li>
+      <a href="../articles/Precis_Forecast_Fields.html">Précis Forecast Fields</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -60,7 +84,7 @@
       <h1>bomrang</h1>
                         <h4 class="author">Adam H Sparks</h4>
             
-            <h4 class="date">2017-06-05</h4>
+            <h4 class="date">2017-06-22</h4>
           </div>
 
     
@@ -69,7 +93,7 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p><em>bomrang</em> provides functions for interacting with <a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services</a> forecasts. BOM serves several types of data data as XML and JSON files. This package fetches these files, parses them and return a tidy data frame.</p>
+<p><em>bomrang</em> provides functions for interacting with <a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services</a> forecasts. BoM serves several types of data data as XML and JSON files. This package fetches these files, parses them and return a tidy data frame.</p>
 </div>
 <div id="using-bomrang" class="section level2">
 <h2 class="hasAnchor">
@@ -175,34 +199,6 @@
 
 QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_precis_forecast.html">get_precis_forecast</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
 <span class="kw">head</span>(QLD_forecast)</code></pre></div>
-<pre><code>##         aac index    start_time_local end_time_local UTC_offset
-## 1 QLD_PT001     0 2017-06-05 05:00:00     2017-06-06      10:00
-## 2 QLD_PT001     1 2017-06-06 00:00:00     2017-06-07      10:00
-## 3 QLD_PT001     2 2017-06-07 00:00:00     2017-06-08      10:00
-## 4 QLD_PT001     3 2017-06-08 00:00:00     2017-06-09      10:00
-## 5 QLD_PT001     4 2017-06-09 00:00:00     2017-06-10      10:00
-## 6 QLD_PT001     5 2017-06-10 00:00:00     2017-06-11      10:00
-##        start_time_utc        end_time_utc maximum_temperature
-## 1 2017-06-04 19:00:00 2017-06-05 14:00:00                  10
-## 2 2017-06-05 14:00:00 2017-06-06 14:00:00                  10
-## 3 2017-06-06 14:00:00 2017-06-07 14:00:00                   8
-## 4 2017-06-07 14:00:00 2017-06-08 14:00:00                   9
-## 5 2017-06-08 14:00:00 2017-06-09 14:00:00                  10
-## 6 2017-06-09 14:00:00 2017-06-10 14:00:00                  10
-##   minimum_temperature lower_prec_limit upper_prec_limit precis
-## 1                  NA                1                0 Sunny.
-## 2                   5                1                0 Sunny.
-## 3                  26                1                0 Sunny.
-## 4                  26                1                0 Sunny.
-## 5                   4                1                0 Sunny.
-## 6                   4                1                0 Sunny.
-##   probability_of_precipitation location state      lon      lat elev
-## 1                            0 Brisbane   QLD 153.0389 -27.4808  8.1
-## 2                            0 Brisbane   QLD 153.0389 -27.4808  8.1
-## 3                            0 Brisbane   QLD 153.0389 -27.4808  8.1
-## 4                            0 Brisbane   QLD 153.0389 -27.4808  8.1
-## 5                            0 Brisbane   QLD 153.0389 -27.4808  8.1
-## 6                           20 Brisbane   QLD 153.0389 -27.4808  8.1</code></pre>
 </div>
 </div>
 <div id="using-get_ag_bulletin" class="section level2">
@@ -250,13 +246,13 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <strong>time-zone</strong> - Time zone for observation<br>
 </li>
 <li>
-<strong>site</strong> - Unique BOM identifier for each station<br>
+<strong>site</strong> - Unique BoM identifier for each station<br>
 </li>
 <li>
-<strong>dist</strong> - BOM rainfall district<br>
+<strong>dist</strong> - BoM rainfall district<br>
 </li>
 <li>
-<strong>station</strong> - BOM station name<br>
+<strong>station</strong> - BoM station name<br>
 </li>
 <li>
 <strong>start</strong> - Year data collection starts<br>
@@ -338,27 +334,6 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 
 QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_ag_bulletin.html">get_ag_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
 <span class="kw">head</span>(QLD_bulletin)</code></pre></div>
-<pre><code>##        obs_time_local        obs_time_utc time_zone  site dist
-## 1 2017-06-05 09:00:00 2017-06-04 23:00:00       EST 38026   38
-## 2 2017-06-05 09:00:00 2017-06-04 23:00:00       EST 38003   38
-## 3 2017-06-05 09:00:00 2017-06-04 23:00:00       EST 40842   40
-## 4 2017-06-05 09:00:00 2017-06-04 23:00:00       EST 39128   39
-## 5 2017-06-05 09:00:00 2017-06-04 23:00:00       EST 31011   31
-## 6 2017-06-05 09:00:00 2017-06-04 23:00:00       EST 44021   44
-##            station start  end state      lat      lon  elev bar_ht   WMO
-## 1       Birdsville  2000 2017   QLD -25.8975 139.3472  46.6   47.0 95482
-## 2           Boulia  1886 2017   QLD -22.9117 139.9039 161.8  158.3 94333
-## 3 Brisbane Airport  1992 2017   QLD -27.3917 153.1292   4.5    9.5 94578
-## 4        Bundaberg  1942 2017   QLD -24.9069 152.3230  30.8   31.5 94387
-## 5           Cairns  1941 2017   QLD -16.8736 145.7458   2.2    8.3 94287
-## 6      Charleville  1942 2017   QLD -26.4139 146.2558 301.6  303.3 94510
-##     r   tn   tx twd ev  tg  sn   t5  t10  t20  t50  t1m  wr
-## 1 0.0  6.9 23.0 5.2 NA  NA  NA   NA   NA   NA   NA   NA  NA
-## 2 0.0  7.2 25.8  NA  8 4.4  NA   NA   NA   NA   NA   NA  NA
-## 3 0.0  9.8 22.6 3.1  4 7.9 8.6 16.0 17.0 18.0 20.0 21.0 216
-## 4 0.0 11.7 24.0 2.8 NA  NA  NA 16.8 17.4 18.7 18.3 21.1  NA
-## 5 7.8 19.2 26.5 1.9 NA  NA  NA   NA   NA   NA   NA   NA  NA
-## 6 0.0  3.0 22.0 4.4 NA  NA  NA   NA   NA   NA   NA   NA  NA</code></pre>
 </div>
 </div>
 <div id="using-get_current_weather" class="section level2">
@@ -381,41 +356,6 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 
 Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_current_weather.html">get_current_weather</a></span>(<span class="st">"Melbourne (Olympic Park)"</span>)
 <span class="kw">head</span>(Melbourne_weather)</code></pre></div>
-<pre><code>##   sort_order   wmo                     name history_product
-## 1          0 95936 Melbourne (Olympic Park)        IDV60801
-## 2          1 95936 Melbourne (Olympic Park)        IDV60801
-## 3          2 95936 Melbourne (Olympic Park)        IDV60801
-## 4          3 95936 Melbourne (Olympic Park)        IDV60801
-## 5          4 95936 Melbourne (Olympic Park)        IDV60801
-## 6          5 95936 Melbourne (Olympic Park)        IDV60801
-##   local_date_time local_date_time_full        aifstime_utc   lat lon
-## 1      05/10:00am  2017-06-05 10:00:00 2017-06-05 00:00:00 -37.8 145
-## 2      05/09:30am  2017-06-05 09:30:00 2017-06-04 23:30:00 -37.8 145
-## 3      05/09:00am  2017-06-05 09:00:00 2017-06-04 23:00:00 -37.8 145
-## 4      05/08:30am  2017-06-05 08:30:00 2017-06-04 22:30:00 -37.8 145
-## 5      05/08:00am  2017-06-05 08:00:00 2017-06-04 22:00:00 -37.8 145
-## 6      05/07:30am  2017-06-05 07:30:00 2017-06-04 21:30:00 -37.8 145
-##   apparent_t cloud cloud_type delta_t gust_kmh gust_kt air_temp dewpt
-## 1        7.4     -          -     1.7       13       7     10.0   6.2
-## 2        6.9     -          -     1.6       13       7      9.5   6.0
-## 3        6.0     -          -     1.3       13       7      8.7   5.8
-## 4        5.0     -          -     1.1       13       7      8.1   5.6
-## 5        4.9     -          -     0.9       13       7      7.6   5.6
-## 6        4.2     -          -     0.8       13       7      7.3   5.4
-##    press press_msl press_qnh press_tend rain_trace rel_hum sea_state
-## 1 1025.3    1025.3    1025.3          -          0      77         -
-## 2 1025.5    1025.5    1025.5          -          0      79         -
-## 3 1025.5    1025.5    1025.5          -          0      82         -
-## 4 1025.4    1025.4    1025.4          -          0      84         -
-## 5 1025.3    1025.3    1025.3          -          0      87         -
-## 6 1025.3    1025.3    1025.3          -          0      88         -
-##   swell_dir_worded vis_km weather wind_dir wind_spd_kmh wind_spd_kt
-## 1                -     10       -      NNE            9           5
-## 2                -     10       -      NNE            9           5
-## 3                -     10       -      NNE            9           5
-## 4                -     10       -      NNE           11           6
-## 5                -     10       -       NE            9           5
-## 6                -     10       -      NNE           11           6</code></pre>
 </div>
 </div>
 <div id="other-functions-in-bomrang" class="section level2">
@@ -439,46 +379,13 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 <p>Following is an example sweeping for stations starting with Canberra.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Show only the first ten stations in the list</span>
 <span class="kw">head</span>(<span class="kw"><a href="../reference/sweep_for_stations.html">sweep_for_stations</a></span>(<span class="dt">latlon =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">35.3</span>, <span class="fl">149.2</span>)), <span class="dv">10</span>)</code></pre></div>
-<pre><code>##      site dist                              name start  end      Lat
-## 1  070351   70                  CANBERRA AIRPORT  2008 2017 -35.3088
-## 2  070339   70 TUGGERANONG (ISABELLA PLAINS) AWS  1996 2017 -35.4184
-## 3  070349   70                  MOUNT GININI AWS  2004 2017 -35.5293
-## 4  070341   70 CAPTAINS FLAT (COWANGERONG RADAR)  2002 2017 -35.6614
-## 5  069132   69          BRAIDWOOD RACECOURSE AWS  1985 2017 -35.4253
-## 6  070358   70         YASS (RURAL FIRE SERVICE)  2011 2017 -34.8225
-## 7  073007   73                    BURRINJUCK DAM  1908 2017 -34.9997
-## 8  070330   70              GOULBURN AIRPORT AWS  1988 2017 -34.8085
-## 9  070263   70                     GOULBURN TAFE  1971 2017 -34.7495
-## 10 069128   69                       NERRIGA AWS  2013 2017 -35.1103
-##         Lon source state   elev bar_ht   WMO state_code
-## 1  149.2004    GPS   NSW  577.1  577.6 94926          N
-## 2  149.0937    GPS   NSW  586.7  587.5 94925          N
-## 3  148.7721    GPS   NSW 1760.0     NA 95925          N
-## 4  149.5122    GPS   NSW 1358.0     NA 99089          N
-## 5  149.7835    GPS   NSW  665.2  666.0 94927          N
-## 6  148.9080    GPS   NSW  498.0     NA 95723          N
-## 7  148.5984    GPS   NSW  390.0     NA 94909          N
-## 8  149.7311    GPS   NSW  640.0  640.8 95716          N
-## 9  149.7034    GPS   NSW  670.0     NA 94716          N
-## 10 150.0826    GPS   NSW  622.0  625.6 94943          N
-##                                                       url   distance
-## 1  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94926.json  0.9791884
-## 2  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94925.json 16.3172787
-## 3  http://www.bom.gov.au/fwo/IDN60801/IDN60801.95925.json 46.4084466
-## 4  http://www.bom.gov.au/fwo/IDN60801/IDN60801.99089.json 49.1327086
-## 5  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94927.json 54.7153470
-## 6  http://www.bom.gov.au/fwo/IDN60801/IDN60801.95723.json 59.3756657
-## 7  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94909.json 64.0835316
-## 8  http://www.bom.gov.au/fwo/IDN60801/IDN60801.95716.json 72.9652110
-## 9  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94716.json 76.4731323
-## 10 http://www.bom.gov.au/fwo/IDN60801/IDN60801.94943.json 82.9176026</code></pre>
 </div>
 </div>
 <div id="using-update_forecast_locations" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-update_forecast_locations" class="anchor"></a>Using <code>update_forecast_locations</code>
 </h3>
-<p><code><a href="../reference/update_forecast_locations.html">update_forecast_locations()</a></code> downloads the latest précis forecast locations from the BOM server and updates <em>bomrang</em>’s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BOM forecast location database that is not available in the database distributed with <em>bomrang</em>. This database is distributed with the package to make the process faster when fetching the forecast.</p>
+<p><code><a href="../reference/update_forecast_locations.html">update_forecast_locations()</a></code> downloads the latest précis forecast locations from the BoM server and updates <em>bomrang</em>’s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BoM forecast location database that is not available in the database distributed with <em>bomrang</em>. This database is distributed with the package to make the process faster when fetching the forecast.</p>
 <div id="example-4" class="section level4">
 <h4 class="hasAnchor">
 <a href="#example-4" class="anchor"></a>Example</h4>
@@ -490,7 +397,7 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 <h3 class="hasAnchor">
 <a href="#using-update_station_locations" class="anchor"></a>Using <code>update_station_locations</code>
 </h3>
-<p><code><a href="../reference/update_station_locations.html">update_station_locations()</a></code> downloads the latest station locations and metadata and updates bomrang’s internal databases that support the use of <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>. There is no need to use this unless you know that a station exists in BOM’s database that is not available in the databases distributed with <em>bomrang</em></p>
+<p><code><a href="../reference/update_station_locations.html">update_station_locations()</a></code> downloads the latest station locations and metadata and updates bomrang’s internal databases that support the use of <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>. There is no need to use this unless you know that a station exists in BoM’s database that is not available in the databases distributed with <em>bomrang</em></p>
 <div id="example-5" class="section level4">
 <h4 class="hasAnchor">
 <a href="#example-5" class="anchor"></a>Example</h4>
@@ -502,16 +409,17 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
-<p><a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services</a></p>
-<p><a href="http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services Agriculture Bulletins</a></p>
-<p><a href="http://www.bom.gov.au/climate/how/observations/rain-measure.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services Observation of Rainfall</a></p>
+<p><a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services</a></p>
+<p><a href="http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services Agriculture Bulletins</a></p>
+<p><a href="http://www.bom.gov.au/climate/how/observations/rain-measure.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services Observation of Rainfall</a></p>
 </div>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
         <div id="tocnav">
-      <h2>Contents</h2>
+      <h2 class="hasAnchor">
+<a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#introduction">Introduction</a></li>
       <li><a href="#using-bomrang">Using <em>bomrang</em></a></li>

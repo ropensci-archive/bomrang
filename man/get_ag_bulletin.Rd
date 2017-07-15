@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_ag_bulletin.R
 \name{get_ag_bulletin}
 \alias{get_ag_bulletin}
-\title{BOM agriculture bulletin information}
+\title{BoM agriculture bulletin information}
 \usage{
 get_ag_bulletin(state = NULL)
 }
@@ -11,13 +11,13 @@ get_ag_bulletin(state = NULL)
 instruction.}
 }
 \value{
-Data frame of a Australia BOM agricultural bulletin information.  For more
+Data frame of a Australia BoM agricultural bulletin information.  For more
 details see the vignette "Ag Bulletin Fields":
-\code{vignette("Ag_Bulletin Fields", package = "bomrang")} for a complete
+\code{vignette("Ag Bulletin Fields", package = "bomrang")} for a complete
 list of fields and units.
 }
 \description{
-Fetch the BOM agricultural bulletin information and return a tidy data frame
+Fetch the BoM agricultural bulletin information and return a tidy data frame
 }
 \details{
 Allowed state and territory postal codes, only one state per request
@@ -34,14 +34,15 @@ or all using \code{AUS}.
  }
 }
 \examples{
+\dontrun{
 ag_bulletin <- get_ag_bulletin(state = "QLD")
-
+}
 }
 \references{
-Australian Bureau of Meteorology (BOM) Weather Data Services Agriculture Bulletins
+Australian Bureau of Meteorology (BoM) Weather Data Services Agriculture Bulletins
 \url{http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml}
 
-Australian Bureau of Meteorology (BOM) Weather Data Services Observation of Rainfall
+Australian Bureau of Meteorology (BoM) Weather Data Services Observation of Rainfall
 \url{http://www.bom.gov.au/climate/how/observations/rain-measure.shtml}
 }
 \author{

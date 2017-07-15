@@ -11,7 +11,7 @@ vignette: >
 
 ## Introduction
 
-_bomrang_ provides functions for interacting with [Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BOM serves several types of data data as XML and JSON files. This package fetches these files, parses them and return a tidy data frame.
+_bomrang_ provides functions for interacting with [Australian Bureau of Meteorology (BoM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BoM serves several types of data data as XML and JSON files. This package fetches these files, parses them and return a tidy data frame.
 
 ## Using _bomrang_
 
@@ -57,7 +57,7 @@ The function, `get_precis_forecast()`, will return a data frame of the weather f
 
 Following is an example fetching the forecast for Queensland.
 
-```{r, eval=TRUE}
+```{r, eval=FALSE}
 library("bomrang")
 
 QLD_forecast <- get_precis_forecast(state = "QLD")
@@ -84,9 +84,9 @@ The function, `get_ag_bulletin()`, will return a data frame of the agriculture b
 * **obs-time-local** - Observation time  
 * **obs-time-utc** - Observation time (time in UTC)  
 * **time-zone** - Time zone for observation  
-* **site** - Unique BOM identifier for each station  
-* **dist** - BOM rainfall district  
-* **station** - BOM station name  
+* **site** - Unique BoM identifier for each station  
+* **dist** - BoM rainfall district  
+* **station** - BoM station name  
 * **start** - Year data collection starts  
 * **end** - Year data collection ends (will always be current)  
 * **state** - State name (postal code abbreviation)  
@@ -116,7 +116,7 @@ The function, `get_ag_bulletin()`, will return a data frame of the agriculture b
 
 Following is an example fetching the ag bulletin for Queensland.
 
-```{r, eval=TRUE}
+```{r, eval=FALSE}
 library("bomrang")
 
 QLD_bulletin <- get_ag_bulletin(state = "QLD")
@@ -137,7 +137,7 @@ The table returned will have different fields depending on the station that is s
 ### Example
 Following is an example fetching the current weather for Melbourne.
 
-```{r, eval=TRUE}
+```{r, eval=FALSE}
 library("bomrang")
 
 Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
@@ -161,7 +161,7 @@ This function will search for weather stations and return a data frame of all we
 
 Following is an example sweeping for stations starting with Canberra.  
 
-```{r, eval = TRUE}
+```{r, eval=FALSE}
 # Show only the first ten stations in the list
 head(sweep_for_stations(latlon = c(-35.3, 149.2)), 10)
 ```
@@ -169,7 +169,7 @@ head(sweep_for_stations(latlon = c(-35.3, 149.2)), 10)
 
 ### Using `update_forecast_locations`
 
-`update_forecast_locations()` downloads the latest précis forecast locations from the BOM server and updates _bomrang_'s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BOM forecast location database that is not available in the database distributed with _bomrang_. This database is distributed with the package to make the process faster when fetching the forecast.
+`update_forecast_locations()` downloads the latest précis forecast locations from the BoM server and updates _bomrang_'s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BoM forecast location database that is not available in the database distributed with _bomrang_. This database is distributed with the package to make the process faster when fetching the forecast.
 
 #### Example
 
@@ -181,7 +181,7 @@ update_forecast_locations()
 
 ### Using `update_station_locations`
 
-`update_station_locations()` downloads the latest station locations and metadata and updates bomrang's internal databases that support the use of `get_current_weather()` and `get_ag_bulletin()`. There is no need to use this unless you know that a station exists in BOM's database that is not available in the databases distributed with _bomrang_
+`update_station_locations()` downloads the latest station locations and metadata and updates bomrang's internal databases that support the use of `get_current_weather()` and `get_ag_bulletin()`. There is no need to use this unless you know that a station exists in BoM's database that is not available in the databases distributed with _bomrang_
 
 #### Example
 
@@ -193,8 +193,8 @@ update_station_locations()
 
 ## References
 
-[Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml)
+[Australian Bureau of Meteorology (BoM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml)
 
-[Australian Bureau of Meteorology (BOM) Weather Data Services Agriculture Bulletins](http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml)
+[Australian Bureau of Meteorology (BoM) Weather Data Services Agriculture Bulletins](http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml)
 
-[Australian Bureau of Meteorology (BOM) Weather Data Services Observation of Rainfall](http://www.bom.gov.au/climate/how/observations/rain-measure.shtml)
+[Australian Bureau of Meteorology (BoM) Weather Data Services Observation of Rainfall](http://www.bom.gov.au/climate/how/observations/rain-measure.shtml)

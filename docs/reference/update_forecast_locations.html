@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Update internal database with latest BOM forecast locations — update_forecast_locations • bomrang</title>
+<title>Update internal database with latest BoM forecast locations — update_forecast_locations • bomrang</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -23,7 +23,8 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-
+  
+  
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -51,10 +52,34 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="..//index.html">
+    <span class="fa fa-home fa-lg"></span>
+     
+  </a>
 </li>
 <li>
-  <a href="../articles/index.html">Articles</a>
+  <a href="../articles/bomrang.html">Get Started</a>
+</li>
+<li>
+  <a href="../reference/index.html">Reference</a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="../articles/Ag_Bulletin_Fields.html">Ag Bulletin Fields</a>
+    </li>
+    <li>
+      <a href="../articles/Current_Weather_Fields.html">Current Weather Fields</a>
+    </li>
+    <li>
+      <a href="../articles/Precis_Forecast_Fields.html">Précis Forecast Fields</a>
+    </li>
+  </ul>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -79,15 +104,15 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Update internal database with latest BOM forecast locations</h1>
+    <h1>Update internal database with latest BoM forecast locations</h1>
     </div>
 
     
-    <p>Download the latest forecast locations from the BOM server and update
+    <p>Download the latest forecast locations from the BoM server and update
 bomrang's internal database of précis forecast locations,
 <code><a href='AAC_codes.html'>AAC_codes</a></code> used by <code><a href='get_precis_forecast.html'>get_precis_forecast</a></code>.  There is
 no need to use this unless you know that a forecast location exists in a
-more current version of the BOM précis forecast location database that is not
+more current version of the BoM précis forecast location database that is not
 available in the database distributed with <code><a href='bomrang.html'>bomrang</a></code>.</p>
     
 
@@ -95,12 +120,12 @@ available in the database distributed with <code><a href='bomrang.html'>bomrang<
         
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Updated internal database of BOM précis forecast locations</p>
+    <p>Updated internal database of BoM précis forecast locations</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Australian Bureau of Meteorology (BOM) Weather Data Services
-<a href = 'http://www.bom.gov.au/catalogue/data-feeds.shtml'>http://www.bom.gov.au/catalogue/data-feeds.shtml</a></p>
+    <p>Australian Bureau of Meteorology (BoM) Weather Data Services
+<a href='http://www.bom.gov.au/catalogue/data-feeds.shtml'>http://www.bom.gov.au/catalogue/data-feeds.shtml</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
