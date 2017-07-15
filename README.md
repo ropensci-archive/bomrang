@@ -1,5 +1,3 @@
-README
-================
 
 *bomrang*: Fetch Australian Government Bureau of Meteorology (BoM) Data
 =======================================================================
