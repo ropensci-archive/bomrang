@@ -36,7 +36,6 @@ Encoding: UTF-8
 LazyData: true
 Suggests:
     covr,
-    ggplot2,
     testthat,
     knitr,
     rmarkdown
