@@ -720,7 +720,7 @@ worldwide)</td></tr>
 
 ## Appendix 4 - Map of station locations
 
-```{r station-locations-map, fig.width = 7, fig.height = 7, messages = FALSE}
+```{r station-locations-map, fig.width = 7, fig.height = 7, message = FALSE}
 if (requireNamespace("ggplot2", quietly = TRUE) &&
     requireNamespace("ggthemes", quietly = TRUE) &&
     requireNamespace("maps", quietly = TRUE) &&
