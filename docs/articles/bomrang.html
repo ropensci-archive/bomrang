@@ -140,8 +140,8 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 <li><p><strong>prob_prcp</strong> - Probability of precipitation (percent)</p></li>
 <li><p><strong>town</strong> - A disaggretated district forecast for select towns</p></li>
 <li><p><strong>state</strong> - State name (postal code abbreviation)</p></li>
-<li><p><strong>lon</strong> - Longitude of named location (decimal degrees)</p></li>
 <li><p><strong>lat</strong> - Latitude of named location (decimal degrees)</p></li>
+<li><p><strong>lon</strong> - Longitude of named location (decimal degrees)</p></li>
 <li><p><strong>elev</strong> - Elevation of named location (metres).</p></li>
 </ul>
 </div>
@@ -231,8 +231,8 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <a href="#results-3" class="anchor"></a>Results</h4>
 <p>This function will search for weather stations and return a data frame of all weather stations (in this package) sorted by distance from <code>latlon</code>, ascending. The fields in the data frame are:</p>
 <p><strong>name</strong> - station name</p>
-<p><strong>Lat</strong> - latitude (decimal degrees)</p>
-<p><strong>Lon</strong> - longitude (decimal degrees)</p>
+<p><strong>lat</strong> - latitude (decimal degrees)</p>
+<p><strong>lon</strong> - longitude (decimal degrees)</p>
 <p><strong>distance</strong> - distance from provided <code>latlon</code> value (kilometres).</p>
 </div>
 <div id="example-3" class="section level4">
@@ -1097,18 +1097,18 @@ AMOC Area Code, <em>e.g.</em>, WA_MW008, a unique identifier for each location
 </tr>
 <tr>
 <td>
-lon
-</td>
-<td>
-Longitude of named location (decimal degrees)
-</td>
-</tr>
-<tr>
-<td>
 lat
 </td>
 <td>
 Latitude of named location (decimal degrees)
+</td>
+</tr>
+<tr>
+<td>
+lon
+</td>
+<td>
+Longitude of named location (decimal degrees)
 </td>
 </tr>
 <tr>

@@ -119,9 +119,9 @@ Coordinated Universal Time (UTC) for `start_time_local` and `end_time_local`
 
 - **state** - State name (postal code abbreviation)
 
-- **lon** - Longitude of named location (decimal degrees)
-
 - **lat** - Latitude of named location (decimal degrees)
+
+- **lon** - Longitude of named location (decimal degrees)
 
 - **elev** - Elevation of named location (metres).
 
@@ -248,9 +248,9 @@ The fields in the data frame are:
 
 **name** - station name
 
-**Lat** - latitude (decimal degrees)
+**lat** - latitude (decimal degrees)
 
-**Lon** - longitude (decimal degrees)
+**lon** - longitude (decimal degrees)
 
 **distance** - distance from provided `latlon` value (kilometres).
 
@@ -741,8 +741,8 @@ agriculture bulletin with the following fields:
 <tr><td>town</td><td>Town name for forecast location</td></tr>
 <tr><td>aac</td><td>AMOC Area Code, _e.g._, WA_MW008, a unique identifier for
 each location</td></tr>
-<tr><td>lon</td><td>Longitude of named location (decimal degrees)</td></tr>
 <tr><td>lat</td><td>Latitude of named location (decimal degrees)</td></tr>
+<tr><td>lon</td><td>Longitude of named location (decimal degrees)</td></tr>
 <tr><td>elev</td><td>Elevation of named location (metres)</td></tr>
 <tr><td>start_time_local</td><td>Start of forecast date and time in local
 TZ</td></tr>
