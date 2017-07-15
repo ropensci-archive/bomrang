@@ -718,27 +718,31 @@ worldwide)</td></tr>
 <tr><td>wr</td><td>Wind run (kilometres)</td></tr>
 </table>
 
-### Appendix 4 - Map of station locations
+## Appendix 4 - Map of station locations
 
-```{r station-locations-map, fig.width = 7, fig.height = 7}
+```{r station-locations-map, fig.width = 7, fig.height = 7, messages = FALSE}
 if (requireNamespace("ggplot2", quietly = TRUE) &&
     requireNamespace("ggthemes", quietly = TRUE) &&
     requireNamespace("maps", quietly = TRUE) &&
-    requireNamespace("mapproj", quietly = TRUE)) {
+    requireNamespace("mapproj", quietly = TRUE) &&
+    requireNamespace("gridExtra", quietly = TRUE) &&
+    requireNamespace("grid", quietly = TRUE)) {
   library(ggplot2)
   library(mapproj)
   library(ggthemes)
   library(maps)
   library(data.table)
+  library(grid)
+  library(gridExtra)
   load(system.file("extdata", "stations_site_list.rda", package = "bomrang"))
   setDT(stations_site_list)
-
+  
   Aust_stations <- 
     stations_site_list[(!(state %in% c("ANT", "null"))) & !grepl("VANUATU|HONIARA", name)]
   
   Aust_map <- map_data("world", region = "Australia")
   
-  ggplot(Aust_stations, aes(x = lon, y = lat)) + 
+  BoM_stations <- ggplot(Aust_stations, aes(x = lon, y = lat)) + 
     geom_polygon(data = Aust_map, aes(x = long, y = lat, group = group), 
                  color = grey(0.7),
                  fill = NA) +
@@ -747,8 +751,18 @@ if (requireNamespace("ggplot2", quietly = TRUE) &&
     coord_map(ylim = c(-45, -5),
               xlim = c(96, 167)) +
     theme_map() + 
-    ggtitle("BoM Station Locations",
-            subtitle = "Australia, outlying islands and buoys (excl. Antarctic stations)")
+    labs(title = "BoM Station Locations",
+         subtitle = "Australia, outlying islands and buoys (excl. Antarctic stations)",
+         caption = "Data: Australia Bureau of Meteorology (BoM)\n
+         and NaturalEarthdata, http://naturalearthdata.com")
+  
+  # Using the gridExtra and grid packages add a neatline to the map
+  grid.arrange(BoM_stations, ncol = 1)
+  grid.rect(width = 0.98, 
+            height = 0.98, 
+            gp = grid::gpar(lwd = 0.25, 
+                            col = "black",
+                            fill = NA))
 }
 ```
   
