@@ -1412,6 +1412,41 @@ Wind run (kilometres)
 </td>
 </tr>
 </table>
+<div id="appendix-4---map-of-station-locations" class="section level3">
+<h3 class="hasAnchor">
+<a href="#appendix-4---map-of-station-locations" class="anchor"></a>Appendix 4 - Map of station locations</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="kw">requireNamespace</span>(<span class="st">"ggplot2"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span>
+<span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"ggthemes"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span>
+<span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"maps"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span>
+<span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"mapproj"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)) {
+  <span class="kw">library</span>(ggplot2)
+  <span class="kw">library</span>(mapproj)
+  <span class="kw">library</span>(ggthemes)
+  <span class="kw">library</span>(maps)
+  <span class="kw">library</span>(data.table)
+  <span class="kw">load</span>(<span class="kw">system.file</span>(<span class="st">"extdata"</span>, <span class="st">"stations_site_list.rda"</span>, <span class="dt">package =</span> <span class="st">"bomrang"</span>))
+  <span class="kw"><a href="http://www.rdocumentation.org/packages/data.table/topics/setDT">setDT</a></span>(stations_site_list)
+
+  Aust_stations &lt;-<span class="st"> </span>
+<span class="st">    </span>stations_site_list[(<span class="op">!</span>(state <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">"ANT"</span>, <span class="st">"null"</span>))) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">grepl</span>(<span class="st">"VANUATU|HONIARA"</span>, name)]
+  
+  Aust_map &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/map_data">map_data</a></span>(<span class="st">"world"</span>, <span class="dt">region =</span> <span class="st">"Australia"</span>)
+  
+  <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(Aust_stations, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_polygon">geom_polygon</a></span>(<span class="dt">data =</span> Aust_map, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), 
+                 <span class="dt">color =</span> <span class="kw">grey</span>(<span class="fl">0.7</span>),
+                 <span class="dt">fill =</span> <span class="ot">NA</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="dt">color =</span> <span class="st">"red"</span>,
+               <span class="dt">size =</span> <span class="fl">0.05</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/coord_map">coord_map</a></span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">45</span>, <span class="op">-</span><span class="dv">5</span>),
+              <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">96</span>, <span class="dv">167</span>)) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_map">theme_map</a></span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">ggtitle</a></span>(<span class="st">"BoM Station Locations"</span>,
+            <span class="dt">subtitle =</span> <span class="st">"Australia, outlying islands and buoys (excl. Antarctic stations)"</span>)
+}</code></pre></div>
+<pre><code>## Loading required package: maps</code></pre>
+<p><img src="bomrang_files/figure-html/station-locations-map-1.png" width="672"></p>
+</div>
 </div>
 </div>
   </div>
