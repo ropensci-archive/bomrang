@@ -1,13 +1,12 @@
 
-
-
-#' BoM daily précis forecast
+#' BoM Daily Précis Forecast for Select Towns
 #'
-#'Fetch the BoM daily précis forecast and return a tidy data frame of the daily
-#'forecast
+#' Fetch the BoM daily précis forecast and return a tidy data frame of the seven
+#' day town forecast for a specified state or territory.
 #'
-#' @param state Australian state or territory as postal code, see details for
-#' instruction.
+#' @param state Australian state or territory as full name or postal code.
+#' Fuzzy string matching via \code{base::agrep} is done.  Defaults to "AUS"
+#' returning all state bulletins, see details for further information.
 #'
 #' @details Allowed state and territory postal codes, only one state per request
 #' or all using \code{AUS}.
@@ -20,30 +19,93 @@
 #'    \item{TAS}{Tasmania}
 #'    \item{VIC}{Victoria}
 #'    \item{WA}{Western Australia}
-#'    \item{AUS}{Australia, returns forecast for all states}
+#'    \item{AUS}{Australia, returns forecast for all states, NT and ACT}
 #'  }
 #'
 #' @return
-#' Data frame of a Australia BoM daily forecast in a tidy data frame.  For
-#' more details see the vignette "Précis Forecast Fields":
-#' \code{vignette("Précis Forecast Fields", package = "bomrang")}
-#' for a complete list of fields and units.
+#' Tidy data frame of a Australia BoM précis seven day forecasts for select
+#' towns.  For full details of fields and units returned see Appendix 2 in the
+#' \emph{bomrang} vignette, use \code{vignette("bomrang", package = "bomrang")}
+#' to view.
 #'
 #' @examples
 #' \dontrun{
 #' BoM_forecast <- get_precis_forecast(state = "QLD")
 #'}
-#' @author Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton, \email{keith.pembleton@usq.edu.au}
+#' @author Adam H Sparks, \email{adamhsparks@gmail.com} and
+#' Keith Pembleton, \email{keith.pembleton@usq.edu.au}
 #'
 #' @references
-#' Australian Bureau of Meteorology (BoM) Weather Data Services
-#' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
+#' Forecast data come from Australian Bureau of Meteorology (BoM) Weather Data
+#' Services \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
+#'
+#' Location data and other metadata for towns come from
+#' the BoM anonymous FTP server with spatial data
+#' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/}, specifically the DBF
+#' file portion of a shapefile,
+#' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 #'
 #' @importFrom magrittr %>%
 #'
 #' @export
-get_precis_forecast <- function(state = NULL) {
-  state <- .validate_state(state)
+get_precis_forecast <- function(state = "AUS") {
+
+  states <- c(
+    "ACT",
+    "NSW",
+    "NT",
+    "QLD",
+    "SA",
+    "TAS",
+    "VIC",
+    "WA",
+    "Australian Capital Territory",
+    "New South Wales",
+    "Northern Territory",
+    "Queensland",
+    "South Australia",
+    "Tasmania",
+    "Victoria",
+    "Western Australia",
+    "Australia",
+    "AU",
+    "AUS",
+    "Oz"
+  )
+
+  # If there's an exact match, use it; else, attempt partial match.
+  if (state %in% states) {
+    the_state <- state
+  } else {
+    likely_states <- agrep(pattern = state,
+                           x = states,
+                           value = TRUE)
+
+    if (length(likely_states) == 0) {
+      stop(
+        "\nA state or territory matching what you entered was not found.",
+        "Please check and try again.\n"
+      )
+    }
+
+    the_state <- likely_states[1]
+
+    if (length(likely_states) > 1) {
+      warning(
+        "Multiple states match state.",
+        "'\ndid you mean:\n\tstate = '",
+        paste(
+          likely_states[[1]],
+          "or",
+          likely_states[length(likely_states) - 1],
+          "or",
+          likely_states[length(likely_states)]
+        ),
+        "'?"
+      )
+    }
+  }
+
 
   # ftp server
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
@@ -57,42 +119,49 @@ get_precis_forecast <- function(state = NULL) {
   VIC <- "IDV10753.xml"
   WA  <- "IDW14199.xml"
 
-  if (state == "NSW" | state == "ACT") {
-    xmlforecast <-
-      paste0(ftp_base, NSW) # nsw
-  }
-  else if (state == "NT") {
-    xmlforecast <-
-      paste0(ftp_base, NT) # nt
-  }
-  else if (state == "QLD") {
-    xmlforecast <-
-      paste0(ftp_base, QLD) # qld
-  }
-  else if (state == "SA") {
-    xmlforecast <-
-      paste0(ftp_base, SA) # sa
-  }
-  else if (state == "TAS") {
-    xmlforecast <-
-      paste0(ftp_base, TAS) # tas
-  }
-  else if (state == "VIC") {
-    xmlforecast <-
-      paste0(ftp_base, VIC) # vic
-  }
-  else if (state == "WA") {
-    xmlforecast <-
-      paste0(ftp_base, WA) # wa
-  }
-  else if (state == "AUS") {
-    AUS <- list(NT, NSW, QLD, SA, TAS, VIC, WA)
-    file_list <- paste0(ftp_base, AUS)
-  } else
+  switch(
+    the_state,
+    "ACT" = {
+      xmlforecast_url <-
+        paste0(ftp_base, NSW) # nsw
+    },
+    "NSW" = {
+      xmlforecast_url <-
+        paste0(ftp_base, NSW) # nsw
+    },
+    "NT" = {
+      xmlforecast_url <-
+        paste0(ftp_base, NT) # nt
+    },
+    "QLD" = {
+      xmlforecast_url <-
+        paste0(ftp_base, QLD) # qld
+    },
+    "SA" = {
+      xmlforecast_url <-
+        paste0(ftp_base, SA) # sa
+    },
+    "TAS" = {
+      xmlforecast_url <-
+        paste0(ftp_base, TAS) # tas
+    },
+    "VIC" = {
+      xmlforecast_url <-
+        paste0(ftp_base, VIC) # vic
+    },
+    "WA" = {
+      xmlforecast_url <-
+        paste0(ftp_base, WA) # wa
+    },
+    "AUS" = {
+      AUS <- list(NT, NSW, QLD, SA, TAS, VIC, WA)
+      file_list <- paste0(ftp_base, AUS)
+    },
     stop(state, " not recognised as a valid state or territory")
+  )
 
   if (state != "AUS") {
-    out <- .parse_forecast(xmlforecast)
+    out <- .parse_forecast(xmlforecast_url)
   }
   else if (state == "AUS") {
     out <- lapply(X = file_list, FUN = .parse_forecast)
@@ -101,27 +170,26 @@ get_precis_forecast <- function(state = NULL) {
   return(out)
 }
 
-
-.parse_forecast <- function(xmlforecast) {
+.parse_forecast <- function(xmlforecast_url) {
   #CRAN NOTE avoidance
-  aac <- location <- state <- lon <- lat <- elev <-
-    precipitation_range <- attrs <- values <-
-    `c("air_temperature_maximum", "Celsius")` <-
-    `start-time-local` <-
-    `end-time-local` <- `c("air_temperature_minimum", "Celsius")` <-
-    LON <- LAT <- ELEVATION <- `end-time-utc` <-
-    `start-time-utc` <- precis <- probability_of_precipitation <-
-    PT_NAME <- end_time_local <- end_time_utc <- lower_prec_limit <-
+  aac <- town <- state <- lon <- lat <- elev <- precipitation_range <- attrs <-
+    values <- `c("air_temperature_maximum", "Celsius")` <- `start-time-local` <-
+    `end-time-local` <- `c("air_temperature_minimum", "Celsius")` <- LON <-
+    LAT <- ELEVATION <- `end-time-utc` <- `start-time-utc` <- precis <-
+    probability_of_precipitation <- PT_NAME <- end_time_local <- end_time_utc <-
+    lower_precipitation_limit <- upper_precipitation_limit <-
     start_time_local <- start_time_utc <- maximum_temperature <-
-    minimum_temperature <- UTC_offset_drop <- NULL
+    minimum_temperature <- UTC_offset_drop <- AAC_codes <- UTC_offset <-
+    index <- product_id <- NULL
 
   # load the XML forecast ----------------------------------------------------
   tryCatch({
-    xmlforecast <- xml2::read_xml(xmlforecast)
+    xmlforecast <- xml2::read_xml(xmlforecast_url)
   },
   error = function(x)
     stop(
-      "\nThe server with the forecast is not responding. Please retry again later.\n"
+      "\nThe server with the forecast is not responding.",
+      "Please retry again later.\n"
     ))
 
   areas <-
@@ -164,18 +232,32 @@ get_precis_forecast <- function(state = NULL) {
     gsub("%", "", paste(out$probability_of_precipitation))
 
   # remove the "T" from the date/time columns
-  out[, c(3:4, 6:7)] <-
-    apply(out[, c(3:4, 6:7)], 2, function(x)
+  out[, c("start_time_local",
+          "end_time_local",
+          "start_time_utc",
+          "end_time_utc")] <-
+    apply(out[, c("start_time_local",
+                  "end_time_local",
+                  "start_time_utc",
+                  "end_time_utc")], 2, function(x)
       chartr("T", " ", x))
 
   # remove the "Z" from start_time_utc
-  out[, 6:7] <-
-    apply(out[, 6:7], 2, function(x)
+  out[, c("start_time_utc",
+          "end_time_utc")] <-
+    apply(out[, c("start_time_utc",
+                  "end_time_utc")], 2, function(x)
       chartr("Z", " ", x))
 
   # convert dates to POSIXct ---------------------------------------------------
-  out[, c(3:4, 6:7)] <-
-    lapply(out[, c(3:4, 6:7)], function(x)
+  out[, c("start_time_local",
+          "end_time_local",
+          "start_time_utc",
+          "end_time_utc")] <-
+    lapply(out[, c("start_time_local",
+                   "end_time_local",
+                   "start_time_utc",
+                   "end_time_utc")], function(x)
       as.POSIXct(x, origin = "1970-1-1", format = "%Y-%m-%d %H:%M:%OS"))
 
   # split precipitation forecast values into lower/upper limits --------------
@@ -189,19 +271,23 @@ get_precis_forecast <- function(state = NULL) {
     out %>%
     tidyr::separate(
       precipitation_range,
-      into = c("lower_prec_limit", "upper_prec_limit"),
+      into = c("lower_precipitation_limit", "upper_precipitation_limit"),
       sep = "to",
       fill = "left"
     )
 
-  # remove unnecessary text (mm in prcp cols) --------------------------------
+  # remove unnecessary text (mm in prcp cols) ----------------------------------
   out <- as.data.frame(lapply(out, function(x) {
     gsub(" mm", "", x)
   }))
 
-  # merge the forecast with the locations ------------------------------------
+  # merge the forecast with the town names -------------------------------------
 
   out$aac <- as.character(out$aac)
+
+  # Load AAC code/town name list to join with final output
+  load(system.file("extdata", "AAC_codes.rda", package = "bomrang"))
+
   # return final forecast object
   tidy_df <-
     dplyr::left_join(out,
@@ -225,17 +311,43 @@ get_precis_forecast <- function(state = NULL) {
       .vars = c(
         "maximum_temperature",
         "minimum_temperature",
-        "lower_prec_limit",
-        "lower_prec_limit"
+        "lower_precipitation_limit",
+        "lower_precipitation_limit"
       )
     ) %>%
-    dplyr::rename(location = PT_NAME)
+    dplyr::rename(town = PT_NAME)
 
   # add state field
   tidy_df$state <- gsub("_.*", "", tidy_df$aac)
+
+  # add product ID field
+  tidy_df$product_id <- substr(basename(xmlforecast_url),
+                               1,
+                               nchar(basename(xmlforecast_url)) - 4)
+
   tidy_df <-
-    dplyr::select(.data = tidy_df, aac:location, state, lon, lat, elev)
-  return(tidy_df)
+    tidy_df %>%
+    dplyr::select(
+      index,
+      product_id,
+      state,
+      town,
+      aac,
+      lon,
+      lat,
+      elev,
+      start_time_local,
+      end_time_local,
+      UTC_offset,
+      start_time_utc,
+      end_time_utc,
+      maximum_temperature,
+      minimum_temperature,
+      lower_precipitation_limit,
+      upper_precipitation_limit,
+      precis,
+      probability_of_precipitation
+    )
 
   return(tidy_df)
 }

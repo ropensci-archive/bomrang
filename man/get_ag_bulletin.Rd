@@ -2,19 +2,20 @@
 % Please edit documentation in R/get_ag_bulletin.R
 \name{get_ag_bulletin}
 \alias{get_ag_bulletin}
-\title{BoM agriculture bulletin information}
+\title{BoM Agriculture Bulletin Information for Select Stations}
 \usage{
-get_ag_bulletin(state = NULL)
+get_ag_bulletin(state = "AUS")
 }
 \arguments{
-\item{state}{Australian state or territory as postal code, see details for
-instruction.}
+\item{state}{Australian state or territory as full name or postal code.
+Fuzzy string matching via \code{base::agrep} is done.  Defaults to "AUS"
+returning all state bulletins, see details for more.}
 }
 \value{
-Data frame of a Australia BoM agricultural bulletin information.  For more
-details see the vignette "Ag Bulletin Fields":
-\code{vignette("Ag Bulletin Fields", package = "bomrang")} for a complete
-list of fields and units.
+Tidy data frame of a Australia BoM agricultural bulletin information.  For
+full details of fields and units returned see Appendix 3 in the
+\emph{bomrang} vignette, use \code{vignette("bomrang", package = "bomrang")}
+to view.
 }
 \description{
 Fetch the BoM agricultural bulletin information and return a tidy data frame
@@ -30,7 +31,7 @@ or all using \code{AUS}.
    \item{TAS}{Tasmania}
    \item{VIC}{Victoria}
    \item{WA}{Western Australia}
-   \item{AUS}{Australia, returns bulletin for all states}
+   \item{AUS}{Australia, returns bulletin for all states and NT}
  }
 }
 \examples{
@@ -39,11 +40,19 @@ ag_bulletin <- get_ag_bulletin(state = "QLD")
 }
 }
 \references{
-Australian Bureau of Meteorology (BoM) Weather Data Services Agriculture Bulletins
+Agricultural observations are retrieved from the Australian Bureau of
+Meteorology (BoM) Weather Data Services Agriculture Bulletins,
 \url{http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml}
 
-Australian Bureau of Meteorology (BoM) Weather Data Services Observation of Rainfall
+and
+
+Australian Bureau of Meteorology (BoM) Weather Data Services Observation of
+Rainfall,
 \url{http://www.bom.gov.au/climate/how/observations/rain-measure.shtml}
+
+Station location and other metadata are sourced from the Australian Bureau of
+Meteorology (BoM) webpage, Bureau of Meteorology Site Numbers:
+\url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 }
 \author{
 Adam H Sparks, \email{adamhsparks@gmail.com}

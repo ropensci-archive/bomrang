@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Find nearest BoM weather stations — sweep_for_stations • bomrang</title>
+<title>Update bomrang Database With Latest BoM Forecast Towns — update_forecast_towns • bomrang</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -86,43 +86,50 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Find nearest BoM weather stations</h1>
+    <h1>Update bomrang Database With Latest BoM Forecast Towns</h1>
     </div>
 
     
-    <p>Find nearest BoM weather stations</p>
+    <p>Download the latest select forecast towns from the BoM server and update
+bomrang's internal database of précis forecast town names and
+AAC codes used by <code><a href='get_precis_forecast.html'>get_precis_forecast</a></code>.  There is
+no need to use this unless you know that a forecast town exists in a
+more current version of the BoM précis forecast town name database that is
+not available in the database distributed with <code><a href='bomrang.html'>bomrang</a></code>.</p>
     
 
-    <pre class="usage"><span class='fu'>sweep_for_stations</span>(<span class='kw'>latlon</span> <span class='kw'>=</span> <span class='fu'>c</span>(-<span class='fl'>35.3</span>, <span class='fl'>149.2</span>))</pre>
-    
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>latlon</th>
-      <td><p>A length-2 numeric vector. By default, Canberra
-(approximately).</p></td>
-    </tr>
-    </table>
-    
+    <pre class="usage"><span class='fu'>update_forecast_towns</span>()</pre>
+        
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A data frame of all weather stations (in this package) sorted
-by distance from <code>latlon</code>, ascending.</p>
+    <p>Updated database of BoM précis forecast towns</p>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Data are sourced from: Australian Bureau of Meteorology (BoM) webpage,
+"Weather Data Services",
+<a href='http://www.bom.gov.au/catalogue/data-feeds.shtml'>http://www.bom.gov.au/catalogue/data-feeds.shtml</a></p>
     
 
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='fu'>update_forecast_towns</span>()
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
-          </ul>
+
+      <li><a href="#references">References</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
 
     <h2>Author</h2>
     
-Hugh Parsonage, <a href='mailto:hugh.parsonage@gmail.com'>hugh.parsonage@gmail.com</a>
+Adam H Sparks, <a href='mailto:adamhsparks@gmail.com'>adamhsparks@gmail.com</a>
 
   </div>
 </div>

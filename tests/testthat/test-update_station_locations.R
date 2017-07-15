@@ -8,6 +8,14 @@ test_that("update_station_locations() downloads and imports the proper file",
 
             update_station_locations()
 
+            # Load AAC code/town name list to join with final output
+            load(system.file("extdata", "stations_site_list.rda",
+                             package = "bomrang"))
+
+            # Load JSON URL list
+            load(system.file("extdata", "JSONurl_latlon_by_station_name.rda",
+                             package = "bomrang"))
+
             expect_equal(ncol(stations_site_list), 11)
             expect_named(
               stations_site_list,
@@ -22,7 +30,7 @@ test_that("update_station_locations() downloads and imports the proper file",
                 "state",
                 "elev",
                 "bar_ht",
-                "WMO"
+                "wmo"
               )
             )
 
@@ -35,13 +43,13 @@ test_that("update_station_locations() downloads and imports the proper file",
                 "name",
                 "start",
                 "end",
-                "Lat",
-                "Lon",
+                "lat",
+                "lon",
                 "source",
                 "state",
                 "elev",
                 "bar_ht",
-                "WMO",
+                "wmo",
                 "state_code",
                 "url"
               ))
