@@ -83,6 +83,19 @@
 </h2>
 <p>Several functions are provided by <em>bomrang</em>.The main functionality of <em>bomrang</em> is provided through three functions, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin. Other functions include <code>update_forecast_locations()</code>, which updates an internal database of forecast locations distributed with the package, and <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> which returns the nearest weather stations to a point in Australia.</p>
 </div>
+<div id="bom-weather-stations" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bom-weather-stations" class="anchor"></a>BoM weather stations</h2>
+<p>BoM maintains a webpage to help users select the proper weather station to meet the needs of the type of data required.</p>
+<p><a href="http://www.bom.gov.au/climate/data/stations/about-weather-station-data.shtml" class="uri">http://www.bom.gov.au/climate/data/stations/about-weather-station-data.shtml</a></p>
+<div id="station-locations" class="section level3">
+<h3 class="hasAnchor">
+<a href="#station-locations" class="anchor"></a>Station locations</h3>
+<p>BoM obtains data from many different typs of observing stations around Australia and Antarctica. The following map shows the station locations available for querying in <em>bomrang</em>. Note that not all stations provide data for all requests.</p>
+<p><img src="bomrang_files/figure-html/map_Australia_stations-1.png" width="672"></p>
+<p><img src="bomrang_files/figure-html/map_Antarctica_stations-1.png" width="672"></p>
+</div>
+</div>
 <div id="using-get_current_weather" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-get_current_weather" class="anchor"></a>Using <code>get_current_weather</code>
@@ -1423,6 +1436,7 @@ Wind run (kilometres)
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#introduction">Introduction</a></li>
       <li><a href="#using-bomrang">Using <em>bomrang</em></a></li>
+      <li><a href="#bom-weather-stations">BoM weather stations</a></li>
       <li><a href="#using-get_current_weather">Using <code>get_current_weather</code></a></li>
       <li><a href="#using-get_precis_forecast">Using <code>get_precis_forecast</code></a></li>
       <li><a href="#using-get_ag_bulletin">Using <code>get_ag_bulletin</code></a></li>
