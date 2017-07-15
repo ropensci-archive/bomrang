@@ -87,43 +87,8 @@ ACT.
 ### Results
 
 The function, `get_precis_forecast()`, will return a data frame of the weather
-forecast for the daily forecast for selected towns with the following fields:
-
-- **aac** - AMOC Area Code, _e.g._ WA_MW008, a unique identifier for each
-location
-
-- **start_time_local** - Start of forecast date and time in local TZ
-
-- **end_time_local** - End of forecast date and time in local TZ
-
-- **UTC_offset** -  Hours offset from difference in hours and minutes from
-Coordinated Universal Time (UTC) for `start_time_local` and `end_time_local`
-
-- **start_time_utc** - Start of forecast date and time in UTC 
-
-- **end_time_utc** - End of forecast date and time in UTC
-
-- **max_temp** - Maximum forecasted temperature (degrees Celsius)
-
-- **min_temp** - Minimum forecasted temperature (degrees Celsius)
-
-- **lower_prcp_limit** - Lower forecasted precipitation limit (millimetres)
-
-- **upper_prcp_limit** - Upper forecasted precipitation limit (millimetres)
-
-- **precis** - Précis forecast (a short summary, less than 30 characters)
-
-- **prob_prcp** - Probability of precipitation (percent)
-
-- **town** - A disaggretated district forecast for select towns
-
-- **state** - State name (postal code abbreviation)
-
-- **lat** - Latitude of named location (decimal degrees)
-
-- **lon** - Longitude of named location (decimal degrees)
-
-- **elev** - Elevation of named location (metres).
+forecast for the daily forecast for selected towns. See Appendix 1 for a full
+description of the fields and values.
 
 ### Example
 
@@ -162,67 +127,8 @@ full name with fuzzy matching performed via `agrep()`.
 ### Results
 
 The function, `get_ag_bulletin()`, will return a data frame of the agriculture
-bulletin with the following fields:
-
-- **obs-time-local** - Observation time
-
-- **obs-time-utc** - Observation time (time in UTC)
-
-- **time-zone** - Time zone for observation
-
-- **site** - Unique BoM identifier for each station
-
-- **dist** - BoM rainfall district
-
-- **station** - BoM station name
-
-- **start** - Year data collection starts
-
-- **end** - Year data collection ends (will always be current)
-
-- **state** - State name (postal code abbreviation)
-
-- **lat** - Latitude (decimal degrees)
-
-- **lon** - Longitude (decimal degrees)
-
-- **elev** - Station elevation (metres)
-
-- **bar_ht** - Bar height (metres)
-
-- **wmo** - World Meteorlogical Organization number (unique ID used worldwide)
-
-- **r** - Rain to 9am (millimetres). _Trace will be reported as 0.01_
-
-- **tn** - Minimum temperature (degrees Celsius)
-
-- **tx** - Maximum temperature (degrees Celsius)
-
-- **twd** - Wet bulb depression (degrees Celsius)
-
-- **ev** - Evaporation (millimetres)
-
-- **tg** - Terrestrial minimum temperature (degrees Celsius)
-
-- **sn** - Sunshine (hours)
-
-- **t5** - 5cm soil temperature (degrees Celsius)
-
-- **t10** - 10cm soil temperature (degrees Celsius)
-
-- **t20** - 20cm soil temperature (degrees Celsius)
-
-- **t50** - 50cm soil temperature (degrees Celsius)
-
-- **t1m** - 1m soil temperature (degrees Celsius)
-
-- **wr** - Wind run (kilometres)
-
-- **state** - State name (postal code abbreviation)
-
-- **lat** - Latitude (decimal degrees)
-
-- **lon** - Longitude (decimal degrees).
+bulletin for selected stations. See Appendix 3 for a full list and description
+of the fields and values.
 
 ### Example
 
@@ -794,8 +700,8 @@ worldwide)</td></tr>
 <tr><td>station</td><td>BoM station name</td></tr>
 <tr><td>start</td><td>Year data collection starts</td></tr>
 <tr><td>end</td><td>Year data collection ends (will always be current)</td></tr>
-<tr><td>r</td><td>Rain to 9am (millimetres). _Trace will be reported as
-0.01_</td></tr>
+<tr><td>r</td><td>Rain to 9am (millimetres). <em>Trace will be reported as
+0.01</em></td></tr>
 <tr><td>tn</td><td>Minimum temperature (degrees Celsius)</td></tr>
 <tr><td>tx</td><td>Maximum temperature (degrees Celsius)</td></tr>
 <tr><td>twd</td><td>Wet bulb depression (degrees Celsius)</td></tr>

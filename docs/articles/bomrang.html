@@ -124,26 +124,7 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 <div id="results-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results-1" class="anchor"></a>Results</h3>
-<p>The function, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, will return a data frame of the weather forecast for the daily forecast for selected towns with the following fields:</p>
-<ul>
-<li><p><strong>aac</strong> - AMOC Area Code, <em>e.g.</em> WA_MW008, a unique identifier for each location</p></li>
-<li><p><strong>start_time_local</strong> - Start of forecast date and time in local TZ</p></li>
-<li><p><strong>end_time_local</strong> - End of forecast date and time in local TZ</p></li>
-<li><p><strong>UTC_offset</strong> - Hours offset from difference in hours and minutes from Coordinated Universal Time (UTC) for <code>start_time_local</code> and <code>end_time_local</code></p></li>
-<li><p><strong>start_time_utc</strong> - Start of forecast date and time in UTC</p></li>
-<li><p><strong>end_time_utc</strong> - End of forecast date and time in UTC</p></li>
-<li><p><strong>max_temp</strong> - Maximum forecasted temperature (degrees Celsius)</p></li>
-<li><p><strong>min_temp</strong> - Minimum forecasted temperature (degrees Celsius)</p></li>
-<li><p><strong>lower_prcp_limit</strong> - Lower forecasted precipitation limit (millimetres)</p></li>
-<li><p><strong>upper_prcp_limit</strong> - Upper forecasted precipitation limit (millimetres)</p></li>
-<li><p><strong>precis</strong> - Précis forecast (a short summary, less than 30 characters)</p></li>
-<li><p><strong>prob_prcp</strong> - Probability of precipitation (percent)</p></li>
-<li><p><strong>town</strong> - A disaggretated district forecast for select towns</p></li>
-<li><p><strong>state</strong> - State name (postal code abbreviation)</p></li>
-<li><p><strong>lat</strong> - Latitude of named location (decimal degrees)</p></li>
-<li><p><strong>lon</strong> - Longitude of named location (decimal degrees)</p></li>
-<li><p><strong>elev</strong> - Elevation of named location (metres).</p></li>
-</ul>
+<p>The function, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, will return a data frame of the weather forecast for the daily forecast for selected towns. See Appendix 1 for a full description of the fields and values.</p>
 </div>
 <div id="example-1" class="section level3">
 <h3 class="hasAnchor">
@@ -173,39 +154,7 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <div id="results-2" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results-2" class="anchor"></a>Results</h3>
-<p>The function, <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, will return a data frame of the agriculture bulletin with the following fields:</p>
-<ul>
-<li><p><strong>obs-time-local</strong> - Observation time</p></li>
-<li><p><strong>obs-time-utc</strong> - Observation time (time in UTC)</p></li>
-<li><p><strong>time-zone</strong> - Time zone for observation</p></li>
-<li><p><strong>site</strong> - Unique BoM identifier for each station</p></li>
-<li><p><strong>dist</strong> - BoM rainfall district</p></li>
-<li><p><strong>station</strong> - BoM station name</p></li>
-<li><p><strong>start</strong> - Year data collection starts</p></li>
-<li><p><strong>end</strong> - Year data collection ends (will always be current)</p></li>
-<li><p><strong>state</strong> - State name (postal code abbreviation)</p></li>
-<li><p><strong>lat</strong> - Latitude (decimal degrees)</p></li>
-<li><p><strong>lon</strong> - Longitude (decimal degrees)</p></li>
-<li><p><strong>elev</strong> - Station elevation (metres)</p></li>
-<li><p><strong>bar_ht</strong> - Bar height (metres)</p></li>
-<li><p><strong>wmo</strong> - World Meteorlogical Organization number (unique ID used worldwide)</p></li>
-<li><p><strong>r</strong> - Rain to 9am (millimetres). <em>Trace will be reported as 0.01</em></p></li>
-<li><p><strong>tn</strong> - Minimum temperature (degrees Celsius)</p></li>
-<li><p><strong>tx</strong> - Maximum temperature (degrees Celsius)</p></li>
-<li><p><strong>twd</strong> - Wet bulb depression (degrees Celsius)</p></li>
-<li><p><strong>ev</strong> - Evaporation (millimetres)</p></li>
-<li><p><strong>tg</strong> - Terrestrial minimum temperature (degrees Celsius)</p></li>
-<li><p><strong>sn</strong> - Sunshine (hours)</p></li>
-<li><p><strong>t5</strong> - 5cm soil temperature (degrees Celsius)</p></li>
-<li><p><strong>t10</strong> - 10cm soil temperature (degrees Celsius)</p></li>
-<li><p><strong>t20</strong> - 20cm soil temperature (degrees Celsius)</p></li>
-<li><p><strong>t50</strong> - 50cm soil temperature (degrees Celsius)</p></li>
-<li><p><strong>t1m</strong> - 1m soil temperature (degrees Celsius)</p></li>
-<li><p><strong>wr</strong> - Wind run (kilometres)</p></li>
-<li><p><strong>state</strong> - State name (postal code abbreviation)</p></li>
-<li><p><strong>lat</strong> - Latitude (decimal degrees)</p></li>
-<li><p><strong>lon</strong> - Longitude (decimal degrees).</p></li>
-</ul>
+<p>The function, <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, will return a data frame of the agriculture bulletin for selected stations. See Appendix 3 for a full list and description of the fields and values.</p>
 </div>
 <div id="example-2" class="section level3">
 <h3 class="hasAnchor">
