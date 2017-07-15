@@ -817,8 +817,10 @@ worldwide)</td></tr>
 ```{r station-locations-map, fig.width = 7, fig.height = 7}
 if (requireNamespace("ggplot2", quietly = TRUE) &&
     requireNamespace("ggthemes", quietly = TRUE) &&
-    requireNamespace("maps", quietly = TRUE)) {
+    requireNamespace("maps", quietly = TRUE) &&
+    requireNamespace("mapproj", quietly = TRUE)) {
   library(ggplot2)
+  library(mapproj)
   library(ggthemes)
   library(maps)
   load(system.file("extdata", "stations_site_list.rda", package = "bomrang"))
