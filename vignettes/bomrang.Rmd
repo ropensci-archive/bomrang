@@ -815,20 +815,25 @@ worldwide)</td></tr>
 ### Appendix 4 - Map of station locations
 
 ```{r station-locations-map, fig.width = 7, fig.height = 7}
-library(ggplot2)
-library(ggthemes)
-library(maps)
-load(system.file("extdata", "stations_site_list.rda", package = "bomrang"))
-
-Aust_map <- map_data("world", region = "Australia")
-
-ggplot(stations_site_list, aes(x = lon, y = lat)) + 
-  geom_polygon(data = Aust_map, aes(x = long, y = lat, group = group), 
-               color = grey(0.7),
-               fill = NA) +
-  geom_point(color = "red",
-             size = 0.05) +
-  coord_map(ylim = c(-45, -5),
-            xlim = c(100, 160)) +
-  theme_map()
+if (requireNamespace("ggplot2", quietly = TRUE) &&
+    requireNamespace("ggthemes", quietly = TRUE) &&
+    requireNamespace("maps", quietly = TRUE)) {
+  library(ggplot2)
+  library(ggthemes)
+  library(maps)
+  load(system.file("extdata", "stations_site_list.rda", package = "bomrang"))
+  
+  Aust_map <- map_data("world", region = "Australia")
+  
+  ggplot(stations_site_list, aes(x = lon, y = lat)) + 
+    geom_polygon(data = Aust_map, aes(x = long, y = lat, group = group), 
+                 color = grey(0.7),
+                 fill = NA) +
+    geom_point(color = "red",
+               size = 0.05) +
+    coord_map(ylim = c(-45, -5),
+              xlim = c(100, 160)) +
+    theme_map()
+}
 ```
+  
