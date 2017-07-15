@@ -101,6 +101,10 @@
 <li><p>Welcome message included with statement regarding BoM copyright</p></li>
 <li><p>Use <code>file.path()</code> in place of <code>paste0()</code></p></li>
 <li><p>Concatenate vignettes into a single file with appendices for descriptions of data returned by functions</p></li>
+<li><p>Product IDs are included in outputs from <code>get_*()</code> functions</p></li>
+<li><p>Full station names are reported along with BoM’s current name used to refer to a station location. In some cases a station “name” may be the same for both a current and retired station.</p></li>
+<li><p>Databases station locations and other metadata are internal an not exposed to the user</p></li>
+<li><p>Fuzzy matching i s used for all functions now when user enters a value for a desired state, station or the whole country</p></li>
 </ul>
 </div>
 <div id="minor-changes" class="section level2">
@@ -109,6 +113,7 @@
 <ul>
 <li><p>Shorten code line lengths to be &lt;= 80 chars</p></li>
 <li><p>Lint md files</p></li>
+<li><p>Spellchecking in all files</p></li>
 </ul>
 <hr>
 </div>

@@ -9,11 +9,25 @@
 - Concatenate vignettes into a single file with appendices for descriptions of
 data returned by functions
 
+- Product IDs are included in outputs from `get_*()` functions
+
+- Full station names are reported along with BoM's current name used to refer
+to a station location. In some cases a station "name" may be the same for both
+a current and retired station.
+
+- Databases station locations and other metadata are internal an not exposed to
+the user
+
+- Fuzzy matching i s used for all functions now when user enters a value for
+a desired state, station or the whole country
+
 ## Minor changes
 
 - Shorten code line lengths to be <= 80 chars
 
 - Lint md files
+
+- Spellchecking in all files
 
 --------------------------------------------------------------------------------
 
