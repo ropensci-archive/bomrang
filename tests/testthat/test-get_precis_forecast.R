@@ -1,14 +1,15 @@
 context("get_precis_forecast")
 
-# Test that get_precis_forecast returns a data frame with 18 colums -------------------
-test_that("get_precis_forecast returns 18 columns", {
+# Test that get_precis_forecast returns a data frame with 19 colums -------------------
+test_that("get_precis_forecast returns 19 columns", {
   skip_on_cran()
   BoM_forecast <- get_precis_forecast(state = "QLD")
-  expect_equal(ncol(BoM_forecast), 18)
+  expect_equal(ncol(BoM_forecast), 19)
   expect_named(
     BoM_forecast,
     c(
       "index",
+      "product_id",
       "state",
       "town",
       "aac",

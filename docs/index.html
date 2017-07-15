@@ -15,7 +15,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-vignette">
+    <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -61,15 +61,15 @@
 
       
       </header><div class="row">
-  <div class="col-md-9">
+  <div class="contents col-md-9">
     
-
-    
-    
-<div class="contents">
-<div id="bomrang-fetch-australian-government-bureau-of-meteorology-bom-data" class="section level1">
+<div id="readme" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
-<a href="#bomrang-fetch-australian-government-bureau-of-meteorology-bom-data" class="anchor"></a><em>bomrang</em>: Fetch Australian Government Bureau of Meteorology (BoM) Data</h1></div>
+<a href="#readme" class="anchor"></a>README</h1></div>
+</div>
+<div id="bomrang-fetch-australian-government-bureau-of-meteorology-bom-data" class="section level1">
+<h1 class="hasAnchor">
+<a href="#bomrang-fetch-australian-government-bureau-of-meteorology-bom-data" class="anchor"></a><em>bomrang</em>: Fetch Australian Government Bureau of Meteorology (BoM) Data</h1>
 
 <p>Provides functions to interface with Australian Government Bureau of Meteorology (BoM) data, fetching data and returning a tidy data frame of précis forecasts, current weather data from stations or ag information bulletins.</p>
 <p>Credit for the name, <em>bomrang</em>, goes to <a href="http://dicook.github.io">Di Cook</a>, who suggested it attending the rOpenSci AUUnconf in Brisbane, 2016, when seeing the <a href="https://github.com/saundersk1/auunconf16/blob/master/Vignette_BoM.pdf">vignette</a> that we had assembled during the Unconf.</p>
@@ -115,14 +115,14 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 </h4>
 <p>Following is an example fetching the précis forecast for Queensland.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"bomrang"</span>)</code></pre></div>
-<pre><code>## 
+<div class="sourceCode"><pre class="sourceCode R"><code class="sourceCode r">## 
 ## Data (c) Australian Government Bureau of Meteorology,
 ## Creative Commons (CC) Attribution 3.0 licence or
 ## Public Access Licence (PAL) as appropriate.
-## See http://www.bom.gov.au/other/copyright.shtml</code></pre>
+## See http://www.bom.gov.au/other/copyright.shtml</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_precis_forecast.html">get_precis_forecast</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
 <span class="kw">head</span>(QLD_forecast)</code></pre></div>
-<pre><code>##   index state     town       aac      lon      lat elev
+<div class="sourceCode"><pre class="sourceCode R"><code class="sourceCode r">##   index state     town       aac      lon      lat elev
 ## 1     0   QLD Brisbane QLD_PT001 153.0389 -27.4808  8.1
 ## 2     1   QLD Brisbane QLD_PT001 153.0389 -27.4808  8.1
 ## 3     2   QLD Brisbane QLD_PT001 153.0389 -27.4808  8.1
@@ -156,7 +156,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 ## 3 Possible early shower.                           40
 ## 4         Partly cloudy.                           10
 ## 5  Possible late shower.                           30
-## 6                 Sunny.                            5</code></pre>
+## 6                 Sunny.                            5</code></pre></div>
 </div>
 </div>
 <div id="using-get_ag_bulletin" class="section level3">
@@ -188,7 +188,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 
 QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_ag_bulletin.html">get_ag_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
 <span class="kw">head</span>(QLD_bulletin)</code></pre></div>
-<pre><code>##   product_id state dist   wmo  site    station          full_name
+<div class="sourceCode"><pre class="sourceCode R"><code class="sourceCode r">##   product_id state dist   wmo  site    station          full_name
 ## 1   IDQ60604   QLD   38 95482 38026 Birdsville BIRDSVILLE AIRPORT
 ## 2   IDQ60604   QLD   38 95482 38026 Birdsville BIRDSVILLE AIRPORT
 ## 3   IDQ60604   QLD   38 95482 38026 Birdsville BIRDSVILLE AIRPORT
@@ -208,7 +208,7 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="reference/g
 ## 3  46.6   47.0  2000 2017 NA   NA   NA 7.7 NA NA NA NA  NA  NA  NA  NA NA
 ## 4  46.6   47.0  2000 2017  0   NA   NA  NA NA NA NA NA  NA  NA  NA  NA NA
 ## 5 161.8  158.3  1886 2017 NA   NA 27.2  NA NA NA NA NA  NA  NA  NA  NA NA
-## 6 161.8  158.3  1886 2017 NA 12.0   NA  NA NA NA NA NA  NA  NA  NA  NA NA</code></pre>
+## 6 161.8  158.3  1886 2017 NA 12.0   NA  NA NA NA NA NA  NA  NA  NA  NA NA</code></pre></div>
 </div>
 </div>
 <div id="using-get_current_weather" class="section level3">
@@ -238,7 +238,7 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="reference/g
 
 Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_current_weather.html">get_current_weather</a></span>(<span class="st">"Melbourne (Olympic Park)"</span>)
 <span class="kw">head</span>(Melbourne_weather)</code></pre></div>
-<pre><code>##   sort_order   wmo                     name history_product
+<div class="sourceCode"><pre class="sourceCode R"><code class="sourceCode r">##   sort_order   wmo                     name history_product
 ## 1          0 95936 Melbourne (Olympic Park)        IDV60801
 ## 2          1 95936 Melbourne (Olympic Park)        IDV60801
 ## 3          2 95936 Melbourne (Olympic Park)        IDV60801
@@ -279,7 +279,7 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="refere
 ## 3           NA     10       -       NW            9           5
 ## 4           NA     10       -       NW           11           6
 ## 5           NA     10       -      WNW            9           5
-## 6           NA     10       -      WNW            9           5</code></pre>
+## 6           NA     10       -      WNW            9           5</code></pre></div>
 </div>
 </div>
 </div>
@@ -316,12 +316,11 @@ url          = {https://github.com/ToowoombaTrio/bomrang}</code></pre></div>
 <p><a href="http://www.bom.gov.au/climate/how/observations/rain-measure.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services Observation of Rainfall</a></p>
 </div>
 </div>
-</div>
+
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2 class="hasAnchor">
-<a href="#sidebar" class="anchor"></a>Links</h2>
+  <div class="col-md-3" id="sidebar">
+    <h2>Links</h2>
 <ul class="list-unstyled">
 <li>Browse source code at <br><a href="https://github.com/ToowoombaTrio/bomrang">https://​github.com/​ToowoombaTrio/​bomrang</a>
 </li>
@@ -351,7 +350,6 @@ url          = {https://github.com/ToowoombaTrio/bomrang}</code></pre></div>
 <li><a href="https://doi.org/10.5281/zenodo.598301"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.598301.svg" alt="DOI"></a></li>
 </ul>
 </div>
-
 </div>
 
 

@@ -180,7 +180,7 @@ get_precis_forecast <- function(state = "AUS") {
     lower_precipitation_limit <- upper_precipitation_limit <-
     start_time_local <- start_time_utc <- maximum_temperature <-
     minimum_temperature <- UTC_offset_drop <- AAC_codes <- UTC_offset <-
-    index <- NULL
+    index <- product_id <- NULL
 
   # load the XML forecast ----------------------------------------------------
   tryCatch({
@@ -232,18 +232,32 @@ get_precis_forecast <- function(state = "AUS") {
     gsub("%", "", paste(out$probability_of_precipitation))
 
   # remove the "T" from the date/time columns
-  out[, c(3:4, 6:7)] <-
-    apply(out[, c(3:4, 6:7)], 2, function(x)
+  out[, c("start_time_local",
+          "end_time_local",
+          "start_time_utc",
+          "end_time_utc")] <-
+    apply(out[, c("start_time_local",
+                  "end_time_local",
+                  "start_time_utc",
+                  "end_time_utc")], 2, function(x)
       chartr("T", " ", x))
 
   # remove the "Z" from start_time_utc
-  out[, 6:7] <-
-    apply(out[, 6:7], 2, function(x)
+  out[, c("start_time_utc",
+          "end_time_utc")] <-
+    apply(out[, c("start_time_utc",
+                  "end_time_utc")], 2, function(x)
       chartr("Z", " ", x))
 
   # convert dates to POSIXct ---------------------------------------------------
-  out[, c(3:4, 6:7)] <-
-    lapply(out[, c(3:4, 6:7)], function(x)
+  out[, c("start_time_local",
+          "end_time_local",
+          "start_time_utc",
+          "end_time_utc")] <-
+    lapply(out[, c("start_time_local",
+                   "end_time_local",
+                   "start_time_utc",
+                   "end_time_utc")], function(x)
       as.POSIXct(x, origin = "1970-1-1", format = "%Y-%m-%d %H:%M:%OS"))
 
   # split precipitation forecast values into lower/upper limits --------------
@@ -305,13 +319,17 @@ get_precis_forecast <- function(state = "AUS") {
 
   # add state field
   tidy_df$state <- gsub("_.*", "", tidy_df$aac)
-  tidy_df <-
-    dplyr::select(.data = tidy_df, aac:town, state, lon, lat, elev)
+
+  # add product ID field
+  tidy_df$product_id <- substr(basename(xmlforecast_url),
+                               1,
+                               nchar(basename(xmlforecast_url)) - 4)
 
   tidy_df <-
     tidy_df %>%
     dplyr::select(
       index,
+      product_id,
       state,
       town,
       aac,

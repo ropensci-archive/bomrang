@@ -735,6 +735,8 @@ agriculture bulletin with the following fields:
 <table>
 <tr><th>Field Name</th><th>Description</th></tr>
 <tr><td>index</td><td>Forecast index number, 0 = current day ... 7 day</td></tr>
+<tr><td>product_id</td><td>BoM Product ID from which the data are derived</td>
+</tr>
 <tr><td>state</td><td>State name (postal code abbreviation)</td></tr>
 <tr><td>town</td><td>Town name for forecast location</td></tr>
 <tr><td>aac</td><td>AMOC Area Code, _e.g._, WA_MW008, a unique identifier for
