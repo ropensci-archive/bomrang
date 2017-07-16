@@ -140,14 +140,11 @@ library("bomrang")
 QLD_bulletin <- get_ag_bulletin(state = "QLD")
 head(QLD_bulletin)
 ```
-
-## Other functions in _bomrang_
-
-### Using `sweep_for_stations`
+## Using `sweep_for_stations`
 `sweep_for_stations()` only takes one argument, `latlon`, a length-2 numeric
 vector. By default, Canberra (approximately).
 
-#### Results
+### Results
 This function will search for weather stations and return a data frame of all
 weather stations (in this package) sorted by distance from `latlon`, ascending.
 The fields in the data frame are:
@@ -160,7 +157,7 @@ The fields in the data frame are:
 
 **distance** - distance from provided `latlon` value (kilometres).
 
-#### Example  
+### Example  
 
 Following is an example sweeping for stations starting with Canberra.
 
@@ -169,18 +166,38 @@ Following is an example sweeping for stations starting with Canberra.
 head(sweep_for_stations(latlon = c(-35.3, 149.2)), 10)
 ```
 
+## Using the update functions
+
+_bomrang_ uses internal databases of station location data from BoM to provide
+location and other metadata, _e.g._ elevation, station names, WMO codes, etc. to
+make the process of querying for weather data faster. These databases are
+created and packaged with _bomrang_ for distribution and are updated with new
+releases. Users have the option of updating these databases after installing
+_bomrang_. While this option gives the users the ability to keep the databases
+up-to-date and gives _bomrang_'s authors flexibility in maintaning it, this
+also means that reproducibility may be affected since the same version of
+_bomrang_ may have different databases on different machines. If reproducibility
+is necessary, care should be taken to ensure that the version of the databases
+is the same across different machines.
+
+The databases consist of three files, used by _bomrang_, `AAC_codes.rda`, 
+`JSONurl_latlon_by_station_name.rda` and `stations_site_list.rda`. These files
+can be located on your local system by using the following command, 
+```{r, eval = FALSE}
+paste0(.libPaths(), "/bomrang/extdata")[1]
+```
+
+unless you have specified another location for library installations and
+installed _bomrang_ there, in which case it would still be in `bomrang/extdata`.
 
 ### Using `update_forecast_locations`
 
 `update_forecast_locations()` downloads the latest précis forecast locations
-from the BoM server and updates _bomrang_'s internal database of forecast
-locations. There is no need to use this unless you know that a forecast location
-exists in a more current version of the BoM forecast location database that is
-not available in the database distributed with _bomrang_. This database is
-distributed with the package to make the process faster when fetching the
-forecast.
+from the BoM server and updates _bomrang_'s internal database of towns used for
+forecast locations. This database is distributed with the package to make the
+process faster when fetching the forecast. 
 
-#### Example
+### Example
 
 Following is an example updating the précis forecast locations internal
 database.
@@ -197,7 +214,7 @@ and updates bomrang's internal databases that support the use of
 unless you know that a station exists in BoM's database that is not available in
 the databases distributed with _bomrang_
 
-#### Example
+### Example
 
 Following is an example updating the précis forecast locations internal
 database.
@@ -205,8 +222,6 @@ database.
 ```{r, eval=FALSE}
 update_station_locations()
 ```
-
-
 
 ## References
 
@@ -292,7 +307,7 @@ exchange</td></tr>
 <tr><td>Plain_lang[51]</td><td>Plain language comments</td></tr>
 </table>
 
-#### Codes:
+### Codes:
 
 P_tend_typ:
 
