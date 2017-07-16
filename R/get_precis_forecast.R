@@ -1,5 +1,5 @@
 
-#' BoM Daily Précis Forecast for Select Towns
+#' Get BoM Daily Précis Forecast for Select Towns
 #'
 #' Fetch the BoM daily précis forecast and return a tidy data frame of the seven
 #' day town forecast for a specified state or territory.
@@ -333,8 +333,8 @@ get_precis_forecast <- function(state = "AUS") {
       state,
       town,
       aac,
-      lon,
       lat,
+      lon,
       elev,
       start_time_local,
       end_time_local,

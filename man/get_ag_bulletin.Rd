@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_ag_bulletin.R
 \name{get_ag_bulletin}
 \alias{get_ag_bulletin}
-\title{BoM Agriculture Bulletin Information for Select Stations}
+\title{Get BoM Agriculture Bulletin Information for Select Stations}
 \usage{
 get_ag_bulletin(state = "AUS")
 }

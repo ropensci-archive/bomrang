@@ -87,43 +87,8 @@ ACT.
 ### Results
 
 The function, `get_precis_forecast()`, will return a data frame of the weather
-forecast for the daily forecast for selected towns with the following fields:
-
-- **aac** - AMOC Area Code, _e.g._ WA_MW008, a unique identifier for each
-location
-
-- **start_time_local** - Start of forecast date and time in local TZ
-
-- **end_time_local** - End of forecast date and time in local TZ
-
-- **UTC_offset** -  Hours offset from difference in hours and minutes from
-Coordinated Universal Time (UTC) for `start_time_local` and `end_time_local`
-
-- **start_time_utc** - Start of forecast date and time in UTC 
-
-- **end_time_utc** - End of forecast date and time in UTC
-
-- **max_temp** - Maximum forecasted temperature (degrees Celsius)
-
-- **min_temp** - Minimum forecasted temperature (degrees Celsius)
-
-- **lower_prcp_limit** - Lower forecasted precipitation limit (millimetres)
-
-- **upper_prcp_limit** - Upper forecasted precipitation limit (millimetres)
-
-- **precis** - Précis forecast (a short summary, less than 30 characters)
-
-- **prob_prcp** - Probability of precipitation (percent)
-
-- **town** - A disaggretated district forecast for select towns
-
-- **state** - State name (postal code abbreviation)
-
-- **lon** - Longitude of named location (decimal degrees)
-
-- **lat** - Latitude of named location (decimal degrees)
-
-- **elev** - Elevation of named location (metres).
+forecast for the daily forecast for selected towns. See Appendix 1 for a full
+description of the fields and values.
 
 ### Example
 
@@ -162,67 +127,8 @@ full name with fuzzy matching performed via `agrep()`.
 ### Results
 
 The function, `get_ag_bulletin()`, will return a data frame of the agriculture
-bulletin with the following fields:
-
-- **obs-time-local** - Observation time
-
-- **obs-time-utc** - Observation time (time in UTC)
-
-- **time-zone** - Time zone for observation
-
-- **site** - Unique BoM identifier for each station
-
-- **dist** - BoM rainfall district
-
-- **station** - BoM station name
-
-- **start** - Year data collection starts
-
-- **end** - Year data collection ends (will always be current)
-
-- **state** - State name (postal code abbreviation)
-
-- **lat** - Latitude (decimal degrees)
-
-- **lon** - Longitude (decimal degrees)
-
-- **elev** - Station elevation (metres)
-
-- **bar_ht** - Bar height (metres)
-
-- **wmo** - World Meteorlogical Organization number (unique ID used worldwide)
-
-- **r** - Rain to 9am (millimetres). _Trace will be reported as 0.01_
-
-- **tn** - Minimum temperature (degrees Celsius)
-
-- **tx** - Maximum temperature (degrees Celsius)
-
-- **twd** - Wet bulb depression (degrees Celsius)
-
-- **ev** - Evaporation (millimetres)
-
-- **tg** - Terrestrial minimum temperature (degrees Celsius)
-
-- **sn** - Sunshine (hours)
-
-- **t5** - 5cm soil temperature (degrees Celsius)
-
-- **t10** - 10cm soil temperature (degrees Celsius)
-
-- **t20** - 20cm soil temperature (degrees Celsius)
-
-- **t50** - 50cm soil temperature (degrees Celsius)
-
-- **t1m** - 1m soil temperature (degrees Celsius)
-
-- **wr** - Wind run (kilometres)
-
-- **state** - State name (postal code abbreviation)
-
-- **lat** - Latitude (decimal degrees)
-
-- **lon** - Longitude (decimal degrees).
+bulletin for selected stations. See Appendix 3 for a full list and description
+of the fields and values.
 
 ### Example
 
@@ -234,27 +140,24 @@ library("bomrang")
 QLD_bulletin <- get_ag_bulletin(state = "QLD")
 head(QLD_bulletin)
 ```
-
-## Other functions in _bomrang_
-
-### Using `sweep_for_stations`
+## Using `sweep_for_stations`
 `sweep_for_stations()` only takes one argument, `latlon`, a length-2 numeric
 vector. By default, Canberra (approximately).
 
-#### Results
+### Results
 This function will search for weather stations and return a data frame of all
 weather stations (in this package) sorted by distance from `latlon`, ascending.
 The fields in the data frame are:
 
 **name** - station name
 
-**Lat** - latitude (decimal degrees)
+**lat** - latitude (decimal degrees)
 
-**Lon** - longitude (decimal degrees)
+**lon** - longitude (decimal degrees)
 
 **distance** - distance from provided `latlon` value (kilometres).
 
-#### Example  
+### Example  
 
 Following is an example sweeping for stations starting with Canberra.
 
@@ -263,18 +166,38 @@ Following is an example sweeping for stations starting with Canberra.
 head(sweep_for_stations(latlon = c(-35.3, 149.2)), 10)
 ```
 
+## Using the update functions
+
+_bomrang_ uses internal databases of station location data from BoM to provide
+location and other metadata, _e.g._ elevation, station names, WMO codes, etc. to
+make the process of querying for weather data faster. These databases are
+created and packaged with _bomrang_ for distribution and are updated with new
+releases. Users have the option of updating these databases after installing
+_bomrang_. While this option gives the users the ability to keep the databases
+up-to-date and gives _bomrang_'s authors flexibility in maintaning it, this
+also means that reproducibility may be affected since the same version of
+_bomrang_ may have different databases on different machines. If reproducibility
+is necessary, care should be taken to ensure that the version of the databases
+is the same across different machines.
+
+The databases consist of three files, used by _bomrang_, `AAC_codes.rda`, 
+`JSONurl_latlon_by_station_name.rda` and `stations_site_list.rda`. These files
+can be located on your local system by using the following command, 
+```{r, eval = FALSE}
+paste0(.libPaths(), "/bomrang/extdata")[1]
+```
+
+unless you have specified another location for library installations and
+installed _bomrang_ there, in which case it would still be in `bomrang/extdata`.
 
 ### Using `update_forecast_locations`
 
 `update_forecast_locations()` downloads the latest précis forecast locations
-from the BoM server and updates _bomrang_'s internal database of forecast
-locations. There is no need to use this unless you know that a forecast location
-exists in a more current version of the BoM forecast location database that is
-not available in the database distributed with _bomrang_. This database is
-distributed with the package to make the process faster when fetching the
-forecast.
+from the BoM server and updates _bomrang_'s internal database of towns used for
+forecast locations. This database is distributed with the package to make the
+process faster when fetching the forecast. 
 
-#### Example
+### Example
 
 Following is an example updating the précis forecast locations internal
 database.
@@ -291,7 +214,7 @@ and updates bomrang's internal databases that support the use of
 unless you know that a station exists in BoM's database that is not available in
 the databases distributed with _bomrang_
 
-#### Example
+### Example
 
 Following is an example updating the précis forecast locations internal
 database.
@@ -299,8 +222,6 @@ database.
 ```{r, eval=FALSE}
 update_station_locations()
 ```
-
-
 
 ## References
 
@@ -386,7 +307,7 @@ exchange</td></tr>
 <tr><td>Plain_lang[51]</td><td>Plain language comments</td></tr>
 </table>
 
-#### Codes:
+### Codes:
 
 P_tend_typ:
 
@@ -743,8 +664,8 @@ agriculture bulletin with the following fields:
 <tr><td>town</td><td>Town name for forecast location</td></tr>
 <tr><td>aac</td><td>AMOC Area Code, _e.g._, WA_MW008, a unique identifier for
 each location</td></tr>
-<tr><td>lon</td><td>Longitude of named location (decimal degrees)</td></tr>
 <tr><td>lat</td><td>Latitude of named location (decimal degrees)</td></tr>
+<tr><td>lon</td><td>Longitude of named location (decimal degrees)</td></tr>
 <tr><td>elev</td><td>Elevation of named location (metres)</td></tr>
 <tr><td>start_time_local</td><td>Start of forecast date and time in local
 TZ</td></tr>
@@ -796,8 +717,8 @@ worldwide)</td></tr>
 <tr><td>station</td><td>BoM station name</td></tr>
 <tr><td>start</td><td>Year data collection starts</td></tr>
 <tr><td>end</td><td>Year data collection ends (will always be current)</td></tr>
-<tr><td>r</td><td>Rain to 9am (millimetres). _Trace will be reported as
-0.01_</td></tr>
+<tr><td>r</td><td>Rain to 9am (millimetres). <em>Trace will be reported as
+0.01</em></td></tr>
 <tr><td>tn</td><td>Minimum temperature (degrees Celsius)</td></tr>
 <tr><td>tx</td><td>Maximum temperature (degrees Celsius)</td></tr>
 <tr><td>twd</td><td>Wet bulb depression (degrees Celsius)</td></tr>
@@ -812,27 +733,31 @@ worldwide)</td></tr>
 <tr><td>wr</td><td>Wind run (kilometres)</td></tr>
 </table>
 
-### Appendix 4 - Map of station locations
+## Appendix 4 - Map of station locations
 
-```{r station-locations-map, fig.width = 7, fig.height = 7}
+```{r station-locations-map, fig.width = 7, fig.height = 7, message = FALSE}
 if (requireNamespace("ggplot2", quietly = TRUE) &&
     requireNamespace("ggthemes", quietly = TRUE) &&
     requireNamespace("maps", quietly = TRUE) &&
-    requireNamespace("mapproj", quietly = TRUE)) {
+    requireNamespace("mapproj", quietly = TRUE) &&
+    requireNamespace("gridExtra", quietly = TRUE) &&
+    requireNamespace("grid", quietly = TRUE)) {
   library(ggplot2)
   library(mapproj)
   library(ggthemes)
   library(maps)
   library(data.table)
+  library(grid)
+  library(gridExtra)
   load(system.file("extdata", "stations_site_list.rda", package = "bomrang"))
   setDT(stations_site_list)
-
+  
   Aust_stations <- 
     stations_site_list[(!(state %in% c("ANT", "null"))) & !grepl("VANUATU|HONIARA", name)]
   
   Aust_map <- map_data("world", region = "Australia")
   
-  ggplot(Aust_stations, aes(x = lon, y = lat)) + 
+  BoM_stations <- ggplot(Aust_stations, aes(x = lon, y = lat)) + 
     geom_polygon(data = Aust_map, aes(x = long, y = lat, group = group), 
                  color = grey(0.7),
                  fill = NA) +
@@ -841,8 +766,18 @@ if (requireNamespace("ggplot2", quietly = TRUE) &&
     coord_map(ylim = c(-45, -5),
               xlim = c(96, 167)) +
     theme_map() + 
-    ggtitle("BoM Station Locations",
-            subtitle = "Australia, outlying islands and buoys (excl. Antarctic stations)")
+    labs(title = "BoM Station Locations",
+         subtitle = "Australia, outlying islands and buoys (excl. Antarctic stations)",
+         caption = "Data: Australia Bureau of Meteorology (BoM)\n
+         and NaturalEarthdata, http://naturalearthdata.com")
+  
+  # Using the gridExtra and grid packages add a neatline to the map
+  grid.arrange(BoM_stations, ncol = 1)
+  grid.rect(width = 0.98, 
+            height = 0.98, 
+            gp = grid::gpar(lwd = 0.25, 
+                            col = "black",
+                            fill = NA))
 }
 ```
   

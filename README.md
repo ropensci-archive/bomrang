@@ -22,7 +22,79 @@ devtools::install_github("toowoombatrio/bomrang")
 Using *bomrang*
 ---------------
 
-The main functionality of *bomrang* is provided through three functions, `get_precis_forecast()`, which retrieves the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; and `get_ag_bulletin()`, which retrieves the agriculture bulletin.
+The main functionality of *bomrang* is provided through three functions, `get_current_weather()`, which fetches the current weather from a given station; `get_precis_forecast()`, which retrieves the précis (short) forecast; and `get_ag_bulletin()`, which retrieves the agriculture bulletin.
+
+### Using `get_current_weather()`
+
+Returns the latest 72 hours weather observations for a station.
+
+This function accepts four arguments:
+
+-   `station_name`, The name of the weather station. Fuzzy string matching via `base::agrep` is done.
+
+-   `latlon`, A length-2 numeric vector. When given instead of station\_name, the nearest station (in this package) is used, with a message indicating the nearest such station. (See also `sweep_for_stations()`.) Ignored if used in combination with `station_name`, with a warning.
+
+-   `raw` Logical. Do not convert the columns data.table to the appropriate classes. (FALSE by default.)
+
+-   `emit_latlon_msg` Logical. If `TRUE` (the default), and `latlon` is selected, a message is emitted before the table is returned indicating which station was actually used (i.e. which station was found to be nearest to the given coordinate).
+
+#### Results of `get_current_weather()`
+
+The function, `get_current_weather()` will return a tidy data frame of the current and past 72 hours observations for the requested station. For a complete listing of the fields in the data frame see Appendix 1, `Output from get_current_weather()` in the _bomrang_ vignette.
+
+#### Example Using `get_current_weather()`
+
+Following is an example fetching the current weather for Melbourne.
+
+``` r
+library("bomrang")
+
+Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
+head(Melbourne_weather)
+```
+
+    ##   sort_order   wmo                     name history_product
+    ## 1          0 95936 Melbourne (Olympic Park)        IDV60801
+    ## 2          1 95936 Melbourne (Olympic Park)        IDV60801
+    ## 3          2 95936 Melbourne (Olympic Park)        IDV60801
+    ## 4          3 95936 Melbourne (Olympic Park)        IDV60801
+    ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
+    ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
+    ##   local_date_time local_date_time_full        aifstime_utc   lat lon
+    ## 1      14/10:00pm  2017-07-14 22:00:00 2017-07-14 12:00:00 -37.8 145
+    ## 2      14/09:30pm  2017-07-14 21:30:00 2017-07-14 11:30:00 -37.8 145
+    ## 3      14/09:00pm  2017-07-14 21:00:00 2017-07-14 11:00:00 -37.8 145
+    ## 4      14/08:30pm  2017-07-14 20:30:00 2017-07-14 10:30:00 -37.8 145
+    ## 5      14/08:00pm  2017-07-14 20:00:00 2017-07-14 10:00:00 -37.8 145
+    ## 6      14/07:30pm  2017-07-14 19:30:00 2017-07-14 09:30:00 -37.8 145
+    ##   apparent_t cloud cloud_base_m cloud_oktas cloud_type cloud_type_id
+    ## 1        7.0     -           NA          NA          -            NA
+    ## 2        6.7     -           NA          NA          -            NA
+    ## 3        7.2     -           NA          NA          -            NA
+    ## 4        7.4     -           NA          NA          -            NA
+    ## 5        8.0     -           NA          NA          -            NA
+    ## 6        7.9     -           NA          NA          -            NA
+    ##   delta_t gust_kmh gust_kt air_temp dewpt  press press_msl press_qnh
+    ## 1     2.8       20      11     10.1   3.8 1016.8    1016.8    1016.8
+    ## 2     2.6       13       7      9.8   3.8 1016.5    1016.5    1016.5
+    ## 3     2.9       19      10     10.3   3.6 1016.2    1016.2    1016.2
+    ## 4     3.0       17       9     10.8   4.0 1016.0    1016.0    1016.0
+    ## 5     3.3       17       9     11.1   3.6 1015.6    1015.6    1015.6
+    ## 6     3.2       20      11     11.0   3.8 1015.2    1015.2    1015.2
+    ##   press_tend rain_trace rel_hum sea_state swell_dir_worded swell_height
+    ## 1          -          0      65         -                -           NA
+    ## 2          -          0      66         -                -           NA
+    ## 3          -          0      63         -                -           NA
+    ## 4          -          0      63         -                -           NA
+    ## 5          -          0      60         -                -           NA
+    ## 6          -          0      61         -                -           NA
+    ##   swell_period vis_km weather wind_dir wind_spd_kmh wind_spd_kt
+    ## 1           NA     10       -        W            9           5
+    ## 2           NA     10       -       NW            9           5
+    ## 3           NA     10       -       NW            9           5
+    ## 4           NA     10       -       NW           11           6
+    ## 5           NA     10       -      WNW            9           5
+    ## 6           NA     10       -      WNW            9           5
 
 ### Using `get_precis_forecast()`
 
@@ -161,78 +233,6 @@ head(QLD_bulletin)
     ## 4  46.6   47.0  2000 2017  0   NA   NA  NA NA NA NA NA  NA  NA  NA  NA NA
     ## 5 161.8  158.3  1886 2017 NA   NA 27.2  NA NA NA NA NA  NA  NA  NA  NA NA
     ## 6 161.8  158.3  1886 2017 NA 12.0   NA  NA NA NA NA NA  NA  NA  NA  NA NA
-
-### Using `get_current_weather()`
-
-Returns the latest 72 hours weather observations for a station.
-
-This function accepts four arguments:
-
--   `station_name`, The name of the weather station. Fuzzy string matching via `base::agrep` is done.
-
--   `latlon`, A length-2 numeric vector. When given instead of station\_name, the nearest station (in this package) is used, with a message indicating the nearest such station. (See also `sweep_for_stations()`.) Ignored if used in combination with `station_name`, with a warning.
-
--   `raw` Logical. Do not convert the columns data.table to the appropriate classes. (FALSE by default.)
-
--   `emit_latlon_msg` Logical. If `TRUE` (the default), and `latlon` is selected, a message is emitted before the table is returned indicating which station was actually used (i.e. which station was found to be nearest to the given coordinate).
-
-#### Results of `get_current_weather()`
-
-The function, `get_current_weather()` will return a tidy data frame of the current and past 72 hours observations for the requested station. For a complete listing of the fields in the data frame see Appendix 1, `Output from get_current_weather()` in the _bomrang_ vignette.
-
-#### Example Using `get_current_weather()`
-
-Following is an example fetching the current weather for Melbourne.
-
-``` r
-library("bomrang")
-
-Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
-head(Melbourne_weather)
-```
-
-    ##   sort_order   wmo                     name history_product
-    ## 1          0 95936 Melbourne (Olympic Park)        IDV60801
-    ## 2          1 95936 Melbourne (Olympic Park)        IDV60801
-    ## 3          2 95936 Melbourne (Olympic Park)        IDV60801
-    ## 4          3 95936 Melbourne (Olympic Park)        IDV60801
-    ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
-    ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
-    ##   local_date_time local_date_time_full        aifstime_utc   lat lon
-    ## 1      14/10:00pm  2017-07-14 22:00:00 2017-07-14 12:00:00 -37.8 145
-    ## 2      14/09:30pm  2017-07-14 21:30:00 2017-07-14 11:30:00 -37.8 145
-    ## 3      14/09:00pm  2017-07-14 21:00:00 2017-07-14 11:00:00 -37.8 145
-    ## 4      14/08:30pm  2017-07-14 20:30:00 2017-07-14 10:30:00 -37.8 145
-    ## 5      14/08:00pm  2017-07-14 20:00:00 2017-07-14 10:00:00 -37.8 145
-    ## 6      14/07:30pm  2017-07-14 19:30:00 2017-07-14 09:30:00 -37.8 145
-    ##   apparent_t cloud cloud_base_m cloud_oktas cloud_type cloud_type_id
-    ## 1        7.0     -           NA          NA          -            NA
-    ## 2        6.7     -           NA          NA          -            NA
-    ## 3        7.2     -           NA          NA          -            NA
-    ## 4        7.4     -           NA          NA          -            NA
-    ## 5        8.0     -           NA          NA          -            NA
-    ## 6        7.9     -           NA          NA          -            NA
-    ##   delta_t gust_kmh gust_kt air_temp dewpt  press press_msl press_qnh
-    ## 1     2.8       20      11     10.1   3.8 1016.8    1016.8    1016.8
-    ## 2     2.6       13       7      9.8   3.8 1016.5    1016.5    1016.5
-    ## 3     2.9       19      10     10.3   3.6 1016.2    1016.2    1016.2
-    ## 4     3.0       17       9     10.8   4.0 1016.0    1016.0    1016.0
-    ## 5     3.3       17       9     11.1   3.6 1015.6    1015.6    1015.6
-    ## 6     3.2       20      11     11.0   3.8 1015.2    1015.2    1015.2
-    ##   press_tend rain_trace rel_hum sea_state swell_dir_worded swell_height
-    ## 1          -          0      65         -                -           NA
-    ## 2          -          0      66         -                -           NA
-    ## 3          -          0      63         -                -           NA
-    ## 4          -          0      63         -                -           NA
-    ## 5          -          0      60         -                -           NA
-    ## 6          -          0      61         -                -           NA
-    ##   swell_period vis_km weather wind_dir wind_spd_kmh wind_spd_kt
-    ## 1           NA     10       -        W            9           5
-    ## 2           NA     10       -       NW            9           5
-    ## 3           NA     10       -       NW            9           5
-    ## 4           NA     10       -       NW           11           6
-    ## 5           NA     10       -      WNW            9           5
-    ## 6           NA     10       -      WNW            9           5
 
 Meta
 ----
