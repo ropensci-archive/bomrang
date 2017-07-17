@@ -215,44 +215,6 @@ get_current_weather <-
         "cloud_base_m",
         "cloud_oktas",
         "rain_trace")
-    # (i.e. not raw)
-    cook <- function(DT, as.DT) {
-      if (!data.table::is.data.table(DT)) {
-        data.table::setDT(DT)
-      }
-
-      DTnoms <- names(DT)
-
-      # CRAN NOTE avoidance
-      local_date_time_full <- NULL
-      if ("local_date_time_full" %chin% DTnoms) {
-        DT[, local_date_time_full := as.POSIXct(
-          local_date_time_full,
-          origin = "1970-1-1",
-          format = "%Y%m%d%H%M%OS",
-          tz = ""
-        )]
-      }
-
-      aifstime_utc <- NULL
-      if ("aifstime_utc" %chin% DTnoms) {
-        DT[, aifstime_utc := as.POSIXct(aifstime_utc,
-                                        origin = "1970-1-1",
-                                        format = "%Y%m%d%H%M%OS",
-                                        tz = "GMT")]
-      }
-
-      for (j in which(DTnoms %chin% double_cols)) {
-        data.table::set(DT, j = j, value = force_double(DT[[j]]))
-      }
-
-      if (!as.DT) {
-        DT <- as.data.frame(DT)
-      }
-
-      DT[]
-    }
-
     out <-
       observations.json %>%
       use_series("observations") %>%
@@ -270,6 +232,44 @@ get_current_weather <-
     if (raw) {
       return(out)
     } else {
-      return(cook(out, as.DT = as.data.table))
+      return(cook(out, as.DT = as.data.table, double_cols = double_cols))
     }
   }
+
+# (i.e. not raw)
+cook <- function(DT, as.DT, double_cols) {
+  if (!data.table::is.data.table(DT)) {
+    data.table::setDT(DT)
+  }
+
+  DTnoms <- names(DT)
+
+  # CRAN NOTE avoidance
+  local_date_time_full <- NULL
+  if ("local_date_time_full" %chin% DTnoms) {
+    DT[, local_date_time_full := as.POSIXct(
+      local_date_time_full,
+      origin = "1970-1-1",
+      format = "%Y%m%d%H%M%OS",
+      tz = ""
+    )]
+  }
+
+  aifstime_utc <- NULL
+  if ("aifstime_utc" %chin% DTnoms) {
+    DT[, aifstime_utc := as.POSIXct(aifstime_utc,
+                                    origin = "1970-1-1",
+                                    format = "%Y%m%d%H%M%OS",
+                                    tz = "GMT")]
+  }
+
+  for (j in which(DTnoms %chin% double_cols)) {
+    data.table::set(DT, j = j, value = force_double(DT[[j]]))
+  }
+
+  if (!as.DT) {
+    DT <- as.data.frame(DT)
+  }
+
+  DT[]
+}
