@@ -3,6 +3,9 @@
 #'
 #' @param station_name The name of the weather station. Fuzzy string matching
 #' via \code{base::agrep} is done.
+#' @param strict (logical) If \code{TRUE}, \code{station_name} must match the station name exactly,
+#' except that \code{station_name} need not be uppercase. Note this may be different to
+#' \code{full_name} in the response. See \strong{Details}.
 #' @param latlon A length-2 numeric vector. When given instead of
 #' \code{station_name}, the nearest station (in this package) is used, with a
 #' message indicating the nearest such station. (See also
@@ -15,7 +18,14 @@
 #' indicating which station was actually used (i.e. which station was found to
 #' be nearest to the given coordinate).
 #' @param as.data.table Return result as a \code{data.table}.
-#' @details Note that the column \code{local_date_time_full} is set to a
+#' @details
+#' Station names are not consistently named within the Bureau, so
+#' the response may contain a different \code{full_name} to the one
+#' matched, even if \code{strict = TRUE}. For example,
+#' \code{get_current_weather("CASTLEMAINE PRISON")[["full_name"]][1]}
+#' is \code{Castlemaine}, not \code{Castlemaine Prison}.
+#'
+#' Note that the column \code{local_date_time_full} is set to a
 #' \code{POSIXct} object in the local time of the \strong{user}.
 #' For more details see the vignette "Current Weather Fields":
 #' \code{vignette("Current Weather Fields", package = "bomrang")}
@@ -55,6 +65,7 @@
 
 get_current_weather <-
   function(station_name,
+           strict = FALSE,
            latlon = NULL,
            raw = FALSE,
            emit_latlon_msg = TRUE,
@@ -88,9 +99,16 @@ get_current_weather <-
       if (station_name %in% JSONurl_latlon_by_station_name[["name"]]) {
         the_station_name <- station_name
       } else {
-        likely_stations <- agrep(pattern = station_name,
-                                 x = JSONurl_latlon_by_station_name[["name"]],
-                                 value = TRUE)
+        likely_stations <-
+          # Present those with common prefixes first
+          c(grep(pattern = paste0("^", station_name),
+                 x = JSONurl_latlon_by_station_name[["name"]],
+                 ignore.case = TRUE,
+                 value = TRUE),
+            agrep(pattern = station_name,
+                  x = JSONurl_latlon_by_station_name[["name"]],
+                  value = TRUE)) %>%
+          unique
 
         if (length(likely_stations) == 0) {
           stop("No station found.")
@@ -107,14 +125,34 @@ get_current_weather <-
             the_station_name <- 'SYDNEY (OBSERVATORY HILL)'
           }
 
-          warning("Multiple stations match station_name. ",
-                  "Using\n\tstation_name = '",
-                  the_station_name,
-                  "'\n\nDid you mean any of the following?\n",
-                  paste0("\tstation_name = '",
-                         likely_stations[-1],
-                         "'",
-                         collapse = "\n"))
+          # If not strict, warn; otherwise, later code will error on its own.
+          if (!strict) {
+            warning("Multiple stations match station_name. ",
+                    "Using\n\tstation_name = '",
+                    the_station_name,
+                    "'\n\nDid you mean any of the following?\n",
+                    paste0("\tstation_name = '",
+                           likely_stations[-1],
+                           "'",
+                           collapse = "\n"))
+          }
+        }
+
+        if (strict) {
+          if (length(likely_stations) == 1) {
+            stop("strict = TRUE but station name not exactly matched.\nDid you mean the following?\n\t",
+                 "station_name = '",
+                 the_station_name, "'")
+          } else {
+            stop("strict = TRUE but station name not exactly matched.\n",
+                 "Multiple stations match station_name. ",
+                 "\n\nDid you mean any of the following?\n",
+                 paste0("\tstation_name = '",
+                        likely_stations,
+                        "'",
+                        collapse = "\n"))
+          }
+
         }
       }
 
