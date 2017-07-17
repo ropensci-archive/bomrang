@@ -43,6 +43,9 @@ test_that("Strict", {
   expect_error(get_current_weather("Melbourne", strict = TRUE),
                regexp = "strict = TRUE.*Multiple stations match station_name.")
   expect_error(get_current_weather("ESPERANCE AWS", strict = TRUE))
+  # Main test is that this is not an error:
+  FORREST <- get_current_weather("FORREST", strict = TRUE)
+  expect_equal(toupper(FORREST$full_name[1]), "FORREST")
 })
 
 test_that("latlon: Query of c(-27, 149) returns Surat (QLD, between Roma and St George).", {
