@@ -780,4 +780,3 @@ if (requireNamespace("ggplot2", quietly = TRUE) &&
                             fill = NA))
 }
 ```
-  

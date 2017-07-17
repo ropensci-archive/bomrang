@@ -94,6 +94,13 @@
     <div id="bomrang-0-0-5" class="section level1">
 <h1 class="hasAnchor">
 <a href="#bomrang-0-0-5" class="anchor"></a>bomrang 0.0.5</h1>
+<div id="bug-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes" class="anchor"></a>Bug Fixes</h2>
+<ul>
+<li>Suggested station names are returned in a list format, previously lacked spaces between names</li>
+</ul>
+</div>
 <div id="major-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#major-changes" class="anchor"></a>Major changes</h2>
@@ -104,7 +111,7 @@
 <li><p>Product IDs are included in outputs from <code>get_*()</code> functions</p></li>
 <li><p>Full station names are reported along with BoM’s current name used to refer to a station location. In some cases a station “name” may be the same for both a current and retired station.</p></li>
 <li><p>Databases station locations and other metadata are internal an not exposed to the user</p></li>
-<li><p>Fuzzy matching i s used for all functions now when user enters a value for a desired state, station or the whole country</p></li>
+<li><p>Fuzzy matching is used for all functions now when user enters a value for a desired state, station or the whole country</p></li>
 </ul>
 </div>
 <div id="minor-changes" class="section level2">
@@ -268,9 +275,9 @@
 <li><p>Enhanced documentation</p></li>
 </ul>
 </div>
-<div id="bug-fixes" class="section level2">
+<div id="bug-fixes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Correct output for ag bulletin where the observation site is listed but has no values. The site will be listed with location data and <code>NA</code> for all meteorological values</li>
 </ul>

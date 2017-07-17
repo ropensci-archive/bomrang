@@ -1,5 +1,10 @@
 # bomrang 0.0.5
 
+## Bug Fixes
+
+- Suggested station names are returned in a list format, previously lacked
+spaces between names
+
 ## Major changes
 
 - Welcome message included with statement regarding BoM copyright
@@ -18,8 +23,8 @@ a current and retired station.
 - Databases station locations and other metadata are internal an not exposed to
 the user
 
-- Fuzzy matching i s used for all functions now when user enters a value for
-a desired state, station or the whole country
+- Fuzzy matching is used for all functions now when user enters a value for a
+desired state, station or the whole country
 
 ## Minor changes
 

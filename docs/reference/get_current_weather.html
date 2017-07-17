@@ -93,8 +93,8 @@
     <p>Get Current Weather Observations of a BoM Station</p>
     
 
-    <pre class="usage"><span class='fu'>get_current_weather</span>(<span class='no'>station_name</span>, <span class='kw'>latlon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>emit_latlon_msg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>as.data.table</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+    <pre class="usage"><span class='fu'>get_current_weather</span>(<span class='no'>station_name</span>, <span class='kw'>strict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>latlon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>emit_latlon_msg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>as.data.table</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -105,9 +105,16 @@
 via <code><a href='http://www.rdocumentation.org/packages/base/topics/agrep'>base::agrep</a></code> is done.</p></td>
     </tr>
     <tr>
+      <th>strict</th>
+      <td><p>(logical) If <code>TRUE</code>, <code>station_name</code> must match the station name exactly,
+except that <code>station_name</code> need not be uppercase. Note this may be different to
+<code>full_name</code> in the response. See <strong>Details</strong>.</p></td>
+    </tr>
+    <tr>
       <th>latlon</th>
-      <td><p>A length-2 numeric vector. When given instead of
-<code>station_name</code>, the nearest station (in this package) is used, with a
+      <td><p>A length-2 numeric vector giving the decimal
+latitude and longitude (in that order), <em>e.g.</em> <code>latlon = c(-34, 151)</code> for Sydney.
+When given instead of <code>station_name</code>, the nearest station (in this package) is used, with a
 message indicating the nearest such station. (See also
  <code><a href='sweep_for_stations.html'>sweep_for_stations</a></code>.) Ignored if used in combination with
 <code>station_name</code>, with a warning.</p></td>
@@ -138,7 +145,12 @@ to view.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Note that the column <code>local_date_time_full</code> is set to a
+    <p>Station names are not consistently named within the Bureau, so
+the response may contain a different <code>full_name</code> to the one
+matched, even if <code>strict = TRUE</code>. For example,
+<code>get_current_weather("CASTLEMAINE PRISON")[["full_name"]][1]</code>
+is <code>Castlemaine</code>, not <code>Castlemaine Prison</code>.</p>
+<p>Note that the column <code>local_date_time_full</code> is set to a
 <code>POSIXct</code> object in the local time of the <strong>user</strong>.
 For more details see the vignette "Current Weather Fields":
 <code>vignette("Current Weather Fields", package = "bomrang")</code>
