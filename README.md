@@ -244,7 +244,7 @@ Meta
 
     -   All data is copyright Australia Bureau of Meteorology, BoM Copyright Notice <http://reg.bom.gov.au/other/copyright.shtml>
 
--   To cite *bomrang*, please use: Sparks A, Parsonage H and Pembleton K (2017). *BoMRang: Fetch Australian Government Bureau of Meteorology Weather Data*. doi: 10.5281/zenodo.598301 (URL: <http://doi.org/10.5281/zenodo.598301>), R package version 0.0.4-1,
+-   To cite *bomrang*, please use: Sparks A, Parsonage H and Pembleton K (2017). *bomrang: Fetch Australian Government Bureau of Meteorology Weather Data*. doi: 10.5281/zenodo.598301 (URL: <http://doi.org/10.5281/zenodo.598301>), R package version 0.0.4-1,
 
     or the BibTeX entry:
 
