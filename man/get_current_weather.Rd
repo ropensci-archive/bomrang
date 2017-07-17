@@ -4,12 +4,16 @@
 \alias{get_current_weather}
 \title{Current Weather Observations of a BoM Station}
 \usage{
-get_current_weather(station_name, latlon = NULL, raw = FALSE,
-  emit_latlon_msg = TRUE, as.data.table = FALSE)
+get_current_weather(station_name, strict = FALSE, latlon = NULL,
+  raw = FALSE, emit_latlon_msg = TRUE, as.data.table = FALSE)
 }
 \arguments{
 \item{station_name}{The name of the weather station. Fuzzy string matching
 via \code{base::agrep} is done.}
+
+\item{strict}{(logical) If \code{TRUE}, \code{station_name} must match the station name exactly,
+except that \code{station_name} need not be uppercase. Note this may be different to
+\code{full_name} in the response. See \strong{Details}.}
 
 \item{latlon}{A length-2 numeric vector. When given instead of
 \code{station_name}, the nearest station (in this package) is used, with a
@@ -36,6 +40,12 @@ to view.
 Current Weather Observations of a BoM Station
 }
 \details{
+Station names are not consistently named within the Bureau, so
+the response may contain a different \code{full_name} to the one
+matched, even if \code{strict = TRUE}. For example,
+\code{get_current_weather("CASTLEMAINE PRISON")[["full_name"]][1]}
+is \code{Castlemaine}, not \code{Castlemaine Prison}.
+
 Note that the column \code{local_date_time_full} is set to a
 \code{POSIXct} object in the local time of the \strong{user}.
 For more details see the vignette "Current Weather Fields":
