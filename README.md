@@ -34,9 +34,9 @@ This function accepts four arguments:
 
 -   `latlon`, A length-2 numeric vector. When given instead of station\_name, the nearest station (in this package) is used, with a message indicating the nearest such station. (See also `sweep_for_stations()`.) Ignored if used in combination with `station_name`, with a warning.
 
--   `raw` Logical. Do not convert the columns data.table to the appropriate classes. (FALSE by default.)
+-   `raw`, Logical. Do not convert the columns data.table to the appropriate classes. (FALSE by default.)
 
--   `emit_latlon_msg` Logical. If `TRUE` (the default), and `latlon` is selected, a message is emitted before the table is returned indicating which station was actually used (i.e. which station was found to be nearest to the given coordinate).
+-   `emit_latlon_msg`, Logical. If `TRUE` (the default), and `latlon` is selected, a message is emitted before the table is returned indicating which station was actually used (i.e. which station was found to be nearest to the given coordinate).
 
 #### Results of `get_current_weather()`
 

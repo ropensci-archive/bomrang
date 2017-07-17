@@ -92,8 +92,8 @@ devtools::<span class="kw"><a href="http://www.rdocumentation.org/packages/devto
 <ul>
 <li><p><code>station_name</code>, The name of the weather station. Fuzzy string matching via <code><a href="http://www.rdocumentation.org/packages/base/topics/agrep">base::agrep</a></code> is done.</p></li>
 <li><p><code>latlon</code>, A length-2 numeric vector. When given instead of station_name, the nearest station (in this package) is used, with a message indicating the nearest such station. (See also <code><a href="reference/sweep_for_stations.html">sweep_for_stations()</a></code>.) Ignored if used in combination with <code>station_name</code>, with a warning.</p></li>
-<li><p><code>raw</code> Logical. Do not convert the columns data.table to the appropriate classes. (FALSE by default.)</p></li>
-<li><p><code>emit_latlon_msg</code> Logical. If <code>TRUE</code> (the default), and <code>latlon</code> is selected, a message is emitted before the table is returned indicating which station was actually used (i.e. which station was found to be nearest to the given coordinate).</p></li>
+<li><p><code>raw</code>, Logical. Do not convert the columns data.table to the appropriate classes. (FALSE by default.)</p></li>
+<li><p><code>emit_latlon_msg</code>, Logical. If <code>TRUE</code> (the default), and <code>latlon</code> is selected, a message is emitted before the table is returned indicating which station was actually used (i.e. which station was found to be nearest to the given coordinate).</p></li>
 </ul>
 <div id="results-of-get_current_weather" class="section level4">
 <h4 class="hasAnchor">
