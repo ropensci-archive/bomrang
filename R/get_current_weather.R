@@ -6,8 +6,9 @@
 #' @param strict (logical) If \code{TRUE}, \code{station_name} must match the station name exactly,
 #' except that \code{station_name} need not be uppercase. Note this may be different to
 #' \code{full_name} in the response. See \strong{Details}.
-#' @param latlon A length-2 numeric vector. When given instead of
-#' \code{station_name}, the nearest station (in this package) is used, with a
+#' @param latlon A length-2 numeric vector giving the decimal
+#' latitude and longitude (in that order), \emph{e.g.} \code{latlon = c(-34, 151)} for Sydney.
+#' When given instead of \code{station_name}, the nearest station (in this package) is used, with a
 #' message indicating the nearest such station. (See also
 #'  \code{\link{sweep_for_stations}}.) Ignored if used in combination with
 #' \code{station_name}, with a warning.
