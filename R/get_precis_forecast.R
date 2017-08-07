@@ -171,18 +171,8 @@ get_precis_forecast <- function(state = "AUS") {
 }
 
 .parse_forecast <- function(xmlforecast_url) {
-  #CRAN NOTE avoidance
-  aac <- town <- state <- lon <- lat <- elev <- precipitation_range <- attrs <-
-    values <- `c("air_temperature_maximum", "Celsius")` <- `start-time-local` <-
-    `end-time-local` <- `c("air_temperature_minimum", "Celsius")` <- LON <-
-    LAT <- ELEVATION <- `end-time-utc` <- `start-time-utc` <- precis <-
-    probability_of_precipitation <- PT_NAME <- end_time_local <- end_time_utc <-
-    lower_precipitation_limit <- upper_precipitation_limit <-
-    start_time_local <- start_time_utc <- maximum_temperature <-
-    minimum_temperature <- UTC_offset_drop <- AAC_codes <- UTC_offset <-
-    index <- product_id <- NULL
 
-  # load the XML forecast ----------------------------------------------------
+    # load the XML forecast ----------------------------------------------------
   tryCatch({
     xmlforecast <- xml2::read_xml(xmlforecast_url)
   },
@@ -204,29 +194,29 @@ get_precis_forecast <- function(state = "AUS") {
   # below chunk the xml into locations and then days, this assembles into
   # the final data frame
 
-  out <- tidyr::spread(out, key = attrs, value = values)
+  out <- tidyr::spread(out, key = .data$attrs, value = .data$values)
   out <-
     out %>%
     dplyr::rename(
-      maximum_temperature = `c("air_temperature_maximum", "Celsius")`,
-      minimum_temperature = `c("air_temperature_minimum", "Celsius")`,
-      start_time_local = `start-time-local`,
-      end_time_local = `end-time-local`,
-      start_time_utc = `start-time-utc`,
-      end_time_utc = `end-time-utc`
+      maximum_temperature = .data$`c("air_temperature_maximum", "Celsius")`,
+      minimum_temperature = .data$`c("air_temperature_minimum", "Celsius")`,
+      start_time_local = .data$`start-time-local`,
+      end_time_local = .data$`end-time-local`,
+      start_time_utc = .data$`start-time-utc`,
+      end_time_utc = .data$`end-time-utc`
     ) %>%
     dplyr::mutate_at(.funs = as.character,
                      .vars = c("aac",
                                "precipitation_range")) %>%
-    tidyr::separate(end_time_local,
+    tidyr::separate(.data$end_time_local,
                     into = c("end_time_local", "UTC_offset"),
                     sep = "\\+") %>%
     tidyr::separate(
-      start_time_local,
+      .data$start_time_local,
       into = c("start_time_local", "UTC_offset_drop"),
       sep = "\\+"
     ) %>%
-    dplyr::select(-UTC_offset_drop)
+    dplyr::select(-.data$UTC_offset_drop)
 
   out$probability_of_precipitation <-
     gsub("%", "", paste(out$probability_of_precipitation))
@@ -270,7 +260,7 @@ get_precis_forecast <- function(state = "AUS") {
   out <-
     out %>%
     tidyr::separate(
-      precipitation_range,
+      .data$precipitation_range,
       into = c("lower_precipitation_limit", "upper_precipitation_limit"),
       sep = "to",
       fill = "left"
@@ -291,10 +281,10 @@ get_precis_forecast <- function(state = "AUS") {
   # return final forecast object
   tidy_df <-
     dplyr::left_join(out,
-                     AAC_codes, by = c("aac" = "AAC")) %>%
-    dplyr::rename(lon = LON,
-                  lat = LAT,
-                  elev = ELEVATION) %>%
+                     .data$AAC_codes, by = c("aac" = "AAC")) %>%
+    dplyr::rename(lon = .data$LON,
+                  lat = .data$LAT,
+                  elev = .data$ELEVATION) %>%
     dplyr::mutate_at(
       .funs = as.character,
       .vars = c(
@@ -315,7 +305,7 @@ get_precis_forecast <- function(state = "AUS") {
         "lower_precipitation_limit"
       )
     ) %>%
-    dplyr::rename(town = PT_NAME)
+    dplyr::rename(town = .data$PT_NAME)
 
   # add state field
   tidy_df$state <- gsub("_.*", "", tidy_df$aac)
@@ -328,25 +318,25 @@ get_precis_forecast <- function(state = "AUS") {
   tidy_df <-
     tidy_df %>%
     dplyr::select(
-      index,
-      product_id,
-      state,
-      town,
-      aac,
-      lat,
-      lon,
-      elev,
-      start_time_local,
-      end_time_local,
-      UTC_offset,
-      start_time_utc,
-      end_time_utc,
-      maximum_temperature,
-      minimum_temperature,
-      lower_precipitation_limit,
-      upper_precipitation_limit,
-      precis,
-      probability_of_precipitation
+      .data$index,
+      .data$product_id,
+      .data$state,
+      .data$town,
+      .data$aac,
+      .data$lat,
+      .data$lon,
+      .data$elev,
+      .data$start_time_local,
+      .data$end_time_local,
+      .data$UTC_offset,
+      .data$start_time_utc,
+      .data$end_time_utc,
+      .data$maximum_temperature,
+      .data$minimum_temperature,
+      .data$lower_precipitation_limit,
+      .data$upper_precipitation_limit,
+      .data$precis,
+      .data$probability_of_precipitation
     )
 
   return(tidy_df)
