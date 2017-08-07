@@ -116,13 +116,13 @@ get_ag_bulletin <- function(state = "AUS") {
 
   # create vector of XML files
   AUS_XML <- c(
-    "IDN65176.xml",
-    "IDD65176.xml",
-    "IDQ60604.xml",
-    "IDS65176.xml",
-    "IDT65176.xml",
-    "IDV65176.xml",
-    "IDW65176.xml"
+    "IDN65176.xml", # NSW
+    "IDD65176.xml", # NT
+    "IDQ60604.xml", # QLD
+    "IDS65176.xml", # SA
+    "IDT65176.xml", # TAS
+    "IDV65176.xml", # VIC
+    "IDW65176.xml"  # WA
   )
 
   if (the_state != "AUS") {

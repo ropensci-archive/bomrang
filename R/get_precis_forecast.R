@@ -111,13 +111,13 @@ get_precis_forecast <- function(state = "AUS") {
 
   # create vector of XML files
   AUS_XML <- c(
-    "IDN11060.xml",
-    "IDD10207.xml",
-    "IDQ11295.xml",
-    "IDS10044.xml",
-    "IDT16710.xml",
-    "IDV10753.xml",
-    "IDW14199.xml"
+    "IDN11060.xml", # NSW
+    "IDD10207.xml", # NT
+    "IDQ11295.xml", # QLD
+    "IDS10044.xml", # SA
+    "IDT16710.xml", # TAS
+    "IDV10753.xml", # VIC
+    "IDW14199.xml"  # WA
   )
 
   if (the_state != "AUS") {
