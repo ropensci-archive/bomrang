@@ -1,4 +1,5 @@
 
+
 #' Get BoM Daily Précis Forecast for Select Towns
 #'
 #' Fetch the BoM daily précis forecast and return a tidy data frame of the seven
@@ -49,7 +50,6 @@
 #'
 #' @export
 get_precis_forecast <- function(state = "AUS") {
-
   states <- c(
     "ACT",
     "NSW",
@@ -110,60 +110,32 @@ get_precis_forecast <- function(state = "AUS") {
   # ftp server
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
 
-  # State/territory forecast files
-  NSW <- "IDN11060.xml"
-  NT  <- "IDD10207.xml"
-  QLD <- "IDQ11295.xml"
-  SA  <- "IDS10044.xml"
-  TAS <- "IDT16710.xml"
-  VIC <- "IDV10753.xml"
-  WA  <- "IDW14199.xml"
-
-  switch(
-    the_state,
-    "ACT" = {
-      xmlforecast_url <-
-        paste0(ftp_base, NSW) # nsw
-    },
-    "NSW" = {
-      xmlforecast_url <-
-        paste0(ftp_base, NSW) # nsw
-    },
-    "NT" = {
-      xmlforecast_url <-
-        paste0(ftp_base, NT) # nt
-    },
-    "QLD" = {
-      xmlforecast_url <-
-        paste0(ftp_base, QLD) # qld
-    },
-    "SA" = {
-      xmlforecast_url <-
-        paste0(ftp_base, SA) # sa
-    },
-    "TAS" = {
-      xmlforecast_url <-
-        paste0(ftp_base, TAS) # tas
-    },
-    "VIC" = {
-      xmlforecast_url <-
-        paste0(ftp_base, VIC) # vic
-    },
-    "WA" = {
-      xmlforecast_url <-
-        paste0(ftp_base, WA) # wa
-    },
-    "AUS" = {
-      AUS <- list(NT, NSW, QLD, SA, TAS, VIC, WA)
-      file_list <- paste0(ftp_base, AUS)
-    },
-    stop(state, " not recognised as a valid state or territory")
+  # create vector of XML files
+  AUS_XML <- c(
+    "IDN11060.xml",
+    "IDD10207.xml",
+    "IDQ11295.xml",
+    "IDS10044.xml",
+    "IDT16710.xml",
+    "IDV10753.xml",
+    "IDW14199.xml"
   )
 
-  if (state != "AUS") {
+  if (the_state != "AUS") {
+    xmlbulletin_url <-
+      dplyr::case_when(
+        the_state == "NSW" ~ paste0(ftp_base, AUS_XML[1]),
+        the_state == "NT"  ~ paste0(ftp_base, AUS_XML[2]),
+        the_state == "QLD" ~ paste0(ftp_base, AUS_XML[3]),
+        the_state == "SA"  ~ paste0(ftp_base, AUS_XML[4]),
+        the_state == "TAS" ~ paste0(ftp_base, AUS_XML[5]),
+        the_state == "VIC" ~ paste0(ftp_base, AUS_XML[6]),
+        the_state == "WA"  ~ paste0(ftp_base, AUS_XML[7]),
+        TRUE ~ stop(state, " is not recognised as a valid state or territory")
+      )
     out <- .parse_forecast(xmlforecast_url)
-  }
-  else if (state == "AUS") {
+  } else {
+    file_list <- paste0(ftp_base, AUS_XML)
     out <- lapply(X = file_list, FUN = .parse_forecast)
     out <- as.data.frame(data.table::rbindlist(out))
   }
@@ -171,8 +143,7 @@ get_precis_forecast <- function(state = "AUS") {
 }
 
 .parse_forecast <- function(xmlforecast_url) {
-
-    # load the XML forecast ----------------------------------------------------
+  # load the XML forecast ----------------------------------------------------
   tryCatch({
     xmlforecast <- xml2::read_xml(xmlforecast_url)
   },
@@ -208,9 +179,11 @@ get_precis_forecast <- function(state = "AUS") {
     dplyr::mutate_at(.funs = as.character,
                      .vars = c("aac",
                                "precipitation_range")) %>%
-    tidyr::separate(.data$end_time_local,
-                    into = c("end_time_local", "UTC_offset"),
-                    sep = "\\+") %>%
+    tidyr::separate(
+      .data$end_time_local,
+      into = c("end_time_local", "UTC_offset"),
+      sep = "\\+"
+    ) %>%
     tidyr::separate(
       .data$start_time_local,
       into = c("start_time_local", "UTC_offset_drop"),
@@ -230,14 +203,14 @@ get_precis_forecast <- function(state = "AUS") {
                   "end_time_local",
                   "start_time_utc",
                   "end_time_utc")], 2, function(x)
-      chartr("T", " ", x))
+                    chartr("T", " ", x))
 
   # remove the "Z" from start_time_utc
   out[, c("start_time_utc",
           "end_time_utc")] <-
     apply(out[, c("start_time_utc",
                   "end_time_utc")], 2, function(x)
-      chartr("Z", " ", x))
+                    chartr("Z", " ", x))
 
   # convert dates to POSIXct ---------------------------------------------------
   out[, c("start_time_local",
@@ -248,7 +221,7 @@ get_precis_forecast <- function(state = "AUS") {
                    "end_time_local",
                    "start_time_utc",
                    "end_time_utc")], function(x)
-      as.POSIXct(x, origin = "1970-1-1", format = "%Y-%m-%d %H:%M:%OS"))
+                     as.POSIXct(x, origin = "1970-1-1", format = "%Y-%m-%d %H:%M:%OS"))
 
   # split precipitation forecast values into lower/upper limits --------------
 
@@ -364,7 +337,7 @@ get_precis_forecast <- function(state = "AUS") {
 
   time_period <- unlist(t(as.data.frame(xml2::xml_attrs(y))))
   time_period <-
-    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)),]
+    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)), ]
 
   sub_out <- cbind(time_period, attrs, values)
   row.names(sub_out) <- NULL

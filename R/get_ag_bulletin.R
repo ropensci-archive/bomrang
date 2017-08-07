@@ -114,34 +114,33 @@ get_ag_bulletin <- function(state = "AUS") {
   # ftp server
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
 
+  # create vector of XML files
+  AUS_XML <- c(
+    "IDN65176.xml",
+    "IDD65176.xml",
+    "IDQ60604.xml",
+    "IDS65176.xml",
+    "IDT65176.xml",
+    "IDV65176.xml",
+    "IDW65176.xml"
+  )
+
   if (the_state != "AUS") {
     xmlbulletin_url <-
       dplyr::case_when(
-        the_state == "ACT" ~ paste0(ftp_base, "IDN65176.xml"),
-        the_state == "NSW" ~ paste0(ftp_base, "IDN65176.xml"),
-        the_state == "NT"  ~ paste0(ftp_base, "IDD65176.xml"),
-        the_state == "QLD" ~ paste0(ftp_base, "IDQ60604.xml"),
-        the_state == "SA"  ~ paste0(ftp_base, "IDS65176.xml"),
-        the_state == "TAS" ~ paste0(ftp_base, "IDT65176.xml"),
-        the_state == "VIC" ~ paste0(ftp_base, "IDV65176.xml"),
-        the_state == "WA"  ~ paste0(ftp_base, "IDW65176.xml"),
+        the_state == "ACT" ~ paste0(ftp_base, AUS_XML[1]),
+        the_state == "NSW" ~ paste0(ftp_base, AUS_XML[1]),
+        the_state == "NT"  ~ paste0(ftp_base, AUS_XML[2]),
+        the_state == "QLD" ~ paste0(ftp_base, AUS_XML[3]),
+        the_state == "SA"  ~ paste0(ftp_base, AUS_XML[4]),
+        the_state == "TAS" ~ paste0(ftp_base, AUS_XML[5]),
+        the_state == "VIC" ~ paste0(ftp_base, AUS_XML[6]),
+        the_state == "WA"  ~ paste0(ftp_base, AUS_XML[7]),
         TRUE ~ stop(state, " is not recognised as a valid state or territory")
       )
     .parse_bulletin(xmlbulletin_url, stations_site_list)
   } else {
-    file_list <- paste0(
-      ftp_base,
-      c(
-        "IDN65176.xml",
-        "IDN65176.xml",
-        "IDD65176.xml",
-        "IDQ60604.xml",
-        "IDS65176.xml",
-        "IDT65176.xml",
-        "IDV65176.xml",
-        "IDW65176.xml"
-      )
-    )
+    file_list <- paste0(ftp_base, AUS_XML)
     out <-
       lapply(X = file_list,
              FUN = .parse_bulletin,
