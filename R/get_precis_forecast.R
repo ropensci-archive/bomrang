@@ -129,8 +129,7 @@ get_precis_forecast <- function(state = "AUS") {
         the_state == "SA"  ~ paste0(ftp_base, AUS_XML[4]),
         the_state == "TAS" ~ paste0(ftp_base, AUS_XML[5]),
         the_state == "VIC" ~ paste0(ftp_base, AUS_XML[6]),
-        the_state == "WA"  ~ paste0(ftp_base, AUS_XML[7]),
-        TRUE ~ stop(state, " is not recognised as a valid state or territory")
+        the_state == "WA"  ~ paste0(ftp_base, AUS_XML[7])
       )
     out <- .parse_forecast(xmlforecast_url)
   } else {

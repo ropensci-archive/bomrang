@@ -135,8 +135,7 @@ get_ag_bulletin <- function(state = "AUS") {
         the_state == "SA"  ~ paste0(ftp_base, AUS_XML[4]),
         the_state == "TAS" ~ paste0(ftp_base, AUS_XML[5]),
         the_state == "VIC" ~ paste0(ftp_base, AUS_XML[6]),
-        the_state == "WA"  ~ paste0(ftp_base, AUS_XML[7]),
-        TRUE ~ stop(state, " is not recognised as a valid state or territory")
+        the_state == "WA"  ~ paste0(ftp_base, AUS_XML[7])
       )
     .parse_bulletin(xmlbulletin_url, stations_site_list)
   } else {
@@ -150,7 +149,6 @@ get_ag_bulletin <- function(state = "AUS") {
 }
 
 # parse the bulletin's XML into something we can use in R ----------------------
-#' @noRd
 .parse_bulletin <-
   function(xmlbulletin_url,
            stations_site_list) {
@@ -231,7 +229,6 @@ get_ag_bulletin <- function(state = "AUS") {
   }
 
 # get the data from observations in the XML file--------------------------------
-#' @noRd
 .get_obs <- function(x) {
   d <- xml2::xml_children(x)
 
