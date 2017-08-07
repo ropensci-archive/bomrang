@@ -26,9 +26,10 @@ Imports:
     dplyr (>= 0.7.0),
     foreign,
     httr (>= 1.2.1),
+    jsonlite (>= 1.5),
     magrittr (>= 1.5),
     readr (>= 1.1.1),
-    jsonlite (>= 1.5),
+    rlang (>= 0.1.1.9000),
     tidyr (>= 0.6.3),
     utils,
     xml2 (>= 1.1.1)

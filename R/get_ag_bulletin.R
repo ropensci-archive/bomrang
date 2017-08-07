@@ -30,7 +30,6 @@
 #' \dontrun{
 #' ag_bulletin <- get_ag_bulletin(state = "QLD")
 #' }
-#' @author Adam H Sparks, \email{adamhsparks@gmail.com}
 #'
 #' @references
 #' Agricultural observations are retrieved from the Australian Bureau of
@@ -47,6 +46,8 @@
 #' Meteorology (BoM) webpage, Bureau of Meteorology Site Numbers:
 #' \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 #'
+#' @author Adam H Sparks, \email{adamhsparks@gmail.com}
+#' @importFrom rlang .data
 #' @export
 get_ag_bulletin <- function(state = "AUS") {
 
@@ -176,12 +177,6 @@ get_ag_bulletin <- function(state = "AUS") {
 
 #' @noRd
 .parse_bulletin <- function(xmlbulletin_url, stations_site_list) {
-  # CRAN NOTE avoidance
-  obs.time.utc <- obs.time.local <- time.zone <- site <- r <- tn <-
-    tx <- end <- station <- twd <- ev <- obs_time_utc <- obs_time_local <-
-    time_zone <- state <- tg <- sn <- t5 <- t10 <- t20 <- t50 <- t1m <- wr <-
-    lat <- lon <- attrs <- dist <- start <- elev <- bar_ht <- wmo <-
-    product_id <- full_name <- name <- NULL
 
   # load the XML bulletin ------------------------------------------------------
 
@@ -207,46 +202,48 @@ get_ag_bulletin <- function(state = "AUS") {
 
   tidy_df <-
     tidy_df %>%
-    dplyr::mutate_at(tidy_df, .funs = as.character, .vars = "time.zone") %>%
+    dplyr::mutate_at(.funs = as.character,
+                     .vars = "time.zone") %>%
     dplyr::rename(
-      obs_time_local = obs.time.local,
-      obs_time_utc = obs.time.utc,
-      time_zone = time.zone,
-      full_name = name
+      obs_time_local = .data$obs.time.local,
+      obs_time_utc = .data$obs.time.utc,
+      time_zone = .data$time.zone,
+      full_name = .data$name
     )
 
   tidy_df <-
     dplyr::select(
       tidy_df,
-      product_id,
-      state,
-      dist,
-      wmo,
-      site,
-      station,
-      full_name,
-      obs_time_local,
-      obs_time_utc,
-      time_zone,
-      lat,
-      lon,
-      elev,
-      bar_ht,
-      start,
-      end,
-      r,
-      tn,
-      tx,
-      twd,
-      ev,
-      tg,
-      sn,
-      t5,
-      t10,
-      t20,
-      t50,
-      t1m,
-      wr
+      .data$tidy_df,
+      .data$product_id,
+      .data$state,
+      .data$dist,
+      .data$wmo,
+      .data$site,
+      .data$station,
+      .data$full_name,
+      .data$obs_time_local,
+      .data$obs_time_utc,
+      .data$time_zone,
+      .data$lat,
+      .data$lon,
+      .data$elev,
+      .data$bar_ht,
+      .data$start,
+      .data$end,
+      .data$r,
+      .data$tn,
+      .data$tx,
+      .data$twd,
+      .data$ev,
+      .data$tg,
+      .data$sn,
+      .data$t5,
+      .data$t10,
+      .data$t20,
+      .data$t50,
+      .data$t1m,
+      .data$wr
     )
 
   # convert dates to POSIXct ---------------------------------------------------

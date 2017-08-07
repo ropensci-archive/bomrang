@@ -38,6 +38,7 @@ or all using \code{AUS}.
 \dontrun{
 ag_bulletin <- get_ag_bulletin(state = "QLD")
 }
+
 }
 \references{
 Agricultural observations are retrieved from the Australian Bureau of
