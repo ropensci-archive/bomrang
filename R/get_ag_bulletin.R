@@ -137,14 +137,16 @@ get_ag_bulletin <- function(state = "AUS") {
         the_state == "VIC" ~ paste0(ftp_base, AUS_XML[6]),
         the_state == "WA"  ~ paste0(ftp_base, AUS_XML[7])
       )
-    .parse_bulletin(xmlbulletin_url, stations_site_list)
-  }
+    out <- .parse_bulletin(xmlbulletin_url, stations_site_list)
+  } else {
     file_list <- paste0(ftp_base, AUS_XML)
     out <-
       lapply(X = file_list,
              FUN = .parse_bulletin,
              stations_site_list)
     out <- as.data.frame(data.table::rbindlist(out))
+  }
+  return(out)
 }
 
 #' @noRd
@@ -184,50 +186,50 @@ get_ag_bulletin <- function(state = "AUS") {
       full_name = .data$name
     )
 
-    tidy_df <-
-      tidy_df %>%
-      dplyr::select(
-        .data$product_id,
-        .data$state,
-        .data$dist,
-        .data$wmo,
-        .data$site,
-        .data$station,
-        .data$full_name,
-        .data$obs_time_local,
-        .data$obs_time_utc,
-        .data$time_zone,
-        .data$lat,
-        .data$lon,
-        .data$elev,
-        .data$bar_ht,
-        .data$start,
-        .data$end,
-        .data$r,
-        .data$tn,
-        .data$tx,
-        .data$twd,
-        .data$ev,
-        .data$tg,
-        .data$sn,
-        .data$t5,
-        .data$t10,
-        .data$t20,
-        .data$t50,
-        .data$t1m,
-        .data$wr
-      )
+  tidy_df <-
+    tidy_df %>%
+    dplyr::select(
+      .data$product_id,
+      .data$state,
+      .data$dist,
+      .data$wmo,
+      .data$site,
+      .data$station,
+      .data$full_name,
+      .data$obs_time_local,
+      .data$obs_time_utc,
+      .data$time_zone,
+      .data$lat,
+      .data$lon,
+      .data$elev,
+      .data$bar_ht,
+      .data$start,
+      .data$end,
+      .data$r,
+      .data$tn,
+      .data$tx,
+      .data$twd,
+      .data$ev,
+      .data$tg,
+      .data$sn,
+      .data$t5,
+      .data$t10,
+      .data$t20,
+      .data$t50,
+      .data$t1m,
+      .data$wr
+    )
 
-    # convert dates to POSIXct -------------------------------------------------
-    tidy_df[, c("obs_time_local", "obs_time_utc")] <-
-      lapply(tidy_df[, c("obs_time_local", "obs_time_utc")], function(x)
-        as.POSIXct(x, origin = "1970-1-1", format = "%Y-%m-%d %H:%M:%OS"))
+  # convert dates to POSIXct -------------------------------------------------
+  tidy_df[, c("obs_time_local", "obs_time_utc")] <-
+    lapply(tidy_df[, c("obs_time_local", "obs_time_utc")], function(x)
+      as.POSIXct(x, origin = "1970-1-1", format = "%Y-%m-%d %H:%M:%OS"))
 
   # return from main function
   return(tidy_df)
 }
 
-# get the data from observations ---------------------------------------------
+# get the data from observations -----------------------------------------------
 .get_obs <- function(x) {
   d <- xml2::xml_children(x)
 
@@ -284,9 +286,9 @@ get_ag_bulletin <- function(state = "AUS") {
                                       tz = "GMT")
 
   # spread from long to wide
-  out$row <- 1:nrow(out)
-  out <- tidyr::spread(out, key = attrs, value = value)
-  out <- subset(out, select = -row)
+  out <- tidyr::spread(data = out,
+                       key = attrs,
+                       value = value)
 
   # some stations don't report all values, insert/remove as necessary --------
   if ("<NA>" %in% colnames(out)) {
@@ -344,7 +346,5 @@ get_ag_bulletin <- function(state = "AUS") {
   {
     out$t1m <- NA
   }
-
-  # return from internal function
   return(out)
 }
