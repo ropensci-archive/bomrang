@@ -32,9 +32,6 @@
 #' \dontrun{
 #' BoM_forecast <- get_precis_forecast(state = "QLD")
 #'}
-#' @author Adam H Sparks, \email{adamhsparks@gmail.com} and
-#' Keith Pembleton, \email{keith.pembleton@usq.edu.au}
-#'
 #' @references
 #' Forecast data come from Australian Bureau of Meteorology (BoM) Weather Data
 #' Services \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
@@ -45,10 +42,13 @@
 #' file portion of a shapefile,
 #' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 #'
+#' @author Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton,
+#' \email{keith.pembleton@usq.edu.au}
 #' @importFrom magrittr %>%
-#'
+#' @importFrom rlang .data
 #' @export
 get_precis_forecast <- function(state = "AUS") {
+
   states <- c(
     "ACT",
     "NSW",
@@ -141,7 +141,11 @@ get_precis_forecast <- function(state = "AUS") {
 }
 
 .parse_forecast <- function(xmlforecast_url) {
-  # load the XML forecast ----------------------------------------------------
+  # CRAN note avoidance
+  AAC_codes <-attrs <- end_time_local <- precipitation_range <-
+    start_time_local <- values <- NULL
+
+  # download the XML forecast --------------------------------------------------
   tryCatch({
     xmlforecast <- xml2::read_xml(xmlforecast_url)
   },
@@ -163,9 +167,9 @@ get_precis_forecast <- function(state = "AUS") {
   # below chunk the xml into locations and then days, this assembles into
   # the final data frame
 
-  out <- tidyr::spread(out, key = .data$attrs, value = .data$values)
   out <-
     out %>%
+    tidyr::spread(key = attrs, value = values) %>%
     dplyr::rename(
       maximum_temperature = .data$`c("air_temperature_maximum", "Celsius")`,
       minimum_temperature = .data$`c("air_temperature_minimum", "Celsius")`,
@@ -178,12 +182,12 @@ get_precis_forecast <- function(state = "AUS") {
                      .vars = c("aac",
                                "precipitation_range")) %>%
     tidyr::separate(
-      .data$end_time_local,
+      end_time_local,
       into = c("end_time_local", "UTC_offset"),
       sep = "\\+"
     ) %>%
     tidyr::separate(
-      .data$start_time_local,
+      start_time_local,
       into = c("start_time_local", "UTC_offset_drop"),
       sep = "\\+"
     ) %>%
@@ -231,7 +235,7 @@ get_precis_forecast <- function(state = "AUS") {
   out <-
     out %>%
     tidyr::separate(
-      .data$precipitation_range,
+      precipitation_range,
       into = c("lower_precipitation_limit", "upper_precipitation_limit"),
       sep = "to",
       fill = "left"
@@ -252,7 +256,7 @@ get_precis_forecast <- function(state = "AUS") {
   # return final forecast object
   tidy_df <-
     dplyr::left_join(out,
-                     .data$AAC_codes, by = c("aac" = "AAC")) %>%
+                     AAC_codes, by = c("aac" = "AAC")) %>%
     dplyr::rename(lon = .data$LON,
                   lat = .data$LAT,
                   elev = .data$ELEVATION) %>%

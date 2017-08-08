@@ -52,6 +52,6 @@ file portion of a shapefile,
 \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 }
 \author{
-Adam H Sparks, \email{adamhsparks@gmail.com} and
-Keith Pembleton, \email{keith.pembleton@usq.edu.au}
+Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton,
+\email{keith.pembleton@usq.edu.au}
 }

@@ -138,56 +138,55 @@ get_ag_bulletin <- function(state = "AUS") {
         the_state == "WA"  ~ paste0(ftp_base, AUS_XML[7])
       )
     .parse_bulletin(xmlbulletin_url, stations_site_list)
-  } else {
+  }
     file_list <- paste0(ftp_base, AUS_XML)
     out <-
       lapply(X = file_list,
              FUN = .parse_bulletin,
              stations_site_list)
     out <- as.data.frame(data.table::rbindlist(out))
-  }
 }
 
-# parse the bulletin's XML into something we can use in R ----------------------
-.parse_bulletin <-
-  function(xmlbulletin_url,
-           stations_site_list) {
-    # fetch the XML bulletin ---------------------------------------------------
-    tryCatch({
-      xmlbulletin <- xml2::read_xml(xmlbulletin_url)
-    },
-    error = function(x)
-      stop(
-        "\nThe server with the bulletin files is not responding.",
-        "Please retry again later.\n"
-      ))
-    obs <- xml2::xml_find_all(xmlbulletin, "//obs")
+#' @noRd
+.parse_bulletin <- function(xmlbulletin_url, stations_site_list) {
+  # download the XML bulletin --------------------------------------------------
 
-    tidy_df <- lapply(X = obs, FUN = .get_obs)
-    tidy_df <- do.call("rbind", tidy_df)
-    tidy_df$product_id <- substr(basename(xmlbulletin_url),
-                                 1,
-                                 nchar(basename(xmlbulletin_url)) - 4)
+  tryCatch({
+    xmlbulletin <- xml2::read_xml(xmlbulletin_url)
+  },
+  error = function(x)
+    stop(
+      "\nThe server with the bulletin files is not responding.",
+      "Please retry again later.\n"
+    ))
 
-    tidy_df <- dplyr::left_join(tidy_df,
-                                stations_site_list,
-                                by = c("site" = "site"))
+  obs <- xml2::xml_find_all(xmlbulletin, "//obs")
+
+  tidy_df <- lapply(X = obs, FUN = .get_obs)
+  tidy_df <- do.call("rbind", tidy_df)
+  tidy_df$product_id <- substr(basename(xmlbulletin_url),
+                               1,
+                               nchar(basename(xmlbulletin_url)) - 4)
+
+  tidy_df <- dplyr::left_join(tidy_df,
+                              stations_site_list,
+                              by = c("site" = "site"))
+
+  tidy_df <-
+    tidy_df %>%
+    dplyr::mutate_at(tidy_df,
+                     .funs = as.character,
+                     .vars = "time.zone") %>%
+    dplyr::rename(
+      obs_time_local = .data$obs.time.local,
+      obs_time_utc = .data$obs.time.utc,
+      time_zone = .data$time.zone,
+      full_name = .data$name
+    )
 
     tidy_df <-
       tidy_df %>%
-      dplyr::mutate_at(.funs = as.character,
-                       .vars = "time.zone") %>%
-      dplyr::rename(
-        obs_time_local = .data$obs.time.local,
-        obs_time_utc = .data$obs.time.utc,
-        time_zone = .data$time.zone,
-        full_name = .data$name
-      )
-
-    tidy_df <-
       dplyr::select(
-        tidy_df,
-        .data$tidy_df,
         .data$product_id,
         .data$state,
         .data$dist,
@@ -224,11 +223,11 @@ get_ag_bulletin <- function(state = "AUS") {
       lapply(tidy_df[, c("obs_time_local", "obs_time_utc")], function(x)
         as.POSIXct(x, origin = "1970-1-1", format = "%Y-%m-%d %H:%M:%OS"))
 
-    # return from main function
-    return(tidy_df)
-  }
+  # return from main function
+  return(tidy_df)
+}
 
-# get the data from observations in the XML file--------------------------------
+# get the data from observations ---------------------------------------------
 .get_obs <- function(x) {
   d <- xml2::xml_children(x)
 
@@ -289,8 +288,7 @@ get_ag_bulletin <- function(state = "AUS") {
   out <- tidyr::spread(out, key = attrs, value = value)
   out <- subset(out, select = -row)
 
-  # some stations don't report all values, insert/remove cols as necessary -----
-
+  # some stations don't report all values, insert/remove as necessary --------
   if ("<NA>" %in% colnames(out)) {
     out$`<NA>` <- NULL
   }
