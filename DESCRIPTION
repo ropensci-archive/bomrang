@@ -29,7 +29,7 @@ Imports:
     jsonlite (>= 1.5),
     magrittr (>= 1.5),
     readr (>= 1.1.1),
-    rlang (>= 0.1.1.9000),
+    rlang (>= 0.1.1),
     tidyr (>= 0.6.3),
     utils,
     xml2 (>= 1.1.1)
