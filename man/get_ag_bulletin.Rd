@@ -18,7 +18,8 @@ full details of fields and units returned see Appendix 3 in the
 to view.
 }
 \description{
-Fetch the BoM agricultural bulletin information and return a tidy data frame
+Fetch the BoM agricultural bulletin information and return it in a tidy data
+frame
 }
 \details{
 Allowed state and territory postal codes, only one state per request
@@ -38,6 +39,7 @@ or all using \code{AUS}.
 \dontrun{
 ag_bulletin <- get_ag_bulletin(state = "QLD")
 }
+
 }
 \references{
 Agricultural observations are retrieved from the Australian Bureau of

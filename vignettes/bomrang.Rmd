@@ -1,6 +1,6 @@
 ---
 title: "bomrang"
-author: "Adam H Sparks"
+author: "Adam H Sparks and Hugh Parsonage"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >

@@ -92,8 +92,8 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <ul>
 <li><p><code>station_name</code>, The name of the weather station. Fuzzy string matching via <code><a href="http://www.rdocumentation.org/packages/base/topics/agrep">base::agrep</a></code> is done.</p></li>
 <li><p><code>latlon</code>, A length-2 numeric vector. When given instead of station_name, the nearest station (in this package) is used, with a message indicating the nearest such station. (See also <code><a href="reference/sweep_for_stations.html">sweep_for_stations()</a></code>.) Ignored if used in combination with <code>station_name</code>, with a warning.</p></li>
-<li><p><code>raw</code> Logical. Do not convert the columns data.table to the appropriate classes. (FALSE by default.)</p></li>
-<li><p><code>emit_latlon_msg</code> Logical. If <code>TRUE</code> (the default), and <code>latlon</code> is selected, a message is emitted before the table is returned indicating which station was actually used (i.e. which station was found to be nearest to the given coordinate).</p></li>
+<li><p><code>raw</code>, Logical. Do not convert the columns data.table to the appropriate classes. (FALSE by default.)</p></li>
+<li><p><code>emit_latlon_msg</code>, Logical. If <code>TRUE</code> (the default), and <code>latlon</code> is selected, a message is emitted before the table is returned indicating which station was actually used (i.e. which station was found to be nearest to the given coordinate).</p></li>
 </ul>
 <div id="results-of-get_current_weather" class="section level4">
 <h4 class="hasAnchor">
@@ -290,7 +290,7 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="reference/g
 </ul>
 </li>
 <li>
-<p>To cite <em>bomrang</em>, please use: Sparks A, Parsonage H and Pembleton K (2017). <em>BoMRang: Fetch Australian Government Bureau of Meteorology Weather Data</em>. doi: 10.5281/zenodo.598301 (URL: <a href="http://doi.org/10.5281/zenodo.598301" class="uri">http://doi.org/10.5281/zenodo.598301</a>), R package version 0.0.4-1,</p>
+<p>To cite <em>bomrang</em>, please use: Sparks A, Parsonage H and Pembleton K (2017). <em>bomrang: Fetch Australian Government Bureau of Meteorology Weather Data</em>. doi: 10.5281/zenodo.598301 (URL: <a href="http://doi.org/10.5281/zenodo.598301" class="uri">http://doi.org/10.5281/zenodo.598301</a>), R package version 0.0.4-1,</p>
 <p>or the BibTeX entry:</p>
 <div class="sourceCode"><pre class="sourceCode tex"><code class="sourceCode latex">@Manual{R-pkg-bomrang,
 author       = {Adam Sparks and Hugh Parsonage and Keith Pembleton},
