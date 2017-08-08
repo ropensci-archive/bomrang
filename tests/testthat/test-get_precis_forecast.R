@@ -5,6 +5,7 @@ test_that("get_precis_forecast returns 19 columns", {
   skip_on_cran()
   BoM_forecast <- get_precis_forecast(state = "QLD")
   expect_equal(ncol(BoM_forecast), 19)
+  expect_equal(BoM_forecast[["state"]][1], "QLD")
   expect_named(
     BoM_forecast,
     c(
@@ -50,12 +51,6 @@ test_that("get_precis_forecast returns the forecast for NT", {
   expect_equal(BoM_forecast[["state"]][1], "NT")
 })
 
-test_that("get_precis_forecast returns the forecast for QLD", {
-  skip_on_cran()
-  BoM_forecast <- as.data.frame(get_precis_forecast(state = "QLD"))
-  expect_equal(BoM_forecast[["state"]][1], "QLD")
-})
-
 test_that("get_precis_forecast returns the forecast for SA", {
   skip_on_cran()
   BoM_forecast <- as.data.frame(get_precis_forecast(state = "SA"))
@@ -84,7 +79,7 @@ test_that("get_precis_forecast returns the forecast for AUS", {
   skip_on_cran()
   BoM_forecast <- as.data.frame(get_precis_forecast(state = "AUS"))
   expect_equal(unique(BoM_forecast[["state"]]),
-               c("NT", "NSW", "QLD", "SA", "TAS", "VIC", "WA"))
+               c("NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA"))
 })
 
 # Test that .validate_state stops if the state recognised ----------------------

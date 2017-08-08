@@ -123,7 +123,7 @@ get_precis_forecast <- function(state = "AUS") {
   if (the_state != "AUS") {
     xmlforecast_url <-
       dplyr::case_when(
-        the_state == "NSW" ~ paste0(ftp_base, AUS_XML[1]),
+        the_state == "ACT" | the_state == "NSW" ~ paste0(ftp_base, AUS_XML[1]),
         the_state == "NT"  ~ paste0(ftp_base, AUS_XML[2]),
         the_state == "QLD" ~ paste0(ftp_base, AUS_XML[3]),
         the_state == "SA"  ~ paste0(ftp_base, AUS_XML[4]),
