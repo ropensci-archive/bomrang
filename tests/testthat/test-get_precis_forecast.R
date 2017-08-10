@@ -22,14 +22,35 @@ test_that("get_precis_forecast returns 19 columns", {
       "UTC_offset",
       "start_time_utc",
       "end_time_utc",
-      "maximum_temperature",
       "minimum_temperature",
+      "maximum_temperature",
       "lower_precipitation_limit",
       "upper_precipitation_limit",
       "precis",
       "probability_of_precipitation"
     )
   )
+
+  expect_is(BoM_forecast$index, "factor")
+  expect_is(BoM_forecast$product_id, "character")
+  expect_is(BoM_forecast$state, "character")
+  expect_is(BoM_forecast$town, "character")
+  expect_is(BoM_forecast$aac, "character")
+  expect_is(BoM_forecast$lat, "numeric")
+  expect_is(BoM_forecast$lon, "numeric")
+  expect_is(BoM_forecast$elev, "numeric")
+  expect_is(BoM_forecast$start_time_local, "POSIXct")
+  expect_is(BoM_forecast$end_time_local, "POSIXct")
+  expect_is(BoM_forecast$UTC_offset, "factor")
+  expect_is(BoM_forecast$start_time_utc, "POSIXct")
+  expect_is(BoM_forecast$end_time_local, "POSIXct")
+  expect_is(BoM_forecast$minimum_temperature, "numeric")
+  expect_is(BoM_forecast$maximum_temperature, "numeric")
+  expect_is(BoM_forecast$lower_precipitation_limit, "numeric")
+  expect_is(BoM_forecast$upper_precipitation_limit, "numeric")
+  expect_is(BoM_forecast$precis, "character")
+  expect_is(BoM_forecast$probability_of_precipitation, "numeric")
+
 })
 
 # Test that get_precis_forecast returns the requested state forecast ------------------
@@ -88,3 +109,4 @@ test_that("get_precis_forecast() stops if the state is recognised", {
   state <- "Kansas"
   expect_error(get_precis_forecast(state))
 })
+
