@@ -163,7 +163,7 @@ library(magrittr)
 stations_site_list
 ```
 
-    ## # A tibble: 7,439 x 14
+    ## # A tibble: 7,440 x 14
     ##      site  dist             name start   end      lat      lon source
     ##     <chr> <chr>            <chr> <int> <chr>    <dbl>    <dbl>  <chr>
     ##  1 001006    01     WYNDHAM AERO  1951  2017 -15.5100 128.1503    GPS
@@ -176,7 +176,7 @@ stations_site_list
     ##  8 001020    01         TRUSCOTT  1944  2017 -14.0900 126.3867    GPS
     ##  9 001023    01       EL QUESTRO  1967  2017 -16.0086 127.9806    GPS
     ## 10 001024    01        ELLENBRAE  1986  2017 -15.9572 127.0628    GPS
-    ## # ... with 7,429 more rows, and 6 more variables: state <chr>, elev <dbl>,
+    ## # ... with 7,430 more rows, and 6 more variables: state <chr>, elev <dbl>,
     ## #   bar_ht <dbl>, wmo <int>, state_code <chr>, url <chr>
 
 Save data
@@ -189,16 +189,16 @@ There are weather stations that do have a WMO but don't report online, e.g., KIR
 ### Save JSON URL database for `get_current_weather()`
 
 ``` r
-JSONurl_latlon_by_station_name <-
+JSONurl_site_list <-
   stations_site_list[!is.na(stations_site_list$url), ]
 
-JSONurl_latlon_by_station_name <-
-  JSONurl_latlon_by_station_name %>%
+JSONurl_site_list <-
+  JSONurl_site_list %>%
   dplyr::rowwise() %>%
   dplyr::mutate(url = dplyr::if_else(httr::http_error(url), NA_character_, url))
   
 # Remove new NA values from invalid URLs and convert to data.table
-JSONurl_latlon_by_station_name <-
+JSONurl_site_list <-
   data.table::data.table(stations_site_list[!is.na(stations_site_list$url), ])
 
  if (!dir.exists("../inst/extdata")) {
@@ -206,8 +206,8 @@ JSONurl_latlon_by_station_name <-
     }
 
 # Save database
-  save(JSONurl_latlon_by_station_name,
-       file = "../inst/extdata/JSONurl_latlon_by_station_name.rda",
+  save(JSONurl_site_list,
+       file = "../inst/extdata/JSONurl_site_list.rda",
      compress = "bzip2")
 ```
 
@@ -237,51 +237,51 @@ Session Info
 
     ##  setting  value                       
     ##  version  R version 3.4.1 (2017-06-30)
-    ##  system   x86_64, darwin16.6.0        
+    ##  system   x86_64, darwin16.7.0        
     ##  ui       unknown                     
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2017-07-13
+    ##  date     2017-08-10
 
     ## Packages -----------------------------------------------------------------
 
-    ##  package    * version    date       source                       
-    ##  assertthat   0.2.0      2017-04-11 CRAN (R 3.4.0)               
-    ##  backports    1.1.0      2017-05-22 cran (@1.1.0)                
-    ##  base       * 3.4.1      2017-07-07 local                        
-    ##  bindr        0.1        2016-11-13 cran (@0.1)                  
-    ##  bindrcpp   * 0.2        2017-06-17 cran (@0.2)                  
-    ##  compiler     3.4.1      2017-07-07 local                        
-    ##  curl         2.7        2017-06-26 cran (@2.7)                  
-    ##  data.table   1.10.4     2017-02-01 CRAN (R 3.4.0)               
-    ##  datasets   * 3.4.1      2017-07-07 local                        
-    ##  devtools     1.13.2     2017-06-02 cran (@1.13.2)               
-    ##  digest       0.6.12     2017-01-27 CRAN (R 3.4.0)               
-    ##  dplyr        0.7.1      2017-06-22 cran (@0.7.1)                
-    ##  evaluate     0.10.1     2017-06-24 cran (@0.10.1)               
-    ##  glue         1.1.1      2017-06-21 cran (@1.1.1)                
-    ##  graphics   * 3.4.1      2017-07-07 local                        
-    ##  grDevices  * 3.4.1      2017-07-07 local                        
-    ##  hms          0.3        2016-11-22 CRAN (R 3.4.0)               
-    ##  htmltools    0.3.6      2017-04-28 CRAN (R 3.4.0)               
-    ##  httr         1.2.1      2016-07-03 CRAN (R 3.4.0)               
-    ##  knitr        1.16       2017-05-18 cran (@1.16)                 
-    ##  magrittr   * 1.5        2014-11-22 CRAN (R 3.4.0)               
-    ##  memoise      1.1.0      2017-04-21 CRAN (R 3.4.0)               
-    ##  methods    * 3.4.1      2017-07-07 local                        
-    ##  pkgconfig    2.0.1      2017-03-21 cran (@2.0.1)                
-    ##  R6           2.2.2      2017-06-17 cran (@2.2.2)                
-    ##  Rcpp         0.12.11    2017-05-22 cran (@0.12.11)              
-    ##  readr        1.1.1      2017-05-16 cran (@1.1.1)                
-    ##  rlang        0.1.1.9000 2017-07-01 Github (hadley/rlang@ff87439)
-    ##  rmarkdown    1.6        2017-06-15 cran (@1.6)                  
-    ##  rprojroot    1.2        2017-01-16 CRAN (R 3.4.0)               
-    ##  stats      * 3.4.1      2017-07-07 local                        
-    ##  stringi      1.1.5      2017-04-07 CRAN (R 3.4.0)               
-    ##  stringr      1.2.0      2017-02-18 CRAN (R 3.4.0)               
-    ##  tibble       1.3.3      2017-05-28 CRAN (R 3.4.0)               
-    ##  tools        3.4.1      2017-07-07 local                        
-    ##  utils      * 3.4.1      2017-07-07 local                        
-    ##  withr        1.0.2      2016-06-20 CRAN (R 3.4.0)               
-    ##  yaml         2.1.14     2016-11-12 CRAN (R 3.4.0)
+    ##  package    * version    date       source                          
+    ##  assertthat   0.2.0      2017-04-11 CRAN (R 3.4.1)                  
+    ##  backports    1.1.0      2017-05-22 CRAN (R 3.4.1)                  
+    ##  base       * 3.4.1      2017-07-24 local                           
+    ##  bindr        0.1        2016-11-13 CRAN (R 3.4.1)                  
+    ##  bindrcpp   * 0.2        2017-06-17 CRAN (R 3.4.1)                  
+    ##  compiler     3.4.1      2017-07-24 local                           
+    ##  curl         2.8.1      2017-07-21 CRAN (R 3.4.1)                  
+    ##  data.table   1.10.4     2017-02-01 CRAN (R 3.4.1)                  
+    ##  datasets   * 3.4.1      2017-07-24 local                           
+    ##  devtools     1.13.3     2017-08-02 cran (@1.13.3)                  
+    ##  digest       0.6.12     2017-01-27 CRAN (R 3.4.1)                  
+    ##  dplyr        0.7.2      2017-07-20 CRAN (R 3.4.1)                  
+    ##  evaluate     0.10.1     2017-06-24 CRAN (R 3.4.1)                  
+    ##  glue         1.1.1      2017-06-21 CRAN (R 3.4.1)                  
+    ##  graphics   * 3.4.1      2017-07-24 local                           
+    ##  grDevices  * 3.4.1      2017-07-24 local                           
+    ##  hms          0.3        2016-11-22 CRAN (R 3.4.1)                  
+    ##  htmltools    0.3.6      2017-04-28 CRAN (R 3.4.1)                  
+    ##  httr         1.2.1      2016-07-03 CRAN (R 3.4.1)                  
+    ##  knitr        1.17       2017-08-10 cran (@1.17)                    
+    ##  magrittr   * 1.5        2014-11-22 CRAN (R 3.4.1)                  
+    ##  memoise      1.1.0      2017-04-21 CRAN (R 3.4.1)                  
+    ##  methods    * 3.4.1      2017-07-24 local                           
+    ##  pkgconfig    2.0.1      2017-03-21 CRAN (R 3.4.1)                  
+    ##  R6           2.2.2      2017-06-17 CRAN (R 3.4.1)                  
+    ##  Rcpp         0.12.12    2017-07-15 CRAN (R 3.4.1)                  
+    ##  readr        1.1.1      2017-05-16 CRAN (R 3.4.1)                  
+    ##  rlang        0.1.1.9000 2017-08-10 Github (tidyverse/rlang@5f0e7ec)
+    ##  rmarkdown    1.6        2017-06-15 CRAN (R 3.4.1)                  
+    ##  rprojroot    1.2        2017-01-16 CRAN (R 3.4.1)                  
+    ##  stats      * 3.4.1      2017-07-24 local                           
+    ##  stringi      1.1.5      2017-04-07 CRAN (R 3.4.1)                  
+    ##  stringr      1.2.0      2017-02-18 CRAN (R 3.4.1)                  
+    ##  tibble       1.3.3      2017-05-28 CRAN (R 3.4.1)                  
+    ##  tools        3.4.1      2017-07-24 local                           
+    ##  utils      * 3.4.1      2017-07-24 local                           
+    ##  withr        2.0.0      2017-07-28 cran (@2.0.0)                   
+    ##  yaml         2.1.14     2016-11-12 CRAN (R 3.4.1)

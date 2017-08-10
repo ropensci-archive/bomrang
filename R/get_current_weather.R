@@ -73,10 +73,10 @@ get_current_weather <-
            as.data.table = FALSE) {
 
     # CRAN NOTE avoidance
-    JSONurl_latlon_by_station_name <- NULL
+    JSONurl_site_list <- NULL
 
         # Load JSON URL list
-    load(system.file("extdata", "JSONurl_latlon_by_station_name.rda",
+    load(system.file("extdata", "JSONurl_site_list.rda",
                      package = "bomrang"))
 
     if (missing(station_name) && is.null(latlon)) {
@@ -97,17 +97,17 @@ get_current_weather <-
       station_name <- toupper(station_name)
 
       # If there's an exact match, use it; else, attempt partial match.
-      if (station_name %in% JSONurl_latlon_by_station_name[["name"]]) {
+      if (station_name %in% JSONurl_site_list[["name"]]) {
         the_station_name <- station_name
       } else {
         likely_stations <-
           # Present those with common prefixes first
           c(grep(pattern = paste0("^", station_name),
-                 x = JSONurl_latlon_by_station_name[["name"]],
+                 x = JSONurl_site_list[["name"]],
                  ignore.case = TRUE,
                  value = TRUE),
             agrep(pattern = station_name,
-                  x = JSONurl_latlon_by_station_name[["name"]],
+                  x = JSONurl_site_list[["name"]],
                   value = TRUE)) %>%
           unique
 
@@ -158,7 +158,7 @@ get_current_weather <-
       }
 
       json_url <-
-        JSONurl_latlon_by_station_name[name == the_station_name][["url"]]
+        JSONurl_site_list[name == the_station_name][["url"]]
 
     } else {
       # We have established latlon is not NULL
@@ -169,11 +169,11 @@ get_current_weather <-
       Lat <- latlon[1]
       Lon <- latlon[2]
 
-      # CRAN NOTE avoidance: names of JSONurl_latlon_by_station_name
+      # CRAN NOTE avoidance: names of JSONurl_site_list
       lat <- lon <- NULL
 
       station_nrst_latlon <-
-        JSONurl_latlon_by_station_name %>%
+        JSONurl_site_list %>%
         # Lat Lon are in JSON
         .[which.min(haversine_distance(Lat, Lon, lat, lon))]
 

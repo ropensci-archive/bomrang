@@ -13,13 +13,14 @@ sweep_for_stations <- function(latlon = c(-35.3, 149.2)) {
   Lon <- latlon[2]
 
   # CRAN NOTE avoidance:
-  JSONurl_latlon_by_station_name <- lat <- lon <- NULL
+  JSONurl_site_list <- lat <- lon <- NULL
 
   # Load JSON URL list
-  load(system.file("extdata", "JSONurl_latlon_by_station_name.rda",
+  load(system.file("extdata",
+                   "JSONurl_site_list.rda",
                    package = "bomrang"))
 
-  JSONurl_latlon_by_station_name %>%
+  JSONurl_site_list %>%
     copy %>%
     # Lat Lon are in JSON
     .[, "distance" := haversine_distance(Lat, Lon, lat, lon)] %>%
