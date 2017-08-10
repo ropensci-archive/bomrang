@@ -214,19 +214,6 @@ get_precis_forecast <- function(state = "AUS") {
                   "end_time_utc")], 2, function(x)
                     chartr("Z", " ", x))
 
-  # convert dates to POSIXct ---------------------------------------------------
-  out[, c("start_time_local",
-          "end_time_local",
-          "start_time_utc",
-          "end_time_utc")] <-
-    lapply(out[, c("start_time_local",
-                   "end_time_local",
-                   "start_time_utc",
-                   "end_time_utc")], function(x)
-                     as.POSIXct(x, origin = "1970-1-1", format = "%Y-%m-%d %H:%M:%OS"))
-
-  # split precipitation forecast values into lower/upper limits --------------
-
   # format any values that are only zero to make next step easier
   out$precipitation_range[which(out$precipitation_range == "0 mm")] <-
     "0 mm to 0 mm"
@@ -247,7 +234,6 @@ get_precis_forecast <- function(state = "AUS") {
   }))
 
   # merge the forecast with the town names -------------------------------------
-
   out$aac <- as.character(out$aac)
 
   # Load AAC code/town name list to join with final output
@@ -272,15 +258,38 @@ get_precis_forecast <- function(state = "AUS") {
       )
     ) %>%
     dplyr::mutate_at(
+      .funs = as.character,
+      .vars = c(
+        "maximum_temperature",
+        "minimum_temperature",
+        "upper_precipitation_limit",
+        "lower_precipitation_limit",
+        "probability_of_precipitation"
+      )
+    ) %>%
+    dplyr::mutate_at(
       .funs = as.numeric,
       .vars = c(
         "maximum_temperature",
         "minimum_temperature",
+        "upper_precipitation_limit",
         "lower_precipitation_limit",
-        "lower_precipitation_limit"
+        "probability_of_precipitation"
       )
     ) %>%
     dplyr::rename(town = .data$PT_NAME)
+
+
+  # convert dates to POSIXct ---------------------------------------------------
+  tidy_df[, c("start_time_local",
+              "end_time_local",
+              "start_time_utc",
+              "end_time_utc")] <-
+    lapply(tidy_df[, c("start_time_local",
+                       "end_time_local",
+                       "start_time_utc",
+                       "end_time_utc")], function(x)
+                         as.POSIXct(x, origin = "1970-1-1", format = "%Y-%m-%d %H:%M:%OS"))
 
   # add state field
   tidy_df$state <- gsub("_.*", "", tidy_df$aac)
@@ -306,8 +315,8 @@ get_precis_forecast <- function(state = "AUS") {
       .data$UTC_offset,
       .data$start_time_utc,
       .data$end_time_utc,
-      .data$maximum_temperature,
       .data$minimum_temperature,
+      .data$maximum_temperature,
       .data$lower_precipitation_limit,
       .data$upper_precipitation_limit,
       .data$precis,
