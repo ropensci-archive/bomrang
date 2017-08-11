@@ -53,7 +53,7 @@
 #' @author Adam H Sparks, \email{adamhsparks@gmail.com}
 #'
 #' @export
-available_images <- function(product_id = NULL) {
+get_available_images <- function(product_id = NULL) {
   message("\nThe following files are currently available for download:\n")
   tif_files <- .ftp_images(product_id)
   write(tif_list, file = file.path(tempdir(), "tif_list"))
