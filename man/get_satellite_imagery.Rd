@@ -64,6 +64,9 @@ http://www.bom.gov.au/australia/satellite/himawari.shtml
 
 
 }
+\seealso{
+\code{\link{available_images}}
+}
 \author{
 Adam H Sparks, \email{adamhsparks@gmail.com}
 }

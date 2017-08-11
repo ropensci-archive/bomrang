@@ -104,6 +104,9 @@ get_available_images <- function(product_id = NULL) {
 #'\item{IDE00439}{AHI VIS (Ch3) greyscale 0.5km AUS equirect. GIS}
 #'}
 #'
+#'@seealso
+#'\code{\link{available_images}}
+#'
 #' @return
 #' A single raster layer or stack of GeoTIFF images with layers named by time
 #' stamp.
