@@ -28,6 +28,8 @@ Imports:
     httr (>= 1.2.1),
     jsonlite (>= 1.5),
     magrittr (>= 1.5),
+    raster,
+    rappdirs (>= 0.3.1),
     readr (>= 1.1.1),
     rlang (>= 0.1.1),
     tidyr (>= 0.6.3),
