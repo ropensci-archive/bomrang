@@ -26,13 +26,6 @@ Defaults to \code{FALSE}.}
 A single raster layer or stack of GeoTIFF images with layers named by time
 stamp.
 }
-\description{
-Fetch BoM satellite imagery from \url{ftp://ftp.bom.gov.au/anon/gen/gms/}
-and return a raster \code{raster::stack} object of GeoTIFF files.  Files are
-available at ten minute update frequency with a 24 hour delete time.
-Suggested to check file availability first by using
-\code{\link{available_images}}.
-}
 \details{
 Valid BoM satellite Product IDs include:
 \describe{

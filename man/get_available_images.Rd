@@ -9,7 +9,7 @@ get_available_images(product_id = NULL)
 \arguments{
 \item{product_id}{Character.  BoM product ID to download in GeoTIFF format
 and import as a \code{\link{raster}} object, either as a single
-\code{\link{raster::raster}} layer or \code{\link{raster::stack}} object.
+\code{\link[raster]{raster}} layer or \code{\link[raster]{stack}} object.
 Defaults to all images available for a requested BoM Product ID.}
 }
 \value{

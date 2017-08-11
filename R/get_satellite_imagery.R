@@ -10,7 +10,7 @@
 #'
 #' @param product_id Character.  BoM product ID to download in GeoTIFF format
 #' and import as a \code{\link{raster}} object, either as a single
-#' \code{\link{raster::raster}} layer or \code{\link{raster::stack}} object.
+#' \code{\link[raster]{raster}} layer or \code{\link[raster]{stack}} object.
 #' Defaults to all images available for a requested BoM Product ID.
 #'
 #' @details Valid BoM satellite Product IDs include:
@@ -63,9 +63,9 @@ get_available_images <- function(product_id = NULL) {
 #' Get BoM Satellite Imagery
 #'
 #' Fetch BoM satellite imagery from \url{ftp://ftp.bom.gov.au/anon/gen/gms/}
-#' and return a raster \code{raster::stack} object of GeoTIFF files.  Files are
-#' available at ten minute update frequency with a 24 hour delete time.
-#' Suggested to check file availability first by using
+#' and return a raster \code{\link[raster]{stack} object of GeoTIFF files.
+#' Files are available at ten minute update frequency with a 24 hour delete
+#' time. Suggested to check file availability first by using
 #' \code{\link{available_images}}.
 #'
 #' @param product_id Character.  BoM product ID to download in GeoTIFF format
@@ -143,7 +143,7 @@ get_satellite_imagery <-
     }
 
     # filter by number of scans requested --------------------------------------
-    tif_files <- tail(tif_files, scans)
+    tif_files <- utils::tail(tif_files, scans)
 
     # check what files are available locally in the cache directory ------------
     local_files <-
@@ -155,7 +155,7 @@ get_satellite_imagery <-
     # download files from server -----------------------------------------------
     Map(
       function(urls, destination)
-        download.file(urls, destination, mode = "wb"),
+        utils::download.file(urls, destination, mode = "wb"),
       tif_files,
       file.path(cache_dir, basename(tif_files))
     )
