@@ -8,6 +8,9 @@ get_current_weather(station_name, strict = FALSE, latlon = NULL,
   raw = FALSE, emit_latlon_msg = TRUE, as.data.table = FALSE)
 }
 \arguments{
+\item{station_name}{The name of the weather station. Fuzzy string matching
+via \code{\link[base]{agrep}} is done.}
+
 \item{strict}{(logical) If \code{TRUE}, \code{station_name} must match the
 station name exactly, except that \code{station_name} need not be uppercase.
 Note this may be different to \code{full_name} in the response. See

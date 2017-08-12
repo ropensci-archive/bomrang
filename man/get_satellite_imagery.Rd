@@ -2,29 +2,36 @@
 % Please edit documentation in R/get_satellite_imagery.R
 \name{get_satellite_imagery}
 \alias{get_satellite_imagery}
-\title{Get BoM Satellite Imagery}
+\title{Get BoM Satellite GeoTIFF Imagery}
 \usage{
 get_satellite_imagery(product_id = NULL, scans = 1, cache = FALSE)
 }
 \arguments{
 \item{product_id}{Character.  BoM product ID to download in GeoTIFF format
-and import as a \code{\link{raster}} object, either as a single
-\code{\link{raster::raster}} layer or \code{\link{raster::stack}} object.
-Defaults to all images available for a requested BoM Product ID.}
+and import as a \code{\link[raster]{stack}} object.  A vector of values from
+\code{\link{get_available_images}} may be used here.  Value is required.}
 
 \item{scans}{Numeric.  Number of scans to download, starting with most recent
 and progressing backwards, \emph{e.g.}, 1 - the most recent single scan
 available , 6 - the most recent hour available, 12 - the most recent 2 hours
-available, etc.. Defaults to 1.}
+available, etc.  Negating will return the oldest files first.  Defaults to 1.
+Value is optional.}
 
 \item{cache}{Logical.  Store image files locally for later use?  If
 \code{FALSE}, the downloaded files are removed when R session is closed. To
 take advantage of cached files in future sessions, use \code{cache = TRUE}.
-Defaults to \code{FALSE}.}
+Defaults to \code{FALSE}. Value is optional.}
 }
 \value{
-A single raster layer or stack of GeoTIFF images with layers named by time
-stamp.
+A raster stack of GeoTIFF images with layers named by BoM Product ID,
+timestamp and band.
+}
+\description{
+Fetch BoM satellite GeoTIFF imagery from
+\url{ftp://ftp.bom.gov.au/anon/gen/gms/} and return a raster
+\code{\link[raster]{stack}} object of GeoTIFF files. Files are available at
+ten minute update frequency with a 24 hour delete time. Suggested to check
+file availability first by using \code{\link{get_available_images}}.
 }
 \details{
 Valid BoM satellite Product IDs include:
@@ -34,38 +41,43 @@ Valid BoM satellite Product IDs include:
 \item{IDE00422}{AHI VIS (Ch3) greyscale 2km FD GEOS GIS}
 \item{IDE00423}{AHI IR (Ch13) Zehr 2km FD GEOS GIS}
 \item{IDE00425}{AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km FD
-GEOS GIS}
+ GEOS GIS}
 \item{IDE00426}{AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km FD
-GEOS GIS}
+ GEOS GIS}
 \item{IDE00427}{AHI WV (Ch8) 2km FD GEOS GIS}
 \item{IDE00430}{AHI cloud cover only 2km AUS equirect. GIS}
 \item{IDE00431}{AHI IR (Ch13) greyscale 2km AUS equirect. GIS}
 \item{IDE00432}{AHI VIS (Ch3) greyscale 2km AUS equirect. GIS}
 \item{IDE00433}{AHI IR (Ch13) Zehr 2km AUS equirect. GIS}
 \item{IDE00435}{AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km AUS
-equirect. GIS}
+ equirect. GIS}
 \item{IDE00436}{AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km AUS
-equirect. GIS}
+ equirect. GIS}
 \item{IDE00437}{AHI WV (Ch8) 2km AUS equirect. GIS}
 \item{IDE00439}{AHI VIS (Ch3) greyscale 0.5km AUS equirect. GIS}
 }
 }
 \examples{
 \dontrun{
-Fetch AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km FD
-GEOS GIS raster stack for most recent single scan available
-imagery <- get_satellite_imagery(product_id = "IDE00425", scans = 1)
-}
+# Fetch AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km FD
+# GEOS GIS raster stack for most recent single scan available
 
+imagery <- get_satellite_imagery(product_id = "IDE00425", scans = 1)
+
+# Get a list of available image files and use that to specify files for
+# download, downloading the two most recent files available
+
+avail <- get_available_images(product_id = "IDE00425")
+imagery <- get_satellite_imagery(product_id = avail, scans = 2)
+
+}
 }
 \references{
 Himawari-8 and -9 Facts and Figures,
-http://www.bom.gov.au/australia/satellite/himawari.shtml
-
-
+\url{http://www.bom.gov.au/australia/satellite/himawari.shtml}
 }
 \seealso{
-\code{\link{available_images}}
+\code{\link{get_available_images}}
 }
 \author{
 Adam H Sparks, \email{adamhsparks@gmail.com}

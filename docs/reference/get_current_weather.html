@@ -114,22 +114,23 @@
     <tr>
       <th>station_name</th>
       <td><p>The name of the weather station. Fuzzy string matching
-via <code><a href='http://www.rdocumentation.org/packages/base/topics/agrep'>base::agrep</a></code> is done.</p></td>
+via <code><a href='http://www.rdocumentation.org/packages/base/topics/agrep'>agrep</a></code> is done.</p></td>
     </tr>
     <tr>
       <th>strict</th>
-      <td><p>(logical) If <code>TRUE</code>, <code>station_name</code> must match the station name exactly,
-except that <code>station_name</code> need not be uppercase. Note this may be different to
-<code>full_name</code> in the response. See <strong>Details</strong>.</p></td>
+      <td><p>(logical) If <code>TRUE</code>, <code>station_name</code> must match the
+station name exactly, except that <code>station_name</code> need not be uppercase.
+Note this may be different to <code>full_name</code> in the response. See
+<strong>Details</strong>.</p></td>
     </tr>
     <tr>
       <th>latlon</th>
       <td><p>A length-2 numeric vector giving the decimal
-latitude and longitude (in that order), <em>e.g.</em> <code>latlon = c(-34, 151)</code> for Sydney.
-When given instead of <code>station_name</code>, the nearest station (in this package) is used, with a
-message indicating the nearest such station. (See also
- <code><a href='sweep_for_stations.html'>sweep_for_stations</a></code>.) Ignored if used in combination with
-<code>station_name</code>, with a warning.</p></td>
+latitude and longitude (in that order), <em>e.g.</em> <code>latlon =
+c(-34, 151)</code> for Sydney. When given instead of <code>station_name</code>, the
+nearest station (in this package) is used, with a message indicating the
+nearest such station. (See also <code><a href='sweep_for_stations.html'>sweep_for_stations</a></code>.) Ignored if
+used in combination with <code>station_name</code>, with a warning.</p></td>
     </tr>
     <tr>
       <th>raw</th>

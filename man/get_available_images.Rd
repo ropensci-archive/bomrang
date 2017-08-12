@@ -2,21 +2,20 @@
 % Please edit documentation in R/get_satellite_imagery.R
 \name{get_available_images}
 \alias{get_available_images}
-\title{Get a listing of Available BoM Satellite Imagery}
+\title{Get a Listing of Available BoM Satellite GeoTIFF Imagery}
 \usage{
-get_available_images(product_id = NULL)
+get_available_images(product_id = "all")
 }
 \arguments{
-\item{product_id}{Character.  BoM product ID to download in GeoTIFF format
-and import as a \code{\link{raster}} object, either as a single
-\code{\link[raster]{raster}} layer or \code{\link[raster]{stack}} object.
-Defaults to all images available for a requested BoM Product ID.}
+\item{product_id}{Character.  BoM product ID of interest for which a list of
+available images will be returned.  Defaults to all images currently
+available.}
 }
 \value{
-A vector of all available files for the requested Product ID.
+A vector of all available files for the requested Product ID(s).
 }
 \description{
-Fetch a listing of BoM satellite imagery from
+Fetch a listing of BoM GeoTIFF satellite imagery from
 \url{ftp://ftp.bom.gov.au/anon/gen/gms/} to determine which files are
 currently available for download.  Files are available at ten minute update
 frequency with a 24 hour delete time.  Useful to know the most recent files
@@ -24,7 +23,7 @@ available and then specify in the \code{\link{get_satellite_imagery}}
 function.
 }
 \details{
-Valid BoM satellite Product IDs include:
+Valid BoM satellite Product IDs for GeoTIFF files include:
 \describe{
 \item{IDE00420}{AHI cloud cover only 2km FD GEOS GIS}
 \item{IDE00421}{AHI IR (Ch13) greyscale 2km FD GEOS GIS}
@@ -57,7 +56,7 @@ imagery <- available_images(product_id = "IDE00425")
 }
 \references{
 Himawari-8 and -9 Facts and Figures,
-http://www.bom.gov.au/australia/satellite/himawari.shtml
+\url{http://www.bom.gov.au/australia/satellite/himawari.shtml}
 }
 \author{
 Adam H Sparks, \email{adamhsparks@gmail.com}

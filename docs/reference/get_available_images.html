@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get BoM Agriculture Bulletin Information for Select Stations — get_ag_bulletin • bomrang</title>
+<title>Get a Listing of Available BoM Satellite GeoTIFF Imagery — get_available_images • bomrang</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -98,66 +98,72 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get BoM Agriculture Bulletin Information for Select Stations</h1>
+    <h1>Get a Listing of Available BoM Satellite GeoTIFF Imagery</h1>
     </div>
 
     
-    <p>Fetch the BoM agricultural bulletin information and return it in a tidy data
-frame</p>
+    <p>Fetch a listing of BoM GeoTIFF satellite imagery from
+<a href='ftp://ftp.bom.gov.au/anon/gen/gms/'>ftp://ftp.bom.gov.au/anon/gen/gms/</a> to determine which files are
+currently available for download.  Files are available at ten minute update
+frequency with a 24 hour delete time.  Useful to know the most recent files
+available and then specify in the <code><a href='get_satellite_imagery.html'>get_satellite_imagery</a></code>
+function.</p>
     
 
-    <pre class="usage"><span class='fu'>get_ag_bulletin</span>(<span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"AUS"</span>)</pre>
+    <pre class="usage"><span class='fu'>get_available_images</span>(<span class='kw'>product_id</span> <span class='kw'>=</span> <span class='st'>"all"</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>state</th>
-      <td><p>Australian state or territory as full name or postal code.
-Fuzzy string matching via <code><a href='http://www.rdocumentation.org/packages/base/topics/agrep'>agrep</a></code> is done.  Defaults to
-"AUS" returning all state bulletins, see details for more.</p></td>
+      <th>product_id</th>
+      <td><p>Character.  BoM product ID of interest for which a list of
+available images will be returned.  Defaults to all images currently
+available.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Tidy data frame of a Australia BoM agricultural bulletin information.  For
-full details of fields and units returned see Appendix 3 in the
-<em>bomrang</em> vignette, use <code><a href='https://cran.rstudio.com/web/packages/bomrang/vignettes/bomrang.html'>vignette("bomrang", package = "bomrang")</a></code>
-to view.</p>
+    <p>A vector of all available files for the requested Product ID(s).</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Allowed state and territory postal codes, only one state per request
-or all using <code>AUS</code>.</p><dl class='dl-horizontal'>
-   <dt>NSW</dt><dd><p>New South Wales</p></dd>
-   <dt>NT</dt><dd><p>Northern Territory</p></dd>
-   <dt>QLD</dt><dd><p>Queensland</p></dd>
-   <dt>SA</dt><dd><p>South Australia</p></dd>
-   <dt>TAS</dt><dd><p>Tasmania</p></dd>
-   <dt>VIC</dt><dd><p>Victoria</p></dd>
-   <dt>WA</dt><dd><p>Western Australia</p></dd>
-   <dt>AUS</dt><dd><p>Australia, returns bulletin for all states and NT</p></dd>
- </dl>
+    <p>Valid BoM satellite Product IDs for GeoTIFF files include:</p><dl class='dl-horizontal'>
+<dt>IDE00420</dt><dd><p>AHI cloud cover only 2km FD GEOS GIS</p></dd>
+<dt>IDE00421</dt><dd><p>AHI IR (Ch13) greyscale 2km FD GEOS GIS</p></dd>
+<dt>IDE00422</dt><dd><p>AHI VIS (Ch3) greyscale 2km FD GEOS GIS</p></dd>
+<dt>IDE00423</dt><dd><p>AHI IR (Ch13) Zehr 2km FD GEOS GIS</p></dd>
+<dt>IDE00425</dt><dd><p>AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km FD
+GEOS GIS</p></dd>
+<dt>IDE00426</dt><dd><p>AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km FD
+GEOS GIS</p></dd>
+<dt>IDE00427</dt><dd><p>AHI WV (Ch8) 2km FD GEOS GIS</p></dd>
+<dt>IDE00430</dt><dd><p>AHI cloud cover only 2km AUS equirect. GIS</p></dd>
+<dt>IDE00431</dt><dd><p>AHI IR (Ch13) greyscale 2km AUS equirect. GIS</p></dd>
+<dt>IDE00432</dt><dd><p>AHI VIS (Ch3) greyscale 2km AUS equirect. GIS</p></dd>
+<dt>IDE00433</dt><dd><p>AHI IR (Ch13) Zehr 2km AUS equirect. GIS</p></dd>
+<dt>IDE00435</dt><dd><p>AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km AUS
+equirect. GIS</p></dd>
+<dt>IDE00436</dt><dd><p>AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km AUS
+equirect. GIS</p></dd>
+<dt>IDE00437</dt><dd><p>AHI WV (Ch8) 2km AUS equirect. GIS</p></dd>
+<dt>IDE00439</dt><dd><p>AHI VIS (Ch3) greyscale 0.5km AUS equirect. GIS</p></dd>
+</dl>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Agricultural observations are retrieved from the Australian Bureau of
-Meteorology (BoM) Weather Data Services Agriculture Bulletins,
-<a href='http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml'>http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml</a></p>
-<p>and</p>
-<p>Australian Bureau of Meteorology (BoM) Weather Data Services Observation of
-Rainfall,
-<a href='http://www.bom.gov.au/climate/how/observations/rain-measure.shtml'>http://www.bom.gov.au/climate/how/observations/rain-measure.shtml</a></p>
-<p>Station location and other metadata are sourced from the Australian Bureau of
-Meteorology (BoM) webpage, Bureau of Meteorology Site Numbers:
-<a href='http://www.bom.gov.au/climate/cdo/about/site-num.shtml'>http://www.bom.gov.au/climate/cdo/about/site-num.shtml</a></p>
+    <p>Himawari-8 and -9 Facts and Figures,
+<a href='http://www.bom.gov.au/australia/satellite/himawari.shtml'>http://www.bom.gov.au/australia/satellite/himawari.shtml</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>ag_bulletin</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ag_bulletin</span>(<span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"QLD"</span>)
-<span class='co'># }</span><div class='input'>
+    <pre class="examples"># NOT RUN {
+Check availability of AHI VIS (true colour) / IR (Ch13 greyscale) composite
+1km FD GEOS GIS images
+imagery <- available_images(product_id = "IDE00425")
+# }
+<div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
