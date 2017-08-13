@@ -6,13 +6,13 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Update internal database with latest BoM forecast locations — update_forecast_locations • bomrang</title>
+<title>Get a Listing of Available BoM Satellite GeoTIFF Imagery — get_available_imagery • bomrang</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -86,40 +86,82 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Update internal database with latest BoM forecast locations</h1>
+    <h1>Get a Listing of Available BoM Satellite GeoTIFF Imagery</h1>
     </div>
 
     
-    <p>Download the latest forecast locations from the BoM server and update
-bomrang's internal database of précis forecast locations,
-<code><a href='AAC_codes.html'>AAC_codes</a></code> used by <code><a href='get_precis_forecast.html'>get_precis_forecast</a></code>.  There is
-no need to use this unless you know that a forecast location exists in a
-more current version of the BoM précis forecast location database that is not
-available in the database distributed with <code><a href='bomrang.html'>bomrang</a></code>.</p>
+    <p>Fetch a listing of BoM GeoTIFF satellite imagery from
+<a href='ftp://ftp.bom.gov.au/anon/gen/gms/'>ftp://ftp.bom.gov.au/anon/gen/gms/</a> to determine which files are
+currently available for download.  Files are available at ten minute update
+frequency with a 24 hour delete time.  Useful to know the most recent files
+available and then specify in the <code><a href='get_satellite_imagery.html'>get_satellite_imagery</a></code>
+function.</p>
     
 
-    <pre class="usage"><span class='fu'>update_forecast_locations</span>()</pre>
-        
+    <pre class="usage"><span class='fu'>get_available_imagery</span>(<span class='kw'>product_id</span> <span class='kw'>=</span> <span class='st'>"all"</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>product_id</th>
+      <td><p>Character.  BoM product ID of interest for which a list of
+available images will be returned.  Defaults to all images currently
+available.</p></td>
+    </tr>
+    </table>
+    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Updated internal database of BoM précis forecast locations</p>
+    <p>A vector of all available files for the requested Product ID(s).</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Valid BoM satellite Product IDs for GeoTIFF files include:</p><dl class='dl-horizontal'>
+<dt>IDE00420</dt><dd><p>AHI cloud cover only 2km FD GEOS GIS</p></dd>
+<dt>IDE00421</dt><dd><p>AHI IR (Ch13) greyscale 2km FD GEOS GIS</p></dd>
+<dt>IDE00422</dt><dd><p>AHI VIS (Ch3) greyscale 2km FD GEOS GIS</p></dd>
+<dt>IDE00423</dt><dd><p>AHI IR (Ch13) Zehr 2km FD GEOS GIS</p></dd>
+<dt>IDE00425</dt><dd><p>AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km FD
+GEOS GIS</p></dd>
+<dt>IDE00426</dt><dd><p>AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km FD
+GEOS GIS</p></dd>
+<dt>IDE00427</dt><dd><p>AHI WV (Ch8) 2km FD GEOS GIS</p></dd>
+<dt>IDE00430</dt><dd><p>AHI cloud cover only 2km AUS equirect. GIS</p></dd>
+<dt>IDE00431</dt><dd><p>AHI IR (Ch13) greyscale 2km AUS equirect. GIS</p></dd>
+<dt>IDE00432</dt><dd><p>AHI VIS (Ch3) greyscale 2km AUS equirect. GIS</p></dd>
+<dt>IDE00433</dt><dd><p>AHI IR (Ch13) Zehr 2km AUS equirect. GIS</p></dd>
+<dt>IDE00435</dt><dd><p>AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km AUS
+equirect. GIS</p></dd>
+<dt>IDE00436</dt><dd><p>AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km AUS
+equirect. GIS</p></dd>
+<dt>IDE00437</dt><dd><p>AHI WV (Ch8) 2km AUS equirect. GIS</p></dd>
+<dt>IDE00439</dt><dd><p>AHI VIS (Ch3) greyscale 0.5km AUS equirect. GIS</p></dd>
+</dl>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Australian Bureau of Meteorology (BoM) Weather Data Services
-<a href='http://www.bom.gov.au/catalogue/data-feeds.shtml'>http://www.bom.gov.au/catalogue/data-feeds.shtml</a></p>
+    <p>Australian Bureau of Meteorology (BoM) High-definition satellite images
+<a href='http://www.bom.gov.au/australia/satellite/index.shtml'>http://www.bom.gov.au/australia/satellite/index.shtml</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='fu'>update_forecast_locations</span>()
-<span class='co'># }</span></pre>
+    <pre class="examples"># NOT RUN {
+Check availability of AHI VIS (true colour) / IR (Ch13 greyscale) composite
+1km FD GEOS GIS images
+imagery <- get_available_imagery(product_id = "IDE00425")
+# }
+<div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
       
       <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
 
       <li><a href="#references">References</a></li>
       

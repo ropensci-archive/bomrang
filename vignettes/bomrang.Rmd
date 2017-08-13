@@ -2,7 +2,12 @@
 title: "bomrang"
 author: "Adam H Sparks and Hugh Parsonage"
 date: "`r Sys.Date()`"
-output: rmarkdown::html_vignette
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    theme: spacelab
 vignette: >
   %\VignetteIndexEntry{bomrang}
   %\VignetteEngine{knitr::rmarkdown}
@@ -17,15 +22,19 @@ package fetches these files, parses them and return a tidy data frame.
 
 ## Using _bomrang_
 
-Several functions are provided by _bomrang_.The main functionality of _bomrang_
-is provided through three functions, `get_precis_forecast()`, which retrieves
-the précis (short) forecast; `get_current_weather()`, which fetches the current
-weather from a given station; and `get_ag_bulletin()`, which retrieves the
-agriculture bulletin. Other functions include `update_forecast_locations()`, 
-which updates an internal database of forecast locations distributed with the
-package, and `sweep_for_stations()` which returns the nearest weather stations
-to a point in Australia.
-
+Several functions are provided by _bomrang_ to retrieve Australian Bureau of
+Meteorology (BoM) data. A family of functions retrieve weather data and return
+tidy data frames; `get_precis_forecast()`, which retrieves the précis (short)
+forecast; `get_current_weather()`, which fetches the current weather from a
+given station; and `get_ag_bulletin()`, which retrieves the agriculture
+bulletin. A second group of functions retrieve information pertaining to
+satellite imagery, `get_available_imagery()` and the imagery itself,
+`get_satellite_imagery()`. The last group functions provides internal functionality
+for _bomrang_ itself; `update_forecast_locations()`, which updates an
+internal database of forecast locations distributed with the package, 
+`sweep_for_stations()` which returns the nearest weather stations to a point in
+Australia and, `manage_cached_files()` that provides facilities for managing
+cached satellite imagery.
 
 ## Using `get_current_weather`
 
@@ -223,15 +232,123 @@ database.
 update_station_locations()
 ```
 
+## Retrieving with satellite imagery
+
+_bomrang_ provides functionality to retrieve high-definition GeoTIFF satellite
+imagery provided by BoM through public FTP with the following types of imagery
+being available: i.)
+[Infrared images](http://www.bom.gov.au/australia/satellite/about_images.shtml#ir),
+ii.)
+[Visible images](http://www.bom.gov.au/australia/satellite/about_images.shtml#vis)
+and iii.)
+[Clouds/surface composite](http://www.bom.gov.au/australia/satellite/about_images.shtml#cloud).
+
+Valid BoM satellite Product IDs for GeoTIFF files include:
+
+- **IDE00420** AHI cloud cover only 2km FD GEOS GIS
+
+- **IDE00421** AHI IR (Ch13) greyscale 2km FD GEOS GIS
+
+- **IDE00422** AHI VIS (Ch3) greyscale 2km FD GEOS GIS
+
+- **IDE00423** AHI IR (Ch13) Zehr 2km FD GEOS GIS
+
+- **IDE00425** AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km FD GEOS
+GIS
+
+- **IDE00426** AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km FD GEOS
+GIS
+
+- **IDE00427** AHI WV (Ch8) 2km FD GEOS GIS
+
+- **IDE00430** AHI cloud cover only 2km AUS equirect. GIS
+
+- **IDE00431** AHI IR (Ch13) greyscale 2km AUS equirect. GIS
+
+- **IDE00432** AHI VIS (Ch3) greyscale 2km AUS equirect. GIS
+
+- **IDE00433** AHI IR (Ch13) Zehr 2km AUS equirect. GIS
+
+- **IDE00435** AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km AUS
+equirect. GIS
+
+- **IDE00436** AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km AUS
+equirect. GIS
+
+- **IDE00437** AHI WV (Ch8) 2km AUS equirect. GIS
+
+- **IDE00439** AHI VIS (Ch3) greyscale 0.5km AUS equirect. GIS
+
+### Using `get_available_imagery`
+
+`get_available_imagery()` only takes one argument, `product_id`, a BoM identfier
+for the imagery that you wish to check for available imagery. Using this
+function will fetch a listing of BoM GeoTIFF satellite imagery from
+[ftp://ftp.bom.gov.au/anon/gen/gms/](ftp://ftp.bom.gov.au/anon/gen/gms/) to
+display which files are currently available for download. These files are
+available at ten minute update frequency with a 24 hour delete time. 
+This function can be used see the most recent files available and then specify
+in the `get_satellite_imagery()` function. If no valid Product ID is supplied,
+defaults to all GeoTIFF images currently available.
+
+```{r get_available_imagery, eval=FALSE}
+avail <- get_available_imagery(product_id = "IDE00425")
+```
+
+### Using `get_satellite_imagery`
+
+`get_satellite_imagery()` fetches BoM satellite GeoTIFF imagery, returning a
+raster stack object and takes three arguments. Files are available at
+ten minute update frequency with a 24 hour delete time. It is suggested to check
+file availability first by using `get_available_imagery()`. The arguments
+are:
+
+- `product_id`, a character value of the BoM product ID to download.
+Alternatively, a vector of values from `get_available_imagery()` may be used
+here. This argument is mandatory.
+
+- `scans` a numeric value for the number of scans to download, starting with the
+most recent and progressing backwards, *e.g.*, `1` - the most recent single scan
+available , `6` - the most recent hour available, `12` - the most recent 2 hours
+available, etc. Negating will return the oldest files first. Defaults to 1. This
+argument is optional.
+
+- `cache` a logical value that indicates whether or not to store image files
+locally for later use?  If `FALSE`, the downloaded files are removed when R
+session is closed. To take advantage of cached files in future sessions, set 
+`TRUE`. Defaults to `FALSE`. This argument is optional. Cached files may be
+managed with the `manage_bomrang_cache()` function.
+
+```{r get_satellite_imagery, eval=FALSE}
+# Specify product ID and scans
+i <- get_satellite_imagery(product_id = "IDE00425", scans = 1)
+
+# Same, but use "avail" from prior to specify images for download
+i <- get_satellite_imagery(product_id = avail, scans = 1)
+
+# Cache image for later use
+i <- get_satellite_imagery(product_id = avail, scans = 1, cache = TRUE)
+
+# load the raster library to work with the GeoTIFF files
+library(raster)
+plot(i)
+```
+
+![get_satellite_imagery-1.png](get_satellite_imagery-1.png)
+
 ## References
 
 [Australian Bureau of Meteorology (BoM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml)
+
+[Australian Bureau of Meteorology (BoM) FTP Public Products](http://www.bom.gov.au/catalogue/anon-ftp.shtml)
 
 [Australian Bureau of Meteorology (BoM) Weather Data Services Agriculture Bulletins](http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml)
 
 [Australian Bureau of Meteorology (BoM) Weather Data Services Observation of Rainfall](http://www.bom.gov.au/climate/how/observations/rain-measure.shtml)
 
-## Appendix 1 - Output from get_current_weather()
+[Australian Bureau of Meteorology (BoM) High-definition satellite images](http://www.bom.gov.au/australia/satellite/index.shtml)
+
+## Appendix 1 - Output from `get_current_weather`
 
 The function `get_current_weather()` will return a dataframe that will contain
 some or all of the following fields.
@@ -650,7 +767,7 @@ automated weather stations.
 	   invading it
 	19 Cirrocumulus alone, or Cirrocumulus predominant
 	
-## Appendix 2 - Output from get_précis_forecast()
+## Appendix 2 - Output from `get_précis_forecast`
 
 The function, `get_precis_forecast()`, will return a tidy data frame of the
 agriculture bulletin with the following fields:
@@ -690,7 +807,7 @@ characters)</td></tr>
 (percent)</td></tr>
 </table>
 
-## Appendix 3 - Output from get_ag_bulletin()
+## Appendix 3 - Output from `get_ag_bulletin`
 
 The function, `get_ag_bulletin()`, will return a tidy data frame of the
 agriculture bulletin with the following fields:

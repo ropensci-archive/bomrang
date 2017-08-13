@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get BoM Daily Précis Forecast for Select Towns — get_precis_forecast • bomrang</title>
+<title>Manage locally cached bomrang files — manage_bomrang_cache • bomrang</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -86,83 +86,105 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get BoM Daily Précis Forecast for Select Towns</h1>
+    <h1>Manage locally cached bomrang files</h1>
     </div>
 
     
-    <p>Fetch the BoM daily précis forecast and return a tidy data frame of the seven
-day town forecast for a specified state or territory.</p>
+    <p>The user is given an option when downloading the bomrang
+data to cache or not to cache the data for later use.  If
+<code>cache == TRUE</code>, then the bomrang data files are saved in a
+directory in the users' home file space.  These functions provide facilities
+for interacting and managing these files.</p>
     
 
-    <pre class="usage"><span class='fu'>get_precis_forecast</span>(<span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"AUS"</span>)</pre>
+    <pre class="usage"><span class='fu'>bomrang_cache_list</span>()
+
+<span class='fu'>bomrang_cache_delete</span>(<span class='no'>files</span>, <span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+<span class='fu'>bomrang_cache_delete_all</span>(<span class='kw'>force</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
+
+<span class='fu'>bomrang_cache_details</span>(<span class='kw'>files</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>state</th>
-      <td><p>Australian state or territory as full name or postal code.
-Fuzzy string matching via <code><a href='http://www.rdocumentation.org/packages/base/topics/agrep'>agrep</a></code> is done.  Defaults to
-"AUS" returning all state bulletins, see details for further information.</p></td>
+      <th>files</th>
+      <td><p>Character.  One or more complete file names with no file path</p></td>
+    </tr>
+    <tr>
+      <th>force</th>
+      <td><p>Logical.  Should files be force deleted? Defaults to :
+<code>TRUE</code></p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>Tidy data frame of a Australia BoM précis seven day forecasts for select
-towns.  For full details of fields and units returned see Appendix 2 in the
-<em>bomrang</em> vignette, use <code><a href='https://cran.rstudio.com/web/packages/bomrang/vignettes/bomrang.html'>vignette("bomrang", package = "bomrang")</a></code>
-to view.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Allowed state and territory postal codes, only one state per request
-or all using <code>AUS</code>.</p><dl class='dl-horizontal'>
-   <dt>ACT</dt><dd><p>Australian Capital Territory (will return NSW)</p></dd>
-   <dt>NSW</dt><dd><p>New South Wales</p></dd>
-   <dt>NT</dt><dd><p>Northern Territory</p></dd>
-   <dt>QLD</dt><dd><p>Queensland</p></dd>
-   <dt>SA</dt><dd><p>South Australia</p></dd>
-   <dt>TAS</dt><dd><p>Tasmania</p></dd>
-   <dt>VIC</dt><dd><p>Victoria</p></dd>
-   <dt>WA</dt><dd><p>Western Australia</p></dd>
-   <dt>AUS</dt><dd><p>Australia, returns forecast for all states, NT and ACT</p></dd>
- </dl>
+    <p><code>bomrang_cache_delete</code> only accepts one file name, while
+<code>bomrang_cache_delete_all</code> does not accept any names, but deletes all
+files.  For deleting many specific files, use <code>cache_delete</code> in a
+<code>lapply</code> type call.</p>
+<p>We files cache using <code><a href='http://www.rdocumentation.org/packages/rappdirs/topics/user_cache_dir'>user_cache_dir</a></code>, find your
+cache folder by executing <code><a href='http://www.rdocumentation.org/packages/rappdirs/topics/user_cache_dir'>rappdirs::user_cache_dir("bomrang")</a></code></p>
     
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+    <h2 class="hasAnchor" id="note"><a class="anchor" href="#note"></a>Note</h2>
 
-    <p>Forecast data come from Australian Bureau of Meteorology (BoM) Weather Data
-Services <a href='http://www.bom.gov.au/catalogue/data-feeds.shtml'>http://www.bom.gov.au/catalogue/data-feeds.shtml</a></p>
-<p>Location data and other metadata for towns come from
-the BoM anonymous FTP server with spatial data
-<a href='ftp://ftp.bom.gov.au/anon/home/adfd/spatial/'>ftp://ftp.bom.gov.au/anon/home/adfd/spatial/</a>, specifically the DBF
-file portion of a shapefile,
-<a href='ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf'>ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf</a></p>
+    <p>These functions were adapted from rOpenSci's <code><a href='http://www.rdocumentation.org/packages/ccafs/topics/cc_cache'>cc_cache</a></code>.</p>
+    
+    <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
+
+    
+    <ul>
+<li><p><code>bomrang_cache_list()</code> returns a character vector of full path
+ file names</p></li>
+<li><p><code>bomrang_cache_delete()</code> deletes one or more files, returns
+ nothing</p></li>
+<li><p><code>bomrang_cache_delete_all()</code> delete all files, returns nothing</p></li>
+<li><p><code>bomrang_cache_details()</code> prints file name and file size for each
+ file, supply with one or more files, or no files (and get details for
+ all available)</p></li>
+</ul>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>BoM_forecast</span> <span class='kw'>&lt;-</span> <span class='fu'>get_precis_forecast</span>(<span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"QLD"</span>)
-<span class='co'># }</span></pre>
+<span class='co'># List files in cache</span>
+<span class='fu'>bomrang_cache_list</span>()
+
+<span class='co'># List info for single files</span>
+<span class='fu'>bomrang_cache_details</span>(<span class='kw'>files</span> <span class='kw'>=</span> <span class='fu'>bomrang_cache_list</span>()[<span class='fl'>1</span>])
+<span class='fu'>bomrang_cache_details</span>(<span class='kw'>files</span> <span class='kw'>=</span> <span class='fu'>bomrang_cache_list</span>()[<span class='fl'>2</span>])
+
+<span class='co'># List info for all files</span>
+<span class='fu'>bomrang_cache_details</span>()
+
+<span class='co'># Delete files by name in cache</span>
+<span class='fu'>bomrang_cache_delete</span>(<span class='kw'>files</span> <span class='kw'>=</span> <span class='fu'>bomrang_cache_list</span>()[<span class='fl'>1</span>])
+
+<span class='co'># Delete all files in cache</span>
+<span class='fu'>bomrang_cache_delete_all</span>()
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       
-      <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
 
-      <li><a href="#references">References</a></li>
+      <li><a href="#note">Note</a></li>
+
+      <li><a href="#functions">Functions</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
 
     <h2>Author</h2>
     
-Adam H Sparks, <a href='mailto:adamhsparks@gmail.com'>adamhsparks@gmail.com</a> and Keith Pembleton,
-<a href='mailto:keith.pembleton@usq.edu.au'>keith.pembleton@usq.edu.au</a>
+Original: Scott Chamberlain, <a href='mailto:scott@ropensci.org'>scott@ropensci.org</a>, adapted for
+use in this package by Adam H Sparks, <a href='mailto:adamhsparks@gmail.com'>adamhsparks@gmail.com</a>
 
   </div>
 </div>
