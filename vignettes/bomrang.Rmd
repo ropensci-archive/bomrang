@@ -183,7 +183,7 @@ make the process of querying for weather data faster. These databases are
 created and packaged with _bomrang_ for distribution and are updated with new
 releases. Users have the option of updating these databases after installing
 _bomrang_. While this option gives the users the ability to keep the databases
-up-to-date and gives _bomrang_'s authors flexibility in maintaning it, this
+up-to-date and gives _bomrang_'s authors flexibility in maintaining it, this
 also means that reproducibility may be affected since the same version of
 _bomrang_ may have different databases on different machines. If reproducibility
 is necessary, care should be taken to ensure that the version of the databases
@@ -232,7 +232,7 @@ database.
 update_station_locations()
 ```
 
-## Retrieving with satellite imagery
+## Using _bomrang_ to retrieve satellite imagery
 
 _bomrang_ provides functionality to retrieve high-definition GeoTIFF satellite
 imagery provided by BoM through public FTP with the following types of imagery
@@ -281,7 +281,7 @@ equirect. GIS
 
 ### Using `get_available_imagery`
 
-`get_available_imagery()` only takes one argument, `product_id`, a BoM identfier
+`get_available_imagery()` only takes one argument, `product_id`, a BoM identifier
 for the imagery that you wish to check for available imagery. Using this
 function will fetch a listing of BoM GeoTIFF satellite imagery from
 [ftp://ftp.bom.gov.au/anon/gen/gms/](ftp://ftp.bom.gov.au/anon/gen/gms/) to
@@ -360,7 +360,7 @@ some or all of the following fields.
 <tr><td>wmo_id</td><td>wmo station index number, uniquely identifies
 station</td></tr>
 <tr><td>Name[31]</td><td>Observing station name</td></tr>
-<tr><td>Abbr[6]</td><td>An abbeviated name (normally 4 characters) used for the
+<tr><td>Abbr[6]</td><td>An abbreviated name (normally 4 characters) used for the
 station</td></tr>
 <tr><td>Date</td><td>Date, Year (4 digits), month (2 digits), day (2
 digits)</td></tr>
@@ -402,7 +402,7 @@ hours</td></tr>
 <tr><td>Rf_int_h4</td><td>Interval for which rain is reported in next field,
 hours</td></tr>
 <tr><td>Rainfall4</td><td>Rainfall, mm, usually since last
-observastion</td></tr>
+observation</td></tr>
 <tr><td>Sea_state[5]</td><td>Sea state, abbreviation</td></tr>
 <tr><td>Swl_state[9]</td><td>Swell state, abbreviation</td></tr>
 <tr><td>Swl_dir[4]</td><td>Swell direction, abbreviation</td></tr>
@@ -434,7 +434,7 @@ P_tend_typ:
 - 3 Decreasing or steady, then increasing, or  
   - Increasing, then increasing more rapidly, current pressure higher  
 - 4 Steady  
-- 5 Decreasing, then increasing, current presure lower  
+- 5 Decreasing, then increasing, current pressure lower  
 - 6 Decreasing, then steady or decreasing more slowly  
 - 7 Decreasing  
 -8 Steady or increasing, then then decreasing, current pressure lower, or  
@@ -481,7 +481,7 @@ wmo international BUFR code table 0 20 003, CREX code table B 20 003
 
 	 00 Clouds not observed
 	 01 Cloud decreasing
-	 02 State of sky generally unchangeing
+	 02 State of sky generally unchanging
 	 03 Cloud increasing
 	 04 Smoke or volcanic ash
 	 05 Haze
@@ -492,7 +492,7 @@ wmo international BUFR code table 0 20 003, CREX code table B 20 003
 	 08 Well developed dust devils, but no sandstorm or duststorm
 	 09 Duststorm or sandstorm
 	 10 Mist
-	 11 Paches of shallow fog
+	 11 Patches of shallow fog
 	 12 More or less continuous shallow fog
 	 13 Lightning visible, but no thunder heard
 	 14 Precipitation in sight, but not reaching the ground or sea (virga)
@@ -505,11 +505,11 @@ wmo international BUFR code table 0 20 003, CREX code table B 20 003
 	 20 Recent (within the last hour) drizzle
 	 21 Recent (within the last hour) rain, but not freezing rain
 	 22 Recent (within the last hour) snow
-	 23 Recent (within the last hour) mixed raion and snow or ice pellets
+	 23 Recent (within the last hour) mixed rain and snow or ice pellets
 	 24 Recent (within the last hour) freezing drizzle or freezing rain
 	 25 Recent (within the last hour) showers of rain
 	 26 Recent (within the last hour) showers of snow or mixed rain and snow
-	 27 Recent (within the last hour) showers of hail or mixed rain and hai
+	 27 Recent (within the last hour) showers of hail or mixed rain and hail
 	 28 Recent (within the last hour) Fog or ice fog
 	 29 Recent (within the last hour) thunderstorm
 	 30 Slight or moderate duststorm or sandstorm, has decreased in the
@@ -592,11 +592,11 @@ wmo international BUFR code table 0 20 003, CREX code table B 20 003
 	 95 Slight or moderate thunderstorm with rain or snow but no hail
 	 96 Slight or moderate thunderstorm with hail
 	 97 Heavy thunderstorm with rain or snow but no hail
-	 98 Thunderstorm combu=ined with a sandstorm or duststorm
+	 98 Thunderstorm combined with a sandstorm or duststorm
 	 99 Heavy thunderstorm with hail
 	100 No significant weather
 	101 Cloud decreasing 
-	102 State of sky generally unchangeing
+	102 State of sky generally unchanging
 	103 Cloud increasing
 	104 Haze or smoke or suspended dust, visibility >= 1km
 	105 Haze or smoke or suspended dust, visibility < 1km
@@ -818,7 +818,7 @@ agriculture bulletin with the following fields:
 </tr>
 <tr><td>state</td><td>State name (postal code abbreviation)</td></tr>
 <tr><td>dist</td><td>BoM rainfall district</td></tr>
-<tr><td>wmo</td><td>World Meteorlogical Organization number (unique ID used
+<tr><td>wmo</td><td>World Meteorological Organization number (unique ID used
 worldwide)</td></tr>
 <tr><td>site</td><td>Unique BoM identifier for each station</td></tr>
 <tr><td>station</td><td>Station name</td></tr>

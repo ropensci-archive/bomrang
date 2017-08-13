@@ -242,7 +242,7 @@ head(QLD_bulletin)
 
 #### Example using `get_available_imagery`
 
-The function `get_available_imagery()` only takes one argument, `product_id`, a BoM identfier for the imagery that you wish to check for available imagery. Using this function will fetch a listing of BoM GeoTIFF satellite imagery from <ftp://ftp.bom.gov.au/anon/gen/gms/> to display which files are currently available for download. These files are available at ten minute update frequency with a 24 hour delete time. This function can be used see the most recent files available and then specify in the `get_satellite_imagery()` function. If no valid Product ID is supplied, defaults to all GeoTIFF images currently available.
+The function `get_available_imagery()` only takes one argument, `product_id`, a BoM identifier for the imagery that you wish to check for available imagery. Using this function will fetch a listing of BoM GeoTIFF satellite imagery from <ftp://ftp.bom.gov.au/anon/gen/gms/> to display which files are currently available for download. These files are available at ten minute update frequency with a 24 hour delete time. This function can be used see the most recent files available and then specify in the `get_satellite_imagery()` function. If no valid Product ID is supplied, defaults to all GeoTIFF images currently available.
 
 ``` r
 # Most recent 5 images available for IDE00425
