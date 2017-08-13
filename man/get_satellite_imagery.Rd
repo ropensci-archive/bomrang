@@ -9,7 +9,7 @@ get_satellite_imagery(product_id = NULL, scans = 1, cache = FALSE)
 \arguments{
 \item{product_id}{Character.  BoM product ID to download in GeoTIFF format
 and import as a \code{\link[raster]{stack}} object.  A vector of values from
-\code{\link{get_available_images}} may be used here.  Value is required.}
+\code{\link{get_available_imagery}} may be used here.  Value is required.}
 
 \item{scans}{Numeric.  Number of scans to download, starting with most recent
 and progressing backwards, \emph{e.g.}, 1 - the most recent single scan
@@ -31,7 +31,7 @@ Fetch BoM satellite GeoTIFF imagery from
 \url{ftp://ftp.bom.gov.au/anon/gen/gms/} and return a raster
 \code{\link[raster]{stack}} object of GeoTIFF files. Files are available at
 ten minute update frequency with a 24 hour delete time. Suggested to check
-file availability first by using \code{\link{get_available_images}}.
+file availability first by using \code{\link{get_available_imagery}}.
 }
 \details{
 Valid BoM satellite Product IDs include:
@@ -67,17 +67,17 @@ imagery <- get_satellite_imagery(product_id = "IDE00425", scans = 1)
 # Get a list of available image files and use that to specify files for
 # download, downloading the two most recent files available
 
-avail <- get_available_images(product_id = "IDE00425")
+avail <- get_available_imagery(product_id = "IDE00425")
 imagery <- get_satellite_imagery(product_id = avail, scans = 2)
 
 }
 }
 \references{
-Himawari-8 and -9 Facts and Figures,
-\url{http://www.bom.gov.au/australia/satellite/himawari.shtml}
+Australian Bureau of Meteorology (BoM) High-definition satellite images
+\url{http://www.bom.gov.au/australia/satellite/index.shtml}
 }
 \seealso{
-\code{\link{get_available_images}}
+\code{\link{get_available_imagery}}
 }
 \author{
 Adam H Sparks, \email{adamhsparks@gmail.com}

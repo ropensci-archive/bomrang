@@ -1,5 +1,5 @@
 
-# get_available_images() -------------------------------------------------------
+# get_available_imagery() -------------------------------------------------------
 
 #' Get a Listing of Available BoM Satellite GeoTIFF Imagery
 #'
@@ -41,20 +41,20 @@
 #' A vector of all available files for the requested Product ID(s).
 #'
 #' @references
-#' Himawari-8 and -9 Facts and Figures,
-#' \url{http://www.bom.gov.au/australia/satellite/himawari.shtml}
+#' Australian Bureau of Meteorology (BoM) High-definition satellite images
+#' \url{http://www.bom.gov.au/australia/satellite/index.shtml}
 #'
 #' @examples
 #' \dontrun{
 #' Check availability of AHI VIS (true colour) / IR (Ch13 greyscale) composite
 #' 1km FD GEOS GIS images
-#' imagery <- available_images(product_id = "IDE00425")
+#' imagery <- get_available_imagery(product_id = "IDE00425")
 #' }
 #'
 #' @author Adam H Sparks, \email{adamhsparks@gmail.com}
 #'
 #' @export
-get_available_images <- function(product_id = "all") {
+get_available_imagery <- function(product_id = "all") {
   .check_IDs(product_id)
   message("\nThe following files are currently available for download:\n")
   tif_list <- .ftp_images(product_id)
@@ -62,7 +62,7 @@ get_available_images <- function(product_id = "all") {
   print(tif_list)
 }
 
-# get_satellite_imagery() ------------------------------------------------------
+# get_satellite_imagery() ------------------------------------------------------------
 
 #' Get BoM Satellite GeoTIFF Imagery
 #'
@@ -70,11 +70,11 @@ get_available_images <- function(product_id = "all") {
 #' \url{ftp://ftp.bom.gov.au/anon/gen/gms/} and return a raster
 #' \code{\link[raster]{stack}} object of GeoTIFF files. Files are available at
 #' ten minute update frequency with a 24 hour delete time. Suggested to check
-#' file availability first by using \code{\link{get_available_images}}.
+#' file availability first by using \code{\link{get_available_imagery}}.
 #'
 #' @param product_id Character.  BoM product ID to download in GeoTIFF format
 #' and import as a \code{\link[raster]{stack}} object.  A vector of values from
-#' \code{\link{get_available_images}} may be used here.  Value is required.
+#' \code{\link{get_available_imagery}} may be used here.  Value is required.
 #' @param scans Numeric.  Number of scans to download, starting with most recent
 #' and progressing backwards, \emph{e.g.}, 1 - the most recent single scan
 #' available , 6 - the most recent hour available, 12 - the most recent 2 hours
@@ -109,15 +109,15 @@ get_available_images <- function(product_id = "all") {
 #'}
 #'
 #'@seealso
-#'\code{\link{get_available_images}}
+#'\code{\link{get_available_imagery}}
 #'
 #' @return
 #' A raster stack of GeoTIFF images with layers named by BoM Product ID,
 #' timestamp and band.
 #'
 #' @references
-#' Himawari-8 and -9 Facts and Figures,
-#' \url{http://www.bom.gov.au/australia/satellite/himawari.shtml}
+#' Australian Bureau of Meteorology (BoM) High-definition satellite images
+#' \url{http://www.bom.gov.au/australia/satellite/index.shtml}
 #'
 #' @examples
 #' \dontrun{
@@ -129,14 +129,12 @@ get_available_images <- function(product_id = "all") {
 #' # Get a list of available image files and use that to specify files for
 #' # download, downloading the two most recent files available
 #'
-#' avail <- get_available_images(product_id = "IDE00425")
+#' avail <- get_available_imagery(product_id = "IDE00425")
 #' imagery <- get_satellite_imagery(product_id = avail, scans = 2)
 #'
 #' }
 
 #' @author Adam H Sparks, \email{adamhsparks@gmail.com}
-#'
-#' @importFrom raster plot
 #'
 #' @export
 get_satellite_imagery <-
@@ -151,7 +149,7 @@ get_satellite_imagery <-
     # set the cache dir --------------------------------------------------------
     cache_dir <- .set_cache(cache)
 
-    # if we're feeding output from get_available_images(), use those values-----
+    # if we're feeding output from get_available_imagery(), use those values-----
     if (substr(product_id[1],
                nchar(product_id[1]) - 3, nchar(product_id[1])) == ".tif") {
       tif_files <- utils::tail(product_id, scans)

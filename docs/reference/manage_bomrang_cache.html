@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -62,18 +62,6 @@
 </li>
 <li>
   <a href="../reference/index.html">Reference</a>
-</li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/bomrang_use_case.html">Vignette Title</a>
-    </li>
-  </ul>
 </li>
 <li>
   <a href="../news/index.html">News</a>
@@ -134,8 +122,8 @@ for interacting and managing these files.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p><code>bomrang_cache_delete</code> only accepts one file name, while
-<code>bomrang_cache_delete_all</code> does not accept any names, but deletes all files.
-For deleting many specific files, use <code>cache_delete</code> in a
+<code>bomrang_cache_delete_all</code> does not accept any names, but deletes all
+files.  For deleting many specific files, use <code>cache_delete</code> in a
 <code>lapply</code> type call.</p>
 <p>We files cache using <code><a href='http://www.rdocumentation.org/packages/rappdirs/topics/user_cache_dir'>user_cache_dir</a></code>, find your
 cache folder by executing <code><a href='http://www.rdocumentation.org/packages/rappdirs/topics/user_cache_dir'>rappdirs::user_cache_dir("bomrang")</a></code></p>

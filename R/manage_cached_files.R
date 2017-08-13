@@ -1,3 +1,4 @@
+
 #' @title Manage locally cached bomrang files
 #'
 #' @description The user is given an option when downloading the bomrang
@@ -13,8 +14,8 @@
 #' \code{TRUE}
 #'
 #' @details \code{bomrang_cache_delete} only accepts one file name, while
-#' \code{bomrang_cache_delete_all} does not accept any names, but deletes all files.
-#' For deleting many specific files, use \code{cache_delete} in a
+#' \code{bomrang_cache_delete_all} does not accept any names, but deletes all
+#' files.  For deleting many specific files, use \code{cache_delete} in a
 #' \code{\link{lapply}} type call.
 #'
 #' We files cache using \code{\link[rappdirs]{user_cache_dir}}, find your
@@ -60,8 +61,13 @@
 #' @rdname manage_bomrang_cache
 bomrang_cache_list <- function() {
   cache_dir <- rappdirs::user_cache_dir("bomrang")
-  list.files(cache_dir, ignore.case = TRUE, include.dirs = TRUE,
-             recursive = TRUE, full.names = TRUE)
+  list.files(
+    cache_dir,
+    ignore.case = TRUE,
+    include.dirs = TRUE,
+    recursive = TRUE,
+    full.names = TRUE
+  )
 }
 
 #' @export
@@ -69,20 +75,29 @@ bomrang_cache_list <- function() {
 bomrang_cache_delete <- function(files, force = TRUE) {
   cache_dir <- rappdirs::user_cache_dir("bomrang")
   if (!all(file.exists(cache_dir, "/", files))) {
-    stop("These files don't exist or can't be found: \n",
-         strwrap(file.path(cache_dir, files)[!file.exists(
-           file.path(cache_dir, files))], indent = 5), call. = FALSE)
+    stop(
+      "These files don't exist or can't be found: \n",
+      strwrap(file.path(cache_dir, files)[!file.exists(file.path(cache_dir, files))], indent = 5),
+      call. = FALSE
+    )
   }
   unlink(file.path(cache_dir, files),
-         force = force, recursive = TRUE)
+         force = force,
+         recursive = TRUE)
 }
 
 #' @export
 #' @rdname manage_bomrang_cache
 bomrang_cache_delete_all <- function(force = TRUE) {
   cache_dir <- rappdirs::user_cache_dir("bomrang")
-  files <- list.files(cache_dir, ignore.case = TRUE, include.dirs = TRUE,
-                      full.names = TRUE, recursive = TRUE)
+  files <-
+    list.files(
+      cache_dir,
+      ignore.case = TRUE,
+      include.dirs = TRUE,
+      full.names = TRUE,
+      recursive = TRUE
+    )
   unlink(files, force = force, recursive = TRUE)
 }
 
@@ -91,8 +106,14 @@ bomrang_cache_delete_all <- function(force = TRUE) {
 bomrang_cache_details <- function(files = NULL) {
   cache_dir <- rappdirs::user_cache_dir("bomrang")
   if (is.null(files)) {
-    files <- list.files(cache_dir, ignore.case = TRUE, include.dirs = TRUE,
-                        full.names = TRUE, recursive = TRUE)
+    files <-
+      list.files(
+        cache_dir,
+        ignore.case = TRUE,
+        include.dirs = TRUE,
+        full.names = TRUE,
+        recursive = TRUE
+      )
     structure(lapply(files, file_info_), class = "bomrang_cache_info")
   } else {
     structure(lapply(files, file_info_), class = "bomrang_cache_info")
@@ -108,8 +129,10 @@ file_info_ <- function(x) {
   }
   list(file = x,
        type = "gz",
-       size = if (!is.na(fs)) getsize(fs) else NA
-  )
+       size = if (!is.na(fs))
+         getsize(fs)
+       else
+         NA)
 }
 
 getsize <- function(x) {
@@ -123,8 +146,11 @@ print.bomrang_cache_info <- function(x, ...) {
   cat(sprintf("  directory: %s\n", cache_dir), sep = "\n")
   for (i in seq_along(x)) {
     cat(paste0("  file: ", sub(cache_dir, "", x[[i]]$file)), sep = "\n")
-    cat(paste0("  size: ", x[[i]]$size, if (is.na(x[[i]]$size)) "" else " mb"),
-        sep = "\n")
+    cat(paste0("  size: ", x[[i]]$size, if (is.na(x[[i]]$size))
+      ""
+      else
+        " mb"),
+      sep = "\n")
     cat("\n")
   }
 }

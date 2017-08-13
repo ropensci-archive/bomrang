@@ -31,8 +31,8 @@ for interacting and managing these files.
 }
 \details{
 \code{bomrang_cache_delete} only accepts one file name, while
-\code{bomrang_cache_delete_all} does not accept any names, but deletes all files.
-For deleting many specific files, use \code{cache_delete} in a
+\code{bomrang_cache_delete_all} does not accept any names, but deletes all
+files.  For deleting many specific files, use \code{cache_delete} in a
 \code{\link{lapply}} type call.
 
 We files cache using \code{\link[rappdirs]{user_cache_dir}}, find your
