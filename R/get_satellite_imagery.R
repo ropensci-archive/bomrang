@@ -2,6 +2,15 @@
 
 
 
+
+
+
+
+
+
+
+
+
 # get_available_imagery() -------------------------------------------------------
 
 #' Get a Listing of Available BoM Satellite GeoTIFF Imagery
@@ -61,7 +70,6 @@ get_available_imagery <- function(product_id = "all") {
   .check_IDs(product_id)
   message("\nThe following files are currently available for download:\n")
   tif_list <- .ftp_images(product_id)
-  write(tif_list, file = file.path(tempdir(), "tif_list"))
   print(tif_list)
 }
 
@@ -151,7 +159,7 @@ get_satellite_imagery <-
     # set the cache dir --------------------------------------------------------
     cache_dir <- .set_cache(cache)
 
-    # if we're feeding output from get_available_imagery(), use those values-----
+    # if we're feeding output from get_available_imagery(), use those values----
     if (substr(product_id[1],
                nchar(product_id[1]) - 3, nchar(product_id[1])) == ".tif") {
       tif_files <- utils::tail(product_id, scans)
@@ -232,24 +240,27 @@ get_satellite_imagery <-
 .ftp_images <- function(product_id) {
   # setup internal variables ---------------------------------------------------
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/gms/"
-  list_files <- curl::new_handle()
-  curl::handle_setopt(list_files,
-                      ftp_use_epsv = TRUE,
-                      dirlistonly = TRUE)
+  if (file.exists(file.path(tempdir(), "tif_files"))) {
+    ts <- file.info(file.path(tempdir(), "tif_files"))$mtime
+  }
 
-  # get file list from FTP server ----------------------------------------------
-  con <- curl::curl(url = ftp_base,
-                    "r",
-                    handle = list_files)
-  tif_files <- readLines(con)
-  close(con)
+  # to save time, check to see if we've already queried the server -------------
+  if (!file.exists(file.path(tempdir(), "tif_files")) ||
+                   ts <= ts + 600) {
+    list_files <- curl::new_handle()
+    curl::handle_setopt(list_files,
+                        ftp_use_epsv = TRUE,
+                        dirlistonly = TRUE)
 
-  # filter only the GeoTIFF files ----------------------------------------------
-  tif_files <- tif_files[grepl("^.*\\.tif", tif_files)]
+    # get file list from FTP server --------------------------------------------
+    con <- curl::curl(url = ftp_base,
+                      "r",
+                      handle = list_files)
+    tif_files <- readLines(con)
+    close(con)
 
-  # if somehow we don't have full ftp addresses, make sure that we do ----------
-  if (substr(tif_files, 1, 3) != "ftp") {
-    tif_files <- paste0(ftp_base, tif_files)
+    write(tif_files, file = file.path(tempdir(),
+                                      "tif_files"))
   }
 
   # select the Product ID requested from list of files -------------------------
@@ -334,6 +345,13 @@ get_satellite_imagery <-
     tif_files
   }
 
+  # filter only the GeoTIFF files ----------------------------------------------
+  tif_files <- tif_files[grepl("^.*\\.tif", tif_files)]
+
+  # if somehow we don't have full ftp addresses, make sure that we do ----------
+  if (substr(tif_files, 1, 3) != "ftp") {
+    tif_files <- paste0(ftp_base, tif_files)
+  }
   # check if the Product ID requested provides any files on server -------------
   if (length(tif_files == 1) && basename(tif_files) == "gms") {
     stop(paste0("\nSorry, no files are currently available for ", product_id))
