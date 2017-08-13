@@ -11,8 +11,8 @@
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
 <!-- Bootstrap -->
+<link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
-<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -63,18 +63,6 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
-<li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-    Articles
-     
-    <span class="caret"></span>
-  </a>
-  <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/bomrang_use_case.html">Vignette Title</a>
-    </li>
-  </ul>
-</li>
 <li>
   <a href="../news/index.html">News</a>
 </li>
@@ -117,19 +105,21 @@
 <h2 class="hasAnchor">
 <a href="#major-changes" class="anchor"></a>Major changes</h2>
 <ul>
+<li><p>Fetch BoM satellite images available through public FTP</p></li>
+<li><p>New use-case vignette, using <em>bomrang</em> for the <em>WINS</em> project</p></li>
 <li><p>Welcome message included with statement regarding BoM copyright</p></li>
-<li><p>Use <code>file.path()</code> in place of <code>paste0()</code></p></li>
 <li><p>Concatenate vignettes into a single file with appendices for descriptions of data returned by functions</p></li>
-<li><p>Product IDs are included in outputs from <code>get_*()</code> functions</p></li>
+<li><p>Product IDs are included in outputs from <code>get_*()</code> functions that return a tidy dataframe</p></li>
 <li><p>Full station names are reported along with BoM’s current name used to refer to a station location. In some cases a station “name” may be the same for both a current and retired station.</p></li>
-<li><p>Databases station locations and other metadata are internal an not exposed to the user</p></li>
-<li><p>Fuzzy matching is used for all functions now when user enters a value for a desired state, station or the whole country</p></li>
+<li><p>Fuzzy matching is used for all functions now when user enters a value for a desired state, station or the whole country for functions that require a <code>state</code> argument</p></li>
 </ul>
 </div>
-<div id="minor-changes" class="section level2">
+<div id="internal-changes" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes" class="anchor"></a>Minor changes</h2>
+<a href="#internal-changes" class="anchor"></a>Internal changes</h2>
 <ul>
+<li><p>Databases station locations and other metadata are internal an not exposed to the user</p></li>
+<li><p>Use <code>file.path()</code> in place of <code>paste0()</code></p></li>
 <li><p>Shorten code line lengths to be &lt;= 80 chars</p></li>
 <li><p>Lint md files</p></li>
 <li><p>Spellchecking in all files</p></li>
@@ -191,9 +181,9 @@
     <div id="bomrang-0-0-3-3-2017-06-03" class="section level1">
 <h1 class="hasAnchor">
 <a href="#bomrang-0-0-3-3-2017-06-03" class="anchor"></a>bomrang 0.0.3-3 2017-06-03</h1>
-<div id="minor-changes-1" class="section level2">
+<div id="minor-changes" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-1" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes" class="anchor"></a>Minor changes</h2>
 <ul>
 <li><p>Add links to vignettes documenting the fields returned in the data frames from the <code>get_*()</code> functions</p></li>
 <li><p>Use the DOI that always points to latest version</p></li>
@@ -203,9 +193,9 @@
     <div id="bomrang-0-0-3-2-2017-06-03" class="section level1">
 <h1 class="hasAnchor">
 <a href="#bomrang-0-0-3-2-2017-06-03" class="anchor"></a>bomrang 0.0.3-2 2017-06-03</h1>
-<div id="minor-changes-2" class="section level2">
+<div id="minor-changes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-2" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-1" class="anchor"></a>Minor changes</h2>
 <ul>
 <li><p>Add vignettes describing the data returned from <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, remove this from function help files</p></li>
 <li><p>Correct documentation reference in README file</p></li>
@@ -215,9 +205,9 @@
     <div id="bomrang-0-0-3-1-2017-06-03" class="section level1">
 <h1 class="hasAnchor">
 <a href="#bomrang-0-0-3-1-2017-06-03" class="anchor"></a>bomrang 0.0.3-1 2017-06-03</h1>
-<div id="minor-changes-3" class="section level2">
+<div id="minor-changes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-3" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-2" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Add vignette describing the data returned from <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>
 </li>
@@ -237,9 +227,9 @@
 <li><p>Generation of the JSON URL list is much faster, now can be updated by the user in a few seconds as desired using the new <code><a href="../reference/update_station_locations.html">update_station_locations()</a></code> function</p></li>
 </ul>
 </div>
-<div id="minor-changes-4" class="section level2">
+<div id="minor-changes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-4" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-3" class="anchor"></a>Minor changes</h2>
 <ul>
 <li><p>Better tests written for the package</p></li>
 <li><p>Add a new file describing internal database creation for station locations, metadata and JSON URLs, create_BoM_station_list.md</p></li>
@@ -250,9 +240,9 @@
     <div id="bomrang-0-0-2-1" class="section level1">
 <h1 class="hasAnchor">
 <a href="#bomrang-0-0-2-1" class="anchor"></a>bomrang 0.0.2-1</h1>
-<div id="minor-changes-5" class="section level2">
+<div id="minor-changes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-5" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-4" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Add more information to description field in DESCRIPTION file</li>
 </ul>
@@ -275,9 +265,9 @@
 <li><p><code>update_locations()</code> is now <code>update_precis_locations()</code></p></li>
 </ul>
 </div>
-<div id="minor-changes-6" class="section level2">
+<div id="minor-changes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-6" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-5" class="anchor"></a>Minor changes</h2>
 <ul>
 <li><p>All functions will return a <code>data.frame</code> object, not a <code>tibble</code></p></li>
 <li><p>If a server is not responding, the function returns a more meaningful error message on exit</p></li>

@@ -5,8 +5,8 @@
 #' frame
 #'
 #' @param state Australian state or territory as full name or postal code.
-#' Fuzzy string matching via \code{base::agrep} is done.  Defaults to "AUS"
-#' returning all state bulletins, see details for more.
+#' Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
+#' "AUS" returning all state bulletins, see details for more.
 #'
 #' @details Allowed state and territory postal codes, only one state per request
 #' or all using \code{AUS}.
