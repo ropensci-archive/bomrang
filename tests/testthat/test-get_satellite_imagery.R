@@ -9,6 +9,4 @@ test_that("Error handling", {
 test_that("get_available_imagery() returns proper classes", {
   i <- get_available_imagery()
   expect_type(i, "character")
-  expect_type(get_satellite_imagery(product_id = i[[3]], scans = 1),
-              "S4")
 })
