@@ -1,4 +1,7 @@
 
+
+
+
 # get_available_imagery() -------------------------------------------------------
 
 #' Get a Listing of Available BoM Satellite GeoTIFF Imagery
@@ -141,7 +144,6 @@ get_satellite_imagery <-
   function(product_id = NULL,
            scans = 1,
            cache = FALSE) {
-
     if (is.null(product_id)) {
       stop("\nYou must select a valid BoM satellite imagery Product ID.\n")
     }
@@ -185,7 +187,8 @@ get_satellite_imagery <-
     )
 
     # create raster stack object of the GeoTIFF files --------------------------
-    files <- list.files(cache_dir, pattern = ".tif$", full.names = TRUE)
+    files <-
+      list.files(cache_dir, pattern = ".tif$", full.names = TRUE)
     files <- files[basename(files) %in% basename(tif_files)]
     read_tif <- raster::stack(files)
     return(read_tif)
@@ -193,30 +196,36 @@ get_satellite_imagery <-
 
 #'@noRd
 .check_IDs <- function(product_id) {
-  IDs <- c("IDE00420",
-           "IDE00421",
-           "IDE00422",
-           "IDE00423",
-           "IDE00425",
-           "IDE00426",
-           "IDE00427",
-           "IDE00430",
-           "IDE00431",
-           "IDE00432",
-           "IDE00433",
-           "IDE00435",
-           "IDE00436",
-           "IDE00437",
-           "IDE00439")
+  IDs <- c(
+    "IDE00420",
+    "IDE00421",
+    "IDE00422",
+    "IDE00423",
+    "IDE00425",
+    "IDE00426",
+    "IDE00427",
+    "IDE00430",
+    "IDE00431",
+    "IDE00432",
+    "IDE00433",
+    "IDE00435",
+    "IDE00436",
+    "IDE00437",
+    "IDE00439"
+  )
 
-  if (product_id %in% IDs) {
+  if (product_id == "all") {
+    product_id <- IDs
+  } else if (product_id %in% IDs) {
     product_id <- product_id
   } else {
-      stop(
-        "\nA product ID matching what you entered, ", product_id, "\nwas not\n",
-        "\nfound. Please check and try again.\n"
-      )
-    }
+    stop(
+      "\nA product ID matching what you entered, ",
+      product_id,
+      "\nwas not\n",
+      "\nfound. Please check and try again.\n"
+    )
+  }
 }
 
 #'@noRd
@@ -238,84 +247,89 @@ get_satellite_imagery <-
   # filter only the GeoTIFF files ----------------------------------------------
   tif_files <- tif_files[grepl("^.*\\.tif", tif_files)]
 
+  # if somehow we don't have full ftp addresses, make sure that we do ----------
+  if (substr(tif_files, 1, 3) != "ftp") {
+    tif_files <- paste0(ftp_base, tif_files)
+  }
+
   # select the Product ID requested from list of files -------------------------
   if (product_id != "all") {
-  tif_files <- switch(
-    product_id,
-    "IDE00420" = {
+    tif_files <- switch(
+      product_id,
+      "IDE00420" = {
+        paste0(ftp_base,
+               tif_files[grepl("IDE00420",
+                               tif_files)])
+      },
+      "IDE00421" = {
+        paste0(ftp_base,
+               tif_files[grepl("IDE00421",
+                               tif_files)])
+      },
+      "IDE00422" = {
+        paste0(ftp_base,
+               tif_files[grepl("IDE00422",
+                               tif_files)])
+      },
+      "IDE00423" = {
+        paste0(ftp_base,
+               tif_files[grepl("IDE00423",
+                               tif_files)])
+      },
+      "IDE00425" = {
+        paste0(ftp_base,
+               tif_files[grepl("IDE00425",
+                               tif_files)])
+      },
+      "IDE00426" = {
+        paste0(ftp_base,
+               tif_files[grepl("IDE00426",
+                               tif_files)])
+      },
+      "IDE00427" = {
+        paste0(ftp_base,
+               tif_files[grepl("IDE00427",
+                               tif_files)])
+      },
+      "IDE00430" = {
+        paste0(ftp_base,
+               tif_files[grepl("IDE00430",
+                               tif_files)])
+      },
+      "IDE00431" = {
+        paste0(ftp_base,
+               tif_files[grepl("IDE00431",
+                               tif_files)])
+      },
+      "IDE00432" = {
+        paste0(ftp_base,
+               tif_files[grepl("IDE00432",
+                               tif_files)])
+      },
+      "IDE00433" = {
+        paste0(ftp_base,
+               tif_files[grepl("IDE00433",
+                               tif_files)])
+      },
+      "IDE00435" = {
+        paste0(ftp_base,
+               tif_files[grepl("IDE00435",
+                               tif_files)])
+      },
+      "IDE00436" = {
+        paste0(ftp_base,
+               tif_files[grepl("IDE00436",
+                               tif_files)])
+      },
+      "IDE00437" = {
+        paste0(ftp_base,
+               tif_files[grepl("IDE00437",
+                               tif_files)])
+      },
       paste0(ftp_base,
-             tif_files[grepl("IDE00420",
+             tif_files[grepl("IDE00439",
                              tif_files)])
-    },
-    "IDE00421" = {
-      paste0(ftp_base,
-             tif_files[grepl("IDE00421",
-                             tif_files)])
-    },
-    "IDE00422" = {
-      paste0(ftp_base,
-             tif_files[grepl("IDE00422",
-                             tif_files)])
-    },
-    "IDE00423" = {
-      paste0(ftp_base,
-             tif_files[grepl("IDE00423",
-                             tif_files)])
-    },
-    "IDE00425" = {
-      paste0(ftp_base,
-             tif_files[grepl("IDE00425",
-                             tif_files)])
-    },
-    "IDE00426" = {
-      paste0(ftp_base,
-             tif_files[grepl("IDE00426",
-                             tif_files)])
-    },
-    "IDE00427" = {
-      paste0(ftp_base,
-             tif_files[grepl("IDE00427",
-                             tif_files)])
-    },
-    "IDE00430" = {
-      paste0(ftp_base,
-             tif_files[grepl("IDE00430",
-                             tif_files)])
-    },
-    "IDE00431" = {
-      paste0(ftp_base,
-             tif_files[grepl("IDE00431",
-                             tif_files)])
-    },
-    "IDE00432" = {
-      paste0(ftp_base,
-             tif_files[grepl("IDE00432",
-                             tif_files)])
-    },
-    "IDE00433" = {
-      paste0(ftp_base,
-             tif_files[grepl("IDE00433",
-                             tif_files)])
-    },
-    "IDE00435" = {
-      paste0(ftp_base,
-             tif_files[grepl("IDE00435",
-                             tif_files)])
-    },
-    "IDE00436" = {
-      paste0(ftp_base,
-             tif_files[grepl("IDE00436",
-                             tif_files)])
-    },
-    "IDE00437" = {
-      paste0(ftp_base,
-             tif_files[grepl("IDE00437",
-                             tif_files)])
-    },
-    paste0(ftp_base,
-           tif_files[grepl("IDE00439",
-                           tif_files)])
-  )
+    )
   } else {
     tif_files
   }
