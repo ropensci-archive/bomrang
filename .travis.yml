@@ -1,7 +1,6 @@
-# R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
-
-language: R
-sudo: false
+language: r
+sudo: required
+dist: trusty
 cache: packages
 
 ## Set up the matrix of different runs
@@ -14,6 +13,9 @@ env:
     not_cran: false
     r_check_args: "--no-manual --as--cran"
 
+before_install:
+- sudo apt-get install -y libgdal-dev libproj-dev
+
 after_failure:
   - ./pkg-build.sh dump_logs
 
@@ -21,7 +23,6 @@ notifications:
   email:
     on_success: change
     on_failure: change
-
 
 after_success:
   - Rscript -e 'covr::codecov()'
