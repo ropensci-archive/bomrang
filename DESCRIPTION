@@ -38,6 +38,7 @@ Imports:
 Encoding: UTF-8
 LazyData: true
 Suggests:
+    ccafs,
     covr,
     testthat,
     knitr,
