@@ -58,7 +58,7 @@ get_available_imagery <- function(product_id = "all") {
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/gms/"
   .check_IDs(product_id)
   message("\nThe following files are currently available for download:\n")
-  tif_list <- .ftp_images(product_id, ftp_base)
+  tif_list <- .ftp_images(product_id, BoM_server = ftp_base)
   write(tif_list, file = file.path(tempdir(), "tif_list"))
   print(tif_list)
 }
@@ -164,7 +164,7 @@ get_satellite_imagery <-
         tif_files <- readLines(file.path(tempdir(), "tif_files"))
       } else {
         # check what's on the server -------------------------------------------
-        tif_files <- .ftp_images(product_id, ftp_base)
+        tif_files <- .ftp_images(product_id, BoM_server = ftp_base)
       }
 
       # filter by number of scans requested ------------------------------------
@@ -196,6 +196,7 @@ get_satellite_imagery <-
     return(read_tif)
   }
 
+# Local internal functions -----------------------------------------------------
 #'@noRd
 .check_IDs <- function(product_id) {
   IDs <- c(
@@ -231,7 +232,7 @@ get_satellite_imagery <-
 }
 
 #'@noRd
-.ftp_images <- function(product_id, ftp_base) {
+.ftp_images <- function(product_id, BoM_server) {
   # setup internal variables ---------------------------------------------------
   list_files <- curl::new_handle()
   curl::handle_setopt(list_files,
@@ -239,7 +240,7 @@ get_satellite_imagery <-
                       dirlistonly = TRUE)
 
   # get file list from FTP server ----------------------------------------------
-  con <- curl::curl(url = ftp_base,
+  con <- curl::curl(url = BoM_server,
                     "r",
                     handle = list_files)
   tif_files <- readLines(con)
@@ -311,7 +312,7 @@ get_satellite_imagery <-
                  tif_files[grepl("IDE00439",
                              tif_files)]
     )
-    paste0(ftp_base, tif_files)
+    paste0(BoM_server, tif_files)
   } else {
     tif_files
   }
