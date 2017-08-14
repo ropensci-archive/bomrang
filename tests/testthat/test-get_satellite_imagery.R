@@ -11,7 +11,7 @@ test_that("get_available_imagery functions properly", {
   skip_on_cran()
   i <- get_available_imagery()
   expect_type(i, "character")
-  j <- get_satellite_imagery(product_id = i[1], scans = 1)
+  j <- get_satellite_imagery(product_id = i[1], scans = 1, cache = TRUE)
   expect_is(j, "RasterStack")
   expect_true(
     dir.exists(
