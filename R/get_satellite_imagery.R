@@ -1,8 +1,4 @@
 
-
-
-
-
 # get_available_imagery() -------------------------------------------------------
 
 #' Get a Listing of Available BoM Satellite GeoTIFF Imagery
@@ -20,19 +16,6 @@
 #'
 #' @details Valid BoM satellite Product IDs for GeoTIFF files include:
 #'\describe{
-#'#' \item{IDE00401}{AHI IR (Ch13) greyscale 2km AUS equirect. IMG}
-#' \item{IDE00402}{AHI IR (Ch3) greyscale 2km AUS equirect. IMG}
-#' \item{IDE00403}{AHI IR (Ch13) Zehr 2km AUS equirect. IMG}
-#' \item{IDE00404}{AHI IR (Ch13) 'rainbow' 2km AUS equirect. IMG}
-#' \item{IDE00405}{AHI IR (Ch13) Blue Marble 2km AUS equirect. IMG}
-#' \item{IDE00406}{AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km AUS
-#'  equirect. IMG}
-#' \item{IDE00407}{AHI WV (Ch8) 2km AUS equirect. IMG}
-#' \item{IDE00409}{AHI VIS (Ch3) greyscale 0.5km AUS equirect. IMG}
-#' \item{IDE00411}{AHI IR (Ch13) greyscale 4km FD GEOS IMG}
-#' \item{IDE00412}{AHI VIS (Ch3) greyscale 4km FD GEOS IMG}
-#' \item{IDE00416}{AHI VIS (true colour) / IR (Ch13 greyscale) composite 4km AUS
-#'  equirect. IMG}
 #'\item{IDE00420}{AHI cloud cover only 2km FD GEOS GIS}
 #'\item{IDE00421}{AHI IR (Ch13) greyscale 2km FD GEOS GIS}
 #'\item{IDE00422}{AHI VIS (Ch3) greyscale 2km FD GEOS GIS}
@@ -72,9 +55,10 @@
 #'
 #' @export
 get_available_imagery <- function(product_id = "all") {
+  ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/gms/"
   .check_IDs(product_id)
   message("\nThe following files are currently available for download:\n")
-  tif_list <- .ftp_images(product_id)
+  tif_list <- .ftp_images(product_id, ftp_base)
   write(tif_list, file = file.path(tempdir(), "tif_list"))
   print(tif_list)
 }
@@ -104,19 +88,6 @@ get_available_imagery <- function(product_id = "all") {
 #'
 #' @details Valid BoM satellite Product IDs include:
 #'\describe{
-#' \item{IDE00401}{AHI IR (Ch13) greyscale 2km AUS equirect. IMG}
-#' \item{IDE00402}{AHI IR (Ch3) greyscale 2km AUS equirect. IMG}
-#' \item{IDE00403}{AHI IR (Ch13) Zehr 2km AUS equirect. IMG}
-#' \item{IDE00404}{AHI IR (Ch13) 'rainbow' 2km AUS equirect. IMG}
-#' \item{IDE00405}{AHI IR (Ch13) Blue Marble 2km AUS equirect. IMG}
-#' \item{IDE00406}{AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km AUS
-#'  equirect. IMG}
-#' \item{IDE00407}{AHI WV (Ch8) 2km AUS equirect. IMG}
-#' \item{IDE00409}{AHI VIS (Ch3) greyscale 0.5km AUS equirect. IMG}
-#' \item{IDE00411}{AHI IR (Ch13) greyscale 4km FD GEOS IMG}
-#' \item{IDE00412}{AHI VIS (Ch3) greyscale 4km FD GEOS IMG}
-#' \item{IDE00416}{AHI VIS (true colour) / IR (Ch13 greyscale) composite 4km AUS
-#'  equirect. IMG}
 #' \item{IDE00420}{AHI cloud cover only 2km FD GEOS GIS}
 #' \item{IDE00421}{AHI IR (Ch13) greyscale 2km FD GEOS GIS}
 #' \item{IDE00422}{AHI VIS (Ch3) greyscale 2km FD GEOS GIS}
@@ -175,6 +146,8 @@ get_satellite_imagery <-
       stop("\nYou must select a valid BoM satellite imagery Product ID.\n")
     }
 
+    ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/gms/"
+
     # set the cache dir --------------------------------------------------------
     cache_dir <- .set_cache(cache)
 
@@ -191,7 +164,7 @@ get_satellite_imagery <-
         tif_files <- readLines(file.path(tempdir(), "tif_files"))
       } else {
         # check what's on the server -------------------------------------------
-        tif_files <- .ftp_images(product_id)
+        tif_files <- .ftp_images(product_id, ftp_base)
       }
 
       # filter by number of scans requested ------------------------------------
@@ -204,6 +177,8 @@ get_satellite_imagery <-
 
     # create list of files to download that don't exist locally ----------------
     tif_files <- tif_files[tif_files %notin% local_files]
+
+    tif_files <- paste0(ftp_base, tif_files)
 
     # download files from server -----------------------------------------------
     Map(
@@ -224,17 +199,6 @@ get_satellite_imagery <-
 #'@noRd
 .check_IDs <- function(product_id) {
   IDs <- c(
-    "IDE00401",
-    "IDE00402",
-    "IDE00403",
-    "IDE00404",
-    "IDE00405",
-    "IDE00406",
-    "IDE00407",
-    "IDE00409",
-    "IDE00411",
-    "IDE00412",
-    "IDE00416",
     "IDE00420",
     "IDE00421",
     "IDE00422",
@@ -267,9 +231,8 @@ get_satellite_imagery <-
 }
 
 #'@noRd
-.ftp_images <- function(product_id) {
+.ftp_images <- function(product_id, ftp_base) {
   # setup internal variables ---------------------------------------------------
-  ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/gms/"
   list_files <- curl::new_handle()
   curl::handle_setopt(list_files,
                       ftp_use_epsv = TRUE,
@@ -289,110 +252,64 @@ get_satellite_imagery <-
   if (product_id != "all") {
     tif_files <- switch(
       product_id,
-      "IDE00401" = {
-        tif_files[grepl("IDE00401",
-                        tif_files)]
-      },
-      "IDE00402" = {
-        tif_files[grepl("IDE00402",
-                        tif_files)]
-      },
-      "IDE00403" {
-        tif_files[grepl("IDE00403",
-                        tif_files)]
-      },
-      "IDE00404" = {
-        tif_files[grepl("IDE00404",
-                        tif_files)]
-      },
-      "IDE00405" = {
-        tif_files[grepl("IDE00405",
-                        tif_files)]
-      },
-      "IDE00406" = {
-        tif_files[grepl("IDE00406",
-                        tif_files)]
-      },
-      "IDE00407" = {
-        tif_files[grepl("IDE00407",
-                        tif_files)]
-      },
-      "IDE00409" = {
-        tif_files[grepl("IDE00409",
-                        tif_files)]
-      },
-      "IDE00411" = {
-        tif_files[grepl("IDE00411",
-                        tif_files)]
-      },
-      "IDE00412" = {
-        tif_files[grepl("IDE00412",
-                        tif_files)]
-      },
-      "IDE00416" = {
-        tif_files[grepl("IDE00416",
-                        tif_files)]
-      },
       "IDE00420" = {
-        tif_files[grepl("IDE00420",
-                        tif_files)]
+               tif_files[grepl("IDE00420",
+                               tif_files)]
       },
       "IDE00421" = {
-        tif_files[grepl("IDE00421",
-                        tif_files)]
+               tif_files[grepl("IDE00421",
+                               tif_files)]
       },
       "IDE00422" = {
-        tif_files[grepl("IDE00422",
-                        tif_files)]
+               tif_files[grepl("IDE00422",
+                               tif_files)]
       },
       "IDE00423" = {
-        tif_files[grepl("IDE00423",
-                        tif_files)]
+               tif_files[grepl("IDE00423",
+                               tif_files)]
       },
       "IDE00425" = {
-        tif_files[grepl("IDE00425",
-                        tif_files)]
+               tif_files[grepl("IDE00425",
+                               tif_files)]
       },
       "IDE00426" = {
-        tif_files[grepl("IDE00426",
-                        tif_files)]
+               tif_files[grepl("IDE00426",
+                               tif_files)]
       },
       "IDE00427" = {
-        tif_files[grepl("IDE00427",
-                        tif_files)]
+               tif_files[grepl("IDE00427",
+                               tif_files)]
       },
       "IDE00430" = {
-        paste0(ftp_base,
                tif_files[grepl("IDE00430",
-                               tif_files)])
+                               tif_files)]
       },
       "IDE00431" = {
-        paste0(ftp_base,
                tif_files[grepl("IDE00431",
-                               tif_files)])
+                               tif_files)]
       },
       "IDE00432" = {
-        tif_files[grepl("IDE00432",
-                        tif_files)]
+               tif_files[grepl("IDE00432",
+                               tif_files)]
       },
       "IDE00433" = {
-        tif_files[grepl("IDE00433",
-                        tif_files)]
+               tif_files[grepl("IDE00433",
+                               tif_files)]
       },
       "IDE00435" = {
-        tif_files[grepl("IDE00435",
-                        tif_files)]
+               tif_files[grepl("IDE00435",
+                               tif_files)]
       },
       "IDE00436" = {
-        tif_files[grepl("IDE00436",
-                        tif_files)]
+               tif_files[grepl("IDE00436",
+                               tif_files)]
       },
       "IDE00437" = {
-        tif_files[grepl("IDE00437",
-                        tif_files)]
+               tif_files[grepl("IDE00437",
+                               tif_files)]
       },
-      tif_files[grepl("IDE00439",
-                      tif_files)]
+                 tif_files[grepl("IDE00439",
+                             tif_files)]
     )
     paste0(ftp_base, tif_files)
   } else {
