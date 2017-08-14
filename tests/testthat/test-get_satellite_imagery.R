@@ -1,3 +1,4 @@
+
 context("Satellite imagery")
 
 test_that("Error handling", {
@@ -9,6 +10,13 @@ test_that("Error handling", {
 test_that("get_available_imagery functions properly", {
   i <- get_available_imagery()
   expect_type(i, "character")
+  j <- get_satellite_imagery(product_id = "IDE00425", scans = 1)
+  expect_is(j, "RasterStack")
+  expect_true(
+    dir.exists(
+      rappdirs::user_cache_dir(appname = "bomrang",
+                               appauthor = "bomrang")
+    ))
 })
 
 test_that("product ID urls are properly handled", {
@@ -70,11 +78,11 @@ test_that("product ID urls are properly handled", {
   x <- .ftp_images(product_id = pid, ftp_base)
   expect_equal(substr(basename(x), 1, 8)[1], pid)
 
-#   This product ID doesn't seem to have images associated with it, in spite of
-#   being valid
-#   pid <- "IDE00439"
-#   x <- .ftp_images(product_id = pid, ftp_base)
-#   expect_equal(substr(basename(x), 1, 8)[1], pid)
+  #   This product ID doesn't seem to have images associated with it, in spite of
+  #   being valid
+  #   pid <- "IDE00439"
+  #   x <- .ftp_images(product_id = pid, ftp_base)
+  #   expect_equal(substr(basename(x), 1, 8)[1], pid)
 
   pid <- "IDE30"
   expect_error(.ftp_images(product_id = pid, ftp_base))
