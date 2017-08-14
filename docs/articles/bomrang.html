@@ -496,8 +496,18 @@ i &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_satel
 <p>If you elect to use <code>cache = TRUE</code> when downloading imagery, note that the GTiff files can be quite large and will fill disk space. By using the default <code>cache = FALSE</code> the files will be deleted when the current R session is closed.</p>
 <p>Should you chose to use caching, <em>bomrang</em> provided functions to interact with the cached files:</p>
 <ul>
-<li>List files in the cache, <code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_list()</a></code>,</li>
-<li><p>List info for single files, <code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_details(files = bomrang_cache_list()[1])</a></code> <code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_details(files = bomrang_cache_list()[2])</a></code></p></li>
+<li>
+<p>List files in the cache, <code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_list()</a></code></p>
+<ul>
+<li>
+<p>List info for single files,</p>
+<ul>
+<li><p><code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_details(files = bomrang_cache_list()[1])</a></code></p></li>
+<li><p><code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_details(files = bomrang_cache_list()[2])</a></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
 <li><p>List info for all files, <code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_details()</a></code></p></li>
 <li><p>Delete files by name in cache, <code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_delete()</a></code></p></li>
 <li><p>Delete all files in cache, <code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_delete_all()</a></code></p></li>

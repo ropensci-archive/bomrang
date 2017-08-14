@@ -331,10 +331,13 @@ files can be quite large and will fill disk space. By using the default
 Should you chose to use caching, _bomrang_ provided functions to interact with
 the cached files:
 
-- List files in the cache, `bomrang_cache_list()`,
-  - List info for single files,
-  `bomrang_cache_details(files = bomrang_cache_list()[1])`
-  `bomrang_cache_details(files = bomrang_cache_list()[2])`
+- List files in the cache, `bomrang_cache_list()`
+  
+    - List info for single files,
+  
+        - `bomrang_cache_details(files = bomrang_cache_list()[1])`
+  
+        - `bomrang_cache_details(files = bomrang_cache_list()[2])`
 
 - List info for all files, `bomrang_cache_details()`
 
