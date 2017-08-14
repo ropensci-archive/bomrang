@@ -191,9 +191,13 @@ get_satellite_imagery <-
     # create raster stack object of the GeoTIFF files --------------------------
     files <-
       list.files(cache_dir, pattern = "\\.tif$", full.names = TRUE)
-    tif_files <- basename(tif_files)
     files <- basename(files)[basename(files) %in% basename(tif_files)]
-    read_tif <- raster::stack(file.path(cache_dir, files))
+    files <- file.path(cache_dir, files)
+    if (substr(files, nchar(files) - 3, nchar(files)) == ".tif") {
+      read_tif <- raster::stack(files)
+    } else {
+      stop(paste0("\nCannot create a raster stack object of ", files, ".\n"))
+    }
     return(read_tif)
   }
 
