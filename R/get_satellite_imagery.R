@@ -1,7 +1,4 @@
 
-
-
-
 # get_available_imagery() -------------------------------------------------------
 
 #' Get a Listing of Available BoM Satellite GeoTIFF Imagery
@@ -58,9 +55,10 @@
 #'
 #' @export
 get_available_imagery <- function(product_id = "all") {
+  ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/gms/"
   .check_IDs(product_id)
   message("\nThe following files are currently available for download:\n")
-  tif_list <- .ftp_images(product_id)
+  tif_list <- .ftp_images(product_id, BoM_server = ftp_base)
   write(tif_list, file = file.path(tempdir(), "tif_list"))
   print(tif_list)
 }
@@ -148,6 +146,8 @@ get_satellite_imagery <-
       stop("\nYou must select a valid BoM satellite imagery Product ID.\n")
     }
 
+    ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/gms/"
+
     # set the cache dir --------------------------------------------------------
     cache_dir <- .set_cache(cache)
 
@@ -164,7 +164,7 @@ get_satellite_imagery <-
         tif_files <- readLines(file.path(tempdir(), "tif_files"))
       } else {
         # check what's on the server -------------------------------------------
-        tif_files <- .ftp_images(product_id)
+        tif_files <- .ftp_images(product_id, BoM_server = ftp_base)
       }
 
       # filter by number of scans requested ------------------------------------
@@ -178,6 +178,8 @@ get_satellite_imagery <-
     # create list of files to download that don't exist locally ----------------
     tif_files <- tif_files[tif_files %notin% local_files]
 
+    tif_files <- paste0(ftp_base, tif_files)
+
     # download files from server -----------------------------------------------
     Map(
       function(urls, destination)
@@ -188,12 +190,21 @@ get_satellite_imagery <-
 
     # create raster stack object of the GeoTIFF files --------------------------
     files <-
-      list.files(cache_dir, pattern = ".tif$", full.names = TRUE)
-    files <- files[basename(files) %in% basename(tif_files)]
-    read_tif <- raster::stack(files)
+      list.files(cache_dir, pattern = "\\.tif$", full.names = TRUE)
+    files <- basename(files)[basename(files) %in% basename(tif_files)]
+    files <- file.path(cache_dir, files)
+    if (substr(files, nchar(files) - 3, nchar(files)) == ".tif") {
+      read_tif <- raster::stack(files)
+    } else {
+      stop(paste0("\nCannot create a raster stack object of ", files, ".\n",
+                  "\nPerhaps the file download corrupted?\n",
+                  "\nYou might also check your cache directory for the files.\n"
+                  ))
+    }
     return(read_tif)
   }
 
+# Local internal functions -----------------------------------------------------
 #'@noRd
 .check_IDs <- function(product_id) {
   IDs <- c(
@@ -229,16 +240,15 @@ get_satellite_imagery <-
 }
 
 #'@noRd
-.ftp_images <- function(product_id) {
+.ftp_images <- function(product_id, BoM_server) {
   # setup internal variables ---------------------------------------------------
-  ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/gms/"
   list_files <- curl::new_handle()
   curl::handle_setopt(list_files,
                       ftp_use_epsv = TRUE,
                       dirlistonly = TRUE)
 
   # get file list from FTP server ----------------------------------------------
-  con <- curl::curl(url = ftp_base,
+  con <- curl::curl(url = BoM_server,
                     "r",
                     handle = list_files)
   tif_files <- readLines(con)
@@ -247,95 +257,77 @@ get_satellite_imagery <-
   # filter only the GeoTIFF files ----------------------------------------------
   tif_files <- tif_files[grepl("^.*\\.tif", tif_files)]
 
-  # if somehow we don't have full ftp addresses, make sure that we do ----------
-  if (substr(tif_files, 1, 3) != "ftp") {
-    tif_files <- paste0(ftp_base, tif_files)
-  }
-
   # select the Product ID requested from list of files -------------------------
   if (product_id != "all") {
     tif_files <- switch(
       product_id,
       "IDE00420" = {
-        paste0(ftp_base,
                tif_files[grepl("IDE00420",
-                               tif_files)])
+                               tif_files)]
       },
       "IDE00421" = {
-        paste0(ftp_base,
                tif_files[grepl("IDE00421",
-                               tif_files)])
+                               tif_files)]
       },
       "IDE00422" = {
-        paste0(ftp_base,
                tif_files[grepl("IDE00422",
-                               tif_files)])
+                               tif_files)]
       },
       "IDE00423" = {
-        paste0(ftp_base,
                tif_files[grepl("IDE00423",
-                               tif_files)])
+                               tif_files)]
       },
       "IDE00425" = {
-        paste0(ftp_base,
                tif_files[grepl("IDE00425",
-                               tif_files)])
+                               tif_files)]
       },
       "IDE00426" = {
-        paste0(ftp_base,
                tif_files[grepl("IDE00426",
-                               tif_files)])
+                               tif_files)]
       },
       "IDE00427" = {
-        paste0(ftp_base,
                tif_files[grepl("IDE00427",
-                               tif_files)])
+                               tif_files)]
       },
       "IDE00430" = {
-        paste0(ftp_base,
                tif_files[grepl("IDE00430",
-                               tif_files)])
+                               tif_files)]
       },
       "IDE00431" = {
-        paste0(ftp_base,
                tif_files[grepl("IDE00431",
-                               tif_files)])
+                               tif_files)]
       },
       "IDE00432" = {
-        paste0(ftp_base,
                tif_files[grepl("IDE00432",
-                               tif_files)])
+                               tif_files)]
       },
       "IDE00433" = {
-        paste0(ftp_base,
                tif_files[grepl("IDE00433",
-                               tif_files)])
+                               tif_files)]
       },
       "IDE00435" = {
-        paste0(ftp_base,
                tif_files[grepl("IDE00435",
-                               tif_files)])
+                               tif_files)]
       },
       "IDE00436" = {
-        paste0(ftp_base,
                tif_files[grepl("IDE00436",
-                               tif_files)])
+                               tif_files)]
       },
       "IDE00437" = {
-        paste0(ftp_base,
                tif_files[grepl("IDE00437",
-                               tif_files)])
+                               tif_files)]
       },
-      paste0(ftp_base,
-             tif_files[grepl("IDE00439",
-                             tif_files)])
+                 tif_files[grepl("IDE00439",
+                             tif_files)]
     )
+    paste0(BoM_server, tif_files)
   } else {
     tif_files
   }
 
   # check if the Product ID requested provides any files on server -------------
-  if (length(tif_files == 1) && basename(tif_files) == "gms") {
+  if (length(tif_files) == 0 |
+      tif_files[1] == "ftp://ftp.bom.gov.au/anon/gen/gms/") {
     stop(paste0("\nSorry, no files are currently available for ", product_id))
   }
   return(tif_files)

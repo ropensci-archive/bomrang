@@ -1,7 +1,14 @@
 language: r
 sudo: required
 dist: trusty
-cache: packages
+addons:
+  apt:
+    packages:
+      - libgdal-dev
+      - libproj-dev
+r_binary_packages:
+   - rgdal
+   - rgeos
 
 ## Set up the matrix of different runs
 env:
@@ -13,8 +20,10 @@ env:
     not_cran: false
     r_check_args: "--no-manual --as--cran"
 
-before_install:
-- sudo apt-get install -y libgdal-dev libproj-dev
+script:
+  - |
+    R CMD build .
+    travis_wait 20 R CMD check bomrang*tar.gz
 
 after_failure:
   - ./pkg-build.sh dump_logs
