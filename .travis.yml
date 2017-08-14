@@ -16,6 +16,11 @@ env:
 before_install:
 - sudo apt-get install -y libgdal-dev libproj-dev
 
+script:
+  - |
+    R CMD build .
+    travis_wait 20 R CMD check bomrang*tar.gz
+
 after_failure:
   - ./pkg-build.sh dump_logs
 
