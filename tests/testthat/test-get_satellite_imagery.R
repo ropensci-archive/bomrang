@@ -17,67 +17,71 @@ test_that("get_available_imagery functions properly", {
   ))
 })
 
-# test_that("product ID urls are properly handled", {
-#   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/gms/"
-#
-#   pid <- "IDE00420"
-#    <- .ftp_images(product_id = pid)
-#   expect_equal(,
-#                paste0("ftp://ftp.bom.gov.au/anon/gen/gms/", pid))
-#
-#   pid <- "IDE00421"
-#   expect_equal(.ftp_images(product_id = pid),
-#                paste0("ftp://ftp.bom.gov.au/anon/gen/gms/", pid))
-#
-#   pid <- "IDE00422"
-#   expect_equal(.ftp_images(product_id = pid),
-#                paste0("ftp://ftp.bom.gov.au/anon/gen/gms/", pid))
-#
-#   pid <- "IDE00423"
-#   expect_equal(.ftp_images(product_id = pid),
-#                paste0("ftp://ftp.bom.gov.au/anon/gen/gms/", pid))
-#
-#   pid <- "IDE00425"
-#   expect_equal(.ftp_images(product_id = pid),
-#                paste0("ftp://ftp.bom.gov.au/anon/gen/gms/", pid))
-#
-#   pid <- "IDE00426"
-#   expect_equal(.ftp_images(product_id = pid),
-#                paste0("ftp://ftp.bom.gov.au/anon/gen/gms/", pid))
-#
-#   pid <- "IDE00427"
-#   expect_equal(.ftp_images(product_id = pid),
-#                paste0("ftp://ftp.bom.gov.au/anon/gen/gms/", pid))
-#
-#   pid <- "IDE00430"
-#   expect_equal(.ftp_images(product_id = pid),
-#                paste0("ftp://ftp.bom.gov.au/anon/gen/gms/", pid))
-#
-#   pid <- "IDE00431"
-#   expect_equal(.ftp_images(product_id = pid),
-#                paste0("ftp://ftp.bom.gov.au/anon/gen/gms/", pid))
-#
-#   pid <- "IDE00432"
-#   expect_equal(.ftp_images(product_id = pid),
-#                paste0("ftp://ftp.bom.gov.au/anon/gen/gms/", pid))
-#
-#   pid <- "IDE00433"
-#   expect_equal(.ftp_images(product_id = pid),
-#                paste0("ftp://ftp.bom.gov.au/anon/gen/gms/", pid))
-#
-#   pid <- "IDE00435"
-#   expect_equal(.ftp_images(product_id = pid),
-#                paste0("ftp://ftp.bom.gov.au/anon/gen/gms/", pid))
-#
-#   pid <- "IDE00436"
-#   expect_equal(.ftp_images(product_id = pid),
-#                paste0("ftp://ftp.bom.gov.au/anon/gen/gms/", pid))
-#
-#   pid <- "IDE00437"
-#   expect_equal(.ftp_images(product_id = pid),
-#                paste0("ftp://ftp.bom.gov.au/anon/gen/gms/", pid))
-#
-#   rm(pid)
-#   expect_equal(.ftp_images(product_id = pid),
-#                paste0("ftp://ftp.bom.gov.au/anon/gen/gms/", "IDE00439"))
-# })
+test_that("product ID urls are properly handled", {
+  ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/gms/"
+
+  pid <- "IDE00420"
+  x <- .ftp_images(product_id = pid)
+  expect_equal(substr(basename(x), 1, 8)[1], pid)
+
+  pid <- "IDE00421"
+  x <- .ftp_images(product_id = pid)
+  expect_equal(substr(basename(x), 1, 8)[1], pid)
+
+  pid <- "IDE00422"
+  x <- .ftp_images(product_id = pid)
+  expect_equal(substr(basename(x), 1, 8)[1], pid)
+
+  pid <- "IDE00423"
+  x <- .ftp_images(product_id = pid)
+  expect_equal(substr(basename(x), 1, 8)[1], pid)
+
+  pid <- "IDE00425"
+  x <- .ftp_images(product_id = pid)
+  expect_equal(substr(basename(x), 1, 8)[1], pid)
+
+  pid <- "IDE00426"
+  x <- .ftp_images(product_id = pid)
+  expect_equal(substr(basename(x), 1, 8)[1], pid)
+
+  pid <- "IDE00427"
+  x <- .ftp_images(product_id = pid)
+  expect_equal(substr(basename(x), 1, 8)[1], pid)
+
+  pid <- "IDE00430"
+  x <- .ftp_images(product_id = pid)
+  expect_equal(substr(basename(x), 1, 8)[1], pid)
+
+  pid <- "IDE00431"
+  x <- .ftp_images(product_id = pid)
+  expect_equal(substr(basename(x), 1, 8)[1], pid)
+
+  pid <- "IDE00432"
+  x <- .ftp_images(product_id = pid)
+  expect_equal(substr(basename(x), 1, 8)[1], pid)
+
+  pid <- "IDE00433"
+  x <- .ftp_images(product_id = pid)
+  expect_equal(substr(basename(x), 1, 8)[1], pid)
+
+  pid <- "IDE00435"
+  x <- .ftp_images(product_id = pid)
+  expect_equal(substr(basename(x), 1, 8)[1], pid)
+
+  pid <- "IDE00436"
+  x <- .ftp_images(product_id = pid)
+  expect_equal(substr(basename(x), 1, 8)[1], pid)
+
+  pid <- "IDE00437"
+  x <- .ftp_images(product_id = pid)
+  expect_equal(substr(basename(x), 1, 8)[1], pid)
+
+#   This product ID doesn't seem to have images associated with it, in spite of
+#   being valid
+#   pid <- "IDE00439"
+#   x <- .ftp_images(product_id = pid)
+#   expect_equal(substr(basename(x), 1, 8)[1], pid)
+
+  pid <- "IDE30"
+  expect_error(.ftp_images(product_id = pid))
+})
