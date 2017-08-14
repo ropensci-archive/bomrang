@@ -196,7 +196,10 @@ get_satellite_imagery <-
     if (substr(files, nchar(files) - 3, nchar(files)) == ".tif") {
       read_tif <- raster::stack(files)
     } else {
-      stop(paste0("\nCannot create a raster stack object of ", files, ".\n"))
+      stop(paste0("\nCannot create a raster stack object of ", files, ".\n",
+                  "\nPerhaps the file download corrupted?\n",
+                  "\nYou might also check your cache directory for the files.\n"
+                  ))
     }
     return(read_tif)
   }

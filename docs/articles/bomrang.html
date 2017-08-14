@@ -66,7 +66,7 @@
       <h1>bomrang</h1>
                         <h4 class="author">Adam H Sparks and Hugh Parsonage</h4>
             
-            <h4 class="date">2017-08-13</h4>
+            <h4 class="date">2017-08-15</h4>
           </div>
 
     
@@ -225,23 +225,237 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <a href="#retrieving-with-satellite-imagery" class="anchor"></a>Retrieving with satellite imagery</h2>
 <p><em>bomrang</em> provides functionality to retrieve high-definition GeoTIFF satellite imagery provided by BoM through public FTP with the following types of imagery being available: i.) <a href="http://www.bom.gov.au/australia/satellite/about_images.shtml#ir">Infrared images</a>, ii.) <a href="http://www.bom.gov.au/australia/satellite/about_images.shtml#vis">Visible images</a> and iii.) <a href="http://www.bom.gov.au/australia/satellite/about_images.shtml#cloud">Clouds/surface composite</a>.</p>
 <p>Valid BoM satellite Product IDs for GeoTIFF files include:</p>
-<ul>
-<li><p><strong>IDE00420</strong> AHI cloud cover only 2km FD GEOS GIS</p></li>
-<li><p><strong>IDE00421</strong> AHI IR (Ch13) greyscale 2km FD GEOS GIS</p></li>
-<li><p><strong>IDE00422</strong> AHI VIS (Ch3) greyscale 2km FD GEOS GIS</p></li>
-<li><p><strong>IDE00423</strong> AHI IR (Ch13) Zehr 2km FD GEOS GIS</p></li>
-<li><p><strong>IDE00425</strong> AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km FD GEOS GIS</p></li>
-<li><p><strong>IDE00426</strong> AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km FD GEOS GIS</p></li>
-<li><p><strong>IDE00427</strong> AHI WV (Ch8) 2km FD GEOS GIS</p></li>
-<li><p><strong>IDE00430</strong> AHI cloud cover only 2km AUS equirect. GIS</p></li>
-<li><p><strong>IDE00431</strong> AHI IR (Ch13) greyscale 2km AUS equirect. GIS</p></li>
-<li><p><strong>IDE00432</strong> AHI VIS (Ch3) greyscale 2km AUS equirect. GIS</p></li>
-<li><p><strong>IDE00433</strong> AHI IR (Ch13) Zehr 2km AUS equirect. GIS</p></li>
-<li><p><strong>IDE00435</strong> AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km AUS equirect. GIS</p></li>
-<li><p><strong>IDE00436</strong> AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km AUS equirect. GIS</p></li>
-<li><p><strong>IDE00437</strong> AHI WV (Ch8) 2km AUS equirect. GIS</p></li>
-<li><p><strong>IDE00439</strong> AHI VIS (Ch3) greyscale 0.5km AUS equirect. GIS</p></li>
-</ul>
+<table class="table">
+<tr>
+<th>
+Product ID
+</th>
+<th>
+Description
+</th>
+<th>
+Type
+</th>
+<th>
+Delete time
+</th>
+</tr>
+<tr>
+<td>
+IDE00420
+</td>
+<td>
+AHI cloud cover only 2km FD GEOS
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00421
+</td>
+<td>
+AHI IR (Ch13) greyscale 2km FD GEOS
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00422
+</td>
+<td>
+AHI VIS (Ch3) greyscale 2km FD GEOS
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00423
+</td>
+<td>
+AHI IR (Ch13) Zehr 2km FD GEOS
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00425
+</td>
+<td>
+AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km FD GEOS
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00426
+</td>
+<td>
+AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km FD GEOS
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00427
+</td>
+<td>
+AHI WV (Ch8) 2km FD GEOS
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00430
+</td>
+<td>
+AHI cloud cover only 2km AUS equirect.
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00431
+</td>
+<td>
+AHI IR (Ch13) greyscale 2km AUS equirect.
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00432
+</td>
+<td>
+AHI VIS (Ch3) greyscale 2km AUS equirect.
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00433
+</td>
+<td>
+AHI IR (Ch13) Zehr 2km AUS equirect.
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00435
+</td>
+<td>
+AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km AUS equirect.
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00436
+</td>
+<td>
+AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km AUS equirect.
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00437
+</td>
+<td>
+AHI WV (Ch8) 2km AUS equirect.
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00439
+</td>
+<td>
+AHI VIS (Ch3) greyscale 0.5km AUS equirect.
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<strong>Information gathered from Australian Bureau of Meteorology (BoM)</strong>
+</td>
+</tr>
+</table>
 <div id="using-get_available_imagery" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-get_available_imagery" class="anchor"></a>Using <code>get_available_imagery</code>
@@ -275,6 +489,19 @@ i &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_satel
 <img src="get_satellite_imagery-1.png" alt="get_satellite_imagery-1.png"><p class="caption">get_satellite_imagery-1.png</p>
 </div>
 </div>
+</div>
+<div id="using-caching-for-satellite-imagery" class="section level2">
+<h2 class="hasAnchor">
+<a href="#using-caching-for-satellite-imagery" class="anchor"></a>Using caching for satellite imagery</h2>
+<p>If you elect to use <code>cache = TRUE</code> when downloading imagery, note that the GTiff files can be quite large and will fill disk space. By using the default <code>cache = FALSE</code> the files will be deleted when the current R session is closed.</p>
+<p>Should you chose to use caching, <em>bomrang</em> provided functions to interact with the cached files:</p>
+<ul>
+<li>List files in the cache, <code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_list()</a></code>,</li>
+<li><p>List info for single files, <code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_details(files = bomrang_cache_list()[1])</a></code> <code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_details(files = bomrang_cache_list()[2])</a></code></p></li>
+<li><p>List info for all files, <code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_details()</a></code></p></li>
+<li><p>Delete files by name in cache, <code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_delete()</a></code></p></li>
+<li><p>Delete all files in cache, <code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_delete_all()</a></code></p></li>
+</ul>
 </div>
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
@@ -1541,6 +1768,7 @@ Wind run (kilometres)
       <li><a href="#using-sweep_for_stations">Using <code>sweep_for_stations</code></a></li>
       <li><a href="#using-the-update-functions">Using the update functions</a></li>
       <li><a href="#retrieving-with-satellite-imagery">Retrieving with satellite imagery</a></li>
+      <li><a href="#using-caching-for-satellite-imagery">Using caching for satellite imagery</a></li>
       <li><a href="#references">References</a></li>
       <li><a href="#appendix-1---output-from-get_current_weather">Appendix 1 - Output from <code>get_current_weather</code></a></li>
       <li><a href="#appendix-2---output-from-get_precis_forecast">Appendix 2 - Output from <code>get_précis_forecast</code></a></li>

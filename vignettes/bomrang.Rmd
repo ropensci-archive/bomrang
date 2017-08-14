@@ -322,6 +322,26 @@ plot(i)
 
 ![get_satellite_imagery-1.png](get_satellite_imagery-1.png)
 
+## Using caching for satellite imagery
+
+If you elect to use `cache = TRUE` when downloading imagery, note that the GTiff
+files can be quite large and will fill disk space. By using the default
+`cache = FALSE` the files will be deleted when the current R session is closed.
+
+Should you chose to use caching, _bomrang_ provided functions to interact with
+the cached files:
+
+- List files in the cache, `bomrang_cache_list()`,
+  - List info for single files,
+  `bomrang_cache_details(files = bomrang_cache_list()[1])`
+  `bomrang_cache_details(files = bomrang_cache_list()[2])`
+
+- List info for all files, `bomrang_cache_details()`
+
+- Delete files by name in cache, `bomrang_cache_delete()`
+
+- Delete all files in cache, `bomrang_cache_delete_all()`
+
 ## References
 
 [Australian Bureau of Meteorology (BoM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml)
