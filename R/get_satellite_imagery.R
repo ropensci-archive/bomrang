@@ -192,8 +192,8 @@ get_satellite_imagery <-
     files <-
       list.files(cache_dir, pattern = "\\.tif$", full.names = TRUE)
     tif_files <- basename(tif_files)
-    files <- files[files %in% file.path(cache_dir, tif_files)]
-    read_tif <- raster::stack(files)
+    files <- basename(files)[basename(files) %in% basename(tif_files)]
+    read_tif <- raster::stack(file.path(cache_dir, files))
     return(read_tif)
   }
 
