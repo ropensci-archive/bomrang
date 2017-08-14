@@ -1,7 +1,11 @@
 language: r
 sudo: required
 dist: trusty
-cache: packages
+addons:
+  apt:
+    packages:
+      - libgdal-dev
+      - libproj-dev
 
 ## Set up the matrix of different runs
 env:
@@ -12,9 +16,6 @@ env:
   - r: release
     not_cran: false
     r_check_args: "--no-manual --as--cran"
-
-before_install:
-- sudo apt-get install -y libgdal-dev libproj-dev
 
 script:
   - |
