@@ -10,6 +10,7 @@ test_that("Error handling", {
 test_that("get_available_imagery functions properly", {
   i <- get_available_imagery()
   expect_type(i, "character")
+  expect_error(get_satellite_imagery(product_id = c("IDE00425", "IDE00420")))
   j <- get_satellite_imagery(product_id = "IDE00425", scans = 1)
   expect_is(j, "RasterStack")
   expect_true(
