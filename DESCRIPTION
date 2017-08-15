@@ -31,7 +31,6 @@ Imports:
     raster,
     rappdirs (>= 0.3.1),
     readr (>= 1.1.1),
-    rgdal,
     rlang (>= 0.1.1),
     tidyr (>= 0.6.3),
     utils,
