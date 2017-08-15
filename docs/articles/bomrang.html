@@ -191,7 +191,7 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <div id="using-the-update-functions" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-the-update-functions" class="anchor"></a>Using the update functions</h2>
-<p><em>bomrang</em> uses internal databases of station location data from BoM to provide location and other metadata, <em>e.g.</em> elevation, station names, WMO codes, etc. to make the process of querying for weather data faster. These databases are created and packaged with <em>bomrang</em> for distribution and are updated with new releases. Users have the option of updating these databases after installing <em>bomrang</em>. While this option gives the users the ability to keep the databases up-to-date and gives <em>bomrang</em>’s authors flexibility in maintaning it, this also means that reproducibility may be affected since the same version of <em>bomrang</em> may have different databases on different machines. If reproducibility is necessary, care should be taken to ensure that the version of the databases is the same across different machines.</p>
+<p><em>bomrang</em> uses internal databases of station location data from BoM to provide location and other metadata, <em>e.g.</em> elevation, station names, WMO codes, etc. to make the process of querying for weather data faster. These databases are created and packaged with <em>bomrang</em> for distribution and are updated with new releases. Users have the option of updating these databases after installing <em>bomrang</em>. While this option gives the users the ability to keep the databases up-to-date and gives <em>bomrang</em>’s authors flexibility in maintaining it, this also means that reproducibility may be affected since the same version of <em>bomrang</em> may have different databases on different machines. If reproducibility is necessary, care should be taken to ensure that the version of the databases is the same across different machines.</p>
 <p>The databases consist of three files, used by <em>bomrang</em>, <code>AAC_codes.rda</code>, <code>JSONurl_latlon_by_station_name.rda</code> and <code>stations_site_list.rda</code>. These files can be located on your local system by using the following command,</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste0</span>(<span class="kw">.libPaths</span>(), <span class="st">"/bomrang/extdata"</span>)[<span class="dv">1</span>]</code></pre></div>
 <p>unless you have specified another location for library installations and installed <em>bomrang</em> there, in which case it would still be in <code>bomrang/extdata</code>.</p>
@@ -220,9 +220,9 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/update_station_locations.html">update_station_locations</a></span>()</code></pre></div>
 </div>
 </div>
-<div id="retrieving-with-satellite-imagery" class="section level2">
+<div id="using-bomrang-to-retrieve-satellite-imagery" class="section level2">
 <h2 class="hasAnchor">
-<a href="#retrieving-with-satellite-imagery" class="anchor"></a>Retrieving with satellite imagery</h2>
+<a href="#using-bomrang-to-retrieve-satellite-imagery" class="anchor"></a>Using <em>bomrang</em> to retrieve satellite imagery</h2>
 <p><em>bomrang</em> provides functionality to retrieve high-definition GeoTIFF satellite imagery provided by BoM through public FTP with the following types of imagery being available: i.) <a href="http://www.bom.gov.au/australia/satellite/about_images.shtml#ir">Infrared images</a>, ii.) <a href="http://www.bom.gov.au/australia/satellite/about_images.shtml#vis">Visible images</a> and iii.) <a href="http://www.bom.gov.au/australia/satellite/about_images.shtml#cloud">Clouds/surface composite</a>.</p>
 <p>Valid BoM satellite Product IDs for GeoTIFF files include:</p>
 <table class="table">
@@ -460,7 +460,7 @@ Satellite
 <h3 class="hasAnchor">
 <a href="#using-get_available_imagery" class="anchor"></a>Using <code>get_available_imagery</code>
 </h3>
-<p><code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> only takes one argument, <code>product_id</code>, a BoM identfier for the imagery that you wish to check for available imagery. Using this function will fetch a listing of BoM GeoTIFF satellite imagery from <a href="ftp://ftp.bom.gov.au/anon/gen/gms/" class="uri">ftp://ftp.bom.gov.au/anon/gen/gms/</a> to display which files are currently available for download. These files are available at ten minute update frequency with a 24 hour delete time. This function can be used see the most recent files available and then specify in the <code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> function. If no valid Product ID is supplied, defaults to all GeoTIFF images currently available.</p>
+<p><code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> only takes one argument, <code>product_id</code>, a BoM identifier for the imagery that you wish to check for available imagery. Using this function will fetch a listing of BoM GeoTIFF satellite imagery from <a href="ftp://ftp.bom.gov.au/anon/gen/gms/" class="uri">ftp://ftp.bom.gov.au/anon/gen/gms/</a> to display which files are currently available for download. These files are available at ten minute update frequency with a 24 hour delete time. This function can be used see the most recent files available and then specify in the <code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> function. If no valid Product ID is supplied, defaults to all GeoTIFF images currently available.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">avail &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_available_imagery.html">get_available_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDE00425"</span>)</code></pre></div>
 </div>
 <div id="using-get_satellite_imagery" class="section level3">
@@ -560,7 +560,7 @@ Observing station name
 Abbr[6]
 </td>
 <td>
-An abbeviated name (normally 4 characters) used for the station
+An abbreviated name (normally 4 characters) used for the station
 </td>
 </tr>
 <tr>
@@ -800,7 +800,7 @@ Interval for which rain is reported in next field, hours
 Rainfall4
 </td>
 <td>
-Rainfall, mm, usually since last observastion
+Rainfall, mm, usually since last observation
 </td>
 </tr>
 <tr>
@@ -926,7 +926,7 @@ Plain language comments
 </li>
 <li>4 Steady<br>
 </li>
-<li>5 Decreasing, then increasing, current presure lower<br>
+<li>5 Decreasing, then increasing, current pressure lower<br>
 </li>
 <li>6 Decreasing, then steady or decreasing more slowly<br>
 </li>
@@ -998,7 +998,7 @@ Plain language comments
 <p>(This is a subset of a larger table, not all values of which are used) wmo international BUFR code table 0 20 003, CREX code table B 20 003</p>
 <pre><code> 00 Clouds not observed
  01 Cloud decreasing
- 02 State of sky generally unchangeing
+ 02 State of sky generally unchanging
  03 Cloud increasing
  04 Smoke or volcanic ash
  05 Haze
@@ -1009,7 +1009,7 @@ Plain language comments
  08 Well developed dust devils, but no sandstorm or duststorm
  09 Duststorm or sandstorm
  10 Mist
- 11 Paches of shallow fog
+ 11 Patches of shallow fog
  12 More or less continuous shallow fog
  13 Lightning visible, but no thunder heard
  14 Precipitation in sight, but not reaching the ground or sea (virga)
@@ -1022,11 +1022,11 @@ Plain language comments
  20 Recent (within the last hour) drizzle
  21 Recent (within the last hour) rain, but not freezing rain
  22 Recent (within the last hour) snow
- 23 Recent (within the last hour) mixed raion and snow or ice pellets
+ 23 Recent (within the last hour) mixed rain and snow or ice pellets
  24 Recent (within the last hour) freezing drizzle or freezing rain
  25 Recent (within the last hour) showers of rain
  26 Recent (within the last hour) showers of snow or mixed rain and snow
- 27 Recent (within the last hour) showers of hail or mixed rain and hai
+ 27 Recent (within the last hour) showers of hail or mixed rain and hail
  28 Recent (within the last hour) Fog or ice fog
  29 Recent (within the last hour) thunderstorm
  30 Slight or moderate duststorm or sandstorm, has decreased in the
@@ -1109,11 +1109,11 @@ Plain language comments
  95 Slight or moderate thunderstorm with rain or snow but no hail
  96 Slight or moderate thunderstorm with hail
  97 Heavy thunderstorm with rain or snow but no hail
- 98 Thunderstorm combu=ined with a sandstorm or duststorm
+ 98 Thunderstorm combined with a sandstorm or duststorm
  99 Heavy thunderstorm with hail
 100 No significant weather
 101 Cloud decreasing 
-102 State of sky generally unchangeing
+102 State of sky generally unchanging
 103 Cloud increasing
 104 Haze or smoke or suspended dust, visibility &gt;= 1km
 105 Haze or smoke or suspended dust, visibility &lt; 1km
@@ -1501,7 +1501,7 @@ BoM rainfall district
 wmo
 </td>
 <td>
-World Meteorlogical Organization number (unique ID used worldwide)
+World Meteorological Organization number (unique ID used worldwide)
 </td>
 </tr>
 <tr>
@@ -1777,7 +1777,7 @@ Wind run (kilometres)
       <li><a href="#using-get_ag_bulletin">Using <code>get_ag_bulletin</code></a></li>
       <li><a href="#using-sweep_for_stations">Using <code>sweep_for_stations</code></a></li>
       <li><a href="#using-the-update-functions">Using the update functions</a></li>
-      <li><a href="#retrieving-with-satellite-imagery">Retrieving with satellite imagery</a></li>
+      <li><a href="#using-bomrang-to-retrieve-satellite-imagery">Using <em>bomrang</em> to retrieve satellite imagery</a></li>
       <li><a href="#using-caching-for-satellite-imagery">Using caching for satellite imagery</a></li>
       <li><a href="#references">References</a></li>
       <li><a href="#appendix-1---output-from-get_current_weather">Appendix 1 - Output from <code>get_current_weather</code></a></li>

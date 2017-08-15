@@ -136,7 +136,7 @@ get_available_imagery <- function(product_id = "all") {
 #' }
 
 #' @author Adam H Sparks, \email{adamhsparks@gmail.com}
-#'
+#' @importFrom rgdal readGDAL
 #' @export
 get_satellite_imagery <-
   function(product_id = NULL,
