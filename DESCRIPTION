@@ -13,8 +13,9 @@ Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     comment = "https://orcid.org/0000-0002-1896-4516"))
 Description: Provides functions to interface with Australian Government Bureau
     of Meteorology (BoM) data, fetching data and returning a tidy data frame of
-    précis forecasts, current weather data from stations or agriculture
-    bulletin data.
+    précis forecasts, current weather data from stations, agriculture
+    bulletin data or a raster stack object of satellite imagery from GeoTIFF
+    files.
 URL: https://github.com/ToowoombaTrio/bomrang
 BugReports: https://github.com/ToowoombaTrio/bomrang/issues
 License: MIT + file LICENSE
