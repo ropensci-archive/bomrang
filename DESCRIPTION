@@ -29,7 +29,6 @@ Imports:
     jsonlite (>= 1.5),
     magrittr (>= 1.5),
     raster,
-    rgdal,
     rappdirs (>= 0.3.1),
     readr (>= 1.1.1),
     rlang (>= 0.1.1),
