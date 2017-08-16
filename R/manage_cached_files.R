@@ -1,7 +1,5 @@
 
 
-
-
 #' @title Manage locally cached bomrang files
 #'
 #' @description The user is given an option when downloading the bomrang
@@ -76,8 +74,8 @@ bomrang_cache_list <- function() {
 #' @export
 #' @rdname manage_bomrang_cache
 
-cache_dir <- rappdirs::user_cache_dir("bomrang")
 bomrang_cache_delete <- function(files, force = TRUE) {
+  cache_dir <- rappdirs::user_cache_dir("bomrang")
   files <- file.path(cache_dir, files)
   if (!all(file.exists(files))) {
     stop("These files don't exist or can't be found: \n",
