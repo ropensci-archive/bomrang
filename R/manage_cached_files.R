@@ -72,6 +72,7 @@ bomrang_cache_list <- function() {
 
 #' @export
 #' @rdname manage_bomrang_cache
+
 bomrang_cache_delete <- function(files, force = TRUE) {
   cache_dir <- rappdirs::user_cache_dir("bomrang")
   files <- file.path(cache_dir, files)
