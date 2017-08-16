@@ -31,21 +31,5 @@ test_that("caching utils list files in cache and delete when asked", {
                                            appauthor = "bomrang"))
   expect_equal(basename(bomrang_cache_list()), k)
 
-  # test delete one file
-  bomrang_cache_delete("file1.tif")
-  l <- list.files(rappdirs::user_cache_dir(appname = "bomrang",
-                                           appauthor = "bomrang"))
-  expect_equal(basename(bomrang_cache_list()), l)
-
-  # test delete all
-  bomrang_cache_delete_all()
-  expect_equal(list.files(rappdirs::user_cache_dir(appname = "bomrang",
-                                                   appauthor = "bomrang")
-  ),
-  character(0))
-
-  # clean up on the way out
-  unlink(rappdirs::user_cache_dir(appname = "bomrang",
-                                  appauthor = "bomrang"),
-         recursive = TRUE)
-})
+}
+)
