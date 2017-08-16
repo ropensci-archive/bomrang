@@ -1,5 +1,4 @@
 
-
 #' @title Manage locally cached bomrang files
 #'
 #' @description The user is given an option when downloading the bomrang
