@@ -2,12 +2,14 @@
 context("Satellite imagery")
 
 test_that("Error handling", {
+  skip_on_cran()
   expect_error(get_available_imagery(product_id = "abcdc"))
   expect_error(get_satellite_imagery(product_id = "abcdc"))
   expect_error(get_satellite_imagery())
 })
 
 test_that("get_available_imagery functions properly", {
+  skip_on_cran()
   # if cache directory exists during testing, remove it for following tests
   unlink(rappdirs::user_cache_dir(appname = "bomrang",
                                   appauthor = "bomrang"),
@@ -25,9 +27,11 @@ test_that("get_available_imagery functions properly", {
     rappdirs::user_cache_dir(appname = "bomrang",
                              appauthor = "bomrang")
   ))
+
 })
 
 test_that("product ID urls are properly handled", {
+  skip_on_cran()
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/gms/"
 
   pid <- "IDE00420"
