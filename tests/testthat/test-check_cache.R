@@ -1,5 +1,4 @@
 
-
 context("Cache directory handling")
 skip_on_cran()
 
@@ -17,6 +16,8 @@ test_that("cache directory is created if necessary", {
 })
 
 test_that("caching utils list files in cache and delete when asked", {
+  cache <- TRUE
+  cache_dir <- .set_cache(cache)
   f <- raster::raster(system.file("external/test.grd", package = "raster"))
   cache_dir <- rappdirs::user_cache_dir(appname = "bomrang",
                            appauthor = "bomrang")
@@ -37,4 +38,9 @@ test_that("caching utils list files in cache and delete when asked", {
   # test delete all
   bomrang_cache_delete_all()
   expect_equal(basename(bomrang_cache_list()), character(0))
+
+  # clean up on the way out
+  unlink(rappdirs::user_cache_dir(appname = "bomrang",
+                                  appauthor = "bomrang"),
+         recursive = TRUE)
 })
