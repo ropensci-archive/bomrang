@@ -48,8 +48,9 @@ returns an observation for one of the possible stations and emits a warning to
 offer unambiguous station names. 
 
 If `latlon` is used, the observations returned are from the station nearest to
-that latitude-longitude coordinate. The function also emits a message, to tell
-the user which station was used.
+that latitude-longitude coordinate. `latlon` values are entered as decimal
+degrees, _e.g._ -34, 151 for Sydney. The function also emits a message, to
+tell the user which station was used.
 
 ### Results
 
