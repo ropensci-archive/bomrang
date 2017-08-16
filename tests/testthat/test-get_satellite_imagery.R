@@ -8,17 +8,40 @@ test_that("Error handling", {
 })
 
 test_that("get_available_imagery functions properly", {
+  # if cache directory exists during testing, remove it for following tests
+  unlink(rappdirs::user_cache_dir(appname = "bomrang",
+                                  appauthor = "bomrang"),
+         recursive = TRUE)
+
   i <- get_available_imagery()
   expect_type(i, "character")
   expect_error(get_satellite_imagery(product_id = c("IDE00425", "IDE00420")))
-  j <- get_satellite_imagery(product_id = "IDE00425", scans = 1)
+  j <-
+    get_satellite_imagery(product_id = "IDE00425",
+                          scans = 1,
+                          cache = TRUE)
   expect_is(j, "RasterStack")
-  expect_true(
-    dir.exists(
-      rappdirs::user_cache_dir(appname = "bomrang",
-                               appauthor = "bomrang")
-    ))
+  expect_true(dir.exists(
+    rappdirs::user_cache_dir(appname = "bomrang",
+                             appauthor = "bomrang")
+  ))
 })
+
+test_that("caching utils list files in cache and delete when asked", {
+  k <- list.files(rappdirs::user_cache_dir(appname = "bomrang",
+                                           appauthor = "bomrang"))
+  expect_equal(basename(bomrang_cache_list()), k)
+  bomrang_cache_delete_all()
+  expect_equal(basename(bomrang_cache_list()), character(0))
+})
+
+test_that("bomrang_cache_details lists files in cache", {
+  k <- list.files(rappdirs::user_cache_dir(appname = "bomrang",
+                                           appauthor = "bomrang"))
+  expect_equal(bomrang_cache_list(), k)
+
+})
+
 
 test_that("product ID urls are properly handled", {
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/gms/"
