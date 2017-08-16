@@ -16,6 +16,8 @@ test_that("cache directory is created if necessary", {
 })
 
 test_that("caching utils list files in cache and delete when asked", {
+  skip_on_cran()
+
   cache <- TRUE
   cache_dir <- .set_cache(cache)
   f <- raster::raster(system.file("external/test.grd", package = "raster"))
