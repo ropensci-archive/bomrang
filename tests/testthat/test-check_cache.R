@@ -9,7 +9,8 @@ test_that("test that set_cache creates a cache directory if none exists", {
   .set_cache(cache)
   expect_true(file.exists(file.path(rappdirs::user_cache_dir("bomrang"))))
   # cleanup
-  unlink(rappdirs::user_cache_dir("climcropr"), recursive = TRUE)
+  unlink(rappdirs::user_cache_dir(appname = "bomrang",
+                                  appauthor = "bomrang"))
 })
 
 # test that .set_cache does a cache directory if cache is FALSE ----------------
@@ -35,6 +36,8 @@ test_that("cache directory is created if necessary", {
 
 test_that("caching utils list files in cache and delete when asked", {
   skip_on_cran()
+  unlink(rappdirs::user_cache_dir(appname = "bomrang",
+                                  appauthor = "bomrang"))
   f <- raster::raster(system.file("external/test.grd", package = "raster"))
   cache_dir <- rappdirs::user_cache_dir(appname = "bomrang",
                                         appauthor = "bomrang")
