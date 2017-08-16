@@ -294,56 +294,43 @@ get_ag_bulletin <- function(state = "AUS") {
   if ("<NA>" %in% colnames(out)) {
     out$`<NA>` <- NULL
   }
-  if (!"tx" %in% colnames(out))
-  {
+  if (!"tx" %in% colnames(out)) {
     out$tx <- NA
   }
-  if (!"tn" %in% colnames(out))
-  {
+  if (!"tn" %in% colnames(out)) {
     out$tn <- NA
   }
-  if (!"tg" %in% colnames(out))
-  {
+  if (!"tg" %in% colnames(out)) {
     out$tg <- NA
   }
-  if (!"twd" %in% colnames(out))
-  {
+  if (!"twd" %in% colnames(out)) {
     out$twd <- NA
   }
-  if (!"r" %in% colnames(out))
-  {
+  if (!"r" %in% colnames(out)) {
     out$r <- NA
   }
-  if (!"ev" %in% colnames(out))
-  {
+  if (!"ev" %in% colnames(out)) {
     out$ev <- NA
   }
-  if (!"wr" %in% colnames(out))
-  {
+  if (!"wr" %in% colnames(out)) {
     out$wr <- NA
   }
-  if (!"sn" %in% colnames(out))
-  {
+  if (!"sn" %in% colnames(out)) {
     out$sn <- NA
   }
-  if (!"t5" %in% colnames(out))
-  {
+  if (!"t5" %in% colnames(out)) {
     out$t5 <- NA
   }
-  if (!"t10" %in% colnames(out))
-  {
+  if (!"t10" %in% colnames(out)) {
     out$t10 <- NA
   }
-  if (!"t20" %in% colnames(out))
-  {
+  if (!"t20" %in% colnames(out)) {
     out$t20 <- NA
   }
-  if (!"t50" %in% colnames(out))
-  {
+  if (!"t50" %in% colnames(out)) {
     out$t50 <- NA
   }
-  if (!"t1m" %in% colnames(out))
-  {
+  if (!"t1m" %in% colnames(out)) {
     out$t1m <- NA
   }
   return(out)

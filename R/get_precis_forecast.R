@@ -142,7 +142,7 @@ get_precis_forecast <- function(state = "AUS") {
 
 .parse_forecast <- function(xmlforecast_url) {
   # CRAN note avoidance
-  AAC_codes <-attrs <- end_time_local <- precipitation_range <-
+  AAC_codes <- attrs <- end_time_local <- precipitation_range <-
     start_time_local <- values <- NULL
 
   # download the XML forecast --------------------------------------------------
@@ -289,7 +289,8 @@ get_precis_forecast <- function(state = "AUS") {
                        "end_time_local",
                        "start_time_utc",
                        "end_time_utc")], function(x)
-                         as.POSIXct(x, origin = "1970-1-1", format = "%Y-%m-%d %H:%M:%OS"))
+                         as.POSIXct(x, origin = "1970-1-1",
+                                    format = "%Y-%m-%d %H:%M:%OS"))
 
   # add state field
   tidy_df$state <- gsub("_.*", "", tidy_df$aac)

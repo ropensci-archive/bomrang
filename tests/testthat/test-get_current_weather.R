@@ -34,10 +34,9 @@ test_that("Query of 'Sydney' defaults to Observatory Hill", {
   expect_equal(unique(SYD$full_name), "Sydney - Observatory Hill")
 })
 
-test_that("Query of 'Castlem' and friends", {
+test_that("Query of 'castlem' and friends", {
   # OK
-  expect_warning(get_current_weather(station_name = 'castlem'))
-
+  expect_warning(get_current_weather(station_name = "castlem"))
 })
 
 test_that("Strict", {
@@ -49,7 +48,7 @@ test_that("Strict", {
   expect_equal(toupper(FORREST$full_name[1]), "FORREST")
 })
 
-test_that("latlon: Query of c(-27, 149) returns Surat (QLD, between Roma and St George).", {
+test_that("Query c(-27, 149) returns Surat (QLD, b/n Roma and St George).", {
   expect_message(get_current_weather(latlon = c(-27, 149)), regexp = "SURAT")
   Surat <- get_current_weather(latlon = c(-27, 149), emit_latlon_msg = FALSE)
   expect_equal(unique(Surat$full_name), "Surat")
