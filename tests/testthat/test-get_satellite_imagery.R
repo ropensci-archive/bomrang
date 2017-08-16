@@ -1,6 +1,4 @@
 
-
-
 context("Satellite imagery")
 
 test_that("Error handling", {
