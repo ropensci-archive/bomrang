@@ -90,11 +90,9 @@ test_that("product ID urls are properly handled", {
   x <- .ftp_images(product_id = pid, ftp_base)
   expect_equal(substr(basename(x), 1, 8)[1], pid)
 
-  #   This product ID doesn't seem to have images associated with it, in spite of
-  #   being valid
-  #   pid <- "IDE00439"
-  #   x <- .ftp_images(product_id = pid, ftp_base)
-  #   expect_equal(substr(basename(x), 1, 8)[1], pid)
+  #   This product ID doesn't seem to have images associated with it,
+  #   in spite of being valid
+  #   "IDE00439"
 
   pid <- "IDE30"
   expect_error(.ftp_images(product_id = pid, ftp_base))

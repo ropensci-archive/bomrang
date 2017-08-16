@@ -7,7 +7,7 @@
 #' station name exactly, except that \code{station_name} need not be uppercase.
 #' Note this may be different to \code{full_name} in the response. See
 #' \strong{Details}.
-#' @param latlon A length-2 numeric vector giving the decimal
+#' @param latlon A length-2 numeric vector giving the decimal degree
 #' latitude and longitude (in that order), \emph{e.g.} \code{latlon =
 #' c(-34, 151)} for Sydney. When given instead of \code{station_name}, the
 #' nearest station (in this package) is used, with a message indicating the
@@ -119,12 +119,14 @@ get_current_weather <-
         the_station_name <- likely_stations[1]
         if (length(likely_stations) > 1) {
           # Likely common use case
-          # (otherwise defaults to KURNELL RADAR which does not provide observations)
-          if (toupper(station_name) == "SYDNEY" && 'SYDNEY (OBSERVATORY HILL)' %in% likely_stations) {
-            likely_stations <- c('SYDNEY (OBSERVATORY HILL)',
+          # (otherwise defaults to KURNELL RADAR,
+          # which does not provide observations)
+          if (toupper(station_name) == "SYDNEY" &&
+              "SYDNEY (OBSERVATORY HILL)" %in% likely_stations) {
+            likely_stations <- c("SYDNEY (OBSERVATORY HILL)",
                                  setdiff(likely_stations,
-                                         'SYDNEY (OBSERVATORY HILL)'))
-            the_station_name <- 'SYDNEY (OBSERVATORY HILL)'
+                                         "SYDNEY (OBSERVATORY HILL)"))
+            the_station_name <- "SYDNEY (OBSERVATORY HILL)"
           }
 
           # If not strict, warn; otherwise, later code will error on its own.
@@ -142,7 +144,8 @@ get_current_weather <-
 
         if (strict) {
           if (length(likely_stations) == 1) {
-            stop("strict = TRUE but station name not exactly matched.\nDid you mean the following?\n\t",
+            stop("strict = TRUE but station name not exactly matched.",
+                 "\nDid you mean the following?\n\t",
                  "station_name = '",
                  the_station_name, "'")
           } else {
