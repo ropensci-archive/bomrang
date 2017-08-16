@@ -1,6 +1,4 @@
 
-
-
 context("Satellite imagery")
 
 test_that("Error handling", {
@@ -31,49 +29,6 @@ test_that("get_available_imagery functions properly", {
   ))
 
 })
-
-test_that("caching utils list files in cache and delete when asked", {
-  skip_on_cran()
-
-  # create a second file for more testing in next test
-  logo <-
-    raster::raster(system.file("external/rlogo.grd", package = "raster"))
-  raster::writeRaster(logo,
-                      file.path(
-                        rappdirs::user_cache_dir(appname = "bomrang",
-                                                 appauthor = "bomrang"),
-                        "logo.tif"
-                      ),
-                      format = "GTiff")
-
-  k <- list.files(rappdirs::user_cache_dir(appname = "bomrang",
-                                           appauthor = "bomrang"))
-  expect_equal(basename(bomrang_cache_list()), k)
-
-  # delete the first file in the list, check bomrang_cache_delete
-  bomrang_cache_delete(files = k[1])
-
-  l <- list.files(rappdirs::user_cache_dir(appname = "bomrang",
-                                           appauthor = "bomrang"))
-  expect_equal(basename(bomrang_cache_list()), k[2])
-
-  # check bomrang_cache_delete_all
-  bomrang_cache_delete_all()
-  expect_equal(basename(bomrang_cache_list()), character(0))
-})
-
-test_that("bomrang_cache_details lists files in cache", {
-  k <- list.files(rappdirs::user_cache_dir(appname = "bomrang",
-                                           appauthor = "bomrang"))
-  expect_equal(bomrang_cache_list(), k)
-
-  # cleanup after testing
-  unlink(rappdirs::user_cache_dir(appname = "bomrang",
-                                  appauthor = "bomrang"),
-         recursive = TRUE)
-
-})
-
 
 test_that("product ID urls are properly handled", {
   skip_on_cran()
