@@ -52,6 +52,9 @@ test_that("caching utils list files in cache and delete when asked", {
                                            appauthor = "bomrang"))
   expect_equal(basename(bomrang_cache_list()), k)
 
+  # file should not exist, expect error
+  expect_error(bomrang_cache_delete("file1.asc"))
+
   # test delete one file
   bomrang_cache_delete("file1.tif")
   l <- list.files(rappdirs::user_cache_dir(appname = "bomrang",
