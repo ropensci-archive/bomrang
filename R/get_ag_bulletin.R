@@ -1,4 +1,5 @@
 
+
 #' Get BoM Agriculture Bulletin Information for Select Stations
 #'
 #' Fetch the BoM agricultural bulletin information and return it in a tidy data
@@ -57,59 +58,7 @@ get_ag_bulletin <- function(state = "AUS") {
   # Load AAC code/town name list to join with final output
   load(system.file("extdata", "stations_site_list.rda", package = "bomrang"))
 
-  states <- c(
-    "NSW",
-    "NT",
-    "QLD",
-    "SA",
-    "TAS",
-    "VIC",
-    "WA",
-    "New South Wales",
-    "Northern Territory",
-    "Queensland",
-    "South Australia",
-    "Tasmania",
-    "Victoria",
-    "Western Australia",
-    "Australia",
-    "AU",
-    "AUS",
-    "Oz"
-  )
-
-  # If there's an exact match, use it; else, attempt partial match.
-  if (state %in% states) {
-    the_state <- state
-  } else {
-    likely_states <- agrep(pattern = state,
-                           x = states,
-                           value = TRUE)
-
-    if (length(likely_states) == 0) {
-      stop(
-        "\nA state or territory matching what you entered was not found.",
-        "Please check and try again.\n"
-      )
-    }
-
-    the_state <- likely_states[1]
-
-    if (length(likely_states) > 1) {
-      warning(
-        "Multiple states match state.",
-        "'\ndid you mean:\n\tstate = '",
-        paste(
-          likely_states[[1]],
-          "or",
-          likely_states[length(likely_states) - 1],
-          "or",
-          likely_states[length(likely_states)]
-        ),
-        "'?"
-      )
-    }
-  }
+  the_state <- .check_states(state) # see internal_functions.R
 
   # ftp server
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
@@ -128,14 +77,22 @@ get_ag_bulletin <- function(state = "AUS") {
   if (the_state != "AUS") {
     xmlbulletin_url <-
       dplyr::case_when(
-        the_state == "ACT" ~ paste0(ftp_base, AUS_XML[1]),
-        the_state == "NSW" ~ paste0(ftp_base, AUS_XML[1]),
-        the_state == "NT"  ~ paste0(ftp_base, AUS_XML[2]),
-        the_state == "QLD" ~ paste0(ftp_base, AUS_XML[3]),
-        the_state == "SA"  ~ paste0(ftp_base, AUS_XML[4]),
-        the_state == "TAS" ~ paste0(ftp_base, AUS_XML[5]),
-        the_state == "VIC" ~ paste0(ftp_base, AUS_XML[6]),
-        the_state == "WA"  ~ paste0(ftp_base, AUS_XML[7])
+        the_state == "ACT" |
+          the_state == "CANBERRA" ~ paste0(ftp_base, AUS_XML[1]),
+        the_state == "NSW" |
+          the_state == "NEW SOUTH WALES" ~ paste0(ftp_base, AUS_XML[1]),
+        the_state == "NT" |
+          the_state == "NORTHERN TERRITORY" ~ paste0(ftp_base, AUS_XML[2]),
+        the_state == "QLD" |
+          the_state == "QUEENSLAND" ~ paste0(ftp_base, AUS_XML[3]),
+        the_state == "SA" |
+          the_state == "SOUTH AUSTRALIA" ~ paste0(ftp_base, AUS_XML[4]),
+        the_state == "TAS" |
+          the_state == "TASMANIA" ~ paste0(ftp_base, AUS_XML[5]),
+        the_state == "VIC" |
+          the_state == "VICTORIA" ~ paste0(ftp_base, AUS_XML[6]),
+        the_state == "WA" |
+          the_state == "WESTERN AUSTRALIA" ~ paste0(ftp_base, AUS_XML[7])
       )
     out <- .parse_bulletin(xmlbulletin_url, stations_site_list)
   } else {
@@ -253,7 +210,7 @@ get_ag_bulletin <- function(state = "AUS") {
   # if there are no observations, keep a single row for the station ID
   if (length(value) > 1) {
     location <-
-      trimws(location[rep(seq_len(nrow(location)), each = length(value)), ])
+      trimws(location[rep(seq_len(nrow(location)), each = length(value)),])
   }
 
   # if there is only one observation this step means that a data frame is
