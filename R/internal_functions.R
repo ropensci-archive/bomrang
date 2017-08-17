@@ -79,6 +79,10 @@ states <- c(
 
     if (length(likely_states == 1)) {
       the_state <- toupper(likely_states)
+      warning(
+        paste0("\nUsing state = ", likely_states, ".\n",
+               "If this is not what you intended, please check your entry.")
+      )
       return(the_state)
     } else if (length(likely_states) == 0) {
       stop(
