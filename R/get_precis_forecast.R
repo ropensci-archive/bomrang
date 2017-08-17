@@ -49,62 +49,7 @@
 #' @export
 get_precis_forecast <- function(state = "AUS") {
 
-  states <- c(
-    "ACT",
-    "NSW",
-    "NT",
-    "QLD",
-    "SA",
-    "TAS",
-    "VIC",
-    "WA",
-    "Australian Capital Territory",
-    "New South Wales",
-    "Northern Territory",
-    "Queensland",
-    "South Australia",
-    "Tasmania",
-    "Victoria",
-    "Western Australia",
-    "Australia",
-    "AU",
-    "AUS",
-    "Oz"
-  )
-
-  # If there's an exact match, use it; else, attempt partial match.
-  if (state %in% states) {
-    the_state <- state
-  } else {
-    likely_states <- agrep(pattern = state,
-                           x = states,
-                           value = TRUE)
-
-    if (length(likely_states) == 0) {
-      stop(
-        "\nA state or territory matching what you entered was not found.",
-        "Please check and try again.\n"
-      )
-    }
-
-    the_state <- likely_states[1]
-
-    if (length(likely_states) > 1) {
-      warning(
-        "Multiple states match state.",
-        "'\ndid you mean:\n\tstate = '",
-        paste(
-          likely_states[[1]],
-          "or",
-          likely_states[length(likely_states) - 1],
-          "or",
-          likely_states[length(likely_states)]
-        ),
-        "'?"
-      )
-    }
-  }
-
+the_state <- .check_states(state) # see internal_functions.R
 
   # ftp server
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
@@ -123,13 +68,22 @@ get_precis_forecast <- function(state = "AUS") {
   if (the_state != "AUS") {
     xmlforecast_url <-
       dplyr::case_when(
-        the_state == "ACT" | the_state == "NSW" ~ paste0(ftp_base, AUS_XML[1]),
-        the_state == "NT"  ~ paste0(ftp_base, AUS_XML[2]),
-        the_state == "QLD" ~ paste0(ftp_base, AUS_XML[3]),
-        the_state == "SA"  ~ paste0(ftp_base, AUS_XML[4]),
-        the_state == "TAS" ~ paste0(ftp_base, AUS_XML[5]),
-        the_state == "VIC" ~ paste0(ftp_base, AUS_XML[6]),
-        the_state == "WA"  ~ paste0(ftp_base, AUS_XML[7])
+        the_state == "ACT" |
+          the_state == "CANBERRA" ~ paste0(ftp_base, AUS_XML[1]),
+        the_state == "NSW" |
+          the_state == "NEW SOUTH WALES" ~ paste0(ftp_base, AUS_XML[1]),
+        the_state == "NT" |
+          the_state == "NORTHERN TERRITORY" ~ paste0(ftp_base, AUS_XML[2]),
+        the_state == "QLD" |
+          the_state == "QUEENSLAND" ~ paste0(ftp_base, AUS_XML[3]),
+        the_state == "SA" |
+          the_state == "SOUTH AUSTRALIA" ~ paste0(ftp_base, AUS_XML[4]),
+        the_state == "TAS" |
+          the_state == "TASMANIA" ~ paste0(ftp_base, AUS_XML[5]),
+        the_state == "VIC" |
+          the_state == "VICTORIA" ~ paste0(ftp_base, AUS_XML[6]),
+        the_state == "WA" |
+          the_state == "WESTERN AUSTRALIA" ~ paste0(ftp_base, AUS_XML[7])
       )
     out <- .parse_forecast(xmlforecast_url)
   } else {
