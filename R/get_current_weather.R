@@ -252,10 +252,6 @@ get_current_weather <-
         )
       }
 
-    # replaced rounded values from .json with full values from internal db
-    observations.json$observations[["data"]][["lat"]] <- full_lat
-    observations.json$observations[["data"]][["lon"]] <- full_lon
-
     # Columns which are meant to be numeric
     double_cols <-
       c("lat",
@@ -271,6 +267,13 @@ get_current_weather <-
 
     if (as.data.table) {
       data.table::setDT(out)
+      # replaced rounded values from .json with full values from internal db
+      data.table::set(out, j = "lat", value = full_lat)
+      data.table::set(out, j = "lon", value = full_lon)
+    } else {
+      # replaced rounded values from .json with full values from internal db
+      out[["lat"]] <- full_lat
+      out[["lon"]] <- full_lon
     }
 
     # BoM raw JSON uses `name`, which is ambiguous (see #27)
