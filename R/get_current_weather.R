@@ -1,17 +1,19 @@
 
-#' Current Weather Observations of a BoM Station
+
+#' Get Current Weather Observations of a BoM Station
 #'
 #' @param station_name The name of the weather station. Fuzzy string matching
-#' via \code{base::agrep} is done.
-#' @param strict (logical) If \code{TRUE}, \code{station_name} must match the station name exactly,
-#' except that \code{station_name} need not be uppercase. Note this may be different to
-#' \code{full_name} in the response. See \strong{Details}.
-#' @param latlon A length-2 numeric vector giving the decimal
-#' latitude and longitude (in that order), \emph{e.g.} \code{latlon = c(-34, 151)} for Sydney.
-#' When given instead of \code{station_name}, the nearest station (in this package) is used, with a
-#' message indicating the nearest such station. (See also
-#'  \code{\link{sweep_for_stations}}.) Ignored if used in combination with
-#' \code{station_name}, with a warning.
+#' via \code{\link[base]{agrep}} is done.
+#' @param strict (logical) If \code{TRUE}, \code{station_name} must match the
+#' station name exactly, except that \code{station_name} need not be uppercase.
+#' Note this may be different to \code{full_name} in the response. See
+#' \strong{Details}.
+#' @param latlon A length-2 numeric vector giving the decimal degree
+#' latitude and longitude (in that order), \emph{e.g.} \code{latlon =
+#' c(-34, 151)} for Sydney. When given instead of \code{station_name}, the
+#' nearest station (in this package) is used, with a message indicating the
+#' nearest such station. (See also \code{\link{sweep_for_stations}}.) Ignored if
+#' used in combination with \code{station_name}, with a warning.
 #' @param raw Logical. Do not convert the columns \code{data.table} to the
 #' appropriate classes. (\code{FALSE} by default.)
 #' @param emit_latlon_msg Logical. If \code{TRUE} (the default), and
@@ -72,12 +74,11 @@ get_current_weather <-
            raw = FALSE,
            emit_latlon_msg = TRUE,
            as.data.table = FALSE) {
-
     # CRAN NOTE avoidance
-    JSONurl_latlon_by_station_name <- NULL
+    JSONurl_site_list <- NULL
 
     # Load JSON URL list
-    load(system.file("extdata", "JSONurl_latlon_by_station_name.rda",
+    load(system.file("extdata", "JSONurl_site_list.rda",
                      package = "bomrang"))
 
     if (missing(station_name) && is.null(latlon)) {
@@ -98,18 +99,24 @@ get_current_weather <-
       station_name <- toupper(station_name)
 
       # If there's an exact match, use it; else, attempt partial match.
-      if (station_name %in% JSONurl_latlon_by_station_name[["name"]]) {
+      if (station_name %in% JSONurl_site_list[["name"]]) {
         the_station_name <- station_name
       } else {
         likely_stations <-
           # Present those with common prefixes first
-          c(grep(pattern = paste0("^", station_name),
-                 x = JSONurl_latlon_by_station_name[["name"]],
-                 ignore.case = TRUE,
-                 value = TRUE),
-            agrep(pattern = station_name,
-                  x = JSONurl_latlon_by_station_name[["name"]],
-                  value = TRUE)) %>%
+          c(
+            grep(
+              pattern = paste0("^", station_name),
+              x = JSONurl_site_list[["name"]],
+              ignore.case = TRUE,
+              value = TRUE
+            ),
+            agrep(
+              pattern = station_name,
+              x = JSONurl_site_list[["name"]],
+              value = TRUE
+            )
+          ) %>%
           unique
 
         if (length(likely_stations) == 0) {
@@ -119,47 +126,65 @@ get_current_weather <-
         the_station_name <- likely_stations[1]
         if (length(likely_stations) > 1) {
           # Likely common use case
-          # (otherwise defaults to KURNELL RADAR which does not provide observations)
-          if (toupper(station_name) == "SYDNEY" && 'SYDNEY (OBSERVATORY HILL)' %in% likely_stations) {
-            likely_stations <- c('SYDNEY (OBSERVATORY HILL)',
-                                 setdiff(likely_stations,
-                                         'SYDNEY (OBSERVATORY HILL)'))
-            the_station_name <- 'SYDNEY (OBSERVATORY HILL)'
+          # (otherwise defaults to KURNELL RADAR,
+          # which does not provide observations)
+          if (toupper(station_name) == "SYDNEY" &&
+              "SYDNEY (OBSERVATORY HILL)" %in% likely_stations) {
+            likely_stations <- c(
+              "SYDNEY (OBSERVATORY HILL)",
+              setdiff(likely_stations,
+                      "SYDNEY (OBSERVATORY HILL)")
+            )
+            the_station_name <- "SYDNEY (OBSERVATORY HILL)"
           }
 
           # If not strict, warn; otherwise, later code will error on its own.
           if (!strict) {
-            warning("Multiple stations match station_name. ",
-                    "Using\n\tstation_name = '",
-                    the_station_name,
-                    "'\n\nDid you mean any of the following?\n",
-                    paste0("\tstation_name = '",
-                           likely_stations[-1],
-                           "'",
-                           collapse = "\n"))
+            warning(
+              "Multiple stations match station_name. ",
+              "Using\n\tstation_name = '",
+              the_station_name,
+              "'\nDid you mean any of the following?\n",
+              paste0(
+                "\tstation_name = '",
+                likely_stations[-1],
+                "'",
+                collapse = "\n"
+              )
+            )
           }
         }
 
         if (strict) {
           if (length(likely_stations) == 1) {
-            stop("strict = TRUE but station name not exactly matched.\nDid you mean the following?\n\t",
-                 "station_name = '",
-                 the_station_name, "'")
+            stop(
+              "strict = TRUE but station name not exactly matched.",
+              "\nDid you mean the following?\n\t",
+              "station_name = '",
+              the_station_name,
+              "'"
+            )
           } else {
-            stop("strict = TRUE but station name not exactly matched.\n",
-                 "Multiple stations match station_name. ",
-                 "\n\nDid you mean any of the following?\n",
-                 paste0("\tstation_name = '",
-                        likely_stations,
-                        "'",
-                        collapse = "\n"))
+            stop(
+              "strict = TRUE but station name not exactly matched.\n",
+              "Multiple stations match station_name. ",
+              "\n\nDid you mean any of the following?\n",
+              paste0("\tstation_name = '",
+                     likely_stations,
+                     "'",
+                     collapse = "\n")
+            )
           }
 
         }
       }
 
       json_url <-
-        JSONurl_latlon_by_station_name[name == the_station_name][["url"]]
+        JSONurl_site_list[name == the_station_name][["url"]]
+      full_lat <-
+        JSONurl_site_list[name == the_station_name][["lat"]]
+      full_lon <-
+        JSONurl_site_list[name == the_station_name][["lon"]]
 
     } else {
       # We have established latlon is not NULL
@@ -170,11 +195,11 @@ get_current_weather <-
       Lat <- latlon[1]
       Lon <- latlon[2]
 
-      # CRAN NOTE avoidance: names of JSONurl_latlon_by_station_name
+      # CRAN NOTE avoidance: names of JSONurl_site_list
       lat <- lon <- NULL
 
       station_nrst_latlon <-
-        JSONurl_latlon_by_station_name %>%
+        JSONurl_site_list %>%
         # Lat Lon are in JSON
         .[which.min(haversine_distance(Lat, Lon, lat, lon))]
 
@@ -201,6 +226,9 @@ get_current_weather <-
       }
 
       json_url <- station_nrst_latlon[["url"]]
+      full_lat <- station_nrst_latlon[["lat"]]
+      full_lon <- station_nrst_latlon[["lon"]]
+
     }
 
     tryCatch({
@@ -216,11 +244,17 @@ get_current_weather <-
       stop(e)
     })
 
-    if ("observations" %notin% names(observations.json) ||
-        "data" %notin% names(observations.json$observations)) {
-      stop("\nA station was matched",
-           "but the JSON returned by bom.gov.au was not in expected form.\n")
-    }
+      if ("observations" %notin% names(observations.json) ||
+          "data" %notin% names(observations.json$observations)) {
+        stop(
+          "\nA station was matched",
+          "but the JSON returned by bom.gov.au was not in expected form.\n"
+        )
+      }
+
+    # replaced rounded values from .json with full values from internal db
+    observations.json$observations[["data"]][["lat"]] <- full_lat
+    observations.json$observations[["data"]][["lon"]] <- full_lon
 
     # Columns which are meant to be numeric
     double_cols <-
