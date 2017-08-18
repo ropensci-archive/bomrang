@@ -59,6 +59,7 @@
 #'
 #' @author Hugh Parsonage, \email{hugh.parsonage@gmail.com}
 #' @importFrom magrittr use_series
+#' @importFrom magrittr %$%
 #' @importFrom data.table :=
 #' @importFrom data.table %chin%
 #' @importFrom data.table setnames
@@ -75,7 +76,7 @@ get_current_weather <-
     # CRAN NOTE avoidance
     JSONurl_latlon_by_station_name <- NULL
 
-        # Load JSON URL list
+    # Load JSON URL list
     load(system.file("extdata", "JSONurl_latlon_by_station_name.rda",
                      package = "bomrang"))
 
@@ -178,6 +179,11 @@ get_current_weather <-
         .[which.min(haversine_distance(Lat, Lon, lat, lon))]
 
       if (emit_latlon_msg) {
+        distance <-
+          station_nrst_latlon %$%
+          haversine_distance(Lat, Lon, lat, lon) %>%
+          signif(digits = 3)
+
         on.exit(
           message(
             "Using station_name = '",
@@ -186,20 +192,29 @@ get_current_weather <-
             station_nrst_latlon$lat,
             ", ",
             "longitude = ",
-            station_nrst_latlon$lon
+            station_nrst_latlon$lon,
+            " (",
+            distance,
+            " km away)."
           )
         )
       }
 
       json_url <- station_nrst_latlon[["url"]]
     }
-    if (isTRUE(httr::http_error(json_url))) {
-      stop("\nA station was matched.",
-           "However a corresponding JSON file was not found at bom.gov.au.\n")
-    }
 
-    observations.json <-
-      jsonlite::fromJSON(txt = json_url)
+    tryCatch({
+      observations.json <-
+        jsonlite::fromJSON(txt = json_url)
+    },
+    error = function(e) {
+      e$message <-
+        paste("\nA station was matched.",
+              "However a corresponding JSON file was not found at bom.gov.au.\n")
+      # Otherwise refers to open.connection
+      e$call <- NULL
+      stop(e)
+    })
 
     if ("observations" %notin% names(observations.json) ||
         "data" %notin% names(observations.json$observations)) {
