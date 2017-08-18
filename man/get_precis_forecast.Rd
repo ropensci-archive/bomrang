@@ -2,14 +2,14 @@
 % Please edit documentation in R/get_precis_forecast.R
 \name{get_precis_forecast}
 \alias{get_precis_forecast}
-\title{BoM Daily Précis Forecast for Select Towns}
+\title{Get BoM Daily Précis Forecast for Select Towns}
 \usage{
 get_precis_forecast(state = "AUS")
 }
 \arguments{
 \item{state}{Australian state or territory as full name or postal code.
-Fuzzy string matching via \code{base::agrep} is done.  Defaults to "AUS"
-returning all state bulletins, see details for further information.}
+Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
+"AUS" returning all state bulletins, see details for further information.}
 }
 \value{
 Tidy data frame of a Australia BoM précis seven day forecasts for select
@@ -52,6 +52,6 @@ file portion of a shapefile,
 \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 }
 \author{
-Adam H Sparks, \email{adamhsparks@gmail.com} and
-Keith Pembleton, \email{keith.pembleton@usq.edu.au}
+Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton,
+\email{keith.pembleton@usq.edu.au}
 }

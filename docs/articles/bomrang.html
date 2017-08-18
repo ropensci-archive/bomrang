@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>bomrang • bomrang</title>
-<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/spacelab/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script><script src="../pkgdown.js"></script><!-- mathjax --><script src="https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!--[if lt IE 9]>
@@ -40,6 +40,18 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/use_case.html">bomrang Use Case</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">News</a>
 </li>
@@ -64,9 +76,9 @@
   <div class="col-md-9">
     <div class="page-header toc-ignore">
       <h1>bomrang</h1>
-                        <h4 class="author">Adam H Sparks</h4>
+                        <h4 class="author">Adam H Sparks and Hugh Parsonage</h4>
             
-            <h4 class="date">2017-07-15</h4>
+            <h4 class="date">2017-08-18</h4>
           </div>
 
     
@@ -81,7 +93,7 @@
 <h2 class="hasAnchor">
 <a href="#using-bomrang" class="anchor"></a>Using <em>bomrang</em>
 </h2>
-<p>Several functions are provided by <em>bomrang</em>.The main functionality of <em>bomrang</em> is provided through three functions, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin. Other functions include <code>update_forecast_locations()</code>, which updates an internal database of forecast locations distributed with the package, and <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> which returns the nearest weather stations to a point in Australia.</p>
+<p>Several functions are provided by <em>bomrang</em> to retrieve Australian Bureau of Meteorology (BoM) data. A family of functions retrieve weather data and return tidy data frames; <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin. A second group of functions retrieve information pertaining to satellite imagery, <code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> and the imagery itself, <code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code>. The last group functions provides internal functionality for <em>bomrang</em> itself; <code>update_forecast_locations()</code>, which updates an internal database of forecast locations distributed with the package, <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> which returns the nearest weather stations to a point in Australia and, <code>manage_cached_files()</code> that provides facilities for managing cached satellite imagery.</p>
 </div>
 <div id="using-get_current_weather" class="section level2">
 <h2 class="hasAnchor">
@@ -89,7 +101,7 @@
 </h2>
 <p><code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> takes one of two arguments: <code>station_name</code> and <code>latlon</code>, returning the current weather observations (and the observations of the last 72 hours) for the given location.</p>
 <p>If <code>station_name</code> is used, the weather observations for the last 72 hours are returned for that station. If the string provided is ambiguous, the function returns an observation for one of the possible stations and emits a warning to offer unambiguous station names.</p>
-<p>If <code>latlon</code> is used, the observations returned are from the station nearest to that latitude-longitude coordinate. The function also emits a message, to tell the user which station was used.</p>
+<p>If <code>latlon</code> is used, the observations returned are from the station nearest to that latitude-longitude coordinate. <code>latlon</code> values are entered as decimal degrees, <em>e.g.</em> -34, 151 for Sydney. The function also emits a message, to tell the user which station was used.</p>
 <div id="results" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results" class="anchor"></a>Results</h3>
@@ -99,10 +111,63 @@
 <h3 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h3>
 <p>Following is an example fetching the current weather for Melbourne.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"bomrang"</span>)
-
-Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_current_weather.html">get_current_weather</a></span>(<span class="st">"Melbourne (Olympic Park)"</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"bomrang"</span>)</code></pre></div>
+<pre><code>## 
+## Data (c) Australian Government Bureau of Meteorology,
+## Creative Commons (CC) Attribution 3.0 licence or
+## Public Access Licence (PAL) as appropriate.
+## See http://www.bom.gov.au/other/copyright.shtml</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_current_weather.html">get_current_weather</a></span>(<span class="st">"Melbourne (Olympic Park)"</span>)
 <span class="kw">head</span>(Melbourne_weather)</code></pre></div>
+<pre><code>##   sort_order   wmo                full_name history_product
+## 1          0 95936 Melbourne (Olympic Park)        IDV60801
+## 2          1 95936 Melbourne (Olympic Park)        IDV60801
+## 3          2 95936 Melbourne (Olympic Park)        IDV60801
+## 4          3 95936 Melbourne (Olympic Park)        IDV60801
+## 5          4 95936 Melbourne (Olympic Park)        IDV60801
+## 6          5 95936 Melbourne (Olympic Park)        IDV60801
+##   local_date_time local_date_time_full        aifstime_utc      lat
+## 1      18/05:30pm  2017-08-18 17:30:00 2017-08-18 07:30:00 -37.8255
+## 2      18/05:00pm  2017-08-18 17:00:00 2017-08-18 07:00:00 -37.8255
+## 3      18/04:30pm  2017-08-18 16:30:00 2017-08-18 06:30:00 -37.8255
+## 4      18/04:00pm  2017-08-18 16:00:00 2017-08-18 06:00:00 -37.8255
+## 5      18/03:30pm  2017-08-18 15:30:00 2017-08-18 05:30:00 -37.8255
+## 6      18/03:00pm  2017-08-18 15:00:00 2017-08-18 05:00:00 -37.8255
+##        lon apparent_t cloud cloud_base_m cloud_oktas cloud_type
+## 1 144.9816        5.7     -           NA          NA          -
+## 2 144.9816        5.7     -           NA          NA          -
+## 3 144.9816        5.7     -           NA          NA          -
+## 4 144.9816        6.9     -           NA          NA          -
+## 5 144.9816        6.7     -           NA          NA          -
+## 6 144.9816        6.5     -           NA          NA          -
+##   cloud_type_id delta_t gust_kmh gust_kt air_temp dewpt  press press_msl
+## 1            NA     1.7       22      12      9.2   5.4 1015.6    1015.6
+## 2            NA     2.1       24      13      9.4   4.6 1015.2    1015.2
+## 3            NA     3.1       32      17     10.4   3.4 1014.4    1014.4
+## 4            NA     3.2       30      16     11.1   3.9 1013.7    1013.7
+## 5            NA     2.6       28      15     10.7   5.0 1013.4    1013.4
+## 6            NA     1.9       20      11      9.6   5.4 1013.1    1013.1
+##   press_qnh press_tend rain_trace rel_hum sea_state swell_dir_worded
+## 1    1015.6          -        1.4      77         -                -
+## 2    1015.2          -        1.2      72         -                -
+## 3    1014.4          -        1.0      62         -                -
+## 4    1013.7          -        1.0      61         -                -
+## 5    1013.4          -        1.0      68         -                -
+## 6    1013.1          -        1.0      75         -                -
+##   swell_height swell_period vis_km weather wind_dir wind_spd_kmh
+## 1           NA           NA     10       -        W           13
+## 2           NA           NA     10       -      WSW           13
+## 3           NA           NA     10       -        W           17
+## 4           NA           NA     10       -        W           15
+## 5           NA           NA     10       -      WSW           15
+## 6           NA           NA     10    Rain      WSW           11
+##   wind_spd_kt
+## 1           7
+## 2           7
+## 3           9
+## 4           8
+## 5           8
+## 6           6</code></pre>
 </div>
 </div>
 <div id="using-get_precis_forecast" class="section level2">
@@ -124,26 +189,7 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 <div id="results-1" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results-1" class="anchor"></a>Results</h3>
-<p>The function, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, will return a data frame of the weather forecast for the daily forecast for selected towns with the following fields:</p>
-<ul>
-<li><p><strong>aac</strong> - AMOC Area Code, <em>e.g.</em> WA_MW008, a unique identifier for each location</p></li>
-<li><p><strong>start_time_local</strong> - Start of forecast date and time in local TZ</p></li>
-<li><p><strong>end_time_local</strong> - End of forecast date and time in local TZ</p></li>
-<li><p><strong>UTC_offset</strong> - Hours offset from difference in hours and minutes from Coordinated Universal Time (UTC) for <code>start_time_local</code> and <code>end_time_local</code></p></li>
-<li><p><strong>start_time_utc</strong> - Start of forecast date and time in UTC</p></li>
-<li><p><strong>end_time_utc</strong> - End of forecast date and time in UTC</p></li>
-<li><p><strong>max_temp</strong> - Maximum forecasted temperature (degrees Celsius)</p></li>
-<li><p><strong>min_temp</strong> - Minimum forecasted temperature (degrees Celsius)</p></li>
-<li><p><strong>lower_prcp_limit</strong> - Lower forecasted precipitation limit (millimetres)</p></li>
-<li><p><strong>upper_prcp_limit</strong> - Upper forecasted precipitation limit (millimetres)</p></li>
-<li><p><strong>precis</strong> - Précis forecast (a short summary, less than 30 characters)</p></li>
-<li><p><strong>prob_prcp</strong> - Probability of precipitation (percent)</p></li>
-<li><p><strong>town</strong> - A disaggretated district forecast for select towns</p></li>
-<li><p><strong>state</strong> - State name (postal code abbreviation)</p></li>
-<li><p><strong>lon</strong> - Longitude of named location (decimal degrees)</p></li>
-<li><p><strong>lat</strong> - Latitude of named location (decimal degrees)</p></li>
-<li><p><strong>elev</strong> - Elevation of named location (metres).</p></li>
-</ul>
+<p>The function, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, will return a data frame of the weather forecast for the daily forecast for selected towns. See Appendix 1 for a full description of the fields and values.</p>
 </div>
 <div id="example-1" class="section level3">
 <h3 class="hasAnchor">
@@ -153,6 +199,41 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 
 QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_precis_forecast.html">get_precis_forecast</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
 <span class="kw">head</span>(QLD_forecast)</code></pre></div>
+<pre><code>##   index product_id state     town       aac      lat      lon elev
+## 1     0   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
+## 2     1   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
+## 3     2   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
+## 4     3   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
+## 5     4   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
+## 6     5   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
+##      start_time_local end_time_local UTC_offset      start_time_utc
+## 1 2017-08-18 17:00:00     2017-08-19      10:00 2017-08-18 07:00:00
+## 2 2017-08-19 00:00:00     2017-08-20      10:00 2017-08-18 14:00:00
+## 3 2017-08-20 00:00:00     2017-08-21      10:00 2017-08-19 14:00:00
+## 4 2017-08-21 00:00:00     2017-08-22      10:00 2017-08-20 14:00:00
+## 5 2017-08-22 00:00:00     2017-08-23      10:00 2017-08-21 14:00:00
+## 6 2017-08-23 00:00:00     2017-08-24      10:00 2017-08-22 14:00:00
+##          end_time_utc minimum_temperature maximum_temperature
+## 1 2017-08-18 14:00:00                  NA                  NA
+## 2 2017-08-19 14:00:00                  10                  21
+## 3 2017-08-20 14:00:00                   9                  22
+## 4 2017-08-21 14:00:00                   9                  23
+## 5 2017-08-22 14:00:00                  11                  27
+## 6 2017-08-23 14:00:00                  11                  26
+##   lower_precipitation_limit upper_precipitation_limit         precis
+## 1                        NA                        NA         Clear.
+## 2                         0                         0  Windy. Sunny.
+## 3                         0                         0         Sunny.
+## 4                         0                         0 Partly cloudy.
+## 5                         0                         0         Sunny.
+## 6                         0                         0         Sunny.
+##   probability_of_precipitation
+## 1                            0
+## 2                            0
+## 3                            5
+## 4                           10
+## 5                            0
+## 6                           10</code></pre>
 </div>
 </div>
 <div id="using-get_ag_bulletin" class="section level2">
@@ -173,39 +254,7 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <div id="results-2" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results-2" class="anchor"></a>Results</h3>
-<p>The function, <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, will return a data frame of the agriculture bulletin with the following fields:</p>
-<ul>
-<li><p><strong>obs-time-local</strong> - Observation time</p></li>
-<li><p><strong>obs-time-utc</strong> - Observation time (time in UTC)</p></li>
-<li><p><strong>time-zone</strong> - Time zone for observation</p></li>
-<li><p><strong>site</strong> - Unique BoM identifier for each station</p></li>
-<li><p><strong>dist</strong> - BoM rainfall district</p></li>
-<li><p><strong>station</strong> - BoM station name</p></li>
-<li><p><strong>start</strong> - Year data collection starts</p></li>
-<li><p><strong>end</strong> - Year data collection ends (will always be current)</p></li>
-<li><p><strong>state</strong> - State name (postal code abbreviation)</p></li>
-<li><p><strong>lat</strong> - Latitude (decimal degrees)</p></li>
-<li><p><strong>lon</strong> - Longitude (decimal degrees)</p></li>
-<li><p><strong>elev</strong> - Station elevation (metres)</p></li>
-<li><p><strong>bar_ht</strong> - Bar height (metres)</p></li>
-<li><p><strong>wmo</strong> - World Meteorlogical Organization number (unique ID used worldwide)</p></li>
-<li><p><strong>r</strong> - Rain to 9am (millimetres). <em>Trace will be reported as 0.01</em></p></li>
-<li><p><strong>tn</strong> - Minimum temperature (degrees Celsius)</p></li>
-<li><p><strong>tx</strong> - Maximum temperature (degrees Celsius)</p></li>
-<li><p><strong>twd</strong> - Wet bulb depression (degrees Celsius)</p></li>
-<li><p><strong>ev</strong> - Evaporation (millimetres)</p></li>
-<li><p><strong>tg</strong> - Terrestrial minimum temperature (degrees Celsius)</p></li>
-<li><p><strong>sn</strong> - Sunshine (hours)</p></li>
-<li><p><strong>t5</strong> - 5cm soil temperature (degrees Celsius)</p></li>
-<li><p><strong>t10</strong> - 10cm soil temperature (degrees Celsius)</p></li>
-<li><p><strong>t20</strong> - 20cm soil temperature (degrees Celsius)</p></li>
-<li><p><strong>t50</strong> - 50cm soil temperature (degrees Celsius)</p></li>
-<li><p><strong>t1m</strong> - 1m soil temperature (degrees Celsius)</p></li>
-<li><p><strong>wr</strong> - Wind run (kilometres)</p></li>
-<li><p><strong>state</strong> - State name (postal code abbreviation)</p></li>
-<li><p><strong>lat</strong> - Latitude (decimal degrees)</p></li>
-<li><p><strong>lon</strong> - Longitude (decimal degrees).</p></li>
-</ul>
+<p>The function, <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, will return a data frame of the agriculture bulletin for selected stations. See Appendix 3 for a full list and description of the fields and values.</p>
 </div>
 <div id="example-2" class="section level3">
 <h3 class="hasAnchor">
@@ -215,69 +264,429 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 
 QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_ag_bulletin.html">get_ag_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
 <span class="kw">head</span>(QLD_bulletin)</code></pre></div>
+<pre><code>##   product_id state dist   wmo  site          station
+## 1   IDQ60604   QLD   38 95482 38026       Birdsville
+## 2   IDQ60604   QLD   40 94578 40842 Brisbane Airport
+## 3   IDQ60604   QLD   39 94387 39128        Bundaberg
+## 4   IDQ60604   QLD   31 94287 31011           Cairns
+## 5   IDQ60604   QLD   44 94510 44021      Charleville
+## 6   IDQ60604   QLD   33 94360 33013     Collinsville
+##                  full_name      obs_time_local        obs_time_utc
+## 1       BIRDSVILLE AIRPORT 2017-08-18 09:00:00 2017-08-17 23:00:00
+## 2            BRISBANE AERO 2017-08-18 09:00:00 2017-08-17 23:00:00
+## 3           BUNDABERG AERO 2017-08-18 09:00:00 2017-08-17 23:00:00
+## 4              CAIRNS AERO 2017-08-18 09:00:00 2017-08-17 23:00:00
+## 5         CHARLEVILLE AERO 2017-08-18 09:00:00 2017-08-17 23:00:00
+## 6 COLLINSVILLE POST OFFICE 2017-08-18 09:00:00 2017-08-17 23:00:00
+##   time_zone      lat      lon  elev bar_ht start  end r   tn   tx  twd  ev
+## 1       EST -25.8975 139.3472  46.6   47.0  2000 2017 0 13.2 28.2  7.1  NA
+## 2       EST -27.3917 153.1292   4.5    9.5  1992 2017 0 13.9 29.3 10.3 6.0
+## 3       EST -24.9069 152.3230  30.8   31.5  1942 2017 0 13.0 28.0  9.0  NA
+## 4       EST -16.8736 145.7458   2.2    8.3  1941 2017 0 16.4 28.4  3.8  NA
+## 5       EST -26.4139 146.2558 301.6  303.3  1942 2017 0  7.6 27.6  9.2  NA
+## 6       EST -20.5533 147.8464 196.0     NA  1939 2017 0 14.2 30.7  1.3 4.4
+##    tg   sn   t5  t10  t20  t50  t1m  wr
+## 1  NA   NA   NA   NA   NA   NA   NA  NA
+## 2 6.2 10.5 18.0 18.0 19.0 20.0 19.0 199
+## 3  NA   NA 20.1 20.6 21.6 21.2 21.7 239
+## 4  NA   NA   NA   NA   NA   NA   NA  NA
+## 5  NA   NA   NA   NA   NA   NA   NA  NA
+## 6  NA   NA   NA   NA   NA   NA   NA  NA</code></pre>
 </div>
 </div>
-<div id="other-functions-in-bomrang" class="section level2">
+<div id="using-sweep_for_stations" class="section level2">
 <h2 class="hasAnchor">
-<a href="#other-functions-in-bomrang" class="anchor"></a>Other functions in <em>bomrang</em>
-</h2>
-<div id="using-sweep_for_stations" class="section level3">
-<h3 class="hasAnchor">
 <a href="#using-sweep_for_stations" class="anchor"></a>Using <code>sweep_for_stations</code>
-</h3>
+</h2>
 <p><code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> only takes one argument, <code>latlon</code>, a length-2 numeric vector. By default, Canberra (approximately).</p>
-<div id="results-3" class="section level4">
-<h4 class="hasAnchor">
-<a href="#results-3" class="anchor"></a>Results</h4>
+<div id="results-3" class="section level3">
+<h3 class="hasAnchor">
+<a href="#results-3" class="anchor"></a>Results</h3>
 <p>This function will search for weather stations and return a data frame of all weather stations (in this package) sorted by distance from <code>latlon</code>, ascending. The fields in the data frame are:</p>
 <p><strong>name</strong> - station name</p>
-<p><strong>Lat</strong> - latitude (decimal degrees)</p>
-<p><strong>Lon</strong> - longitude (decimal degrees)</p>
+<p><strong>lat</strong> - latitude (decimal degrees)</p>
+<p><strong>lon</strong> - longitude (decimal degrees)</p>
 <p><strong>distance</strong> - distance from provided <code>latlon</code> value (kilometres).</p>
 </div>
-<div id="example-3" class="section level4">
-<h4 class="hasAnchor">
-<a href="#example-3" class="anchor"></a>Example</h4>
+<div id="example-3" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example-3" class="anchor"></a>Example</h3>
 <p>Following is an example sweeping for stations starting with Canberra.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Show only the first ten stations in the list</span>
 <span class="kw">head</span>(<span class="kw"><a href="../reference/sweep_for_stations.html">sweep_for_stations</a></span>(<span class="dt">latlon =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">35.3</span>, <span class="fl">149.2</span>)), <span class="dv">10</span>)</code></pre></div>
+<pre><code>##      site dist                              name start  end      lat
+## 1  070351   70                  CANBERRA AIRPORT  2008 2017 -35.3088
+## 2  070339   70 TUGGERANONG (ISABELLA PLAINS) AWS  1996 2017 -35.4184
+## 3  070349   70                  MOUNT GININI AWS  2004 2017 -35.5293
+## 4  070341   70 CAPTAINS FLAT (COWANGERONG RADAR)  2002 2017 -35.6614
+## 5  069132   69          BRAIDWOOD RACECOURSE AWS  1985 2017 -35.4253
+## 6  070358   70         YASS (RURAL FIRE SERVICE)  2011 2017 -34.8225
+## 7  073007   73                    BURRINJUCK DAM  1908 2017 -34.9997
+## 8  070330   70              GOULBURN AIRPORT AWS  1988 2017 -34.8085
+## 9  070263   70                     GOULBURN TAFE  1971 2017 -34.7495
+## 10 069128   69                       NERRIGA AWS  2013 2017 -35.1103
+##         lon source state   elev bar_ht   wmo state_code
+## 1  149.2004    GPS   NSW  577.1  577.6 94926          N
+## 2  149.0937    GPS   NSW  586.7  587.5 94925          N
+## 3  148.7721    GPS   NSW 1760.0     NA 95925          N
+## 4  149.5122    GPS   NSW 1358.0     NA 99089          N
+## 5  149.7835    GPS   NSW  665.2  666.0 94927          N
+## 6  148.9080    GPS   NSW  498.0     NA 95723          N
+## 7  148.5984    GPS   NSW  390.0     NA 94909          N
+## 8  149.7311    GPS   NSW  640.0  640.8 95716          N
+## 9  149.7034    GPS   NSW  670.0     NA 94716          N
+## 10 150.0826    GPS   NSW  622.0  625.6 94943          N
+##                                                       url   distance
+## 1  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94926.json  0.9791884
+## 2  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94925.json 16.3172787
+## 3  http://www.bom.gov.au/fwo/IDN60801/IDN60801.95925.json 46.4084466
+## 4  http://www.bom.gov.au/fwo/IDN60801/IDN60801.99089.json 49.1327086
+## 5  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94927.json 54.7153470
+## 6  http://www.bom.gov.au/fwo/IDN60801/IDN60801.95723.json 59.3756657
+## 7  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94909.json 64.0835316
+## 8  http://www.bom.gov.au/fwo/IDN60801/IDN60801.95716.json 72.9652110
+## 9  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94716.json 76.4731323
+## 10 http://www.bom.gov.au/fwo/IDN60801/IDN60801.94943.json 82.9176026</code></pre>
 </div>
 </div>
+<div id="using-the-update-functions" class="section level2">
+<h2 class="hasAnchor">
+<a href="#using-the-update-functions" class="anchor"></a>Using the update functions</h2>
+<p><em>bomrang</em> uses internal databases of station location data from BoM to provide location and other metadata, <em>e.g.</em> elevation, station names, WMO codes, etc. to make the process of querying for weather data faster. These databases are created and packaged with <em>bomrang</em> for distribution and are updated with new releases. Users have the option of updating these databases after installing <em>bomrang</em>. While this option gives the users the ability to keep the databases up-to-date and gives <em>bomrang</em>’s authors flexibility in maintaining it, this also means that reproducibility may be affected since the same version of <em>bomrang</em> may have different databases on different machines. If reproducibility is necessary, care should be taken to ensure that the version of the databases is the same across different machines.</p>
+<p>The databases consist of three files, used by <em>bomrang</em>, <code>AAC_codes.rda</code>, <code>JSONurl_latlon_by_station_name.rda</code> and <code>stations_site_list.rda</code>. These files can be located on your local system by using the following command,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste0</span>(<span class="kw">.libPaths</span>(), <span class="st">"/bomrang/extdata"</span>)[<span class="dv">1</span>]</code></pre></div>
+<p>unless you have specified another location for library installations and installed <em>bomrang</em> there, in which case it would still be in <code>bomrang/extdata</code>.</p>
 <div id="using-update_forecast_locations" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-update_forecast_locations" class="anchor"></a>Using <code>update_forecast_locations</code>
 </h3>
-<p><code>update_forecast_locations()</code> downloads the latest précis forecast locations from the BoM server and updates <em>bomrang</em>’s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BoM forecast location database that is not available in the database distributed with <em>bomrang</em>. This database is distributed with the package to make the process faster when fetching the forecast.</p>
-<div id="example-4" class="section level4">
-<h4 class="hasAnchor">
-<a href="#example-4" class="anchor"></a>Example</h4>
+<p><code>update_forecast_locations()</code> downloads the latest précis forecast locations from the BoM server and updates <em>bomrang</em>’s internal database of towns used for forecast locations. This database is distributed with the package to make the process faster when fetching the forecast.</p>
+</div>
+<div id="example-4" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example-4" class="anchor"></a>Example</h3>
 <p>Following is an example updating the précis forecast locations internal database.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">update_forecast_locations</span>()</code></pre></div>
-</div>
 </div>
 <div id="using-update_station_locations" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-update_station_locations" class="anchor"></a>Using <code>update_station_locations</code>
 </h3>
 <p><code><a href="../reference/update_station_locations.html">update_station_locations()</a></code> downloads the latest station locations and metadata and updates bomrang’s internal databases that support the use of <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>. There is no need to use this unless you know that a station exists in BoM’s database that is not available in the databases distributed with <em>bomrang</em></p>
-<div id="example-5" class="section level4">
-<h4 class="hasAnchor">
-<a href="#example-5" class="anchor"></a>Example</h4>
+</div>
+<div id="example-5" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example-5" class="anchor"></a>Example</h3>
 <p>Following is an example updating the précis forecast locations internal database.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/update_station_locations.html">update_station_locations</a></span>()</code></pre></div>
 </div>
 </div>
+<div id="using-bomrang-to-retrieve-satellite-imagery" class="section level2">
+<h2 class="hasAnchor">
+<a href="#using-bomrang-to-retrieve-satellite-imagery" class="anchor"></a>Using <em>bomrang</em> to retrieve satellite imagery</h2>
+<p><em>bomrang</em> provides functionality to retrieve high-definition GeoTIFF satellite imagery provided by BoM through public FTP with the following types of imagery being available: i.) <a href="http://www.bom.gov.au/australia/satellite/about_images.shtml#ir">Infrared images</a>, ii.) <a href="http://www.bom.gov.au/australia/satellite/about_images.shtml#vis">Visible images</a> and iii.) <a href="http://www.bom.gov.au/australia/satellite/about_images.shtml#cloud">Clouds/surface composite</a>.</p>
+<p>Valid BoM satellite Product IDs for GeoTIFF files include:</p>
+<table class="table">
+<tr>
+<th>
+Product ID
+</th>
+<th>
+Description
+</th>
+<th>
+Type
+</th>
+<th>
+Delete time
+</th>
+</tr>
+<tr>
+<td>
+IDE00420
+</td>
+<td>
+AHI cloud cover only 2km FD GEOS
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00421
+</td>
+<td>
+AHI IR (Ch13) greyscale 2km FD GEOS
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00422
+</td>
+<td>
+AHI VIS (Ch3) greyscale 2km FD GEOS
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00423
+</td>
+<td>
+AHI IR (Ch13) Zehr 2km FD GEOS
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00425
+</td>
+<td>
+AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km FD GEOS
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00426
+</td>
+<td>
+AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km FD GEOS
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00427
+</td>
+<td>
+AHI WV (Ch8) 2km FD GEOS
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00430
+</td>
+<td>
+AHI cloud cover only 2km AUS equirect.
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00431
+</td>
+<td>
+AHI IR (Ch13) greyscale 2km AUS equirect.
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00432
+</td>
+<td>
+AHI VIS (Ch3) greyscale 2km AUS equirect.
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00433
+</td>
+<td>
+AHI IR (Ch13) Zehr 2km AUS equirect.
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00435
+</td>
+<td>
+AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km AUS equirect.
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00436
+</td>
+<td>
+AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km AUS equirect.
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00437
+</td>
+<td>
+AHI WV (Ch8) 2km AUS equirect.
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td>
+IDE00439
+</td>
+<td>
+AHI VIS (Ch3) greyscale 0.5km AUS equirect.
+</td>
+<td>
+Satellite
+</td>
+<td style="text-align: center;">
+24
+</td>
+</tr>
+<tr>
+<td colspan="3">
+<strong>Information gathered from Australian Bureau of Meteorology (BoM)</strong>
+</td>
+</tr>
+</table>
+<div id="using-get_available_imagery" class="section level3">
+<h3 class="hasAnchor">
+<a href="#using-get_available_imagery" class="anchor"></a>Using <code>get_available_imagery</code>
+</h3>
+<p><code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> only takes one argument, <code>product_id</code>, a BoM identifier for the imagery that you wish to check for available imagery. Using this function will fetch a listing of BoM GeoTIFF satellite imagery from <a href="ftp://ftp.bom.gov.au/anon/gen/gms/" class="uri">ftp://ftp.bom.gov.au/anon/gen/gms/</a> to display which files are currently available for download. These files are available at ten minute update frequency with a 24 hour delete time. This function can be used see the most recent files available and then specify in the <code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> function. If no valid Product ID is supplied, defaults to all GeoTIFF images currently available.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">avail &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_available_imagery.html">get_available_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDE00425"</span>)</code></pre></div>
+</div>
+<div id="using-get_satellite_imagery" class="section level3">
+<h3 class="hasAnchor">
+<a href="#using-get_satellite_imagery" class="anchor"></a>Using <code>get_satellite_imagery</code>
+</h3>
+<p><code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> fetches BoM satellite GeoTIFF imagery, returning a raster stack object and takes three arguments. Files are available at ten minute update frequency with a 24 hour delete time. It is suggested to check file availability first by using <code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code>. The arguments are:</p>
+<ul>
+<li><p><code>product_id</code>, a character value of the BoM product ID to download. Alternatively, a vector of values from <code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> may be used here. This argument is mandatory.</p></li>
+<li><p><code>scans</code> a numeric value for the number of scans to download, starting with the most recent and progressing backwards, <em>e.g.</em>, <code>1</code> - the most recent single scan available , <code>6</code> - the most recent hour available, <code>12</code> - the most recent 2 hours available, etc. Negating will return the oldest files first. Defaults to 1. This argument is optional.</p></li>
+<li><p><code>cache</code> a logical value that indicates whether or not to store image files locally for later use? If <code>FALSE</code>, the downloaded files are removed when R session is closed. To take advantage of cached files in future sessions, set <code>TRUE</code>. Defaults to <code>FALSE</code>. This argument is optional. Cached files may be managed with the <code><a href="../reference/manage_bomrang_cache.html">manage_bomrang_cache()</a></code> function.</p></li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Specify product ID and scans</span>
+i &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_satellite_imagery.html">get_satellite_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDE00425"</span>, <span class="dt">scans =</span> <span class="dv">1</span>)
+
+<span class="co"># Same, but use "avail" from prior to specify images for download</span>
+i &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_satellite_imagery.html">get_satellite_imagery</a></span>(<span class="dt">product_id =</span> avail, <span class="dt">scans =</span> <span class="dv">1</span>)
+
+<span class="co"># Cache image for later use</span>
+i &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_satellite_imagery.html">get_satellite_imagery</a></span>(<span class="dt">product_id =</span> avail, <span class="dt">scans =</span> <span class="dv">1</span>, <span class="dt">cache =</span> <span class="ot">TRUE</span>)
+
+<span class="co"># load the raster library to work with the GeoTIFF files</span>
+<span class="kw">library</span>(raster)
+<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(i)</code></pre></div>
+<div class="figure">
+<img src="get_satellite_imagery-1.png" alt="get_satellite_imagery-1.png"><p class="caption">get_satellite_imagery-1.png</p>
+</div>
+</div>
+</div>
+<div id="using-caching-for-satellite-imagery" class="section level2">
+<h2 class="hasAnchor">
+<a href="#using-caching-for-satellite-imagery" class="anchor"></a>Using caching for satellite imagery</h2>
+<p>If you elect to use <code>cache = TRUE</code> when downloading imagery, note that the GTiff files can be quite large and will fill disk space. By using the default <code>cache = FALSE</code> the files will be deleted when the current R session is closed.</p>
+<p>Should you chose to use caching, <em>bomrang</em> provided functions to interact with the cached files:</p>
+<ul>
+<li>
+<p>List files in the cache, <code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_list()</a></code></p>
+<ul>
+<li>
+<p>List info for single files,</p>
+<ul>
+<li><p><code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_details(files = bomrang_cache_list()[1])</a></code></p></li>
+<li><p><code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_details(files = bomrang_cache_list()[2])</a></code></p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>List info for all files, <code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_details()</a></code></p></li>
+<li><p>Delete files by name in cache, <code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_delete()</a></code></p></li>
+<li><p>Delete all files in cache, <code><a href="../reference/manage_bomrang_cache.html">bomrang_cache_delete_all()</a></code></p></li>
+</ul>
 </div>
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
 <p><a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services</a></p>
+<p><a href="http://www.bom.gov.au/catalogue/anon-ftp.shtml">Australian Bureau of Meteorology (BoM) FTP Public Products</a></p>
 <p><a href="http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services Agriculture Bulletins</a></p>
 <p><a href="http://www.bom.gov.au/climate/how/observations/rain-measure.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services Observation of Rainfall</a></p>
+<p><a href="http://www.bom.gov.au/australia/satellite/index.shtml">Australian Bureau of Meteorology (BoM) High-definition satellite images</a></p>
 </div>
 <div id="appendix-1---output-from-get_current_weather" class="section level2">
 <h2 class="hasAnchor">
-<a href="#appendix-1---output-from-get_current_weather" class="anchor"></a>Appendix 1 - Output from get_current_weather()</h2>
+<a href="#appendix-1---output-from-get_current_weather" class="anchor"></a>Appendix 1 - Output from <code>get_current_weather</code>
+</h2>
 <p>The function <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> will return a dataframe that will contain some or all of the following fields.</p>
 <div id="fields-and-descriptions" class="section level3">
 <h3 class="hasAnchor">
@@ -312,7 +721,7 @@ Observing station name
 Abbr[6]
 </td>
 <td>
-An abbeviated name (normally 4 characters) used for the station
+An abbreviated name (normally 4 characters) used for the station
 </td>
 </tr>
 <tr>
@@ -552,7 +961,7 @@ Interval for which rain is reported in next field, hours
 Rainfall4
 </td>
 <td>
-Rainfall, mm, usually since last observastion
+Rainfall, mm, usually since last observation
 </td>
 </tr>
 <tr>
@@ -660,9 +1069,10 @@ Plain language comments
 </td>
 </tr>
 </table>
-<div id="codes" class="section level4">
-<h4 class="hasAnchor">
-<a href="#codes" class="anchor"></a>Codes:</h4>
+</div>
+<div id="codes" class="section level3">
+<h3 class="hasAnchor">
+<a href="#codes" class="anchor"></a>Codes:</h3>
 <p>P_tend_typ:</p>
 <ul>
 <li>0 Increasing, then decreasing, current pressure same or higher<br>
@@ -677,7 +1087,7 @@ Plain language comments
 </li>
 <li>4 Steady<br>
 </li>
-<li>5 Decreasing, then increasing, current presure lower<br>
+<li>5 Decreasing, then increasing, current pressure lower<br>
 </li>
 <li>6 Decreasing, then steady or decreasing more slowly<br>
 </li>
@@ -686,7 +1096,6 @@ Plain language comments
 </li>
 <li>Decreasing, then decreasing more rapidly</li>
 </ul>
-</div>
 </div>
 <div id="wx9---present-weather" class="section level3">
 <h3 class="hasAnchor">
@@ -750,7 +1159,7 @@ Plain language comments
 <p>(This is a subset of a larger table, not all values of which are used) wmo international BUFR code table 0 20 003, CREX code table B 20 003</p>
 <pre><code> 00 Clouds not observed
  01 Cloud decreasing
- 02 State of sky generally unchangeing
+ 02 State of sky generally unchanging
  03 Cloud increasing
  04 Smoke or volcanic ash
  05 Haze
@@ -761,7 +1170,7 @@ Plain language comments
  08 Well developed dust devils, but no sandstorm or duststorm
  09 Duststorm or sandstorm
  10 Mist
- 11 Paches of shallow fog
+ 11 Patches of shallow fog
  12 More or less continuous shallow fog
  13 Lightning visible, but no thunder heard
  14 Precipitation in sight, but not reaching the ground or sea (virga)
@@ -774,11 +1183,11 @@ Plain language comments
  20 Recent (within the last hour) drizzle
  21 Recent (within the last hour) rain, but not freezing rain
  22 Recent (within the last hour) snow
- 23 Recent (within the last hour) mixed raion and snow or ice pellets
+ 23 Recent (within the last hour) mixed rain and snow or ice pellets
  24 Recent (within the last hour) freezing drizzle or freezing rain
  25 Recent (within the last hour) showers of rain
  26 Recent (within the last hour) showers of snow or mixed rain and snow
- 27 Recent (within the last hour) showers of hail or mixed rain and hai
+ 27 Recent (within the last hour) showers of hail or mixed rain and hail
  28 Recent (within the last hour) Fog or ice fog
  29 Recent (within the last hour) thunderstorm
  30 Slight or moderate duststorm or sandstorm, has decreased in the
@@ -861,11 +1270,11 @@ Plain language comments
  95 Slight or moderate thunderstorm with rain or snow but no hail
  96 Slight or moderate thunderstorm with hail
  97 Heavy thunderstorm with rain or snow but no hail
- 98 Thunderstorm combu=ined with a sandstorm or duststorm
+ 98 Thunderstorm combined with a sandstorm or duststorm
  99 Heavy thunderstorm with hail
 100 No significant weather
 101 Cloud decreasing 
-102 State of sky generally unchangeing
+102 State of sky generally unchanging
 103 Cloud increasing
 104 Haze or smoke or suspended dust, visibility &gt;= 1km
 105 Haze or smoke or suspended dust, visibility &lt; 1km
@@ -1044,7 +1453,8 @@ wmo international BUFR code table 0 20 012, CREX code table B 20 012
 </div>
 <div id="appendix-2---output-from-get_precis_forecast" class="section level2">
 <h2 class="hasAnchor">
-<a href="#appendix-2---output-from-get_precis_forecast" class="anchor"></a>Appendix 2 - Output from get_précis_forecast()</h2>
+<a href="#appendix-2---output-from-get_precis_forecast" class="anchor"></a>Appendix 2 - Output from <code>get_précis_forecast</code>
+</h2>
 <p>The function, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, will return a tidy data frame of the agriculture bulletin with the following fields:</p>
 <table class="table">
 <tr>
@@ -1097,18 +1507,18 @@ AMOC Area Code, <em>e.g.</em>, WA_MW008, a unique identifier for each location
 </tr>
 <tr>
 <td>
-lon
-</td>
-<td>
-Longitude of named location (decimal degrees)
-</td>
-</tr>
-<tr>
-<td>
 lat
 </td>
 <td>
 Latitude of named location (decimal degrees)
+</td>
+</tr>
+<tr>
+<td>
+lon
+</td>
+<td>
+Longitude of named location (decimal degrees)
 </td>
 </tr>
 <tr>
@@ -1211,7 +1621,8 @@ Probability of precipitation (percent)
 </div>
 <div id="appendix-3---output-from-get_ag_bulletin" class="section level2">
 <h2 class="hasAnchor">
-<a href="#appendix-3---output-from-get_ag_bulletin" class="anchor"></a>Appendix 3 - Output from get_ag_bulletin()</h2>
+<a href="#appendix-3---output-from-get_ag_bulletin" class="anchor"></a>Appendix 3 - Output from <code>get_ag_bulletin</code>
+</h2>
 <p>The function, <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, will return a tidy data frame of the agriculture bulletin with the following fields:</p>
 <table class="table">
 <tr>
@@ -1251,7 +1662,7 @@ BoM rainfall district
 wmo
 </td>
 <td>
-World Meteorlogical Organization number (unique ID used worldwide)
+World Meteorological Organization number (unique ID used worldwide)
 </td>
 </tr>
 <tr>
@@ -1464,6 +1875,54 @@ Wind run (kilometres)
 </tr>
 </table>
 </div>
+<div id="appendix-4---map-of-station-locations" class="section level2">
+<h2 class="hasAnchor">
+<a href="#appendix-4---map-of-station-locations" class="anchor"></a>Appendix 4 - Map of station locations</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="kw">requireNamespace</span>(<span class="st">"ggplot2"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span>
+<span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"ggthemes"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span>
+<span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"maps"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span>
+<span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"mapproj"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span>
+<span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"gridExtra"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span>
+<span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"grid"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)) {
+  <span class="kw">library</span>(ggplot2)
+  <span class="kw">library</span>(mapproj)
+  <span class="kw">library</span>(ggthemes)
+  <span class="kw">library</span>(maps)
+  <span class="kw">library</span>(data.table)
+  <span class="kw">library</span>(grid)
+  <span class="kw">library</span>(gridExtra)
+  <span class="kw">load</span>(<span class="kw">system.file</span>(<span class="st">"extdata"</span>, <span class="st">"stations_site_list.rda"</span>, <span class="dt">package =</span> <span class="st">"bomrang"</span>))
+  <span class="kw"><a href="http://www.rdocumentation.org/packages/data.table/topics/setDT">setDT</a></span>(stations_site_list)
+  
+  Aust_stations &lt;-<span class="st"> </span>
+<span class="st">    </span>stations_site_list[(<span class="op">!</span>(state <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">"ANT"</span>, <span class="st">"null"</span>))) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">grepl</span>(<span class="st">"VANUATU|HONIARA"</span>, name)]
+  
+  Aust_map &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/map_data">map_data</a></span>(<span class="st">"world"</span>, <span class="dt">region =</span> <span class="st">"Australia"</span>)
+  
+  BoM_stations &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(Aust_stations, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_polygon">geom_polygon</a></span>(<span class="dt">data =</span> Aust_map, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), 
+                 <span class="dt">color =</span> <span class="kw">grey</span>(<span class="fl">0.7</span>),
+                 <span class="dt">fill =</span> <span class="ot">NA</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="dt">color =</span> <span class="st">"red"</span>,
+               <span class="dt">size =</span> <span class="fl">0.05</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/coord_map">coord_map</a></span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">45</span>, <span class="op">-</span><span class="dv">5</span>),
+              <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">96</span>, <span class="dv">167</span>)) <span class="op">+</span>
+<span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_map">theme_map</a></span>() <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">title =</span> <span class="st">"BoM Station Locations"</span>,
+         <span class="dt">subtitle =</span> <span class="st">"Australia, outlying islands and buoys (excl. Antarctic stations)"</span>,
+         <span class="dt">caption =</span> <span class="st">"Data: Australia Bureau of Meteorology (BoM)</span><span class="ch">\n</span>
+<span class="st">         and NaturalEarthdata, http://naturalearthdata.com"</span>)
+  
+  <span class="co"># Using the gridExtra and grid packages add a neatline to the map</span>
+  <span class="kw"><a href="http://www.rdocumentation.org/packages/gridExtra/topics/arrangeGrob">grid.arrange</a></span>(BoM_stations, <span class="dt">ncol =</span> <span class="dv">1</span>)
+  <span class="kw"><a href="http://www.rdocumentation.org/packages/grid/topics/grid.rect">grid.rect</a></span>(<span class="dt">width =</span> <span class="fl">0.98</span>, 
+            <span class="dt">height =</span> <span class="fl">0.98</span>, 
+            <span class="dt">gp =</span> grid<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/grid/topics/gpar">gpar</a></span>(<span class="dt">lwd =</span> <span class="fl">0.25</span>, 
+                            <span class="dt">col =</span> <span class="st">"black"</span>,
+                            <span class="dt">fill =</span> <span class="ot">NA</span>))
+}</code></pre></div>
+<p><img src="bomrang_files/figure-html/station-locations-map-1.png" width="672"></p>
+</div>
 </div>
   </div>
 
@@ -1477,11 +1936,15 @@ Wind run (kilometres)
       <li><a href="#using-get_current_weather">Using <code>get_current_weather</code></a></li>
       <li><a href="#using-get_precis_forecast">Using <code>get_precis_forecast</code></a></li>
       <li><a href="#using-get_ag_bulletin">Using <code>get_ag_bulletin</code></a></li>
-      <li><a href="#other-functions-in-bomrang">Other functions in <em>bomrang</em></a></li>
+      <li><a href="#using-sweep_for_stations">Using <code>sweep_for_stations</code></a></li>
+      <li><a href="#using-the-update-functions">Using the update functions</a></li>
+      <li><a href="#using-bomrang-to-retrieve-satellite-imagery">Using <em>bomrang</em> to retrieve satellite imagery</a></li>
+      <li><a href="#using-caching-for-satellite-imagery">Using caching for satellite imagery</a></li>
       <li><a href="#references">References</a></li>
-      <li><a href="#appendix-1---output-from-get_current_weather">Appendix 1 - Output from get_current_weather()</a></li>
-      <li><a href="#appendix-2---output-from-get_precis_forecast">Appendix 2 - Output from get_précis_forecast()</a></li>
-      <li><a href="#appendix-3---output-from-get_ag_bulletin">Appendix 3 - Output from get_ag_bulletin()</a></li>
+      <li><a href="#appendix-1---output-from-get_current_weather">Appendix 1 - Output from <code>get_current_weather</code></a></li>
+      <li><a href="#appendix-2---output-from-get_precis_forecast">Appendix 2 - Output from <code>get_précis_forecast</code></a></li>
+      <li><a href="#appendix-3---output-from-get_ag_bulletin">Appendix 3 - Output from <code>get_ag_bulletin</code></a></li>
+      <li><a href="#appendix-4---map-of-station-locations">Appendix 4 - Map of station locations</a></li>
       </ul>
 </div>
       </div>

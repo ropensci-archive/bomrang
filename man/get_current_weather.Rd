@@ -2,25 +2,26 @@
 % Please edit documentation in R/get_current_weather.R
 \name{get_current_weather}
 \alias{get_current_weather}
-\title{Current Weather Observations of a BoM Station}
+\title{Get Current Weather Observations of a BoM Station}
 \usage{
 get_current_weather(station_name, strict = FALSE, latlon = NULL,
   raw = FALSE, emit_latlon_msg = TRUE, as.data.table = FALSE)
 }
 \arguments{
 \item{station_name}{The name of the weather station. Fuzzy string matching
-via \code{base::agrep} is done.}
+via \code{\link[base]{agrep}} is done.}
 
-\item{strict}{(logical) If \code{TRUE}, \code{station_name} must match the station name exactly,
-except that \code{station_name} need not be uppercase. Note this may be different to
-\code{full_name} in the response. See \strong{Details}.}
+\item{strict}{(logical) If \code{TRUE}, \code{station_name} must match the
+station name exactly, except that \code{station_name} need not be uppercase.
+Note this may be different to \code{full_name} in the response. See
+\strong{Details}.}
 
-\item{latlon}{A length-2 numeric vector giving the decimal
-latitude and longitude (in that order), \emph{e.g.} \code{latlon = c(-34, 151)} for Sydney.
-When given instead of \code{station_name}, the nearest station (in this package) is used, with a
-message indicating the nearest such station. (See also
- \code{\link{sweep_for_stations}}.) Ignored if used in combination with
-\code{station_name}, with a warning.}
+\item{latlon}{A length-2 numeric vector giving the decimal degree
+latitude and longitude (in that order), \emph{e.g.} \code{latlon =
+c(-34, 151)} for Sydney. When given instead of \code{station_name}, the
+nearest station (in this package) is used, with a message indicating the
+nearest such station. (See also \code{\link{sweep_for_stations}}.) Ignored if
+used in combination with \code{station_name}, with a warning.}
 
 \item{raw}{Logical. Do not convert the columns \code{data.table} to the
 appropriate classes. (\code{FALSE} by default.)}
@@ -38,7 +39,7 @@ full details of fields and units returned, see Appendix 1 in the
 to view.
 }
 \description{
-Current Weather Observations of a BoM Station
+Get Current Weather Observations of a BoM Station
 }
 \details{
 Station names are not consistently named within the Bureau, so

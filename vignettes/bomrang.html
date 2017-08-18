@@ -1,0 +1,1479 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="author" content="Adam H Sparks" />
+
+<meta name="date" content="2017-08-18" />
+
+<title>bomrang</title>
+
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+
+
+<link href="data:text/css;charset=utf-8,body%20%7B%0Abackground%2Dcolor%3A%20%23fff%3B%0Amargin%3A%201em%20auto%3B%0Amax%2Dwidth%3A%20700px%3B%0Aoverflow%3A%20visible%3B%0Apadding%2Dleft%3A%202em%3B%0Apadding%2Dright%3A%202em%3B%0Afont%2Dfamily%3A%20%22Open%20Sans%22%2C%20%22Helvetica%20Neue%22%2C%20Helvetica%2C%20Arial%2C%20sans%2Dserif%3B%0Afont%2Dsize%3A%2014px%3B%0Aline%2Dheight%3A%201%2E35%3B%0A%7D%0A%23header%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0A%23TOC%20%7B%0Aclear%3A%20both%3B%0Amargin%3A%200%200%2010px%2010px%3B%0Apadding%3A%204px%3B%0Awidth%3A%20400px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Aborder%2Dradius%3A%205px%3B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Afont%2Dsize%3A%2013px%3B%0Aline%2Dheight%3A%201%2E3%3B%0A%7D%0A%23TOC%20%2Etoctitle%20%7B%0Afont%2Dweight%3A%20bold%3B%0Afont%2Dsize%3A%2015px%3B%0Amargin%2Dleft%3A%205px%3B%0A%7D%0A%23TOC%20ul%20%7B%0Apadding%2Dleft%3A%2040px%3B%0Amargin%2Dleft%3A%20%2D1%2E5em%3B%0Amargin%2Dtop%3A%205px%3B%0Amargin%2Dbottom%3A%205px%3B%0A%7D%0A%23TOC%20ul%20ul%20%7B%0Amargin%2Dleft%3A%20%2D2em%3B%0A%7D%0A%23TOC%20li%20%7B%0Aline%2Dheight%3A%2016px%3B%0A%7D%0Atable%20%7B%0Amargin%3A%201em%20auto%3B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dcolor%3A%20%23DDDDDD%3B%0Aborder%2Dstyle%3A%20outset%3B%0Aborder%2Dcollapse%3A%20collapse%3B%0A%7D%0Atable%20th%20%7B%0Aborder%2Dwidth%3A%202px%3B%0Apadding%3A%205px%3B%0Aborder%2Dstyle%3A%20inset%3B%0A%7D%0Atable%20td%20%7B%0Aborder%2Dwidth%3A%201px%3B%0Aborder%2Dstyle%3A%20inset%3B%0Aline%2Dheight%3A%2018px%3B%0Apadding%3A%205px%205px%3B%0A%7D%0Atable%2C%20table%20th%2C%20table%20td%20%7B%0Aborder%2Dleft%2Dstyle%3A%20none%3B%0Aborder%2Dright%2Dstyle%3A%20none%3B%0A%7D%0Atable%20thead%2C%20table%20tr%2Eeven%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Ap%20%7B%0Amargin%3A%200%2E5em%200%3B%0A%7D%0Ablockquote%20%7B%0Abackground%2Dcolor%3A%20%23f6f6f6%3B%0Apadding%3A%200%2E25em%200%2E75em%3B%0A%7D%0Ahr%20%7B%0Aborder%2Dstyle%3A%20solid%3B%0Aborder%3A%20none%3B%0Aborder%2Dtop%3A%201px%20solid%20%23777%3B%0Amargin%3A%2028px%200%3B%0A%7D%0Adl%20%7B%0Amargin%2Dleft%3A%200%3B%0A%7D%0Adl%20dd%20%7B%0Amargin%2Dbottom%3A%2013px%3B%0Amargin%2Dleft%3A%2013px%3B%0A%7D%0Adl%20dt%20%7B%0Afont%2Dweight%3A%20bold%3B%0A%7D%0Aul%20%7B%0Amargin%2Dtop%3A%200%3B%0A%7D%0Aul%20li%20%7B%0Alist%2Dstyle%3A%20circle%20outside%3B%0A%7D%0Aul%20ul%20%7B%0Amargin%2Dbottom%3A%200%3B%0A%7D%0Apre%2C%20code%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0Aborder%2Dradius%3A%203px%3B%0Acolor%3A%20%23333%3B%0Awhite%2Dspace%3A%20pre%2Dwrap%3B%20%0A%7D%0Apre%20%7B%0Aborder%2Dradius%3A%203px%3B%0Amargin%3A%205px%200px%2010px%200px%3B%0Apadding%3A%2010px%3B%0A%7D%0Apre%3Anot%28%5Bclass%5D%29%20%7B%0Abackground%2Dcolor%3A%20%23f7f7f7%3B%0A%7D%0Acode%20%7B%0Afont%2Dfamily%3A%20Consolas%2C%20Monaco%2C%20%27Courier%20New%27%2C%20monospace%3B%0Afont%2Dsize%3A%2085%25%3B%0A%7D%0Ap%20%3E%20code%2C%20li%20%3E%20code%20%7B%0Apadding%3A%202px%200px%3B%0A%7D%0Adiv%2Efigure%20%7B%0Atext%2Dalign%3A%20center%3B%0A%7D%0Aimg%20%7B%0Abackground%2Dcolor%3A%20%23FFFFFF%3B%0Apadding%3A%202px%3B%0Aborder%3A%201px%20solid%20%23DDDDDD%3B%0Aborder%2Dradius%3A%203px%3B%0Aborder%3A%201px%20solid%20%23CCCCCC%3B%0Amargin%3A%200%205px%3B%0A%7D%0Ah1%20%7B%0Amargin%2Dtop%3A%200%3B%0Afont%2Dsize%3A%2035px%3B%0Aline%2Dheight%3A%2040px%3B%0A%7D%0Ah2%20%7B%0Aborder%2Dbottom%3A%204px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Apadding%2Dbottom%3A%202px%3B%0Afont%2Dsize%3A%20145%25%3B%0A%7D%0Ah3%20%7B%0Aborder%2Dbottom%3A%202px%20solid%20%23f7f7f7%3B%0Apadding%2Dtop%3A%2010px%3B%0Afont%2Dsize%3A%20120%25%3B%0A%7D%0Ah4%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23f7f7f7%3B%0Amargin%2Dleft%3A%208px%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Ah5%2C%20h6%20%7B%0Aborder%2Dbottom%3A%201px%20solid%20%23ccc%3B%0Afont%2Dsize%3A%20105%25%3B%0A%7D%0Aa%20%7B%0Acolor%3A%20%230033dd%3B%0Atext%2Ddecoration%3A%20none%3B%0A%7D%0Aa%3Ahover%20%7B%0Acolor%3A%20%236666ff%3B%20%7D%0Aa%3Avisited%20%7B%0Acolor%3A%20%23800080%3B%20%7D%0Aa%3Avisited%3Ahover%20%7B%0Acolor%3A%20%23BB00BB%3B%20%7D%0Aa%5Bhref%5E%3D%22http%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0Aa%5Bhref%5E%3D%22https%3A%22%5D%20%7B%0Atext%2Ddecoration%3A%20underline%3B%20%7D%0A%0Acode%20%3E%20span%2Ekw%20%7B%20color%3A%20%23555%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Edt%20%7B%20color%3A%20%23902000%3B%20%7D%20%0Acode%20%3E%20span%2Edv%20%7B%20color%3A%20%2340a070%3B%20%7D%20%0Acode%20%3E%20span%2Ebn%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Efl%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Ech%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Est%20%7B%20color%3A%20%23d14%3B%20%7D%20%0Acode%20%3E%20span%2Eco%20%7B%20color%3A%20%23888888%3B%20font%2Dstyle%3A%20italic%3B%20%7D%20%0Acode%20%3E%20span%2Eot%20%7B%20color%3A%20%23007020%3B%20%7D%20%0Acode%20%3E%20span%2Eal%20%7B%20color%3A%20%23ff0000%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%0Acode%20%3E%20span%2Efu%20%7B%20color%3A%20%23900%3B%20font%2Dweight%3A%20bold%3B%20%7D%20%20code%20%3E%20span%2Eer%20%7B%20color%3A%20%23a61717%3B%20background%2Dcolor%3A%20%23e3d2d2%3B%20%7D%20%0A" rel="stylesheet" type="text/css" />
+
+</head>
+
+<body>
+
+
+
+
+<h1 class="title toc-ignore">bomrang</h1>
+<h4 class="author"><em>Adam H Sparks</em></h4>
+<h4 class="date"><em>2017-08-18</em></h4>
+
+
+
+<div id="introduction" class="section level2">
+<h2>Introduction</h2>
+<p><em>bomrang</em> provides functions for interacting with <a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services</a> forecasts. BoM serves several types of data data as XML and JSON files. This package fetches these files, parses them and return a tidy data frame.</p>
+</div>
+<div id="using-bomrang" class="section level2">
+<h2>Using <em>bomrang</em></h2>
+<p>Several functions are provided by <em>bomrang</em>.The main functionality of <em>bomrang</em> is provided through three functions, <code>get_precis_forecast()</code>, which retrieves the précis (short) forecast; <code>get_current_weather()</code>, which fetches the current weather from a given station; and <code>get_ag_bulletin()</code>, which retrieves the agriculture bulletin. Other functions include <code>update_forecast_locations()</code>, which updates an internal database of forecast locations distributed with the package, and <code>sweep_for_stations()</code> which returns the nearest weather stations to a point in Australia.</p>
+</div>
+<div id="using-get_current_weather" class="section level2">
+<h2>Using <code>get_current_weather</code></h2>
+<p><code>get_current_weather()</code> takes one of two arguments: <code>station_name</code> and <code>latlon</code>, returning the current weather observations (and the observations of the last 72 hours) for the given location.</p>
+<p>If <code>station_name</code> is used, the weather observations for the last 72 hours are returned for that station. If the string provided is ambiguous, the function returns an observation for one of the possible stations and emits a warning to offer unambiguous station names.</p>
+<p>If <code>latlon</code> is used, the observations returned are from the station nearest to that latitude-longitude coordinate. The function also emits a message, to tell the user which station was used.</p>
+<div id="results" class="section level3">
+<h3>Results</h3>
+<p>The table returned will have different fields depending on the station that is selected.</p>
+</div>
+<div id="example" class="section level3">
+<h3>Example</h3>
+<p>Following is an example fetching the current weather for Melbourne.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;bomrang&quot;</span>)
+
+Melbourne_weather &lt;-<span class="st"> </span><span class="kw">get_current_weather</span>(<span class="st">&quot;Melbourne (Olympic Park)&quot;</span>)
+<span class="kw">head</span>(Melbourne_weather)</code></pre></div>
+</div>
+</div>
+<div id="using-get_precis_forecast" class="section level2">
+<h2>Using <code>get_precis_forecast</code></h2>
+<p>This function only takes one argument, <code>state</code>. The <code>state</code> parameter allows the user to select the forecast for just one state or a national forecast. States or territories are specified using the official postal codes or full name with fuzzy matching performed via <code>agrep()</code></p>
+<ul>
+<li><p><strong>ACT</strong> - Australian Capital Territory</p></li>
+<li><p><strong>NSW</strong> - New South Wales</p></li>
+<li><p><strong>NT</strong> - Northern Territory</p></li>
+<li><p><strong>QLD</strong> - Queensland</p></li>
+<li><p><strong>SA</strong> - South Australia</p></li>
+<li><p><strong>TAS</strong> - Tasmania</p></li>
+<li><p><strong>VIC</strong> - Victoria</p></li>
+<li><p><strong>WA</strong> - Western Australia</p></li>
+<li><p><strong>AUS</strong> - Australia, returns national forecast including all states, NT and ACT.</p></li>
+</ul>
+<div id="results-1" class="section level3">
+<h3>Results</h3>
+<p>The function, <code>get_precis_forecast()</code>, will return a data frame of the weather forecast for the daily forecast for selected towns with the following fields:</p>
+<ul>
+<li><p><strong>aac</strong> - AMOC Area Code, <em>e.g.</em> WA_MW008, a unique identifier for each location</p></li>
+<li><p><strong>start_time_local</strong> - Start of forecast date and time in local TZ</p></li>
+<li><p><strong>end_time_local</strong> - End of forecast date and time in local TZ</p></li>
+<li><p><strong>UTC_offset</strong> - Hours offset from difference in hours and minutes from Coordinated Universal Time (UTC) for <code>start_time_local</code> and <code>end_time_local</code></p></li>
+<li><p><strong>start_time_utc</strong> - Start of forecast date and time in UTC</p></li>
+<li><p><strong>end_time_utc</strong> - End of forecast date and time in UTC</p></li>
+<li><p><strong>max_temp</strong> - Maximum forecasted temperature (degrees Celsius)</p></li>
+<li><p><strong>min_temp</strong> - Minimum forecasted temperature (degrees Celsius)</p></li>
+<li><p><strong>lower_prcp_limit</strong> - Lower forecasted precipitation limit (millimetres)</p></li>
+<li><p><strong>upper_prcp_limit</strong> - Upper forecasted precipitation limit (millimetres)</p></li>
+<li><p><strong>precis</strong> - Précis forecast (a short summary, less than 30 characters)</p></li>
+<li><p><strong>prob_prcp</strong> - Probability of precipitation (percent)</p></li>
+<li><p><strong>town</strong> - A disaggretated district forecast for select towns</p></li>
+<li><p><strong>state</strong> - State name (postal code abbreviation)</p></li>
+<li><p><strong>lon</strong> - Longitude of named location (decimal degrees)</p></li>
+<li><p><strong>lat</strong> - Latitude of named location (decimal degrees)</p></li>
+<li><p><strong>elev</strong> - Elevation of named location (metres).</p></li>
+</ul>
+</div>
+<div id="example-1" class="section level3">
+<h3>Example</h3>
+<p>Following is an example fetching the forecast for Queensland.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;bomrang&quot;</span>)
+
+QLD_forecast &lt;-<span class="st"> </span><span class="kw">get_precis_forecast</span>(<span class="dt">state =</span> <span class="st">&quot;QLD&quot;</span>)
+<span class="kw">head</span>(QLD_forecast)</code></pre></div>
+</div>
+</div>
+<div id="using-get_ag_bulletin" class="section level2">
+<h2>Using <code>get_ag_bulletin</code></h2>
+<p><code>get_ag_bulletin()</code> only takes one argument, <code>state</code>. The <code>state</code> parameter allows the user to select the bulletin for just one state or a national forecast. States or territories are specified using the official postal codes or full name with fuzzy matching performed via <code>agrep()</code>.</p>
+<ul>
+<li><p><strong>NSW</strong> - New South Wales</p></li>
+<li><p><strong>NT</strong> - Northern Territory</p></li>
+<li><p><strong>QLD</strong> - Queensland</p></li>
+<li><p><strong>SA</strong> - South Australia</p></li>
+<li><p><strong>TAS</strong> - Tasmania</p></li>
+<li><p><strong>VIC</strong> - Victoria</p></li>
+<li><p><strong>WA</strong> - Western Australia</p></li>
+<li><p><strong>AUS</strong> - Australia, returns bulletin for all states and NT.</p></li>
+</ul>
+<div id="results-2" class="section level3">
+<h3>Results</h3>
+<p>The function, <code>get_ag_bulletin()</code>, will return a data frame of the agriculture bulletin with the following fields:</p>
+<ul>
+<li><p><strong>obs-time-local</strong> - Observation time</p></li>
+<li><p><strong>obs-time-utc</strong> - Observation time (time in UTC)</p></li>
+<li><p><strong>time-zone</strong> - Time zone for observation</p></li>
+<li><p><strong>site</strong> - Unique BoM identifier for each station</p></li>
+<li><p><strong>dist</strong> - BoM rainfall district</p></li>
+<li><p><strong>station</strong> - BoM station name</p></li>
+<li><p><strong>start</strong> - Year data collection starts</p></li>
+<li><p><strong>end</strong> - Year data collection ends (will always be current)</p></li>
+<li><p><strong>state</strong> - State name (postal code abbreviation)</p></li>
+<li><p><strong>lat</strong> - Latitude (decimal degrees)</p></li>
+<li><p><strong>lon</strong> - Longitude (decimal degrees)</p></li>
+<li><p><strong>elev</strong> - Station elevation (metres)</p></li>
+<li><p><strong>bar_ht</strong> - Bar height (metres)</p></li>
+<li><p><strong>wmo</strong> - World Meteorlogical Organization number (unique ID used worldwide)</p></li>
+<li><p><strong>r</strong> - Rain to 9am (millimetres). <em>Trace will be reported as 0.01</em></p></li>
+<li><p><strong>tn</strong> - Minimum temperature (degrees Celsius)</p></li>
+<li><p><strong>tx</strong> - Maximum temperature (degrees Celsius)</p></li>
+<li><p><strong>twd</strong> - Wet bulb depression (degrees Celsius)</p></li>
+<li><p><strong>ev</strong> - Evaporation (millimetres)</p></li>
+<li><p><strong>tg</strong> - Terrestrial minimum temperature (degrees Celsius)</p></li>
+<li><p><strong>sn</strong> - Sunshine (hours)</p></li>
+<li><p><strong>t5</strong> - 5cm soil temperature (degrees Celsius)</p></li>
+<li><p><strong>t10</strong> - 10cm soil temperature (degrees Celsius)</p></li>
+<li><p><strong>t20</strong> - 20cm soil temperature (degrees Celsius)</p></li>
+<li><p><strong>t50</strong> - 50cm soil temperature (degrees Celsius)</p></li>
+<li><p><strong>t1m</strong> - 1m soil temperature (degrees Celsius)</p></li>
+<li><p><strong>wr</strong> - Wind run (kilometres)</p></li>
+<li><p><strong>state</strong> - State name (postal code abbreviation)</p></li>
+<li><p><strong>lat</strong> - Latitude (decimal degrees)</p></li>
+<li><p><strong>lon</strong> - Longitude (decimal degrees).</p></li>
+</ul>
+</div>
+<div id="example-2" class="section level3">
+<h3>Example</h3>
+<p>Following is an example fetching the ag bulletin for Queensland.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">&quot;bomrang&quot;</span>)
+
+QLD_bulletin &lt;-<span class="st"> </span><span class="kw">get_ag_bulletin</span>(<span class="dt">state =</span> <span class="st">&quot;QLD&quot;</span>)
+<span class="kw">head</span>(QLD_bulletin)</code></pre></div>
+</div>
+</div>
+<div id="other-functions-in-bomrang" class="section level2">
+<h2>Other functions in <em>bomrang</em></h2>
+<div id="using-sweep_for_stations" class="section level3">
+<h3>Using <code>sweep_for_stations</code></h3>
+<p><code>sweep_for_stations()</code> only takes one argument, <code>latlon</code>, a length-2 numeric vector. By default, Canberra (approximately).</p>
+<div id="results-3" class="section level4">
+<h4>Results</h4>
+<p>This function will search for weather stations and return a data frame of all weather stations (in this package) sorted by distance from <code>latlon</code>, ascending. The fields in the data frame are:</p>
+<p><strong>name</strong> - station name</p>
+<p><strong>Lat</strong> - latitude (decimal degrees)</p>
+<p><strong>Lon</strong> - longitude (decimal degrees)</p>
+<p><strong>distance</strong> - distance from provided <code>latlon</code> value (kilometres).</p>
+</div>
+<div id="example-3" class="section level4">
+<h4>Example</h4>
+<p>Following is an example sweeping for stations starting with Canberra.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Show only the first ten stations in the list</span>
+<span class="kw">head</span>(<span class="kw">sweep_for_stations</span>(<span class="dt">latlon =</span> <span class="kw">c</span>(-<span class="fl">35.3</span>, <span class="fl">149.2</span>)), <span class="dv">10</span>)</code></pre></div>
+</div>
+</div>
+<div id="using-update_forecast_locations" class="section level3">
+<h3>Using <code>update_forecast_locations</code></h3>
+<p><code>update_forecast_locations()</code> downloads the latest précis forecast locations from the BoM server and updates <em>bomrang</em>’s internal database of forecast locations. There is no need to use this unless you know that a forecast location exists in a more current version of the BoM forecast location database that is not available in the database distributed with <em>bomrang</em>. This database is distributed with the package to make the process faster when fetching the forecast.</p>
+<div id="example-4" class="section level4">
+<h4>Example</h4>
+<p>Following is an example updating the précis forecast locations internal database.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">update_forecast_locations</span>()</code></pre></div>
+</div>
+</div>
+<div id="using-update_station_locations" class="section level3">
+<h3>Using <code>update_station_locations</code></h3>
+<p><code>update_station_locations()</code> downloads the latest station locations and metadata and updates bomrang’s internal databases that support the use of <code>get_current_weather()</code> and <code>get_ag_bulletin()</code>. There is no need to use this unless you know that a station exists in BoM’s database that is not available in the databases distributed with <em>bomrang</em></p>
+<div id="example-5" class="section level4">
+<h4>Example</h4>
+<p>Following is an example updating the précis forecast locations internal database.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">update_station_locations</span>()</code></pre></div>
+</div>
+</div>
+</div>
+<div id="references" class="section level2">
+<h2>References</h2>
+<p><a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services</a></p>
+<p><a href="http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services Agriculture Bulletins</a></p>
+<p><a href="http://www.bom.gov.au/climate/how/observations/rain-measure.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services Observation of Rainfall</a></p>
+</div>
+<div id="appendix-1---output-from-get_current_weather" class="section level2">
+<h2>Appendix 1 - Output from get_current_weather()</h2>
+<p>The function <code>get_current_weather()</code> will return a dataframe that will contain some or all of the following fields.</p>
+<div id="fields-and-descriptions" class="section level3">
+<h3>Fields and descriptions</h3>
+<table>
+<tr>
+<th>
+Field Name
+</th>
+<th>
+Description
+</th>
+</tr>
+<tr>
+<td>
+wmo_id
+</td>
+<td>
+wmo station index number, uniquely identifies station
+</td>
+</tr>
+<tr>
+<td>
+Name[31]
+</td>
+<td>
+Observing station name
+</td>
+</tr>
+<tr>
+<td>
+Abbr[6]
+</td>
+<td>
+An abbeviated name (normally 4 characters) used for the station
+</td>
+</tr>
+<tr>
+<td>
+Date
+</td>
+<td>
+Date, Year (4 digits), month (2 digits), day (2 digits)
+</td>
+</tr>
+<tr>
+<td>
+Time
+</td>
+<td>
+Time, Hours (2 digits), minutes (2 digits), UTC
+</td>
+</tr>
+<tr>
+<td>
+Lat
+</td>
+<td>
+Latitude, decimal degrees, S -ve, N +ve
+</td>
+</tr>
+<tr>
+<td>
+Lon
+</td>
+<td>
+Longitude, decimal degrees, E +ve, W -ve
+</td>
+</tr>
+<tr>
+<td>
+Stn_typ
+</td>
+<td>
+Station type
+</td>
+</tr>
+<tr>
+<td>
+Stn_ht_m
+</td>
+<td>
+Station height (in metres)
+</td>
+</tr>
+<tr>
+<td>
+Total_cld
+</td>
+<td>
+Total cloud cover in oktas, 9=Sky Obscured by smoke, fog, …
+</td>
+</tr>
+<tr>
+<td>
+Wdir
+</td>
+<td>
+Wind direction, degrees true
+</td>
+</tr>
+<tr>
+<td>
+Wspd_mps
+</td>
+<td>
+Wind speed, metres per second
+</td>
+</tr>
+<tr>
+<td>
+Vis_m
+</td>
+<td>
+Visibility, metres
+</td>
+</tr>
+<tr>
+<td>
+Wx[9]
+</td>
+<td>
+Present weather, abbreviated
+</td>
+</tr>
+<tr>
+<td>
+Pw1
+</td>
+<td>
+Past weather (last 3-6 hours), see below
+</td>
+</tr>
+<tr>
+<td>
+Pw2
+</td>
+<td>
+Past weather (Used so more than one variation can be reported)
+</td>
+</tr>
+<tr>
+<td>
+Msl_P
+</td>
+<td>
+Mean Sea Level Pressure, hPa
+</td>
+</tr>
+<tr>
+<td>
+Stn_P
+</td>
+<td>
+Station level pressure, hPa
+</td>
+</tr>
+<tr>
+<td>
+P_tend_typ
+</td>
+<td>
+Type of the pressure tendency, numerical code, see below
+</td>
+</tr>
+<tr>
+<td>
+P_tend_val
+</td>
+<td>
+Pressure tendency (change) in last 3 hours, hPa
+</td>
+</tr>
+<tr>
+<td>
+Cor_P_tend
+</td>
+<td>
+Pressure tendency in last 3 hours corrected for diurnal variation
+</td>
+</tr>
+<tr>
+<td>
+T_DB
+</td>
+<td>
+Temperature (dry bulb), degrees C
+</td>
+</tr>
+<tr>
+<td>
+DP
+</td>
+<td>
+Dew point, degrees C
+</td>
+</tr>
+<tr>
+<td>
+Low_cld_amt
+</td>
+<td>
+Amount of low cloud, oktas, 9=Sky obscured by fog, smoke, …
+</td>
+</tr>
+<tr>
+<td>
+Low_cld_typ[4]
+</td>
+<td>
+Type of low cloud, abbreviation
+</td>
+</tr>
+<tr>
+<td>
+Cld_base_m
+</td>
+<td>
+Base of lowest cloud, m
+</td>
+</tr>
+<tr>
+<td>
+Cld_dir[4]
+</td>
+<td>
+Direction of motion of low cloud, compass point
+</td>
+</tr>
+<tr>
+<td>
+Mid_cld_typ[4]
+</td>
+<td>
+Type of middle level cloud, abbreviation
+</td>
+</tr>
+<tr>
+<td>
+Hi_cld_typ[4]
+</td>
+<td>
+Type of high cloud, abbreviation
+</td>
+</tr>
+<tr>
+<td>
+Rf_int_h6
+</td>
+<td>
+Interval for which rain is reported in next field, hours
+</td>
+</tr>
+<tr>
+<td>
+Rainfall6
+</td>
+<td>
+Rainfall, mm, usually at 9 or 3 AM/PM
+</td>
+</tr>
+<tr>
+<td>
+Rf_int_h4
+</td>
+<td>
+Interval for which rain is reported in next field, hours
+</td>
+</tr>
+<tr>
+<td>
+Rainfall4
+</td>
+<td>
+Rainfall, mm, usually since last observastion
+</td>
+</tr>
+<tr>
+<td>
+Sea_state[5]
+</td>
+<td>
+Sea state, abbreviation
+</td>
+</tr>
+<tr>
+<td>
+Swl_state[9]
+</td>
+<td>
+Swell state, abbreviation
+</td>
+</tr>
+<tr>
+<td>
+Swl_dir[4]
+</td>
+<td>
+Swell direction, abbreviation
+</td>
+</tr>
+<tr>
+<td>
+Max_T
+</td>
+<td>
+Maximum temperature, 24h to 9AM or 6h to 3PM local time, degree C
+</td>
+</tr>
+<tr>
+<td>
+Min_T
+</td>
+<td>
+Minimum temperature, 24h to 9AM local time, degree C
+</td>
+</tr>
+<tr>
+<td>
+Min_grnd_T
+</td>
+<td>
+Minimum ground temperature, 24 h to (AM local time, degree C
+</td>
+</tr>
+<tr>
+<td>
+Snow_depth_m
+</td>
+<td>
+Depth of snow on ground, metres
+</td>
+</tr>
+<tr>
+<td>
+Low_cld_code
+</td>
+<td>
+Code for low level cloud type, see below
+</td>
+</tr>
+<tr>
+<td>
+Mid_cld_code
+</td>
+<td>
+Code for middle level cloud type, see below
+</td>
+</tr>
+<tr>
+<td>
+Hi_cld_code
+</td>
+<td>
+Code for high level cloud type, see below
+</td>
+</tr>
+<tr>
+<td>
+Max_T(Int)
+</td>
+<td>
+Maximum temperature for international exchange
+</td>
+</tr>
+<tr>
+<td>
+Min_T(Int)
+</td>
+<td>
+Minimum temperature for international exchange
+</td>
+</tr>
+<tr>
+<td>
+Plain_lang[51]
+</td>
+<td>
+Plain language comments
+</td>
+</tr>
+</table>
+<div id="codes" class="section level4">
+<h4>Codes:</h4>
+<p>P_tend_typ:</p>
+<ul>
+<li>0 Increasing, then decreasing, current pressure same or higher<br />
+</li>
+<li>1 Increasing, then steady or increasing more slowly<br />
+</li>
+<li>2 Increasing<br />
+</li>
+<li>3 Decreasing or steady, then increasing, or<br />
+</li>
+<li>Increasing, then increasing more rapidly, current pressure higher<br />
+</li>
+<li>4 Steady<br />
+</li>
+<li>5 Decreasing, then increasing, current presure lower<br />
+</li>
+<li>6 Decreasing, then steady or decreasing more slowly<br />
+</li>
+<li>7 Decreasing<br />
+-8 Steady or increasing, then then decreasing, current pressure lower, or<br />
+</li>
+<li>Decreasing, then decreasing more rapidly</li>
+</ul>
+</div>
+</div>
+<div id="wx9---present-weather" class="section level3">
+<h3>Wx[9] - Present weather</h3>
+<p>This consists of a two or 3 digit code figure plus (when relevant) a short, text abbreviation of the weather The abbreviations used (frequently together, eg XXRA for heavy rain, FZDZ for freezing drizzle) include</p>
+<ul>
+<li>BL Blowing (usually of sand or snow)<br />
+</li>
+<li>DR Drifting (usually of sand or snow)<br />
+</li>
+<li>DZ Drizzle<br />
+</li>
+<li>FC Funnel cloud (tornado, water spout)<br />
+</li>
+<li>FG Fog<br />
+</li>
+<li>FU Smoke (from the French for smoke)<br />
+</li>
+<li>FZ Freezing (usually of rain or fog)<br />
+</li>
+<li>GR Hail (from the French for hail)<br />
+</li>
+<li>HZ Haze<br />
+</li>
+<li>MI Shallow (can be applied to Fog etc)<br />
+</li>
+<li>RE Ice pellets<br />
+</li>
+<li>PO Dust devils (I think this is from the Spanish for dust devils)<br />
+</li>
+<li>RA Rain<br />
+</li>
+<li>RE Recent (in the last hour, but not at the observation time)<br />
+</li>
+<li>SA Sand<br />
+</li>
+<li>SG Snow grains<br />
+</li>
+<li>SH Showers<br />
+</li>
+<li>SN Snow<br />
+</li>
+<li>SQ Squall<br />
+</li>
+<li>TS Thunderstorm<br />
+</li>
+<li>XX Heavy or intense (usually of rain or snow)</li>
+</ul>
+<p>Also, some other abbreviations used include</p>
+<ul>
+<li>lightn Lightning<br />
+</li>
+<li>virga Virga<br />
+</li>
+<li>RIA&lt;5k Precipitation in the area, less then 5km distant</li>
+</ul>
+</div>
+<div id="code-figures" class="section level3">
+<h3>Code figures</h3>
+<p>(This is a subset of a larger table, not all values of which are used) wmo international BUFR code table 0 20 003, CREX code table B 20 003</p>
+<pre><code> 00 Clouds not observed
+ 01 Cloud decreasing
+ 02 State of sky generally unchangeing
+ 03 Cloud increasing
+ 04 Smoke or volcanic ash
+ 05 Haze
+ 06 Widespread dust suspended in the air, not raised locally at the
+    time of observation
+ 07 Dust or sand raised locally by the wind at the time of observation,
+    but no well developed dust devils, sandstorm, or duststorm
+ 08 Well developed dust devils, but no sandstorm or duststorm
+ 09 Duststorm or sandstorm
+ 10 Mist
+ 11 Paches of shallow fog
+ 12 More or less continuous shallow fog
+ 13 Lightning visible, but no thunder heard
+ 14 Precipitation in sight, but not reaching the ground or sea (virga)
+ 15 Precipitation in sight, reaching the ground, but more than 5km away
+ 16 Precipitation in sight, reaching the ground, near but not at the
+    observing station
+ 17 Thunderstorm without precipitation
+ 18 Squalls
+ 19 Funnel clouds (tornado, water spout)
+ 20 Recent (within the last hour) drizzle
+ 21 Recent (within the last hour) rain, but not freezing rain
+ 22 Recent (within the last hour) snow
+ 23 Recent (within the last hour) mixed raion and snow or ice pellets
+ 24 Recent (within the last hour) freezing drizzle or freezing rain
+ 25 Recent (within the last hour) showers of rain
+ 26 Recent (within the last hour) showers of snow or mixed rain and snow
+ 27 Recent (within the last hour) showers of hail or mixed rain and hai
+ 28 Recent (within the last hour) Fog or ice fog
+ 29 Recent (within the last hour) thunderstorm
+ 30 Slight or moderate duststorm or sandstorm, has decreased in the
+    last hour
+ 31 Slight or moderate duststorm or sandstorm, with no appreciable
+    change in the last hour
+ 32 Slight or moderate duststorm or sandstorm, has begun or
+    increased in the last hour
+ 33 Severe duststorm or sandstorm, has decreased in the last hour
+ 34 Severe duststorm or sandstorm, with no appreciable change in the
+    last hour
+ 35 Severe duststorm or sandstorm, has begun or increased in the
+    last hour
+ 36 Slight or moderate drifting snow, generally below eye level
+ 37 Heavy drifting snow,  generally below eye level
+ 38 Slight or moderate blowing snow, generally above eye level
+ 39 Heavy blowing snow, generally above eye level
+ 40 Fog or ice fog at a distance but not at the station
+ 41 Patches of fog or ice fog
+ 42 Fog or ice fog, sky visible, has become thinner in the last hour
+ 43 Fog or ice fog, sky invisible, has become thinner in the last hour
+ 44 Fog or ice fog, sky visible, no appreciable change in the last hour
+ 45 Fog or ice fog, sky invisible, no appreciable change in the last
+    hour
+ 46 Fog or ice fog, sky visible, has become thicker in the last hour
+ 47 Fog or ice fog, sky invisible, has become thicker in the last hour
+ 48 Fog, depositing rime (freezing fog), sky visible
+ 49 Fog, depositing rime (freezing fog), sky invisible
+ 50 Slight intermittent drizzle, not freezing
+ 51 Continuous slight drizzle, not freezing
+ 52 Moderate intermittent drizzle, not freezing
+ 53 Continuous moderate drizzle, not freezing
+ 54 Heavy intermittent drizzle, not freezing
+ 55 Continuous heavy drizzle, not freezing
+ 56 Slight freezing drizzle
+ 57 Moderate or heavy freezing drizzle
+ 58 Slight drizzle and rain (mixed)
+ 59 Moderate or heavy drizzle and rain (mixed)
+ 60 Slight intermittent rain, not freezing
+ 61 Continuous slight rain, not freezing
+ 62 Moderate intermittent rain, not freezing
+ 63 Continuous moderate rain, not freezing
+ 64 Heavy intermittent rain, not freezing
+ 65 Continuous heavy rain, not freezing
+ 66 Slight freezing rain
+ 67 Moderate or heavy freezing rain
+ 68 Slight rain and snow or drizzle and snow (mixed)
+ 69 Moderate or heavy rain and snow or drizzle and snow (mixed)
+ 70 Slight intermittent snow
+ 71 Continuous slight snow
+ 72 Moderate intermittent snow
+ 73 Continuous moderate snow
+ 74 Heavy intermittent snow
+ 75 Continuous heavy snow
+ 76 Diamond dust, with or without fog
+ 77 Snow grains, with or without fog
+ 78 Isolated star like ice crystals, with or without fog
+ 79 Ice pellets
+ 80 Slight rain showers or shower
+ 81 Moderate or heavy rain shower or showers
+ 82 Violent rain shower or showers
+ 83 Slight shower or showers of mixed rain and snow
+ 84 Moderate or heavy shower or showers of mixed rain and snow
+ 85 Slight shower or showers of snow
+ 86 Moderate or heavy shower or showers of snow
+ 87 Slight shower or showers of snow pellets or small hail, with
+    or without rain or mixed rain and snow
+ 88 Moderate or heavy shower or showers of snow pellets or small
+    hail, with or without rain or mixed rain and snow
+ 89 Slight shower or showers of hail, with or without rain or 
+    mixed rain and snow, but no thunder
+ 90 Moderate or heavy shower or showers of hail, with or without
+    rain or mixed rain and snow, but no thunder
+ 91 Slight rain now, with thunder during the last hour
+ 92 Moderate or heavy rain now, with thunder during the last hour
+ 93 Slight snow, mixed rain and snow, or hail now, with thunder
+    during the last hour
+ 94 Moderate or heavy snow, mixed rain and snow, or hail now, with
+    thunder during the last hour
+ 95 Slight or moderate thunderstorm with rain or snow but no hail
+ 96 Slight or moderate thunderstorm with hail
+ 97 Heavy thunderstorm with rain or snow but no hail
+ 98 Thunderstorm combu=ined with a sandstorm or duststorm
+ 99 Heavy thunderstorm with hail
+100 No significant weather
+101 Cloud decreasing 
+102 State of sky generally unchangeing
+103 Cloud increasing
+104 Haze or smoke or suspended dust, visibility &gt;= 1km
+105 Haze or smoke or suspended dust, visibility &lt; 1km
+110 Mist
+111 Diamond dust
+112 Distant lightning
+118 Squalls
+120 Recent (during the last hour) fog
+121 Recent (during the last hour) precipitation
+122 Recent (during the last hour) drizzle, not freezing, or snow grains
+123 Recent (during the last hour) rain, not freezing
+124 Recent (during the last hour) snow
+125 Recent (during the last hour) freezing drizzle or freezing rain
+126 Recent (during the last hour) thunderstorm
+127 Blowing or drifting snow or sand
+128 Blowing or drifting snow or sand, visibility &gt;= 1km
+129 Blowing or drifting snow or sand, visibility &lt; 1km
+130 Fog
+131 Patches of fog or ice fog 
+132 Fog or ice fog, has become thinner in the last hour
+133 Fog or ice fog, no appreciable change in the last hour
+134 Fog or ice fog, has become thicker in the last hour
+135 Fog, depositing rime (freezing fog)
+140 Precipitation
+141 Slight or moderate precipitation
+142 Heavy precipitation
+143 Slight or moderate liquid precipitation
+144 Heavy liquid precipitation
+145 Slight or moderate solid precipitation
+146 Heavy solid precipitation
+147 Slight or moderate freezing precipitation
+148 Heavy freezing precipitation
+150 Drizzle
+151 Slight drizzle, not freezing
+152 Moderate drizzle, not freezing
+153 Heavy drizzle, not freezing
+154 Slight freezing drizzle
+155 Moderate freezing drizzle
+156 Heavy freezing drizzle
+157 Slight drizzle and rain
+158 Moderate or heavy drizzle and rain
+160 Rain
+161 Slight rain, not freezing
+162 Moderate rain, not freezing
+163 Heavy rain, not freezing
+164 Slight freezing rain
+165 Moderate freezing rain
+166 Heavy freezing rain
+167 Slight rain and snow or drizzle and snow
+168 Moderate or heavy rain and snow or drizzle and snow
+170 Snow
+171 Slight snow
+172 Moderate snow
+173 Heavy snow
+174 Slight ice pellets
+175 Moderate ice pellets
+176 Heavy ice pellets
+180 Shower or showers or intermittent precipitation
+181 Slight rain shower or showers or slight intermittent rain
+182 Moderate rain shower or showers or moderate intermittent rain
+183 Heavy rain shower or showers or heavy intermittent rain
+184 Violent rain shower or showers or violent intermittent rain
+185 Slight snow shower or showers or slight intermittent snow
+186 Moderate snow shower or showers or moderate intermittent snow
+187 Heavy snow shower or showers or heavy intermittent snow
+190 Thunderstorm
+191 Slight or moderate thunderstorm without precipitation
+192 Slight or moderate thunderstorm with rain showers and/or snow
+    showers
+193 Slight or moderate thunderstorm with hail
+194 Heavy thunderstorm without precipitation
+195 Heavy thunderstorm with rain showers and/or snow showers
+196 Heavy thunderstorm with hail
+199 Tornado
+508 No significant weather
+509 Data not available
+510 Data should have been reported but wasn't</code></pre>
+<div id="pw1-and-pw2---past-weather" class="section level4">
+<h4>Pw1 and Pw2 - Past weather</h4>
+<pre><code>    wmo international BUFR code table 0 20 004, CREX code table B 20 004
+
+If only one type of weather has occurred in the last 3-6 hours,</code></pre>
+<p>only Pw1 and Pw2 will be the same. If there has been more than one, Pw1 and Pw2 should be different, with Pw1 reflecting the “more important” past weather. Code figures 0-9 normally apply to manned stations, 10-19 to automated weather stations.</p>
+<pre><code> 0 Cloud covering less than 1/2 the sky
+ 1 Cloud covering more than 1/2 the sky part of the time
+   and less than 1/2 the sky part of the time
+ 2 Cloud covering more than 1/2 the sky
+ 3 Sandstorm, dustorm or blowing snow
+ 4 Fog, ice fog, or thick haze
+ 5 Drizzle
+ 6 Rain
+ 7 Snow, or mixed rain and snow
+ 8 Showers
+ 9 Thunderstorm
+10 Nothing significant detected
+11 Reduced visibility
+12 Blowing phenomena (sand, dust, snow, ...) reducing visibility
+13 Fog
+14 Precipitation (rain, snow, hail, ...)
+15 Drizzle
+16 Rain
+17 Snow or ice pellets
+18 Showers or intermittent precipitation
+19 Thunderstorm
+ </code></pre>
+</div>
+<div id="low_cld_code" class="section level4">
+<h4>Low_cld_code:</h4>
+<pre><code>(This is a subset of a larger table, not all values of which are used)
+wmo international BUFR code table 0 20 012, CREX code table B 20 012
+
+30 No low level cloud
+31 Cumulus humilis, or Cumulus fractus (not of bad weather), or both
+32 Cumulus mediocris or congestus, with or without Cumulus humilis
+   or fractus or Stratocumulus, all bases at the same level
+33 Cumulonimbus calvus, with or without Cumulus, Stratocumulus
+   or Stratus
+34 Stratocumulus cumulogenitus
+35 Stratocumulus other than stratocumulus cumulogenitus
+36 Stratus nebulosis or Stratus fractus (not of bad weather), or both
+37 Stratus fractus or Cumulus fractus of bad weather or both (pannus)
+38 Cumulus and Stratocumulus other than stratocumulus cumulogenitus,
+   with bases at different levels
+39 Cumulonimbus capillatus with or without Cumulonimbus calvus
+   Cumulus, Stratocumulus, Stratus or pannus</code></pre>
+</div>
+<div id="mid_cld_code" class="section level4">
+<h4>Mid_cld_code:</h4>
+<pre><code>(This is a subset of a larger table, not all values of which are used)
+wmo international BUFR code table 0 20 012, CREX code table B 20 012
+
+20 No middle level cloud
+21 Altostratus translucidus
+22 Altostratus opacus or Nimbostratus
+23 Altocumulus translucidus at a single level
+24 Patches (often lenticular) of Altocumulus translucidus, continually
+   changing and at one or more levels
+25 Altocumulus translucidus in bands, or one or more layers of
+   Altocumulus translucidus or opacus, progressively invading the
+   sky
+26 Altocumulus cumulogenitus or cumulonimbogenitus
+27 Altocumulus translucidus or opacus in two or more layers, or
+   Altocumulus opacus in a single layer, not progressively invading
+   the sky, or Altocumulus with Altostratus or Nimbostratus
+28 Altocumulus castellanus or floccus
+29 Altocumulus of a chaotic sky, usually at several levels</code></pre>
+</div>
+<div id="hi_cld_code" class="section level4">
+<h4>Hi_cld_code:</h4>
+<pre><code>(This is a subset of a larger table, not all values of which are used)
+wmo international BUFR code table 0 20 012, CREX code table B 20 012
+
+10 No high level cloud
+11 Cirrus fibratus, sometimes unicus, not progressively invading
+   the sky
+12 Cirrus spissatus in patches or entangled sheaves. which usually
+   do not increase
+13 Cirrus spissatus cumulonimbogenitus
+14 Cirrus unicus or fibratus or both, progressively invading the sky
+15 Cirrus (often in bands) and Cirrostratus or Cirrostratus alone,
+   progressively invading the sky, but continuous cloud less than
+   45 degrees above the horizon.
+16 Cirrus (often in bands) and Cirrostratus or Cirrostratus alone,
+   progressively invading the sky, but continuous cloud more than
+   45 degrees above the horizon without covering the entire sky
+17 Cirrostratus covering the entire sky
+18 Cirrostratus not covering the entire sky and not progressively
+   invading it
+19 Cirrocumulus alone, or Cirrocumulus predominant</code></pre>
+</div>
+</div>
+</div>
+<div id="appendix-2---output-from-get_precis_forecast" class="section level2">
+<h2>Appendix 2 - Output from get_précis_forecast()</h2>
+<p>The function, <code>get_precis_forecast()</code>, will return a tidy data frame of the agriculture bulletin with the following fields:</p>
+<table>
+<tr>
+<th>
+Field Name
+</th>
+<th>
+Description
+</th>
+</tr>
+<tr>
+<td>
+index
+</td>
+<td>
+Forecast index number, 0 = current day … 7 day
+</td>
+</tr>
+<tr>
+<td>
+product_id
+</td>
+<td>
+BoM Product ID from which the data are derived
+</td>
+</tr>
+<tr>
+<td>
+state
+</td>
+<td>
+State name (postal code abbreviation)
+</td>
+</tr>
+<tr>
+<td>
+town
+</td>
+<td>
+Town name for forecast location
+</td>
+</tr>
+<tr>
+<td>
+aac
+</td>
+<td>
+AMOC Area Code, <em>e.g.</em>, WA_MW008, a unique identifier for each location
+</td>
+</tr>
+<tr>
+<td>
+lon
+</td>
+<td>
+Longitude of named location (decimal degrees)
+</td>
+</tr>
+<tr>
+<td>
+lat
+</td>
+<td>
+Latitude of named location (decimal degrees)
+</td>
+</tr>
+<tr>
+<td>
+elev
+</td>
+<td>
+Elevation of named location (metres)
+</td>
+</tr>
+<tr>
+<td>
+start_time_local
+</td>
+<td>
+Start of forecast date and time in local TZ
+</td>
+</tr>
+<tr>
+<td>
+end_time_local
+</td>
+<td>
+End of forecast date and time in local TZ
+</td>
+</tr>
+<tr>
+<td>
+UTC_offset
+</td>
+<td>
+Hours offset from difference in hours and minutes from Coordinated Universal Time (UTC) for <code>start_time_local</code> and <code>end_time_local</code>
+</td>
+</tr>
+<tr>
+<td>
+start_time_utc
+</td>
+<td>
+Start of forecast date and time in UTC
+</td>
+</tr>
+<tr>
+<td>
+end_time_utc
+</td>
+<td>
+End of forecast date and time in UTC
+</td>
+</tr>
+<tr>
+<td>
+maximum_temperature
+</td>
+<td>
+Maximum forecasted temperature (degrees Celsius)
+</td>
+</tr>
+<tr>
+<td>
+minimum_temperature
+</td>
+<td>
+Minimum forecasted temperature (degrees Celsius)
+</td>
+</tr>
+<tr>
+<td>
+lower_precipitation_limit
+</td>
+<td>
+Lower forecasted precipitation limit (millimetres)
+</td>
+</tr>
+<tr>
+<td>
+upper_precipitation_limit
+</td>
+<td>
+Upper forecasted precipitation limit (millimetres)
+</td>
+</tr>
+<tr>
+<td>
+precis
+</td>
+<td>
+Précis forecast (a short summary, less than 30 characters)
+</td>
+</tr>
+<tr>
+<td>
+probability_of_precipitation
+</td>
+<td>
+Probability of precipitation (percent)
+</td>
+</tr>
+</table>
+</div>
+<div id="appendix-3---output-from-get_ag_bulletin" class="section level2">
+<h2>Appendix 3 - Output from get_ag_bulletin()</h2>
+<p>The function, <code>get_ag_bulletin()</code>, will return a tidy data frame of the agriculture bulletin with the following fields:</p>
+<table>
+<tr>
+<th>
+Field Name
+</th>
+<th>
+Description
+</th>
+</tr>
+<tr>
+<td>
+product_id
+</td>
+<td>
+BoM Product ID from which the data are derived
+</td>
+</tr>
+<tr>
+<td>
+state
+</td>
+<td>
+State name (postal code abbreviation)
+</td>
+</tr>
+<tr>
+<td>
+dist
+</td>
+<td>
+BoM rainfall district
+</td>
+</tr>
+<tr>
+<td>
+wmo
+</td>
+<td>
+World Meteorlogical Organization number (unique ID used worldwide)
+</td>
+</tr>
+<tr>
+<td>
+site
+</td>
+<td>
+Unique BoM identifier for each station
+</td>
+</tr>
+<tr>
+<td>
+station
+</td>
+<td>
+Station name
+</td>
+</tr>
+<tr>
+<td>
+full_name
+</td>
+<td>
+Full station name (some stations have been retired so “name” will be same, this is the full designation
+</td>
+</tr>
+<tr>
+<td>
+obs-time-local
+</td>
+<td>
+Observation time
+</td>
+</tr>
+<tr>
+<td>
+obs-time-utc
+</td>
+<td>
+Observation time (time in UTC)
+</td>
+</tr>
+<tr>
+<td>
+time-zone
+</td>
+<td>
+Time zone for observation
+</td>
+</tr>
+<tr>
+<td>
+lat
+</td>
+<td>
+Latitude (decimal degrees)
+</td>
+</tr>
+<tr>
+<td>
+lon
+</td>
+<td>
+Longitude (decimal degrees)
+</td>
+</tr>
+<tr>
+<td>
+elev_m
+</td>
+<td>
+Station elevation (metres)
+</td>
+</tr>
+<tr>
+<td>
+bar_ht
+</td>
+<td>
+Bar height (metres)
+</td>
+</tr>
+<tr>
+<td>
+station
+</td>
+<td>
+BoM station name
+</td>
+</tr>
+<tr>
+<td>
+start
+</td>
+<td>
+Year data collection starts
+</td>
+</tr>
+<tr>
+<td>
+end
+</td>
+<td>
+Year data collection ends (will always be current)
+</td>
+</tr>
+<tr>
+<td>
+r
+</td>
+<td>
+Rain to 9am (millimetres). <em>Trace will be reported as 0.01</em>
+</td>
+</tr>
+<tr>
+<td>
+tn
+</td>
+<td>
+Minimum temperature (degrees Celsius)
+</td>
+</tr>
+<tr>
+<td>
+tx
+</td>
+<td>
+Maximum temperature (degrees Celsius)
+</td>
+</tr>
+<tr>
+<td>
+twd
+</td>
+<td>
+Wet bulb depression (degrees Celsius)
+</td>
+</tr>
+<tr>
+<td>
+ev
+</td>
+<td>
+Evaporation (millimetres)
+</td>
+</tr>
+<tr>
+<td>
+tg
+</td>
+<td>
+Terrestrial minimum temperature (degrees Celsius)
+</td>
+</tr>
+<tr>
+<td>
+sn
+</td>
+<td>
+Sunshine (hours)
+</td>
+</tr>
+<tr>
+<td>
+t5
+</td>
+<td>
+5cm soil temperature (degrees Celsius)
+</td>
+</tr>
+<tr>
+<td>
+t10
+</td>
+<td>
+10cm soil temperature (degrees Celsius)
+</td>
+</tr>
+<tr>
+<td>
+t20
+</td>
+<td>
+20cm soil temperature (degrees Celsius)
+</td>
+</tr>
+<tr>
+<td>
+t50
+</td>
+<td>
+50cm soil temperature (degrees Celsius)
+</td>
+</tr>
+<tr>
+<td>
+t1m
+</td>
+<td>
+1m soil temperature (degrees Celsius)
+</td>
+</tr>
+<tr>
+<td>
+wr
+</td>
+<td>
+Wind run (kilometres)
+</td>
+</tr>
+</table>
+<div id="appendix-4---map-of-station-locations" class="section level3">
+<h3>Appendix 4 - Map of station locations</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">if (<span class="kw">requireNamespace</span>(<span class="st">&quot;ggplot2&quot;</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) &amp;&amp;
+<span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">&quot;ggthemes&quot;</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) &amp;&amp;
+<span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">&quot;maps&quot;</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) &amp;&amp;
+<span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">&quot;mapproj&quot;</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)) {
+  <span class="kw">library</span>(ggplot2)
+  <span class="kw">library</span>(mapproj)
+  <span class="kw">library</span>(ggthemes)
+  <span class="kw">library</span>(maps)
+  <span class="kw">library</span>(data.table)
+  <span class="kw">load</span>(<span class="kw">system.file</span>(<span class="st">&quot;extdata&quot;</span>, <span class="st">&quot;stations_site_list.rda&quot;</span>, <span class="dt">package =</span> <span class="st">&quot;bomrang&quot;</span>))
+  <span class="kw">setDT</span>(stations_site_list)
+
+  Aust_stations &lt;-<span class="st"> </span>
+<span class="st">    </span>stations_site_list[(!(state %in%<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ANT&quot;</span>, <span class="st">&quot;null&quot;</span>))) &amp;<span class="st"> </span>!<span class="kw">grepl</span>(<span class="st">&quot;VANUATU|HONIARA&quot;</span>, name)]
+  
+  Aust_map &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;world&quot;</span>, <span class="dt">region =</span> <span class="st">&quot;Australia&quot;</span>)
+  
+  <span class="kw">ggplot</span>(Aust_stations, <span class="kw">aes</span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) +<span class="st"> </span>
+<span class="st">    </span><span class="kw">geom_polygon</span>(<span class="dt">data =</span> Aust_map, <span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), 
+                 <span class="dt">color =</span> <span class="kw">grey</span>(<span class="fl">0.7</span>),
+                 <span class="dt">fill =</span> <span class="ot">NA</span>) +
+<span class="st">    </span><span class="kw">geom_point</span>(<span class="dt">color =</span> <span class="st">&quot;red&quot;</span>,
+               <span class="dt">size =</span> <span class="fl">0.05</span>) +
+<span class="st">    </span><span class="kw">coord_map</span>(<span class="dt">ylim =</span> <span class="kw">c</span>(-<span class="dv">45</span>, -<span class="dv">5</span>),
+              <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">96</span>, <span class="dv">167</span>)) +
+<span class="st">    </span><span class="kw">theme_map</span>() +<span class="st"> </span>
+<span class="st">    </span><span class="kw">ggtitle</span>(<span class="st">&quot;BoM Station Locations&quot;</span>,
+            <span class="dt">subtitle =</span> <span class="st">&quot;Australia, outlying islands and buoys (excl. Antarctic stations)&quot;</span>)
+}</code></pre></div>
+<pre><code>## Loading required package: maps</code></pre>
+<pre><code>## Warning: package 'data.table' was built under R version 3.4.1</code></pre>
+<p><img src="data:image/png;base64,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" /><!-- --></p>
+</div>
+</div>
+
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -187,16 +187,16 @@ from BoM.
 ### Save JSON URL database for `get_current_weather()`
 
 ```{r save_url_data, eval=TRUE, message=FALSE}
-JSONurl_latlon_by_station_name <-
+JSONurl_site_list <-
   stations_site_list[!is.na(stations_site_list$url), ]
 
-JSONurl_latlon_by_station_name <-
-  JSONurl_latlon_by_station_name %>%
+JSONurl_site_list <-
+  JSONurl_site_list %>%
   dplyr::rowwise() %>%
   dplyr::mutate(url = dplyr::if_else(httr::http_error(url), NA_character_, url))
   
 # Remove new NA values from invalid URLs and convert to data.table
-JSONurl_latlon_by_station_name <-
+JSONurl_site_list <-
   data.table::data.table(stations_site_list[!is.na(stations_site_list$url), ])
 
  if (!dir.exists("../inst/extdata")) {
@@ -204,8 +204,8 @@ JSONurl_latlon_by_station_name <-
     }
 
 # Save database
-  save(JSONurl_latlon_by_station_name,
-       file = "../inst/extdata/JSONurl_latlon_by_station_name.rda",
+  save(JSONurl_site_list,
+       file = "../inst/extdata/JSONurl_site_list.rda",
      compress = "bzip2")
 ```
 

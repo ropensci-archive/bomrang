@@ -2,7 +2,7 @@
 % Please edit documentation in R/sweep_for_stations.R
 \name{sweep_for_stations}
 \alias{sweep_for_stations}
-\title{Find nearest BoM weather stations}
+\title{Find Nearest BoM Weather Stations}
 \usage{
 sweep_for_stations(latlon = c(-35.3, 149.2))
 }
@@ -15,7 +15,7 @@ A data frame of all weather stations (in this package) sorted
 by distance from \code{latlon}, ascending.
 }
 \description{
-Find nearest BoM weather stations
+Find Nearest BoM Weather Stations
 }
 \author{
 Hugh Parsonage, \email{hugh.parsonage@gmail.com}

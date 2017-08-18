@@ -2,14 +2,14 @@
 % Please edit documentation in R/get_ag_bulletin.R
 \name{get_ag_bulletin}
 \alias{get_ag_bulletin}
-\title{BoM Agriculture Bulletin Information for Select Stations}
+\title{Get BoM Agriculture Bulletin Information for Select Stations}
 \usage{
 get_ag_bulletin(state = "AUS")
 }
 \arguments{
 \item{state}{Australian state or territory as full name or postal code.
-Fuzzy string matching via \code{base::agrep} is done.  Defaults to "AUS"
-returning all state bulletins, see details for more.}
+Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
+"AUS" returning all state bulletins, see details for more.}
 }
 \value{
 Tidy data frame of a Australia BoM agricultural bulletin information.  For
@@ -18,7 +18,8 @@ full details of fields and units returned see Appendix 3 in the
 to view.
 }
 \description{
-Fetch the BoM agricultural bulletin information and return a tidy data frame
+Fetch the BoM agricultural bulletin information and return it in a tidy data
+frame
 }
 \details{
 Allowed state and territory postal codes, only one state per request
@@ -38,6 +39,7 @@ or all using \code{AUS}.
 \dontrun{
 ag_bulletin <- get_ag_bulletin(state = "QLD")
 }
+
 }
 \references{
 Agricultural observations are retrieved from the Australian Bureau of

@@ -1,27 +1,38 @@
 # bomrang 0.0.5
 
+## Bug Fixes
+
+- Suggested station names are returned in a list format, previously lacked
+spaces between names
+
 ## Major changes
 
-- Welcome message included with statement regarding BoM copyright
+- Fetch BoM satellite images available through public FTP
 
-- Use `file.path()` in place of `paste0()`
+- New use-case vignette, using _bomrang_ for the _WINS_ project
+
+- Welcome message included with statement regarding BoM copyright
 
 - Concatenate vignettes into a single file with appendices for descriptions of
 data returned by functions
 
-- Product IDs are included in outputs from `get_*()` functions
+- Product IDs are included in outputs from `get_*()` functions that return a
+tidy dataframe
 
 - Full station names are reported along with BoM's current name used to refer
 to a station location. In some cases a station "name" may be the same for both
 a current and retired station.
 
+- Fuzzy matching is used for all functions now when user enters a value for a
+desired state, station or the whole country for functions that require a `state`
+argument
+
+## Internal changes
+
 - Databases station locations and other metadata are internal an not exposed to
 the user
 
-- Fuzzy matching i s used for all functions now when user enters a value for
-a desired state, station or the whole country
-
-## Minor changes
+- Use `file.path()` in place of `paste0()`
 
 - Shorten code line lengths to be <= 80 chars
 

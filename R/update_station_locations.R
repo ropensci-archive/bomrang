@@ -1,5 +1,5 @@
 
-#' Update internal databases with latest BoM station locations and metadata
+#' Update Internal Databases With Latest BoM Station Locations and Metadata
 #'
 #' Download the latest station locations and metadata and update bomrang's
 #' internal databases that support the use of \code{\link{get_current_weather}}
@@ -145,25 +145,25 @@ update_station_locations <- function() {
   # most of these don't have a "state" value, e.g., KIRIBATI NTC AWS or
   # MARSHALL ISLANDS NTC AWS, remove these from the list
 
-  JSONurl_latlon_by_station_name <-
+  JSONurl_site_list <-
     stations_site_list[!is.na(stations_site_list$url), ]
 
-  JSONurl_latlon_by_station_name <-
-    JSONurl_latlon_by_station_name %>%
+  JSONurl_site_list <-
+    JSONurl_site_list %>%
     dplyr::rowwise() %>%
     dplyr::mutate(url = dplyr::if_else(httr::http_error(url),
                                        NA_character_,
                                        url))
 
   # Remove new NA values from invalid URLs and convert to data.table
-  JSONurl_latlon_by_station_name <-
-    data.table::data.table(stations_site_list[!is.na(stations_site_list$url), ])
+  JSONurl_site_list <-
+    data.table::data.table(JSONurl_site_list[!is.na(JSONurl_site_list$url), ])
 
   message("Overwriting existing databases")
 
-  fname <- system.file("extdata", "JSONurl_latlon_by_station_name.rda",
+  fname <- system.file("extdata", "JSONurl_site_list.rda",
                        package = "bomrang")
-  save(JSONurl_latlon_by_station_name, file = fname, compress = "bzip2")
+  save(JSONurl_site_list, file = fname, compress = "bzip2")
 
   stations_site_list <-
     stations_site_list %>%
