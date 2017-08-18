@@ -12,6 +12,8 @@ test_that("Error handling", {
   expect_error(get_current_weather(latlon = 33), regexp = "[Ll]ength")
   expect_error(get_current_weather(latlon = c("-33", "151")),
                regexp = "[Nn]umeric")
+  expect_error(get_current_weather("DOME A"),
+               regexp = "station was matched.*not found at bom.gov.au")
 })
 
 test_that("Query 'Melbourne Airport' returns data frame w/ correct station", {

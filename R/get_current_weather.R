@@ -61,6 +61,7 @@
 #'
 #' @author Hugh Parsonage, \email{hugh.parsonage@gmail.com}
 #' @importFrom magrittr use_series
+#' @importFrom magrittr %$%
 #' @importFrom data.table :=
 #' @importFrom data.table %chin%
 #' @importFrom data.table setnames
@@ -203,6 +204,11 @@ get_current_weather <-
         .[which.min(haversine_distance(Lat, Lon, lat, lon))]
 
       if (emit_latlon_msg) {
+        distance <-
+          station_nrst_latlon %$%
+          haversine_distance(Lat, Lon, lat, lon) %>%
+          signif(digits = 3)
+
         on.exit(
           message(
             "Using station_name = '",
@@ -211,7 +217,10 @@ get_current_weather <-
             station_nrst_latlon$lat,
             ", ",
             "longitude = ",
-            station_nrst_latlon$lon
+            station_nrst_latlon$lon,
+            " (",
+            distance,
+            " km away)."
           )
         )
       }
@@ -221,15 +230,19 @@ get_current_weather <-
       full_lon <- station_nrst_latlon[["lon"]]
 
     }
-    if (isTRUE(httr::http_error(json_url))) {
-      stop(
-        "\nA station was matched.",
-        "However a corresponding JSON file was not found at bom.gov.au.\n"
-      )
-    }
 
-    observations.json <-
-      jsonlite::fromJSON(txt = json_url)
+    tryCatch({
+      observations.json <-
+        jsonlite::fromJSON(txt = json_url)
+    },
+    error = function(e) {
+      e$message <-
+        paste("\nA station was matched.",
+              "However a corresponding JSON file was not found at bom.gov.au.\n")
+      # Otherwise refers to open.connection
+      e$call <- NULL
+      stop(e)
+    })
 
       if ("observations" %notin% names(observations.json) ||
           "data" %notin% names(observations.json$observations)) {
@@ -239,10 +252,6 @@ get_current_weather <-
         )
       }
 
-    # replaced rounded values from .json with full values from internal db
-    observations.json$observations[["data"]][["lat"]] <- full_lat
-    observations.json$observations[["data"]][["lon"]] <- full_lon
-
     # Columns which are meant to be numeric
     double_cols <-
       c("lat",
@@ -251,44 +260,6 @@ get_current_weather <-
         "cloud_base_m",
         "cloud_oktas",
         "rain_trace")
-    # (i.e. not raw)
-    cook <- function(DT, as.DT) {
-      if (!data.table::is.data.table(DT)) {
-        data.table::setDT(DT)
-      }
-
-      DTnoms <- names(DT)
-
-      # CRAN NOTE avoidance
-      local_date_time_full <- NULL
-      if ("local_date_time_full" %chin% DTnoms) {
-        DT[, local_date_time_full := as.POSIXct(
-          local_date_time_full,
-          origin = "1970-1-1",
-          format = "%Y%m%d%H%M%OS",
-          tz = ""
-        )]
-      }
-
-      aifstime_utc <- NULL
-      if ("aifstime_utc" %chin% DTnoms) {
-        DT[, aifstime_utc := as.POSIXct(aifstime_utc,
-                                        origin = "1970-1-1",
-                                        format = "%Y%m%d%H%M%OS",
-                                        tz = "GMT")]
-      }
-
-      for (j in which(DTnoms %chin% double_cols)) {
-        data.table::set(DT, j = j, value = force_double(DT[[j]]))
-      }
-
-      if (!as.DT) {
-        DT <- as.data.frame(DT)
-      }
-
-      DT[]
-    }
-
     out <-
       observations.json %>%
       use_series("observations") %>%
@@ -296,6 +267,13 @@ get_current_weather <-
 
     if (as.data.table) {
       data.table::setDT(out)
+      # replaced rounded values from .json with full values from internal db
+      data.table::set(out, j = "lat", value = full_lat)
+      data.table::set(out, j = "lon", value = full_lon)
+    } else {
+      # replaced rounded values from .json with full values from internal db
+      out[["lat"]] <- full_lat
+      out[["lon"]] <- full_lon
     }
 
     # BoM raw JSON uses `name`, which is ambiguous (see #27)
@@ -306,6 +284,44 @@ get_current_weather <-
     if (raw) {
       return(out)
     } else {
-      return(cook(out, as.DT = as.data.table))
+      return(cook(out, as.DT = as.data.table, double_cols = double_cols))
     }
   }
+
+# (i.e. not raw)
+cook <- function(DT, as.DT, double_cols) {
+  if (!data.table::is.data.table(DT)) {
+    data.table::setDT(DT)
+  }
+
+  DTnoms <- names(DT)
+
+  # CRAN NOTE avoidance
+  local_date_time_full <- NULL
+  if ("local_date_time_full" %chin% DTnoms) {
+    DT[, local_date_time_full := as.POSIXct(
+      local_date_time_full,
+      origin = "1970-1-1",
+      format = "%Y%m%d%H%M%OS",
+      tz = ""
+    )]
+  }
+
+  aifstime_utc <- NULL
+  if ("aifstime_utc" %chin% DTnoms) {
+    DT[, aifstime_utc := as.POSIXct(aifstime_utc,
+                                    origin = "1970-1-1",
+                                    format = "%Y%m%d%H%M%OS",
+                                    tz = "GMT")]
+  }
+
+  for (j in which(DTnoms %chin% double_cols)) {
+    data.table::set(DT, j = j, value = force_double(DT[[j]]))
+  }
+
+  if (!as.DT) {
+    DT <- as.data.frame(DT)
+  }
+
+  DT[]
+}
