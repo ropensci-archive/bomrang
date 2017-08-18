@@ -104,7 +104,7 @@ for (y in subscribers_list$Entry) {
         
         body_text <-
           paste(
-            "/nHello ", as.character(subscribers_list$Name[x]), ".\n",
+            "\nHello ", as.character(subscribers_list$Name[x]), ".\n",
             "\nYour mungbean crops at ", location,
             "\nare forecast to be exposed to heat stress on the\n",
             "\nfollowing dates: ", hot_dates, ".\n",
