@@ -138,41 +138,48 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 ## 4          3 95936 Melbourne (Olympic Park)        IDV60801
 ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
 ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
-##   local_date_time local_date_time_full        aifstime_utc   lat lon
-## 1      13/12:30pm  2017-08-13 12:30:00 2017-08-13 02:30:00 -37.8 145
-## 2      13/12:00pm  2017-08-13 12:00:00 2017-08-13 02:00:00 -37.8 145
-## 3      13/11:30am  2017-08-13 11:30:00 2017-08-13 01:30:00 -37.8 145
-## 4      13/11:00am  2017-08-13 11:00:00 2017-08-13 01:00:00 -37.8 145
-## 5      13/10:30am  2017-08-13 10:30:00 2017-08-13 00:30:00 -37.8 145
-## 6      13/10:00am  2017-08-13 10:00:00 2017-08-13 00:00:00 -37.8 145
-##   apparent_t cloud cloud_base_m cloud_oktas cloud_type cloud_type_id
-## 1       12.6     -           NA          NA          -            NA
-## 2       11.0     -           NA          NA          -            NA
-## 3       11.9     -           NA          NA          -            NA
-## 4       11.6     -           NA          NA          -            NA
-## 5        9.9     -           NA          NA          -            NA
-## 6       10.0     -           NA          NA          -            NA
-##   delta_t gust_kmh gust_kt air_temp dewpt  press press_msl press_qnh
-## 1     4.7       28      15     16.5   6.9 1018.8    1018.8    1018.8
-## 2     4.6       30      16     15.7   6.2 1019.7    1019.7    1019.7
-## 3     4.5       32      17     16.3   7.3 1020.1    1020.1    1020.1
-## 4     3.6       26      14     15.3   8.1 1020.5    1020.5    1020.5
-## 5     3.1       28      15     14.2   7.9 1020.7    1020.7    1020.7
-## 6     2.4       28      15     13.5   8.6 1020.9    1020.9    1020.9
-##   press_tend rain_trace rel_hum sea_state swell_dir_worded swell_height
-## 1          -          0      53         -                -           NA
-## 2          -          0      53         -                -           NA
-## 3          -          0      55         -                -           NA
-## 4          -          0      62         -                -           NA
-## 5          -          0      66         -                -           NA
-## 6          -          0      72         -                -           NA
-##   swell_period vis_km weather wind_dir wind_spd_kmh wind_spd_kt
-## 1           NA     10       -        N           17           9
-## 2           NA     10       -        N           20          11
-## 3           NA     10       -      NNW           20          11
-## 4           NA     10       -        N           17           9
-## 5           NA     10       -        N           20          11
-## 6           NA     10       -        N           17           9</code></pre></div>
+##   local_date_time local_date_time_full        aifstime_utc      lat
+## 1      18/05:30pm  2017-08-18 17:30:00 2017-08-18 07:30:00 -37.8255
+## 2      18/05:00pm  2017-08-18 17:00:00 2017-08-18 07:00:00 -37.8255
+## 3      18/04:30pm  2017-08-18 16:30:00 2017-08-18 06:30:00 -37.8255
+## 4      18/04:00pm  2017-08-18 16:00:00 2017-08-18 06:00:00 -37.8255
+## 5      18/03:30pm  2017-08-18 15:30:00 2017-08-18 05:30:00 -37.8255
+## 6      18/03:00pm  2017-08-18 15:00:00 2017-08-18 05:00:00 -37.8255
+##        lon apparent_t cloud cloud_base_m cloud_oktas cloud_type
+## 1 144.9816        5.7     -           NA          NA          -
+## 2 144.9816        5.7     -           NA          NA          -
+## 3 144.9816        5.7     -           NA          NA          -
+## 4 144.9816        6.9     -           NA          NA          -
+## 5 144.9816        6.7     -           NA          NA          -
+## 6 144.9816        6.5     -           NA          NA          -
+##   cloud_type_id delta_t gust_kmh gust_kt air_temp dewpt  press press_msl
+## 1            NA     1.7       22      12      9.2   5.4 1015.6    1015.6
+## 2            NA     2.1       24      13      9.4   4.6 1015.2    1015.2
+## 3            NA     3.1       32      17     10.4   3.4 1014.4    1014.4
+## 4            NA     3.2       30      16     11.1   3.9 1013.7    1013.7
+## 5            NA     2.6       28      15     10.7   5.0 1013.4    1013.4
+## 6            NA     1.9       20      11      9.6   5.4 1013.1    1013.1
+##   press_qnh press_tend rain_trace rel_hum sea_state swell_dir_worded
+## 1    1015.6          -        1.4      77         -                -
+## 2    1015.2          -        1.2      72         -                -
+## 3    1014.4          -        1.0      62         -                -
+## 4    1013.7          -        1.0      61         -                -
+## 5    1013.4          -        1.0      68         -                -
+## 6    1013.1          -        1.0      75         -                -
+##   swell_height swell_period vis_km weather wind_dir wind_spd_kmh
+## 1           NA           NA     10       -        W           13
+## 2           NA           NA     10       -      WSW           13
+## 3           NA           NA     10       -        W           17
+## 4           NA           NA     10       -        W           15
+## 5           NA           NA     10       -      WSW           15
+## 6           NA           NA     10    Rain      WSW           11
+##   wind_spd_kt
+## 1           7
+## 2           7
+## 3           9
+## 4           8
+## 5           8
+## 6           6</code></pre></div>
 </div>
 </div>
 <div id="using-get_precis_forecast" class="section level3">
@@ -469,7 +476,7 @@ imagery &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_sa
 <span class="kw">library</span>(raster)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode R"><code class="sourceCode r">## Loading required package: sp</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(imagery)</code></pre></div>
-<p><img src="reference/figures/get_satellite_imagery-1.png" alt="man/figures/get_satellite_imagery-1.png"></p>
+<p><img src="reference/figures/get_satellite_imagery-1.png"></p>
 </div>
 </div>
 <div id="meta" class="section level2">

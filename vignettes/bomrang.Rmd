@@ -61,55 +61,13 @@ selected.
 
 Following is an example fetching the current weather for Melbourne.
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 library("bomrang")
 
 Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
 head(Melbourne_weather)
 ```
 
-    ##   sort_order   wmo                full_name history_product
-    ## 1          0 95936 Melbourne (Olympic Park)        IDV60801
-    ## 2          1 95936 Melbourne (Olympic Park)        IDV60801
-    ## 3          2 95936 Melbourne (Olympic Park)        IDV60801
-    ## 4          3 95936 Melbourne (Olympic Park)        IDV60801
-    ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
-    ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
-    ##   local_date_time local_date_time_full        aifstime_utc   lat lon
-    ## 1      13/12:30pm  2017-08-13 12:30:00 2017-08-13 02:30:00 -37.8 145
-    ## 2      13/12:00pm  2017-08-13 12:00:00 2017-08-13 02:00:00 -37.8 145
-    ## 3      13/11:30am  2017-08-13 11:30:00 2017-08-13 01:30:00 -37.8 145
-    ## 4      13/11:00am  2017-08-13 11:00:00 2017-08-13 01:00:00 -37.8 145
-    ## 5      13/10:30am  2017-08-13 10:30:00 2017-08-13 00:30:00 -37.8 145
-    ## 6      13/10:00am  2017-08-13 10:00:00 2017-08-13 00:00:00 -37.8 145
-    ##   apparent_t cloud cloud_base_m cloud_oktas cloud_type cloud_type_id
-    ## 1       12.6     -           NA          NA          -            NA
-    ## 2       11.0     -           NA          NA          -            NA
-    ## 3       11.9     -           NA          NA          -            NA
-    ## 4       11.6     -           NA          NA          -            NA
-    ## 5        9.9     -           NA          NA          -            NA
-    ## 6       10.0     -           NA          NA          -            NA
-    ##   delta_t gust_kmh gust_kt air_temp dewpt  press press_msl press_qnh
-    ## 1     4.7       28      15     16.5   6.9 1018.8    1018.8    1018.8
-    ## 2     4.6       30      16     15.7   6.2 1019.7    1019.7    1019.7
-    ## 3     4.5       32      17     16.3   7.3 1020.1    1020.1    1020.1
-    ## 4     3.6       26      14     15.3   8.1 1020.5    1020.5    1020.5
-    ## 5     3.1       28      15     14.2   7.9 1020.7    1020.7    1020.7
-    ## 6     2.4       28      15     13.5   8.6 1020.9    1020.9    1020.9
-    ##   press_tend rain_trace rel_hum sea_state swell_dir_worded swell_height
-    ## 1          -          0      53         -                -           NA
-    ## 2          -          0      53         -                -           NA
-    ## 3          -          0      55         -                -           NA
-    ## 4          -          0      62         -                -           NA
-    ## 5          -          0      66         -                -           NA
-    ## 6          -          0      72         -                -           NA
-    ##   swell_period vis_km weather wind_dir wind_spd_kmh wind_spd_kt
-    ## 1           NA     10       -        N           17           9
-    ## 2           NA     10       -        N           20          11
-    ## 3           NA     10       -      NNW           20          11
-    ## 4           NA     10       -        N           17           9
-    ## 5           NA     10       -        N           20          11
-    ## 6           NA     10       -        N           17           9
 
 
 ## Using `get_precis_forecast`
@@ -148,49 +106,13 @@ description of the fields and values.
 
 Following is an example fetching the forecast for Queensland.
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 library("bomrang")
 
 QLD_forecast <- get_precis_forecast(state = "QLD")
 head(QLD_forecast)
 ```
 
-
-    ##   index product_id state     town       aac      lat      lon elev
-    ## 1     0   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
-    ## 2     1   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
-    ## 3     2   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
-    ## 4     3   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
-    ## 5     4   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
-    ## 6     5   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
-    ##      start_time_local end_time_local UTC_offset      start_time_utc
-    ## 1 2017-08-13 05:00:00     2017-08-14      10:00 2017-08-12 19:00:00
-    ## 2 2017-08-14 00:00:00     2017-08-15      10:00 2017-08-13 14:00:00
-    ## 3 2017-08-15 00:00:00     2017-08-16      10:00 2017-08-14 14:00:00
-    ## 4 2017-08-16 00:00:00     2017-08-17      10:00 2017-08-15 14:00:00
-    ## 5 2017-08-17 00:00:00     2017-08-18      10:00 2017-08-16 14:00:00
-    ## 6 2017-08-18 00:00:00     2017-08-19      10:00 2017-08-17 14:00:00
-    ##          end_time_utc minimum_temperature maximum_temperature
-    ## 1 2017-08-13 14:00:00                  NA                  26
-    ## 2 2017-08-14 14:00:00                  12                  26
-    ## 3 2017-08-15 14:00:00                  12                  28
-    ## 4 2017-08-16 14:00:00                  14                  30
-    ## 5 2017-08-17 14:00:00                  15                  30
-    ## 6 2017-08-18 14:00:00                  16                  27
-    ##   lower_precipitation_limit upper_precipitation_limit precis
-    ## 1                         0                         0 Sunny.
-    ## 2                         0                         0 Sunny.
-    ## 3                         0                         0 Sunny.
-    ## 4                         0                         0 Sunny.
-    ## 5                         0                         0 Sunny.
-    ## 6                         0                         0 Sunny.
-    ##   probability_of_precipitation
-    ## 1                            5
-    ## 2                            0
-    ## 3                            0
-    ## 4                            0
-    ## 5                            5
-    ## 6                            0
 
 ## Using `get_ag_bulletin`
 
@@ -225,41 +147,12 @@ of the fields and values.
 
 Following is an example fetching the ag bulletin for Queensland.
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 library("bomrang")
 
 QLD_bulletin <- get_ag_bulletin(state = "QLD")
 head(QLD_bulletin)
 ```
-
-    ##   product_id state dist   wmo  site          station
-    ## 1   IDQ60604   QLD   38 95482 38026       Birdsville
-    ## 2   IDQ60604   QLD   40 94578 40842 Brisbane Airport
-    ## 3   IDQ60604   QLD   39 94387 39128        Bundaberg
-    ## 4   IDQ60604   QLD   31 94287 31011           Cairns
-    ## 5   IDQ60604   QLD   44 94510 44021      Charleville
-    ## 6   IDQ60604   QLD   33 94360 33013     Collinsville
-    ##                  full_name      obs_time_local        obs_time_utc
-    ## 1       BIRDSVILLE AIRPORT 2017-08-13 09:00:00 2017-08-12 23:00:00
-    ## 2            BRISBANE AERO 2017-08-13 09:00:00 2017-08-12 23:00:00
-    ## 3           BUNDABERG AERO 2017-08-13 09:00:00 2017-08-12 23:00:00
-    ## 4              CAIRNS AERO 2017-08-13 09:00:00 2017-08-12 23:00:00
-    ## 5         CHARLEVILLE AERO 2017-08-13 09:00:00 2017-08-12 23:00:00
-    ## 6 COLLINSVILLE POST OFFICE 2017-08-13 09:00:00 2017-08-12 23:00:00
-    ##   time_zone      lat      lon  elev bar_ht start  end r   tn   tx twd  ev
-    ## 1       EST -25.8975 139.3472  46.6   47.0  2000 2017 0  9.8 27.6 8.4  NA
-    ## 2       EST -27.3917 153.1292   4.5    9.5  1992 2017 0 11.5 25.3 5.6 3.4
-    ## 3       EST -24.9069 152.3230  30.8   31.5  1942 2017 0 10.3 27.5 2.7  NA
-    ## 4       EST -16.8736 145.7458   2.2    8.3  1941 2017 0 18.8 28.8 5.2  NA
-    ## 5       EST -26.4139 146.2558 301.6  303.3  1942 2017 0  6.8 29.3 8.0  NA
-    ## 6       EST -20.5533 147.8464 196.0     NA  1939 2017 0  8.0 28.2 3.1 5.2
-    ##    tg  sn   t5  t10  t20  t50  t1m  wr
-    ## 1  NA  NA   NA   NA   NA   NA   NA  NA
-    ## 2 9.5 8.6 16.0 17.0 18.0 18.0 19.0 158
-    ## 3  NA  NA 17.8 18.3 19.6 19.1 20.7  NA
-    ## 4  NA  NA   NA   NA   NA   NA   NA  NA
-    ## 5  NA  NA   NA   NA   NA   NA   NA  NA
-    ## 6  NA  NA   NA   NA   NA   NA   NA  NA
 
 ## Using `sweep_for_stations`
 `sweep_for_stations()` only takes one argument, `latlon`, a length-2 numeric
@@ -282,7 +175,7 @@ The fields in the data frame are:
 
 Following is an example sweeping for stations starting with Canberra.
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 # Show only the first ten stations in the list
 head(sweep_for_stations(latlon = c(-35.3, 149.2)), 10)
 ```
@@ -304,6 +197,7 @@ is the same across different machines.
 The databases consist of three files, used by _bomrang_, `AAC_codes.rda`, 
 `JSONurl_latlon_by_station_name.rda` and `stations_site_list.rda`. These files
 can be located on your local system by using the following command, 
+
 ```{r, eval = FALSE}
 paste0(.libPaths(), "/bomrang/extdata")[1]
 ```

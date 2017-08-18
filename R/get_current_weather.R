@@ -1,4 +1,5 @@
 
+
 #' Get Current Weather Observations of a BoM Station
 #'
 #' @param station_name The name of the weather station. Fuzzy string matching
@@ -72,11 +73,10 @@ get_current_weather <-
            raw = FALSE,
            emit_latlon_msg = TRUE,
            as.data.table = FALSE) {
-
     # CRAN NOTE avoidance
     JSONurl_site_list <- NULL
 
-        # Load JSON URL list
+    # Load JSON URL list
     load(system.file("extdata", "JSONurl_site_list.rda",
                      package = "bomrang"))
 
@@ -103,13 +103,19 @@ get_current_weather <-
       } else {
         likely_stations <-
           # Present those with common prefixes first
-          c(grep(pattern = paste0("^", station_name),
-                 x = JSONurl_site_list[["name"]],
-                 ignore.case = TRUE,
-                 value = TRUE),
-            agrep(pattern = station_name,
-                  x = JSONurl_site_list[["name"]],
-                  value = TRUE)) %>%
+          c(
+            grep(
+              pattern = paste0("^", station_name),
+              x = JSONurl_site_list[["name"]],
+              ignore.case = TRUE,
+              value = TRUE
+            ),
+            agrep(
+              pattern = station_name,
+              x = JSONurl_site_list[["name"]],
+              value = TRUE
+            )
+          ) %>%
           unique
 
         if (length(likely_stations) == 0) {
@@ -123,39 +129,50 @@ get_current_weather <-
           # which does not provide observations)
           if (toupper(station_name) == "SYDNEY" &&
               "SYDNEY (OBSERVATORY HILL)" %in% likely_stations) {
-            likely_stations <- c("SYDNEY (OBSERVATORY HILL)",
-                                 setdiff(likely_stations,
-                                         "SYDNEY (OBSERVATORY HILL)"))
+            likely_stations <- c(
+              "SYDNEY (OBSERVATORY HILL)",
+              setdiff(likely_stations,
+                      "SYDNEY (OBSERVATORY HILL)")
+            )
             the_station_name <- "SYDNEY (OBSERVATORY HILL)"
           }
 
           # If not strict, warn; otherwise, later code will error on its own.
           if (!strict) {
-            warning("Multiple stations match station_name. ",
-                    "Using\n\tstation_name = '",
-                    the_station_name,
-                    "'\n\nDid you mean any of the following?\n",
-                    paste0("\tstation_name = '",
-                           likely_stations[-1],
-                           "'",
-                           collapse = "\n"))
+            warning(
+              "Multiple stations match station_name. ",
+              "Using\n\tstation_name = '",
+              the_station_name,
+              "'\nDid you mean any of the following?\n",
+              paste0(
+                "\tstation_name = '",
+                likely_stations[-1],
+                "'",
+                collapse = "\n"
+              )
+            )
           }
         }
 
         if (strict) {
           if (length(likely_stations) == 1) {
-            stop("strict = TRUE but station name not exactly matched.",
-                 "\nDid you mean the following?\n\t",
-                 "station_name = '",
-                 the_station_name, "'")
+            stop(
+              "strict = TRUE but station name not exactly matched.",
+              "\nDid you mean the following?\n\t",
+              "station_name = '",
+              the_station_name,
+              "'"
+            )
           } else {
-            stop("strict = TRUE but station name not exactly matched.\n",
-                 "Multiple stations match station_name. ",
-                 "\n\nDid you mean any of the following?\n",
-                 paste0("\tstation_name = '",
-                        likely_stations,
-                        "'",
-                        collapse = "\n"))
+            stop(
+              "strict = TRUE but station name not exactly matched.\n",
+              "Multiple stations match station_name. ",
+              "\n\nDid you mean any of the following?\n",
+              paste0("\tstation_name = '",
+                     likely_stations,
+                     "'",
+                     collapse = "\n")
+            )
           }
 
         }
@@ -163,6 +180,10 @@ get_current_weather <-
 
       json_url <-
         JSONurl_site_list[name == the_station_name][["url"]]
+      full_lat <-
+        JSONurl_site_list[name == the_station_name][["lat"]]
+      full_lon <-
+        JSONurl_site_list[name == the_station_name][["lon"]]
 
     } else {
       # We have established latlon is not NULL
@@ -196,20 +217,31 @@ get_current_weather <-
       }
 
       json_url <- station_nrst_latlon[["url"]]
+      full_lat <- station_nrst_latlon[["lat"]]
+      full_lon <- station_nrst_latlon[["lon"]]
+
     }
     if (isTRUE(httr::http_error(json_url))) {
-      stop("\nA station was matched.",
-           "However a corresponding JSON file was not found at bom.gov.au.\n")
+      stop(
+        "\nA station was matched.",
+        "However a corresponding JSON file was not found at bom.gov.au.\n"
+      )
     }
 
     observations.json <-
       jsonlite::fromJSON(txt = json_url)
 
-    if ("observations" %notin% names(observations.json) ||
-        "data" %notin% names(observations.json$observations)) {
-      stop("\nA station was matched",
-           "but the JSON returned by bom.gov.au was not in expected form.\n")
-    }
+      if ("observations" %notin% names(observations.json) ||
+          "data" %notin% names(observations.json$observations)) {
+        stop(
+          "\nA station was matched",
+          "but the JSON returned by bom.gov.au was not in expected form.\n"
+        )
+      }
+
+    # replaced rounded values from .json with full values from internal db
+    observations.json$observations[["data"]][["lat"]] <- full_lat
+    observations.json$observations[["data"]][["lon"]] <- full_lon
 
     # Columns which are meant to be numeric
     double_cols <-
