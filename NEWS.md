@@ -2,8 +2,16 @@
 
 ## Bug Fixes
 
-- Suggested station names are returned in a list format, previously lacked
-spaces between names
+- Recommended `station_name` values are separated by spaces in
+`get_current_weather()`
+
+- Station names and location names are more consistent in the supplied data and
+returned data frames.
+
+- Lat/Lon values for `get_current_weather()` results are now reported using the
+values from the internal database, which has a higher degree of accuracy. The
+json file values are rounded while the values from the stations list has four
+decimal places
 
 ## Major changes
 
@@ -27,18 +35,60 @@ a current and retired station.
 desired state, station or the whole country for functions that require a `state`
 argument
 
-## Internal changes
+- Onload a message regarding the copyright and data source,
+```r
+                Data (c) Australian Government Bureau of Meteorology,,
+                Creative Commons (CC) Attribution 3.0 licence or,
+                Public Access Licence (PAL) as appropriate.,
+                See http://www.bom.gov.au/other/copyright.shtml
+```
+is displayed
+
+- the _bomrang_ vignette now contains instructions for use along with appendices
+that document the data fields and units, rather than separate vingettes
+
+- ramifications of updating station lists are now stated clearly in the vignette
+and help files for applicable functions
+
+- a map of BoM stations is included in an appendix of the _bomrang_ vingette
+
+- Lat/Lon values are specified to be in decimal degrees in
+`get_current_weather()` help and vignette
 
 - Databases station locations and other metadata are internal an not exposed to
 the user
 
 - Use `file.path()` in place of `paste0()`
 
-- Shorten code line lengths to be <= 80 chars
+- The package has been linted,
+
+    - line lengths are <80 chars,
+
+    - best practice naming conventions are followed (where possible)
 
 - Lint md files
 
 - Spellchecking in all files
+
+- `agrep` is now used in all functions where the user enters state or Australia
+ values to query BoM data
+
+- best practices for programming with `dplyr 0.7` using `rlang` are now
+employed, which reduces the need for the `# CRAN NOTE avoidance`
+
+- "JSONurl_latlon_by_station_name" has been shortened to
+"JSONurl_site_list".
+
+- The DESCRIPTION file now states minimum package versions for packages that are
+undergoing rapid development
+
+- Code has been refactored to be shorter, _e.g._, `xml_bulletin_url` in
+`get_ag_bulletion()`
+
+- `.get_obs()` has been moved out of the `.parse_bulletin()` function for easier
+reading/maintenance
+
+- fixed a repeat of `return(tidy_df)` in `get_precis_forecast()`
 
 --------------------------------------------------------------------------------
 
