@@ -72,18 +72,16 @@ bomrang_cache_list <- function() {
 
 #' @export
 #' @rdname manage_bomrang_cache
+
 bomrang_cache_delete <- function(files, force = TRUE) {
   cache_dir <- rappdirs::user_cache_dir("bomrang")
-  if (!all(file.exists(cache_dir, "/", files))) {
-    stop(
-      "These files don't exist or can't be found: \n",
-      strwrap(file.path(cache_dir, files)[!file.exists(file.path(cache_dir, files))], indent = 5),
-      call. = FALSE
-    )
+  files <- file.path(cache_dir, files)
+  if (!all(file.exists(files))) {
+    stop("These files don't exist or can't be found: \n",
+         strwrap(files[!file.exists(files)], indent = 5),
+         call. = FALSE)
   }
-  unlink(file.path(cache_dir, files),
-         force = force,
-         recursive = TRUE)
+  unlink(files, force = force, recursive = TRUE)
 }
 
 #' @export

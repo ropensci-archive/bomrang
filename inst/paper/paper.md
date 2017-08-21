@@ -36,26 +36,25 @@ affiliations:
 
 # Summary
 
-The Australian Bureau of Meteorology (BoM) publicly provides data via anonymous
-FTP in XML and json files [@BoM_2017]. The files are well structured but some
+The Australian Bureau of Meteorology (BoM) publicly provides data via an anonymous
+FTP server, in XML and json files [@BoM_2017]. The files are well structured but
 knowledge of how to use R and parse them is required to extract the data into a
-data frame for use in R [@R-base]. _bomrang_ provides functionality for
-automated retrieval and parsing of selected weather data files from BOM. Data
+data frame for use in R [@R-base] or requires external programs and scripting to import the data for use. _bomrang_ provides functionality for
+automated retrieval and parsing of selected weather data files from BoM. Data
 that can be fetched include current weather at a given station, daily précis
 (short summaries less than 30 characters) forecasts for all Australian forecast
-locations and agricultural bulletins summarising weather observations useful for
-agriculture for each State/Territory. Three functions, `get_current_weather()`,
+locations, agricultural bulletins summarising weather observations useful for
+agriculture for each state or territory and satellite imagery in GeoTIFF file formats. Three functions, `get_current_weather()`,
 `get_precis_forecast()` and `get_ag_bulletin()`, provide the ability to easily
-download data from BOM, import it and create a tidy data frame [@Wickham2014]
+download data from BoM, import it and create a tidy data frame [@Wickham2014]
 object of the data. To help identify stations given a specific location,
 `sweep_for_station()` returns a data frame of all weather stations (in this
 package) sorted by distance from a user specified latitude and longitude,
 ascending. Two further functions, `update_forecast_towns()` and
 `update_station_locations()`, provide the user with the ability to update
 internal databases of forecast locations, station metadata and JSON URLs used by
-the package to interface with BOM. The package's internal databases decrease the
+the package to interface with BoM. The package's internal databases decrease the
 time necessary to gather forecast information and return a data frame, while
-rarely changing. The data have applications in applied meteorology, agricultural
-meteorology, agricultural and environmental modelling.
+rarely changing. Functionality for automated downloading and importing of satellite imagery is provided by the `get_satellite_imagery()` function. A helper function, `get_available_imagery()`, returns values of currently available satelite imagery for download. The data have applications in applied meteorology and agricultural meteorology and agricultural and environmental modelling.
 
 # References

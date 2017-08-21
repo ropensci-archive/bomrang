@@ -9,13 +9,10 @@ init:
 install:
   ps: Bootstrap
 
-cache:
-  - C:\RLibrary
-
 # Adapt as necessary starting from here
 build_script:
+  - travis-tool.sh r_binary_install rgdal
   - travis-tool.sh install_deps
-  - travis-tool.sh r_binary_install proto rgdal
 
 test_script:
   - travis-tool.sh run_tests

@@ -40,6 +40,18 @@
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Articles
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+<li>
+      <a href="../articles/use_case.html">bomrang Use Case</a>
+    </li>
+  </ul>
+</li>
 <li>
   <a href="../news/index.html">News</a>
 </li>
@@ -66,7 +78,7 @@
       <h1>bomrang</h1>
                         <h4 class="author">Adam H Sparks and Hugh Parsonage</h4>
             
-            <h4 class="date">2017-08-15</h4>
+            <h4 class="date">2017-08-19</h4>
           </div>
 
     
@@ -89,7 +101,7 @@
 </h2>
 <p><code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> takes one of two arguments: <code>station_name</code> and <code>latlon</code>, returning the current weather observations (and the observations of the last 72 hours) for the given location.</p>
 <p>If <code>station_name</code> is used, the weather observations for the last 72 hours are returned for that station. If the string provided is ambiguous, the function returns an observation for one of the possible stations and emits a warning to offer unambiguous station names.</p>
-<p>If <code>latlon</code> is used, the observations returned are from the station nearest to that latitude-longitude coordinate. The function also emits a message, to tell the user which station was used.</p>
+<p>If <code>latlon</code> is used, the observations returned are from the station nearest to that latitude-longitude coordinate. <code>latlon</code> values are entered as decimal degrees, <em>e.g.</em> -34, 151 for Sydney. The function also emits a message, to tell the user which station was used.</p>
 <div id="results" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results" class="anchor"></a>Results</h3>
@@ -99,10 +111,63 @@
 <h3 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h3>
 <p>Following is an example fetching the current weather for Melbourne.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"bomrang"</span>)
-
-Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_current_weather.html">get_current_weather</a></span>(<span class="st">"Melbourne (Olympic Park)"</span>)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(<span class="st">"bomrang"</span>)</code></pre></div>
+<pre><code>## 
+## Data (c) Australian Government Bureau of Meteorology,
+## Creative Commons (CC) Attribution 3.0 licence or
+## Public Access Licence (PAL) as appropriate.
+## See http://www.bom.gov.au/other/copyright.shtml</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_current_weather.html">get_current_weather</a></span>(<span class="st">"Melbourne (Olympic Park)"</span>)
 <span class="kw">head</span>(Melbourne_weather)</code></pre></div>
+<pre><code>##   sort_order   wmo                full_name history_product
+## 1          0 95936 Melbourne (Olympic Park)        IDV60801
+## 2          1 95936 Melbourne (Olympic Park)        IDV60801
+## 3          2 95936 Melbourne (Olympic Park)        IDV60801
+## 4          3 95936 Melbourne (Olympic Park)        IDV60801
+## 5          4 95936 Melbourne (Olympic Park)        IDV60801
+## 6          5 95936 Melbourne (Olympic Park)        IDV60801
+##   local_date_time local_date_time_full        aifstime_utc      lat
+## 1      19/08:00am  2017-08-19 08:00:00 2017-08-18 22:00:00 -37.8255
+## 2      19/07:30am  2017-08-19 07:30:00 2017-08-18 21:30:00 -37.8255
+## 3      19/07:00am  2017-08-19 07:00:00 2017-08-18 21:00:00 -37.8255
+## 4      19/06:49am  2017-08-19 06:49:00 2017-08-18 20:49:00 -37.8255
+## 5      19/06:45am  2017-08-19 06:45:00 2017-08-18 20:45:00 -37.8255
+## 6      19/06:34am  2017-08-19 06:34:00 2017-08-18 20:34:00 -37.8255
+##        lon apparent_t cloud cloud_base_m cloud_oktas cloud_type
+## 1 144.9816        4.2     -           NA          NA          -
+## 2 144.9816        4.8     -           NA          NA          -
+## 3 144.9816        4.2     -           NA          NA          -
+## 4 144.9816        4.2     -           NA          NA          -
+## 5 144.9816        4.0     -           NA          NA          -
+## 6 144.9816        3.9     -           NA          NA          -
+##   cloud_type_id delta_t gust_kmh gust_kt air_temp dewpt  press press_msl
+## 1            NA     0.6       13       7      6.6   5.2 1025.2    1025.2
+## 2            NA     0.6       11       6      6.3   4.9 1024.8    1024.8
+## 3            NA     0.5       11       6      6.4   5.2 1024.4    1024.4
+## 4            NA     0.5        9       5      6.4   5.2 1024.1    1024.1
+## 5            NA     0.6        9       5      6.3   4.9 1024.0    1024.0
+## 6            NA     0.7       13       7      6.4   4.9 1023.9    1023.9
+##   press_qnh press_tend rain_trace rel_hum sea_state swell_dir_worded
+## 1    1025.2          -        7.2      91         -                -
+## 2    1024.8          -        7.2      91         -                -
+## 3    1024.4          -        7.2      92         -                -
+## 4    1024.1          -        7.2      92         -                -
+## 5    1024.0          -        7.2      91         -                -
+## 6    1023.9          -        7.2      90         -                -
+##   swell_height swell_period vis_km weather wind_dir wind_spd_kmh
+## 1           NA           NA     10       -        W            7
+## 2           NA           NA     10       -        E            2
+## 3           NA           NA     10       -      WSW            6
+## 4           NA           NA     10       -      WNW            6
+## 5           NA           NA     10       -      WNW            6
+## 6           NA           NA      5       -      WNW            7
+##   wind_spd_kt
+## 1           4
+## 2           1
+## 3           3
+## 4           3
+## 5           3
+## 6           4</code></pre>
 </div>
 </div>
 <div id="using-get_precis_forecast" class="section level2">
@@ -134,6 +199,41 @@ Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../ref
 
 QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_precis_forecast.html">get_precis_forecast</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
 <span class="kw">head</span>(QLD_forecast)</code></pre></div>
+<pre><code>##   index product_id state     town       aac      lat      lon elev
+## 1     0   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
+## 2     1   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
+## 3     2   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
+## 4     3   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
+## 5     4   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
+## 6     5   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
+##      start_time_local end_time_local UTC_offset      start_time_utc
+## 1 2017-08-19 05:00:00     2017-08-20      10:00 2017-08-18 19:00:00
+## 2 2017-08-20 00:00:00     2017-08-21      10:00 2017-08-19 14:00:00
+## 3 2017-08-21 00:00:00     2017-08-22      10:00 2017-08-20 14:00:00
+## 4 2017-08-22 00:00:00     2017-08-23      10:00 2017-08-21 14:00:00
+## 5 2017-08-23 00:00:00     2017-08-24      10:00 2017-08-22 14:00:00
+## 6 2017-08-24 00:00:00     2017-08-25      10:00 2017-08-23 14:00:00
+##          end_time_utc minimum_temperature maximum_temperature
+## 1 2017-08-19 14:00:00                  NA                  21
+## 2 2017-08-20 14:00:00                   9                  22
+## 3 2017-08-21 14:00:00                   9                  23
+## 4 2017-08-22 14:00:00                  11                  27
+## 5 2017-08-23 14:00:00                  11                  26
+## 6 2017-08-24 14:00:00                  12                  25
+##   lower_precipitation_limit upper_precipitation_limit           precis
+## 1                         0                       0.0    Windy. Sunny.
+## 2                         0                       0.0           Sunny.
+## 3                         0                       0.0   Partly cloudy.
+## 4                         0                       0.0           Sunny.
+## 5                         0                       0.0           Sunny.
+## 6                         0                       0.2 Possible shower.
+##   probability_of_precipitation
+## 1                            0
+## 2                            5
+## 3                           10
+## 4                            0
+## 5                           10
+## 6                           30</code></pre>
 </div>
 </div>
 <div id="using-get_ag_bulletin" class="section level2">
@@ -164,6 +264,34 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 
 QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_ag_bulletin.html">get_ag_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
 <span class="kw">head</span>(QLD_bulletin)</code></pre></div>
+<pre><code>##   product_id state dist   wmo  site          station
+## 1   IDQ60604   QLD   38 95482 38026       Birdsville
+## 2   IDQ60604   QLD   40 94578 40842 Brisbane Airport
+## 3   IDQ60604   QLD   39 94387 39128        Bundaberg
+## 4   IDQ60604   QLD   31 94287 31011           Cairns
+## 5   IDQ60604   QLD   44 94510 44021      Charleville
+## 6   IDQ60604   QLD   33 94360 33013     Collinsville
+##                  full_name      obs_time_local        obs_time_utc
+## 1       BIRDSVILLE AIRPORT 2017-08-18 09:00:00 2017-08-17 23:00:00
+## 2            BRISBANE AERO 2017-08-18 09:00:00 2017-08-17 23:00:00
+## 3           BUNDABERG AERO 2017-08-18 09:00:00 2017-08-17 23:00:00
+## 4              CAIRNS AERO 2017-08-18 09:00:00 2017-08-17 23:00:00
+## 5         CHARLEVILLE AERO 2017-08-18 09:00:00 2017-08-17 23:00:00
+## 6 COLLINSVILLE POST OFFICE 2017-08-18 09:00:00 2017-08-17 23:00:00
+##   time_zone      lat      lon  elev bar_ht start  end r   tn   tx  twd  ev
+## 1       EST -25.8975 139.3472  46.6   47.0  2000 2017 0 13.2 28.2  7.1  NA
+## 2       EST -27.3917 153.1292   4.5    9.5  1992 2017 0 13.9 29.3 10.3 6.0
+## 3       EST -24.9069 152.3230  30.8   31.5  1942 2017 0 13.0 28.0  9.0  NA
+## 4       EST -16.8736 145.7458   2.2    8.3  1941 2017 0 16.4 28.4  3.8  NA
+## 5       EST -26.4139 146.2558 301.6  303.3  1942 2017 0  7.6 27.6  9.2  NA
+## 6       EST -20.5533 147.8464 196.0     NA  1939 2017 0 14.2 30.7  1.3 4.4
+##    tg   sn   t5  t10  t20  t50  t1m  wr
+## 1  NA   NA   NA   NA   NA   NA   NA  NA
+## 2 6.2 10.5 18.0 18.0 19.0 20.0 19.0 199
+## 3  NA   NA 20.1 20.6 21.6 21.2 21.7 239
+## 4  NA   NA   NA   NA   NA   NA   NA  NA
+## 5  NA   NA   NA   NA   NA   NA   NA  NA
+## 6  NA   NA   NA   NA   NA   NA   NA  NA</code></pre>
 </div>
 </div>
 <div id="using-sweep_for_stations" class="section level2">
@@ -186,6 +314,39 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <p>Following is an example sweeping for stations starting with Canberra.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Show only the first ten stations in the list</span>
 <span class="kw">head</span>(<span class="kw"><a href="../reference/sweep_for_stations.html">sweep_for_stations</a></span>(<span class="dt">latlon =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">35.3</span>, <span class="fl">149.2</span>)), <span class="dv">10</span>)</code></pre></div>
+<pre><code>##      site dist                              name start  end      lat
+## 1  070351   70                  CANBERRA AIRPORT  2008 2017 -35.3088
+## 2  070339   70 TUGGERANONG (ISABELLA PLAINS) AWS  1996 2017 -35.4184
+## 3  070349   70                  MOUNT GININI AWS  2004 2017 -35.5293
+## 4  070341   70 CAPTAINS FLAT (COWANGERONG RADAR)  2002 2017 -35.6614
+## 5  069132   69          BRAIDWOOD RACECOURSE AWS  1985 2017 -35.4253
+## 6  070358   70         YASS (RURAL FIRE SERVICE)  2011 2017 -34.8225
+## 7  073007   73                    BURRINJUCK DAM  1908 2017 -34.9997
+## 8  070330   70              GOULBURN AIRPORT AWS  1988 2017 -34.8085
+## 9  070263   70                     GOULBURN TAFE  1971 2017 -34.7495
+## 10 069128   69                       NERRIGA AWS  2013 2017 -35.1103
+##         lon source state   elev bar_ht   wmo state_code
+## 1  149.2004    GPS   NSW  577.1  577.6 94926          N
+## 2  149.0937    GPS   NSW  586.7  587.5 94925          N
+## 3  148.7721    GPS   NSW 1760.0     NA 95925          N
+## 4  149.5122    GPS   NSW 1358.0     NA 99089          N
+## 5  149.7835    GPS   NSW  665.2  666.0 94927          N
+## 6  148.9080    GPS   NSW  498.0     NA 95723          N
+## 7  148.5984    GPS   NSW  390.0     NA 94909          N
+## 8  149.7311    GPS   NSW  640.0  640.8 95716          N
+## 9  149.7034    GPS   NSW  670.0     NA 94716          N
+## 10 150.0826    GPS   NSW  622.0  625.6 94943          N
+##                                                       url   distance
+## 1  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94926.json  0.9791884
+## 2  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94925.json 16.3172787
+## 3  http://www.bom.gov.au/fwo/IDN60801/IDN60801.95925.json 46.4084466
+## 4  http://www.bom.gov.au/fwo/IDN60801/IDN60801.99089.json 49.1327086
+## 5  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94927.json 54.7153470
+## 6  http://www.bom.gov.au/fwo/IDN60801/IDN60801.95723.json 59.3756657
+## 7  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94909.json 64.0835316
+## 8  http://www.bom.gov.au/fwo/IDN60801/IDN60801.95716.json 72.9652110
+## 9  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94716.json 76.4731323
+## 10 http://www.bom.gov.au/fwo/IDN60801/IDN60801.94943.json 82.9176026</code></pre>
 </div>
 </div>
 <div id="using-the-update-functions" class="section level2">

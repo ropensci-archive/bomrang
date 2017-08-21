@@ -17,8 +17,9 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
   delta_lon <- abs(lon1 - lon2)
 
   # radius of earth
-  6371 * 2 * asin(sqrt(`+`((sin(delta_lat / 2)) ^ 2,
-                           cos(lat1) * cos(lat2) * (sin(delta_lon / 2)) ^ 2
+  6371 * 2 * asin(sqrt(`+`(
+    (sin(delta_lat / 2)) ^ 2,
+    cos(lat1) * cos(lat2) * (sin(delta_lon / 2)) ^ 2
   )))
 }
 
@@ -27,12 +28,80 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
   if (isTRUE(cache)) {
     cache_dir <- rappdirs::user_cache_dir("bomrang")
     if (!dir.exists(cache_dir)) {
-      dir.create(rappdirs::user_cache_dir(appname = "bomrang",
-                                          appauthor = "bomrang"),
-                 recursive = TRUE)
+      dir.create(
+        rappdirs::user_cache_dir(appname = "bomrang",
+                                 appauthor = "bomrang"),
+        recursive = TRUE
+      )
     }
   } else {
     cache_dir <- tempdir()
   }
   return(cache_dir)
+}
+
+
+#' @noRd
+
+# Check states for précis and ag bulletin, use fuzzy matching
+
+.check_states <- function(state) {
+states <- c(
+  "ACT",
+  "NSW",
+  "NT",
+  "QLD",
+  "SA",
+  "TAS",
+  "VIC",
+  "WA",
+  "Canberra",
+  "New South Wales",
+  "Northern Territory",
+  "Queensland",
+  "South Australia",
+  "Tasmania",
+  "Victoria",
+  "Western Australia",
+  "Australia",
+  "AU",
+  "AUS",
+  "Oz"
+)
+
+  if (state %in% states) {
+    the_state <- toupper(state)
+    return(the_state)
+  } else {
+    likely_states <- agrep(pattern = state,
+                           x = states,
+                           value = TRUE)
+
+    if (length(likely_states == 1)) {
+      the_state <- toupper(likely_states)
+      warning(
+        paste0("\nUsing state = ", likely_states, ".\n",
+               "If this is not what you intended, please check your entry.")
+      )
+      return(the_state)
+    } else if (length(likely_states) == 0) {
+      stop(
+        "\nA state or territory matching what you entered was not found.",
+        "Please check and try again.\n"
+      )
+    }
+  }
+
+  if (length(likely_states) > 1) {
+    warning(
+      "Multiple states match state.",
+      "'\ndid you mean:\n\tstate = '",
+      paste(likely_states[1],
+            "or",
+            likely_states[2],
+            "or",
+            likely_states[3]),
+      "'?"
+    )
+  }
 }

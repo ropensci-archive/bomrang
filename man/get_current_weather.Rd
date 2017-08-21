@@ -16,7 +16,7 @@ station name exactly, except that \code{station_name} need not be uppercase.
 Note this may be different to \code{full_name} in the response. See
 \strong{Details}.}
 
-\item{latlon}{A length-2 numeric vector giving the decimal
+\item{latlon}{A length-2 numeric vector giving the decimal degree
 latitude and longitude (in that order), \emph{e.g.} \code{latlon =
 c(-34, 151)} for Sydney. When given instead of \code{station_name}, the
 nearest station (in this package) is used, with a message indicating the

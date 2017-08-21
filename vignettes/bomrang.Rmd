@@ -48,8 +48,9 @@ returns an observation for one of the possible stations and emits a warning to
 offer unambiguous station names. 
 
 If `latlon` is used, the observations returned are from the station nearest to
-that latitude-longitude coordinate. The function also emits a message, to tell
-the user which station was used.
+that latitude-longitude coordinate. `latlon` values are entered as decimal
+degrees, _e.g._ -34, 151 for Sydney. The function also emits a message, to
+tell the user which station was used.
 
 ### Results
 
@@ -60,12 +61,14 @@ selected.
 
 Following is an example fetching the current weather for Melbourne.
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 library("bomrang")
 
 Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
 head(Melbourne_weather)
 ```
+
+
 
 ## Using `get_precis_forecast`
 
@@ -103,12 +106,13 @@ description of the fields and values.
 
 Following is an example fetching the forecast for Queensland.
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 library("bomrang")
 
 QLD_forecast <- get_precis_forecast(state = "QLD")
 head(QLD_forecast)
 ```
+
 
 ## Using `get_ag_bulletin`
 
@@ -143,12 +147,13 @@ of the fields and values.
 
 Following is an example fetching the ag bulletin for Queensland.
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 library("bomrang")
 
 QLD_bulletin <- get_ag_bulletin(state = "QLD")
 head(QLD_bulletin)
 ```
+
 ## Using `sweep_for_stations`
 `sweep_for_stations()` only takes one argument, `latlon`, a length-2 numeric
 vector. By default, Canberra (approximately).
@@ -170,7 +175,7 @@ The fields in the data frame are:
 
 Following is an example sweeping for stations starting with Canberra.
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 # Show only the first ten stations in the list
 head(sweep_for_stations(latlon = c(-35.3, 149.2)), 10)
 ```
@@ -192,6 +197,7 @@ is the same across different machines.
 The databases consist of three files, used by _bomrang_, `AAC_codes.rda`, 
 `JSONurl_latlon_by_station_name.rda` and `stations_site_list.rda`. These files
 can be located on your local system by using the following command, 
+
 ```{r, eval = FALSE}
 paste0(.libPaths(), "/bomrang/extdata")[1]
 ```

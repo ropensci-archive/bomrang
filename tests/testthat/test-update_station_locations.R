@@ -2,8 +2,7 @@ context("update_station_locations")
 
 # update_station_locations() downloads and imports the proper file ------------
 
-test_that("update_station_locations() downloads and imports the proper file",
-          {
+test_that("update_station_locations() downloads and imports the proper file", {
             skip_on_cran()
 
             update_station_locations()

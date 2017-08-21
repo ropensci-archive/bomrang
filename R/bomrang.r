@@ -1,6 +1,6 @@
 
 #' Fetches Australian Government Bureau of Meteorology (BoM) Weather Data Files
-#' and Returns a Tidy Data Frame of the Data.
+#' and Returns a Tidy Data Frame or Raster Stack Object of the Data.
 #'
 #' @name bomrang
 #' @author Adam H Sparks and Hugh Parsonage and Keith Pembleton
