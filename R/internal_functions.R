@@ -105,3 +105,26 @@ states <- c(
     )
   }
 }
+
+#' convert_state
+#'
+#' Convert state to standard abbreviation
+#' @noRd
+convert_state <- function (state)
+{
+    state <- gsub (' ', '', state)
+    state <- substring (gsub ('[[:punct:]]', '', tolower (state)), 1, 2)
+
+    state_code <- c ("NSW", "NSW", "VIC", "VIC", "QLD", "QLD", "QLD",
+                     "WA", "WA", "WA", "SA", "SA", "SA", "TAS", "TAS",
+                     "ACT", "NT", "NT")
+    state_names <- c ("ne", "ns", "vi", "v", "ql", "qe", "q",
+                      "wa", "we", "w", "s", "sa", "so", "ta", "t",
+                      "ac", "no", "nt")
+    state <- state_code [pmatch (state, state_names)]
+
+    if (any (is.na (state)))
+        stop ("Unable to determine state")
+
+    return (state)
+}
