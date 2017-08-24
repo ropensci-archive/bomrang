@@ -77,9 +77,9 @@ states <- c(
                            x = states,
                            value = TRUE)
 
-    if (length(likely_states == 1)) {
+    if (length(likely_states) == 1) {
       the_state <- toupper(likely_states)
-      warning(
+      message(
         paste0("\nUsing state = ", likely_states, ".\n",
                "If this is not what you intended, please check your entry.")
       )
@@ -93,7 +93,7 @@ states <- c(
   }
 
   if (length(likely_states) > 1) {
-    warning(
+    message(
       "Multiple states match state.",
       "'\ndid you mean:\n\tstate = '",
       paste(likely_states[1],
