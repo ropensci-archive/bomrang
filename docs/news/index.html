@@ -110,7 +110,9 @@
 <h2 class="hasAnchor">
 <a href="#bug-fixes" class="anchor"></a>Bug Fixes</h2>
 <ul>
-<li>Suggested station names are returned in a list format, previously lacked spaces between names</li>
+<li><p>Recommended <code>station_name</code> values are separated by spaces in <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code></p></li>
+<li><p>Station names and location names are more consistent in the supplied data and returned data frames.</p></li>
+<li><p>Lat/Lon values for <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> results are now reported using the values from the internal database, which has a higher degree of accuracy. The json file values are rounded while the values from the stations list has four decimal places</p></li>
 </ul>
 </div>
 <div id="major-changes" class="section level2">
@@ -124,17 +126,36 @@
 <li><p>Product IDs are included in outputs from <code>get_*()</code> functions that return a tidy dataframe</p></li>
 <li><p>Full station names are reported along with BoM’s current name used to refer to a station location. In some cases a station “name” may be the same for both a current and retired station.</p></li>
 <li><p>Fuzzy matching is used for all functions now when user enters a value for a desired state, station or the whole country for functions that require a <code>state</code> argument</p></li>
-</ul>
-</div>
-<div id="internal-changes" class="section level2">
-<h2 class="hasAnchor">
-<a href="#internal-changes" class="anchor"></a>Internal changes</h2>
-<ul>
+<li>
+<p>Onload a message regarding the copyright and data source,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">            <span class="kw">Data</span> (c) Australian Government Bureau of Meteorology,,
+            Creative <span class="kw">Commons</span> (CC) Attribution <span class="fl">3.0</span> licence or,
+            Public Access <span class="kw">Licence</span> (PAL) as appropriate.,
+            See http<span class="op">:</span><span class="er">//</span>www.bom.gov.au<span class="op">/</span>other<span class="op">/</span>copyright.shtml</code></pre></div>
+<p>is displayed</p>
+</li>
+<li><p>the <em>bomrang</em> vignette now contains instructions for use along with appendices that document the data fields and units, rather than separate vingettes</p></li>
+<li><p>ramifications of updating station lists are now stated clearly in the vignette and help files for applicable functions</p></li>
+<li><p>a map of BoM stations is included in an appendix of the <em>bomrang</em> vingette</p></li>
+<li><p>Lat/Lon values are specified to be in decimal degrees in <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> help and vignette</p></li>
 <li><p>Databases station locations and other metadata are internal an not exposed to the user</p></li>
 <li><p>Use <code>file.path()</code> in place of <code>paste0()</code></p></li>
-<li><p>Shorten code line lengths to be &lt;= 80 chars</p></li>
+<li>
+<p>The package has been linted,</p>
+<ul>
+<li><p>line lengths are &lt;80 chars,</p></li>
+<li><p>best practice naming conventions are followed (where possible)</p></li>
+</ul>
+</li>
 <li><p>Lint md files</p></li>
 <li><p>Spellchecking in all files</p></li>
+<li><p><code>agrep</code> is now used in all functions where the user enters state or Australia values to query BoM data</p></li>
+<li><p>best practices for programming with <code>dplyr 0.7</code> using <code>rlang</code> are now employed, which reduces the need for the <code># CRAN NOTE avoidance</code></p></li>
+<li><p>“JSONurl_latlon_by_station_name” has been shortened to “JSONurl_site_list”.</p></li>
+<li><p>The DESCRIPTION file now states minimum package versions for packages that are undergoing rapid development</p></li>
+<li><p>Code has been refactored to be shorter, <em>e.g.</em>, <code>xml_bulletin_url</code> in <code>get_ag_bulletion()</code></p></li>
+<li><p><code>.get_obs()</code> has been moved out of the <code>.parse_bulletin()</code> function for easier reading/maintenance</p></li>
+<li><p>fixed a repeat of <code>return(tidy_df)</code> in <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code></p></li>
 </ul>
 <hr>
 </div>

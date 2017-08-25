@@ -90,15 +90,16 @@
 <p>The <a href="https://github.com/ToowoombaTrio/WINS"><em>WINS</em></a> for pulses project provides warnings when heat stress events are likely to occur so that farmers can irrigate their crops prior to the event to minimise any resulting yield loss. It does this by using the <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code> function from <em>bomrang</em> along with functionality from <a href="https://CRAN.R-project.org/package=mailR"><em>mailR</em></a> (Rahul 2015).</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"toowoombatrio/bomrang"</span>)
 <span class="kw">install.packages</span>(<span class="st">"mailR"</span>)
+<span class="kw">library</span>(dplyr)  <span class="co"># filter()</span>
 <span class="kw">library</span>(bomrang)
 <span class="kw">library</span>(mailR)</code></pre></div>
 <p>For this to work we require a list of alert subscribers. Here we create a dummy set of subscribers, locations, and email addresses.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">subscribers_list &lt;-
 <span class="st">  </span><span class="kw">data.frame</span>(<span class="kw">cbind</span>(
-    <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),
-    <span class="kw">c</span>(<span class="st">"Joe"</span>, <span class="st">"John"</span>, <span class="st">"Jayne"</span>),
-    <span class="kw">c</span>(<span class="st">"Blogs"</span>, <span class="st">"Doe"</span>, <span class="st">"Doe"</span>),
-    <span class="kw">c</span>(<span class="st">"Dalby"</span>, <span class="st">"Toowoomba"</span>, <span class="st">"Warwick"</span>),
+    <span class="kw">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>),
+    <span class="kw">c</span>(<span class="st">"Joe"</span>, <span class="st">"John"</span>, <span class="st">"Jayne"</span>),
+    <span class="kw">c</span>(<span class="st">"Blogs"</span>, <span class="st">"Doe"</span>, <span class="st">"Doe"</span>),
+    <span class="kw">c</span>(<span class="st">"Dalby"</span>, <span class="st">"Toowoomba"</span>, <span class="st">"Warwick"</span>),
     <span class="kw">c</span>(
       <span class="st">"XXXX.XXXX@gmail.com"</span>,
       <span class="st">"XXXX.XXXX@hotmail.com"</span>,
@@ -129,73 +130,72 @@ our_password &lt;-<span class="st"> "*password*"</span></code></pre></div>
 ## 5     4   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ## 6     5   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ##      start_time_local end_time_local UTC_offset      start_time_utc
-## 1 2017-08-18 17:00:00     2017-08-19      10:00 2017-08-18 07:00:00
-## 2 2017-08-19 00:00:00     2017-08-20      10:00 2017-08-18 14:00:00
-## 3 2017-08-20 00:00:00     2017-08-21      10:00 2017-08-19 14:00:00
-## 4 2017-08-21 00:00:00     2017-08-22      10:00 2017-08-20 14:00:00
-## 5 2017-08-22 00:00:00     2017-08-23      10:00 2017-08-21 14:00:00
-## 6 2017-08-23 00:00:00     2017-08-24      10:00 2017-08-22 14:00:00
+## 1 2017-08-21 05:00:00     2017-08-22      10:00 2017-08-20 19:00:00
+## 2 2017-08-22 00:00:00     2017-08-23      10:00 2017-08-21 14:00:00
+## 3 2017-08-23 00:00:00     2017-08-24      10:00 2017-08-22 14:00:00
+## 4 2017-08-24 00:00:00     2017-08-25      10:00 2017-08-23 14:00:00
+## 5 2017-08-25 00:00:00     2017-08-26      10:00 2017-08-24 14:00:00
+## 6 2017-08-26 00:00:00     2017-08-27      10:00 2017-08-25 14:00:00
 ##          end_time_utc minimum_temperature maximum_temperature
-## 1 2017-08-18 14:00:00                  NA                  NA
-## 2 2017-08-19 14:00:00                  10                  21
-## 3 2017-08-20 14:00:00                   9                  22
-## 4 2017-08-21 14:00:00                   9                  23
-## 5 2017-08-22 14:00:00                  11                  27
-## 6 2017-08-23 14:00:00                  11                  26
-##   lower_precipitation_limit upper_precipitation_limit         precis
-## 1                        NA                        NA         Clear.
-## 2                         0                         0  Windy. Sunny.
-## 3                         0                         0         Sunny.
-## 4                         0                         0 Partly cloudy.
-## 5                         0                         0         Sunny.
-## 6                         0                         0         Sunny.
-##   probability_of_precipitation
-## 1                            0
-## 2                            0
-## 3                            5
-## 4                           10
-## 5                            0
-## 6                           10</code></pre>
+## 1 2017-08-21 14:00:00                  NA                  23
+## 2 2017-08-22 14:00:00                  12                  27
+## 3 2017-08-23 14:00:00                  12                  28
+## 4 2017-08-24 14:00:00                  12                  27
+## 5 2017-08-25 14:00:00                  13                  24
+## 6 2017-08-26 14:00:00                  11                  23
+##   lower_precipitation_limit upper_precipitation_limit
+## 1                         0                       0.4
+## 2                         0                       0.0
+## 3                         0                       0.0
+## 4                         0                       1.0
+## 5                         0                       2.0
+## 6                         0                       2.0
+##                  precis probability_of_precipitation
+## 1 Possible late shower.                           30
+## 2        Partly cloudy.                           20
+## 3                Sunny.                            0
+## 4      Possible shower.                           40
+## 5        Shower or two.                           50
+## 6        Shower or two.                           50</code></pre>
 <p>Now we use a <code>for()</code> loop that searches through the Queensland précis forecast data frame and subsets it based on location each subscriber has nominated and the temperature threshold we have set. As part of the <code>for()</code> loop there is an <code>if()</code> statement that uses the <em>mailR</em> package to send an email to the subscribers if the forecast maximum temperatures are greater than or equal to the threshold. This email informs the recipient of the dates that high temperatures are expected.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">for</span> (y <span class="cf">in</span> subscribers_list<span class="op">$</span>Entry) {
-  x &lt;-
-<span class="st">    </span><span class="kw">as.numeric</span>(y)    df &lt;-
-<span class="st">      </span><span class="kw">subset</span>(
-        QLD_forecast,
-        QLD_forecast<span class="op">$</span>town <span class="op">==</span><span class="st"> </span>subscribers_list<span class="op">$</span>Location[x] <span class="op">&amp;</span>
-<span class="st">          </span>QLD_forecast<span class="op">$</span>maximum_temperature <span class="op">&gt;=</span><span class="st"> </span>threshold_temp
-      )    <span class="cf">if</span> (<span class="kw">length</span>(df[, <span class="dv">1</span>]) <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {
-        hot_dates &lt;-
-<span class="st">          </span><span class="kw">paste</span>(<span class="kw">gsub</span>(<span class="st">"00:00:00"</span>, <span class="st">""</span>, df<span class="op">$</span>start_time_local), <span class="dt">collapse =</span> <span class="st">", "</span>)
-        
-        body_text &lt;-
-<span class="st">          </span><span class="kw">paste</span>(
-            <span class="st">"</span><span class="ch">\n</span><span class="st">Hello "</span>, <span class="kw">as.character</span>(subscribers_list<span class="op">$</span>Name[x]), <span class="st">".</span><span class="ch">\n</span><span class="st">"</span>,
-            <span class="st">"</span><span class="ch">\n</span><span class="st">Your mungbean crops at "</span>, location,
-            <span class="st">"</span><span class="ch">\n</span><span class="st">are forecast to be exposed to heat stress on the</span><span class="ch">\n</span><span class="st">"</span>,
-            <span class="st">"</span><span class="ch">\n</span><span class="st">following dates: "</span>, hot_dates, <span class="st">".</span><span class="ch">\n</span><span class="st">"</span>,
-            <span class="st">"</span><span class="ch">\n</span><span class="st">Consider irrigating your crops beforehand to</span><span class="ch">\n</span><span class="st">"</span>
-            <span class="st">"</span><span class="ch">\n</span><span class="st">facilitate transpirational cooling.</span><span class="ch">\n</span><span class="st">"</span>,
-            <span class="st">"</span><span class="ch">\n</span><span class="st">From the WINS team</span><span class="ch">\n</span><span class="st">"</span>
-          )
-        recipient &lt;-
-<span class="st">          </span><span class="kw">as.character</span>(subscribers_list<span class="op">$</span>email[x])
-        <span class="kw">send.mail</span>(
-          <span class="dt">from =</span> our_email,
-          <span class="dt">to =</span> recipient,
-          <span class="dt">subject =</span> <span class="st">"Mungbean Heat Stress Warning"</span>,
-          <span class="dt">body =</span> body_text,
-          <span class="dt">smtp =</span> <span class="kw">list</span>(
-            <span class="dt">host.name =</span> <span class="st">"smtp.gmail.com"</span>,
-            <span class="dt">port =</span> <span class="dv">465</span>,
-            <span class="dt">user.name =</span> our_email,
-            <span class="dt">passwd =</span> our_password,
-            <span class="dt">ssl =</span> <span class="ot">TRUE</span>
-          ),
-          <span class="dt">authenticate =</span> <span class="ot">TRUE</span>,
-          <span class="dt">send =</span> <span class="ot">TRUE</span>
-        ) 
-      }
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">QLD_hotdates &lt;-
+<span class="st">  </span>QLD_forecast <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(maximum_temperature <span class="op">&gt;=</span><span class="st"> </span>threshold_temp)
+
+<span class="cf">for</span> (x <span class="cf">in</span> <span class="kw">seq_len</span>(<span class="kw">nrow</span>(subscribers_list))) {
+  subscriber_location &lt;-<span class="st"> </span>subscribers_list[[<span class="st">"Location"</span>]][x]
+  <span class="cf">if</span> (subscriber_location <span class="op">%in%</span><span class="st"> </span>QLD_hotdates[[<span class="st">"town"</span>]]) {
+    hot_dates &lt;-
+<span class="st">      </span><span class="kw">paste</span>(<span class="kw">gsub</span>(<span class="st">"00:00:00"</span>, <span class="st">""</span>, QLD_hotdates<span class="op">$</span>start_time_local), <span class="dt">collapse =</span> <span class="st">", "</span>)
+    
+    body_text &lt;-
+<span class="st">      </span><span class="kw">paste</span>(
+        <span class="st">"</span><span class="ch">\n</span><span class="st">Hello "</span>, <span class="kw">as.character</span>(subscribers_list<span class="op">$</span>Name[x]), <span class="st">".</span><span class="ch">\n</span><span class="st">"</span>,
+        <span class="st">"</span><span class="ch">\n</span><span class="st">Your mungbean crops at "</span>, subscriber_location,
+        <span class="st">"</span><span class="ch">\n</span><span class="st">are forecast to be exposed to heat stress on the</span><span class="ch">\n</span><span class="st">"</span>,
+        <span class="st">"</span><span class="ch">\n</span><span class="st">following dates: "</span>, hot_dates, <span class="st">".</span><span class="ch">\n</span><span class="st">"</span>,
+        <span class="st">"</span><span class="ch">\n</span><span class="st">Consider irrigating your crops beforehand to</span><span class="ch">\n</span><span class="st">"</span>
+        <span class="st">"</span><span class="ch">\n</span><span class="st">facilitate transpirational cooling.</span><span class="ch">\n</span><span class="st">"</span>,
+        <span class="st">"</span><span class="ch">\n</span><span class="st">From the WINS team</span><span class="ch">\n</span><span class="st">"</span>
+      )
+    recipient &lt;-
+<span class="st">      </span><span class="kw">as.character</span>(subscribers_list<span class="op">$</span>email[x])
+    <span class="kw"><a href="http://www.rdocumentation.org/packages/mailR/topics/send.mail">send.mail</a></span>(
+      <span class="dt">from =</span> our_email,
+      <span class="dt">to =</span> recipient,
+      <span class="dt">subject =</span> <span class="st">"Mungbean Heat Stress Warning"</span>,
+      <span class="dt">body =</span> body_text,
+      <span class="dt">smtp =</span> <span class="kw">list</span>(
+        <span class="dt">host.name =</span> <span class="st">"smtp.gmail.com"</span>,
+        <span class="dt">port =</span> <span class="dv">465</span>,
+        <span class="dt">user.name =</span> our_email,
+        <span class="dt">passwd =</span> our_password,
+        <span class="dt">ssl =</span> <span class="ot">TRUE</span>
+      ),
+      <span class="dt">authenticate =</span> <span class="ot">TRUE</span>,
+      <span class="dt">send =</span> <span class="ot">TRUE</span>
+    ) 
+  }
 }</code></pre></div>
 <p>The process is automated to run on a Cron job such that the précis forecast is automatically downloaded and thresholds are calculated on a daily basis with email alerts being sent automatically.</p>
 <p>While mungbean heat stress is illustrated here, other thresholds can be implemented, <em>e.g.</em>, frost events for sugarcane harvest using this same functionality.</p>
@@ -204,7 +204,7 @@ our_password &lt;-<span class="st"> "*password*"</span></code></pre></div>
 <h1 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h1>
 <p>Kaushal, N., Bhandari, K., Siddique, K. H., &amp; Nayyar, H. (2016). Food crops face rising temperatures: An overview of responses, adaptive mechanisms, and approaches to improve heat tolerance. Cogent Food &amp; Agriculture, 2(1), 1134380.</p>
-<p>Rahul P (2015). mailR: A Utility to Send emails from R. R package version 0.4.1.<a href="https://CRAN.R-project.org/package=mailR" class="uri">https://CRAN.R-project.org/package=mailR</a> </p>
+<p>Rahul P (2015). mailR: A Utility to Send emails from R. R package version 0.4.1.<a href="https://CRAN.R-project.org/package=mailR" class="uri">https://CRAN.R-project.org/package=mailR</a></p>
 </div>
 </div>
   </div>
