@@ -25,7 +25,7 @@ devtools::install_github("toowoombatrio/bomrang")
 Using *bomrang*
 ---------------
 
-Several functions are provided by *bomrang* to retrieve Australian Bureau of Meteorology (BoM) data. A family of functions retrieve weather data and return tidy data frames; `get_precis_forecast()`, which retrieves the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; and `get_ag_bulletin()`, which retrieves the agriculture bulletin. A second group of functions retrieve information pertaining to satellite imagery, `get_available_imagery()` and the imagery itself, `get_satellite_imagery()`.
+Several functions are provided by *bomrang* to retrieve Australian Bureau of Meteorology (BoM) data. A family of functions retrieve weather data and return tidy data frames; `get_precis_forecast()`, which retrieves the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; `get_ag_bulletin()`, which retrieves the agriculture bulletin; and `get_weather_bulletin()`, which retrieves the BoM 0900 or 1500 bulletins. A second group of functions retrieve information pertaining to satellite imagery, `get_available_imagery()` and the imagery itself, `get_satellite_imagery()`.
 
 ### Using `get_current_weather`
 
@@ -246,10 +246,66 @@ head(QLD_bulletin)
     ## 4  NA  NA   NA   NA   NA   NA   NA  NA
     ## 5  NA  NA   NA   NA   NA   NA   NA  NA
     ## 6  NA  NA   NA   NA   NA   NA   NA  NA
+    
+### Using `get_weather_bulletin`
 
-#### Example using `get_available_imagery`
+This function takes two arguments, `state` for the desired state; and `morning`
+if `TRUE`, return the 9am bulletin for the nominated state; otherwise return the
+3pm bulletin.  States or territories are specified using the official postal codes.
+
+-   **ACT**  Australian Capital Territory (will return NSW)
+
+-   **NSW** - New South Wales
+
+-   **NT** - Northern Territory
+
+-   **QLD** - Queensland
+
+-   **SA** - South Australia
+
+-   **TAS** - Tasmania
+
+-   **VIC** - Victoria
+
+-   **WA** - Western Australia
+
+-   **AUS** - Australia, returns bulletin for all states/territories.
+
+#### `get_weather_bulletin` Results
+
+The function `get_weather_bulletin()` will return a tidy data frame of BoM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see Appendix 4, `Output from get_weather_bulletin()` in the *bomrang* vignette.
+
+#### Example using `get_weather_bulletin`
+
+Following is an example fetching the 3PM bulletin for Queensland.
+
+``` r
+qld_weather <- get_weather_bulletin(state = "QLD")
+head(qld_weather)
+```
+
+    ##         stations cld8ths wind_dir wind_speed_kmh temp_c_dry temp_c_dew
+    ## 1     Coconut Is      NA       SE              4         27         NA
+    ## 2        Coen Ap      NA      NNE              9         23         16
+    ## 3        Horn Is      NA      ESE             17         25         19
+    ## 4 Lockhart River      NA       SE             11         23         19
+    ## 5    Palmerville      NA        S              7         22         14
+    ## 6       Scherger      NA        E              9         25         18
+    ##   temp_c_max temp_c_min temp_c_gr barhpa rain_mm weather seastate
+    ## 1         31         23        NA   1014      NA                 
+    ## 2         31         14        NA   1014      NA                 
+    ## 3         29         21        NA   1014      NA                 
+    ## 4         29         15        NA   1015      NA                 
+    ## 5         35         13        NA   1015      NA                 
+    ## 6         34         17        NA   1014      NA
+
+### Using `get_satellite_imagery`
+
+_bomrang_ provides two functions to check and retrieve satellite imagery from BoM, `get_available_imagery()` and `get_satellite_imagery()`.
 
 The function `get_available_imagery()` only takes one argument, `product_id`, a BoM identifier for the imagery that you wish to check for available imagery. Using this function will fetch a listing of BoM GeoTIFF satellite imagery from <ftp://ftp.bom.gov.au/anon/gen/gms/> to display which files are currently available for download. These files are available at ten minute update frequency with a 24 hour delete time. This function can be used see the most recent files available and then specify in the `get_satellite_imagery()` function. If no valid Product ID is supplied, defaults to all GeoTIFF images currently available.
+
+#### Example using `get_available_imagery`
 
 ``` r
 # Most recent 5 images available for IDE00425
@@ -404,7 +460,7 @@ avail <- get_available_imagery(product_id = "IDE00426")
     ## [143] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130210.tif"
     ## [144] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130220.tif"
 
-### Example using `get_satellite_imagery`
+#### Example using `get_satellite_imagery`
 
 `get_satellite_imagery()` fetches BoM satellite GeoTIFF imagery, returning a raster stack object and takes three arguments. Files are available at ten minute update frequency with a 24 hour delete time. It is suggested to check file availability first by using `get_available_imagery()`. The arguments are:
 
@@ -446,7 +502,7 @@ Meta
 
     ``` tex
     @Manual{R-pkg-bomrang,
-    author       = {Adam Sparks and Hugh Parsonage and Keith Pembleton},
+    author       = {Adam Sparks and Hugh Parsonage and Keith Pembleton and Mark Padgham},
     title        = {bomrang: Fetch Australian Government Bureau of Meteorology
     Weather Data},
     year         = {2017},
