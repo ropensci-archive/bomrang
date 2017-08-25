@@ -201,9 +201,7 @@ This function only takes one argument, `state`. The `state` parameter allows the
 
 -   **VIC** - Victoria
 
--   **WA** - Western Australia
-
--   **AUS** - Australia, returns bulletin for all states/territories.
+-   **WA** - Western Australia.
 
 #### `get_ag_bulletin` Results
 
