@@ -1,7 +1,6 @@
 ---
 title: "bomrang"
 author: "Adam H Sparks and Hugh Parsonage"
-date: "`r Sys.Date()`"
 output:
   html_document:
     toc: true
@@ -17,8 +16,11 @@ vignette: >
 ## Introduction
 
 _bomrang_ provides functions for interacting with 
-[Australian Bureau of Meteorology (BoM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BoM serves several types of data data as XML and JSON files. This
-package fetches these files, parses them and return a tidy data frame.
+[Australian Bureau of Meteorology (BoM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BoM serves several types of data data as XML, JSON and SHTML files. This
+package fetches these files, parses them and return a tidy data frame. Satellite
+imagery files are also made available to the public via anonymous ftp. _bomrang_
+provides functionality to query, fetch and create `raster::stack()` objects of
+the GeoTIFF imagery.
 
 ## Using _bomrang_
 
@@ -26,8 +28,9 @@ Several functions are provided by _bomrang_ to retrieve Australian Bureau of
 Meteorology (BoM) data. A family of functions retrieve weather data and return
 tidy data frames; `get_precis_forecast()`, which retrieves the précis (short)
 forecast; `get_current_weather()`, which fetches the current weather from a
-given station; and `get_ag_bulletin()`, which retrieves the agriculture
-bulletin. A second group of functions retrieve information pertaining to
+given station; `get_ag_bulletin()`, which retrieves the agriculture
+bulletin; and `get_weather_bulletin()` which fetches the 0900 and 1500 weather
+bulletins. A second family of functions retrieve information pertaining to
 satellite imagery, `get_available_imagery()` and the imagery itself,
 `get_satellite_imagery()`. The last group functions provides internal functionality
 for _bomrang_ itself; `update_forecast_locations()`, which updates an
