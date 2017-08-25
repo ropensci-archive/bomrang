@@ -271,7 +271,7 @@ if `TRUE`, return the 9am bulletin for the nominated state; otherwise return the
 
 #### `get_weather_bulletin` Results
 
-The function `get_weather_bulletin()` will return a tidy data frame of BoM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see Appendix 4, `Output from get_weather_bulletin()` in the *bomrang* vignette.
+The function `get_weather_bulletin()` will return a tidy data frame of BoM data for the requested state(s) or territory.
 
 #### Example using `get_weather_bulletin`
 
