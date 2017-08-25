@@ -78,7 +78,6 @@
       <h1>bomrang</h1>
                         <h4 class="author">Adam H Sparks and Hugh Parsonage</h4>
             
-            <h4 class="date">2017-08-21</h4>
           </div>
 
     
@@ -87,13 +86,13 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p><em>bomrang</em> provides functions for interacting with <a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services</a> forecasts. BoM serves several types of data data as XML and JSON files. This package fetches these files, parses them and return a tidy data frame.</p>
+<p><em>bomrang</em> provides functions for interacting with <a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services</a> forecasts. BoM serves several types of data data as XML, JSON and SHTML files. This package fetches these files, parses them and return a tidy data frame. Satellite imagery files are also made available to the public via anonymous ftp. <em>bomrang</em> provides functionality to query, fetch and create <code><a href="http://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code> objects of the GeoTIFF imagery.</p>
 </div>
 <div id="using-bomrang" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-bomrang" class="anchor"></a>Using <em>bomrang</em>
 </h2>
-<p>Several functions are provided by <em>bomrang</em> to retrieve Australian Bureau of Meteorology (BoM) data. A family of functions retrieve weather data and return tidy data frames; <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin. A second group of functions retrieve information pertaining to satellite imagery, <code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> and the imagery itself, <code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code>. The last group functions provides internal functionality for <em>bomrang</em> itself; <code>update_forecast_locations()</code>, which updates an internal database of forecast locations distributed with the package, <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> which returns the nearest weather stations to a point in Australia and, <code>manage_cached_files()</code> that provides facilities for managing cached satellite imagery.</p>
+<p>Several functions are provided by <em>bomrang</em> to retrieve Australian Bureau of Meteorology (BoM) data. A family of functions retrieve weather data and return tidy data frames; <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin; and <code><a href="../reference/get_weather_bulletin.html">get_weather_bulletin()</a></code> which fetches the 0900 and 1500 weather bulletins. A second family of functions retrieve information pertaining to satellite imagery, <code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> and the imagery itself, <code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code>. The last group functions provides internal functionality for <em>bomrang</em> itself; <code>update_forecast_locations()</code>, which updates an internal database of forecast locations distributed with the package, <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> which returns the nearest weather stations to a point in Australia and, <code>manage_cached_files()</code> that provides facilities for managing cached satellite imagery.</p>
 </div>
 <div id="using-get_current_weather" class="section level2">
 <h2 class="hasAnchor">
@@ -126,41 +125,48 @@
 ## 4          3 95936 Melbourne (Olympic Park)        IDV60801
 ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
 ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
-##   local_date_time local_date_time_full        aifstime_utc   lat lon
-## 1      21/10:30am  2017-08-21 10:30:00 2017-08-21 00:30:00 -37.8 145
-## 2      21/10:00am  2017-08-21 10:00:00 2017-08-21 00:00:00 -37.8 145
-## 3      21/09:30am  2017-08-21 09:30:00 2017-08-20 23:30:00 -37.8 145
-## 4      21/09:00am  2017-08-21 09:00:00 2017-08-20 23:00:00 -37.8 145
-## 5      21/08:30am  2017-08-21 08:30:00 2017-08-20 22:30:00 -37.8 145
-## 6      21/08:00am  2017-08-21 08:00:00 2017-08-20 22:00:00 -37.8 145
-##   apparent_t cloud cloud_base_m cloud_oktas cloud_type cloud_type_id
-## 1        4.3     -           NA          NA          -            NA
-## 2        4.7     -           NA          NA          -            NA
-## 3        4.7     -           NA          NA          -            NA
-## 4        4.0     -           NA          NA          -            NA
-## 5        4.0     -           NA          NA          -            NA
-## 6        3.9     -           NA          NA          -            NA
-##   delta_t gust_kmh gust_kt air_temp dewpt  press press_msl press_qnh
-## 1     0.9       20      11      7.7   5.8 1016.6    1016.6    1016.6
-## 2     1.0       13       7      7.5   5.3 1016.9    1016.9    1016.9
-## 3     1.1       13       7      7.5   5.0 1017.1    1017.1    1017.1
-## 4     1.3       15       8      7.3   4.4 1017.1    1017.1    1017.1
-## 5     1.4       19      10      7.4   4.2 1017.3    1017.3    1017.3
-## 6     1.8       20      11      7.8   3.5 1017.3    1017.3    1017.3
-##   press_tend rain_trace rel_hum sea_state swell_dir_worded swell_height
-## 1          -        1.0      88         -                -           NA
-## 2          -        0.8      86         -                -           NA
-## 3          -        0.4      84         -                -           NA
-## 4          -        0.6      82         -                -           NA
-## 5          -        0.4      80         -                -           NA
-## 6          -        0.0      74         -                -           NA
-##   swell_period vis_km weather wind_dir wind_spd_kmh wind_spd_kt
-## 1           NA     10       -      NNE           13           7
-## 2           NA     10       -      NNE            9           5
-## 3           NA     10       -        N            9           5
-## 4           NA     10    Rain        N           11           6
-## 5           NA     10       -      NNE           11           6
-## 6           NA     10       -        N           13           7</code></pre>
+##   local_date_time local_date_time_full        aifstime_utc      lat
+## 1      25/10:00pm  2017-08-25 22:00:00 2017-08-25 12:00:00 -37.8255
+## 2      25/09:30pm  2017-08-25 21:30:00 2017-08-25 11:30:00 -37.8255
+## 3      25/09:00pm  2017-08-25 21:00:00 2017-08-25 11:00:00 -37.8255
+## 4      25/08:30pm  2017-08-25 20:30:00 2017-08-25 10:30:00 -37.8255
+## 5      25/08:00pm  2017-08-25 20:00:00 2017-08-25 10:00:00 -37.8255
+## 6      25/07:30pm  2017-08-25 19:30:00 2017-08-25 09:30:00 -37.8255
+##        lon apparent_t cloud cloud_base_m cloud_oktas cloud_type
+## 1 144.9816       11.2     -           NA          NA          -
+## 2 144.9816       10.5     -           NA          NA          -
+## 3 144.9816       10.4     -           NA          NA          -
+## 4 144.9816       10.1     -           NA          NA          -
+## 5 144.9816       10.6     -           NA          NA          -
+## 6 144.9816       10.1     -           NA          NA          -
+##   cloud_type_id delta_t gust_kmh gust_kt air_temp dewpt  press press_msl
+## 1            NA     3.9        6       3     12.6   3.8 1025.9    1025.9
+## 2            NA     4.4       11       6     13.1   3.2 1026.0    1026.0
+## 3            NA     4.3        9       5     13.0   3.4 1026.1    1026.1
+## 4            NA     4.5       13       7     13.3   3.1 1026.1    1026.1
+## 5            NA     4.3       11       6     13.1   3.5 1026.0    1026.0
+## 6            NA     4.8       15       8     13.4   2.6 1026.0    1026.0
+##   press_qnh press_tend rain_trace rel_hum sea_state swell_dir_worded
+## 1    1025.9          -          0      55         -                -
+## 2    1026.0          -          0      51         -                -
+## 3    1026.1          -          0      52         -                -
+## 4    1026.1          -          0      50         -                -
+## 5    1026.0          -          0      52         -                -
+## 6    1026.0          -          0      48         -                -
+##   swell_height swell_period vis_km weather wind_dir wind_spd_kmh
+## 1           NA           NA     10       -     CALM            0
+## 2           NA           NA     10       -       NW            6
+## 3           NA           NA     10       -      NNW            6
+## 4           NA           NA     10       -       NW            9
+## 5           NA           NA     10       -      NNW            6
+## 6           NA           NA     10       -       NW            9
+##   wind_spd_kt
+## 1           0
+## 2           3
+## 3           3
+## 4           5
+## 5           3
+## 6           5</code></pre>
 </div>
 </div>
 <div id="using-get_precis_forecast" class="section level2">
@@ -200,33 +206,33 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 ## 5     4   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ## 6     5   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ##      start_time_local end_time_local UTC_offset      start_time_utc
-## 1 2017-08-21 05:00:00     2017-08-22      10:00 2017-08-20 19:00:00
-## 2 2017-08-22 00:00:00     2017-08-23      10:00 2017-08-21 14:00:00
-## 3 2017-08-23 00:00:00     2017-08-24      10:00 2017-08-22 14:00:00
-## 4 2017-08-24 00:00:00     2017-08-25      10:00 2017-08-23 14:00:00
-## 5 2017-08-25 00:00:00     2017-08-26      10:00 2017-08-24 14:00:00
-## 6 2017-08-26 00:00:00     2017-08-27      10:00 2017-08-25 14:00:00
+## 1 2017-08-25 17:00:00     2017-08-26      10:00 2017-08-25 07:00:00
+## 2 2017-08-26 00:00:00     2017-08-27      10:00 2017-08-25 14:00:00
+## 3 2017-08-27 00:00:00     2017-08-28      10:00 2017-08-26 14:00:00
+## 4 2017-08-28 00:00:00     2017-08-29      10:00 2017-08-27 14:00:00
+## 5 2017-08-29 00:00:00     2017-08-30      10:00 2017-08-28 14:00:00
+## 6 2017-08-30 00:00:00     2017-08-31      10:00 2017-08-29 14:00:00
 ##          end_time_utc minimum_temperature maximum_temperature
-## 1 2017-08-21 14:00:00                  NA                  23
-## 2 2017-08-22 14:00:00                  12                  27
-## 3 2017-08-23 14:00:00                  12                  28
-## 4 2017-08-24 14:00:00                  12                  27
-## 5 2017-08-25 14:00:00                  13                  24
-## 6 2017-08-26 14:00:00                  11                  23
-##   lower_precipitation_limit upper_precipitation_limit
-## 1                         0                       0.4
-## 2                         0                       0.0
-## 3                         0                       0.0
-## 4                         0                       1.0
-## 5                         0                       2.0
-## 6                         0                       2.0
-##                  precis probability_of_precipitation
-## 1 Possible late shower.                           30
-## 2        Partly cloudy.                           20
-## 3                Sunny.                            0
-## 4      Possible shower.                           40
-## 5        Shower or two.                           50
-## 6        Shower or two.                           50</code></pre>
+## 1 2017-08-25 14:00:00                  NA                  NA
+## 2 2017-08-26 14:00:00                  10                  23
+## 3 2017-08-27 14:00:00                  10                  24
+## 4 2017-08-28 14:00:00                  11                  22
+## 5 2017-08-29 14:00:00                  10                  22
+## 6 2017-08-30 14:00:00                  11                  24
+##   lower_precipitation_limit upper_precipitation_limit           precis
+## 1                        NA                        NA    Mostly clear.
+## 2                         0                         0    Mostly sunny.
+## 3                         0                         0   Partly cloudy.
+## 4                         0                         3 Possible shower.
+## 5                         0                         3 Possible shower.
+## 6                         0                         2 Possible shower.
+##   probability_of_precipitation
+## 1                           20
+## 2                            0
+## 3                           10
+## 4                           40
+## 5                           40
+## 6                           40</code></pre>
 </div>
 </div>
 <div id="using-get_ag_bulletin" class="section level2">
@@ -265,26 +271,68 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 ## 5   IDQ60604   QLD   44 94510 44021      Charleville
 ## 6   IDQ60604   QLD   33 94360 33013     Collinsville
 ##                  full_name      obs_time_local        obs_time_utc
-## 1       BIRDSVILLE AIRPORT 2017-08-21 09:00:00 2017-08-20 23:00:00
-## 2            BRISBANE AERO 2017-08-21 09:00:00 2017-08-20 23:00:00
-## 3           BUNDABERG AERO 2017-08-21 09:00:00 2017-08-20 23:00:00
-## 4              CAIRNS AERO 2017-08-21 09:00:00 2017-08-20 23:00:00
-## 5         CHARLEVILLE AERO 2017-08-21 09:00:00 2017-08-20 23:00:00
-## 6 COLLINSVILLE POST OFFICE 2017-08-21 09:00:00 2017-08-20 23:00:00
-##   time_zone      lat      lon  elev bar_ht start  end r   tn   tx  twd  ev
-## 1       EST -25.8975 139.3472  46.6   47.0  2000 2017 0 12.4 23.6 10.5  NA
-## 2       EST -27.3917 153.1292   4.5    9.5  1992 2017 0  6.9 20.1  5.5 5.0
-## 3       EST -24.9069 152.3230  30.8   31.5  1942 2017 0  6.6 22.4  5.9  NA
-## 4       EST -16.8736 145.7458   2.2    8.3  1941 2017 0 19.4 28.0  4.6  NA
-## 5       EST -26.4139 146.2558 301.6  303.3  1942 2017 0  6.4 18.5  8.9  NA
-## 6       EST -20.5533 147.8464 196.0     NA  1939 2017 0  5.1 24.0  4.3 7.2
-##    tg   sn   t5  t10  t20  t50  t1m  wr
-## 1  NA   NA   NA   NA   NA   NA   NA  NA
-## 2 3.6 10.8 15.0 16.0 17.0 19.0 19.0 192
-## 3  NA   NA 16.6 17.3 18.8 18.4 21.3  NA
-## 4  NA   NA   NA   NA   NA   NA   NA  NA
-## 5  NA   NA   NA   NA   NA   NA   NA  NA
-## 6  NA   NA   NA   NA   NA   NA   NA  NA</code></pre>
+## 1       BIRDSVILLE AIRPORT 2017-08-25 09:00:00 2017-08-24 23:00:00
+## 2            BRISBANE AERO 2017-08-25 09:00:00 2017-08-24 23:00:00
+## 3           BUNDABERG AERO 2017-08-25 09:00:00 2017-08-24 23:00:00
+## 4              CAIRNS AERO 2017-08-25 09:00:00 2017-08-24 23:00:00
+## 5         CHARLEVILLE AERO 2017-08-25 09:00:00 2017-08-24 23:00:00
+## 6 COLLINSVILLE POST OFFICE 2017-08-25 09:00:00 2017-08-24 23:00:00
+##   time_zone      lat      lon  elev bar_ht start  end   r   tn   tx twd
+## 1       EST -25.8975 139.3472  46.6   47.0  2000 2017 0.0  7.6 24.1 5.8
+## 2       EST -27.3917 153.1292   4.5    9.5  1992 2017 3.4 10.6 23.1 4.0
+## 3       EST -24.9069 152.3230  30.8   31.5  1942 2017 0.0 13.7 26.7 8.6
+## 4       EST -16.8736 145.7458   2.2    8.3  1941 2017 0.0 15.3 28.0 4.9
+## 5       EST -26.4139 146.2558 301.6  303.3  1942 2017 0.0  5.0 22.4 7.0
+## 6       EST -20.5533 147.8464 196.0     NA  1939 2017 0.0 12.4 29.7 6.4
+##    ev  tg  sn   t5  t10  t20  t50  t1m  wr
+## 1  NA  NA  NA   NA   NA   NA   NA   NA  NA
+## 2 3.6 7.1 4.1 17.0 17.0 18.0 19.0 19.0 218
+## 3  NA  NA  NA 19.7 20.3 21.3 20.8 21.6  NA
+## 4  NA  NA  NA   NA   NA   NA   NA   NA  NA
+## 5  NA  NA  NA   NA   NA   NA   NA   NA  NA
+## 6 4.6  NA  NA   NA   NA   NA   NA   NA  NA</code></pre>
+</div>
+</div>
+<div id="using-get_weather_bulletin" class="section level2">
+<h2 class="hasAnchor">
+<a href="#using-get_weather_bulletin" class="anchor"></a>Using <code>get_weather_bulletin</code>
+</h2>
+<p>This function takes two arguments, <code>state</code> for the desired state; and <code>morning</code> if <code>TRUE</code>, return the 9am bulletin for the nominated state; otherwise return the 3pm bulletin. States or territories are specified using the official postal codes.</p>
+<ul>
+<li><p><strong>ACT</strong> Australian Capital Territory (will return NSW)</p></li>
+<li><p><strong>NSW</strong> - New South Wales</p></li>
+<li><p><strong>NT</strong> - Northern Territory</p></li>
+<li><p><strong>QLD</strong> - Queensland</p></li>
+<li><p><strong>SA</strong> - South Australia</p></li>
+<li><p><strong>TAS</strong> - Tasmania</p></li>
+<li><p><strong>VIC</strong> - Victoria</p></li>
+<li><p><strong>WA</strong> - Western Australia</p></li>
+</ul>
+<div id="results-3" class="section level4">
+<h4 class="hasAnchor">
+<a href="#results-3" class="anchor"></a>Results</h4>
+<p>The function <code><a href="../reference/get_weather_bulletin.html">get_weather_bulletin()</a></code> will return a tidy data frame of BoM data for the requested state(s) or territory.</p>
+</div>
+<div id="example-3" class="section level4">
+<h4 class="hasAnchor">
+<a href="#example-3" class="anchor"></a>Example</h4>
+<p>Following is an example fetching the 3PM bulletin for Queensland.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qld_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_weather_bulletin.html">get_weather_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
+<span class="kw">head</span>(qld_weather)</code></pre></div>
+<pre><code>##         stations cld8ths wind_dir wind_speed_kmh temp_c_dry temp_c_dew
+## 1     Coconut Is      NA       SE              4         27         NA
+## 2        Coen Ap      NA      NNE              9         23         16
+## 3        Horn Is      NA      ESE             17         25         19
+## 4 Lockhart River      NA       SE             11         23         19
+## 5    Palmerville      NA        S              7         22         14
+## 6       Scherger      NA        E              9         25         18
+##   temp_c_max temp_c_min temp_c_gr barhpa rain_mm weather seastate
+## 1         31         23        NA   1014      NA                 
+## 2         31         14        NA   1014      NA                 
+## 3         29         21        NA   1014      NA                 
+## 4         29         15        NA   1015      NA                 
+## 5         35         13        NA   1015      NA                 
+## 6         34         17        NA   1014      NA</code></pre>
 </div>
 </div>
 <div id="using-sweep_for_stations" class="section level2">
@@ -292,18 +340,18 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <a href="#using-sweep_for_stations" class="anchor"></a>Using <code>sweep_for_stations</code>
 </h2>
 <p><code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> only takes one argument, <code>latlon</code>, a length-2 numeric vector. By default, Canberra (approximately).</p>
-<div id="results-3" class="section level3">
+<div id="results-4" class="section level3">
 <h3 class="hasAnchor">
-<a href="#results-3" class="anchor"></a>Results</h3>
+<a href="#results-4" class="anchor"></a>Results</h3>
 <p>This function will search for weather stations and return a data frame of all weather stations (in this package) sorted by distance from <code>latlon</code>, ascending. The fields in the data frame are:</p>
 <p><strong>name</strong> - station name</p>
 <p><strong>lat</strong> - latitude (decimal degrees)</p>
 <p><strong>lon</strong> - longitude (decimal degrees)</p>
 <p><strong>distance</strong> - distance from provided <code>latlon</code> value (kilometres).</p>
 </div>
-<div id="example-3" class="section level3">
+<div id="example-4" class="section level3">
 <h3 class="hasAnchor">
-<a href="#example-3" class="anchor"></a>Example</h3>
+<a href="#example-4" class="anchor"></a>Example</h3>
 <p>Following is an example sweeping for stations starting with Canberra.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Show only the first ten stations in the list</span>
 <span class="kw">head</span>(<span class="kw"><a href="../reference/sweep_for_stations.html">sweep_for_stations</a></span>(<span class="dt">latlon =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">35.3</span>, <span class="fl">149.2</span>)), <span class="dv">10</span>)</code></pre></div>
@@ -355,9 +403,9 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 </h3>
 <p><code>update_forecast_locations()</code> downloads the latest précis forecast locations from the BoM server and updates <em>bomrang</em>’s internal database of towns used for forecast locations. This database is distributed with the package to make the process faster when fetching the forecast.</p>
 </div>
-<div id="example-4" class="section level3">
+<div id="example-5" class="section level3">
 <h3 class="hasAnchor">
-<a href="#example-4" class="anchor"></a>Example</h3>
+<a href="#example-5" class="anchor"></a>Example</h3>
 <p>Following is an example updating the précis forecast locations internal database.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">update_forecast_locations</span>()</code></pre></div>
 </div>
@@ -367,9 +415,9 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 </h3>
 <p><code><a href="../reference/update_station_locations.html">update_station_locations()</a></code> downloads the latest station locations and metadata and updates bomrang’s internal databases that support the use of <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>. There is no need to use this unless you know that a station exists in BoM’s database that is not available in the databases distributed with <em>bomrang</em></p>
 </div>
-<div id="example-5" class="section level3">
+<div id="example-6" class="section level3">
 <h3 class="hasAnchor">
-<a href="#example-5" class="anchor"></a>Example</h3>
+<a href="#example-6" class="anchor"></a>Example</h3>
 <p>Following is an example updating the précis forecast locations internal database.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/update_station_locations.html">update_station_locations</a></span>()</code></pre></div>
 </div>
@@ -680,7 +728,7 @@ i &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_satel
 <h2 class="hasAnchor">
 <a href="#appendix-1---output-from-get_current_weather" class="anchor"></a>Appendix 1 - Output from <code>get_current_weather</code>
 </h2>
-<p>The function <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> will return a dataframe that will contain some or all of the following fields.</p>
+<p>The function <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> will return a data frame that will contain some or all of the following fields.</p>
 <div id="fields-and-descriptions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#fields-and-descriptions" class="anchor"></a>Fields and descriptions</h3>
@@ -1093,7 +1141,7 @@ Plain language comments
 <div id="wx9---present-weather" class="section level3">
 <h3 class="hasAnchor">
 <a href="#wx9---present-weather" class="anchor"></a>Wx[9] - Present weather</h3>
-<p>This consists of a two or 3 digit code figure plus (when relevant) a short, text abbreviation of the weather The abbreviations used (frequently together, eg XXRA for heavy rain, FZDZ for freezing drizzle) include</p>
+<p>This consists of a two or 3 digit code figure plus (when relevant) a short, text abbreviation of the weather The abbreviations used (frequently together, <em>e.g.</em>, XXRA for heavy rain, FZDZ for freezing drizzle) include</p>
 <ul>
 <li>BL Blowing (usually of sand or snow)<br>
 </li>
@@ -1117,7 +1165,7 @@ Plain language comments
 </li>
 <li>RE Ice pellets<br>
 </li>
-<li>PO Dust devils (I think this is from the Spanish for dust devils)<br>
+<li>PO Dust devils<br>
 </li>
 <li>RA Rain<br>
 </li>
@@ -1929,6 +1977,7 @@ Wind run (kilometres)
       <li><a href="#using-get_current_weather">Using <code>get_current_weather</code></a></li>
       <li><a href="#using-get_precis_forecast">Using <code>get_precis_forecast</code></a></li>
       <li><a href="#using-get_ag_bulletin">Using <code>get_ag_bulletin</code></a></li>
+      <li><a href="#using-get_weather_bulletin">Using <code>get_weather_bulletin</code></a></li>
       <li><a href="#using-sweep_for_stations">Using <code>sweep_for_stations</code></a></li>
       <li><a href="#using-the-update-functions">Using the update functions</a></li>
       <li><a href="#using-bomrang-to-retrieve-satellite-imagery">Using <em>bomrang</em> to retrieve satellite imagery</a></li>
@@ -1946,7 +1995,7 @@ Wind run (kilometres)
 
 
       <footer><div class="copyright">
-  <p>Developed by Adam Sparks, Hugh Parsonage, Keith Pembleton.</p>
+  <p>Developed by Adam Sparks, Hugh Parsonage, Keith Pembleton, Mark Padgham.</p>
 </div>
 
 <div class="pkgdown">

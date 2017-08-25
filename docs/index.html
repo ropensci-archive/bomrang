@@ -99,7 +99,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <h2 class="hasAnchor">
 <a href="#using-bomrang" class="anchor"></a>Using <em>bomrang</em>
 </h2>
-<p>Several functions are provided by <em>bomrang</em> to retrieve Australian Bureau of Meteorology (BoM) data. A family of functions retrieve weather data and return tidy data frames; <code><a href="reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; and <code><a href="reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin. A second group of functions retrieve information pertaining to satellite imagery, <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code> and the imagery itself, <code><a href="reference/get_satellite_imagery.html">get_satellite_imagery()</a></code>.</p>
+<p>Several functions are provided by <em>bomrang</em> to retrieve Australian Bureau of Meteorology (BoM) data. A family of functions retrieve weather data and return tidy data frames; <code><a href="reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; <code><a href="reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin; and <code><a href="reference/get_weather_bulletin.html">get_weather_bulletin()</a></code>, which retrieves the BoM 0900 or 1500 bulletins. A second group of functions retrieve information pertaining to satellite imagery, <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code> and the imagery itself, <code><a href="reference/get_satellite_imagery.html">get_satellite_imagery()</a></code>.</p>
 <div id="using-get_current_weather" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-get_current_weather" class="anchor"></a>Using <code>get_current_weather</code>
@@ -259,8 +259,7 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 <li><p><strong>SA</strong> - South Australia</p></li>
 <li><p><strong>TAS</strong> - Tasmania</p></li>
 <li><p><strong>VIC</strong> - Victoria</p></li>
-<li><p><strong>WA</strong> - Western Australia</p></li>
-<li><p><strong>AUS</strong> - Australia, returns bulletin for all states/territories.</p></li>
+<li><p><strong>WA</strong> - Western Australia.</p></li>
 </ul>
 <div id="get_ag_bulletin-results" class="section level4">
 <h4 class="hasAnchor">
@@ -303,11 +302,61 @@ devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocument
 ## 5  NA  NA   NA   NA   NA   NA   NA  NA
 ## 6  NA  NA   NA   NA   NA   NA   NA  NA</code></pre></div>
 </div>
+</div>
+<div id="using-get_weather_bulletin" class="section level3">
+<h3 class="hasAnchor">
+<a href="#using-get_weather_bulletin" class="anchor"></a>Using <code>get_weather_bulletin</code>
+</h3>
+<p>This function takes two arguments, <code>state</code> for the desired state; and <code>morning</code> if <code>TRUE</code>, return the 9am bulletin for the nominated state; otherwise return the 3pm bulletin. States or territories are specified using the official postal codes.</p>
+<ul>
+<li><p><strong>ACT</strong> Australian Capital Territory (will return NSW)</p></li>
+<li><p><strong>NSW</strong> - New South Wales</p></li>
+<li><p><strong>NT</strong> - Northern Territory</p></li>
+<li><p><strong>QLD</strong> - Queensland</p></li>
+<li><p><strong>SA</strong> - South Australia</p></li>
+<li><p><strong>TAS</strong> - Tasmania</p></li>
+<li><p><strong>VIC</strong> - Victoria</p></li>
+<li><p><strong>WA</strong> - Western Australia</p></li>
+<li><p><strong>AUS</strong> - Australia, returns bulletin for all states/territories.</p></li>
+</ul>
+<div id="get_weather_bulletin-results" class="section level4">
+<h4 class="hasAnchor">
+<a href="#get_weather_bulletin-results" class="anchor"></a><code>get_weather_bulletin</code> Results</h4>
+<p>The function <code><a href="reference/get_weather_bulletin.html">get_weather_bulletin()</a></code> will return a tidy data frame of BoM data for the requested state(s) or territory.</p>
+</div>
+<div id="example-using-get_weather_bulletin" class="section level4">
+<h4 class="hasAnchor">
+<a href="#example-using-get_weather_bulletin" class="anchor"></a>Example using <code>get_weather_bulletin</code>
+</h4>
+<p>Following is an example fetching the 3PM bulletin for Queensland.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qld_weather &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_weather_bulletin.html">get_weather_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
+<span class="kw">head</span>(qld_weather)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode R"><code class="sourceCode r">##         stations cld8ths wind_dir wind_speed_kmh temp_c_dry temp_c_dew
+## 1     Coconut Is      NA       SE              4         27         NA
+## 2        Coen Ap      NA      NNE              9         23         16
+## 3        Horn Is      NA      ESE             17         25         19
+## 4 Lockhart River      NA       SE             11         23         19
+## 5    Palmerville      NA        S              7         22         14
+## 6       Scherger      NA        E              9         25         18
+##   temp_c_max temp_c_min temp_c_gr barhpa rain_mm weather seastate
+## 1         31         23        NA   1014      NA                 
+## 2         31         14        NA   1014      NA                 
+## 3         29         21        NA   1014      NA                 
+## 4         29         15        NA   1015      NA                 
+## 5         35         13        NA   1015      NA                 
+## 6         34         17        NA   1014      NA</code></pre></div>
+</div>
+</div>
+<div id="using-get_satellite_imagery" class="section level3">
+<h3 class="hasAnchor">
+<a href="#using-get_satellite_imagery" class="anchor"></a>Using <code>get_satellite_imagery</code>
+</h3>
+<p><em>bomrang</em> provides two functions to check and retrieve satellite imagery from BoM, <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code> and <code><a href="reference/get_satellite_imagery.html">get_satellite_imagery()</a></code>.</p>
+<p>The function <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code> only takes one argument, <code>product_id</code>, a BoM identifier for the imagery that you wish to check for available imagery. Using this function will fetch a listing of BoM GeoTIFF satellite imagery from <a href="ftp://ftp.bom.gov.au/anon/gen/gms/" class="uri">ftp://ftp.bom.gov.au/anon/gen/gms/</a> to display which files are currently available for download. These files are available at ten minute update frequency with a 24 hour delete time. This function can be used see the most recent files available and then specify in the <code><a href="reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> function. If no valid Product ID is supplied, defaults to all GeoTIFF images currently available.</p>
 <div id="example-using-get_available_imagery" class="section level4">
 <h4 class="hasAnchor">
 <a href="#example-using-get_available_imagery" class="anchor"></a>Example using <code>get_available_imagery</code>
 </h4>
-<p>The function <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code> only takes one argument, <code>product_id</code>, a BoM identifier for the imagery that you wish to check for available imagery. Using this function will fetch a listing of BoM GeoTIFF satellite imagery from <a href="ftp://ftp.bom.gov.au/anon/gen/gms/" class="uri">ftp://ftp.bom.gov.au/anon/gen/gms/</a> to display which files are currently available for download. These files are available at ten minute update frequency with a 24 hour delete time. This function can be used see the most recent files available and then specify in the <code><a href="reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> function. If no valid Product ID is supplied, defaults to all GeoTIFF images currently available.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Most recent 5 images available for IDE00425</span>
 avail &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_available_imagery.html">get_available_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDE00426"</span>)</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode R"><code class="sourceCode r">## 
@@ -458,11 +507,10 @@ avail &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_avai
 ## [143] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130210.tif"
 ## [144] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130220.tif"</code></pre></div>
 </div>
-</div>
-<div id="example-using-get_satellite_imagery" class="section level3">
-<h3 class="hasAnchor">
+<div id="example-using-get_satellite_imagery" class="section level4">
+<h4 class="hasAnchor">
 <a href="#example-using-get_satellite_imagery" class="anchor"></a>Example using <code>get_satellite_imagery</code>
-</h3>
+</h4>
 <p><code><a href="reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> fetches BoM satellite GeoTIFF imagery, returning a raster stack object and takes three arguments. Files are available at ten minute update frequency with a 24 hour delete time. It is suggested to check file availability first by using <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code>. The arguments are:</p>
 <ul>
 <li><p><code>product_id</code>, a character value of the BoM product ID to download. Alternatively, a vector of values from <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code> may be used here. This argument is mandatory.</p></li>
@@ -477,6 +525,7 @@ imagery &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_sa
 <div class="sourceCode"><pre class="sourceCode R"><code class="sourceCode r">## Loading required package: sp</code></pre></div>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(imagery)</code></pre></div>
 <p><img src="reference/figures/get_satellite_imagery-1.png"></p>
+</div>
 </div>
 </div>
 <div id="meta" class="section level2">
@@ -494,7 +543,7 @@ imagery &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_sa
 <p>To cite <em>bomrang</em>, please use: Sparks A, Parsonage H and Pembleton K (2017). <em>bomrang: Fetch Australian Government Bureau of Meteorology Weather Data</em>. doi: 10.5281/zenodo.598301 (URL: <a href="http://doi.org/10.5281/zenodo.598301" class="uri">http://doi.org/10.5281/zenodo.598301</a>), R package version 0.0.4-1,</p>
 <p>or the BibTeX entry:</p>
 <div class="sourceCode"><pre class="sourceCode tex"><code class="sourceCode latex">@Manual{R-pkg-bomrang,
-author       = {Adam Sparks and Hugh Parsonage and Keith Pembleton},
+author       = {Adam Sparks and Hugh Parsonage and Keith Pembleton and Mark Padgham},
 title        = {bomrang: Fetch Australian Government Bureau of Meteorology
 Weather Data},
 year         = {2017},
@@ -537,6 +586,7 @@ url          = {https://github.com/ToowoombaTrio/bomrang}</code></pre></div>
 </li>
 <li>Keith Pembleton <br><small class="roles"> Author </small> <br><small>(https://orcid.org/0000-0002-1896-4516)</small>
 </li>
+<li>Mark Padgham <br><small class="roles"> Author </small> </li>
 </ul>
 <h2>Dev status</h2>
 <ul class="list-unstyled">
@@ -551,7 +601,7 @@ url          = {https://github.com/ToowoombaTrio/bomrang}</code></pre></div>
 
 
       <footer><div class="copyright">
-  <p>Developed by Adam Sparks, Hugh Parsonage, Keith Pembleton.</p>
+  <p>Developed by Adam Sparks, Hugh Parsonage, Keith Pembleton, Mark Padgham.</p>
 </div>
 
 <div class="pkgdown">

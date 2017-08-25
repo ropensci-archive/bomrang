@@ -1,7 +1,7 @@
 Package: bomrang
 Type: Package
 Title: Fetch Australian Government Bureau of Meteorology Data
-Version: 0.0.5
+Version: 0.0.6
 Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     email = "adamhsparks@gmail.com",
     comment = "https://orcid.org/0000-0002-0061-8359"),
@@ -10,12 +10,14 @@ Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     comment = "https://orcid.org/0000-0003-4055-0835"),
     person("Keith", "Pembleton", role = "aut",
     email = "keith.pembleton@usq.edu.au",
-    comment = "https://orcid.org/0000-0002-1896-4516"))
+    comment = "https://orcid.org/0000-0002-1896-4516"),
+    person("Mark", "Padgham", role = "aut",
+    email = "mark.padgham@email.com"))
 Description: Provides functions to interface with Australian Government Bureau
     of Meteorology (BoM) data, fetching data and returning a tidy data frame of
     précis forecasts, current weather data from stations, agriculture
-    bulletin data or a raster stack object of satellite imagery from GeoTIFF
-    files.
+    bulletin data, BoM 0900 or 1500 weather bulletins or a raster stack object
+    of satellite imagery from GeoTIFF files.
 URL: https://github.com/ToowoombaTrio/bomrang
 BugReports: https://github.com/ToowoombaTrio/bomrang/issues
 License: MIT + file LICENSE
