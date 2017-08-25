@@ -61,7 +61,7 @@ selected.
 
 Following is an example fetching the current weather for Melbourne.
 
-```{r, eval=TRUE}
+```{r current_weather, eval=TRUE}
 library("bomrang")
 
 Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
@@ -106,7 +106,7 @@ description of the fields and values.
 
 Following is an example fetching the forecast for Queensland.
 
-```{r, eval=TRUE}
+```{r precis_forecast, eval=TRUE}
 library("bomrang")
 
 QLD_forecast <- get_precis_forecast(state = "QLD")
@@ -147,11 +147,50 @@ of the fields and values.
 
 Following is an example fetching the ag bulletin for Queensland.
 
-```{r, eval=TRUE}
+```{r ag_bulletin, eval=TRUE}
 library("bomrang")
 
 QLD_bulletin <- get_ag_bulletin(state = "QLD")
 head(QLD_bulletin)
+```
+
+## Using `get_bulletin_weather`
+
+This function takes two arguments, `state` for the desired state; and `morning`
+if `TRUE`, return the 9am bulletin for the nominated state; otherwise return the
+3pm bulletin. States or territories are specified using the official postal
+codes.
+
+-   **ACT**  Australian Capital Territory (will return NSW)
+
+-   **NSW** - New South Wales
+
+-   **NT** - Northern Territory
+
+-   **QLD** - Queensland
+
+-   **SA** - South Australia
+
+-   **TAS** - Tasmania
+
+-   **VIC** - Victoria
+
+-   **WA** - Western Australia
+
+-   **AUS** - Australia, returns bulletin for all states/territories.
+
+#### Results
+
+The function `get_weather_bulletin()` will return a tidy data frame of BoM data
+for the requested state(s) or territory.
+
+#### Example
+
+Following is an example fetching the 3PM bulletin for Queensland.
+
+```{r weather_bulletin}
+qld_weather <- get_weather_bulletin(state = "QLD")
+head(qld_weather)
 ```
 
 ## Using `sweep_for_stations`
@@ -175,7 +214,7 @@ The fields in the data frame are:
 
 Following is an example sweeping for stations starting with Canberra.
 
-```{r, eval=TRUE}
+```{r sweep_stations, eval=TRUE}
 # Show only the first ten stations in the list
 head(sweep_for_stations(latlon = c(-35.3, 149.2)), 10)
 ```
@@ -217,7 +256,7 @@ process faster when fetching the forecast.
 Following is an example updating the précis forecast locations internal
 database.
 
-```{r, eval=FALSE}
+```{r update_forecast_locations, eval=FALSE}
 update_forecast_locations()
 ```
 
@@ -234,7 +273,7 @@ the databases distributed with _bomrang_
 Following is an example updating the précis forecast locations internal
 database.
 
-```{r, eval=FALSE}
+```{r update_station_locations, eval=FALSE}
 update_station_locations()
 ```
 
@@ -365,7 +404,7 @@ the cached files:
 
 ## Appendix 1 - Output from `get_current_weather`
 
-The function `get_current_weather()` will return a dataframe that will contain
+The function `get_current_weather()` will return a data frame that will contain
 some or all of the following fields.
 
 ### Fields and descriptions
@@ -459,7 +498,7 @@ P_tend_typ:
 
 This consists of a two or 3 digit code figure plus (when relevant)
 a short, text abbreviation of the weather The abbreviations used (frequently
- together, eg XXRA for heavy rain, FZDZ for freezing drizzle) include
+ together, _e.g._, XXRA for heavy rain, FZDZ for freezing drizzle) include
 
 - BL Blowing (usually of sand or snow)  
 - DR Drifting (usually of sand or snow)  
@@ -472,7 +511,7 @@ a short, text abbreviation of the weather The abbreviations used (frequently
 - HZ Haze  
 - MI Shallow (can be applied to Fog etc)  
 - RE Ice pellets  
-- PO Dust devils (I think this is from the Spanish for dust devils)  
+- PO Dust devils  
 - RA Rain  
 - RE Recent (in the last hour, but not at the observation time)  
 - SA Sand  

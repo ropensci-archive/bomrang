@@ -39,15 +39,8 @@
 #' \url{http://www.bom.gov.au/qld/observations/3pm_bulletin.shtml}
 #'
 #' @author Mark Padgham, \email{mark.padgham@email.com}
-#' @importFrom dplyr bind_rows mutate_at rename
-#' @importFrom janitor clean_names
-#' @importFrom rlang .data
-#' @importFrom rvest html_table
-#' @importFrom tidyr separate
-#' @importFrom xml2 read_html
 #' @export
 get_weather_bulletin <- function(state = "qld", morning = TRUE) {
-
   the_state <- convert_state (state) # see internal_functions.R
   if (the_state == "AUS")
     stop ("Weather bulletins can only be extracted for individual states")
@@ -58,8 +51,9 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
 
   # http server
   http_base <- "http://www.bom.gov.au/"
-  wb_url <- paste0 (http_base, tolower (the_state), "/observations/",
-                    url_suffix)
+  wb_url <-
+    paste0 (http_base, tolower (the_state), "/observations/",
+            url_suffix)
 
   dat <- xml2::read_html (wb_url) %>%
     rvest::html_table (fill = TRUE)
@@ -75,13 +69,26 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
   {
     names (dat) [which (grepl ("rain", names (dat)))] <- "rain_mm"
     # vars for subsequent tidying:
-    vars <- c ("cld8ths", "temp_c_dry", "temp_c_dew", "temp_c_max", "temp_c_min",
-               "temp_c_gr", "barhpa", "rain_mm")
+    vars <-
+      c (
+        "cld8ths",
+        "temp_c_dry",
+        "temp_c_dew",
+        "temp_c_max",
+        "temp_c_min",
+        "temp_c_gr",
+        "barhpa",
+        "rain_mm"
+      )
     vars <- vars [which (vars %in% names (dat))]
   } else
   {
-    charvars <- c ("location", "stations", "current_details_weather",
-                   "current_details_winddir_spdkm_h")
+    charvars <- c (
+      "location",
+      "stations",
+      "current_details_weather",
+      "current_details_winddir_spdkm_h"
+    )
     vars <- names (dat) [which (!names (dat) %in% charvars)]
   }
   windvar <- names (dat) [which (grepl ("wind", names (dat)))]
@@ -99,13 +106,16 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
   dat [, i] [dat [, i] == "Tce"] <- 0.1
 
   # Then just the tidy stuff:
-  out <- tidyr::separate (dat, windvar,
-                          into = c ("wind_dir", "wind_speed_kmh"),
-                          sep = "\\s+",
-                          fill = "right",
-                          convert = TRUE) %>%
-      dplyr::mutate_at (.funs = as.numeric,
-                        .vars = vars)
+  out <- tidyr::separate (
+    dat,
+    windvar,
+    into = c ("wind_dir", "wind_speed_kmh"),
+    sep = "\\s+",
+    fill = "right",
+    convert = TRUE
+  ) %>%
+    dplyr::mutate_at (.funs = as.numeric,
+                      .vars = vars)
 
   return (out)
 }
@@ -129,11 +139,13 @@ tidy_bulletin_header <- function (bull)
     return (NULL)
 
   # remove filled rows containing district names only:
-  bull <- bull [ which (apply (bull, 1, function (i) !all (i == i [1]))), ]
+  bull <-
+    bull [which (apply (bull, 1, function (i)
+      ! all (i == i [1]))),]
 
   # Then tidy column names - the only really messy bit!
   r1 <- names (bull)
-  r2 <- as.character (bull [1, ])
+  r2 <- as.character (bull [1,])
   if (length (which (bull [, 1] == names (bull) [1])) == 1)
   {
     # Values of r2 need to be re-aligned through removing "TEMP (C)" and inserting
@@ -157,30 +169,33 @@ tidy_bulletin_header <- function (bull)
     #names (bull) <- paste0 (r1, r2)
     nms <- paste0 (r1, r2)
     names (bull) <- gsub (" %", "%", nms) # 9am & 3pm differ here
-    bull <- bull [2:nrow (bull), ]
+    bull <- bull [2:nrow (bull),]
   } else if (length (which (bull [, 1] == names (bull) [1])) == 2)
   {
-    i <- which (apply (bull, 2, function (i) all (is.na (i))))
-    if (length (i) > 0) # SA 3pm
+    i <- which (apply (bull, 2, function (i)
+      all (is.na (i))))
+    if (length (i) > 0)
+      # SA 3pm
     {
       indx <- seq (ncol (bull)) [!seq (ncol (bull)) %in% i]
       nms <- names (bull) [indx]
       bull <- bull [, indx]
       names (bull) <- nms
       r1 <- names (bull)
-      r2 <- as.character (bull [1, ])
+      r2 <- as.character (bull [1,])
     }
-    r3 <- as.character (bull [2, ])
+    r3 <- as.character (bull [2,])
     r2 [is.na (r2)] <- ""
     r3 [is.na (r3)] <- ""
-    r3 <- c (r3 [which (!grepl ("TEMP ", r3, ignore.case = TRUE))], "")
+    r3 <-
+      c (r3 [which (!grepl ("TEMP ", r3, ignore.case = TRUE))], "")
     r3 [which (r3 == r2)] <- ""
     r2 [which (r2 == r1)] <- ""
     r3 [r3 %in% c ("LOCATION", "STATIONS")] <- ""
     r2 <- pad_white (r2)
     r3 <- pad_white (r3)
     names (bull) <- paste0 (r1, r2, r3)
-    bull <- bull [3:nrow (bull), ]
+    bull <- bull [3:nrow (bull),]
   } else
   {
     stop ("Weather bulletin has unrecognised format")
