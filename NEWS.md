@@ -1,3 +1,16 @@
+# bomrang 0.0.6
+
+## Bug Fixes
+
+- Fix typo in `check_states()`
+
+- Replace `warning()` with `message()` in `get_states()`
+
+## Major changes
+
+- Fetch BoM 0900 and 1500 weather bulletins from SHTML sources and create a
+tidy data frame of the data
+
 # bomrang 0.0.5
 
 ## Bug Fixes
