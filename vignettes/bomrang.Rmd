@@ -157,7 +157,7 @@ QLD_bulletin <- get_ag_bulletin(state = "QLD")
 head(QLD_bulletin)
 ```
 
-## Using `get_bulletin_weather`
+## Using `get_weather_bulletin`
 
 This function takes two arguments, `state` for the desired state; and `morning`
 if `TRUE`, return the 9am bulletin for the nominated state; otherwise return the
@@ -179,8 +179,6 @@ codes.
 -   **VIC** - Victoria
 
 -   **WA** - Western Australia
-
--   **AUS** - Australia, returns bulletin for all states/territories.
 
 #### Results
 
