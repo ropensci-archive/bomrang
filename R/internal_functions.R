@@ -77,9 +77,9 @@ states <- c(
                            x = states,
                            value = TRUE)
 
-    if (length(likely_states == 1)) {
+    if (length(likely_states) == 1) {
       the_state <- toupper(likely_states)
-      warning(
+      message(
         paste0("\nUsing state = ", likely_states, ".\n",
                "If this is not what you intended, please check your entry.")
       )
@@ -93,7 +93,7 @@ states <- c(
   }
 
   if (length(likely_states) > 1) {
-    warning(
+    message(
       "Multiple states match state.",
       "'\ndid you mean:\n\tstate = '",
       paste(likely_states[1],
@@ -104,4 +104,27 @@ states <- c(
       "'?"
     )
   }
+}
+
+#' convert_state
+#'
+#' Convert state to standard abbreviation
+#' @noRd
+convert_state <- function (state)
+{
+    state <- gsub (' ', '', state)
+    state <- substring (gsub ('[[:punct:]]', '', tolower (state)), 1, 2)
+
+    state_code <- c ("NSW", "NSW", "VIC", "VIC", "QLD", "QLD", "QLD",
+                     "WA", "WA", "WA", "SA", "SA", "SA", "TAS", "TAS",
+                     "ACT", "NT", "NT")
+    state_names <- c ("ne", "ns", "vi", "v", "ql", "qe", "q",
+                      "wa", "we", "w", "s", "sa", "so", "ta", "t",
+                      "ac", "no", "nt")
+    state <- state_code [pmatch (state, state_names)]
+
+    if (any (is.na (state)))
+        stop ("Unable to determine state")
+
+    return (state)
 }
