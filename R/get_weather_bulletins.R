@@ -41,37 +41,40 @@
 #' @author Mark Padgham, \email{mark.padgham@email.com}
 #' @export
 get_weather_bulletin <- function(state = "qld", morning = TRUE) {
-  the_state <- convert_state (state) # see internal_functions.R
-  if (the_state == "AUS")
+  the_state <- convert_state(state) # see internal_functions.R
+  if (the_state == "AUS") {
     stop ("Weather bulletins can only be extracted for individual states")
+  }
 
-  url_suffix <- "9am_bulletin.shtml"
-  if (!is.logical (morning) | !morning)
+  if (morning) {
+    url_suffix <- "9am_bulletin.shtml"
+  } else {
     url_suffix <- "3pm_bulletin.shtml"
+  }
 
   # http server
   http_base <- "http://www.bom.gov.au/"
   wb_url <-
-    paste0 (http_base, tolower (the_state), "/observations/",
-            url_suffix)
+    paste0(http_base, tolower(the_state), "/observations/",
+           url_suffix)
 
-  dat <- xml2::read_html (wb_url) %>%
-    rvest::html_table (fill = TRUE)
+  dat <- xml2::read_html(wb_url) %>%
+    rvest::html_table(fill = TRUE)
   # WA includes extra tables of rainfall stats (9am) and daily extrema (3pm)
-  if (the_state == "WA")
-    dat [[length (dat)]] <- NULL
-  dat <- lapply (dat, tidy_bulletin_header) %>%
-    dplyr::bind_rows ()
+  if (the_state == "WA") {
+    dat[[length(dat)]] <- NULL
+  }
+
+  dat <- lapply(dat, tidy_bulletin_header) %>%
+    dplyr::bind_rows
 
   # much easier than dplyr::rename, and names vary between 9am and 3pm bulletins
   dat <- janitor::clean_names (dat)
-  if (!the_state %in% c ("WA", "SA"))
-  {
-    names (dat) [which (grepl ("rain", names (dat)))] <- "rain_mm"
+  if (the_state %notin% c ("WA", "SA")) {
+    names(dat)[grepl("rain", names(dat))] <- "rain_mm"
     # vars for subsequent tidying:
     vars <-
-      c (
-        "cld8ths",
+      c("cld8ths",
         "temp_c_dry",
         "temp_c_dew",
         "temp_c_max",
@@ -80,33 +83,32 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
         "barhpa",
         "rain_mm"
       )
-    vars <- vars [which (vars %in% names (dat))]
-  } else
-  {
-    charvars <- c (
+    vars <- vars[vars %in% names(dat)]
+  } else {
+    charvars <- c(
       "location",
       "stations",
       "current_details_weather",
       "current_details_winddir_spdkm_h"
     )
-    vars <- names (dat) [which (!names (dat) %in% charvars)]
+    vars <- setdiff(names(dat), charvars)
   }
-  windvar <- names (dat) [which (grepl ("wind", names (dat)))]
+  windvar <- grep("wind", names(dat))
 
   # bind_rows inserts NAs in all extra rows, so
-  if ("seastate" %in% names (dat))
-    dat$seastate [is.na (dat$seastate)] <- ""
-
+  if ("seastate" %in% names(dat)) {
+    dat$seastate[is.na(dat$seastate)] <- ""
+  }
   # Final manual cleaning:
   # cld8ths can have "#" to indicate fog so no cloud obs possible
-  i <- which (grepl ("cld8ths", names (dat)))
-  dat [, i] [dat [, i] == "#"] <- ""
+  i <- grep("cld8ths", names(dat))
+  dat[, i][dat[, i] == "#"] <- ""
   # A valid rain value is "Tce" for "Trace", which is here converted to 0.1
-  i <- which (grepl ("rain", names (dat)))
-  dat [, i] [dat [, i] == "Tce"] <- 0.1
+  i <- grep("rain", names (dat))
+  dat[, i][dat[, i] == "Tce"] <- 0.1
 
   # Then just the tidy stuff:
-  out <- tidyr::separate (
+  out <- tidyr::separate(
     dat,
     windvar,
     into = c("wind_dir", "wind_speed_kmh"),
@@ -139,8 +141,7 @@ tidy_bulletin_header <- function(bull) {
   }
 
   # remove filled rows containing district names only:
-  bull <-
-    bull[apply(bull, 1, function(i) any(i != i[1])), ]
+  bull <- bull[apply(bull, 1, function(i) any(i != i[1])), ]
 
   # Then tidy column names - the only really messy bit!
   r1 <- names(bull)
@@ -193,7 +194,7 @@ tidy_bulletin_header <- function(bull) {
     stop("Weather bulletin has unrecognised format")
   }
 
-  return (bull)
+  bull
 }
 
 pad_white <- function(x) {
