@@ -204,8 +204,7 @@ tidy_bulletin_header <- function (bull)
   return (bull)
 }
 
-pad_white <- function (x)
-{
-  x [which (nchar (x) > 0)] <- paste0 (" ", x [which (nchar (x) > 0)])
-  return (x)
+pad_white <- function(x) {
+  x[nzchar(x)] <- paste0(" ", x[nzchar(x)])
+  return(x)
 }
