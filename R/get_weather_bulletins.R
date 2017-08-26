@@ -109,13 +109,13 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
   out <- tidyr::separate (
     dat,
     windvar,
-    into = c ("wind_dir", "wind_speed_kmh"),
+    into = c("wind_dir", "wind_speed_kmh"),
     sep = "\\s+",
     fill = "right",
     convert = TRUE
   ) %>%
-    dplyr::mutate_at (.funs = as.numeric,
-                      .vars = vars)
+    dplyr::mutate_at(.funs = as.numeric,
+                     .vars = vars)
 
   return (out)
 }
@@ -133,72 +133,64 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
 #' auto-generated names with the contents of the first row.
 #'
 #' @noRd
-tidy_bulletin_header <- function (bull)
-{
-  if (nrow (bull) <= 1)
-    return (NULL)
+tidy_bulletin_header <- function(bull) {
+  if (nrow (bull) <= 1) {
+    return(NULL)
+  }
 
   # remove filled rows containing district names only:
   bull <-
-    bull [which (apply (bull, 1, function (i)
-      ! all (i == i [1]))),]
+    bull[apply(bull, 1, function(i) any(i != i[1])), ]
 
   # Then tidy column names - the only really messy bit!
-  r1 <- names (bull)
-  r2 <- as.character (bull [1,])
-  if (length (which (bull [, 1] == names (bull) [1])) == 1)
-  {
+  r1 <- names(bull)
+  r2 <- as.character(bull[1, ])
+  if (sum(bull[, 1] == names(bull)[1]) == 1) {
     # Values of r2 need to be re-aligned through removing "TEMP (C)" and inserting
     # an additional empty value at the end
     r2 <- r2 [which (!grepl ("TEMP", r2))]
-    if ("gr" %in% r2)
-    {
-      i <- which (r2 == "gr") # last former "TEMP (C)" value
-      r2 <- r2 [c (1:i, i:length (r2), length (r2))]
-    } else if ("min" %in% r2 & !"WEATHER" %in% r2)
-    {
+    if ("gr" %in% r2) {
+      i <- which(r2 == "gr") # last former "TEMP (C)" value
+      r2 <- r2[c(1:i, i:length(r2), length(r2))]
+    } else if ("min" %in% r2 & "WEATHER" %notin% r2) {
       # nt only [STATIONS, CLD8THS, dir spd, dry, dew, max, min, 24hr/days
       # tas has same but with "WEATHER" as well
-      i <- which (r2 == "min")
-      r2 <- r2 [c (1:length (r2), length (r2))]
+      i <- which (r2 == "min") # HP: As far as I can see this line is not used.
+      r2 <- c(r2, data.table::last(r2))
     }
-    r2 [which (duplicated (r2))] <- ""
-    r2 [which (r2 == r1)] <- ""
-    r2 <- pad_white (r2)
-    r2 [which (grepl ("nbsp", r2))] <- ""
+    r2[duplicated (r2)] <- ""
+    r2[r2 == r1] <- ""
+    r2 <- pad_white(r2)
+    r2[grepl("nbsp", r2)] <- ""
     #names (bull) <- paste0 (r1, r2)
-    nms <- paste0 (r1, r2)
-    names (bull) <- gsub (" %", "%", nms) # 9am & 3pm differ here
-    bull <- bull [2:nrow (bull),]
-  } else if (length (which (bull [, 1] == names (bull) [1])) == 2)
-  {
-    i <- which (apply (bull, 2, function (i)
-      all (is.na (i))))
-    if (length (i) > 0)
+    nms <- paste0(r1, r2)
+    names(bull) <- gsub(" %", "%", nms) # 9am & 3pm differ here
+    bull <- bull[2:nrow(bull), ]
+  } else if (sum(bull[, 1] == names(bull)[1]) == 2) {
+    all_NA <- vapply(bull, function(i) all(is.na(i)), FALSE)
+    if (any(all_NA)) {
       # SA 3pm
-    {
-      indx <- seq (ncol (bull)) [!seq (ncol (bull)) %in% i]
-      nms <- names (bull) [indx]
-      bull <- bull [, indx]
-      names (bull) <- nms
-      r1 <- names (bull)
-      r2 <- as.character (bull [1,])
+      i <- which(all_NA)
+      indx <- setdiff(seq_along(bull), i)
+      nms <- names(bull)[indx]
+      bull <- bull[, indx]
+      names(bull) <- nms
+      r1 <- names(bull)
+      r2 <- as.character(bull[1, ])
     }
-    r3 <- as.character (bull [2,])
-    r2 [is.na (r2)] <- ""
-    r3 [is.na (r3)] <- ""
-    r3 <-
-      c (r3 [which (!grepl ("TEMP ", r3, ignore.case = TRUE))], "")
-    r3 [which (r3 == r2)] <- ""
-    r2 [which (r2 == r1)] <- ""
-    r3 [r3 %in% c ("LOCATION", "STATIONS")] <- ""
-    r2 <- pad_white (r2)
-    r3 <- pad_white (r3)
-    names (bull) <- paste0 (r1, r2, r3)
-    bull <- bull [3:nrow (bull),]
-  } else
-  {
-    stop ("Weather bulletin has unrecognised format")
+    r3 <- as.character(bull [2, ])
+    r2[is.na(r2)] <- ""
+    r3[is.na(r3)] <- ""
+    r3 <- c(r3[!grepl("TEMP ", r3, ignore.case = TRUE)], "")
+    r3[r3 == r2] <- ""
+    r2[r2 == r1] <- ""
+    r3[r3 %in% c("LOCATION", "STATIONS")] <- ""
+    r2 <- pad_white(r2)
+    r3 <- pad_white(r3)
+    names(bull) <- paste0(r1, r2, r3)
+    bull <- bull[3:nrow(bull), ]
+  } else {
+    stop("Weather bulletin has unrecognised format")
   }
 
   return (bull)
