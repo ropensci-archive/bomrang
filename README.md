@@ -518,3 +518,5 @@ References
 [Australian Bureau of Meteorology (BoM) Weather Data Services Agriculture Bulletins](http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml)
 
 [Australian Bureau of Meteorology (BoM) Weather Data Services Observation of Rainfall](http://www.bom.gov.au/climate/how/observations/rain-measure.shtml)
+
+[![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
