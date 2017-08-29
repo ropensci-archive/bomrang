@@ -71,9 +71,9 @@ The data have many applications. In agriculture the data are used in several
 types of models, some of which include the estimation of surface moisture, crop
 yield estimates, crop development stages or stress or forecasting of epidemics
 of crop diseases or populations of insect pests [@VENALAINEN20021045;
-@DeWolf2003; Sparks2017]. Other areas of use include mapping potential renewable energy,
-_e.g._ wind or solar potential for exploration purposes [@RAMACHANDRA20071460].
-The data can also be used to convey information to decision makers for
+@DeWolf2003; Sparks2017]. Other areas of use include mapping potential renewable
+energy, _e.g._ wind or solar potential for exploration purposes
+[@RAMACHANDRA20071460]. The data can also be used by decision makers for
 municipalities to help planning for extreme weather events, energy needs and
 other infrastructure [@SVENSSON200237; @ALCOFORADO200956].
 

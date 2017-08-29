@@ -9,7 +9,7 @@
 #' @seealso
 #'\strong{Useful links:}
 #' \itemize{
-#' \item{\url{https://github.com/ToowoombaTrio/bomrang}}
-#' \item{Report bugs at \url{https://github.com/ToowoombaTrio/bomrang/issues}}
+#' \item{\url{https://github.com/ropensci/bomrang}}
+#' \item{Report bugs at \url{https://github.com/ropensci/bomrang/issues}}
 #' }
 NULL
