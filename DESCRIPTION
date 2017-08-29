@@ -18,8 +18,8 @@ Description: Provides functions to interface with Australian Government Bureau
     précis forecasts, current weather data from stations, agriculture
     bulletin data, BoM 0900 or 1500 weather bulletins or a raster stack object
     of satellite imagery from GeoTIFF files.
-URL: https://github.com/ToowoombaTrio/bomrang
-BugReports: https://github.com/ToowoombaTrio/bomrang/issues
+URL: https://github.com/ropensci/bomrang
+BugReports: https://github.com/ropensci/bomrang/issues
 License: MIT + file LICENSE
 Depends:
     R (>= 3.2.0)

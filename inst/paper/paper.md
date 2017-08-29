@@ -4,7 +4,7 @@ authors:
 - affiliation: 1
   name: Adam H Sparks
   orcid: 0000-0002-0061-8359
-- afilliation: 2
+- affiliation: 2
   name: Hugh Parsonage
   orcid: 0000-0003-4055-0835
 - affiliation: 3
@@ -12,7 +12,7 @@ authors:
   orcid: 0000-0002-1896-4516
 - affiliation: 4
   name: Mark Padgham
-  orcid: 
+  orcid: xxxx-xxxx-xxxx-xxxx
 date: "25 Aug 2017"
 output:
   html_document: default
@@ -65,8 +65,16 @@ time necessary to gather forecast information and return a data frame, while
 rarely changing. Functionality for automated downloading and importing of
 satellite imagery is provided by the `get_satellite_imagery()` function. A
 helper function, `get_available_imagery()`, returns values of currently
-available satelite imagery for download. The data have applications in applied
-meteorology and agricultural meteorology and agricultural and environmental
-modelling.
+available satellite imagery for download. 
+
+The data have many applications. In agriculture the data are used in several
+types of models, some of which include the estimation of surface moisture, crop
+yield estimates, crop development stages or stress or forecasting of epidemics
+of crop diseases or populations of insect pests [@VENALAINEN20021045;
+@DeWolf2003; Sparks2017]. Other areas of use include mapping potential renewable energy,
+_e.g._ wind or solar potential for exploration purposes [@RAMACHANDRA20071460].
+The data can also be used to convey information to decision makers for
+municipalities to help planning for extreme weather events, energy needs and
+other infrastructure [@SVENSSON200237; @ALCOFORADO200956].
 
 # References

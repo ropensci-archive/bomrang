@@ -4,7 +4,7 @@ README
 *bomrang*: Fetch Australian Government Bureau of Meteorology (BoM) Data
 =======================================================================
 
-[![Travis-CI Build Status](https://travis-ci.org/ToowoombaTrio/bomrang.svg?branch=master)](https://travis-ci.org/ToowoombaTrio/bomrang) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ToowoombaTrio/bomrang?branch=master&svg=true)](https://ci.appveyor.com/project/ToowoombaTrio/bomrang) [![codecov](https://codecov.io/gh/ToowoombaTrio/bomrang/branch/master/graph/badge.svg)](https://codecov.io/gh/ToowoombaTrio/bomrang) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.598301.svg)](https://doi.org/10.5281/zenodo.598301) [![](https://badges.ropensci.org/121_status.svg)](https://github.com/ropensci/onboarding/issues/121)
+[![Travis-CI Build Status](https://travis-ci.org/ropensci/bomrang.svg?branch=master)](https://travis-ci.org/ropensci/bomrang) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/bomrang?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/bomrang) [![codecov](https://codecov.io/gh/ropensci/bomrang/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/bomrang) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.598301.svg)](https://doi.org/10.5281/zenodo.598301) [![](https://badges.ropensci.org/121_status.svg)](https://github.com/ropensci/onboarding/issues/121)
 
 Provides functions to interface with Australian Government Bureau of Meteorology (BoM) data, fetching data and returning a tidy data frame of précis forecasts, current weather data from stations, ag information bulletins or a `raster::stack()` object of satellite imagery from GeoTIFF files.
 
@@ -19,7 +19,7 @@ if (!require("devtools")) {
   library("devtools")
 }
 
-devtools::install_github("toowoombatrio/bomrang")
+devtools::install_github("ropensci/bomrang")
 ```
 
 Using *bomrang*
@@ -487,7 +487,7 @@ plot(imagery)
 Meta
 ----
 
--   Please [report any issues or bugs](https://github.com/ToowoombaTrio/bomrang/issues).
+-   Please [report any issues or bugs](https://github.com/ropensci/bomrang/issues).
 
 -   License:
     -   All code is licenced MIT
@@ -505,7 +505,7 @@ Meta
     Weather Data},
     year         = {2017},
     doi          = {10.5281/zenodo.598301},
-    url          = {https://github.com/ToowoombaTrio/bomrang}
+    url          = {https://github.com/ropensci/bomrang}
     ```
 
 -   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
@@ -518,3 +518,5 @@ References
 [Australian Bureau of Meteorology (BoM) Weather Data Services Agriculture Bulletins](http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml)
 
 [Australian Bureau of Meteorology (BoM) Weather Data Services Observation of Rainfall](http://www.bom.gov.au/climate/how/observations/rain-measure.shtml)
+
+[![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
