@@ -4,7 +4,7 @@ authors:
 - affiliation: 1
   name: Adam H Sparks
   orcid: 0000-0002-0061-8359
-- afilliation: 2
+- affiliation: 2
   name: Hugh Parsonage
   orcid: 0000-0003-4055-0835
 - affiliation: 3
@@ -65,7 +65,7 @@ time necessary to gather forecast information and return a data frame, while
 rarely changing. Functionality for automated downloading and importing of
 satellite imagery is provided by the `get_satellite_imagery()` function. A
 helper function, `get_available_imagery()`, returns values of currently
-available satelite imagery for download. The data have applications in applied
+available satellite imagery for download. The data have applications in applied
 meteorology and agricultural meteorology and agricultural and environmental
 modelling.
 
