@@ -25,9 +25,7 @@
 #' 9am.
 #'
 #' @return
-#' Tidy data frame of Australian BoM daily observations.  For full details of
-#' fields and units returned see Appendix 2 in the \emph{bomrang} vignette, use
-#' \code{vignette("bomrang", package = "bomrang")} to view.
+#' Tidy data frame of Australian 9am or 3pm weather observations for a state.
 #'
 #' @examples
 #' \dontrun{
@@ -35,7 +33,7 @@
 #'}
 #' @references
 #' Daily observation data come from Australian Bureau of Meteorology (BoM)
-#' webite. The 3pm bulletin for Queensland is, for example,
+#' website. The 3pm bulletin for Queensland is, for example,
 #' \url{http://www.bom.gov.au/qld/observations/3pm_bulletin.shtml}
 #'
 #' @author Mark Padgham, \email{mark.padgham@email.com}
@@ -43,7 +41,7 @@
 get_weather_bulletin <- function(state = "qld", morning = TRUE) {
   the_state <- convert_state(state) # see internal_functions.R
   if (the_state == "AUS") {
-    stop ("Weather bulletins can only be extracted for individual states")
+    stop("Weather bulletins can only be extracted for individual states")
   }
 
   if (morning) {
@@ -69,12 +67,13 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
     dplyr::bind_rows
 
   # much easier than dplyr::rename, and names vary between 9am and 3pm bulletins
-  dat <- janitor::clean_names (dat)
-  if (the_state %notin% c ("WA", "SA")) {
+  dat <- janitor::clean_names(dat)
+  if (the_state %notin% c("WA", "SA")) {
     names(dat)[grepl("rain", names(dat))] <- "rain_mm"
     # vars for subsequent tidying:
     vars <-
-      c("cld8ths",
+      c(
+        "cld8ths",
         "temp_c_dry",
         "temp_c_dew",
         "temp_c_max",
@@ -104,7 +103,7 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
   i <- grep("cld8ths", names(dat))
   dat[, i][dat[, i] == "#"] <- ""
   # A valid rain value is "Tce" for "Trace", which is here converted to 0.1
-  i <- grep("rain", names (dat))
+  i <- grep("rain", names(dat))
   dat[, i][dat[, i] == "Tce"] <- 0.1
 
   # Then just the tidy stuff:
@@ -119,13 +118,14 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
     dplyr::mutate_at(.funs = as.numeric,
                      .vars = vars)
 
-  return (out)
+  return(out)
 }
 
 #' tidy_bulletin_header
 #'
 #' @param bull A \code{data.frame} containing a single page of potentially
 #' multi-page daily weather bulletin for a given state.
+#'
 #' @return Same \code{data.frame} with header tidied up through removal of
 #' extraneous first rows.
 #'
@@ -136,39 +136,41 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
 #'
 #' @noRd
 tidy_bulletin_header <- function(bull) {
-  if (nrow (bull) <= 1) {
+  if (nrow(bull) <= 1) {
     return(NULL)
   }
 
   # remove filled rows containing district names only:
-  bull <- bull[apply(bull, 1, function(i) any(i != i[1])), ]
+  bull <- bull[apply(bull, 1, function(i)
+    any(i != i[1])), ]
 
   # Then tidy column names - the only really messy bit!
   r1 <- names(bull)
   r2 <- as.character(bull[1, ])
   if (sum(bull[, 1] == names(bull)[1]) == 1) {
-    # Values of r2 need to be re-aligned through removing "TEMP (C)" and inserting
-    # an additional empty value at the end
-    r2 <- r2 [which (!grepl ("TEMP", r2))]
+    # Values of r2 need to be re-aligned through removing "TEMP (C)" and
+    # inserting an additional empty value at the end
+    r2 <- r2[which(!grepl("TEMP", r2))]
     if ("gr" %in% r2) {
       i <- which(r2 == "gr") # last former "TEMP (C)" value
       r2 <- r2[c(1:i, i:length(r2), length(r2))]
     } else if ("min" %in% r2 & "WEATHER" %notin% r2) {
       # nt only [STATIONS, CLD8THS, dir spd, dry, dew, max, min, 24hr/days
       # tas has same but with "WEATHER" as well
-      i <- which (r2 == "min") # HP: As far as I can see this line is not used.
+      i <-
+        which(r2 == "min") # HP: As far as I can see this line is not used.
       r2 <- c(r2, data.table::last(r2))
     }
-    r2[duplicated (r2)] <- ""
+    r2[duplicated(r2)] <- ""
     r2[r2 == r1] <- ""
     r2 <- pad_white(r2)
     r2[grepl("nbsp", r2)] <- ""
-    #names (bull) <- paste0 (r1, r2)
     nms <- paste0(r1, r2)
     names(bull) <- gsub(" %", "%", nms) # 9am & 3pm differ here
     bull <- bull[2:nrow(bull), ]
   } else if (sum(bull[, 1] == names(bull)[1]) == 2) {
-    all_NA <- vapply(bull, function(i) all(is.na(i)), FALSE)
+    all_NA <- vapply(bull, function(i)
+      all(is.na(i)), FALSE)
     if (any(all_NA)) {
       # SA 3pm
       i <- which(all_NA)
@@ -179,7 +181,7 @@ tidy_bulletin_header <- function(bull) {
       r1 <- names(bull)
       r2 <- as.character(bull[1, ])
     }
-    r3 <- as.character(bull [2, ])
+    r3 <- as.character(bull[2, ])
     r2[is.na(r2)] <- ""
     r3[is.na(r3)] <- ""
     r3 <- c(r3[!grepl("TEMP ", r3, ignore.case = TRUE)], "")

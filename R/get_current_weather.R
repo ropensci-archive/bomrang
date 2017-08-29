@@ -238,7 +238,8 @@ get_current_weather <-
     error = function(e) {
       e$message <-
         paste("\nA station was matched.",
-              "However a corresponding JSON file was not found at bom.gov.au.\n")
+              "However, a corresponding JSON file was nt found at",
+              "bom.gov.au.\n")
       # Otherwise refers to open.connection
       e$call <- NULL
       stop(e)
