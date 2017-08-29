@@ -501,11 +501,11 @@ Meta
     ```tex
     @Manual{R-pkg-bomrang,
     author       = {Adam Sparks and Hugh Parsonage and Keith Pembleton and Mark Padgham},
-    title        = {bomrang: Fetch Australian Government Bureau of Meteorology
-    Weather Data},
+    title        = {bomrang: Fetch Australian Government Bureau of Meteorology Weather Data},
     year         = {2017},
     doi          = {10.5281/zenodo.598301},
-    url          = {https://github.com/ropensci/bomrang}
+    url          = {https://github.com/ropensci/bomrang},
+    }
     ```
 
 -   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
