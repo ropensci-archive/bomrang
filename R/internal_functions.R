@@ -46,28 +46,28 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
 # Check states for précis and ag bulletin, use fuzzy matching
 
 .check_states <- function(state) {
-states <- c(
-  "ACT",
-  "NSW",
-  "NT",
-  "QLD",
-  "SA",
-  "TAS",
-  "VIC",
-  "WA",
-  "Canberra",
-  "New South Wales",
-  "Northern Territory",
-  "Queensland",
-  "South Australia",
-  "Tasmania",
-  "Victoria",
-  "Western Australia",
-  "Australia",
-  "AU",
-  "AUS",
-  "Oz"
-)
+  states <- c(
+    "ACT",
+    "NSW",
+    "NT",
+    "QLD",
+    "SA",
+    "TAS",
+    "VIC",
+    "WA",
+    "Canberra",
+    "New South Wales",
+    "Northern Territory",
+    "Queensland",
+    "South Australia",
+    "Tasmania",
+    "Victoria",
+    "Western Australia",
+    "Australia",
+    "AU",
+    "AUS",
+    "Oz"
+  )
 
   if (state %in% states) {
     the_state <- toupper(state)
@@ -80,8 +80,12 @@ states <- c(
     if (length(likely_states) == 1) {
       the_state <- toupper(likely_states)
       message(
-        paste0("\nUsing state = ", likely_states, ".\n",
-               "If this is not what you intended, please check your entry.")
+        paste0(
+          "\nUsing state = ",
+          likely_states,
+          ".\n",
+          "If this is not what you intended, please check your entry."
+        )
       )
       return(the_state)
     } else if (length(likely_states) == 0) {
@@ -110,21 +114,55 @@ states <- c(
 #'
 #' Convert state to standard abbreviation
 #' @noRd
-convert_state <- function (state)
-{
-    state <- gsub (' ', '', state)
-    state <- substring (gsub ('[[:punct:]]', '', tolower (state)), 1, 2)
+convert_state <- function(state) {
+  state <- gsub(" ", "", state)
+  state <-
+    substring(gsub("[[:punct:]]", "", tolower(state)), 1, 2)
 
-    state_code <- c ("NSW", "NSW", "VIC", "VIC", "QLD", "QLD", "QLD",
-                     "WA", "WA", "WA", "SA", "SA", "SA", "TAS", "TAS",
-                     "ACT", "NT", "NT")
-    state_names <- c ("ne", "ns", "vi", "v", "ql", "qe", "q",
-                      "wa", "we", "w", "s", "sa", "so", "ta", "t",
-                      "ac", "no", "nt")
-    state <- state_code [pmatch (state, state_names)]
+  state_code <- c(
+    "NSW",
+    "NSW",
+    "VIC",
+    "VIC",
+    "QLD",
+    "QLD",
+    "QLD",
+    "WA",
+    "WA",
+    "WA",
+    "SA",
+    "SA",
+    "SA",
+    "TAS",
+    "TAS",
+    "ACT",
+    "NT",
+    "NT"
+  )
+  state_names <- c(
+    "ne",
+    "ns",
+    "vi",
+    "v",
+    "ql",
+    "qe",
+    "q",
+    "wa",
+    "we",
+    "w",
+    "s",
+    "sa",
+    "so",
+    "ta",
+    "t",
+    "ac",
+    "no",
+    "nt"
+  )
+  state <- state_code[pmatch(state, state_names)]
 
-    if (any (is.na (state)))
-        stop ("Unable to determine state")
+  if (any(is.na(state)))
+    stop("Unable to determine state")
 
-    return (state)
+  return(state)
 }

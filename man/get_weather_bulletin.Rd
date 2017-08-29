@@ -14,9 +14,7 @@ Fuzzy string matching via \code{\link[base]{agrep}} is done.}
 state; otherwise return the 3pm bulletin.}
 }
 \value{
-Tidy data frame of Australian BoM daily observations.  For full details of
-fields and units returned see Appendix 2 in the \emph{bomrang} vignette, use
-\code{vignette("bomrang", package = "bomrang")} to view.
+Tidy data frame of Australian 9am or 3pm weather observations for a state.
 }
 \description{
 Fetch the daily BoM 0900 or 1500 weather bulletins and return a tidy data
@@ -46,7 +44,7 @@ qld_weather <- get_weather_bulletin (state = "QLD", morning = FALSE)
 }
 \references{
 Daily observation data come from Australian Bureau of Meteorology (BoM)
-webite. The 3pm bulletin for Queensland is, for example,
+website. The 3pm bulletin for Queensland is, for example,
 \url{http://www.bom.gov.au/qld/observations/3pm_bulletin.shtml}
 }
 \author{
