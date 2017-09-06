@@ -64,7 +64,7 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
   }
 
   dat <- lapply(dat, tidy_bulletin_header) %>%
-    dplyr::bind_rows
+    dplyr::bind_rows()
 
   # much easier than dplyr::rename, and names vary between 9am and 3pm bulletins
   dat <- janitor::clean_names(dat)
