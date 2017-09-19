@@ -1,3 +1,14 @@
+# bomrang 0.0.7
+
+## Minor changes
+
+- Document `get_current_weather()` functionality in Appendix 4 of bomrang
+vingette
+
+- Spell checking
+
+- Ready for submission to JOSS
+
 # bomrang 0.0.6
 
 ## Bug Fixes
