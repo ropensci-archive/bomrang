@@ -33,9 +33,11 @@ Allowed state and territory postal codes:
    \item{WA}{Western Australia}
  }
 It is not possible to return weather bulletins for the entire country in a
-single call. Rainfall figures for the 9am bulletin are for the preceding 24
-hours, while those for the 3pm bulletin are for the preceding 6 hours since
-9am.
+single call. Rainfall figures for the 9am bulletin are generally for the
+preceding 24 hours, while those for the 3pm bulletin are for the preceding 6
+hours since 9am. Note that values are manually entered into the bulletins and
+sometimes contain typographical errors which may lead to warnings about "NAs
+introduced by coercion".
 }
 \examples{
 \dontrun{

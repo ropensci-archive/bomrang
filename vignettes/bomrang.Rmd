@@ -905,7 +905,52 @@ worldwide)</td></tr>
 <tr><td>wr</td><td>Wind run (kilometres)</td></tr>
 </table>
 
-## Appendix 4 - Map of station locations
+## Appendix 4 - Output from `get_weather_bulletin`
+
+The function `get_weather_bulletin()` returns a tidy data frame of weather
+observations for 0900 or 1500 for a nominated state. Observations
+differ between states, but contain some or all of the following fields. All
+units are metric (temperatures in Celsius; wind speeds in kilometres per hour;
+rainfall amounts in millimetres; pressure in hectoPascals). "AWS" in a station
+name denotes observations from an Automatic Weather Station.
+
+
+<table>
+<tr><th>Field Name</th><th>Description</th></tr>
+<tr><td>stations</td><td>Name of observing station</td></tr>
+<tr><td>cld8ths</td><td>Octas (eights) of cloud (0-8); `NA` indicates sky obscured</td></tr>
+<tr><td>wind_dir</td><td>Direction from which wind blows (16 compass directions,
+measured at height of 10m)</td></tr>
+<tr><td>wind_speed_kmh</td><td</td></tr>
+<tr><td>temp / temp_c_dry/_terr</td><td>Ambient dry air temperature measured at height of 1.2 metres</td></tr>
+<tr><td>temp_c_dew</td><td>Dew-point temperature measured at height of 1.2 metres</td></tr>
+<tr><td>temp_c_max</td><td>Maximum temperature for last 24 hours (0900 bulletin) or 6 hours (1500 bulletin).</td></tr>
+<tr><td>temp_c_min</td><td>Minimum temperature for last 24 hours (0900 bulletin only)</td></tr>
+<tr><td>temp_c_gr</td><td>Wet bulb temperature measured at height of 1.2 metres</td></tr>
+<tr><td>rhpercent</td><td>Relative humidity</td></tr>
+<tr><td>barhpa / mslpresshpa</td><td>Barometric pressure</td></tr>
+<tr><td>rain_mm</td><td>Total rainfall since previous bulletin (`NA` denotes amount less than 1mm)</td></tr>
+<tr><td>days</td><td>If present, denotes number of days since previous bulletin</td></tr>
+<tr><td>weather</td><td>Description of current weather</td></tr>
+<tr><td>seastate (QLD only)</td><td>See below for description</td></tr>
+</table><br>
+
+
+Seastate is described by a text string formed from the three components of (sea
+state, swell, direction). Sea state is denoted "C" (Calm), "SM" (Smooth), "SL"
+(Slight), "M" (Moderate), "R" (Rough), "VR" (Very Rough), "H" (High), "VH" (Very
+High), or "PH" (Phenomenal). Swell is denoted "LS" (Low Short), "LA" (Low
+Average), "LL" (Low Long), "MS" (Moderate Short), "MA" (Mod Average), "ML" (Mod
+Long), "HS" (Heavy Short), "HA" (heavy Average), "HL" (Heavy Long), or "C"
+(Confused). Direction denotes direction from which the swell is coming.
+
+Names of rainfall and temperature variables for some states include prefixes or
+suffixes defining the time period over which observations apply (for example,
+"temp_c_6hmax" for maximum temperature between 0980 and 1500, or "temp_c_9ammin"
+for minimum temperature observed at 9am yet included in 1500 bulletin).
+
+
+## Appendix 5 - Map of station locations
 
 ```{r station-locations-map, fig.width = 7, fig.height = 7, message = FALSE}
 if (requireNamespace("ggplot2", quietly = TRUE) &&
