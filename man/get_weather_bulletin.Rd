@@ -15,6 +15,9 @@ state; otherwise return the 3pm bulletin.}
 }
 \value{
 Tidy data frame of Australian 9am or 3pm weather observations for a state.
+For full details of fields and units returned see Appendix 4 in the
+\emph{bomrang} vignette, use \code{vignette("bomrang", package = "bomrang")}
+to view.
 }
 \description{
 Fetch the daily BoM 0900 or 1500 weather bulletins and return a tidy data
