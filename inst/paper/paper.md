@@ -12,7 +12,7 @@ authors:
   orcid: 0000-0002-1896-4516
 - affiliation: 4
   name: Mark Padgham
-  orcid: xxxx-xxxx-xxxx-xxxx
+  orcid: 000-0003-2172-5265
 date: "25 Aug 2017"
 output:
   html_document: default
@@ -36,7 +36,8 @@ affiliations:
   name: University of Southern Queensland, Institute for Agriculture and the
     Environment, Toowoomba Queensland 4350, Australia
 - index: 4
-  name: 
+  name: University of Salzburg, Inter-Faculty Department of Geoinformatics,
+    5020 Salzburg, Austria
 ---
 
 # Summary
