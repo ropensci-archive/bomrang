@@ -130,33 +130,33 @@ our_password &lt;-<span class="st"> "*password*"</span></code></pre></div>
 ## 5     4   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ## 6     5   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ##      start_time_local end_time_local UTC_offset      start_time_utc
-## 1 2017-08-29 17:00:00     2017-08-30      10:00 2017-08-29 07:00:00
-## 2 2017-08-30 00:00:00     2017-08-31      10:00 2017-08-29 14:00:00
-## 3 2017-08-31 00:00:00     2017-09-01      10:00 2017-08-30 14:00:00
-## 4 2017-09-01 00:00:00     2017-09-02      10:00 2017-08-31 14:00:00
-## 5 2017-09-02 00:00:00     2017-09-03      10:00 2017-09-01 14:00:00
-## 6 2017-09-03 00:00:00     2017-09-04      10:00 2017-09-02 14:00:00
+## 1 2017-09-19 17:00:00     2017-09-20      10:00 2017-09-19 07:00:00
+## 2 2017-09-20 00:00:00     2017-09-21      10:00 2017-09-19 14:00:00
+## 3 2017-09-21 00:00:00     2017-09-22      10:00 2017-09-20 14:00:00
+## 4 2017-09-22 00:00:00     2017-09-23      10:00 2017-09-21 14:00:00
+## 5 2017-09-23 00:00:00     2017-09-24      10:00 2017-09-22 14:00:00
+## 6 2017-09-24 00:00:00     2017-09-25      10:00 2017-09-23 14:00:00
 ##          end_time_utc minimum_temperature maximum_temperature
-## 1 2017-08-29 14:00:00                  NA                  NA
-## 2 2017-08-30 14:00:00                  10                  25
-## 3 2017-08-31 14:00:00                  11                  22
-## 4 2017-09-01 14:00:00                  10                  24
-## 5 2017-09-02 14:00:00                  10                  25
-## 6 2017-09-03 14:00:00                  12                  27
-##   lower_precipitation_limit upper_precipitation_limit           precis
-## 1                        NA                        NA    Mostly clear.
-## 2                         0                       0.0           Sunny.
-## 3                         0                       0.4 Possible shower.
-## 4                         0                       0.0           Sunny.
-## 5                         0                       0.0           Sunny.
-## 6                         0                       0.0    Mostly sunny.
-##   probability_of_precipitation
-## 1                            0
-## 2                           10
-## 3                           30
-## 4                           10
-## 5                            5
-## 6                            5</code></pre>
+## 1 2017-09-19 14:00:00                  NA                  NA
+## 2 2017-09-20 14:00:00                  15                  26
+## 3 2017-09-21 14:00:00                  14                  25
+## 4 2017-09-22 14:00:00                  16                  28
+## 5 2017-09-23 14:00:00                  16                  31
+## 6 2017-09-24 14:00:00                  20                  33
+##   lower_precipitation_limit upper_precipitation_limit
+## 1                        NA                        NA
+## 2                         0                         0
+## 3                         0                         0
+## 4                         0                         1
+## 5                         0                         0
+## 6                         0                         0
+##                      precis probability_of_precipitation
+## 1             Mostly clear.                            5
+## 2             Mostly sunny.                            0
+## 3            Partly cloudy.                           10
+## 4 Possible shower or storm.                           40
+## 5             Mostly sunny.                            0
+## 6             Mostly sunny.                            5</code></pre>
 <p>Now we use a <code>for()</code> loop that searches through the Queensland précis forecast data frame and subsets it based on location each subscriber has nominated and the temperature threshold we have set. As part of the <code>for()</code> loop there is an <code>if()</code> statement that uses the <em>mailR</em> package to send an email to the subscribers if the forecast maximum temperatures are greater than or equal to the threshold. This email informs the recipient of the dates that high temperatures are expected.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">QLD_hotdates &lt;-
 <span class="st">  </span>QLD_forecast <span class="op">%&gt;%</span>
