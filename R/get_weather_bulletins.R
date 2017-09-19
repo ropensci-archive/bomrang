@@ -20,9 +20,11 @@
 #'    \item{WA}{Western Australia}
 #'  }
 #' It is not possible to return weather bulletins for the entire country in a
-#' single call. Rainfall figures for the 9am bulletin are for the preceding 24
-#' hours, while those for the 3pm bulletin are for the preceding 6 hours since
-#' 9am.
+#' single call. Rainfall figures for the 9am bulletin are generally for the
+#' preceding 24 hours, while those for the 3pm bulletin are for the preceding 6
+#' hours since 9am. Note that values are manually entered into the bulletins and
+#' sometimes contain typographical errors which may lead to warnings about "NAs
+#' introduced by coercion".
 #'
 #' @return
 #' Tidy data frame of Australian 9am or 3pm weather observations for a state.
@@ -68,6 +70,7 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
 
   # much easier than dplyr::rename, and names vary between 9am and 3pm bulletins
   dat <- janitor::clean_names(dat)
+
   if (the_state %notin% c("WA", "SA")) {
     names(dat)[grepl("rain", names(dat))] <- "rain_mm"
     # vars for subsequent tidying:
@@ -117,6 +120,10 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
   ) %>%
     dplyr::mutate_at(.funs = as.numeric,
                      .vars = vars)
+
+  names(out) <- sub ("current_details_", "", names(out))
+  names(out) <- sub ("x24_hour_details_", "", names(out))
+  names(out) <- sub ("x6_hour_details_", "", names(out))
 
   return(out)
 }
