@@ -5,9 +5,10 @@ note <- sprintf("R package version %s", meta$Version)
 bibentry(bibtype = "Manual",
          title = "{bomrang}: Fetch Australian Government Bureau of Meteorology Weather Data",
          author = c(person("Adam", "Sparks"),
+                    person("Mark", "Padgham"),
                     person("Hugh", "Parsonage"),
                     person("Keith", "Pembleton")),
-         year = year,
+         year = 2017,
          note = note,
          url = "https://github.com/ropensci/bomrang",
          doi = "10.5281/zenodo.598301")
