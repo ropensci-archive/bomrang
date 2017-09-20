@@ -125,7 +125,10 @@ state; otherwise return the 3pm bulletin.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Tidy data frame of Australian 9am or 3pm weather observations for a state.</p>
+    <p>Tidy data frame of Australian 9am or 3pm weather observations for a state.
+For full details of fields and units returned see Appendix 4 in the
+<em>bomrang</em> vignette, use <code><a href='https://cran.rstudio.com/web/packages/bomrang/vignettes/bomrang.html'>vignette("bomrang", package = "bomrang")</a></code>
+to view.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -139,9 +142,11 @@ state; otherwise return the 3pm bulletin.</p></td>
    <dt>VIC</dt><dd><p>Victoria</p></dd>
    <dt>WA</dt><dd><p>Western Australia</p></dd>
  </dl><p>It is not possible to return weather bulletins for the entire country in a
-single call. Rainfall figures for the 9am bulletin are for the preceding 24
-hours, while those for the 3pm bulletin are for the preceding 6 hours since
-9am.</p>
+single call. Rainfall figures for the 9am bulletin are generally for the
+preceding 24 hours, while those for the 3pm bulletin are for the preceding 6
+hours since 9am. Note that values are manually entered into the bulletins and
+sometimes contain typographical errors which may lead to warnings about "NAs
+introduced by coercion".</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
@@ -178,7 +183,7 @@ Mark Padgham, <a href='mailto:mark.padgham@email.com'>mark.padgham@email.com</a>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Adam Sparks, Hugh Parsonage, Keith Pembleton, Mark Padgham.</p>
+  <p>Developed by Adam Sparks, Mark Padgham, Hugh Parsonage, Keith Pembleton.</p>
 </div>
 
 <div class="pkgdown">

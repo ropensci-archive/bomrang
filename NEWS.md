@@ -1,3 +1,19 @@
+## Major changes
+
+- Handle typos in the weather bulletins
+
+## Minor changes
+
+- Document `get_current_weather()` functionality in Appendix 4 of _bomrang_ vignette, thanks @mpadge 
+
+- Spell checking
+
+- Ready for submission to JOSS
+
+- Update codemeta json file
+
+- Ensure authorship order is the same order in all files
+
 # bomrang 0.0.6
 
 ## Bug Fixes
