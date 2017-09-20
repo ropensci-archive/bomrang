@@ -5,14 +5,14 @@ authors:
   name: Adam H Sparks
   orcid: 0000-0002-0061-8359
 - affiliation: 2
-  name: Hugh Parsonage
-  orcid: 0000-0003-4055-0835
-- affiliation: 3
-  name: Keith Pembleton
-  orcid: 0000-0002-1896-4516
-- affiliation: 4
   name: Mark Padgham
   orcid: 000-0003-2172-5265
+- affiliation: 3
+  name: Hugh Parsonage
+  orcid: 0000-0003-4055-0835
+- affiliation: 4
+  name: Keith Pembleton
+  orcid: 0000-0002-1896-4516
 date: "25 Aug 2017"
 output:
   html_document: default
@@ -31,13 +31,14 @@ affiliations:
   name: University of Southern Queensland, Centre for Crop Health, Toowoomba
     Queensland 4350, Australia
 - index: 2
-  name: Grattan Institute, Carlton Victoria 3053, Australia
-- index: 3
-  name: University of Southern Queensland, Institute for Agriculture and the
-    Environment, Toowoomba Queensland 4350, Australia
-- index: 4
   name: University of Salzburg, Inter-Faculty Department of Geoinformatics,
     5020 Salzburg, Austria
+- index: 3
+  name: Grattan Institute, Carlton Victoria 3053, Australia
+- index: 4
+  name: University of Southern Queensland, School of Agricultural, Computational
+    and Environmental Sciences, Toowoomba Queensland 4350, Australia
+
 ---
 
 # Summary
