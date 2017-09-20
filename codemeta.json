@@ -1,13 +1,16 @@
 {
-  "@context": ["https://doi.org/doi:10.5063/schema/codemeta-2.0", "http://schema.org"],
+  "@context": [
+    "https://doi.org/doi:10.5063/schema/codemeta-2.0",
+    "http://schema.org"
+  ],
   "@type": "SoftwareSourceCode",
   "identifier": "bomrang",
-  "description": "Provides functions to interface with Australian Government Bureau\n    of Meteorology (BoM) data, fetching data and returning a tidy data frame of\n    précis forecasts, current weather data from stations, agriculture\n    bulletin data, BoM 0900 or 1500 weather bulletins or a raster stack object\n    of satellite imagery from GeoTIFF files. Data (c) Australian Government\n    Bureau of Meteorology Creative Commons (CC) Attribution 3.0 licence or\n    Public Access Licence (PAL) as appropriate. See\n    http://www.bom.gov.au/other/copyright.shtml for further details.",
+  "description": "Provides functions to interface with Australian Government Bureau\n    of Meteorology (BoM) data, fetching data and returning a tidy data frame of\n    précis forecasts, current weather data from stations, agriculture\n    bulletin data, BoM 0900 or 1500 weather bulletins or a raster stack object\n    of satellite imagery from GeoTIFF files. Data (c) Australian Government\n    Bureau of Meteorology Creative Commons (CC) Attribution 3.0 licence or\n    Public Access Licence (PAL) as appropriate. See\n    <http://www.bom.gov.au/other/copyright.shtml> for further details.",
   "name": "bomrang: Fetch Australian Government Bureau of Meteorology Data",
-  "codeRepository": "https://github.com/ToowoombaTrio/bomrang.git",
+  "codeRepository": "https://github.com/ropensci/BOMRang.git",
   "issueTracker": "https://github.com/ropensci/bomrang/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -25,6 +28,13 @@
     },
     {
       "@type": "Person",
+      "givenName": "Mark",
+      "familyName": "Padgham",
+      "email": "mark.padgham@email.com",
+      "@id": "https://orcid.org/0000-0003-2172-5265"
+    },
+    {
+      "@type": "Person",
       "givenName": "Hugh",
       "familyName": "Parsonage",
       "email": "hugh.parsonage@gmail.com",
@@ -36,12 +46,6 @@
       "familyName": "Pembleton",
       "email": "keith.pembleton@usq.edu.au",
       "@id": "https://orcid.org/0000-0002-1896-4516"
-    },
-    {
-      "@type": "Person",
-      "givenName": "Mark",
-      "familyName": "Padgham",
-      "email": "mark.padgham@email.com"
     }
   ],
   "maintainer": {
@@ -369,17 +373,23 @@
     }
   ],
   "contIntegration": "https://travis-ci.org/ropensci/bomrang",
-  "releaseNotes": "https://github.com/ToowoombaTrio/bomrang.git/blob/devel/NEWS.md",
-  "readme": "https://github.com/ToowoombaTrio/bomrang.git/blob/devel/README.md",
-  "fileSize": "777.138KB",
+  "releaseNotes": "https://github.com/ropensci/BOMRang.git/blob/devel/NEWS.md",
+  "readme": "https://github.com/ropensci/BOMRang.git/blob/devel/README.md",
+  "fileSize": "778.768KB",
   "citation": [
     {
       "@type": "SoftwareSourceCode",
+      "datePublished": "2017",
       "author": [
         {
           "@type": "Person",
           "givenName": "Adam",
           "familyName": "Sparks"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Mark",
+          "familyName": "Padgham"
         },
         {
           "@type": "Person",
