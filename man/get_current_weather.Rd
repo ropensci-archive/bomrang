@@ -12,7 +12,7 @@ get_current_weather(station_name, strict = FALSE, latlon = NULL,
 via \code{\link[base]{agrep}} is done.}
 
 \item{strict}{(logical) If \code{TRUE}, \code{station_name} must match the
-station name exactly, except that \code{station_name} need not be uppercase.
+station name exactly, except that \code{station_name} need not be upper case.
 Note this may be different to \code{full_name} in the response. See
 \strong{Details}.}
 

@@ -1,3 +1,5 @@
+0.0.7
+
 ## Major changes
 
 - Handle typos in the weather bulletins

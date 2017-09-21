@@ -1,14 +1,22 @@
+citHeader("To cite bomrang in publications, please use:")
 
-year <- sub("-.*", "", meta$Date)
-note <- sprintf("R package version %s", meta$Version)
+citEntry(
+  entry = "Article",
+  author = personList(as.person("Adam H Sparks"),
+                      as.person("Mark Padgham"),
+                      as.person("Hugh Parsonage"),
+                      as.person("Keith Pembleton")),
+  title = "{bomrang}: Fetch Australian Government Bureau of Meteorology Weather Data",
+  doi = "10.21105/joss.00411",
+  year = 2017,
+  month = "sep",
+  publisher = "The Open Journal",
+  volume = 2,
+  number = 17,
+  journal = "The Journal of Open Source Software",
 
-bibentry(bibtype = "Manual",
-         title = "{bomrang}: Fetch Australian Government Bureau of Meteorology Weather Data",
-         author = c(person("Adam", "Sparks"),
-                    person("Mark", "Padgham"),
-                    person("Hugh", "Parsonage"),
-                    person("Keith", "Pembleton")),
-         year = 2017,
-         note = note,
-         url = "https://github.com/ropensci/bomrang",
-         doi = "10.5281/zenodo.598301")
+  textVersion = paste("Adam H Sparks, Mark Padgham, Hugh Parsonage and Keith Pembleton (2017).",
+        "bomrang: Fetch Australian Government Bureau of Meteorology Weather Data",
+        "The Journal of Open Source Software, 2(17).",
+        "DOI: 10.21105/joss.00411"),
+)

@@ -495,18 +495,28 @@ Meta
 
     -   All data is copyright Australia Bureau of Meteorology, BoM Copyright Notice <http://reg.bom.gov.au/other/copyright.shtml>
 
--   To cite *bomrang*, please use: Sparks A, Parsonage H, Pembleton K and Padgham M (2017). *bomrang: Fetch Australian Government Bureau of Meteorology Weather Data*. doi: 10.5281/zenodo.598301 (URL: <http://doi.org/10.5281/zenodo.598301>), R package version 0.0.6,
+-   To cite *bomrang*, please use: 
+        
+        Adam H Sparks, Mark Padgham, Hugh Parsonage and Keith Pembleton (2017).
+        bomrang: Fetch Australian Government Bureau of Meteorology Weather Data.
+        The Journal of Open Source Software, 2(17).
+        DOI: [10.21105/joss.00411](https://doi.org/10.21105/joss.00411)
 
     or the BibTeX entry:
 
     ```tex
-    @Manual{R-pkg-bomrang,
-    author       = {Adam Sparks and Hugh Parsonage and Keith Pembleton and Mark Padgham},
-    title        = {bomrang: Fetch Australian Government Bureau of Meteorology Weather Data},
-    year         = {2017},
-    doi          = {10.5281/zenodo.598301},
-    url          = {https://github.com/ropensci/bomrang},
-    }
+    @article{HSparks2017,
+    doi = {10.21105/joss.00411},
+    url = {https://doi.org/10.21105/joss.00411},
+    year  = {2017},
+    month = {sep},
+    publisher = {The Open Journal},
+    volume = {2},
+    number = {17},
+    author = {Adam H Sparks and Mark Padgham and Hugh Parsonage and Keith Pembleton},
+    title = {bomrang: Fetch Australian Government Bureau of Meteorology Data in R},
+    journal = {The Journal of Open Source Software}
+}
     ```
 
 -   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
