@@ -130,33 +130,33 @@ our_password &lt;-<span class="st"> "*password*"</span></code></pre></div>
 ## 5     4   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ## 6     5   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ##      start_time_local end_time_local UTC_offset      start_time_utc
-## 1 2017-09-20 05:00:00     2017-09-21      10:00 2017-09-19 19:00:00
-## 2 2017-09-21 00:00:00     2017-09-22      10:00 2017-09-20 14:00:00
-## 3 2017-09-22 00:00:00     2017-09-23      10:00 2017-09-21 14:00:00
-## 4 2017-09-23 00:00:00     2017-09-24      10:00 2017-09-22 14:00:00
-## 5 2017-09-24 00:00:00     2017-09-25      10:00 2017-09-23 14:00:00
-## 6 2017-09-25 00:00:00     2017-09-26      10:00 2017-09-24 14:00:00
+## 1 2017-09-22 05:00:00     2017-09-23      10:00 2017-09-21 19:00:00
+## 2 2017-09-23 00:00:00     2017-09-24      10:00 2017-09-22 14:00:00
+## 3 2017-09-24 00:00:00     2017-09-25      10:00 2017-09-23 14:00:00
+## 4 2017-09-25 00:00:00     2017-09-26      10:00 2017-09-24 14:00:00
+## 5 2017-09-26 00:00:00     2017-09-27      10:00 2017-09-25 14:00:00
+## 6 2017-09-27 00:00:00     2017-09-28      10:00 2017-09-26 14:00:00
 ##          end_time_utc minimum_temperature maximum_temperature
-## 1 2017-09-20 14:00:00                  NA                  26
-## 2 2017-09-21 14:00:00                  14                  25
-## 3 2017-09-22 14:00:00                  16                  28
-## 4 2017-09-23 14:00:00                  16                  31
-## 5 2017-09-24 14:00:00                  20                  33
-## 6 2017-09-25 14:00:00                  22                  34
+## 1 2017-09-22 14:00:00                  NA                  28
+## 2 2017-09-23 14:00:00                  16                  31
+## 3 2017-09-24 14:00:00                  19                  34
+## 4 2017-09-25 14:00:00                  21                  35
+## 5 2017-09-26 14:00:00                  20                  32
+## 6 2017-09-27 14:00:00                  18                  30
 ##   lower_precipitation_limit upper_precipitation_limit
-## 1                         0                         0
+## 1                         0                         8
 ## 2                         0                         0
-## 3                         0                         2
+## 3                         0                         0
 ## 4                         0                         0
 ## 5                         0                         0
 ## 6                         0                         0
-##                      precis probability_of_precipitation
-## 1                    Sunny.                           10
-## 2            Partly cloudy.                           10
-## 3 Possible shower or storm.                           40
-## 4             Mostly sunny.                            0
-## 5             Mostly sunny.                            5
-## 6            Partly cloudy.                           10</code></pre>
+##                           precis probability_of_precipitation
+## 1 Shower or two. Possible storm.                           70
+## 2                         Sunny.                            0
+## 3                  Mostly sunny.                            0
+## 4                 Partly cloudy.                            5
+## 5                 Partly cloudy.                            0
+## 6                 Partly cloudy.                            5</code></pre>
 <p>Now we use a <code>for()</code> loop that searches through the Queensland précis forecast data frame and subsets it based on location each subscriber has nominated and the temperature threshold we have set. As part of the <code>for()</code> loop there is an <code>if()</code> statement that uses the <em>mailR</em> package to send an email to the subscribers if the forecast maximum temperatures are greater than or equal to the threshold. This email informs the recipient of the dates that high temperatures are expected.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">QLD_hotdates &lt;-
 <span class="st">  </span>QLD_forecast <span class="op">%&gt;%</span>
