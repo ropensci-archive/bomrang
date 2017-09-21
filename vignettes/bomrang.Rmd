@@ -807,7 +807,7 @@ automated weather stations.
 	10 No high level cloud
 	11 Cirrus fibratus, sometimes unicus, not progressively invading
 	   the sky
-	12 Cirrus spissatus in patches or entangled sheaves. which usually
+	12 Cirrus spissatus in patches or entangled sheaves, which usually
 	   do not increase
 	13 Cirrus spissatus cumulonimbogenitus
 	14 Cirrus unicus or fibratus or both, progressively invading the sky
@@ -820,7 +820,7 @@ automated weather stations.
 	17 Cirrostratus covering the entire sky
 	18 Cirrostratus not covering the entire sky and not progressively
 	   invading it
-	19 Cirrocumulus alone, or Cirrocumulus predominant
+	19 Cirrocumulus alone or Cirrocumulus predominant
 	
 ## Appendix 2 - Output from `get_précis_forecast`
 
