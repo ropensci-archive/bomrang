@@ -1,11 +1,10 @@
 
-
 #' Get Current Weather Observations of a BoM Station
 #'
 #' @param station_name The name of the weather station. Fuzzy string matching
 #' via \code{\link[base]{agrep}} is done.
 #' @param strict (logical) If \code{TRUE}, \code{station_name} must match the
-#' station name exactly, except that \code{station_name} need not be uppercase.
+#' station name exactly, except that \code{station_name} need not be upper case.
 #' Note this may be different to \code{full_name} in the response. See
 #' \strong{Details}.
 #' @param latlon A length-2 numeric vector giving the decimal degree

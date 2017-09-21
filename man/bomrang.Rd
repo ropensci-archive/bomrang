@@ -18,5 +18,5 @@ and Returns a Tidy Data Frame or Raster Stack Object of the Data.
 }
 }
 \author{
-Adam H Sparks and Hugh Parsonage and Keith Pembleton
+Adam H Sparks and Mark Padgham and Hugh Parsonage and Keith Pembleton
 }
