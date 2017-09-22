@@ -8,7 +8,8 @@
 
 0 errors | 0 warnings | 1 note
 
-* This is a new release.
+* This is a resubmission with Scott Chamberlain listed in the authors as
+requested.
 
 ## Reverse dependencies
 
