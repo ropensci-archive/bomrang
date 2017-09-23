@@ -130,33 +130,33 @@ our_password &lt;-<span class="st"> "*password*"</span></code></pre></div>
 ## 5     4   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ## 6     5   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ##      start_time_local end_time_local UTC_offset      start_time_utc
-## 1 2017-09-23 05:00:00     2017-09-24      10:00 2017-09-22 19:00:00
-## 2 2017-09-24 00:00:00     2017-09-25      10:00 2017-09-23 14:00:00
-## 3 2017-09-25 00:00:00     2017-09-26      10:00 2017-09-24 14:00:00
-## 4 2017-09-26 00:00:00     2017-09-27      10:00 2017-09-25 14:00:00
-## 5 2017-09-27 00:00:00     2017-09-28      10:00 2017-09-26 14:00:00
-## 6 2017-09-28 00:00:00     2017-09-29      10:00 2017-09-27 14:00:00
+## 1 2017-09-24 05:00:00     2017-09-25      10:00 2017-09-23 19:00:00
+## 2 2017-09-25 00:00:00     2017-09-26      10:00 2017-09-24 14:00:00
+## 3 2017-09-26 00:00:00     2017-09-27      10:00 2017-09-25 14:00:00
+## 4 2017-09-27 00:00:00     2017-09-28      10:00 2017-09-26 14:00:00
+## 5 2017-09-28 00:00:00     2017-09-29      10:00 2017-09-27 14:00:00
+## 6 2017-09-29 00:00:00     2017-09-30      10:00 2017-09-28 14:00:00
 ##          end_time_utc minimum_temperature maximum_temperature
-## 1 2017-09-23 14:00:00                  NA                  31
-## 2 2017-09-24 14:00:00                  19                  34
-## 3 2017-09-25 14:00:00                  21                  35
-## 4 2017-09-26 14:00:00                  21                  32
-## 5 2017-09-27 14:00:00                  19                  30
-## 6 2017-09-28 14:00:00                  19                  33
+## 1 2017-09-24 14:00:00                  NA                  32
+## 2 2017-09-25 14:00:00                  21                  35
+## 3 2017-09-26 14:00:00                  21                  33
+## 4 2017-09-27 14:00:00                  19                  30
+## 5 2017-09-28 14:00:00                  21                  35
+## 6 2017-09-29 14:00:00                  19                  35
 ##   lower_precipitation_limit upper_precipitation_limit         precis
 ## 1                         0                         0         Sunny.
-## 2                         0                         0         Sunny.
+## 2                         0                         0 Hot and sunny.
 ## 3                         0                         0 Partly cloudy.
-## 4                         0                         0  Mostly sunny.
-## 5                         0                         0 Partly cloudy.
-## 6                         0                         0         Sunny.
+## 4                         0                         0 Partly cloudy.
+## 5                         0                         0  Mostly sunny.
+## 6                         0                         0  Mostly sunny.
 ##   probability_of_precipitation
 ## 1                            5
-## 2                            5
-## 3                           10
-## 4                            5
-## 5                           10
-## 6                            5</code></pre>
+## 2                           10
+## 3                           20
+## 4                           10
+## 5                            5
+## 6                           20</code></pre>
 <p>Now we use a <code>for()</code> loop that searches through the Queensland précis forecast data frame and subsets it based on location each subscriber has nominated and the temperature threshold we have set. As part of the <code>for()</code> loop there is an <code>if()</code> statement that uses the <em>mailR</em> package to send an email to the subscribers if the forecast maximum temperatures are greater than or equal to the threshold. This email informs the recipient of the dates that high temperatures are expected.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">QLD_hotdates &lt;-
 <span class="st">  </span>QLD_forecast <span class="op">%&gt;%</span>

@@ -14,6 +14,14 @@ Credit for the name, *bomrang*, goes to [Di Cook](http://dicook.github.io), who 
 Quick Start
 -----------
 
+Install the stable release from CRAN.
+
+``` r
+install.packages("bomrang")
+```
+
+Or from GitHub for the version in development.
+
 ``` r
 if (!require("devtools")) {
   install.packages("devtools", repos = "http://cran.rstudio.com/")
