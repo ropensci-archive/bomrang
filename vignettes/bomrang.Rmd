@@ -31,7 +31,7 @@ bulletin; and `get_weather_bulletin()` which fetches the 0900 and 1500 weather
 bulletins. A second family of functions retrieve information pertaining to
 satellite imagery, `get_available_imagery()` and the imagery itself,
 `get_satellite_imagery()`. The last group functions provides internal
-functionality for _bomrang_ itself; `update_forecast_locations()`, which updates
+functionality for _bomrang_ itself; `update_forecast_towns()`, which updates
 an internal database of forecast locations distributed with the package, 
 `sweep_for_stations()` which returns the nearest weather stations to a point in
 Australia and, `manage_cached_files()` that provides facilities for managing
@@ -245,9 +245,9 @@ paste0(.libPaths(), "/bomrang/extdata")[1]
 unless you have specified another location for library installations and
 installed _bomrang_ there, in which case it would still be in `bomrang/extdata`.
 
-### Using `update_forecast_locations`
+### Using `update_forecast_towns`
 
-`update_forecast_locations()` downloads the latest précis forecast locations
+`update_forecast_towns()` downloads the latest précis forecast locations
 from the BoM server and updates _bomrang_'s internal database of towns used for
 forecast locations. This database is distributed with the package to make the
 process faster when fetching the forecast. 
@@ -257,8 +257,8 @@ process faster when fetching the forecast.
 Following is an example updating the précis forecast locations internal
 database.
 
-```{r update_forecast_locations, eval=FALSE}
-update_forecast_locations()
+```{r update_forecast_towns, eval=FALSE}
+update_forecast_towns()
 ```
 
 ### Using `update_station_locations`
@@ -266,8 +266,7 @@ update_forecast_locations()
 `update_station_locations()` downloads the latest station locations and metadata
 and updates bomrang's internal databases that support the use of
 `get_current_weather()` and `get_ag_bulletin()`. There is no need to use this
-unless you know that a station exists in BoM's database that is not available in
-the databases distributed with _bomrang_
+unless you know that a station exists in BoM's database that is not available in the databases distributed with _bomrang_
 
 ### Example
 
