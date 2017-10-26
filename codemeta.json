@@ -7,17 +7,17 @@
   "identifier": "bomrang",
   "description": "Provides functions to interface with Australian Government Bureau\n    of Meteorology (BoM) data, fetching data and returning a tidy data frame of\n    précis forecasts, current weather data from stations, agriculture\n    bulletin data, BoM 0900 or 1500 weather bulletins or a raster stack object\n    of satellite imagery from GeoTIFF files. Data (c) Australian Government\n    Bureau of Meteorology Creative Commons (CC) Attribution 3.0 licence or\n    Public Access Licence (PAL) as appropriate. See\n    <http://www.bom.gov.au/other/copyright.shtml> for further details.",
   "name": "bomrang: Fetch Australian Government Bureau of Meteorology Data",
-  "codeRepository": "https://github.com/ropensci/BOMRang.git",
+  "codeRepository": "https://github.com/ropensci/bomrang",
   "issueTracker": "https://github.com/ropensci/bomrang/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.4.1",
+    "version": "3.4.2",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.4.1 (2017-06-30)",
+  "runtimePlatform": "R version 3.4.2 (2017-09-28)",
   "author": [
     {
       "@type": "Person",
@@ -373,17 +373,17 @@
     }
   ],
   "contIntegration": "https://travis-ci.org/ropensci/bomrang",
-  "releaseNotes": "https://github.com/ropensci/BOMRang.git/blob/devel/NEWS.md",
-  "readme": "https://github.com/ropensci/BOMRang.git/blob/devel/README.md",
-  "fileSize": "778.768KB",
+  "releaseNotes": "https://github.com/ropensci/bomrang/blob/devel/NEWS.md",
+  "readme": "https://github.com/ropensci/bomrang/blob/devel/README.md",
+  "fileSize": "774.669KB",
   "citation": [
     {
-      "@type": "SoftwareSourceCode",
+      "@type": "ScholarlyArticle",
       "datePublished": "2017",
       "author": [
         {
           "@type": "Person",
-          "givenName": "Adam",
+          "givenName": ["Adam", "H"],
           "familyName": "Sparks"
         },
         {
@@ -403,10 +403,43 @@
         }
       ],
       "name": "{bomrang}: Fetch Australian Government Bureau of Meteorology Weather Data",
-      "identifier": "10.5281/zenodo.598301",
-      "url": "https://github.com/ropensci/bomrang",
-      "@id": "https://doi.org/10.5281/zenodo.598301",
-      "sameAs": "https://doi.org/10.5281/zenodo.598301"
+      "identifier": "10.21105/joss.00411",
+      "@id": "https://doi.org/10.21105/joss.00411",
+      "sameAs": "https://doi.org/10.21105/joss.00411",
+      "isPartOf": {
+        "@type": "PublicationIssue",
+        "issueNumber": "17",
+        "datePublished": "2017",
+        "isPartOf": {
+          "@type": ["PublicationVolume", "Periodical"],
+          "volumeNumber": "2",
+          "name": "The Journal of Open Source Software"
+        }
+      }
+    }
+  ],
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Central R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
+  "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "Scott",
+      "familyName": "Chamberlain",
+      "email": "myrmecocystus@gmail.com",
+      "@id": "Contributed code for caching data files,\n    https://orcid.org/0000-0003-1444-9135"
+    }
+  ],
+  "copyrightHolder": [
+    {
+      "@type": "Person",
+      "givenName": "Scott",
+      "familyName": "Chamberlain",
+      "email": "myrmecocystus@gmail.com",
+      "@id": "Contributed code for caching data files,\n    https://orcid.org/0000-0003-1444-9135"
     }
   ]
 }
