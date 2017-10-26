@@ -2,9 +2,8 @@
 title: "bomrang Use Case"
 author: "Keith Pembleton and Adam H. Sparks"
 output:
-  html_document:
-    toc: false
-    theme: spacelab
+  rmarkdown::html_vignette:
+    toc: true
 vignette: >
   %\VignetteIndexEntry{bomrang use case}
   %\VignetteEngine{knitr::rmarkdown}

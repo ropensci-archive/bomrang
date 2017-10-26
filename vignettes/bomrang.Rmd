@@ -1,12 +1,9 @@
 ---
 title: "bomrang"
-author: "Adam H Sparks and Hugh Parsonage"
+author: "Adam H Sparks, Mark Padgham and Hugh Parsonage"
 output:
-  html_document:
+  rmarkdown::html_vignette:
     toc: true
-    toc_float: true
-    toc_depth: 3
-    theme: spacelab
 vignette: >
   %\VignetteIndexEntry{bomrang}
   %\VignetteEngine{knitr::rmarkdown}
@@ -16,7 +13,8 @@ vignette: >
 ## Introduction
 
 _bomrang_ provides functions for interacting with 
-[Australian Bureau of Meteorology (BoM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BoM serves several types of data data as XML, JSON and SHTML files. This
+[Australian Bureau of Meteorology (BoM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BoM
+serves several types of data data as XML, JSON and SHTML files. This
 package fetches these files, parses them and return a tidy data frame. Satellite
 imagery files are also made available to the public via anonymous ftp. _bomrang_
 provides functionality to query, fetch and create `raster::stack()` objects of
@@ -32,9 +30,9 @@ given station; `get_ag_bulletin()`, which retrieves the agriculture
 bulletin; and `get_weather_bulletin()` which fetches the 0900 and 1500 weather
 bulletins. A second family of functions retrieve information pertaining to
 satellite imagery, `get_available_imagery()` and the imagery itself,
-`get_satellite_imagery()`. The last group functions provides internal functionality
-for _bomrang_ itself; `update_forecast_locations()`, which updates an
-internal database of forecast locations distributed with the package, 
+`get_satellite_imagery()`. The last group functions provides internal
+functionality for _bomrang_ itself; `update_forecast_locations()`, which updates
+an internal database of forecast locations distributed with the package, 
 `sweep_for_stations()` which returns the nearest weather stations to a point in
 Australia and, `manage_cached_files()` that provides facilities for managing
 cached satellite imagery.
@@ -195,10 +193,12 @@ head(qld_weather)
 ```
 
 ## Using `sweep_for_stations`
+
 `sweep_for_stations()` only takes one argument, `latlon`, a length-2 numeric
 vector. By default, Canberra (approximately).
 
 ### Results
+
 This function will search for weather stations and return a data frame of all
 weather stations (in this package) sorted by distance from `latlon`, ascending.
 The fields in the data frame are:
