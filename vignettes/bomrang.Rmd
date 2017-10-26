@@ -952,7 +952,7 @@ for minimum temperature observed at 9am yet included in 1500 bulletin).
 
 ## Appendix 5 - Map of station locations
 
-```{r station-locations-map, fig.width = 7, fig.height = 7, message = FALSE}
+```{r station-locations-map, fig.width = 7, fig.height = 5, message = FALSE}
 if (requireNamespace("ggplot2", quietly = TRUE) &&
     requireNamespace("ggthemes", quietly = TRUE) &&
     requireNamespace("maps", quietly = TRUE) &&
