@@ -92,7 +92,7 @@
 <h2 class="hasAnchor">
 <a href="#using-bomrang" class="anchor"></a>Using <em>bomrang</em>
 </h2>
-<p>Several functions are provided by <em>bomrang</em> to retrieve Australian Bureau of Meteorology (BoM) data. A family of functions retrieve weather data and return tidy data frames; <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin; and <code><a href="../reference/get_weather_bulletin.html">get_weather_bulletin()</a></code> which fetches the 0900 and 1500 weather bulletins. A second family of functions retrieve information pertaining to satellite imagery, <code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> and the imagery itself, <code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code>. The last group functions provides internal functionality for <em>bomrang</em> itself; <code>update_forecast_locations()</code>, which updates an internal database of forecast locations distributed with the package, <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> which returns the nearest weather stations to a point in Australia and, <code>manage_cached_files()</code> that provides facilities for managing cached satellite imagery.</p>
+<p>Several functions are provided by <em>bomrang</em> to retrieve Australian Bureau of Meteorology (BoM) data. A family of functions retrieve weather data and return tidy data frames; <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin; and <code><a href="../reference/get_weather_bulletin.html">get_weather_bulletin()</a></code> which fetches the 0900 and 1500 weather bulletins. A second family of functions retrieve information pertaining to satellite imagery, <code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> and the imagery itself, <code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code>. The last group functions provides internal functionality for <em>bomrang</em> itself; <code><a href="../reference/update_forecast_towns.html">update_forecast_towns()</a></code>, which updates an internal database of forecast locations distributed with the package, <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> which returns the nearest weather stations to a point in Australia and, <code>manage_cached_files()</code> that provides facilities for managing cached satellite imagery.</p>
 </div>
 <div id="using-get_current_weather" class="section level2">
 <h2 class="hasAnchor">
@@ -126,47 +126,47 @@
 ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
 ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
 ##   local_date_time local_date_time_full        aifstime_utc      lat
-## 1      26/08:00pm  2017-10-26 20:00:00 2017-10-26 09:00:00 -37.8255
-## 2      26/07:30pm  2017-10-26 19:30:00 2017-10-26 08:30:00 -37.8255
-## 3      26/07:00pm  2017-10-26 19:00:00 2017-10-26 08:00:00 -37.8255
-## 4      26/06:30pm  2017-10-26 18:30:00 2017-10-26 07:30:00 -37.8255
-## 5      26/06:00pm  2017-10-26 18:00:00 2017-10-26 07:00:00 -37.8255
-## 6      26/05:30pm  2017-10-26 17:30:00 2017-10-26 06:30:00 -37.8255
+## 1      26/10:30pm  2017-10-26 22:30:00 2017-10-26 11:30:00 -37.8255
+## 2      26/10:00pm  2017-10-26 22:00:00 2017-10-26 11:00:00 -37.8255
+## 3      26/09:30pm  2017-10-26 21:30:00 2017-10-26 10:30:00 -37.8255
+## 4      26/09:00pm  2017-10-26 21:00:00 2017-10-26 10:00:00 -37.8255
+## 5      26/08:30pm  2017-10-26 20:30:00 2017-10-26 09:30:00 -37.8255
+## 6      26/08:00pm  2017-10-26 20:00:00 2017-10-26 09:00:00 -37.8255
 ##        lon apparent_t cloud cloud_base_m cloud_oktas cloud_type
-## 1 144.9816       14.0     -           NA          NA          -
-## 2 144.9816       13.3     -           NA          NA          -
-## 3 144.9816       13.0     -           NA          NA          -
-## 4 144.9816       13.4     -           NA          NA          -
-## 5 144.9816       12.4     -           NA          NA          -
-## 6 144.9816       11.6     -           NA          NA          -
+## 1 144.9816       13.2     -           NA          NA          -
+## 2 144.9816       14.0     -           NA          NA          -
+## 3 144.9816       14.4     -           NA          NA          -
+## 4 144.9816       14.6     -           NA          NA          -
+## 5 144.9816       13.6     -           NA          NA          -
+## 6 144.9816       14.0     -           NA          NA          -
 ##   cloud_type_id delta_t gust_kmh gust_kt air_temp dewpt  press press_msl
-## 1            NA     1.8       17       9     14.9  11.5 1010.8    1010.8
-## 2            NA     1.8       20      11     14.9  11.5 1010.5    1010.5
-## 3            NA     1.9       22      12     15.0  11.4 1010.4    1010.4
-## 4            NA     1.8       22      12     15.0  11.6 1010.1    1010.1
-## 5            NA     2.0       32      17     14.9  11.1 1010.0    1010.0
-## 6            NA     2.1       35      19     14.9  10.9 1009.9    1009.9
+## 1            NA     1.5       17       9     14.7  12.0 1011.4    1011.4
+## 2            NA     1.9       15       8     15.2  11.6 1011.4    1011.4
+## 3            NA     1.9       11       6     15.1  11.5 1011.4    1011.4
+## 4            NA     2.2       11       6     15.1  10.9 1011.3    1011.3
+## 5            NA     2.3       13       7     15.1  10.7 1010.9    1010.9
+## 6            NA     1.8       17       9     14.9  11.5 1010.8    1010.8
 ##   press_qnh press_tend rain_trace rel_hum sea_state swell_dir_worded
-## 1    1010.8          -          0      80         -                -
-## 2    1010.5          -          0      80         -                -
-## 3    1010.4          -          0      79         -                -
-## 4    1010.1          -          0      80         -                -
-## 5    1010.0          -          0      78         -                -
-## 6    1009.9          -          0      77         -                -
+## 1    1011.4          -          0      84         -                -
+## 2    1011.4          -          0      79         -                -
+## 3    1011.4          -          0      79         -                -
+## 4    1011.3          -          0      76         -                -
+## 5    1010.9          -          0      75         -                -
+## 6    1010.8          -          0      80         -                -
 ##   swell_height swell_period vis_km weather wind_dir wind_spd_kmh
-## 1           NA           NA     10       -      SSW            7
-## 2           NA           NA     10       -      SSW           11
-## 3           NA           NA     10       -      SSW           13
-## 4           NA           NA     10       -      SSW           11
-## 5           NA           NA     10       -      SSW           15
-## 6           NA           NA     10       -      SSW           19
+## 1           NA           NA     10       -      SSW           11
+## 2           NA           NA     10       -        S            9
+## 3           NA           NA     10       -      SSE            6
+## 4           NA           NA     10       -        S            4
+## 5           NA           NA     10       -        S            9
+## 6           NA           NA     10       -      SSW            7
 ##   wind_spd_kt
-## 1           4
-## 2           6
-## 3           7
-## 4           6
-## 5           8
-## 6          10</code></pre>
+## 1           6
+## 2           5
+## 3           3
+## 4           2
+## 5           5
+## 6           4</code></pre>
 </div>
 </div>
 <div id="using-get_precis_forecast" class="section level2">
@@ -397,17 +397,17 @@ QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 <p>The databases consist of three files, used by <em>bomrang</em>, <code>AAC_codes.rda</code>, <code>JSONurl_latlon_by_station_name.rda</code> and <code>stations_site_list.rda</code>. These files can be located on your local system by using the following command,</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste0</span>(<span class="kw">.libPaths</span>(), <span class="st">"/bomrang/extdata"</span>)[<span class="dv">1</span>]</code></pre></div>
 <p>unless you have specified another location for library installations and installed <em>bomrang</em> there, in which case it would still be in <code>bomrang/extdata</code>.</p>
-<div id="using-update_forecast_locations" class="section level3">
+<div id="using-update_forecast_towns" class="section level3">
 <h3 class="hasAnchor">
-<a href="#using-update_forecast_locations" class="anchor"></a>Using <code>update_forecast_locations</code>
+<a href="#using-update_forecast_towns" class="anchor"></a>Using <code>update_forecast_towns</code>
 </h3>
-<p><code>update_forecast_locations()</code> downloads the latest précis forecast locations from the BoM server and updates <em>bomrang</em>’s internal database of towns used for forecast locations. This database is distributed with the package to make the process faster when fetching the forecast.</p>
+<p><code><a href="../reference/update_forecast_towns.html">update_forecast_towns()</a></code> downloads the latest précis forecast locations from the BoM server and updates <em>bomrang</em>’s internal database of towns used for forecast locations. This database is distributed with the package to make the process faster when fetching the forecast.</p>
 </div>
 <div id="example-5" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example-5" class="anchor"></a>Example</h3>
 <p>Following is an example updating the précis forecast locations internal database.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">update_forecast_locations</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/update_forecast_towns.html">update_forecast_towns</a></span>()</code></pre></div>
 </div>
 <div id="using-update_station_locations" class="section level3">
 <h3 class="hasAnchor">

@@ -13,6 +13,9 @@ internal database
 
 - Update vignette style to use normal vignette style with table of contents
 
+- Fix error in vignette that referred to `update_forecast_locations()`, it
+should instead refer to `update_forecast_towns()`
+
 - Update internal stations list with latest data from BoM
 
 ## Bug fixes
@@ -177,7 +180,7 @@ taking too long to run
 
 - Run examples for all `get_*` functions in package
 
-- `update_precis_locations()` is now `update_forecast_locations()`
+- `update_precis_locations()` is now `update_forecast_towns()`
 
 --------------------------------------------------------------------------------
 
