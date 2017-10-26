@@ -8,8 +8,8 @@
 
 0 errors | 0 warnings | 1 note
 
-* This is a resubmission with Scott Chamberlain listed in the authors as
-requested.
+* This is a new minor release that updates the vignettes and fixes a typo in the
+DESCRIPTION file
 
 ## Reverse dependencies
 
