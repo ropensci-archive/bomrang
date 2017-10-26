@@ -1,6 +1,6 @@
 ---
 title: "bomrang Use Case"
-author: "Keith Pembleton and Adam H. Sparks"
+author: "Keith Pembleton, Adam H. Sparks and Mark Padgham"
 output:
   rmarkdown::html_vignette:
     toc: true
