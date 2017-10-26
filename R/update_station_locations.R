@@ -36,44 +36,37 @@ update_station_locations <- function() {
       "Please retry again later.\n"
     ))
 
+  curl::curl_download(
+    url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
+    destfile = paste0(tempdir(), "stations.zip"))
+
   bom_stations_raw <-
-    readr::read_table(
+    readr::read_fwf(
       file.path(tempdir(), "stations.zip"),
-      skip = 5,
-      guess_max = 20000,
-      col_names = c(
-        "site",
-        "dist",
-        "name",
-        "start",
-        "end",
-        "lat",
-        "lon",
-        "source",
-        "state",
-        "elev",
-        "bar_ht",
-        "wmo"
-      ),
-      col_types = readr::cols(
-        site = readr::col_character(),
-        dist = readr::col_character(),
-        name = readr::col_character(),
-        start = readr::col_integer(),
-        end = readr::col_integer(),
-        lat = readr::col_double(),
-        lon = readr::col_double(),
-        source = readr::col_character(),
-        state = readr::col_character(),
-        elev = readr::col_double(),
-        bar_ht = readr::col_double(),
-        wmo = readr::col_integer()
-      ),
-      na = c("..")
+      skip = 4,
+      readr::fwf_positions(
+        c(1, 9, 15, 56, 64, 72, 81, 91, 106, 110, 121, 130),
+        c(8, 14, 55, 63, 71, 80, 90, 105, 109, 120, 129, 136),
+        col_names = c(
+          "site",
+          "dist",
+          "name",
+          "start",
+          "end",
+          "lat",
+          "lon",
+          "source",
+          "state",
+          "elev",
+          "bar_ht",
+          "wmo"
+        )),
+      col_types = c("ccciiddccddi"),
+      na = c("..", ".....")
     )
 
   # trim the end of the rows off that have extra info that's not in columns
-  nrows <- nrow(bom_stations_raw) - 5
+  nrows <- nrow(bom_stations_raw) - 6
   bom_stations_raw <- bom_stations_raw[1:nrows, ]
 
   # recode the states to match product codes
@@ -82,25 +75,17 @@ update_station_locations <- function() {
   # IDQ - Qld,
   # IDS - SA,
   # IDT - Tas/Antarctica,
-  # IDV - Vic,
-  # IDW - WA
+  # IDV - Vic, IDW - WA
 
   bom_stations_raw$state_code <- NA
-  bom_stations_raw$state_code[bom_stations_raw$state == "WA"] <-
-    "W"
-  bom_stations_raw$state_code[bom_stations_raw$state == "QLD"] <-
-    "Q"
-  bom_stations_raw$state_code[bom_stations_raw$state == "VIC"] <-
-    "V"
-  bom_stations_raw$state_code[bom_stations_raw$state == "NT"] <-
-    "D"
+  bom_stations_raw$state_code[bom_stations_raw$state == "WA"] <- "W"
+  bom_stations_raw$state_code[bom_stations_raw$state == "QLD"] <- "Q"
+  bom_stations_raw$state_code[bom_stations_raw$state == "VIC"] <- "V"
+  bom_stations_raw$state_code[bom_stations_raw$state == "NT"] <- "D"
   bom_stations_raw$state_code[bom_stations_raw$state == "TAS" |
-                                bom_stations_raw$state == "ANT"] <-
-    "T"
-  bom_stations_raw$state_code[bom_stations_raw$state == "NSW"] <-
-    "N"
-  bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <-
-    "S"
+                                bom_stations_raw$state == "ANT"] <- "T"
+  bom_stations_raw$state_code[bom_stations_raw$state == "NSW"] <- "N"
+  bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <- "S"
 
   stations_site_list <-
     bom_stations_raw %>%

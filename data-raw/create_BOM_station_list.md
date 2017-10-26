@@ -61,46 +61,45 @@ library(magrittr)
 
   curl::curl_download(
     url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
-                      destfile = paste0(tempdir(), "stations.zip"))
+                      destfile = file.path(tempdir(), "stations.zip"))
 
   bom_stations_raw <-
-    readr::read_table(
-      paste0(tempdir(), "stations.zip"),
-      skip = 5,
-      guess_max = 20000,
-      col_names = c(
-        "site",
-        "dist",
-        "name",
-        "start",
-        "end",
-        "lat",
-        "lon",
-        "source",
-        "state",
-        "elev",
-        "bar_ht",
-        "wmo"
-      ),
-      col_types = readr::cols(
-        site = readr::col_character(),
-        dist = readr::col_character(),
-        name = readr::col_character(),
-        start = readr::col_integer(),
-        end = readr::col_integer(),
-        lat = readr::col_double(),
-        lon = readr::col_double(),
-        source = readr::col_character(),
-        state = readr::col_character(),
-        elev = readr::col_double(),
-        bar_ht = readr::col_double(),
-        wmo = readr::col_integer()
-      ),
-      na = c("..")
+    readr::read_fwf(
+    file.path(tempdir(), "stations.zip"),
+    skip = 4,
+    readr::fwf_positions(
+    c(1, 9, 15, 56, 64, 72, 81, 91, 106, 110, 121, 130),
+    c(8, 14, 55, 63, 71, 80, 90, 105, 109, 120, 129, 136),
+    col_names = c(
+    "site",
+    "dist",
+    "name",
+    "start",
+    "end",
+    "lat",
+    "lon",
+    "source",
+    "state",
+    "elev",
+    "bar_ht",
+    "wmo"
+    )),
+    col_types = c("ccciiddccddi"),
+    na = c("..", ".....")
     )
+```
 
-  # trim the end of the rows off that have extra info that's not in columns
-  nrows <- nrow(bom_stations_raw) - 5
+    ## Warning in rbind(names(probs), probs_f): number of columns of result is not
+    ## a multiple of vector length (arg 1)
+
+    ## Warning: 19352 parsing failures.
+    ## row # A tibble: 5 x 5 col     row   col expected actual expected   <int> <chr>    <chr>  <chr> actual 1     1   wmo  7 chars      6 file 2     2   wmo  7 chars      6 row 3     3   wmo  7 chars      6 col 4     4   wmo  7 chars      6 expected 5     5   wmo  7 chars      6 actual # ... with 1 more variables: file <chr>
+    ## ... ................. ... ............................. ........ ............................. ...... ............................. .... ............................. ... ............................. ... ............................. ........ ............................. ...... .......................................
+    ## See problems(...) for more details.
+
+``` r
+    # trim the end of the rows off that have extra info that's not in columns
+  nrows <- nrow(bom_stations_raw) - 6
   bom_stations_raw <- bom_stations_raw[1:nrows, ]
 
   # recode the states to match product codes
@@ -157,26 +156,26 @@ library(magrittr)
 
   # return only current stations listing
   stations_site_list <-
-  stations_site_list[is.na(stations_site_list$end),]
+  stations_site_list[is.na(stations_site_list$end), ]
   stations_site_list$end <- format(Sys.Date(), "%Y")
 
 stations_site_list
 ```
 
-    ## # A tibble: 7,440 x 14
+    ## # A tibble: 7,350 x 14
     ##      site  dist             name start   end      lat      lon source
     ##     <chr> <chr>            <chr> <int> <chr>    <dbl>    <dbl>  <chr>
     ##  1 001006    01     WYNDHAM AERO  1951  2017 -15.5100 128.1503    GPS
     ##  2 001007    01 TROUGHTON ISLAND  1956  2017 -13.7542 126.1485    GPS
     ##  3 001010    01            THEDA  1965  2017 -14.7883 126.4964    GPS
     ##  4 001013    01          WYNDHAM  1968  2017 -15.4869 128.1236    GPS
-    ##  5 001014    01       EMMA GORGE  1998  2017 -15.9083 128.1286  .....
+    ##  5 001014    01       EMMA GORGE  1998  2017 -15.9083 128.1286   <NA>
     ##  6 001018    01  MOUNT ELIZABETH  1973  2017 -16.4181 126.1025    GPS
     ##  7 001019    01        KALUMBURU  1997  2017 -14.2964 126.6453    GPS
     ##  8 001020    01         TRUSCOTT  1944  2017 -14.0900 126.3867    GPS
     ##  9 001023    01       EL QUESTRO  1967  2017 -16.0086 127.9806    GPS
     ## 10 001024    01        ELLENBRAE  1986  2017 -15.9572 127.0628    GPS
-    ## # ... with 7,430 more rows, and 6 more variables: state <chr>, elev <dbl>,
+    ## # ... with 7,340 more rows, and 6 more variables: state <chr>, elev <dbl>,
     ## #   bar_ht <dbl>, wmo <int>, state_code <chr>, url <chr>
 
 Save data
@@ -236,52 +235,52 @@ Session Info
     ## Session info -------------------------------------------------------------
 
     ##  setting  value                       
-    ##  version  R version 3.4.1 (2017-06-30)
-    ##  system   x86_64, darwin16.7.0        
+    ##  version  R version 3.4.2 (2017-09-28)
+    ##  system   x86_64, darwin17.0.0        
     ##  ui       unknown                     
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2017-08-10
+    ##  date     2017-10-26
 
     ## Packages -----------------------------------------------------------------
 
     ##  package    * version    date       source                          
-    ##  assertthat   0.2.0      2017-04-11 CRAN (R 3.4.1)                  
-    ##  backports    1.1.0      2017-05-22 CRAN (R 3.4.1)                  
-    ##  base       * 3.4.1      2017-07-24 local                           
-    ##  bindr        0.1        2016-11-13 CRAN (R 3.4.1)                  
-    ##  bindrcpp   * 0.2        2017-06-17 CRAN (R 3.4.1)                  
-    ##  compiler     3.4.1      2017-07-24 local                           
-    ##  curl         2.8.1      2017-07-21 CRAN (R 3.4.1)                  
-    ##  data.table   1.10.4     2017-02-01 CRAN (R 3.4.1)                  
-    ##  datasets   * 3.4.1      2017-07-24 local                           
-    ##  devtools     1.13.3     2017-08-02 cran (@1.13.3)                  
-    ##  digest       0.6.12     2017-01-27 CRAN (R 3.4.1)                  
-    ##  dplyr        0.7.2      2017-07-20 CRAN (R 3.4.1)                  
-    ##  evaluate     0.10.1     2017-06-24 CRAN (R 3.4.1)                  
-    ##  glue         1.1.1      2017-06-21 CRAN (R 3.4.1)                  
-    ##  graphics   * 3.4.1      2017-07-24 local                           
-    ##  grDevices  * 3.4.1      2017-07-24 local                           
-    ##  hms          0.3        2016-11-22 CRAN (R 3.4.1)                  
-    ##  htmltools    0.3.6      2017-04-28 CRAN (R 3.4.1)                  
-    ##  httr         1.2.1      2016-07-03 CRAN (R 3.4.1)                  
+    ##  assertthat   0.2.0      2017-04-11 CRAN (R 3.4.2)                  
+    ##  backports    1.1.1      2017-09-25 cran (@1.1.1)                   
+    ##  base       * 3.4.2      2017-09-30 local                           
+    ##  bindr        0.1        2016-11-13 CRAN (R 3.4.2)                  
+    ##  bindrcpp   * 0.2        2017-06-17 CRAN (R 3.4.2)                  
+    ##  compiler     3.4.2      2017-09-30 local                           
+    ##  curl         3.0        2017-10-06 cran (@3.0)                     
+    ##  data.table   1.10.4-2   2017-10-12 cran (@1.10.4-)                 
+    ##  datasets   * 3.4.2      2017-09-30 local                           
+    ##  devtools     1.13.3     2017-08-02 CRAN (R 3.4.2)                  
+    ##  digest       0.6.12     2017-01-27 CRAN (R 3.4.2)                  
+    ##  dplyr        0.7.4      2017-09-28 CRAN (R 3.4.2)                  
+    ##  evaluate     0.10.1     2017-06-24 cran (@0.10.1)                  
+    ##  glue         1.1.1      2017-06-21 CRAN (R 3.4.2)                  
+    ##  graphics   * 3.4.2      2017-09-30 local                           
+    ##  grDevices  * 3.4.2      2017-09-30 local                           
+    ##  hms          0.3        2016-11-22 CRAN (R 3.4.2)                  
+    ##  htmltools    0.3.6      2017-04-28 cran (@0.3.6)                   
+    ##  httr         1.3.1      2017-08-20 CRAN (R 3.4.2)                  
     ##  knitr        1.17       2017-08-10 cran (@1.17)                    
-    ##  magrittr   * 1.5        2014-11-22 CRAN (R 3.4.1)                  
-    ##  memoise      1.1.0      2017-04-21 CRAN (R 3.4.1)                  
-    ##  methods    * 3.4.1      2017-07-24 local                           
-    ##  pkgconfig    2.0.1      2017-03-21 CRAN (R 3.4.1)                  
-    ##  R6           2.2.2      2017-06-17 CRAN (R 3.4.1)                  
-    ##  Rcpp         0.12.12    2017-07-15 CRAN (R 3.4.1)                  
-    ##  readr        1.1.1      2017-05-16 CRAN (R 3.4.1)                  
-    ##  rlang        0.1.1.9000 2017-08-10 Github (tidyverse/rlang@5f0e7ec)
-    ##  rmarkdown    1.6        2017-06-15 CRAN (R 3.4.1)                  
-    ##  rprojroot    1.2        2017-01-16 CRAN (R 3.4.1)                  
-    ##  stats      * 3.4.1      2017-07-24 local                           
-    ##  stringi      1.1.5      2017-04-07 CRAN (R 3.4.1)                  
-    ##  stringr      1.2.0      2017-02-18 CRAN (R 3.4.1)                  
-    ##  tibble       1.3.3      2017-05-28 CRAN (R 3.4.1)                  
-    ##  tools        3.4.1      2017-07-24 local                           
-    ##  utils      * 3.4.1      2017-07-24 local                           
-    ##  withr        2.0.0      2017-07-28 cran (@2.0.0)                   
-    ##  yaml         2.1.14     2016-11-12 CRAN (R 3.4.1)
+    ##  magrittr   * 1.5        2014-11-22 CRAN (R 3.4.2)                  
+    ##  memoise      1.1.0      2017-04-21 CRAN (R 3.4.2)                  
+    ##  methods    * 3.4.2      2017-09-30 local                           
+    ##  pkgconfig    2.0.1      2017-03-21 CRAN (R 3.4.2)                  
+    ##  R6           2.2.2      2017-06-17 CRAN (R 3.4.2)                  
+    ##  Rcpp         0.12.13    2017-09-28 CRAN (R 3.4.2)                  
+    ##  readr        1.1.1      2017-05-16 CRAN (R 3.4.2)                  
+    ##  rlang        0.1.2.9000 2017-10-25 Github (tidyverse/rlang@cbdc3f3)
+    ##  rmarkdown    1.6        2017-06-15 cran (@1.6)                     
+    ##  rprojroot    1.2        2017-01-16 cran (@1.2)                     
+    ##  stats      * 3.4.2      2017-09-30 local                           
+    ##  stringi      1.1.5      2017-04-07 CRAN (R 3.4.2)                  
+    ##  stringr      1.2.0      2017-02-18 CRAN (R 3.4.2)                  
+    ##  tibble       1.3.4      2017-08-22 CRAN (R 3.4.2)                  
+    ##  tools        3.4.2      2017-09-30 local                           
+    ##  utils      * 3.4.2      2017-09-30 local                           
+    ##  withr        2.0.0      2017-07-28 CRAN (R 3.4.2)                  
+    ##  yaml         2.1.14     2016-11-12 cran (@2.1.14)
