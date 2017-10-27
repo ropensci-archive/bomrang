@@ -9,8 +9,8 @@
 
 0 errors | 0 warnings | 1 note
 
-* This is a new minor release that with bug fixes, updates and corrections to
-the vignettes and corrections in the DESCRIPTION file
+* This is a new minor release that fixes bugs, provides updates and corrects the
+the vignettes and fixes typos in the DESCRIPTION file
 
 ## Reverse dependencies
 
