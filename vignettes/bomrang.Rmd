@@ -390,6 +390,10 @@ the cached files:
 
 - Delete all files in cache, `bomrang_cache_delete_all()`
 
+To access the files directly, outside of R, the following command will give you the location of the directory:
+
+`rappdirs::user_cache_dir("bomrang")`
+
 ## References
 
 [Australian Bureau of Meteorology (BoM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml)

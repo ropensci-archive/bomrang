@@ -37,6 +37,9 @@
 #'\item{IDE00439}{AHI VIS (Ch3) greyscale 0.5km AUS equirect. GIS}
 #'}
 #'
+#' We cache using \code{\link[rappdirs]{user_cache_dir}}, find your
+#' cache folder by executing \code{rappdirs::user_cache_dir("bomrang")}
+#'
 #' @return
 #' A vector of all available files for the requested Product ID(s).
 #'
