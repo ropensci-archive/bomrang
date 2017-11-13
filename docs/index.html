@@ -513,7 +513,7 @@ avail &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_avai
 <ul>
 <li><p><code>product_id</code>, a character value of the BoM product ID to download. Alternatively, a vector of values from <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code> may be used here. This argument is mandatory.</p></li>
 <li><p><code>scans</code> a numeric value for the number of scans to download, starting with the most recent and progressing backwards, <em>e.g.</em>, <code>1</code> - the most recent single scan available , <code>6</code> - the most recent hour available, <code>12</code> - the most recent 2 hours available, etc. Negating will return the oldest files first. Defaults to 1. This argument is optional.</p></li>
-<li><p><code>cache</code> a logical value that indicates whether or not to store image files locally for later use? If <code>FALSE</code>, the downloaded files are removed when R session is closed. To take advantage of cached files in future sessions, set <code>TRUE</code>. Defaults to <code>FALSE</code>. This argument is optional. Cached files may be managed with the <code><a href="reference/manage_bomrang_cache.html">manage_bomrang_cache()</a></code> function.</p></li>
+<li><p><code>cache</code> a logical value that indicates whether or not to store image files locally for later use? If <code>FALSE</code>, the downloaded files are removed when R session is closed. To take advantage of cached files in future sessions, set <code>TRUE</code>. Defaults to <code>FALSE</code>. This argument is optional. Cached files may be managed with the <code>manage_bomrang_cache()</code> function.</p></li>
 </ul>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use `avail` from prior and download only most recent scan</span>
 imagery &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_satellite_imagery.html">get_satellite_imagery</a></span>(<span class="dt">product_id =</span> avail, <span class="dt">scans =</span> <span class="dv">1</span>)
@@ -597,7 +597,6 @@ journal = {The Journal of Open Source Software}
 </li>
 <li>Keith Pembleton <br><small class="roles"> Author </small> <br><small>(https://orcid.org/0000-0002-1896-4516)</small>
 </li>
-<li><a href="authors.html">All authors...</a></li>
 </ul>
 <h2>Dev status</h2>
 <ul class="list-unstyled">

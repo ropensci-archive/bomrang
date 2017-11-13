@@ -24,16 +24,13 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
 }
 
 #' @noRd
+# Check if user enables caching. If so use cache directory, else use tempdir()
 .set_cache <- function(cache) {
   if (isTRUE(cache)) {
-    cache_dir <- rappdirs::user_cache_dir("bomrang")
-    if (!dir.exists(cache_dir)) {
-      dir.create(
-        rappdirs::user_cache_dir(appname = "bomrang",
-                                 appauthor = "bomrang"),
-        recursive = TRUE
-      )
+    if (!dir.exists(manage_cache$cache_path_get())) {
+      manage_cache$mkdir()
     }
+    cache_dir <- manage_cache$cache_path_get()
   } else {
     cache_dir <- tempdir()
   }
@@ -42,7 +39,6 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
 
 
 #' @noRd
-
 # Check states for précis and ag bulletin, use fuzzy matching
 
 .check_states <- function(state) {

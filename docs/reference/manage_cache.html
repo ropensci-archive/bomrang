@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Articles • bomrang</title>
+<title>Manage locally cached BoM files — manage_cache • bomrang</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -37,7 +37,7 @@
   </head>
 
   <body>
-    <div class="container template-vignette-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -95,21 +95,73 @@
       
       </header>
 
-      <div class="page-header">
-  <h1>Articles <small>version&nbsp;0.0.8</small></h1>
-</div>
-
-<div class="row">
-  <div class="col-md-9">
-    <div class="section ">
-      <h3>All vignettes</h3>
-      <p class="section-desc"></p>
-
-      <ul>
-        <li><a href="bomrang.html">bomrang</a></li>
-        <li><a href="use_case.html">bomrang Use Case</a></li>
-      </ul>
+      <div class="row">
+  <div class="col-md-9 contents">
+    <div class="page-header">
+    <h1>Manage locally cached BoM files</h1>
     </div>
+
+    
+    <p>Manage cached <span class="pkg">bomrang</span> satelite imagery files with
+<span class="pkg">hoardr</span>.</p>
+    
+
+        
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>The default cache directory is
+<code>file.path(rappdirs::user_cache_dir(), "R/bomrang")</code>, but you can
+set your own path using <code>manage_cache$cache_path_set()</code>
+    <code>manage_cache$cache_delete</code> only accepts one file name, while
+<code>manage_cache$cache_delete_all</code>
+does not accept any names, but deletes all files. For deleting many specific
+files, use <code>manage_cache$cache_delete</code> in an
+<code><a href='http://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a>()</code> type call.</p>
+    
+    <h2 class="hasAnchor" id="useful-user-functions"><a class="anchor" href="#useful-user-functions"></a>Useful user functions</h2>
+
+    
+    <ul>
+<li><p><code>manage_cache$cache_path_get()</code> - get cache path</p></li>
+<li><p><code>manage_cache$cache_path_set()</code> - set cache path</p></li>
+<li><p><code>manage_cache$list()</code> - returns a character vector of full
+ path file names</p></li>
+<li><p><code>manage_cache$files()</code> - returns file objects with metadata</p></li>
+<li><p><code>manage_cache$details()</code> - returns files with details</p></li>
+<li><p><code>manage_cache$delete()</code> - delete specific files</p></li>
+<li><p><code>manage_cache$delete_all()</code> - delete all files, returns
+ nothing</p></li>
+</ul>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='co'># list files in cache</span>
+<span class='no'>manage_cache</span>$<span class='fu'>list</span>()
+
+<span class='co'># delete certain database files</span>
+<span class='no'>manage_cache</span>$<span class='fu'>delete</span>(<span class='st'>"file path"</span>)
+<span class='no'>manage_cache</span>$<span class='fu'>list</span>()
+
+<span class='co'># delete all files in cache</span>
+<span class='no'>manage_cache</span>$<span class='fu'>delete_all</span>()
+<span class='no'>manage_cache</span>$<span class='fu'>list</span>()
+
+<span class='co'># set a different cache path from the default</span>
+<span class='no'>manage_cache</span>$<span class='fu'>cache_path_set</span>(<span class='st'>"~/tmp"</span>)
+<span class='co'># }</span></pre>
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#useful-user-functions">Useful user functions</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
   </div>
 </div>
 

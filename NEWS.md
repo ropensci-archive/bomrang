@@ -1,6 +1,9 @@
-# bomrang 0.0.8.9000
 
 # bomrang 0.0.8.9000
+
+## Major changes
+
+- Use _hoardr_ to manage file caching
 
 ## Minor changes
 
