@@ -22,7 +22,7 @@ test_that("get_available_imagery functions properly", {
                           scans = 1,
                           cache = TRUE)
   expect_is(j, "RasterStack")
-  expect_true(manage_cache$cache_path_get())
+  expect_true(dir.exists(manage_cache$cache_path_get()))
 
 })
 
