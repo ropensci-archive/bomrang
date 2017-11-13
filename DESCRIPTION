@@ -39,7 +39,6 @@ Imports:
     magrittr (>= 1.5),
     raster,
     rgdal,
-    rappdirs (>= 0.3.1),
     readr (>= 1.1.1),
     rlang (>= 0.1.1),
     rvest,
@@ -59,7 +58,8 @@ Suggests:
     grid,
     gridExtra,
     maps,
-    mapproj
+    mapproj,
+    rappdirs
 RoxygenNote: 6.0.1
 NeedsCompilation: no
 ByteCompile: TRUE
