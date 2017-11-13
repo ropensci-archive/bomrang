@@ -1,4 +1,5 @@
 
+
 context("Cache directory handling")
 
 # test that .set_cache() creates a cache directory if none exists --------------
@@ -7,7 +8,7 @@ test_that("test that set_cache creates a cache directory if none exists", {
   unlink(rappdirs::user_cache_dir("bomrang"), recursive = TRUE)
   cache <- TRUE
   .set_cache(cache)
-  expect_true(manage_cache$cache_path_get())
+  expect_true(dir.exists(manage_cache$cache_path_get()))
   # cleanup
   unlink(manage_cache$cache_path_get())
 })
@@ -27,9 +28,7 @@ test_that("cache directory is created if necessary", {
          recursive = TRUE)
   cache <- TRUE
   cache_dir <- .set_cache(cache)
-  expect_true(dir.exists(
-    manage_cache$cache_path_get()
-  ))
+  expect_true(dir.exists(manage_cache$cache_path_get()))
 })
 
 # test that file lists and deletions are properly handled ----------------------
@@ -37,15 +36,14 @@ test_that("cache directory is created if necessary", {
 test_that("caching utils list files in cache and delete when asked", {
   skip_on_cran()
   unlink(manage_cache$cache_path_get())
-  f <- raster::raster(system.file("external/test.grd", package = "raster"))
-  cache_dir <- rappdirs::user_cache_dir(appname = "bomrang",
-                                        appauthor = "bomrang")
+  f <-
+    raster::raster(system.file("external/test.grd", package = "raster"))
+  cache_dir <- manage_cache$cache_path_get()
   raster::writeRaster(f, file.path(cache_dir, "file1.tif"), format = "GTiff")
   raster::writeRaster(f, file.path(cache_dir, "file2.tif"), format = "GTiff")
 
   # test bomrang cache list
-  k <- list.files(rappdirs::user_cache_dir(appname = "bomrang",
-                                           appauthor = "bomrang"))
+  k <- basename(manage_cache$list())
   expect_equal(basename(manage_cache$list()), k)
 
   # file should not exist, expect error
@@ -53,15 +51,11 @@ test_that("caching utils list files in cache and delete when asked", {
 
   # test delete one file
   manage_cache$delete("file1.tif")
-  l <- list.files(rappdirs::user_cache_dir(appname = "bomrang",
-                                           appauthor = "bomrang"))
+  l <- basename(manage_cache$list())
   expect_equal(basename(manage_cache$list()), l)
 
   # test delete all
   manage_cache$delete_all()
-  expect_equal(list.files(rappdirs::user_cache_dir(appname = "bomrang",
-                                                   appauthor = "bomrang")
-  ),
-  character(0))
-}
-)
+  expect_equal(manage_cache$list(),
+               character(0))
+})
