@@ -7,10 +7,9 @@ test_that("test that set_cache creates a cache directory if none exists", {
   unlink(rappdirs::user_cache_dir("bomrang"), recursive = TRUE)
   cache <- TRUE
   .set_cache(cache)
-  expect_true(file.exists(file.path(rappdirs::user_cache_dir("bomrang"))))
+  expect_true(manage_cache$cache_path_get())
   # cleanup
-  unlink(rappdirs::user_cache_dir(appname = "bomrang",
-                                  appauthor = "bomrang"))
+  unlink(manage_cache$cache_path_get())
 })
 
 # test that .set_cache() does a cache directory if cache is FALSE --------------
@@ -24,14 +23,12 @@ test_that("test that set_cache does not create a dir if cache == FALSE", {
 
 test_that("cache directory is created if necessary", {
   # if cache directory exists during testing, remove it
-  unlink(rappdirs::user_cache_dir(appname = "bomrang",
-                                  appauthor = "bomrang"),
+  unlink(manage_cache$cache_path_get(),
          recursive = TRUE)
   cache <- TRUE
   cache_dir <- .set_cache(cache)
   expect_true(dir.exists(
-    rappdirs::user_cache_dir(appname = "bomrang",
-                             appauthor = "bomrang")
+    manage_cache$cache_path_get()
   ))
 })
 
@@ -39,8 +36,7 @@ test_that("cache directory is created if necessary", {
 
 test_that("caching utils list files in cache and delete when asked", {
   skip_on_cran()
-  unlink(rappdirs::user_cache_dir(appname = "bomrang",
-                                  appauthor = "bomrang"))
+  unlink(manage_cache$cache_path_get())
   f <- raster::raster(system.file("external/test.grd", package = "raster"))
   cache_dir <- rappdirs::user_cache_dir(appname = "bomrang",
                                         appauthor = "bomrang")
@@ -50,19 +46,19 @@ test_that("caching utils list files in cache and delete when asked", {
   # test bomrang cache list
   k <- list.files(rappdirs::user_cache_dir(appname = "bomrang",
                                            appauthor = "bomrang"))
-  expect_equal(basename(bomrang_cache_list()), k)
+  expect_equal(basename(manage_cache$list()), k)
 
   # file should not exist, expect error
-  expect_error(bomrang_cache_delete("file1.asc"))
+  expect_error(manage_cache$delete("file1.asc"))
 
   # test delete one file
-  bomrang_cache_delete("file1.tif")
+  manage_cache$delete("file1.tif")
   l <- list.files(rappdirs::user_cache_dir(appname = "bomrang",
                                            appauthor = "bomrang"))
-  expect_equal(basename(bomrang_cache_list()), l)
+  expect_equal(basename(manage_cache$list()), l)
 
   # test delete all
-  bomrang_cache_delete_all()
+  manage_cache$delete_all()
   expect_equal(list.files(rappdirs::user_cache_dir(appname = "bomrang",
                                                    appauthor = "bomrang")
   ),
