@@ -11,8 +11,7 @@ test_that("Error handling", {
 test_that("get_available_imagery functions properly", {
   skip_on_cran()
   # if cache directory exists during testing, remove it for following tests
-  unlink(rappdirs::user_cache_dir(appname = "bomrang",
-                                  appauthor = "bomrang"),
+  unlink(manage_cache$cache_path_get(),
          recursive = TRUE)
 
   i <- get_available_imagery()
@@ -23,10 +22,7 @@ test_that("get_available_imagery functions properly", {
                           scans = 1,
                           cache = TRUE)
   expect_is(j, "RasterStack")
-  expect_true(dir.exists(
-    rappdirs::user_cache_dir(appname = "bomrang",
-                             appauthor = "bomrang")
-  ))
+  expect_true(manage_cache$cache_path_get())
 
 })
 
