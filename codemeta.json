@@ -1,16 +1,13 @@
 {
-  "@context": [
-    "https://doi.org/doi:10.5063/schema/codemeta-2.0",
-    "http://schema.org"
-  ],
+  "@context": ["https://doi.org/doi:10.5063/schema/codemeta-2.0", "http://schema.org"],
   "@type": "SoftwareSourceCode",
   "identifier": "bomrang",
   "description": "Provides functions to interface with Australian Government Bureau\n    of Meteorology (BoM) data, fetching data and returning a tidy data frame of\n    précis forecasts, current weather data from stations, agriculture\n    bulletin data, BoM 0900 or 1500 weather bulletins or a raster stack object\n    of satellite imagery from GeoTIFF files. Data (c) Australian Government\n    Bureau of Meteorology Creative Commons (CC) Attribution 3.0 licence or\n    Public Access Licence (PAL) as appropriate. See\n    <http://www.bom.gov.au/other/copyright.shtml> for further details.",
-  "name": "bomrang: Fetch Australian Government Bureau of Meteorology Data",
-  "codeRepository": "https://github.com/ropensci/BOMRang.git",
+  "name": "bomrang: Australian Government Bureau of Meteorology Data from R",
+  "codeRepository": "https://github.com/ToowoombaTrio/bomrang.git",
   "issueTracker": "https://github.com/ropensci/bomrang/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.0.8",
+  "version": "0.0.8.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -18,6 +15,12 @@
     "url": "https://r-project.org"
   },
   "runtimePlatform": "R version 3.4.2 (2017-09-28)",
+  "provider": {
+    "@id": "https://cran.r-project.org",
+    "@type": "Organization",
+    "name": "Central R Archive Network (CRAN)",
+    "url": "https://cran.r-project.org"
+  },
   "author": [
     {
       "@type": "Person",
@@ -56,17 +59,6 @@
     "@id": "https://orcid.org/0000-0002-0061-8359"
   },
   "softwareSuggestions": [
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "ccafs",
-      "name": "ccafs",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      }
-    },
     {
       "@type": "SoftwareApplication",
       "identifier": "covr",
@@ -234,6 +226,17 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "hoardr",
+      "name": "hoardr",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "janitor",
       "name": "janitor",
       "provider": {
@@ -282,18 +285,6 @@
       "@type": "SoftwareApplication",
       "identifier": "rgdal",
       "name": "rgdal",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "rappdirs",
-      "name": "rappdirs",
-      "version": "0.3.1",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -373,9 +364,9 @@
     }
   ],
   "contIntegration": "https://travis-ci.org/ropensci/bomrang",
-  "releaseNotes": "https://github.com/ropensci/BOMRang.git/blob/devel/NEWS.md",
-  "readme": "https://github.com/ropensci/BOMRang.git/blob/devel/README.md",
-  "fileSize": "775.263KB",
+  "releaseNotes": "https://github.com/ToowoombaTrio/bomrang.git/blob/devel/NEWS.md",
+  "readme": "https://github.com/ToowoombaTrio/bomrang.git/blob/devel/README.md",
+  "fileSize": "774.663KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -416,30 +407,6 @@
           "name": "The Journal of Open Source Software"
         }
       }
-    }
-  ],
-  "provider": {
-    "@id": "https://cran.r-project.org",
-    "@type": "Organization",
-    "name": "Central R Archive Network (CRAN)",
-    "url": "https://cran.r-project.org"
-  },
-  "contributor": [
-    {
-      "@type": "Person",
-      "givenName": "Scott",
-      "familyName": "Chamberlain",
-      "email": "myrmecocystus@gmail.com",
-      "@id": "Contributed code for caching data files,\n    https://orcid.org/0000-0003-1444-9135"
-    }
-  ],
-  "copyrightHolder": [
-    {
-      "@type": "Person",
-      "givenName": "Scott",
-      "familyName": "Chamberlain",
-      "email": "myrmecocystus@gmail.com",
-      "@id": "Contributed code for caching data files,\n    https://orcid.org/0000-0003-1444-9135"
     }
   ]
 }
