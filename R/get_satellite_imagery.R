@@ -37,9 +37,6 @@
 #'\item{IDE00439}{AHI VIS (Ch3) greyscale 0.5km AUS equirect. GIS}
 #'}
 #'
-#' We cache using \code{\link[rappdirs]{user_cache_dir}}, find your
-#' cache folder by executing \code{rappdirs::user_cache_dir("bomrang")}
-#'
 #' @return
 #' A vector of all available files for the requested Product ID(s).
 #'
@@ -112,8 +109,13 @@ get_available_imagery <- function(product_id = "all") {
 #' \item{IDE00439}{AHI VIS (Ch3) greyscale 0.5km AUS equirect. GIS}
 #'}
 #'
+#' We cache using \pkg{hoardr}, find your cache folder by executing
+#' \code{manage_cache$cache_path_get}.
+#'
+#'
 #'@seealso
 #'\code{\link{get_available_imagery}}
+#'\code{\link{manage_cache}}
 #'
 #' @return
 #' A raster stack of GeoTIFF images with layers named by BoM Product ID,

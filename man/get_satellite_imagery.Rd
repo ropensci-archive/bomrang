@@ -56,6 +56,9 @@ Valid BoM satellite Product IDs include:
 \item{IDE00437}{AHI WV (Ch8) 2km AUS equirect. GIS}
 \item{IDE00439}{AHI VIS (Ch3) greyscale 0.5km AUS equirect. GIS}
 }
+
+We cache using \pkg{hoardr}, find your cache folder by executing
+\code{manage_cache$cache_path_get}.
 }
 \examples{
 \dontrun{
@@ -78,6 +81,7 @@ Australian Bureau of Meteorology (BoM) High-definition satellite images
 }
 \seealso{
 \code{\link{get_available_imagery}}
+\code{\link{manage_cache}}
 }
 \author{
 Adam H Sparks, \email{adamhsparks@gmail.com}

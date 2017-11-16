@@ -45,9 +45,6 @@ equirect. GIS}
 \item{IDE00437}{AHI WV (Ch8) 2km AUS equirect. GIS}
 \item{IDE00439}{AHI VIS (Ch3) greyscale 0.5km AUS equirect. GIS}
 }
-
-We cache using \code{\link[rappdirs]{user_cache_dir}}, find your
-cache folder by executing \code{rappdirs::user_cache_dir("bomrang")}
 }
 \examples{
 \dontrun{
