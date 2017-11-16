@@ -263,34 +263,34 @@ QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../referenc
 
 QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_ag_bulletin.html">get_ag_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)
 <span class="kw">head</span>(QLD_bulletin)</code></pre></div>
-<pre><code>##   product_id state dist   wmo  site          station
-## 1   IDQ60604   QLD   38 95482 38026       Birdsville
-## 2   IDQ60604   QLD   40 94578 40842 Brisbane Airport
-## 3   IDQ60604   QLD   39 94387 39128        Bundaberg
-## 4   IDQ60604   QLD   31 94287 31011           Cairns
-## 5   IDQ60604   QLD   44 94510 44021      Charleville
-## 6   IDQ60604   QLD   33 94360 33013     Collinsville
-##                  full_name      obs_time_local        obs_time_utc
-## 1       BIRDSVILLE AIRPORT 2017-11-16 09:00:00 2017-11-15 23:00:00
-## 2            BRISBANE AERO 2017-11-16 09:00:00 2017-11-15 23:00:00
-## 3           BUNDABERG AERO 2017-11-16 09:00:00 2017-11-15 23:00:00
-## 4              CAIRNS AERO 2017-11-16 09:00:00 2017-11-15 23:00:00
-## 5         CHARLEVILLE AERO 2017-11-16 09:00:00 2017-11-15 23:00:00
-## 6 COLLINSVILLE POST OFFICE 2017-11-16 09:00:00 2017-11-15 23:00:00
-##   time_zone      lat      lon  elev bar_ht start  end  r   tn   tx twd  ev
-## 1       EST -25.8975 139.3472  46.6   47.0  2000 2017  0 19.9 32.2 6.3  NA
-## 2       EST -27.3917 153.1292   4.5    9.5  1992 2017  0 16.7 26.2 6.3 6.6
-## 3       EST -24.9069 152.3230  30.8   31.5  1942 2017  0 16.4 26.5 6.0  NA
-## 4       EST -16.8736 145.7458   2.2    8.3  1941 2017  0 22.9 30.9 5.0  NA
-## 5       EST -26.4139 146.2558 301.6  303.3  1942 2017 NA   NA   NA 9.4  NA
-## 6       EST -20.5533 147.8464 196.0     NA  1939 2017  0 17.4 30.0 4.4 4.0
-##     tg   sn   t5  t10  t20  t50  t1m  wr
-## 1   NA   NA   NA   NA   NA   NA   NA  NA
-## 2 14.9 10.7 27.0 26.0 25.0 25.0 25.0 191
-## 3   NA   NA 24.3 24.4 24.9 24.6 24.9 198
-## 4   NA   NA   NA   NA   NA   NA   NA  NA
-## 5   NA   NA   NA   NA   NA   NA   NA  NA
-## 6   NA   NA   NA   NA   NA   NA   NA  NA</code></pre>
+<pre><code>##   product_id state dist   wmo  site          station          full_name
+## 1   IDQ60604   QLD   38 95482 38026       Birdsville BIRDSVILLE AIRPORT
+## 2   IDQ60604   QLD   38 94333 38003           Boulia     BOULIA AIRPORT
+## 3   IDQ60604   QLD   40 94578 40842 Brisbane Airport      BRISBANE AERO
+## 4   IDQ60604   QLD   39 94387 39128        Bundaberg     BUNDABERG AERO
+## 5   IDQ60604   QLD   31 94287 31011           Cairns        CAIRNS AERO
+## 6   IDQ60604   QLD   44 94510 44021      Charleville   CHARLEVILLE AERO
+##        obs_time_local        obs_time_utc time_zone      lat      lon
+## 1 2017-11-16 09:00:00 2017-11-15 23:00:00       EST -25.8975 139.3472
+## 2 2017-11-16 09:00:00 2017-11-15 23:00:00       EST -22.9117 139.9039
+## 3 2017-11-16 09:00:00 2017-11-15 23:00:00       EST -27.3917 153.1292
+## 4 2017-11-16 09:00:00 2017-11-15 23:00:00       EST -24.9069 152.3230
+## 5 2017-11-16 09:00:00 2017-11-15 23:00:00       EST -16.8736 145.7458
+## 6 2017-11-16 09:00:00 2017-11-15 23:00:00       EST -26.4139 146.2558
+##    elev bar_ht start  end  r   tn   tx  twd   ev   tg   sn   t5  t10  t20
+## 1  46.6   47.0  2000 2017  0 19.9 32.2  6.3   NA   NA   NA   NA   NA   NA
+## 2 161.8  158.3  1886 2017  0 22.5 37.5 10.2 16.0 21.5   NA   NA   NA   NA
+## 3   4.5    9.5  1992 2017  0 16.7 26.2  6.3  6.6 14.9 10.7 27.0 26.0 25.0
+## 4  30.8   31.5  1942 2017  0 16.4 26.5  6.0   NA   NA   NA 24.3 24.4 24.9
+## 5   2.2    8.3  1941 2017  0 22.9 30.9  5.0   NA   NA   NA   NA   NA   NA
+## 6 301.6  303.3  1942 2017 NA   NA   NA  9.4   NA   NA   NA   NA   NA   NA
+##    t50  t1m  wr
+## 1   NA   NA  NA
+## 2   NA   NA  NA
+## 3 25.0 25.0 191
+## 4 24.6 24.9 198
+## 5   NA   NA  NA
+## 6   NA   NA  NA</code></pre>
 </div>
 </div>
 <div id="using-get_weather_bulletin" class="section level2">

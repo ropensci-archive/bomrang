@@ -33,7 +33,7 @@ loss. It does this by using the `get_precis_forecast()` function from
 _bomrang_ along with functionality from 
 [_mailR_](https://CRAN.R-project.org/package=mailR) (Rahul 2015).
 ```{r install_packages, eval=FALSE}
-devtools::install_github("toowoombatrio/bomrang")
+install.packages("bomrang")
 install.packages("mailR")
 library(dplyr)  # filter()
 library(bomrang)
