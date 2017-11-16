@@ -48,7 +48,6 @@ Imports:
 Encoding: UTF-8
 LazyData: true
 Suggests:
-    ccafs,
     covr,
     testthat,
     knitr,
@@ -58,8 +57,7 @@ Suggests:
     grid,
     gridExtra,
     maps,
-    mapproj,
-    rappdirs
+    mapproj
 RoxygenNote: 6.0.1
 NeedsCompilation: no
 ByteCompile: TRUE
