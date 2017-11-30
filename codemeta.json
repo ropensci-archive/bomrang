@@ -5,9 +5,10 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "bomrang",
-  "description": "Provides functions to interface with Australian Government Bureau\n    of Meteorology (BoM) data, fetching data and returning a tidy data frame of\n    précis forecasts, current weather data from stations, agriculture\n    bulletin data, BoM 0900 or 1500 weather bulletins or a raster stack object\n    of satellite imagery from GeoTIFF files. Data (c) Australian Government\n    Bureau of Meteorology Creative Commons (CC) Attribution 3.0 licence or\n    Public Access Licence (PAL) as appropriate. See\n    <http://www.bom.gov.au/other/copyright.shtml> for further details.",
+  "description":
+    "Provides functions to interface with Australian Government Bureau\n    of Meteorology (BoM) data, fetching data and returning a tidy data frame of\n    précis forecasts, current weather data from stations, agriculture\n    bulletin data, BoM 0900 or 1500 weather bulletins or a raster stack object\n    of satellite imagery from GeoTIFF files. Data (c) Australian Government\n    Bureau of Meteorology Creative Commons (CC) Attribution 3.0 licence or\n    Public Access Licence (PAL) as appropriate. See\n    <http://www.bom.gov.au/other/copyright.shtml> for further details.",
   "name": "bomrang: Australian Government Bureau of Meteorology Data from R",
-  "codeRepository": "https://github.com/ropensci/bomrang",
+  "codeRepository": "https://github.com/ropensci/bomrang.git",
   "issueTracker": "https://github.com/ropensci/bomrang/issues",
   "license": "https://spdx.org/licenses/MIT",
   "version": "0.0.8.9000",
@@ -367,9 +368,9 @@
     }
   ],
   "contIntegration": "https://travis-ci.org/ropensci/bomrang",
-  "releaseNotes": "https://github.com/ropensci/bomrang/blob/devel/NEWS.md",
-  "readme": "https://github.com/ropensci/bomrang/blob/devel/README.md",
-  "fileSize": "774.664KB",
+  "releaseNotes": "https://github.com/ropensci/bomrang.git/blob/master/NEWS.md",
+  "readme": "https://github.com/ropensci/bomrang.git/blob/master/README.md",
+  "fileSize": "774.47KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -396,7 +397,8 @@
           "familyName": "Pembleton"
         }
       ],
-      "name": "{bomrang}: Fetch Australian Government Bureau of Meteorology Weather Data",
+      "name":
+        "{bomrang}: Fetch Australian Government Bureau of Meteorology Weather Data",
       "identifier": "10.21105/joss.00411",
       "@id": "https://doi.org/10.21105/joss.00411",
       "sameAs": "https://doi.org/10.21105/joss.00411",
@@ -411,5 +413,17 @@
         }
       }
     }
+  ],
+  "applicationCategory": "Tools",
+  "isPartOf": "https://ropensci.org",
+  "keywords": [
+    "bom",
+    "meteorological-data",
+    "weather-forecast",
+    "australia",
+    "weather",
+    "weather-data",
+    "meteorology",
+    "australia-bureau-of-meteorology"
   ]
 }
