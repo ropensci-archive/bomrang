@@ -61,8 +61,6 @@ get_available_imagery <- function(product_id = "all") {
   print(tif_list)
 }
 
-# get_satellite_imagery() ------------------------------------------------------------
-
 #' Get BoM Satellite GeoTIFF Imagery
 #'
 #' Fetch BoM satellite GeoTIFF imagery from
