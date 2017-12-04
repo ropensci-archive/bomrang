@@ -1,53 +1,59 @@
 Create Databases of BoM Station Locations and JSON URLs
 ================
 
-This document provides details on methods used to create the database of BoM JSON files for stations and corresponding metadata, *e.g.*, latitude, longitude (which are more detailed than what is in the JSON file), start, end, elevation, etc.
+This document provides details on methods used to create the database of
+BoM JSON files for stations and corresponding metadata, *e.g.*,
+latitude, longitude (which are more detailed than what is in the JSON
+file), start, end, elevation, etc.
 
 Refer to these BoM pages for more reference:
 
--   <http://www.bom.gov.au/inside/itb/dm/idcodes/struc.shtml>
+  - <http://www.bom.gov.au/inside/itb/dm/idcodes/struc.shtml>
 
--   <http://reg.bom.gov.au/catalogue/data-feeds.shtml>
+  - <http://reg.bom.gov.au/catalogue/data-feeds.shtml>
 
--   <http://reg.bom.gov.au/catalogue/anon-ftp.shtml>
+  - <http://reg.bom.gov.au/catalogue/anon-ftp.shtml>
 
--   <http://www.bom.gov.au/climate/cdo/about/site-num.shtml>
+  - <http://www.bom.gov.au/climate/cdo/about/site-num.shtml>
 
-Product code definitions
-------------------------
+## Product code definitions
 
 ### States
 
--   IDD - NT
+  - IDD - NT
 
--   IDN - NSW/ACT
+  - IDN - NSW/ACT
 
--   IDQ - Qld
+  - IDQ - Qld
 
--   IDS - SA
+  - IDS - SA
 
--   IDT - Tas/Antarctica (distinguished by the product number)
+  - IDT - Tas/Antarctica (distinguished by the product number)
 
--   IDV - Vic
+  - IDV - Vic
 
--   IDW - WA
+  - IDW - WA
 
 ### Product code numbers
 
--   60701 - coastal observations (duplicated in 60801)
+  - 60701 - coastal observations (duplicated in 60801)
 
--   60801 - all weather observations (we will use this)
+  - 60801 - all weather observations (we will use this)
 
--   60803 - Antarctica weather observations (and use this, this distinguishes Tas from Antarctica)
+  - 60803 - Antarctica weather observations (and use this, this
+    distinguishes Tas from Antarctica)
 
--   60901 - capital city weather observations (duplicated in 60801)
+  - 60901 - capital city weather observations (duplicated in 60801)
 
--   60903 - Canberra area weather observations (duplicated in 60801)
+  - 60903 - Canberra area weather observations (duplicated in 60801)
 
-Get station metadata
---------------------
+## Get station metadata
 
-The station metadata are downloaded from a zip file linked from the "[Bureau of Meteorology Site Numbers](http://www.bom.gov.au/climate/cdo/about/site-num.shtml)" website. The zip file may be directly downloaded, [file of site details](ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip).
+The station metadata are downloaded from a zip file linked from the
+“[Bureau of Meteorology Site
+Numbers](http://www.bom.gov.au/climate/cdo/about/site-num.shtml)”
+website. The zip file may be directly downloaded, [file of site
+details](ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip).
 
 ``` r
 library(magrittr)
@@ -92,7 +98,7 @@ library(magrittr)
     ## Warning in rbind(names(probs), probs_f): number of columns of result is not
     ## a multiple of vector length (arg 1)
 
-    ## Warning: 19352 parsing failures.
+    ## Warning: 19356 parsing failures.
     ## row # A tibble: 5 x 5 col     row   col expected actual expected   <int> <chr>    <chr>  <chr> actual 1     1   wmo  7 chars      6 file 2     2   wmo  7 chars      6 row 3     3   wmo  7 chars      6 col 4     4   wmo  7 chars      6 expected 5     5   wmo  7 chars      6 actual # ... with 1 more variables: file <chr>
     ## ... ................. ... ............................. ........ ............................. ...... ............................. .... ............................. ... ............................. ... ............................. ........ ............................. ...... .......................................
     ## See problems(...) for more details.
@@ -162,7 +168,7 @@ library(magrittr)
 stations_site_list
 ```
 
-    ## # A tibble: 7,350 x 14
+    ## # A tibble: 7,347 x 14
     ##      site  dist             name start   end      lat      lon source
     ##     <chr> <chr>            <chr> <int> <chr>    <dbl>    <dbl>  <chr>
     ##  1 001006    01     WYNDHAM AERO  1951  2017 -15.5100 128.1503    GPS
@@ -175,15 +181,19 @@ stations_site_list
     ##  8 001020    01         TRUSCOTT  1944  2017 -14.0900 126.3867    GPS
     ##  9 001023    01       EL QUESTRO  1967  2017 -16.0086 127.9806    GPS
     ## 10 001024    01        ELLENBRAE  1986  2017 -15.9572 127.0628    GPS
-    ## # ... with 7,340 more rows, and 6 more variables: state <chr>, elev <dbl>,
+    ## # ... with 7,337 more rows, and 6 more variables: state <chr>, elev <dbl>,
     ## #   bar_ht <dbl>, wmo <int>, state_code <chr>, url <chr>
 
-Save data
----------
+## Save data
 
-Now that we have the data frame of stations and have generated the URLs for the JSON files for stations providing weather data feeds, save the data as a database for *bomrang* to use.
+Now that we have the data frame of stations and have generated the URLs
+for the JSON files for stations providing weather data feeds, save the
+data as a database for *bomrang* to use.
 
-There are weather stations that do have a WMO but don't report online, e.g., KIRIBATI NTC AWS or MARSHALL ISLANDS NTC AWS, in this section remove these from the list and then create a database for use with the current weather information from BoM.
+There are weather stations that do have a WMO but don’t report online,
+e.g., KIRIBATI NTC AWS or MARSHALL ISLANDS NTC AWS, in this section
+remove these from the list and then create a database for use with the
+current weather information from BoM.
 
 ### Save JSON URL database for `get_current_weather()`
 
@@ -212,7 +222,9 @@ JSONurl_site_list <-
 
 ### Save station location data for `get_ag_bulletin()`
 
-First, rename columns and drop a few that aren't necessary for the ag bulletin information. Then pad the `site` field with 0 to match the data in the XML file that holds the bulletin information.
+First, rename columns and drop a few that aren’t necessary for the ag
+bulletin information. Then pad the `site` field with 0 to match the data
+in the XML file that holds the bulletin information.
 
 Lastly, create the database for use in the package.
 
@@ -229,58 +241,77 @@ stations_site_list$site <-
      compress = "bzip2")
 ```
 
-Session Info
-------------
+## Session Info
 
-    ## Session info -------------------------------------------------------------
-
+    ## ─ Session info ──────────────────────────────────────────────────────────
     ##  setting  value                       
-    ##  version  R version 3.4.2 (2017-09-28)
-    ##  system   x86_64, darwin17.0.0        
+    ##  version  R version 3.4.3 (2017-11-30)
+    ##  os       macOS Sierra 10.12.6        
+    ##  system   x86_64, darwin16.7.0        
     ##  ui       unknown                     
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2017-10-26
-
-    ## Packages -----------------------------------------------------------------
-
-    ##  package    * version    date       source                          
-    ##  assertthat   0.2.0      2017-04-11 CRAN (R 3.4.2)                  
-    ##  backports    1.1.1      2017-09-25 cran (@1.1.1)                   
-    ##  base       * 3.4.2      2017-09-30 local                           
-    ##  bindr        0.1        2016-11-13 CRAN (R 3.4.2)                  
-    ##  bindrcpp   * 0.2        2017-06-17 CRAN (R 3.4.2)                  
-    ##  compiler     3.4.2      2017-09-30 local                           
-    ##  curl         3.0        2017-10-06 cran (@3.0)                     
-    ##  data.table   1.10.4-2   2017-10-12 cran (@1.10.4-)                 
-    ##  datasets   * 3.4.2      2017-09-30 local                           
-    ##  devtools     1.13.3     2017-08-02 CRAN (R 3.4.2)                  
-    ##  digest       0.6.12     2017-01-27 CRAN (R 3.4.2)                  
-    ##  dplyr        0.7.4      2017-09-28 CRAN (R 3.4.2)                  
-    ##  evaluate     0.10.1     2017-06-24 cran (@0.10.1)                  
-    ##  glue         1.1.1      2017-06-21 CRAN (R 3.4.2)                  
-    ##  graphics   * 3.4.2      2017-09-30 local                           
-    ##  grDevices  * 3.4.2      2017-09-30 local                           
-    ##  hms          0.3        2016-11-22 CRAN (R 3.4.2)                  
-    ##  htmltools    0.3.6      2017-04-28 cran (@0.3.6)                   
-    ##  httr         1.3.1      2017-08-20 CRAN (R 3.4.2)                  
-    ##  knitr        1.17       2017-08-10 cran (@1.17)                    
-    ##  magrittr   * 1.5        2014-11-22 CRAN (R 3.4.2)                  
-    ##  memoise      1.1.0      2017-04-21 CRAN (R 3.4.2)                  
-    ##  methods    * 3.4.2      2017-09-30 local                           
-    ##  pkgconfig    2.0.1      2017-03-21 CRAN (R 3.4.2)                  
-    ##  R6           2.2.2      2017-06-17 CRAN (R 3.4.2)                  
-    ##  Rcpp         0.12.13    2017-09-28 CRAN (R 3.4.2)                  
-    ##  readr        1.1.1      2017-05-16 CRAN (R 3.4.2)                  
-    ##  rlang        0.1.2.9000 2017-10-25 Github (tidyverse/rlang@cbdc3f3)
-    ##  rmarkdown    1.6        2017-06-15 cran (@1.6)                     
-    ##  rprojroot    1.2        2017-01-16 cran (@1.2)                     
-    ##  stats      * 3.4.2      2017-09-30 local                           
-    ##  stringi      1.1.5      2017-04-07 CRAN (R 3.4.2)                  
-    ##  stringr      1.2.0      2017-02-18 CRAN (R 3.4.2)                  
-    ##  tibble       1.3.4      2017-08-22 CRAN (R 3.4.2)                  
-    ##  tools        3.4.2      2017-09-30 local                           
-    ##  utils      * 3.4.2      2017-09-30 local                           
-    ##  withr        2.0.0      2017-07-28 CRAN (R 3.4.2)                  
-    ##  yaml         2.1.14     2016-11-12 cran (@2.1.14)
+    ##  date     2017-12-04                  
+    ## 
+    ## ─ Packages ──────────────────────────────────────────────────────────────
+    ##  package     * version    date      
+    ##  assertthat    0.2.0      2017-04-11
+    ##  backports     1.1.1      2017-09-25
+    ##  bindr         0.1        2016-11-13
+    ##  bindrcpp    * 0.2        2017-06-17
+    ##  clisymbols    1.2.0      2017-11-07
+    ##  curl          3.0        2017-10-06
+    ##  data.table    1.10.4-3   2017-10-27
+    ##  digest        0.6.12     2017-01-27
+    ##  dplyr         0.7.4      2017-09-28
+    ##  evaluate      0.10.1     2017-06-24
+    ##  glue          1.2.0      2017-10-29
+    ##  hms           0.4.0      2017-11-23
+    ##  htmltools     0.3.6      2017-04-28
+    ##  httr          1.3.1      2017-08-20
+    ##  knitr         1.17       2017-08-10
+    ##  magrittr    * 1.5        2014-11-22
+    ##  pkgconfig     2.0.1      2017-03-21
+    ##  R6            2.2.2      2017-06-17
+    ##  Rcpp          0.12.14    2017-11-23
+    ##  readr         1.1.1      2017-05-16
+    ##  rlang         0.1.4.9000 2017-12-01
+    ##  rmarkdown     1.8.3      2017-11-26
+    ##  rprojroot     1.2        2017-01-16
+    ##  sessioninfo   1.0.0      2017-06-21
+    ##  stringi       1.1.6      2017-11-17
+    ##  stringr       1.2.0      2017-02-18
+    ##  tibble        1.3.4      2017-08-22
+    ##  withr         2.1.0.9000 2017-11-26
+    ##  yaml          2.1.14     2016-11-12
+    ##  source                                 
+    ##  CRAN (R 3.4.1)                         
+    ##  cran (@1.1.1)                          
+    ##  CRAN (R 3.4.1)                         
+    ##  CRAN (R 3.4.1)                         
+    ##  Github (gaborcsardi/clisymbols@e49b4f5)
+    ##  cran (@3.0)                            
+    ##  cran (@1.10.4-)                        
+    ##  CRAN (R 3.4.1)                         
+    ##  cran (@0.7.4)                          
+    ##  CRAN (R 3.4.1)                         
+    ##  cran (@1.2.0)                          
+    ##  cran (@0.4.0)                          
+    ##  CRAN (R 3.4.1)                         
+    ##  CRAN (R 3.4.1)                         
+    ##  CRAN (R 3.4.2)                         
+    ##  CRAN (R 3.4.1)                         
+    ##  CRAN (R 3.4.1)                         
+    ##  CRAN (R 3.4.1)                         
+    ##  cran (@0.12.14)                        
+    ##  CRAN (R 3.4.1)                         
+    ##  Github (tidyverse/rlang@f96007e)       
+    ##  Github (rstudio/rmarkdown@07f7d8e)     
+    ##  CRAN (R 3.4.1)                         
+    ##  CRAN (R 3.4.2)                         
+    ##  cran (@1.1.6)                          
+    ##  CRAN (R 3.4.1)                         
+    ##  cran (@1.3.4)                          
+    ##  Github (jimhester/withr@fe81c00)       
+    ##  CRAN (R 3.4.1)
