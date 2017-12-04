@@ -1,5 +1,5 @@
 
-#' Update bomrang Database With Latest BoM Forecast Towns
+#' Update bomrang Internal Database with Latest BoM Forecast Towns
 #'
 #' @description
 #' Download the latest select forecast towns from the BoM server and update

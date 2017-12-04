@@ -2,7 +2,7 @@
 % Please edit documentation in R/update_station_locations.R
 \name{update_station_locations}
 \alias{update_station_locations}
-\title{Update Internal Databases With Latest BoM Station Locations and Metadata}
+\title{Update bomrang Internal Databases with Latest BoM Station Metadata}
 \usage{
 update_station_locations()
 }

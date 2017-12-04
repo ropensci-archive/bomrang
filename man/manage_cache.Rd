@@ -2,9 +2,9 @@
 % Please edit documentation in R/manage_cached_files.R
 \name{manage_cache}
 \alias{manage_cache}
-\title{Manage locally cached BoM files}
+\title{Manage Locally Cached BoM Files}
 \description{
-Manage cached \pkg{bomrang} satelite imagery files with
+Manage cached \pkg{bomrang} satellite imagery files with
 \pkg{hoardr}.
 }
 \details{

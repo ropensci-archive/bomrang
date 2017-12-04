@@ -1,4 +1,4 @@
-#' get_weather_bulletin
+#' Get BoM 0900 or 1500 Weather Bulletin
 #'
 #' Fetch the daily BoM 0900 or 1500 weather bulletins and return a tidy data
 #' frame for a specified state or territory.

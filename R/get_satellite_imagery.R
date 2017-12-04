@@ -1,6 +1,4 @@
 
-# get_available_imagery() ------------------------------------------------------
-
 #' Get a Listing of Available BoM Satellite GeoTIFF Imagery
 #'
 #' Fetch a listing of BoM GeoTIFF satellite imagery from
