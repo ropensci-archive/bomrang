@@ -40,7 +40,6 @@ Imports:
     raster,
     rgdal,
     readr (>= 1.1.1),
-    rlang (>= 0.1.1),
     rvest,
     tidyr (>= 0.6.3),
     utils,
