@@ -38,45 +38,52 @@ Save the stations to disk for use in the R package.
 ## Session Info
 
 ``` r
-devtools::session_info()
+sessioninfo::session_info()
 ```
 
-    ## Session info -------------------------------------------------------------
-
+    ## ─ Session info ──────────────────────────────────────────────────────────
     ##  setting  value                       
     ##  version  R version 3.4.3 (2017-11-30)
+    ##  os       macOS Sierra 10.12.6        
     ##  system   x86_64, darwin16.7.0        
     ##  ui       unknown                     
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2017-12-04
-
-    ## Packages -----------------------------------------------------------------
-
-    ##  package   * version    date       source                            
-    ##  backports   1.1.1      2017-09-25 cran (@1.1.1)                     
-    ##  base      * 3.4.3      2017-12-03 local                             
-    ##  compiler    3.4.3      2017-12-03 local                             
-    ##  datasets  * 3.4.3      2017-12-03 local                             
-    ##  devtools    1.13.4     2017-11-09 cran (@1.13.4)                    
-    ##  digest      0.6.12     2017-01-27 CRAN (R 3.4.1)                    
-    ##  evaluate    0.10.1     2017-06-24 CRAN (R 3.4.1)                    
-    ##  foreign     0.8-69     2017-06-22 CRAN (R 3.4.3)                    
-    ##  graphics  * 3.4.3      2017-12-03 local                             
-    ##  grDevices * 3.4.3      2017-12-03 local                             
-    ##  htmltools   0.3.6      2017-04-28 CRAN (R 3.4.1)                    
-    ##  knitr       1.17       2017-08-10 CRAN (R 3.4.2)                    
-    ##  magrittr    1.5        2014-11-22 CRAN (R 3.4.1)                    
-    ##  memoise     1.1.0      2017-04-21 CRAN (R 3.4.1)                    
-    ##  methods   * 3.4.3      2017-12-03 local                             
-    ##  Rcpp        0.12.14    2017-11-23 cran (@0.12.14)                   
-    ##  rmarkdown   1.8.3      2017-11-26 Github (rstudio/rmarkdown@07f7d8e)
-    ##  rprojroot   1.2        2017-01-16 CRAN (R 3.4.1)                    
-    ##  stats     * 3.4.3      2017-12-03 local                             
-    ##  stringi     1.1.6      2017-11-17 cran (@1.1.6)                     
-    ##  stringr     1.2.0      2017-02-18 CRAN (R 3.4.1)                    
-    ##  tools       3.4.3      2017-12-03 local                             
-    ##  utils     * 3.4.3      2017-12-03 local                             
-    ##  withr       2.1.0.9000 2017-11-26 Github (jimhester/withr@fe81c00)  
-    ##  yaml        2.1.14     2016-11-12 CRAN (R 3.4.1)
+    ##  date     2017-12-04                  
+    ## 
+    ## ─ Packages ──────────────────────────────────────────────────────────────
+    ##  package     * version    date      
+    ##  backports     1.1.1      2017-09-25
+    ##  clisymbols    1.2.0      2017-11-07
+    ##  digest        0.6.12     2017-01-27
+    ##  evaluate      0.10.1     2017-06-24
+    ##  foreign       0.8-69     2017-06-22
+    ##  htmltools     0.3.6      2017-04-28
+    ##  knitr         1.17       2017-08-10
+    ##  magrittr      1.5        2014-11-22
+    ##  Rcpp          0.12.14    2017-11-23
+    ##  rmarkdown     1.8.3      2017-11-26
+    ##  rprojroot     1.2        2017-01-16
+    ##  sessioninfo   1.0.0      2017-06-21
+    ##  stringi       1.1.6      2017-11-17
+    ##  stringr       1.2.0      2017-02-18
+    ##  withr         2.1.0.9000 2017-11-26
+    ##  yaml          2.1.14     2016-11-12
+    ##  source                                 
+    ##  cran (@1.1.1)                          
+    ##  Github (gaborcsardi/clisymbols@e49b4f5)
+    ##  CRAN (R 3.4.1)                         
+    ##  CRAN (R 3.4.1)                         
+    ##  CRAN (R 3.4.3)                         
+    ##  CRAN (R 3.4.1)                         
+    ##  CRAN (R 3.4.2)                         
+    ##  CRAN (R 3.4.1)                         
+    ##  cran (@0.12.14)                        
+    ##  Github (rstudio/rmarkdown@07f7d8e)     
+    ##  CRAN (R 3.4.1)                         
+    ##  CRAN (R 3.4.2)                         
+    ##  cran (@1.1.6)                          
+    ##  CRAN (R 3.4.1)                         
+    ##  Github (jimhester/withr@fe81c00)       
+    ##  CRAN (R 3.4.1)
