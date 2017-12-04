@@ -30,7 +30,7 @@ These functions are now deprecated in \pkg{bomrang}.
   \code{bomrang_cache_list} \tab now superceded by \code{manage_cache$list}\cr
   \code{bomrang_cache_details} \tab now superceded by \code{manage_cache$details}\cr
   \code{bomrang_cache_delete} \tab now superceded by \code{manage_cache$delete}\cr
-  \code{bomrang_cache_delete_all} \tab now superceded by \code{manage_cache$delete_all }\cr
+  \code{bomrang_cache_delete_all} \tab now superceded by \code{manage_cache$delete_all}\cr
 }
 }
 
