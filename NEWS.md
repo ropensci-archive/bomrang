@@ -1,5 +1,5 @@
 
-# bomrang 0.0.8.9000
+# 0.1.0
 
 ## Major changes
 
@@ -9,7 +9,27 @@
 
 - Enhanced documentation for the cached files in satellite imagery
 
-# bomrang 0.0.8
+- Update internal databases of metadata for station locations and URLs
+
+## Bug fixes
+
+- Fix issues with `get_precis_forecast()` and `get_ag_bulletin()` where they
+failed to work properly. This fix lessens internal dependencies on _dplyr_ and
+removes _rlang_ usage from package.
+
+## Deprecated functions
+
+- `bomrang_cache_list()`, now superceded by `manage_cache$list()`
+
+- `bomrang_cache_details()`, now superceded by `manage_cache$details()`
+
+- `bomrang_cache_delete()`, now superceded by `manage_cache$delete()`
+
+- `bomrang_cache_delete_all()`, now superceded by `manage_cache$delete_all()`
+
+--------------------------------------------------------------------------------
+
+# 0.0.8
 
 ## Major changes
 
@@ -33,7 +53,9 @@ should instead refer to `update_forecast_towns()`
 
 - Fix issue where updating internal stations would fail
 
-# bomrang 0.0.7
+--------------------------------------------------------------------------------
+
+# 0.0.7
 
 ## Major changes
 
@@ -41,7 +63,8 @@ should instead refer to `update_forecast_towns()`
 
 ## Minor changes
 
-- Document `get_current_weather()` functionality in Appendix 4 of _bomrang_ vignette, thanks @mpadge 
+- Document `get_current_weather()` functionality in Appendix 4 of _bomrang_
+vignette, thanks @mpadge 
 
 - Spell checking
 
@@ -51,7 +74,9 @@ should instead refer to `update_forecast_towns()`
 
 - Ensure authorship order is the same order in all files
 
-# bomrang 0.0.6
+--------------------------------------------------------------------------------
+
+# 0.0.6
 
 ## Bug Fixes
 
@@ -64,7 +89,9 @@ should instead refer to `update_forecast_towns()`
 - Fetch BoM 0900 and 1500 weather bulletins from SHTML sources and create a
 tidy data frame of the data
 
-# bomrang 0.0.5
+--------------------------------------------------------------------------------
+
+# 0.0.5
 
 ## Bug Fixes
 
@@ -158,7 +185,7 @@ reading/maintenance
 
 --------------------------------------------------------------------------------
 
-# bomrang 0.0.4-1 2017-06-12
+# 0.0.4-1
 
 ## Major changes
 
@@ -219,7 +246,7 @@ the `get_*()` functions
 
 --------------------------------------------------------------------------------
 
-# bomrang 0.0.3 2017-06-03
+# 0.0.3
 
 ## Major changes
 
@@ -249,7 +276,7 @@ metadata and JSON URLs, create_BoM_station_list.md
 
 --------------------------------------------------------------------------------
 
-# bomrang 0.0.2
+# 0.0.2
 
 ## Major changes
 
@@ -294,7 +321,7 @@ meteorological values
 
 --------------------------------------------------------------------------------
 
-# bomrang 0.0.1
+# 0.0.1
 
 - Added a `NEWS.md` file to track changes to the package.
 
