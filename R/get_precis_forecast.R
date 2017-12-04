@@ -45,7 +45,6 @@
 #' @author Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton,
 #' \email{keith.pembleton@usq.edu.au}
 #' @importFrom magrittr %>%
-#' @importFrom rlang .data
 #' @export
 get_precis_forecast <- function(state = "AUS") {
 
@@ -121,20 +120,24 @@ the_state <- .check_states(state) # see internal_functions.R
   # below chunk the xml into locations and then days, this assembles into
   # the final data frame
 
+  out <- tidyr::spread(out, key = attrs, value = values)
+
+  names(out) <- c(
+    "aac",
+    "index",
+    "start_time_local",
+    "end_time_local",
+    "start_time_utc",
+    "end_time_utc",
+    "maximum_temperature",
+    "minimum_temperature",
+    "precipitation_range",
+    "precis",
+    "probability_of_precipitation"
+  )
+
   out <-
     out %>%
-    tidyr::spread(key = attrs, value = values) %>%
-    dplyr::rename(
-      maximum_temperature = .data$`c("air_temperature_maximum", "Celsius")`,
-      minimum_temperature = .data$`c("air_temperature_minimum", "Celsius")`,
-      start_time_local = .data$`start-time-local`,
-      end_time_local = .data$`end-time-local`,
-      start_time_utc = .data$`start-time-utc`,
-      end_time_utc = .data$`end-time-utc`
-    ) %>%
-    dplyr::mutate_at(.funs = as.character,
-                     .vars = c("aac",
-                               "precipitation_range")) %>%
     tidyr::separate(
       end_time_local,
       into = c("end_time_local", "UTC_offset"),
@@ -144,8 +147,10 @@ the_state <- .check_states(state) # see internal_functions.R
       start_time_local,
       into = c("start_time_local", "UTC_offset_drop"),
       sep = "\\+"
-    ) %>%
-    dplyr::select(-.data$UTC_offset_drop)
+    )
+
+  # drop the "UTC_offset_drop" column
+  out <- out[!names(out) %in% "UTC_offset_drop"]
 
   out$probability_of_precipitation <-
     gsub("%", "", paste(out$probability_of_precipitation))
@@ -168,6 +173,7 @@ the_state <- .check_states(state) # see internal_functions.R
                   "end_time_utc")], 2, function(x)
                     chartr("Z", " ", x))
 
+  out[, "precipitation_range"] <- as.character(out[, "precipitation_range"])
   # format any values that are only zero to make next step easier
   out$precipitation_range[which(out$precipitation_range == "0 mm")] <-
     "0 mm to 0 mm"
@@ -187,64 +193,29 @@ the_state <- .check_states(state) # see internal_functions.R
     gsub(" mm", "", x)
   }))
 
-  # merge the forecast with the town names -------------------------------------
-  out$aac <- as.character(out$aac)
+  # convert factors to character for left merge, otherwise funny stuff happens
+  out[, c(1, 3:4, 6:13)] <- lapply(out[, c(1, 3, 4, 6:13)], as.character)
+
+  # convert dates to POSIXct format
+  out[, c(3:4, 6:7)] <- lapply(out[, c(3:4, 6:7)],
+                               function(x)
+                                 as.POSIXct(x, origin = "1970-1-1",
+                                            format = "%Y-%m-%d %H:%M:%OS"))
+
+  # convert numeric values to numeric
+  out[, c(8:11, 13)] <- lapply(out[, 8:11, 13], as.numeric)
 
   # Load AAC code/town name list to join with final output
   load(system.file("extdata", "AAC_codes.rda", package = "bomrang"))
 
-  # return final forecast object
+  # return final forecast object -----------------------------------------------
+  # merge with aac codes for location information
   tidy_df <-
     dplyr::left_join(out,
-                     AAC_codes, by = c("aac" = "AAC")) %>%
-    dplyr::rename(lon = .data$LON,
-                  lat = .data$LAT,
-                  elev = .data$ELEVATION) %>%
-    dplyr::mutate_at(
-      .funs = as.character,
-      .vars = c(
-        "start_time_local",
-        "end_time_local",
-        "start_time_utc",
-        "end_time_utc",
-        "precis",
-        "probability_of_precipitation"
-      )
-    ) %>%
-    dplyr::mutate_at(
-      .funs = as.character,
-      .vars = c(
-        "maximum_temperature",
-        "minimum_temperature",
-        "upper_precipitation_limit",
-        "lower_precipitation_limit",
-        "probability_of_precipitation"
-      )
-    ) %>%
-    dplyr::mutate_at(
-      .funs = as.numeric,
-      .vars = c(
-        "maximum_temperature",
-        "minimum_temperature",
-        "upper_precipitation_limit",
-        "lower_precipitation_limit",
-        "probability_of_precipitation"
-      )
-    ) %>%
-    dplyr::rename(town = .data$PT_NAME)
+                     AAC_codes, by = c("aac" = "AAC"))
 
-
-  # convert dates to POSIXct ---------------------------------------------------
-  tidy_df[, c("start_time_local",
-              "end_time_local",
-              "start_time_utc",
-              "end_time_utc")] <-
-    lapply(tidy_df[, c("start_time_local",
-                       "end_time_local",
-                       "start_time_utc",
-                       "end_time_utc")], function(x)
-                         as.POSIXct(x, origin = "1970-1-1",
-                                    format = "%Y-%m-%d %H:%M:%OS"))
+  # set names to match précis forecast
+  names(tidy_df)[15:17] <- c("lon", "lat", "elev")
 
   # add state field
   tidy_df$state <- gsub("_.*", "", tidy_df$aac)
@@ -254,29 +225,31 @@ the_state <- .check_states(state) # see internal_functions.R
                                1,
                                nchar(basename(xmlforecast_url)) - 4)
 
-  tidy_df <-
-    tidy_df %>%
-    dplyr::select(
-      .data$index,
-      .data$product_id,
-      .data$state,
-      .data$town,
-      .data$aac,
-      .data$lat,
-      .data$lon,
-      .data$elev,
-      .data$start_time_local,
-      .data$end_time_local,
-      .data$UTC_offset,
-      .data$start_time_utc,
-      .data$end_time_utc,
-      .data$minimum_temperature,
-      .data$maximum_temperature,
-      .data$lower_precipitation_limit,
-      .data$upper_precipitation_limit,
-      .data$precis,
-      .data$probability_of_precipitation
-    )
+  names(tidy_df)[names(tidy_df) == "PT_NAME"] <- "town"
+
+  # reorder columns
+  refcols <- c(
+    "index",
+    "product_id",
+    "state",
+    "town",
+    "aac",
+    "lat",
+    "lon",
+    "elev",
+    "start_time_local",
+    "end_time_local",
+    "UTC_offset",
+    "start_time_utc",
+    "end_time_utc",
+    "minimum_temperature",
+    "maximum_temperature",
+    "lower_precipitation_limit",
+    "upper_precipitation_limit",
+    "precis",
+    "probability_of_precipitation"
+  )
+  tidy_df <- tidy_df[c(refcols, setdiff(names(tidy_df), refcols))]
 
   return(tidy_df)
 }

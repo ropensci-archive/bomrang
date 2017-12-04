@@ -42,5 +42,5 @@ Save the stations to disk for use in the R package.
 
 ## Session Info
 ```{r session_info}
-devtools::session_info()
+sessioninfo::session_info()
 ```

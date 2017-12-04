@@ -150,7 +150,7 @@ get_satellite_imagery <-
       stop("\nYou must select a valid BoM satellite imagery Product ID.\n")
     }
     if (length(unique(substr(product_id, 1, 8))) != 1) {
-      stop("/nbomrang only supports working with one Product ID at a time\n")
+      stop("\nbomrang only supports working with one Product ID at a time\n")
     }
 
     ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/gms/"

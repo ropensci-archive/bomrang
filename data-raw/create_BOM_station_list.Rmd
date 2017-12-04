@@ -221,5 +221,5 @@ stations_site_list$site <-
 
 ## Session Info
 ```{r session_info, echo=FALSE}
-devtools::session_info()
+sessioninfo::session_info()
 ```
