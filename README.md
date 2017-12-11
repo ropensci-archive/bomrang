@@ -1,4 +1,4 @@
-*bomrang*: Fetch Australian Government Bureau of Meteorology (BoM) Data
+*bomrang*: Australian Government Bureau of Meteorology Data from R
 ================
 
 [![Travis-CI Build Status](https://travis-ci.org/ropensci/bomrang.svg?branch=master)](https://travis-ci.org/ropensci/bomrang) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/bomrang?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/bomrang) [![codecov](https://codecov.io/gh/ropensci/bomrang/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/bomrang) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.598301.svg)](https://doi.org/10.5281/zenodo.598301)
