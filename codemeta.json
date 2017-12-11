@@ -10,14 +10,14 @@
   "codeRepository": "https://github.com/ropensci/bomrang",
   "issueTracker": "https://github.com/ropensci/bomrang/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.0.8.9000",
+  "version": "0.1.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.4.2",
+    "version": "3.4.3",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.4.2 (2017-09-28)",
+  "runtimePlatform": "R version 3.4.3 (2017-11-30)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -309,18 +309,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "rlang",
-      "name": "rlang",
-      "version": "0.1.1",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Central R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      }
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "rvest",
       "name": "rvest",
       "provider": {
@@ -369,7 +357,7 @@
   "contIntegration": "https://travis-ci.org/ropensci/bomrang",
   "releaseNotes": "https://github.com/ropensci/bomrang/blob/devel/NEWS.md",
   "readme": "https://github.com/ropensci/bomrang/blob/devel/README.md",
-  "fileSize": "774.664KB",
+  "fileSize": "775.641KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -411,5 +399,8 @@
         }
       }
     }
-  ]
+  ],
+  "applicationCategory": "Tools",
+  "isPartOf": "https://ropensci.org",
+  "keywords": ["bom", "meteorological-data", "weather-forecast", "australia", "weather", "weather-data", "meteorology", "australia-bureau-of-meteorology"]
 }

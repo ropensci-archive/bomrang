@@ -1,6 +1,4 @@
 
-# get_available_imagery() ------------------------------------------------------
-
 #' Get a Listing of Available BoM Satellite GeoTIFF Imagery
 #'
 #' Fetch a listing of BoM GeoTIFF satellite imagery from
@@ -62,8 +60,6 @@ get_available_imagery <- function(product_id = "all") {
   write(tif_list, file = file.path(tempdir(), "tif_list"))
   print(tif_list)
 }
-
-# get_satellite_imagery() ------------------------------------------------------------
 
 #' Get BoM Satellite GeoTIFF Imagery
 #'
@@ -150,7 +146,7 @@ get_satellite_imagery <-
       stop("\nYou must select a valid BoM satellite imagery Product ID.\n")
     }
     if (length(unique(substr(product_id, 1, 8))) != 1) {
-      stop("/nbomrang only supports working with one Product ID at a time\n")
+      stop("\nbomrang only supports working with one Product ID at a time\n")
     }
 
     ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/gms/"

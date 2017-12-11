@@ -194,7 +194,7 @@ the_state <- .check_states(state) # see internal_functions.R
   }))
 
   # convert factors to character for left merge, otherwise funny stuff happens
-  out[, c(1, 3:4, 6:13)] <- lapply(out[, c(1, 3,4, 6:13)], as.character)
+  out[, c(1, 3:4, 6:13)] <- lapply(out[, c(1, 3, 4, 6:13)], as.character)
 
   # convert dates to POSIXct format
   out[, c(3:4, 6:7)] <- lapply(out[, c(3:4, 6:7)],

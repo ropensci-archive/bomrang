@@ -1,19 +1,19 @@
 Package: bomrang
 Type: Package
 Title: Australian Government Bureau of Meteorology Data from R
-Version: 0.0.8.9000
+Version: 0.1.0.9000
 Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     email = "adamhsparks@gmail.com",
-    comment = "https://orcid.org/0000-0002-0061-8359"),
+    comment = c(ORCID = "https://orcid.org/0000-0002-0061-8359")),
     person("Mark", "Padgham", role = "aut",
     email = "mark.padgham@email.com",
-    comment = "https://orcid.org/0000-0003-2172-5265"),
+    comment = c(ORCID = "https://orcid.org/0000-0003-2172-5265")),
     person("Hugh", "Parsonage", role = "aut",
     email = "hugh.parsonage@gmail.com",
-    comment = "https://orcid.org/0000-0003-4055-0835"),
+    comment = c(ORCID = "https://orcid.org/0000-0003-4055-0835")),
     person("Keith", "Pembleton", role = "aut",
     email = "keith.pembleton@usq.edu.au",
-    comment = "https://orcid.org/0000-0002-1896-4516"))
+    comment = c(ORCID = "https://orcid.org/0000-0002-1896-4516")))
 Description: Provides functions to interface with Australian Government Bureau
     of Meteorology (BoM) data, fetching data and returning a tidy data frame of
     précis forecasts, current weather data from stations, agriculture
@@ -61,3 +61,6 @@ RoxygenNote: 6.0.1
 NeedsCompilation: no
 ByteCompile: TRUE
 VignetteBuilder: knitr
+X-schema.org-applicationCategory: Tools
+X-schema.org-keywords: bom, meteorological-data, weather-forecast, australia, weather, weather-data, meteorology, australia-bureau-of-meteorology
+X-schema.org-isPartOf: https://ropensci.org

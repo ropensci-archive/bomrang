@@ -203,7 +203,7 @@ get_ag_bulletin <- function(state = "AUS") {
   # if there are no observations, keep a single row for the station ID
   if (length(value) > 1) {
     location <-
-      trimws(location[rep(seq_len(nrow(location)), each = length(value)),])
+      trimws(location[rep(seq_len(nrow(location)), each = length(value)), ])
   }
 
   # if there is only one observation this step means that a data frame is

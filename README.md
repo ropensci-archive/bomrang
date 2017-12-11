@@ -511,8 +511,8 @@ Meta
 
     or the BibTeX entry:
 
-    ```tex
-    @article{HSparks2017,
+    ```
+    @article{AHSparks2017,
     doi = {10.21105/joss.00411},
     url = {https://doi.org/10.21105/joss.00411},
     year  = {2017},
@@ -523,7 +523,6 @@ Meta
     author = {Adam H Sparks and Mark Padgham and Hugh Parsonage and Keith Pembleton},
     title = {bomrang: Fetch Australian Government Bureau of Meteorology Data in R},
     journal = {The Journal of Open Source Software}
-}
     ```
 
 -   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
