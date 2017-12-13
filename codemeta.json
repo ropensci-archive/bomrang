@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropensci/bomrang",
   "issueTracker": "https://github.com/ropensci/bomrang/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.1.0",
+  "version": "0.1.0.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -357,7 +357,7 @@
   "contIntegration": "https://travis-ci.org/ropensci/bomrang",
   "releaseNotes": "https://github.com/ropensci/bomrang/blob/devel/NEWS.md",
   "readme": "https://github.com/ropensci/bomrang/blob/devel/README.md",
-  "fileSize": "775.641KB",
+  "fileSize": "802.951KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
