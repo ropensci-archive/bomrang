@@ -1,7 +1,17 @@
-# bomrang 0.1.0.9000
 
+# bomrang 0.1.1
 
-# 0.1.0
+## Minor changes
+
+- Correct comments for ORCID's in DESCRIPTION at the request of CRAN maintainers
+
+- Update internal databases of metadata for station locations and URLs
+
+- Add new hex-sticker image to README
+
+--------------------------------------------------------------------------------
+
+# bomrang 0.1.0
 
 ## Major changes
 
@@ -31,7 +41,7 @@ removes _rlang_ usage from package.
 
 --------------------------------------------------------------------------------
 
-# 0.0.8
+# bomrang 0.0.8
 
 ## Major changes
 
@@ -57,7 +67,7 @@ should instead refer to `update_forecast_towns()`
 
 --------------------------------------------------------------------------------
 
-# 0.0.7
+# bomrang 0.0.7
 
 ## Major changes
 
@@ -78,7 +88,7 @@ vignette, thanks @mpadge
 
 --------------------------------------------------------------------------------
 
-# 0.0.6
+# bomrang 0.0.6
 
 ## Bug Fixes
 
@@ -93,7 +103,7 @@ tidy data frame of the data
 
 --------------------------------------------------------------------------------
 
-# 0.0.5
+# bomrang 0.0.5
 
 ## Bug Fixes
 
@@ -187,7 +197,7 @@ reading/maintenance
 
 --------------------------------------------------------------------------------
 
-# 0.0.4-1
+# bomrang 0.0.4-1
 
 ## Major changes
 
@@ -195,7 +205,7 @@ reading/maintenance
 
 --------------------------------------------------------------------------------
 
-# bomrang 0.0.4 2017-06-09
+# bomrang 0.0.4
 
 ## Major changes
 
@@ -203,7 +213,7 @@ reading/maintenance
 
 --------------------------------------------------------------------------------
 
-# bomrang 0.0.3-5 2017-06-03
+# bomrang 0.0.3-5
 
 ## Major changes
 
@@ -214,7 +224,7 @@ taking too long to run
 
 --------------------------------------------------------------------------------
 
-# bomrang 0.0.3-4 2017-06-03
+# bomrang 0.0.3-4
 
 ## Major changes
 
@@ -224,7 +234,7 @@ taking too long to run
 
 --------------------------------------------------------------------------------
 
-# bomrang 0.0.3-3 2017-06-03
+# bomrang 0.0.3-3
 
 ## Minor changes
 
@@ -241,14 +251,16 @@ the `get_*()` functions
 
 - Correct documentation reference in README file
 
-# bomrang 0.0.3-1 2017-06-03
+--------------------------------------------------------------------------------
+
+# bomrang 0.0.3-1
 
 ## Minor changes
 - Add vignette describing the data returned from `get_current_weather()`
 
 --------------------------------------------------------------------------------
 
-# 0.0.3
+# bomrang 0.0.3
 
 ## Major changes
 
@@ -278,7 +290,7 @@ metadata and JSON URLs, create_BoM_station_list.md
 
 --------------------------------------------------------------------------------
 
-# 0.0.2
+# bomrang 0.0.2
 
 ## Major changes
 
@@ -323,7 +335,7 @@ meteorological values
 
 --------------------------------------------------------------------------------
 
-# 0.0.1
+# bomrang 0.0.1
 
 - Added a `NEWS.md` file to track changes to the package.
 

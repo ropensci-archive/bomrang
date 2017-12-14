@@ -7,9 +7,8 @@ BoM maintains a shapefile of forecast town names and their geographic
 locations. For ease, we’ll just use the .dbf file part of the shapefile
 to extract AAC codes that can be used to add lat/lon values to the
 forecast `data.frame` that `get_precis_forecast()` returns. The file is
-available from BoM’s anonymous FTP server with spatial data
-\url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/}, specifically the DBF
-file portion of a shapefile,
+available from BoM’s anonymous FTP server with spatial data ,
+specifically the DBF file portion of a shapefile,
 <ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf>
 
 ``` r
@@ -44,46 +43,29 @@ sessioninfo::session_info()
     ## ─ Session info ──────────────────────────────────────────────────────────
     ##  setting  value                       
     ##  version  R version 3.4.3 (2017-11-30)
-    ##  os       macOS Sierra 10.12.6        
-    ##  system   x86_64, darwin16.7.0        
+    ##  os       macOS High Sierra 10.13.2   
+    ##  system   x86_64, darwin17.2.0        
     ##  ui       unknown                     
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2017-12-04                  
+    ##  date     2017-12-15                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
-    ##  package     * version    date      
-    ##  backports     1.1.1      2017-09-25
-    ##  clisymbols    1.2.0      2017-11-07
-    ##  digest        0.6.12     2017-01-27
-    ##  evaluate      0.10.1     2017-06-24
-    ##  foreign       0.8-69     2017-06-22
-    ##  htmltools     0.3.6      2017-04-28
-    ##  knitr         1.17       2017-08-10
-    ##  magrittr      1.5        2014-11-22
-    ##  Rcpp          0.12.14    2017-11-23
-    ##  rmarkdown     1.8.3      2017-11-26
-    ##  rprojroot     1.2        2017-01-16
-    ##  sessioninfo   1.0.0      2017-06-21
-    ##  stringi       1.1.6      2017-11-17
-    ##  stringr       1.2.0      2017-02-18
-    ##  withr         2.1.0.9000 2017-11-26
-    ##  yaml          2.1.14     2016-11-12
-    ##  source                                 
-    ##  cran (@1.1.1)                          
-    ##  Github (gaborcsardi/clisymbols@e49b4f5)
-    ##  CRAN (R 3.4.1)                         
-    ##  CRAN (R 3.4.1)                         
-    ##  CRAN (R 3.4.3)                         
-    ##  CRAN (R 3.4.1)                         
-    ##  CRAN (R 3.4.2)                         
-    ##  CRAN (R 3.4.1)                         
-    ##  cran (@0.12.14)                        
-    ##  Github (rstudio/rmarkdown@07f7d8e)     
-    ##  CRAN (R 3.4.1)                         
-    ##  CRAN (R 3.4.2)                         
-    ##  cran (@1.1.6)                          
-    ##  CRAN (R 3.4.1)                         
-    ##  Github (jimhester/withr@fe81c00)       
-    ##  CRAN (R 3.4.1)
+    ##  package     * version date       source                                 
+    ##  backports     1.1.2   2017-12-13 cran (@1.1.2)                          
+    ##  clisymbols    1.2.0   2017-11-07 Github (gaborcsardi/clisymbols@e49b4f5)
+    ##  digest        0.6.13  2017-12-14 cran (@0.6.13)                         
+    ##  evaluate      0.10.1  2017-06-24 cran (@0.10.1)                         
+    ##  foreign       0.8-69  2017-06-22 CRAN (R 3.4.3)                         
+    ##  htmltools     0.3.6   2017-04-28 cran (@0.3.6)                          
+    ##  knitr         1.17    2017-08-10 cran (@1.17)                           
+    ##  magrittr      1.5     2014-11-22 CRAN (R 3.4.2)                         
+    ##  Rcpp          0.12.14 2017-11-23 cran (@0.12.14)                        
+    ##  rmarkdown     1.8.5   2017-12-13 Github (rstudio/rmarkdown@08c7567)     
+    ##  rprojroot     1.2     2017-01-16 cran (@1.2)                            
+    ##  sessioninfo   1.0.0   2017-06-21 CRAN (R 3.4.2)                         
+    ##  stringi       1.1.6   2017-11-17 cran (@1.1.6)                          
+    ##  stringr       1.2.0   2017-02-18 CRAN (R 3.4.2)                         
+    ##  withr         2.1.0   2017-11-01 cran (@2.1.0)                          
+    ##  yaml          2.1.16  2017-12-12 cran (@2.1.16)

@@ -13,8 +13,15 @@
 
 0 errors | 0 warnings | 1 note
 
-* This is a new minor release that fixes bugs and enhances the cached file
-management
+* This is a new bug-fix and maintenance release
+
+## Minor changes
+
+- Correct comments for ORCID's in DESCRIPTION at the request of CRAN maintainers
+
+- Update internal databases of metadata for station locations and URLs
+
+- Add new hex-sticker image to README
 
 ## Reverse dependencies
 
