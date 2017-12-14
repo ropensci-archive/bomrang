@@ -1,5 +1,12 @@
-# bomrang 0.1.0.9000
+# bomrang 0.1.1
 
+## Minor changes
+
+- Correct comments for ORCID's in DESCRIPTION at the request of CRAN maintainers
+
+- Update internal databases of metadata for station locations and URLs
+
+- Add new hex-sticker image to README
 
 # 0.1.0
 
