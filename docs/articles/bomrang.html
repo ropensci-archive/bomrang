@@ -110,14 +110,14 @@
 <h3 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h3>
 <p>Following is an example fetching the current weather for Melbourne.</p>
-<pre class="sourceCode r" id="cb1"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(<span class="st">"bomrang"</span>)</a></code></pre>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(<span class="st">"bomrang"</span>)</a></code></pre></div>
 <pre><code>## 
 ## Data (c) Australian Government Bureau of Meteorology,
 ## Creative Commons (CC) Attribution 3.0 licence or
 ## Public Access Licence (PAL) as appropriate.
 ## See http://www.bom.gov.au/other/copyright.shtml</code></pre>
-<pre class="sourceCode r" id="cb3"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_current_weather.html">get_current_weather</a></span>(<span class="st">"Melbourne (Olympic Park)"</span>)</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">head</span>(Melbourne_weather)</a></code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_current_weather.html">get_current_weather</a></span>(<span class="st">"Melbourne (Olympic Park)"</span>)</a>
+<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw">head</span>(Melbourne_weather)</a></code></pre></div>
 <pre><code>##   sort_order   wmo                full_name history_product
 ## 1          0 95936 Melbourne (Olympic Park)        IDV60801
 ## 2          1 95936 Melbourne (Olympic Park)        IDV60801
@@ -126,47 +126,47 @@
 ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
 ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
 ##   local_date_time local_date_time_full        aifstime_utc      lat
-## 1      11/11:00pm  2017-12-11 23:00:00 2017-12-11 12:00:00 -37.8255
-## 2      11/10:30pm  2017-12-11 22:30:00 2017-12-11 11:30:00 -37.8255
-## 3      11/10:00pm  2017-12-11 22:00:00 2017-12-11 11:00:00 -37.8255
-## 4      11/09:30pm  2017-12-11 21:30:00 2017-12-11 10:30:00 -37.8255
-## 5      11/09:00pm  2017-12-11 21:00:00 2017-12-11 10:00:00 -37.8255
-## 6      11/08:30pm  2017-12-11 20:30:00 2017-12-11 09:30:00 -37.8255
+## 1      15/07:00am  2017-12-15 07:00:00 2017-12-14 20:00:00 -37.8255
+## 2      15/06:30am  2017-12-15 06:30:00 2017-12-14 19:30:00 -37.8255
+## 3      15/06:00am  2017-12-15 06:00:00 2017-12-14 19:00:00 -37.8255
+## 4      15/05:30am  2017-12-15 05:30:00 2017-12-14 18:30:00 -37.8255
+## 5      15/05:00am  2017-12-15 05:00:00 2017-12-14 18:00:00 -37.8255
+## 6      15/04:30am  2017-12-15 04:30:00 2017-12-14 17:30:00 -37.8255
 ##        lon apparent_t cloud cloud_base_m cloud_oktas cloud_type
-## 1 144.9816       15.2     -           NA          NA          -
+## 1 144.9816       15.6     -           NA          NA          -
 ## 2 144.9816       15.1     -           NA          NA          -
-## 3 144.9816       16.1     -           NA          NA          -
-## 4 144.9816       16.3     -           NA          NA          -
-## 5 144.9816       16.1     -           NA          NA          -
-## 6 144.9816       16.2     -           NA          NA          -
+## 3 144.9816       14.8     -           NA          NA          -
+## 4 144.9816       14.4     -           NA          NA          -
+## 5 144.9816       14.7     -           NA          NA          -
+## 6 144.9816       14.7     -           NA          NA          -
 ##   cloud_type_id delta_t gust_kmh gust_kt air_temp dewpt  press press_msl
-## 1            NA     2.5       11       6     16.1  11.5 1021.2    1021.2
-## 2            NA     2.9       15       8     16.7  11.4 1021.3    1021.3
-## 3            NA     3.1       19      10     17.3  11.6 1021.1    1021.1
-## 4            NA     2.9       15       8     17.4  12.1 1020.8    1020.8
-## 5            NA     2.5       19      10     17.0  12.5 1020.8    1020.8
-## 6            NA     2.5       22      12     17.4  12.9 1020.7    1020.7
+## 1            NA     3.0       11       6     16.5  10.8 1012.7    1012.7
+## 2            NA     1.4        0       0     14.5  12.0 1012.5    1012.5
+## 3            NA     1.5        0       0     14.3  11.5 1012.4    1012.4
+## 4            NA     1.9        0       0     14.2  10.6 1012.2    1012.2
+## 5            NA     2.1        0       0     14.5  10.5 1012.1    1012.1
+## 6            NA     2.3        7       4     14.9  10.5 1012.1    1012.1
 ##   press_qnh press_tend rain_trace rel_hum sea_state swell_dir_worded
-## 1    1021.2          -          0      74         -                -
-## 2    1021.3          -          0      71         -                -
-## 3    1021.1          -          0      69         -                -
-## 4    1020.8          -          0      71         -                -
-## 5    1020.8          -          0      75         -                -
-## 6    1020.7          -          0      75         -                -
+## 1    1012.7          -          0      69         -                -
+## 2    1012.5          -          0      85         -                -
+## 3    1012.4          -          0      83         -                -
+## 4    1012.2          -          0      79         -                -
+## 5    1012.1          -          0      77         -                -
+## 6    1012.1          -          0      75         -                -
 ##   swell_height swell_period vis_km weather wind_dir wind_spd_kmh
-## 1           NA           NA     10       -      SSE            7
-## 2           NA           NA     10       -      SSE           11
-## 3           NA           NA     10       -      SSE            9
-## 4           NA           NA     10       -        S            9
-## 5           NA           NA     10       -        S            9
-## 6           NA           NA     10       -      SSW           11
+## 1           NA           NA     10       -       SE            6
+## 2           NA           NA     10       -     CALM            0
+## 3           NA           NA     10       -     CALM            0
+## 4           NA           NA     10       -     CALM            0
+## 5           NA           NA     10       -     CALM            0
+## 6           NA           NA     10       -      ESE            2
 ##   wind_spd_kt
-## 1           4
-## 2           6
-## 3           5
-## 4           5
-## 5           5
-## 6           6</code></pre>
+## 1           3
+## 2           0
+## 3           0
+## 4           0
+## 5           0
+## 6           1</code></pre>
 </div>
 </div>
 <div id="using-get_precis_forecast" class="section level2">
@@ -194,10 +194,10 @@
 <h3 class="hasAnchor">
 <a href="#example-1" class="anchor"></a>Example</h3>
 <p>Following is an example fetching the forecast for Queensland.</p>
-<pre class="sourceCode r" id="cb5"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(<span class="st">"bomrang"</span>)</a>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(<span class="st">"bomrang"</span>)</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb5-3" data-line-number="3">QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_precis_forecast.html">get_precis_forecast</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)</a>
-<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">head</span>(QLD_forecast)</a></code></pre>
+<a class="sourceLine" id="cb5-4" data-line-number="4"><span class="kw">head</span>(QLD_forecast)</a></code></pre></div>
 <pre><code>##   index product_id state     town       aac      lat      lon elev
 ## 1     0   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ## 2     1   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
@@ -206,33 +206,33 @@
 ## 5     4   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ## 6     5   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ##      start_time_local end_time_local UTC_offset      start_time_utc
-## 1 2017-12-11 17:00:00     2017-12-12      10:00 2017-12-11 07:00:00
-## 2 2017-12-12 00:00:00     2017-12-13      10:00 2017-12-11 14:00:00
-## 3 2017-12-13 00:00:00     2017-12-14      10:00 2017-12-12 14:00:00
-## 4 2017-12-14 00:00:00     2017-12-15      10:00 2017-12-13 14:00:00
-## 5 2017-12-15 00:00:00     2017-12-16      10:00 2017-12-14 14:00:00
-## 6 2017-12-16 00:00:00     2017-12-17      10:00 2017-12-15 14:00:00
+## 1 2017-12-15 05:00:00     2017-12-16      10:00 2017-12-14 19:00:00
+## 2 2017-12-16 00:00:00     2017-12-17      10:00 2017-12-15 14:00:00
+## 3 2017-12-17 00:00:00     2017-12-18      10:00 2017-12-16 14:00:00
+## 4 2017-12-18 00:00:00     2017-12-19      10:00 2017-12-17 14:00:00
+## 5 2017-12-19 00:00:00     2017-12-20      10:00 2017-12-18 14:00:00
+## 6 2017-12-20 00:00:00     2017-12-21      10:00 2017-12-19 14:00:00
 ##          end_time_utc minimum_temperature maximum_temperature
-## 1 2017-12-11 14:00:00                  NA                  NA
-## 2 2017-12-12 14:00:00                  19                  29
-## 3 2017-12-13 14:00:00                  19                  30
-## 4 2017-12-14 14:00:00                  19                  31
-## 5 2017-12-15 14:00:00                  21                  31
-## 6 2017-12-16 14:00:00                  21                  31
+## 1 2017-12-15 14:00:00                  NA                  30
+## 2 2017-12-16 14:00:00                  21                  31
+## 3 2017-12-17 14:00:00                  20                  31
+## 4 2017-12-18 14:00:00                  21                  30
+## 5 2017-12-19 14:00:00                  21                  31
+## 6 2017-12-20 14:00:00                  20                  32
 ##   lower_precipitation_limit upper_precipitation_limit         precis
-## 1                        NA                        NA  Mostly clear.
-## 2                         0                         0 Partly cloudy.
-## 3                         0                         0  Mostly sunny.
-## 4                         0                         0         Sunny.
-## 5                         0                         0         Sunny.
-## 6                         0                         0         Sunny.
+## 1                        NA                        NA  Mostly sunny.
+## 2                         0                       0.4 Partly cloudy.
+## 3                        NA                        NA Partly cloudy.
+## 4                        NA                        NA Partly cloudy.
+## 5                        NA                        NA  Mostly sunny.
+## 6                        NA                        NA         Sunny.
 ##   probability_of_precipitation
-## 1                           NA
-## 2                           29
-## 3                           30
-## 4                           31
+## 1                           30
+## 2                           31
+## 3                           31
+## 4                           30
 ## 5                           31
-## 6                           31</code></pre>
+## 6                           32</code></pre>
 </div>
 </div>
 <div id="using-get_ag_bulletin" class="section level2">
@@ -259,10 +259,10 @@
 <h3 class="hasAnchor">
 <a href="#example-2" class="anchor"></a>Example</h3>
 <p>Following is an example fetching the ag bulletin for Queensland.</p>
-<pre class="sourceCode r" id="cb7"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(<span class="st">"bomrang"</span>)</a>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(<span class="st">"bomrang"</span>)</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"></a>
 <a class="sourceLine" id="cb7-3" data-line-number="3">QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_ag_bulletin.html">get_ag_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="kw">head</span>(QLD_bulletin)</a></code></pre>
+<a class="sourceLine" id="cb7-4" data-line-number="4"><span class="kw">head</span>(QLD_bulletin)</a></code></pre></div>
 <pre><code>##   product_id state dist   wmo  site          station          full_name
 ## 1   IDQ60604   QLD   38 95482 38026       Birdsville BIRDSVILLE AIRPORT
 ## 2   IDQ60604   QLD   38 94333 38003           Boulia     BOULIA AIRPORT
@@ -271,12 +271,12 @@
 ## 5   IDQ60604   QLD   31 94287 31011           Cairns        CAIRNS AERO
 ## 6   IDQ60604   QLD   44 94510 44021      Charleville   CHARLEVILLE AERO
 ##        obs_time_local        obs_time_utc
-## 1 2017-12-11 09:00:00 2017-12-10 23:00:00
-## 2 2017-12-11 09:00:00 2017-12-10 23:00:00
-## 3 2017-12-11 09:00:00 2017-12-10 23:00:00
-## 4 2017-12-11 09:00:00 2017-12-10 23:00:00
-## 5 2017-12-11 09:00:00 2017-12-10 23:00:00
-## 6 2017-12-11 09:00:00 2017-12-10 23:00:00
+## 1 2017-12-14 09:00:00 2017-12-13 23:00:00
+## 2 2017-12-14 09:00:00 2017-12-13 23:00:00
+## 3 2017-12-14 09:00:00 2017-12-13 23:00:00
+## 4 2017-12-14 09:00:00 2017-12-13 23:00:00
+## 5 2017-12-14 09:00:00 2017-12-13 23:00:00
+## 6 2017-12-14 09:00:00 2017-12-13 23:00:00
 ##                                                                            time_zone
 ## 1 c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 ## 2 c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
@@ -284,20 +284,20 @@
 ## 4 c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 ## 5 c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 ## 6 c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
-##        lat      lon  elev bar_ht start  end r   tn   tx  twd ev   tg   sn
-## 1 -25.8975 139.3472  46.6   47.0  2000 2017 0 22.3 38.2 15.5 NA   NA   NA
-## 2 -22.9117 139.9039 161.8  158.3  1886 2017 0 23.6 39.9 12.3 24 21.0   NA
-## 3 -27.3917 153.1292   4.5    9.5  1992 2017 0 17.9 27.5  4.8  9 16.4 11.9
-## 4 -24.9069 152.3230  30.8   31.5  1942 2017 0 19.7 29.6  5.4 NA   NA   NA
-## 5 -16.8736 145.7458   2.2    8.3  1941 2017 0 24.6 33.5  5.9 NA   NA   NA
-## 6 -26.4139 146.2558 301.6  303.3  1942 2017 0 24.4 37.6  9.1 NA   NA   NA
-##     t5  t10  t20  t50  t1m  wr
-## 1   NA   NA   NA   NA   NA  NA
-## 2   NA   NA   NA   NA   NA  NA
-## 3 26.0 25.0 25.0 26.0 25.0 366
-## 4 25.2 25.2 25.6 25.4 25.7 317
-## 5   NA   NA   NA   NA   NA  NA
-## 6   NA   NA   NA   NA   NA  NA</code></pre>
+##        lat      lon  elev bar_ht start  end r   tn   tx  twd   ev   tg
+## 1 -25.8975 139.3472  46.6   47.0  2000 2017 0 32.1 44.5 18.5   NA   NA
+## 2 -22.9117 139.9039 161.8  158.3  1886 2017 0 27.8 41.5 12.0 22.4 24.5
+## 3 -27.3917 153.1292   4.5    9.5  1992 2017 0 18.1 27.6  4.9  5.8 15.2
+## 4 -24.9069 152.3230  30.8   31.5  1942 2017 0 18.1 30.2  6.3   NA   NA
+## 5 -16.8736 145.7458   2.2    8.3  1941 2017 0 21.4 32.8  6.8   NA   NA
+## 6 -26.4139 146.2558 301.6  303.3  1942 2017 0 24.0 37.9 13.1   NA   NA
+##     sn   t5  t10  t20  t50  t1m  wr
+## 1   NA   NA   NA   NA   NA   NA  NA
+## 2   NA   NA   NA   NA   NA   NA  NA
+## 3 12.4 30.0 27.0 26.0 27.0 25.0 203
+## 4   NA 25.5 25.7 26.2 25.9 25.9  NA
+## 5   NA   NA   NA   NA   NA   NA  NA
+## 6   NA   NA   NA   NA   NA   NA  NA</code></pre>
 </div>
 </div>
 <div id="using-get_weather_bulletin" class="section level2">
@@ -324,22 +324,22 @@
 <h4 class="hasAnchor">
 <a href="#example-3" class="anchor"></a>Example</h4>
 <p>Following is an example fetching the 3PM bulletin for Queensland.</p>
-<pre class="sourceCode r" id="cb9"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">qld_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_weather_bulletin.html">get_weather_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)</a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">head</span>(qld_weather)</a></code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">qld_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_weather_bulletin.html">get_weather_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)</a>
+<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">head</span>(qld_weather)</a></code></pre></div>
 <pre><code>##         stations cld8ths wind_dir wind_speed_kmh temp_c_dry temp_c_dew
-## 1     Coconut Is      NA      SSE              2         30         NA
-## 2        Coen Ap      NA      ESE             19         30         19
-## 3        Horn Is       3      ESE             17         30         25
-## 4 Lockhart River       1       SE             22         30         22
-## 5    Palmerville      NA        E              9         29         17
-## 6       Scherger      NA       SE             13         29         21
+## 1     Coconut Is      NA       SE              4         31         NA
+## 2        Coen Ap      NA       NE             11         30         19
+## 3        Horn Is      NA       SE             19         30         23
+## 4 Lockhart River       8      ESE             15         29         23
+## 5    Palmerville      NA        S             11         29         18
+## 6       Scherger      NA      ESE              7         29         21
 ##   temp_c_max temp_c_min temp_c_gr barhpa rain_mm weather seastate
-## 1         35         26        NA   1011     0.2                 
-## 2         35         22        NA   1011      NA                 
-## 3         34         27        NA   1011      NA                 
-## 4         33         23        NA   1012      NA                 
-## 5         38         20        NA   1012      NA                 
-## 6         37         23        NA   1011      NA</code></pre>
+## 1         34         25        NA   1009      NA                 
+## 2         35         22        NA   1010      NA                 
+## 3         33         26        NA   1010      NA                 
+## 4         32         23        NA   1010      NA                 
+## 5         37         20        NA   1010      NA                 
+## 6         36         23        NA   1010      NA</code></pre>
 </div>
 </div>
 <div id="using-sweep_for_stations" class="section level2">
@@ -360,8 +360,8 @@
 <h3 class="hasAnchor">
 <a href="#example-4" class="anchor"></a>Example</h3>
 <p>Following is an example sweeping for stations starting with Canberra.</p>
-<pre class="sourceCode r" id="cb11"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># Show only the first ten stations in the list</span></a>
-<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">head</span>(<span class="kw"><a href="../reference/sweep_for_stations.html">sweep_for_stations</a></span>(<span class="dt">latlon =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">35.3</span>, <span class="fl">149.2</span>)), <span class="dv">10</span>)</a></code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># Show only the first ten stations in the list</span></a>
+<a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">head</span>(<span class="kw"><a href="../reference/sweep_for_stations.html">sweep_for_stations</a></span>(<span class="dt">latlon =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">35.3</span>, <span class="fl">149.2</span>)), <span class="dv">10</span>)</a></code></pre></div>
 <pre><code>##      site dist                              name start  end      lat
 ## 1  070351   70                  CANBERRA AIRPORT  2008 2017 -35.3088
 ## 2  070339   70 TUGGERANONG (ISABELLA PLAINS) AWS  1996 2017 -35.4184
@@ -402,7 +402,7 @@
 <a href="#using-the-update-functions" class="anchor"></a>Using the update functions</h2>
 <p><em>bomrang</em> uses internal databases of station location data from BoM to provide location and other metadata, <em>e.g.</em> elevation, station names, WMO codes, etc. to make the process of querying for weather data faster. These databases are created and packaged with <em>bomrang</em> for distribution and are updated with new releases. Users have the option of updating these databases after installing <em>bomrang</em>. While this option gives the users the ability to keep the databases up-to-date and gives <em>bomrang</em>’s authors flexibility in maintaining it, this also means that reproducibility may be affected since the same version of <em>bomrang</em> may have different databases on different machines. If reproducibility is necessary, care should be taken to ensure that the version of the databases is the same across different machines.</p>
 <p>The databases consist of three files, used by <em>bomrang</em>, <code>AAC_codes.rda</code>, <code>JSONurl_latlon_by_station_name.rda</code> and <code>stations_site_list.rda</code>. These files can be located on your local system by using the following command,</p>
-<pre class="sourceCode r" id="cb13"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">paste0</span>(<span class="kw">.libPaths</span>(), <span class="st">"/bomrang/extdata"</span>)[<span class="dv">1</span>]</a></code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">paste0</span>(<span class="kw">.libPaths</span>(), <span class="st">"/bomrang/extdata"</span>)[<span class="dv">1</span>]</a></code></pre></div>
 <p>unless you have specified another location for library installations and installed <em>bomrang</em> there, in which case it would still be in <code>bomrang/extdata</code>.</p>
 <div id="using-update_forecast_towns" class="section level3">
 <h3 class="hasAnchor">
@@ -414,7 +414,7 @@
 <h3 class="hasAnchor">
 <a href="#example-5" class="anchor"></a>Example</h3>
 <p>Following is an example updating the précis forecast locations internal database.</p>
-<pre class="sourceCode r" id="cb14"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw"><a href="../reference/update_forecast_towns.html">update_forecast_towns</a></span>()</a></code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw"><a href="../reference/update_forecast_towns.html">update_forecast_towns</a></span>()</a></code></pre></div>
 </div>
 <div id="using-update_station_locations" class="section level3">
 <h3 class="hasAnchor">
@@ -426,7 +426,7 @@
 <h3 class="hasAnchor">
 <a href="#example-6" class="anchor"></a>Example</h3>
 <p>Following is an example updating the précis forecast locations internal database.</p>
-<pre class="sourceCode r" id="cb15"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="../reference/update_station_locations.html">update_station_locations</a></span>()</a></code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="../reference/update_station_locations.html">update_station_locations</a></span>()</a></code></pre></div>
 </div>
 </div>
 <div id="using-bomrang-to-retrieve-satellite-imagery" class="section level2">
@@ -670,7 +670,7 @@ Satellite
 <a href="#using-get_available_imagery" class="anchor"></a>Using <code>get_available_imagery</code>
 </h3>
 <p><code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> only takes one argument, <code>product_id</code>, a BoM identifier for the imagery that you wish to check for available imagery. Using this function will fetch a listing of BoM GeoTIFF satellite imagery from <a href="ftp://ftp.bom.gov.au/anon/gen/gms/" class="uri">ftp://ftp.bom.gov.au/anon/gen/gms/</a> to display which files are currently available for download. These files are available at ten minute update frequency with a 24 hour delete time. This function can be used see the most recent files available and then specify in the <code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> function. If no valid Product ID is supplied, defaults to all GeoTIFF images currently available.</p>
-<pre class="sourceCode r" id="cb16"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">avail &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_available_imagery.html">get_available_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDE00425"</span>)</a></code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">avail &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_available_imagery.html">get_available_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDE00425"</span>)</a></code></pre></div>
 </div>
 <div id="using-get_satellite_imagery" class="section level3">
 <h3 class="hasAnchor">
@@ -682,7 +682,7 @@ Satellite
 <li><p><code>scans</code> a numeric value for the number of scans to download, starting with the most recent and progressing backwards, <em>e.g.</em>, <code>1</code> - the most recent single scan available , <code>6</code> - the most recent hour available, <code>12</code> - the most recent 2 hours available, etc. Negating will return the oldest files first. Defaults to 1. This argument is optional.</p></li>
 <li><p><code>cache</code> a logical value that indicates whether or not to store image files locally for later use? If <code>FALSE</code>, the downloaded files are removed when R session is closed. To take advantage of cached files in future sessions, set <code>TRUE</code>. Defaults to <code>FALSE</code>. This argument is optional. Cached files may be managed with the <code><a href="../reference/manage_cache.html">manage_cache()</a></code> function.</p></li>
 </ul>
-<pre class="sourceCode r" id="cb17"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># Specify product ID and scans</span></a>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># Specify product ID and scans</span></a>
 <a class="sourceLine" id="cb17-2" data-line-number="2">i &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_satellite_imagery.html">get_satellite_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDE00425"</span>, <span class="dt">scans =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb17-3" data-line-number="3"></a>
 <a class="sourceLine" id="cb17-4" data-line-number="4"><span class="co"># Same, but use "avail" from prior to specify images for download</span></a>
@@ -693,7 +693,7 @@ Satellite
 <a class="sourceLine" id="cb17-9" data-line-number="9"></a>
 <a class="sourceLine" id="cb17-10" data-line-number="10"><span class="co"># load the raster library to work with the GeoTIFF files</span></a>
 <a class="sourceLine" id="cb17-11" data-line-number="11"><span class="kw">library</span>(raster)</a>
-<a class="sourceLine" id="cb17-12" data-line-number="12"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(i)</a></code></pre>
+<a class="sourceLine" id="cb17-12" data-line-number="12"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(i)</a></code></pre></div>
 <div class="figure">
 <img src="get_satellite_imagery-1.png" alt="get_satellite_imagery-1.png"><p class="caption">get_satellite_imagery-1.png</p>
 </div>
@@ -2070,7 +2070,7 @@ See below for description
 <div id="appendix-5---map-of-station-locations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#appendix-5---map-of-station-locations" class="anchor"></a>Appendix 5 - Map of station locations</h2>
-<pre class="sourceCode r" id="cb24"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="cf">if</span> (<span class="kw">requireNamespace</span>(<span class="st">"ggplot2"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="cf">if</span> (<span class="kw">requireNamespace</span>(<span class="st">"ggplot2"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
 <a class="sourceLine" id="cb24-2" data-line-number="2"><span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"ggthemes"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
 <a class="sourceLine" id="cb24-3" data-line-number="3"><span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"maps"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
 <a class="sourceLine" id="cb24-4" data-line-number="4"><span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"mapproj"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
@@ -2112,7 +2112,7 @@ See below for description
 <a class="sourceLine" id="cb24-40" data-line-number="40">            <span class="dt">gp =</span> grid<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/grid/topics/gpar">gpar</a></span>(<span class="dt">lwd =</span> <span class="fl">0.25</span>, </a>
 <a class="sourceLine" id="cb24-41" data-line-number="41">                            <span class="dt">col =</span> <span class="st">"black"</span>,</a>
 <a class="sourceLine" id="cb24-42" data-line-number="42">                            <span class="dt">fill =</span> <span class="ot">NA</span>))</a>
-<a class="sourceLine" id="cb24-43" data-line-number="43">}</a></code></pre>
+<a class="sourceLine" id="cb24-43" data-line-number="43">}</a></code></pre></div>
 <p><img src="bomrang_files/figure-html/station-locations-map-1.png" width="672"></p>
 </div>
 </div>
