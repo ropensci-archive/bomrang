@@ -30,28 +30,28 @@
       "givenName": "Adam",
       "familyName": "Sparks",
       "email": "adamhsparks@gmail.com",
-      "@id": "http://orcid.org/0000-0002-0061-8359"
+      "@id": "https://orcid.org/0000-0002-0061-8359"
     },
     {
       "@type": "Person",
       "givenName": "Mark",
       "familyName": "Padgham",
       "email": "mark.padgham@email.com",
-      "@id": "http://orcid.org/0000-0003-2172-5265"
+      "@id": "https://orcid.org/0000-0003-2172-5265"
     },
     {
       "@type": "Person",
       "givenName": "Hugh",
       "familyName": "Parsonage",
       "email": "hugh.parsonage@gmail.com",
-      "@id": "http://orcid.org/0000-0003-4055-0835"
+      "@id": "https://orcid.org/0000-0003-4055-0835"
     },
     {
       "@type": "Person",
       "givenName": "Keith",
       "familyName": "Pembleton",
       "email": "keith.pembleton@usq.edu.au",
-      "@id": "http://orcid.org/0000-0002-1896-4516"
+      "@id": "https://orcid.org/0000-0002-1896-4516"
     }
   ],
   "maintainer": {
@@ -59,7 +59,7 @@
     "givenName": "Adam",
     "familyName": "Sparks",
     "email": "adamhsparks@gmail.com",
-    "@id": "http://orcid.org/0000-0002-0061-8359"
+    "@id": "https://orcid.org/0000-0002-0061-8359"
   },
   "softwareSuggestions": [
     {
@@ -357,7 +357,7 @@
   "contIntegration": "https://travis-ci.org/ropensci/bomrang",
   "releaseNotes": "https://github.com/ropensci/bomrang/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/bomrang/blob/master/README.md",
-  "fileSize": "803.712KB",
+  "fileSize": "805.323KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
