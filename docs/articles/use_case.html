@@ -130,33 +130,33 @@
 ## 5     4   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ## 6     5   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ##      start_time_local end_time_local UTC_offset      start_time_utc
-## 1 2017-12-15 05:00:00     2017-12-16      10:00 2017-12-14 19:00:00
-## 2 2017-12-16 00:00:00     2017-12-17      10:00 2017-12-15 14:00:00
-## 3 2017-12-17 00:00:00     2017-12-18      10:00 2017-12-16 14:00:00
-## 4 2017-12-18 00:00:00     2017-12-19      10:00 2017-12-17 14:00:00
-## 5 2017-12-19 00:00:00     2017-12-20      10:00 2017-12-18 14:00:00
-## 6 2017-12-20 00:00:00     2017-12-21      10:00 2017-12-19 14:00:00
+## 1 2017-12-18 05:00:00     2017-12-19      10:00 2017-12-17 19:00:00
+## 2 2017-12-19 00:00:00     2017-12-20      10:00 2017-12-18 14:00:00
+## 3 2017-12-20 00:00:00     2017-12-21      10:00 2017-12-19 14:00:00
+## 4 2017-12-21 00:00:00     2017-12-22      10:00 2017-12-20 14:00:00
+## 5 2017-12-22 00:00:00     2017-12-23      10:00 2017-12-21 14:00:00
+## 6 2017-12-23 00:00:00     2017-12-24      10:00 2017-12-22 14:00:00
 ##          end_time_utc minimum_temperature maximum_temperature
-## 1 2017-12-15 14:00:00                  NA                  30
-## 2 2017-12-16 14:00:00                  21                  31
-## 3 2017-12-17 14:00:00                  20                  31
-## 4 2017-12-18 14:00:00                  21                  30
-## 5 2017-12-19 14:00:00                  21                  31
-## 6 2017-12-20 14:00:00                  20                  32
-##   lower_precipitation_limit upper_precipitation_limit         precis
-## 1                        NA                        NA  Mostly sunny.
-## 2                         0                       0.4 Partly cloudy.
-## 3                        NA                        NA Partly cloudy.
-## 4                        NA                        NA Partly cloudy.
-## 5                        NA                        NA  Mostly sunny.
-## 6                        NA                        NA         Sunny.
+## 1 2017-12-18 14:00:00                  NA                  30
+## 2 2017-12-19 14:00:00                  20                  33
+## 3 2017-12-20 14:00:00                  22                  33
+## 4 2017-12-21 14:00:00                  22                  32
+## 5 2017-12-22 14:00:00                  22                  31
+## 6 2017-12-23 14:00:00                  22                  31
+##   lower_precipitation_limit upper_precipitation_limit           precis
+## 1                        NA                        NA  Cloud clearing.
+## 2                        NA                        NA    Mostly sunny.
+## 3                        NA                        NA    Mostly sunny.
+## 4                        NA                        NA   Partly cloudy.
+## 5                         0                         4   Shower or two.
+## 6                         0                         2 Possible shower.
 ##   probability_of_precipitation
 ## 1                           30
-## 2                           31
-## 3                           31
-## 4                           30
+## 2                           33
+## 3                           33
+## 4                           32
 ## 5                           31
-## 6                           32</code></pre>
+## 6                           31</code></pre>
 <p>Now we use a <code>for()</code> loop that searches through the Queensland précis forecast data frame and subsets it based on location each subscriber has nominated and the temperature threshold we have set. As part of the <code>for()</code> loop there is an <code>if()</code> statement that uses the <em>mailR</em> package to send an email to the subscribers if the forecast maximum temperatures are greater than or equal to the threshold. This email informs the recipient of the dates that high temperatures are expected.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">QLD_hotdates &lt;-</a>
 <a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span>QLD_forecast <span class="op">%&gt;%</span></a>

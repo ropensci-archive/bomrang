@@ -74,12 +74,12 @@
       
       </header><div class="row">
   <div class="contents col-md-9">
-    <section id="bomrang-australian-government-bureau-of-meteorology-data-from-r" class="level1"><div class="page-header"><h1>
+    <section class="level1"><div class="page-header"><h1>
 <em>bomrang</em>: Australian Government Bureau of Meteorology Data from R</h1></div>
 
 <p><img align="right" src="reference/figures/bomrang-hex.png"> Provides functions to interface with Australian Government Bureau of Meteorology (BoM) data, fetching data and returning a tidy data frame of précis forecasts, current weather data from stations, ag information bulletins or a <code><a href="http://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code> object of satellite imagery from GeoTIFF files.</p>
 <p>Credit for the name, <em>bomrang</em>, goes to <a href="http://dicook.github.io">Di Cook</a>, who suggested it while attending the rOpenSci AUUnconf in Brisbane, 2016, upon seeing the <a href="https://github.com/saundersk1/auunconf16/blob/master/Vignette_BoM.pdf">vignette</a> that we had assembled during the Unconf.</p>
-<section id="quick-start" class="level2"><h2>Quick Start</h2>
+<section class="level2"><h2>Quick Start</h2>
 <p>Install the stable release from CRAN.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"bomrang"</span>)</a></code></pre></div>
 <p>Or from GitHub for the version in development.</p>
@@ -89,10 +89,10 @@
 <a class="sourceLine" id="cb2-4" data-line-number="4">}</a>
 <a class="sourceLine" id="cb2-5" data-line-number="5"></a>
 <a class="sourceLine" id="cb2-6" data-line-number="6">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ropensci/bomrang"</span>)</a></code></pre></div>
-</section><section id="using-bomrang" class="level2"><h2>Using <em>bomrang</em>
+</section><section class="level2"><h2>Using <em>bomrang</em>
 </h2>
 <p>Several functions are provided by <em>bomrang</em> to retrieve Australian Bureau of Meteorology (BoM) data. A family of functions retrieve weather data and return tidy data frames; <code><a href="reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; <code><a href="reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin; and <code><a href="reference/get_weather_bulletin.html">get_weather_bulletin()</a></code>, which retrieves the BoM 0900 or 1500 bulletins. A second group of functions retrieve information pertaining to satellite imagery, <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code> and the imagery itself, <code><a href="reference/get_satellite_imagery.html">get_satellite_imagery()</a></code>.</p>
-<section id="using-get_current_weather" class="level3"><h3>Using <code>get_current_weather</code>
+<section class="level3"><h3>Using <code>get_current_weather</code>
 </h3>
 <p>Returns the latest 72 hours weather observations for a station.</p>
 <p>This function accepts four arguments:</p>
@@ -102,10 +102,10 @@
 <li><p><code>raw</code>, Logical. Do not convert the columns data.table to the appropriate classes. (FALSE by default.)</p></li>
 <li><p><code>emit_latlon_msg</code>, Logical. If <code>TRUE</code> (the default), and <code>latlon</code> is selected, a message is emitted before the table is returned indicating which station was actually used (i.e. which station was found to be nearest to the given coordinate).</p></li>
 </ul>
-<section id="results-of-get_current_weather" class="level4"><h4>Results of <code>get_current_weather</code>
+<section class="level4"><h4>Results of <code>get_current_weather</code>
 </h4>
 <p>The function, <code><a href="reference/get_current_weather.html">get_current_weather()</a></code> will return a tidy data frame of the current and past 72 hours observations for the requested station. For a complete listing of the fields in the data frame see Appendix 1, <code>Output from get_current_weather()</code> in the <em>bomrang</em> vignette.</p>
-</section><section id="example-using-get_current_weather" class="level4"><h4>Example Using <code>get_current_weather</code>
+</section><section class="level4"><h4>Example Using <code>get_current_weather</code>
 </h4>
 <p>Following is an example fetching the current weather for Melbourne.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">library</span>(<span class="st">"bomrang"</span>)</a></code></pre></div>
@@ -165,7 +165,7 @@
 <a class="sourceLine" id="cb6-47" data-line-number="47">## 4           8</a>
 <a class="sourceLine" id="cb6-48" data-line-number="48">## 5           8</a>
 <a class="sourceLine" id="cb6-49" data-line-number="49">## 6           6</a></code></pre></div>
-</section></section><section id="using-get_precis_forecast" class="level3"><h3>Using <code>get_precis_forecast</code>
+</section></section><section class="level3"><h3>Using <code>get_precis_forecast</code>
 </h3>
 <p>This function only takes one argument, <code>state</code>. States or territories are specified using the official postal codes.</p>
 <ul>
@@ -179,10 +179,10 @@
 <li><p><strong>WA</strong> - Western Australia</p></li>
 <li><p><strong>AUS</strong> - Australia, returns national forecast including all states or territories.</p></li>
 </ul>
-<section id="get_precis_forecast-results" class="level4"><h4>
+<section class="level4"><h4>
 <code>get_precis_forecast</code> Results</h4>
 <p>The function <code><a href="reference/get_precis_forecast.html">get_precis_forecast()</a></code> will return a tidy data frame of BoM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see Appendix 2, <code>Output from get_precis_forecast()</code> in the <em>bomrang</em> vignette.</p>
-</section><section id="example-using-get_precis_forecast" class="level4"><h4>Example Using <code>get_precis_forecast</code>
+</section><section class="level4"><h4>Example Using <code>get_precis_forecast</code>
 </h4>
 <p>Following is an example fetching the précis forecast for Queensland.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_precis_forecast.html">get_precis_forecast</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)</a>
@@ -222,7 +222,7 @@
 <a class="sourceLine" id="cb8-33" data-line-number="33">## 4                            0</a>
 <a class="sourceLine" id="cb8-34" data-line-number="34">## 5                            5</a>
 <a class="sourceLine" id="cb8-35" data-line-number="35">## 6                            0</a></code></pre></div>
-</section></section><section id="using-get_ag_bulletin" class="level3"><h3>Using <code>get_ag_bulletin</code>
+</section></section><section class="level3"><h3>Using <code>get_ag_bulletin</code>
 </h3>
 <p>This function only takes one argument, <code>state</code>. The <code>state</code> parameter allows the user to select the bulletin for just one state or a national bulletin. States or territories are specified using the official postal codes.</p>
 <ul>
@@ -234,10 +234,10 @@
 <li><p><strong>VIC</strong> - Victoria</p></li>
 <li><p><strong>WA</strong> - Western Australia.</p></li>
 </ul>
-<section id="get_ag_bulletin-results" class="level4"><h4>
+<section class="level4"><h4>
 <code>get_ag_bulletin</code> Results</h4>
 <p>The function <code><a href="reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> will return a tidy data frame of BoM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see Appendix 3, <code>Output from get_ag_bulletin()</code> in the <em>bomrang</em> vignette.</p>
-</section><section id="example-using-get_ag_bulletin" class="level4"><h4>Example Using <code>get_ag_bulletin</code>
+</section><section class="level4"><h4>Example Using <code>get_ag_bulletin</code>
 </h4>
 <p>Following is an example fetching the ag bulletin for Queensland.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_ag_bulletin.html">get_ag_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)</a>
@@ -270,7 +270,7 @@
 <a class="sourceLine" id="cb10-26" data-line-number="26">## 4  NA  NA   NA   NA   NA   NA   NA  NA</a>
 <a class="sourceLine" id="cb10-27" data-line-number="27">## 5  NA  NA   NA   NA   NA   NA   NA  NA</a>
 <a class="sourceLine" id="cb10-28" data-line-number="28">## 6  NA  NA   NA   NA   NA   NA   NA  NA</a></code></pre></div>
-</section></section><section id="using-get_weather_bulletin" class="level3"><h3>Using <code>get_weather_bulletin</code>
+</section></section><section class="level3"><h3>Using <code>get_weather_bulletin</code>
 </h3>
 <p>This function takes two arguments, <code>state</code> for the desired state; and <code>morning</code> if <code>TRUE</code>, return the 9am bulletin for the nominated state; otherwise return the 3pm bulletin. States or territories are specified using the official postal codes.</p>
 <ul>
@@ -284,10 +284,10 @@
 <li><p><strong>WA</strong> - Western Australia</p></li>
 <li><p><strong>AUS</strong> - Australia, returns bulletin for all states/territories.</p></li>
 </ul>
-<section id="get_weather_bulletin-results" class="level4"><h4>
+<section class="level4"><h4>
 <code>get_weather_bulletin</code> Results</h4>
 <p>The function <code><a href="reference/get_weather_bulletin.html">get_weather_bulletin()</a></code> will return a tidy data frame of BoM data for the requested state(s) or territory.</p>
-</section><section id="example-using-get_weather_bulletin" class="level4"><h4>Example using <code>get_weather_bulletin</code>
+</section><section class="level4"><h4>Example using <code>get_weather_bulletin</code>
 </h4>
 <p>Following is an example fetching the 3PM bulletin for Queensland.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">qld_weather &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_weather_bulletin.html">get_weather_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)</a>
@@ -306,11 +306,11 @@
 <a class="sourceLine" id="cb12-12" data-line-number="12">## 4         29         15        NA   1015      NA                 </a>
 <a class="sourceLine" id="cb12-13" data-line-number="13">## 5         35         13        NA   1015      NA                 </a>
 <a class="sourceLine" id="cb12-14" data-line-number="14">## 6         34         17        NA   1014      NA</a></code></pre></div>
-</section></section><section id="using-get_satellite_imagery" class="level3"><h3>Using <code>get_satellite_imagery</code>
+</section></section><section class="level3"><h3>Using <code>get_satellite_imagery</code>
 </h3>
 <p><em>bomrang</em> provides two functions to check and retrieve satellite imagery from BoM, <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code> and <code><a href="reference/get_satellite_imagery.html">get_satellite_imagery()</a></code>.</p>
 <p>The function <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code> only takes one argument, <code>product_id</code>, a BoM identifier for the imagery that you wish to check for available imagery. Using this function will fetch a listing of BoM GeoTIFF satellite imagery from <a href="ftp://ftp.bom.gov.au/anon/gen/gms/" class="uri">ftp://ftp.bom.gov.au/anon/gen/gms/</a> to display which files are currently available for download. These files are available at ten minute update frequency with a 24 hour delete time. This function can be used see the most recent files available and then specify in the <code><a href="reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> function. If no valid Product ID is supplied, defaults to all GeoTIFF images currently available.</p>
-<section id="example-using-get_available_imagery" class="level4"><h4>Example using <code>get_available_imagery</code>
+<section class="level4"><h4>Example using <code>get_available_imagery</code>
 </h4>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># Most recent 5 images available for IDE00425</span></a>
 <a class="sourceLine" id="cb13-2" data-line-number="2">avail &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_available_imagery.html">get_available_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDE00426"</span>)</a></code></pre></div>
@@ -461,7 +461,7 @@
 <a class="sourceLine" id="cb14-145" data-line-number="145">## [142] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130200.tif"</a>
 <a class="sourceLine" id="cb14-146" data-line-number="146">## [143] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130210.tif"</a>
 <a class="sourceLine" id="cb14-147" data-line-number="147">## [144] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130220.tif"</a></code></pre></div>
-</section><section id="example-using-get_satellite_imagery" class="level4"><h4>Example using <code>get_satellite_imagery</code>
+</section><section class="level4"><h4>Example using <code>get_satellite_imagery</code>
 </h4>
 <p><code><a href="reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> fetches BoM satellite GeoTIFF imagery, returning a raster stack object and takes three arguments. Files are available at ten minute update frequency with a 24 hour delete time. It is suggested to check file availability first by using <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code>. The arguments are:</p>
 <ul>
@@ -477,7 +477,7 @@
 <div class="sourceCode" id="cb16"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">## Loading required package: sp</a></code></pre></div>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(imagery)</a></code></pre></div>
 <p><img src="reference/figures/get_satellite_imagery-1.png"></p>
-</section></section></section><section id="meta" class="level2"><h2>Meta</h2>
+</section></section></section><section class="level2"><h2>Meta</h2>
 <ul>
 <li><p>Please <a href="https://github.com/ropensci/bomrang/issues">report any issues or bugs</a>.</p></li>
 <li>License:
@@ -506,7 +506,7 @@ title = {bomrang: Fetch Australian Government Bureau of Meteorology Data in R},
 journal = {The Journal of Open Source Software}</code></pre>
 </li>
 <li><p>Please note that this project is released with a <a href="CONDUCT.md">Contributor Code of Conduct</a>. By participating in this project you agree to abide by its terms.</p></li>
-</ul></section><section id="references" class="level2"><h2>References</h2>
+</ul></section><section class="level2"><h2>References</h2>
 <p><a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services</a></p>
 <p><a href="http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services Agriculture Bulletins</a></p>
 <p><a href="http://www.bom.gov.au/climate/how/observations/rain-measure.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services Observation of Rainfall</a></p>
