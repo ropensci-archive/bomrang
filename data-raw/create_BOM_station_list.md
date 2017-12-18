@@ -246,13 +246,13 @@ stations_site_list$site <-
     ## ─ Session info ──────────────────────────────────────────────────────────
     ##  setting  value                       
     ##  version  R version 3.4.3 (2017-11-30)
-    ##  os       macOS High Sierra 10.13.2   
-    ##  system   x86_64, darwin17.2.0        
+    ##  os       macOS Sierra 10.12.6        
+    ##  system   x86_64, darwin16.7.0        
     ##  ui       unknown                     
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2017-12-15                  
+    ##  date     2017-12-18                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version    date      
@@ -276,42 +276,42 @@ stations_site_list$site <-
     ##  R6            2.2.2      2017-06-17
     ##  Rcpp          0.12.14    2017-11-23
     ##  readr         1.1.1      2017-05-16
-    ##  rlang         0.1.4.9000 2017-12-06
+    ##  rlang         0.1.4.9000 2017-12-07
     ##  rmarkdown     1.8.5      2017-12-13
     ##  rprojroot     1.2        2017-01-16
     ##  sessioninfo   1.0.0      2017-06-21
     ##  stringi       1.1.6      2017-11-17
     ##  stringr       1.2.0      2017-02-18
     ##  tibble        1.3.4      2017-08-22
-    ##  withr         2.1.0      2017-11-01
+    ##  withr         2.1.0.9000 2017-11-26
     ##  yaml          2.1.16     2017-12-12
     ##  source                                 
-    ##  CRAN (R 3.4.2)                         
+    ##  CRAN (R 3.4.1)                         
     ##  cran (@1.1.2)                          
-    ##  CRAN (R 3.4.2)                         
-    ##  CRAN (R 3.4.2)                         
+    ##  CRAN (R 3.4.1)                         
+    ##  CRAN (R 3.4.1)                         
     ##  Github (gaborcsardi/clisymbols@e49b4f5)
     ##  cran (@3.1)                            
     ##  cran (@1.10.4-)                        
     ##  cran (@0.6.13)                         
-    ##  CRAN (R 3.4.2)                         
-    ##  cran (@0.10.1)                         
+    ##  cran (@0.7.4)                          
+    ##  CRAN (R 3.4.1)                         
     ##  cran (@1.2.0)                          
     ##  cran (@0.4.0)                          
-    ##  cran (@0.3.6)                          
+    ##  CRAN (R 3.4.1)                         
+    ##  CRAN (R 3.4.1)                         
     ##  CRAN (R 3.4.2)                         
-    ##  cran (@1.17)                           
-    ##  CRAN (R 3.4.2)                         
-    ##  CRAN (R 3.4.2)                         
-    ##  CRAN (R 3.4.2)                         
+    ##  CRAN (R 3.4.1)                         
+    ##  CRAN (R 3.4.1)                         
+    ##  CRAN (R 3.4.1)                         
     ##  cran (@0.12.14)                        
-    ##  CRAN (R 3.4.2)                         
+    ##  CRAN (R 3.4.1)                         
     ##  Github (tidyverse/rlang@5ebcf24)       
     ##  Github (rstudio/rmarkdown@08c7567)     
-    ##  cran (@1.2)                            
+    ##  CRAN (R 3.4.1)                         
     ##  CRAN (R 3.4.2)                         
     ##  cran (@1.1.6)                          
-    ##  CRAN (R 3.4.2)                         
-    ##  CRAN (R 3.4.2)                         
-    ##  cran (@2.1.0)                          
+    ##  CRAN (R 3.4.1)                         
+    ##  cran (@1.3.4)                          
+    ##  Github (jimhester/withr@fe81c00)       
     ##  cran (@2.1.16)
