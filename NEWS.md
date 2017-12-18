@@ -1,5 +1,12 @@
 # bomrang 0.1.1.9000
 
+## Bug fixes
+
+- Correct issue with converting the timzeone in ag bulletin to character where
+the conversion resulted in a vector of numerals, not the expected string of 
+characters, e.g. "EST"
+
+--------------------------------------------------------------------------------
 
 # bomrang 0.1.1
 

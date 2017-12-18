@@ -126,47 +126,47 @@
 ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
 ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
 ##   local_date_time local_date_time_full        aifstime_utc      lat
-## 1      18/12:00pm  2017-12-18 12:00:00 2017-12-18 01:00:00 -37.8255
-## 2      18/11:30am  2017-12-18 11:30:00 2017-12-18 00:30:00 -37.8255
-## 3      18/11:00am  2017-12-18 11:00:00 2017-12-18 00:00:00 -37.8255
-## 4      18/10:30am  2017-12-18 10:30:00 2017-12-17 23:30:00 -37.8255
-## 5      18/10:00am  2017-12-18 10:00:00 2017-12-17 23:00:00 -37.8255
-## 6      18/09:30am  2017-12-18 09:30:00 2017-12-17 22:30:00 -37.8255
+## 1      18/12:30pm  2017-12-18 12:30:00 2017-12-18 01:30:00 -37.8255
+## 2      18/12:00pm  2017-12-18 12:00:00 2017-12-18 01:00:00 -37.8255
+## 3      18/11:30am  2017-12-18 11:30:00 2017-12-18 00:30:00 -37.8255
+## 4      18/11:00am  2017-12-18 11:00:00 2017-12-18 00:00:00 -37.8255
+## 5      18/10:30am  2017-12-18 10:30:00 2017-12-17 23:30:00 -37.8255
+## 6      18/10:00am  2017-12-18 10:00:00 2017-12-17 23:00:00 -37.8255
 ##        lon apparent_t cloud cloud_base_m cloud_oktas cloud_type
-## 1 144.9816       27.5     -           NA          NA          -
-## 2 144.9816       28.4     -           NA          NA          -
-## 3 144.9816       26.4     -           NA          NA          -
-## 4 144.9816       26.2     -           NA          NA          -
-## 5 144.9816       25.0     -           NA          NA          -
-## 6 144.9816       22.0     -           NA          NA          -
+## 1 144.9816       28.4     -           NA          NA          -
+## 2 144.9816       27.5     -           NA          NA          -
+## 3 144.9816       28.4     -           NA          NA          -
+## 4 144.9816       26.4     -           NA          NA          -
+## 5 144.9816       26.2     -           NA          NA          -
+## 6 144.9816       25.0     -           NA          NA          -
 ##   cloud_type_id delta_t gust_kmh gust_kt air_temp dewpt  press press_msl
-## 1            NA     8.5       11       6     27.6  13.2 1010.3    1010.3
-## 2            NA     6.1        7       4     26.5  16.7 1010.7    1010.7
-## 3            NA     5.5        7       4     24.9  15.8 1011.2    1011.2
-## 4            NA     4.6        4       2     24.0  16.5 1011.3    1011.3
-## 5            NA     3.8        4       2     22.8  16.6 1011.6    1011.6
-## 6            NA     2.9       11       6     21.2  16.4 1012.0    1012.0
+## 1            NA     9.9        9       5     29.1  12.1 1010.0    1010.0
+## 2            NA     8.5       11       6     27.6  13.2 1010.3    1010.3
+## 3            NA     6.1        7       4     26.5  16.7 1010.7    1010.7
+## 4            NA     5.5        7       4     24.9  15.8 1011.2    1011.2
+## 5            NA     4.6        4       2     24.0  16.5 1011.3    1011.3
+## 6            NA     3.8        4       2     22.8  16.6 1011.6    1011.6
 ##   press_qnh press_tend rain_trace rel_hum sea_state swell_dir_worded
-## 1    1010.3          -          0      41         -                -
-## 2    1010.7          -          0      55         -                -
-## 3    1011.2          -          0      57         -                -
-## 4    1011.3          -          0      63         -                -
-## 5    1011.6          -          0      68         -                -
-## 6    1012.0          -          0      74         -                -
+## 1    1010.0          -          0      35         -                -
+## 2    1010.3          -          0      41         -                -
+## 3    1010.7          -          0      55         -                -
+## 4    1011.2          -          0      57         -                -
+## 5    1011.3          -          0      63         -                -
+## 6    1011.6          -          0      68         -                -
 ##   swell_height swell_period vis_km weather wind_dir wind_spd_kmh
-## 1           NA           NA     10       -      ENE            6
-## 2           NA           NA     10       -        N            2
-## 3           NA           NA     10       -       NW            2
-## 4           NA           NA     10       -     CALM            0
+## 1           NA           NA     10       -      NNW            7
+## 2           NA           NA     10       -      ENE            6
+## 3           NA           NA     10       -        N            2
+## 4           NA           NA     10       -       NW            2
 ## 5           NA           NA     10       -     CALM            0
-## 6           NA           NA     10       -      NNE            7
+## 6           NA           NA     10       -     CALM            0
 ##   wind_spd_kt
-## 1           3
-## 2           1
+## 1           4
+## 2           3
 ## 3           1
-## 4           0
+## 4           1
 ## 5           0
-## 6           4</code></pre>
+## 6           0</code></pre>
 </div>
 </div>
 <div id="using-get_precis_forecast" class="section level2">
@@ -320,19 +320,19 @@
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">qld_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_weather_bulletin.html">get_weather_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">head</span>(qld_weather)</a></code></pre></div>
 <pre><code>##         stations cld8ths wind_dir wind_speed_kmh temp_c_dry temp_c_dew
-## 1     Coconut Is      NA       SE              2         31         NA
-## 2        Coen Ap      NA      ESE              9         30         19
-## 3        Horn Is       3      ESE             13         30         23
-## 4 Lockhart River       2      ESE             13         30         22
-## 5    Palmerville      NA      SSE              6         30         19
-## 6       Scherger      NA       SE              7         29         22
+## 1     Coconut Is      NA       SE              4         31         NA
+## 2        Coen Ap      NA      ESE             11         30         19
+## 3        Horn Is       3      SSE             17         30         24
+## 4 Lockhart River       6      ESE             20         30         23
+## 5    Palmerville      NA      ESE              6         29         18
+## 6       Scherger      NA      SSE              9         28         22
 ##   temp_c_max temp_c_min temp_c_gr barhpa rain_mm weather seastate
-## 1         35         25        NA   1010      NA                 
-## 2         37         22        NA   1010      NA                 
-## 3         33         26        NA   1011      NA                 
-## 4         32         22        NA   1010      NA                 
-## 5         38         22        NA   1011      NA                 
-## 6         36         23        NA   1010      10</code></pre>
+## 1         35         26        NA   1009      NA                 
+## 2         36         23        NA   1009      NA                 
+## 3         33         26        NA   1010     0.4                 
+## 4         33         22        NA   1010      NA                 
+## 5         38         21        NA   1010      NA                 
+## 6         35         23        NA   1010     7.0</code></pre>
 </div>
 </div>
 <div id="using-sweep_for_stations" class="section level2">
