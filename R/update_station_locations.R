@@ -36,10 +36,6 @@ update_station_locations <- function() {
       "Please retry again later.\n"
     ))
 
-  curl::curl_download(
-    url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
-    destfile = paste0(tempdir(), "stations.zip"))
-
   bom_stations_raw <-
     readr::read_fwf(
       file.path(tempdir(), "stations.zip"),
