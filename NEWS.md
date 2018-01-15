@@ -6,6 +6,9 @@
 the conversion resulted in a vector of numerals, not the expected string of 
 characters, e.g. "EST"
 
+- Remove redundant functionality in `update_station_locations()` where data were
+fetched using `tryCatch()` and then again without
+
 --------------------------------------------------------------------------------
 
 # bomrang 0.1.1
