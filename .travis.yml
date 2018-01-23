@@ -1,5 +1,6 @@
 language: r
 sudo: required
+group: deprecated-2017Q4
 dist: trusty
 addons:
   apt:
