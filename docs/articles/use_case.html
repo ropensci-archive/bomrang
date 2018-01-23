@@ -83,9 +83,7 @@
     
     
 <div class="contents">
-<div id="using-bomrang-with-the-wins-for-pulses-project" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-bomrang-with-the-wins-for-pulses-project" class="anchor"></a>Using <em>bomrang</em> with the <em>WINS</em> for pulses project</h2>
+<section id="using-bomrang-with-the-wins-for-pulses-project" class="level2"><h2>Using <em>bomrang</em> with the <em>WINS</em> for pulses project</h2>
 <p><a href="http://www.pulseaus.com.au/about/australian-pulse-industry">Summer pulses (<em>e.g.</em>, mungbeans) are a high value crop for Queensland grain growers</a>. However, temperatures above 40C, particularly during flowering, can have a severe detrimental effect on crop yields (Kaushal <em>et al.</em> 2016). A key strategy that plants use to minimise the impact of heat stress is evaporative cooling. Ensuring crops are well watered prior to a heat stress event (so to facilitate high rates of evaporative cooling) is a potential strategy to ensure that irrigated crops avoid heat stress. However, this requires farmers to recognise a heat stress event is coming and commence irrigating with enough time to water the entire crop prior to the event occurring.</p>
 <p>The <a href="https://github.com/ToowoombaTrio/WINS"><em>WINS</em></a> for pulses project provides warnings when heat stress events are likely to occur so that farmers can irrigate their crops prior to the event to minimise any resulting yield loss. It does this by using the <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code> function from <em>bomrang</em> along with functionality from <a href="https://CRAN.R-project.org/package=mailR"><em>mailR</em></a> (Rahul 2015).</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"bomrang"</span>)</a>
@@ -130,31 +128,31 @@
 ## 5     4   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ## 6     5   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ##      start_time_local end_time_local UTC_offset      start_time_utc
-## 1 2017-12-18 05:00:00     2017-12-19      10:00 2017-12-17 19:00:00
-## 2 2017-12-19 00:00:00     2017-12-20      10:00 2017-12-18 14:00:00
-## 3 2017-12-20 00:00:00     2017-12-21      10:00 2017-12-19 14:00:00
-## 4 2017-12-21 00:00:00     2017-12-22      10:00 2017-12-20 14:00:00
-## 5 2017-12-22 00:00:00     2017-12-23      10:00 2017-12-21 14:00:00
-## 6 2017-12-23 00:00:00     2017-12-24      10:00 2017-12-22 14:00:00
+## 1 2018-01-23 17:00:00     2018-01-24      10:00 2018-01-23 07:00:00
+## 2 2018-01-24 00:00:00     2018-01-25      10:00 2018-01-23 14:00:00
+## 3 2018-01-25 00:00:00     2018-01-26      10:00 2018-01-24 14:00:00
+## 4 2018-01-26 00:00:00     2018-01-27      10:00 2018-01-25 14:00:00
+## 5 2018-01-27 00:00:00     2018-01-28      10:00 2018-01-26 14:00:00
+## 6 2018-01-28 00:00:00     2018-01-29      10:00 2018-01-27 14:00:00
 ##          end_time_utc minimum_temperature maximum_temperature
-## 1 2017-12-18 14:00:00                  NA                  30
-## 2 2017-12-19 14:00:00                  20                  33
-## 3 2017-12-20 14:00:00                  22                  33
-## 4 2017-12-21 14:00:00                  22                  32
-## 5 2017-12-22 14:00:00                  22                  31
-## 6 2017-12-23 14:00:00                  22                  31
-##   lower_precipitation_limit upper_precipitation_limit           precis
-## 1                        NA                        NA  Cloud clearing.
-## 2                        NA                        NA    Mostly sunny.
-## 3                        NA                        NA    Mostly sunny.
-## 4                        NA                        NA   Partly cloudy.
-## 5                         0                         4   Shower or two.
-## 6                         0                         2 Possible shower.
+## 1 2018-01-23 14:00:00                  NA                  NA
+## 2 2018-01-24 14:00:00                  22                  31
+## 3 2018-01-25 14:00:00                  23                  31
+## 4 2018-01-26 14:00:00                  23                  31
+## 5 2018-01-27 14:00:00                  23                  31
+## 6 2018-01-28 14:00:00                  23                  31
+##   lower_precipitation_limit upper_precipitation_limit         precis
+## 1                        NA                        NA  Mostly clear.
+## 2                         0                         1 Partly cloudy.
+## 3                         0                         1 Partly cloudy.
+## 4                         0                         5 Shower or two.
+## 5                         0                         2 Shower or two.
+## 6                         0                         3 Shower or two.
 ##   probability_of_precipitation
-## 1                           30
-## 2                           33
-## 3                           33
-## 4                           32
+## 1                           NA
+## 2                           31
+## 3                           31
+## 4                           31
 ## 5                           31
 ## 6                           31</code></pre>
 <p>Now we use a <code>for()</code> loop that searches through the Queensland précis forecast data frame and subsets it based on location each subscriber has nominated and the temperature threshold we have set. As part of the <code>for()</code> loop there is an <code>if()</code> statement that uses the <em>mailR</em> package to send an email to the subscribers if the forecast maximum temperatures are greater than or equal to the threshold. This email informs the recipient of the dates that high temperatures are expected.</p>
@@ -199,13 +197,10 @@
 <a class="sourceLine" id="cb8-39" data-line-number="39">}</a></code></pre></div>
 <p>The process is automated to run on a Cron job such that the précis forecast is automatically downloaded and thresholds are calculated on a daily basis with email alerts being sent automatically.</p>
 <p>While mungbean heat stress is illustrated here, other thresholds can be implemented, <em>e.g.</em>, frost events for sugarcane harvest using this same functionality.</p>
-</div>
-<div id="references" class="section level1">
-<h1 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h1>
+</section><section id="references" class="level1"><h1>References</h1>
 <p>Kaushal, N., Bhandari, K., Siddique, K. H., &amp; Nayyar, H. (2016). Food crops face rising temperatures: An overview of responses, adaptive mechanisms, and approaches to improve heat tolerance. Cogent Food &amp; Agriculture, 2(1), 1134380.</p>
 <p>Rahul P (2015). mailR: A Utility to Send emails from R. R package version 0.4.1.https://CRAN.R-project.org/package=mailR</p>
-</div>
+</section>
 </div>
   </div>
 

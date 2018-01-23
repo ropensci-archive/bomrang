@@ -83,32 +83,19 @@
     
     
 <div class="contents">
-<div id="introduction" class="section level2">
-<h2 class="hasAnchor">
-<a href="#introduction" class="anchor"></a>Introduction</h2>
+<section id="introduction" class="level2"><h2>Introduction</h2>
 <p><em>bomrang</em> provides functions for interacting with <a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services</a> forecasts. BoM serves several types of data data as XML, JSON and SHTML files. This package fetches these files, parses them and return a tidy data frame. Satellite imagery files are also made available to the public via anonymous ftp. <em>bomrang</em> provides functionality to query, fetch and create <code><a href="http://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code> objects of the GeoTIFF imagery.</p>
-</div>
-<div id="using-bomrang" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-bomrang" class="anchor"></a>Using <em>bomrang</em>
+</section><section id="using-bomrang" class="level2"><h2>Using <em>bomrang</em>
 </h2>
 <p>Several functions are provided by <em>bomrang</em> to retrieve Australian Bureau of Meteorology (BoM) data. A family of functions retrieve weather data and return tidy data frames; <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin; and <code><a href="../reference/get_weather_bulletin.html">get_weather_bulletin()</a></code> which fetches the 0900 and 1500 weather bulletins. A second family of functions retrieve information pertaining to satellite imagery, <code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> and the imagery itself, <code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code>. The last group functions provides internal functionality for <em>bomrang</em> itself; <code><a href="../reference/update_forecast_towns.html">update_forecast_towns()</a></code>, which updates an internal database of forecast locations distributed with the package, <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> which returns the nearest weather stations to a point in Australia and, <code><a href="../reference/manage_cache.html">manage_cache()</a></code> that provides facilities for managing cached satellite imagery.</p>
-</div>
-<div id="using-get_current_weather" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-get_current_weather" class="anchor"></a>Using <code>get_current_weather</code>
+</section><section id="using-get_current_weather" class="level2"><h2>Using <code>get_current_weather</code>
 </h2>
 <p><code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> takes one of two arguments: <code>station_name</code> and <code>latlon</code>, returning the current weather observations (and the observations of the last 72 hours) for the given location.</p>
 <p>If <code>station_name</code> is used, the weather observations for the last 72 hours are returned for that station. If the string provided is ambiguous, the function returns an observation for one of the possible stations and emits a warning to offer unambiguous station names.</p>
 <p>If <code>latlon</code> is used, the observations returned are from the station nearest to that latitude-longitude coordinate. <code>latlon</code> values are entered as decimal degrees, <em>e.g.</em> -34, 151 for Sydney. The function also emits a message, to tell the user which station was used.</p>
-<div id="results" class="section level3">
-<h3 class="hasAnchor">
-<a href="#results" class="anchor"></a>Results</h3>
+<section id="results" class="level3"><h3>Results</h3>
 <p>The table returned will have different fields depending on the station that is selected.</p>
-</div>
-<div id="example" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example" class="anchor"></a>Example</h3>
+</section><section id="example" class="level3"><h3>Example</h3>
 <p>Following is an example fetching the current weather for Melbourne.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(<span class="st">"bomrang"</span>)</a></code></pre></div>
 <pre><code>## 
@@ -126,52 +113,48 @@
 ## 5          4 95936 Melbourne (Olympic Park)        IDV60801
 ## 6          5 95936 Melbourne (Olympic Park)        IDV60801
 ##   local_date_time local_date_time_full        aifstime_utc      lat
-## 1      18/12:30pm  2017-12-18 12:30:00 2017-12-18 01:30:00 -37.8255
-## 2      18/12:00pm  2017-12-18 12:00:00 2017-12-18 01:00:00 -37.8255
-## 3      18/11:30am  2017-12-18 11:30:00 2017-12-18 00:30:00 -37.8255
-## 4      18/11:00am  2017-12-18 11:00:00 2017-12-18 00:00:00 -37.8255
-## 5      18/10:30am  2017-12-18 10:30:00 2017-12-17 23:30:00 -37.8255
-## 6      18/10:00am  2017-12-18 10:00:00 2017-12-17 23:00:00 -37.8255
+## 1      23/06:30pm  2018-01-23 18:30:00 2018-01-23 07:30:00 -37.8255
+## 2      23/06:00pm  2018-01-23 18:00:00 2018-01-23 07:00:00 -37.8255
+## 3      23/05:30pm  2018-01-23 17:30:00 2018-01-23 06:30:00 -37.8255
+## 4      23/05:00pm  2018-01-23 17:00:00 2018-01-23 06:00:00 -37.8255
+## 5      23/04:30pm  2018-01-23 16:30:00 2018-01-23 05:30:00 -37.8255
+## 6      23/04:00pm  2018-01-23 16:00:00 2018-01-23 05:00:00 -37.8255
 ##        lon apparent_t cloud cloud_base_m cloud_oktas cloud_type
-## 1 144.9816       28.4     -           NA          NA          -
-## 2 144.9816       27.5     -           NA          NA          -
-## 3 144.9816       28.4     -           NA          NA          -
-## 4 144.9816       26.4     -           NA          NA          -
-## 5 144.9816       26.2     -           NA          NA          -
-## 6 144.9816       25.0     -           NA          NA          -
+## 1 144.9816       21.1     -           NA          NA          -
+## 2 144.9816       21.1     -           NA          NA          -
+## 3 144.9816       21.0     -           NA          NA          -
+## 4 144.9816       20.0     -           NA          NA          -
+## 5 144.9816       20.7     -           NA          NA          -
+## 6 144.9816       19.5     -           NA          NA          -
 ##   cloud_type_id delta_t gust_kmh gust_kt air_temp dewpt  press press_msl
-## 1            NA     9.9        9       5     29.1  12.1 1010.0    1010.0
-## 2            NA     8.5       11       6     27.6  13.2 1010.3    1010.3
-## 3            NA     6.1        7       4     26.5  16.7 1010.7    1010.7
-## 4            NA     5.5        7       4     24.9  15.8 1011.2    1011.2
-## 5            NA     4.6        4       2     24.0  16.5 1011.3    1011.3
-## 6            NA     3.8        4       2     22.8  16.6 1011.6    1011.6
+## 1            NA     5.8       26      14     23.0  12.9 1010.0    1010.0
+## 2            NA     5.8       28      15     23.0  12.9 1010.1    1010.1
+## 3            NA     5.5       30      16     23.1  13.6 1010.2    1010.2
+## 4            NA     5.2       33      18     22.6  13.7 1010.4    1010.4
+## 5            NA     5.3       30      16     22.8  13.6 1010.8    1010.8
+## 6            NA     5.0       37      20     22.2  13.5 1011.0    1011.0
 ##   press_qnh press_tend rain_trace rel_hum sea_state swell_dir_worded
-## 1    1010.0          -          0      35         -                -
-## 2    1010.3          -          0      41         -                -
-## 3    1010.7          -          0      55         -                -
-## 4    1011.2          -          0      57         -                -
-## 5    1011.3          -          0      63         -                -
-## 6    1011.6          -          0      68         -                -
+## 1    1010.0          -          0      53         -                -
+## 2    1010.1          -          0      53         -                -
+## 3    1010.2          -          0      55         -                -
+## 4    1010.4          -          0      57         -                -
+## 5    1010.8          -          0      56         -                -
+## 6    1011.0          -          0      57         -                -
 ##   swell_height swell_period vis_km weather wind_dir wind_spd_kmh
-## 1           NA           NA     10       -      NNW            7
-## 2           NA           NA     10       -      ENE            6
-## 3           NA           NA     10       -        N            2
-## 4           NA           NA     10       -       NW            2
-## 5           NA           NA     10       -     CALM            0
-## 6           NA           NA     10       -     CALM            0
+## 1           NA           NA      -       -      SSW           15
+## 2           NA           NA      -       -      SSW           15
+## 3           NA           NA      -       -      SSW           17
+## 4           NA           NA      -       -      SSW           20
+## 5           NA           NA      -       -      SSW           17
+## 6           NA           NA      -       -      SSW           20
 ##   wind_spd_kt
-## 1           4
-## 2           3
-## 3           1
-## 4           1
-## 5           0
-## 6           0</code></pre>
-</div>
-</div>
-<div id="using-get_precis_forecast" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-get_precis_forecast" class="anchor"></a>Using <code>get_precis_forecast</code>
+## 1           8
+## 2           8
+## 3           9
+## 4          11
+## 5           9
+## 6          11</code></pre>
+</section></section><section id="using-get_precis_forecast" class="level2"><h2>Using <code>get_precis_forecast</code>
 </h2>
 <p>This function only takes one argument, <code>state</code>. The <code>state</code> parameter allows the user to select the forecast for just one state or a national forecast. States or territories are specified using the official postal codes or full name with fuzzy matching performed via <code>agrep()</code></p>
 <ul>
@@ -185,14 +168,9 @@
 <li><p><strong>WA</strong> - Western Australia</p></li>
 <li><p><strong>AUS</strong> - Australia, returns national forecast including all states, NT and ACT.</p></li>
 </ul>
-<div id="results-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#results-1" class="anchor"></a>Results</h3>
+<section id="results-1" class="level3"><h3>Results</h3>
 <p>The function, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, will return a data frame of the weather forecast for the daily forecast for selected towns. See Appendix 1 for a full description of the fields and values.</p>
-</div>
-<div id="example-1" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-1" class="anchor"></a>Example</h3>
+</section><section id="example-1" class="level3"><h3>Example</h3>
 <p>Following is an example fetching the forecast for Queensland.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">library</span>(<span class="st">"bomrang"</span>)</a>
 <a class="sourceLine" id="cb5-2" data-line-number="2"></a>
@@ -206,38 +184,34 @@
 ## 5     4   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ## 6     5   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ##      start_time_local end_time_local UTC_offset      start_time_utc
-## 1 2017-12-18 05:00:00     2017-12-19      10:00 2017-12-17 19:00:00
-## 2 2017-12-19 00:00:00     2017-12-20      10:00 2017-12-18 14:00:00
-## 3 2017-12-20 00:00:00     2017-12-21      10:00 2017-12-19 14:00:00
-## 4 2017-12-21 00:00:00     2017-12-22      10:00 2017-12-20 14:00:00
-## 5 2017-12-22 00:00:00     2017-12-23      10:00 2017-12-21 14:00:00
-## 6 2017-12-23 00:00:00     2017-12-24      10:00 2017-12-22 14:00:00
+## 1 2018-01-23 17:00:00     2018-01-24      10:00 2018-01-23 07:00:00
+## 2 2018-01-24 00:00:00     2018-01-25      10:00 2018-01-23 14:00:00
+## 3 2018-01-25 00:00:00     2018-01-26      10:00 2018-01-24 14:00:00
+## 4 2018-01-26 00:00:00     2018-01-27      10:00 2018-01-25 14:00:00
+## 5 2018-01-27 00:00:00     2018-01-28      10:00 2018-01-26 14:00:00
+## 6 2018-01-28 00:00:00     2018-01-29      10:00 2018-01-27 14:00:00
 ##          end_time_utc minimum_temperature maximum_temperature
-## 1 2017-12-18 14:00:00                  NA                  30
-## 2 2017-12-19 14:00:00                  20                  33
-## 3 2017-12-20 14:00:00                  22                  33
-## 4 2017-12-21 14:00:00                  22                  32
-## 5 2017-12-22 14:00:00                  22                  31
-## 6 2017-12-23 14:00:00                  22                  31
-##   lower_precipitation_limit upper_precipitation_limit           precis
-## 1                        NA                        NA  Cloud clearing.
-## 2                        NA                        NA    Mostly sunny.
-## 3                        NA                        NA    Mostly sunny.
-## 4                        NA                        NA   Partly cloudy.
-## 5                         0                         4   Shower or two.
-## 6                         0                         2 Possible shower.
+## 1 2018-01-23 14:00:00                  NA                  NA
+## 2 2018-01-24 14:00:00                  22                  31
+## 3 2018-01-25 14:00:00                  23                  31
+## 4 2018-01-26 14:00:00                  23                  31
+## 5 2018-01-27 14:00:00                  23                  31
+## 6 2018-01-28 14:00:00                  23                  31
+##   lower_precipitation_limit upper_precipitation_limit         precis
+## 1                        NA                        NA  Mostly clear.
+## 2                         0                         1 Partly cloudy.
+## 3                         0                         1 Partly cloudy.
+## 4                         0                         5 Shower or two.
+## 5                         0                         2 Shower or two.
+## 6                         0                         3 Shower or two.
 ##   probability_of_precipitation
-## 1                           30
-## 2                           33
-## 3                           33
-## 4                           32
+## 1                           NA
+## 2                           31
+## 3                           31
+## 4                           31
 ## 5                           31
 ## 6                           31</code></pre>
-</div>
-</div>
-<div id="using-get_ag_bulletin" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-get_ag_bulletin" class="anchor"></a>Using <code>get_ag_bulletin</code>
+</section></section><section id="using-get_ag_bulletin" class="level2"><h2>Using <code>get_ag_bulletin</code>
 </h2>
 <p><code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> only takes one argument, <code>state</code>. The <code>state</code> parameter allows the user to select the bulletin for just one state or a national forecast. States or territories are specified using the official postal codes or full name with fuzzy matching performed via <code>agrep()</code>.</p>
 <ul>
@@ -250,14 +224,9 @@
 <li><p><strong>WA</strong> - Western Australia</p></li>
 <li><p><strong>AUS</strong> - Australia, returns bulletin for all states and NT.</p></li>
 </ul>
-<div id="results-2" class="section level3">
-<h3 class="hasAnchor">
-<a href="#results-2" class="anchor"></a>Results</h3>
+<section id="results-2" class="level3"><h3>Results</h3>
 <p>The function, <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, will return a data frame of the agriculture bulletin for selected stations. See Appendix 3 for a full list and description of the fields and values.</p>
-</div>
-<div id="example-2" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-2" class="anchor"></a>Example</h3>
+</section><section id="example-2" class="level3"><h3>Example</h3>
 <p>Following is an example fetching the ag bulletin for Queensland.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">library</span>(<span class="st">"bomrang"</span>)</a>
 <a class="sourceLine" id="cb7-2" data-line-number="2"></a>
@@ -265,18 +234,18 @@
 <a class="sourceLine" id="cb7-4" data-line-number="4"><span class="kw">head</span>(QLD_bulletin)</a></code></pre></div>
 <pre><code>##   product_id state dist   wmo  site          station          full_name
 ## 1   IDQ60604   QLD   38 95482 38026       Birdsville BIRDSVILLE AIRPORT
-## 2   IDQ60604   QLD   38 94333 38003           Boulia     BOULIA AIRPORT
+## 2   IDQ60604   QLD   38 94333 38003     Boulia (72)*     BOULIA AIRPORT
 ## 3   IDQ60604   QLD   40 94578 40842 Brisbane Airport      BRISBANE AERO
 ## 4   IDQ60604   QLD   39 94387 39128        Bundaberg     BUNDABERG AERO
 ## 5   IDQ60604   QLD   31 94287 31011           Cairns        CAIRNS AERO
 ## 6   IDQ60604   QLD   44 94510 44021      Charleville   CHARLEVILLE AERO
 ##        obs_time_local        obs_time_utc
-## 1 2017-12-18 09:00:00 2017-12-17 23:00:00
-## 2 2017-12-18 09:00:00 2017-12-17 23:00:00
-## 3 2017-12-18 09:00:00 2017-12-17 23:00:00
-## 4 2017-12-18 09:00:00 2017-12-17 23:00:00
-## 5 2017-12-18 09:00:00 2017-12-17 23:00:00
-## 6 2017-12-18 09:00:00 2017-12-17 23:00:00
+## 1 2018-01-23 09:00:00 2018-01-22 23:00:00
+## 2 2018-01-23 09:00:00 2018-01-22 23:00:00
+## 3 2018-01-23 09:00:00 2018-01-22 23:00:00
+## 4 2018-01-23 09:00:00 2018-01-22 23:00:00
+## 5 2018-01-23 09:00:00 2018-01-22 23:00:00
+## 6 2018-01-23 09:00:00 2018-01-22 23:00:00
 ##                                                                            time_zone
 ## 1 c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 ## 2 c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
@@ -285,24 +254,20 @@
 ## 5 c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 ## 6 c(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
 ##        lat      lon  elev bar_ht start  end   r   tn   tx  twd   ev   tg
-## 1 -25.8975 139.3472  46.6   47.0  2000 2017 0.0 31.5 44.9 18.8   NA   NA
-## 2 -22.9117 139.9039 161.8  158.3  1886 2017 0.0 28.9 42.9 11.5 23.0 25.6
-## 3 -27.3917 153.1292   4.5    9.5  1992 2017 0.0 22.6 28.7  4.7  9.4 18.8
-## 4 -24.9069 152.3230  30.8   31.5  1942 2017 0.0 19.2 30.8  6.1   NA   NA
-## 5 -16.8736 145.7458   2.2    8.3  1941 2017 1.8 23.6 33.5  5.5   NA   NA
-## 6 -26.4139 146.2558 301.6  303.3  1942 2017 4.2 26.5 40.8 11.1   NA   NA
-##     sn   t5  t10  t20  t50  t1m  wr
-## 1   NA   NA   NA   NA   NA   NA  NA
-## 2   NA   NA   NA   NA   NA   NA  NA
-## 3 11.8 31.0 29.0 28.0 28.0 26.0 211
-## 4   NA 27.5 27.7 28.2 27.8 26.9  NA
-## 5   NA   NA   NA   NA   NA   NA  NA
-## 6   NA   NA   NA   NA   NA   NA  NA</code></pre>
-</div>
-</div>
-<div id="using-get_weather_bulletin" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-get_weather_bulletin" class="anchor"></a>Using <code>get_weather_bulletin</code>
+## 1 -25.8975 139.3472  46.6   47.0  2000 2017 0.0 29.3 46.0 17.0   NA   NA
+## 2 -22.9117 139.9039 161.8  158.3  1886 2017 0.0 27.8 42.2 12.7 21.8 27.6
+## 3 -27.3917 153.1292   4.5    9.5  1992 2017 0.0 20.2 29.7  4.8  8.6 18.2
+## 4 -24.9069 152.3230  30.8   31.5  1942 2017 0.0 20.5 31.6  5.2   NA   NA
+## 5 -16.8736 145.7458   2.2    8.3  1941 2017 0.4 24.3 29.3  3.7   NA   NA
+## 6 -26.4139 146.2558 301.6  303.3  1942 2017 0.0 26.3 40.0 11.2   NA   NA
+##   sn   t5  t10  t20  t50  t1m  wr
+## 1 NA   NA   NA   NA   NA   NA  NA
+## 2 NA   NA   NA   NA   NA   NA  NA
+## 3 13 32.0 29.0 30.0 30.0 29.0 185
+## 4 NA 29.5 29.7 30.2 29.9 29.5 187
+## 5 NA   NA   NA   NA   NA   NA  NA
+## 6 NA   NA   NA   NA   NA   NA  NA</code></pre>
+</section></section><section id="using-get_weather_bulletin" class="level2"><h2>Using <code>get_weather_bulletin</code>
 </h2>
 <p>This function takes two arguments, <code>state</code> for the desired state; and <code>morning</code> if <code>TRUE</code>, return the 9am bulletin for the nominated state; otherwise return the 3pm bulletin. States or territories are specified using the official postal codes.</p>
 <ul>
@@ -315,50 +280,36 @@
 <li><p><strong>VIC</strong> - Victoria</p></li>
 <li><p><strong>WA</strong> - Western Australia</p></li>
 </ul>
-<div id="results-3" class="section level4">
-<h4 class="hasAnchor">
-<a href="#results-3" class="anchor"></a>Results</h4>
+<section id="results-3" class="level4"><h4>Results</h4>
 <p>The function <code><a href="../reference/get_weather_bulletin.html">get_weather_bulletin()</a></code> will return a tidy data frame of BoM data for the requested state(s) or territory.</p>
-</div>
-<div id="example-3" class="section level4">
-<h4 class="hasAnchor">
-<a href="#example-3" class="anchor"></a>Example</h4>
+</section><section id="example-3" class="level4"><h4>Example</h4>
 <p>Following is an example fetching the 3PM bulletin for Queensland.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">qld_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_weather_bulletin.html">get_weather_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2"><span class="kw">head</span>(qld_weather)</a></code></pre></div>
 <pre><code>##         stations cld8ths wind_dir wind_speed_kmh temp_c_dry temp_c_dew
-## 1     Coconut Is      NA       SE              4         31         NA
-## 2        Coen Ap      NA      ESE             11         30         19
-## 3        Horn Is       3      SSE             17         30         24
-## 4 Lockhart River       6      ESE             20         30         23
-## 5    Palmerville      NA      ESE              6         29         18
-## 6       Scherger      NA      SSE              9         28         22
+## 1     Coconut Is      NA        N             11         30         NA
+## 2        Coen Ap      NA       NE              6         27         22
+## 3        Horn Is       4      NNW             19         29         25
+## 4 Lockhart River      NA      WSW              2         27         24
+## 5    Palmerville      NA       NE              6         26         22
+## 6       Scherger      NA       NE              6         28         23
 ##   temp_c_max temp_c_min temp_c_gr barhpa rain_mm weather seastate
-## 1         35         26        NA   1009      NA                 
-## 2         36         23        NA   1009      NA                 
-## 3         33         26        NA   1010     0.4                 
-## 4         33         22        NA   1010      NA                 
-## 5         38         21        NA   1010      NA                 
-## 6         35         23        NA   1010     7.0</code></pre>
-</div>
-</div>
-<div id="using-sweep_for_stations" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-sweep_for_stations" class="anchor"></a>Using <code>sweep_for_stations</code>
+## 1         31         26        NA   1008      NA                 
+## 2         33         23        NA   1007      70                 
+## 3         31         26        NA   1008      11                 
+## 4         32         23        NA   1008      33                 
+## 5         32         23        NA   1006       5                 
+## 6         33         23        NA   1007      20</code></pre>
+</section></section><section id="using-sweep_for_stations" class="level2"><h2>Using <code>sweep_for_stations</code>
 </h2>
 <p><code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> only takes one argument, <code>latlon</code>, a length-2 numeric vector. By default, Canberra (approximately).</p>
-<div id="results-4" class="section level3">
-<h3 class="hasAnchor">
-<a href="#results-4" class="anchor"></a>Results</h3>
+<section id="results-4" class="level3"><h3>Results</h3>
 <p>This function will search for weather stations and return a data frame of all weather stations (in this package) sorted by distance from <code>latlon</code>, ascending. The fields in the data frame are:</p>
 <p><strong>name</strong> - station name</p>
 <p><strong>lat</strong> - latitude (decimal degrees)</p>
 <p><strong>lon</strong> - longitude (decimal degrees)</p>
 <p><strong>distance</strong> - distance from provided <code>latlon</code> value (kilometres).</p>
-</div>
-<div id="example-4" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-4" class="anchor"></a>Example</h3>
+</section><section id="example-4" class="level3"><h3>Example</h3>
 <p>Following is an example sweeping for stations starting with Canberra.</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># Show only the first ten stations in the list</span></a>
 <a class="sourceLine" id="cb11-2" data-line-number="2"><span class="kw">head</span>(<span class="kw"><a href="../reference/sweep_for_stations.html">sweep_for_stations</a></span>(<span class="dt">latlon =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">35.3</span>, <span class="fl">149.2</span>)), <span class="dv">10</span>)</a></code></pre></div>
@@ -395,43 +346,24 @@
 ## 8  http://www.bom.gov.au/fwo/IDN60801/IDN60801.95716.json 72.9652110
 ## 9  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94716.json 76.4731323
 ## 10 http://www.bom.gov.au/fwo/IDN60801/IDN60801.94943.json 82.9176026</code></pre>
-</div>
-</div>
-<div id="using-the-update-functions" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-the-update-functions" class="anchor"></a>Using the update functions</h2>
+</section></section><section id="using-the-update-functions" class="level2"><h2>Using the update functions</h2>
 <p><em>bomrang</em> uses internal databases of station location data from BoM to provide location and other metadata, <em>e.g.</em> elevation, station names, WMO codes, etc. to make the process of querying for weather data faster. These databases are created and packaged with <em>bomrang</em> for distribution and are updated with new releases. Users have the option of updating these databases after installing <em>bomrang</em>. While this option gives the users the ability to keep the databases up-to-date and gives <em>bomrang</em>’s authors flexibility in maintaining it, this also means that reproducibility may be affected since the same version of <em>bomrang</em> may have different databases on different machines. If reproducibility is necessary, care should be taken to ensure that the version of the databases is the same across different machines.</p>
 <p>The databases consist of three files, used by <em>bomrang</em>, <code>AAC_codes.rda</code>, <code>JSONurl_latlon_by_station_name.rda</code> and <code>stations_site_list.rda</code>. These files can be located on your local system by using the following command,</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">paste0</span>(<span class="kw">.libPaths</span>(), <span class="st">"/bomrang/extdata"</span>)[<span class="dv">1</span>]</a></code></pre></div>
 <p>unless you have specified another location for library installations and installed <em>bomrang</em> there, in which case it would still be in <code>bomrang/extdata</code>.</p>
-<div id="using-update_forecast_towns" class="section level3">
-<h3 class="hasAnchor">
-<a href="#using-update_forecast_towns" class="anchor"></a>Using <code>update_forecast_towns</code>
+<section id="using-update_forecast_towns" class="level3"><h3>Using <code>update_forecast_towns</code>
 </h3>
 <p><code><a href="../reference/update_forecast_towns.html">update_forecast_towns()</a></code> downloads the latest précis forecast locations from the BoM server and updates <em>bomrang</em>’s internal database of towns used for forecast locations. This database is distributed with the package to make the process faster when fetching the forecast.</p>
-</div>
-<div id="example-5" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-5" class="anchor"></a>Example</h3>
+</section><section id="example-5" class="level3"><h3>Example</h3>
 <p>Following is an example updating the précis forecast locations internal database.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw"><a href="../reference/update_forecast_towns.html">update_forecast_towns</a></span>()</a></code></pre></div>
-</div>
-<div id="using-update_station_locations" class="section level3">
-<h3 class="hasAnchor">
-<a href="#using-update_station_locations" class="anchor"></a>Using <code>update_station_locations</code>
+</section><section id="using-update_station_locations" class="level3"><h3>Using <code>update_station_locations</code>
 </h3>
 <p><code><a href="../reference/update_station_locations.html">update_station_locations()</a></code> downloads the latest station locations and metadata and updates bomrang’s internal databases that support the use of <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>. There is no need to use this unless you know that a station exists in BoM’s database that is not available in the databases distributed with <em>bomrang</em></p>
-</div>
-<div id="example-6" class="section level3">
-<h3 class="hasAnchor">
-<a href="#example-6" class="anchor"></a>Example</h3>
+</section><section id="example-6" class="level3"><h3>Example</h3>
 <p>Following is an example updating the précis forecast locations internal database.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw"><a href="../reference/update_station_locations.html">update_station_locations</a></span>()</a></code></pre></div>
-</div>
-</div>
-<div id="using-bomrang-to-retrieve-satellite-imagery" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-bomrang-to-retrieve-satellite-imagery" class="anchor"></a>Using <em>bomrang</em> to retrieve satellite imagery</h2>
+</section></section><section id="using-bomrang-to-retrieve-satellite-imagery" class="level2"><h2>Using <em>bomrang</em> to retrieve satellite imagery</h2>
 <p><em>bomrang</em> provides functionality to retrieve high-definition GeoTIFF satellite imagery provided by BoM through public FTP with the following types of imagery being available: i.) <a href="http://www.bom.gov.au/australia/satellite/about_images.shtml#ir">Infrared images</a>, ii.) <a href="http://www.bom.gov.au/australia/satellite/about_images.shtml#vis">Visible images</a> and iii.) <a href="http://www.bom.gov.au/australia/satellite/about_images.shtml#cloud">Clouds/surface composite</a>.</p>
 <p>Valid BoM satellite Product IDs for GeoTIFF files include:</p>
 <table class="table">
@@ -665,16 +597,11 @@ Satellite
 </td>
 </tr>
 </table>
-<div id="using-get_available_imagery" class="section level3">
-<h3 class="hasAnchor">
-<a href="#using-get_available_imagery" class="anchor"></a>Using <code>get_available_imagery</code>
+<section id="using-get_available_imagery" class="level3"><h3>Using <code>get_available_imagery</code>
 </h3>
 <p><code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> only takes one argument, <code>product_id</code>, a BoM identifier for the imagery that you wish to check for available imagery. Using this function will fetch a listing of BoM GeoTIFF satellite imagery from <a href="ftp://ftp.bom.gov.au/anon/gen/gms/" class="uri">ftp://ftp.bom.gov.au/anon/gen/gms/</a> to display which files are currently available for download. These files are available at ten minute update frequency with a 24 hour delete time. This function can be used see the most recent files available and then specify in the <code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> function. If no valid Product ID is supplied, defaults to all GeoTIFF images currently available.</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">avail &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_available_imagery.html">get_available_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDE00425"</span>)</a></code></pre></div>
-</div>
-<div id="using-get_satellite_imagery" class="section level3">
-<h3 class="hasAnchor">
-<a href="#using-get_satellite_imagery" class="anchor"></a>Using <code>get_satellite_imagery</code>
+</section><section id="using-get_satellite_imagery" class="level3"><h3>Using <code>get_satellite_imagery</code>
 </h3>
 <p><code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> fetches BoM satellite GeoTIFF imagery, returning a raster stack object and takes three arguments. Files are available at ten minute update frequency with a 24 hour delete time. It is suggested to check file availability first by using <code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code>. The arguments are:</p>
 <ul>
@@ -694,14 +621,7 @@ Satellite
 <a class="sourceLine" id="cb17-10" data-line-number="10"><span class="co"># load the raster library to work with the GeoTIFF files</span></a>
 <a class="sourceLine" id="cb17-11" data-line-number="11"><span class="kw">library</span>(raster)</a>
 <a class="sourceLine" id="cb17-12" data-line-number="12"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(i)</a></code></pre></div>
-<div class="figure">
-<img src="get_satellite_imagery-1.png" alt="get_satellite_imagery-1.png"><p class="caption">get_satellite_imagery-1.png</p>
-</div>
-</div>
-</div>
-<div id="using-caching-for-satellite-imagery" class="section level2">
-<h2 class="hasAnchor">
-<a href="#using-caching-for-satellite-imagery" class="anchor"></a>Using caching for satellite imagery</h2>
+<figure><img src="get_satellite_imagery-1.png" alt="get_satellite_imagery-1.png"><figcaption>get_satellite_imagery-1.png</figcaption></figure></section></section><section id="using-caching-for-satellite-imagery" class="level2"><h2>Using caching for satellite imagery</h2>
 <p>If you elect to use <code>cache = TRUE</code> when downloading imagery, note that the GTiff files can be quite large and will fill disk space. By using the default <code>cache = FALSE</code> the files will be deleted when the current R session is closed.</p>
 <p>Should you chose to use caching, <em>bomrang</em> provided functions to interact with the cached files:</p>
 <ul>
@@ -723,24 +643,16 @@ Satellite
 </ul>
 <p>To access the files directly, outside of R, the following command will give you the location of the directory:</p>
 <p><code>manage_cache$cache_path_get()</code></p>
-</div>
-<div id="references" class="section level2">
-<h2 class="hasAnchor">
-<a href="#references" class="anchor"></a>References</h2>
+</section><section id="references" class="level2"><h2>References</h2>
 <p><a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services</a></p>
 <p><a href="http://www.bom.gov.au/catalogue/anon-ftp.shtml">Australian Bureau of Meteorology (BoM) FTP Public Products</a></p>
 <p><a href="http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services Agriculture Bulletins</a></p>
 <p><a href="http://www.bom.gov.au/climate/how/observations/rain-measure.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services Observation of Rainfall</a></p>
 <p><a href="http://www.bom.gov.au/australia/satellite/index.shtml">Australian Bureau of Meteorology (BoM) High-definition satellite images</a></p>
-</div>
-<div id="appendix-1---output-from-get_current_weather" class="section level2">
-<h2 class="hasAnchor">
-<a href="#appendix-1---output-from-get_current_weather" class="anchor"></a>Appendix 1 - Output from <code>get_current_weather</code>
+</section><section id="appendix-1---output-from-get_current_weather" class="level2"><h2>Appendix 1 - Output from <code>get_current_weather</code>
 </h2>
 <p>The function <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> will return a data frame that will contain some or all of the following fields.</p>
-<div id="fields-and-descriptions" class="section level3">
-<h3 class="hasAnchor">
-<a href="#fields-and-descriptions" class="anchor"></a>Fields and descriptions</h3>
+<section id="fields-and-descriptions" class="level3"><h3>Fields and descriptions</h3>
 <table class="table">
 <tr>
 <th>
@@ -1118,11 +1030,7 @@ Plain_lang[51]
 Plain language comments
 </td>
 </tr>
-</table>
-</div>
-<div id="codes" class="section level3">
-<h3 class="hasAnchor">
-<a href="#codes" class="anchor"></a>Codes:</h3>
+</table></section><section id="codes" class="level3"><h3>Codes:</h3>
 <p>P_tend_typ:</p>
 <ul>
 <li>0 Increasing, then decreasing, current pressure same or higher<br>
@@ -1149,11 +1057,7 @@ Plain language comments
 <li>Decreasing, then decreasing more rapidly</li>
 </ul>
 </li>
-</ul>
-</div>
-<div id="wx9---present-weather" class="section level3">
-<h3 class="hasAnchor">
-<a href="#wx9---present-weather" class="anchor"></a>Wx[9] - Present weather</h3>
+</ul></section><section id="wx9---present-weather" class="level3"><h3>Wx[9] - Present weather</h3>
 <p>This consists of a two or 3 digit code figure plus (when relevant) a short, text abbreviation of the weather The abbreviations used (frequently together, <em>e.g.</em>, XXRA for heavy rain, FZDZ for freezing drizzle) include</p>
 <ul>
 <li>BL Blowing (usually of sand or snow)<br>
@@ -1205,11 +1109,7 @@ Plain language comments
 <li>virga Virga<br>
 </li>
 <li>RIA&lt;5k Precipitation in the area, less then 5km distant</li>
-</ul>
-</div>
-<div id="code-figures" class="section level3">
-<h3 class="hasAnchor">
-<a href="#code-figures" class="anchor"></a>Code figures</h3>
+</ul></section><section id="code-figures" class="level3"><h3>Code figures</h3>
 <p>(This is a subset of a larger table, not all values of which are used) wmo international BUFR code table 0 20 003, CREX code table B 20 003</p>
 <pre><code> 00 Clouds not observed
  01 Cloud decreasing
@@ -1406,9 +1306,7 @@ Plain language comments
 508 No significant weather
 509 Data not available
 510 Data should have been reported but wasn't</code></pre>
-<div id="pw1-and-pw2---past-weather" class="section level4">
-<h4 class="hasAnchor">
-<a href="#pw1-and-pw2---past-weather" class="anchor"></a>Pw1 and Pw2 - Past weather</h4>
+<section id="pw1-and-pw2---past-weather" class="level4"><h4>Pw1 and Pw2 - Past weather</h4>
 <pre><code>    wmo international BUFR code table 0 20 004, CREX code table B 20 004
 
 If only one type of weather has occurred in the last 3-6 hours,</code></pre>
@@ -1435,10 +1333,7 @@ If only one type of weather has occurred in the last 3-6 hours,</code></pre>
 18 Showers or intermittent precipitation
 19 Thunderstorm
  </code></pre>
-</div>
-<div id="low_cld_code" class="section level4">
-<h4 class="hasAnchor">
-<a href="#low_cld_code" class="anchor"></a>Low_cld_code:</h4>
+</section><section id="low_cld_code" class="level4"><h4>Low_cld_code:</h4>
 <pre><code>(This is a subset of a larger table, not all values of which are used)
 wmo international BUFR code table 0 20 012, CREX code table B 20 012
 
@@ -1456,10 +1351,7 @@ wmo international BUFR code table 0 20 012, CREX code table B 20 012
    with bases at different levels
 39 Cumulonimbus capillatus with or without Cumulonimbus calvus
    Cumulus, Stratocumulus, Stratus or pannus</code></pre>
-</div>
-<div id="mid_cld_code" class="section level4">
-<h4 class="hasAnchor">
-<a href="#mid_cld_code" class="anchor"></a>Mid_cld_code:</h4>
+</section><section id="mid_cld_code" class="level4"><h4>Mid_cld_code:</h4>
 <pre><code>(This is a subset of a larger table, not all values of which are used)
 wmo international BUFR code table 0 20 012, CREX code table B 20 012
 
@@ -1478,10 +1370,7 @@ wmo international BUFR code table 0 20 012, CREX code table B 20 012
    the sky, or Altocumulus with Altostratus or Nimbostratus
 28 Altocumulus castellanus or floccus
 29 Altocumulus of a chaotic sky, usually at several levels</code></pre>
-</div>
-<div id="hi_cld_code" class="section level4">
-<h4 class="hasAnchor">
-<a href="#hi_cld_code" class="anchor"></a>Hi_cld_code:</h4>
+</section><section id="hi_cld_code" class="level4"><h4>Hi_cld_code:</h4>
 <pre><code>(This is a subset of a larger table, not all values of which are used)
 wmo international BUFR code table 0 20 012, CREX code table B 20 012
 
@@ -1502,12 +1391,7 @@ wmo international BUFR code table 0 20 012, CREX code table B 20 012
 18 Cirrostratus not covering the entire sky and not progressively
    invading it
 19 Cirrocumulus alone or Cirrocumulus predominant</code></pre>
-</div>
-</div>
-</div>
-<div id="appendix-2---output-from-get_precis_forecast" class="section level2">
-<h2 class="hasAnchor">
-<a href="#appendix-2---output-from-get_precis_forecast" class="anchor"></a>Appendix 2 - Output from <code>get_précis_forecast</code>
+</section></section></section><section id="appendix-2---output-from-get_precis_forecast" class="level2"><h2>Appendix 2 - Output from <code>get_précis_forecast</code>
 </h2>
 <p>The function, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, will return a tidy data frame of the agriculture bulletin with the following fields:</p>
 <table class="table">
@@ -1671,11 +1555,7 @@ probability_of_precipitation
 Probability of precipitation (percent)
 </td>
 </tr>
-</table>
-</div>
-<div id="appendix-3---output-from-get_ag_bulletin" class="section level2">
-<h2 class="hasAnchor">
-<a href="#appendix-3---output-from-get_ag_bulletin" class="anchor"></a>Appendix 3 - Output from <code>get_ag_bulletin</code>
+</table></section><section id="appendix-3---output-from-get_ag_bulletin" class="level2"><h2>Appendix 3 - Output from <code>get_ag_bulletin</code>
 </h2>
 <p>The function, <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, will return a tidy data frame of the agriculture bulletin with the following fields:</p>
 <table class="table">
@@ -1927,11 +1807,7 @@ wr
 Wind run (kilometres)
 </td>
 </tr>
-</table>
-</div>
-<div id="appendix-4---output-from-get_weather_bulletin" class="section level2">
-<h2 class="hasAnchor">
-<a href="#appendix-4---output-from-get_weather_bulletin" class="anchor"></a>Appendix 4 - Output from <code>get_weather_bulletin</code>
+</table></section><section id="appendix-4---output-from-get_weather_bulletin" class="level2"><h2>Appendix 4 - Output from <code>get_weather_bulletin</code>
 </h2>
 <p>The function <code><a href="../reference/get_weather_bulletin.html">get_weather_bulletin()</a></code> returns a tidy data frame of weather observations for 0900 or 1500 for a nominated state. Observations differ between states, but contain some or all of the following fields. All units are metric (temperatures in Celsius; wind speeds in kilometres per hour; rainfall amounts in millimetres; pressure in hectoPascals). “AWS” in a station name denotes observations from an Automatic Weather Station.</p>
 <table class="table">
@@ -2066,10 +1942,7 @@ See below for description
 <p><br></p>
 <p>Seastate is described by a text string formed from the three components of (sea state, swell, direction). Sea state is denoted “C” (Calm), “SM” (Smooth), “SL” (Slight), “M” (Moderate), “R” (Rough), “VR” (Very Rough), “H” (High), “VH” (Very High), or “PH” (Phenomenal). Swell is denoted “LS” (Low Short), “LA” (Low Average), “LL” (Low Long), “MS” (Moderate Short), “MA” (Mod Average), “ML” (Mod Long), “HS” (Heavy Short), “HA” (heavy Average), “HL” (Heavy Long), or “C” (Confused). Direction denotes direction from which the swell is coming.</p>
 <p>Names of rainfall and temperature variables for some states include prefixes or suffixes defining the time period over which observations apply (for example, “temp_c_6hmax” for maximum temperature between 0980 and 1500, or “temp_c_9ammin” for minimum temperature observed at 9am yet included in 1500 bulletin).</p>
-</div>
-<div id="appendix-5---map-of-station-locations" class="section level2">
-<h2 class="hasAnchor">
-<a href="#appendix-5---map-of-station-locations" class="anchor"></a>Appendix 5 - Map of station locations</h2>
+</section><section id="appendix-5---map-of-station-locations" class="level2"><h2>Appendix 5 - Map of station locations</h2>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="cf">if</span> (<span class="kw">requireNamespace</span>(<span class="st">"ggplot2"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
 <a class="sourceLine" id="cb24-2" data-line-number="2"><span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"ggthemes"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
 <a class="sourceLine" id="cb24-3" data-line-number="3"><span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"maps"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
@@ -2114,7 +1987,7 @@ See below for description
 <a class="sourceLine" id="cb24-42" data-line-number="42">                            <span class="dt">fill =</span> <span class="ot">NA</span>))</a>
 <a class="sourceLine" id="cb24-43" data-line-number="43">}</a></code></pre></div>
 <p><img src="bomrang_files/figure-html/station-locations-map-1.png" width="672"></p>
-</div>
+</section>
 </div>
   </div>
 
