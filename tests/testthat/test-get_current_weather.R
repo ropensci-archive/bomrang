@@ -51,6 +51,7 @@ test_that("Strict", {
 })
 
 test_that("Query c(-27, 149) returns Surat (QLD, b/n Roma and St George).", {
+  skip_on_cran()
   expect_message(get_current_weather(latlon = c(-27, 149)), regexp = "SURAT")
   Surat <- get_current_weather(latlon = c(-27, 149), emit_latlon_msg = FALSE)
   expect_equal(unique(Surat$full_name), "Surat")
