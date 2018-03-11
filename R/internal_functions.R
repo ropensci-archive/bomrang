@@ -1,5 +1,8 @@
 
-`%notin%` <- Negate("%in%")
+`%notin%` <- function(x, table) {
+  # Same as !(x %in% table)
+  match(x, table, nomatch = 0L) == 0L
+}
 
 force_double <- function(v) {
   suppressWarnings(as.double(v))
