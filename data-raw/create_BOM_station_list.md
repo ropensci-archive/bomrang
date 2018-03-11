@@ -98,9 +98,9 @@ library(magrittr)
     ## Warning in rbind(names(probs), probs_f): number of columns of result is not
     ## a multiple of vector length (arg 1)
 
-    ## Warning: 19359 parsing failures.
-    ## row # A tibble: 5 x 5 col     row   col expected actual expected   <int> <chr>    <chr>  <chr> actual 1     1   wmo  7 chars      6 file 2     2   wmo  7 chars      6 row 3     3   wmo  7 chars      6 col 4     4   wmo  7 chars      6 expected 5     5   wmo  7 chars      6 actual # ... with 1 more variables: file <chr>
-    ## ... ................. ... ............................. ........ ............................. ...... ............................. .... ............................. ... ............................. ... ............................. ........ ............................. ...... .......................................
+    ## Warning: 19362 parsing failures.
+    ## row # A tibble: 5 x 5 col     row col   expected actual file                                         expected   <int> <chr> <chr>    <chr>  <chr>                                        actual 1     1 wmo   7 chars  6      '/var/folders/hk/1xg925vs6fsgfv2q9f9k6fp000… file 2     2 wmo   7 chars  6      '/var/folders/hk/1xg925vs6fsgfv2q9f9k6fp000… row 3     3 wmo   7 chars  6      '/var/folders/hk/1xg925vs6fsgfv2q9f9k6fp000… col 4     4 wmo   7 chars  6      '/var/folders/hk/1xg925vs6fsgfv2q9f9k6fp000… expected 5     5 wmo   7 chars  6      '/var/folders/hk/1xg925vs6fsgfv2q9f9k6fp000…
+    ## ... ................. ... .......................................................................... ........ .......................................................................... ...... .......................................................................... .... .......................................................................... ... .......................................................................... ... .......................................................................... ........ ..........................................................................
     ## See problems(...) for more details.
 
 ``` r
@@ -168,21 +168,21 @@ library(magrittr)
 stations_site_list
 ```
 
-    ## # A tibble: 7,345 x 14
-    ##      site  dist             name start   end      lat      lon source
-    ##     <chr> <chr>            <chr> <int> <chr>    <dbl>    <dbl>  <chr>
-    ##  1 001006    01     WYNDHAM AERO  1951  2017 -15.5100 128.1503    GPS
-    ##  2 001007    01 TROUGHTON ISLAND  1956  2017 -13.7542 126.1485    GPS
-    ##  3 001010    01            THEDA  1965  2017 -14.7883 126.4964    GPS
-    ##  4 001013    01          WYNDHAM  1968  2017 -15.4869 128.1236    GPS
-    ##  5 001014    01       EMMA GORGE  1998  2017 -15.9083 128.1286   <NA>
-    ##  6 001018    01  MOUNT ELIZABETH  1973  2017 -16.4181 126.1025    GPS
-    ##  7 001019    01        KALUMBURU  1997  2017 -14.2964 126.6453    GPS
-    ##  8 001020    01         TRUSCOTT  1944  2017 -14.0900 126.3867    GPS
-    ##  9 001023    01       EL QUESTRO  1967  2017 -16.0086 127.9806    GPS
-    ## 10 001024    01        ELLENBRAE  1986  2017 -15.9572 127.0628    GPS
-    ## # ... with 7,335 more rows, and 6 more variables: state <chr>, elev <dbl>,
-    ## #   bar_ht <dbl>, wmo <int>, state_code <chr>, url <chr>
+    ## # A tibble: 7,321 x 14
+    ##    site   dist  name    start end     lat   lon source state   elev bar_ht
+    ##    <chr>  <chr> <chr>   <int> <chr> <dbl> <dbl> <chr>  <chr>  <dbl>  <dbl>
+    ##  1 001006 01    WYNDHA…  1951 2018  -15.5  128. GPS    WA      3.80   4.30
+    ##  2 001007 01    TROUGH…  1956 2018  -13.8  126. GPS    WA      6.00   8.00
+    ##  3 001010 01    THEDA    1965 2018  -14.8  126. GPS    WA    210.    NA   
+    ##  4 001013 01    WYNDHAM  1968 2018  -15.5  128. GPS    WA     11.0   NA   
+    ##  5 001014 01    EMMA G…  1998 2018  -15.9  128. <NA>   WA    130.    NA   
+    ##  6 001018 01    MOUNT …  1973 2018  -16.4  126. GPS    WA    546.   547.  
+    ##  7 001019 01    KALUMB…  1997 2018  -14.3  127. GPS    WA     23.0   24.0 
+    ##  8 001020 01    TRUSCO…  1944 2018  -14.1  126. GPS    WA     51.0   52.5 
+    ##  9 001023 01    EL QUE…  1967 2018  -16.0  128. GPS    WA     90.0   NA   
+    ## 10 001024 01    ELLENB…  1986 2018  -16.0  127. GPS    WA    300.    NA   
+    ## # ... with 7,311 more rows, and 3 more variables: wmo <int>,
+    ## #   state_code <chr>, url <chr>
 
 ## Save data
 
@@ -246,72 +246,90 @@ stations_site_list$site <-
     ## ─ Session info ──────────────────────────────────────────────────────────
     ##  setting  value                       
     ##  version  R version 3.4.3 (2017-11-30)
-    ##  os       macOS Sierra 10.12.6        
-    ##  system   x86_64, darwin16.7.0        
+    ##  os       macOS High Sierra 10.13.3   
+    ##  system   x86_64, darwin17.4.0        
     ##  ui       unknown                     
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2017-12-18                  
+    ##  date     2018-03-11                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version    date      
+    ##  ansistrings   1.0.0.9000 2018-02-27
     ##  assertthat    0.2.0      2017-04-11
     ##  backports     1.1.2      2017-12-13
     ##  bindr         0.1        2016-11-13
     ##  bindrcpp    * 0.2        2017-06-17
-    ##  clisymbols    1.2.0      2017-11-07
+    ##  cli           1.0.0.9001 2018-02-03
+    ##  clisymbols    1.2.0      2018-01-30
+    ##  crayon        1.3.4      2017-09-16
     ##  curl          3.1        2017-12-12
     ##  data.table    1.10.4-3   2017-10-27
-    ##  digest        0.6.13     2017-12-14
+    ##  digest        0.6.15     2018-01-28
     ##  dplyr         0.7.4      2017-09-28
     ##  evaluate      0.10.1     2017-06-24
     ##  glue          1.2.0      2017-10-29
-    ##  hms           0.4.0      2017-11-23
+    ##  hms           0.4.2      2018-03-10
     ##  htmltools     0.3.6      2017-04-28
     ##  httr          1.3.1      2017-08-20
-    ##  knitr         1.17       2017-08-10
+    ##  knitr         1.20       2018-02-20
     ##  magrittr    * 1.5        2014-11-22
+    ##  pillar        1.2.1      2018-02-27
     ##  pkgconfig     2.0.1      2017-03-21
+    ##  prettyunits   1.0.2      2015-07-13
+    ##  progress      1.1.2.9002 2018-03-11
     ##  R6            2.2.2      2017-06-17
-    ##  Rcpp          0.12.14    2017-11-23
+    ##  Rcpp          0.12.15    2018-01-20
     ##  readr         1.1.1      2017-05-16
-    ##  rlang         0.1.4.9000 2017-12-07
-    ##  rmarkdown     1.8.5      2017-12-13
-    ##  rprojroot     1.2        2017-01-16
+    ##  rlang         0.2.0      2018-02-20
+    ##  rmarkdown     1.9        2018-03-01
+    ##  rprojroot     1.3-2      2018-01-03
+    ##  selectr       0.3-2      2018-03-05
     ##  sessioninfo   1.0.0      2017-06-21
     ##  stringi       1.1.6      2017-11-17
-    ##  stringr       1.2.0      2017-02-18
-    ##  tibble        1.3.4      2017-08-22
-    ##  withr         2.1.0.9000 2017-11-26
-    ##  yaml          2.1.16     2017-12-12
+    ##  stringr       1.3.0      2018-02-19
+    ##  tibble        1.4.2      2018-01-22
+    ##  utf8          1.1.3      2018-01-03
+    ##  withr         2.1.1      2017-12-19
+    ##  xml2          1.2.0      2018-01-24
+    ##  yaml          2.1.18     2018-03-08
     ##  source                                 
-    ##  CRAN (R 3.4.1)                         
+    ##  Github (r-lib/ansistrings@4e4d309)     
+    ##  CRAN (R 3.4.2)                         
     ##  cran (@1.1.2)                          
-    ##  CRAN (R 3.4.1)                         
-    ##  CRAN (R 3.4.1)                         
+    ##  CRAN (R 3.4.2)                         
+    ##  CRAN (R 3.4.2)                         
+    ##  Github (r-lib/cli@1b58269)             
     ##  Github (gaborcsardi/clisymbols@e49b4f5)
+    ##  cran (@1.3.4)                          
     ##  cran (@3.1)                            
     ##  cran (@1.10.4-)                        
-    ##  cran (@0.6.13)                         
-    ##  cran (@0.7.4)                          
-    ##  CRAN (R 3.4.1)                         
-    ##  cran (@1.2.0)                          
-    ##  cran (@0.4.0)                          
-    ##  CRAN (R 3.4.1)                         
-    ##  CRAN (R 3.4.1)                         
+    ##  cran (@0.6.15)                         
     ##  CRAN (R 3.4.2)                         
-    ##  CRAN (R 3.4.1)                         
-    ##  CRAN (R 3.4.1)                         
-    ##  CRAN (R 3.4.1)                         
-    ##  cran (@0.12.14)                        
-    ##  CRAN (R 3.4.1)                         
-    ##  Github (tidyverse/rlang@5ebcf24)       
-    ##  Github (rstudio/rmarkdown@08c7567)     
-    ##  CRAN (R 3.4.1)                         
+    ##  cran (@0.10.1)                         
+    ##  cran (@1.2.0)                          
+    ##  cran (@0.4.2)                          
+    ##  cran (@0.3.6)                          
+    ##  CRAN (R 3.4.2)                         
+    ##  CRAN (R 3.4.3)                         
+    ##  CRAN (R 3.4.2)                         
+    ##  CRAN (R 3.4.3)                         
+    ##  CRAN (R 3.4.2)                         
+    ##  cran (@1.0.2)                          
+    ##  Github (r-lib/progress@72c9873)        
+    ##  CRAN (R 3.4.2)                         
+    ##  cran (@0.12.15)                        
+    ##  CRAN (R 3.4.2)                         
+    ##  CRAN (R 3.4.3)                         
+    ##  CRAN (R 3.4.3)                         
+    ##  cran (@1.3-2)                          
+    ##  CRAN (R 3.4.3)                         
     ##  CRAN (R 3.4.2)                         
     ##  cran (@1.1.6)                          
-    ##  CRAN (R 3.4.1)                         
-    ##  cran (@1.3.4)                          
-    ##  Github (jimhester/withr@fe81c00)       
-    ##  cran (@2.1.16)
+    ##  CRAN (R 3.4.3)                         
+    ##  cran (@1.4.2)                          
+    ##  cran (@1.1.3)                          
+    ##  CRAN (R 3.4.3)                         
+    ##  cran (@1.2.0)                          
+    ##  CRAN (R 3.4.3)
