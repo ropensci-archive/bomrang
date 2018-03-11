@@ -1,7 +1,11 @@
+pandoc: 2.1.2
+pkgdown: 0.1.0.9000
+pkgdown_sha: 17f683717d0a1547f13a08a259b34c58927452d6
+articles:
+  bomrang: bomrang.html
+  get_satellite_imagery-1.png: get_satellite_imagery-1.png
+  use_case: use_case.html
 urls:
   reference: https://ropensci.github.io/bomrang//reference
   article: https://ropensci.github.io/bomrang//articles
-articles:
-  bomrang: bomrang.html
-  use_case: use_case.html
 

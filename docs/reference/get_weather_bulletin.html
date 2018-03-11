@@ -18,6 +18,8 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
@@ -25,6 +27,11 @@
 <script src="../pkgdown.js"></script>
   
   
+<meta property="og:title" content="Get BoM 0900 or 1500 Weather Bulletin — get_weather_bulletin" />
+
+<meta property="og:description" content="Fetch the daily BoM 0900 or 1500 weather bulletins and return a tidy data
+frame for a specified state or territory." />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -127,7 +134,7 @@ state; otherwise return the 3pm bulletin.</p></td>
 
     <p>Tidy data frame of Australian 9am or 3pm weather observations for a state.
 For full details of fields and units returned see Appendix 4 in the
-<em>bomrang</em> vignette, use <code><a href='https://cran.rstudio.com/web/packages/bomrang/vignettes/bomrang.html'>vignette("bomrang", package = "bomrang")</a></code>
+<em>bomrang</em> vignette, use <code><a href='../articles/bomrang.html'>vignette("bomrang", package = "bomrang")</a></code>
 to view.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -187,7 +194,7 @@ Mark Padgham, <a href='mailto:mark.padgham@email.com'>mark.padgham@email.com</a>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
@@ -195,3 +202,4 @@ Mark Padgham, <a href='mailto:mark.padgham@email.com'>mark.padgham@email.com</a>
 
   </body>
 </html>
+
