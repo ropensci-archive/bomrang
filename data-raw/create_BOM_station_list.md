@@ -245,91 +245,47 @@ stations_site_list$site <-
 
     ## ─ Session info ──────────────────────────────────────────────────────────
     ##  setting  value                       
-    ##  version  R version 3.4.3 (2017-11-30)
+    ##  version  R version 3.4.4 (2018-03-15)
     ##  os       macOS High Sierra 10.13.3   
     ##  system   x86_64, darwin17.4.0        
     ##  ui       unknown                     
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2018-03-11                  
+    ##  date     2018-03-18                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
-    ##  package     * version    date      
-    ##  ansistrings   1.0.0.9000 2018-02-27
-    ##  assertthat    0.2.0      2017-04-11
-    ##  backports     1.1.2      2017-12-13
-    ##  bindr         0.1        2016-11-13
-    ##  bindrcpp    * 0.2        2017-06-17
-    ##  cli           1.0.0.9001 2018-02-03
-    ##  clisymbols    1.2.0      2018-01-30
-    ##  crayon        1.3.4      2017-09-16
-    ##  curl          3.1        2017-12-12
-    ##  data.table    1.10.4-3   2017-10-27
-    ##  digest        0.6.15     2018-01-28
-    ##  dplyr         0.7.4      2017-09-28
-    ##  evaluate      0.10.1     2017-06-24
-    ##  glue          1.2.0      2017-10-29
-    ##  hms           0.4.2      2018-03-10
-    ##  htmltools     0.3.6      2017-04-28
-    ##  httr          1.3.1      2017-08-20
-    ##  knitr         1.20       2018-02-20
-    ##  magrittr    * 1.5        2014-11-22
-    ##  pillar        1.2.1      2018-02-27
-    ##  pkgconfig     2.0.1      2017-03-21
-    ##  prettyunits   1.0.2      2015-07-13
-    ##  progress      1.1.2.9002 2018-03-11
-    ##  R6            2.2.2      2017-06-17
-    ##  Rcpp          0.12.15    2018-01-20
-    ##  readr         1.1.1      2017-05-16
-    ##  rlang         0.2.0      2018-02-20
-    ##  rmarkdown     1.9        2018-03-01
-    ##  rprojroot     1.3-2      2018-01-03
-    ##  selectr       0.3-2      2018-03-05
-    ##  sessioninfo   1.0.0      2017-06-21
-    ##  stringi       1.1.6      2017-11-17
-    ##  stringr       1.3.0      2018-02-19
-    ##  tibble        1.4.2      2018-01-22
-    ##  utf8          1.1.3      2018-01-03
-    ##  withr         2.1.1      2017-12-19
-    ##  xml2          1.2.0      2018-01-24
-    ##  yaml          2.1.18     2018-03-08
-    ##  source                                 
-    ##  Github (r-lib/ansistrings@4e4d309)     
-    ##  CRAN (R 3.4.2)                         
-    ##  cran (@1.1.2)                          
-    ##  CRAN (R 3.4.2)                         
-    ##  CRAN (R 3.4.2)                         
-    ##  Github (r-lib/cli@1b58269)             
-    ##  Github (gaborcsardi/clisymbols@e49b4f5)
-    ##  cran (@1.3.4)                          
-    ##  cran (@3.1)                            
-    ##  cran (@1.10.4-)                        
-    ##  cran (@0.6.15)                         
-    ##  CRAN (R 3.4.2)                         
-    ##  cran (@0.10.1)                         
-    ##  cran (@1.2.0)                          
-    ##  cran (@0.4.2)                          
-    ##  cran (@0.3.6)                          
-    ##  CRAN (R 3.4.2)                         
-    ##  CRAN (R 3.4.3)                         
-    ##  CRAN (R 3.4.2)                         
-    ##  CRAN (R 3.4.3)                         
-    ##  CRAN (R 3.4.2)                         
-    ##  cran (@1.0.2)                          
-    ##  Github (r-lib/progress@72c9873)        
-    ##  CRAN (R 3.4.2)                         
-    ##  cran (@0.12.15)                        
-    ##  CRAN (R 3.4.2)                         
-    ##  CRAN (R 3.4.3)                         
-    ##  CRAN (R 3.4.3)                         
-    ##  cran (@1.3-2)                          
-    ##  CRAN (R 3.4.3)                         
-    ##  CRAN (R 3.4.2)                         
-    ##  cran (@1.1.6)                          
-    ##  CRAN (R 3.4.3)                         
-    ##  cran (@1.4.2)                          
-    ##  cran (@1.1.3)                          
-    ##  CRAN (R 3.4.3)                         
-    ##  cran (@1.2.0)                          
-    ##  CRAN (R 3.4.3)
+    ##  package     * version  date       source                                 
+    ##  assertthat    0.2.0    2017-04-11 CRAN (R 3.4.2)                         
+    ##  backports     1.1.2    2017-12-13 cran (@1.1.2)                          
+    ##  bindr         0.1.1    2018-03-13 CRAN (R 3.4.4)                         
+    ##  bindrcpp    * 0.2      2017-06-17 CRAN (R 3.4.2)                         
+    ##  cli           1.0.0    2017-11-05 CRAN (R 3.4.4)                         
+    ##  clisymbols    1.2.0    2018-01-30 Github (gaborcsardi/clisymbols@e49b4f5)
+    ##  crayon        1.3.4    2017-09-16 cran (@1.3.4)                          
+    ##  curl          3.1      2017-12-12 cran (@3.1)                            
+    ##  data.table    1.10.4-3 2017-10-27 cran (@1.10.4-)                        
+    ##  digest        0.6.15   2018-01-28 cran (@0.6.15)                         
+    ##  dplyr         0.7.4    2017-09-28 CRAN (R 3.4.2)                         
+    ##  evaluate      0.10.1   2017-06-24 cran (@0.10.1)                         
+    ##  glue          1.2.0    2017-10-29 cran (@1.2.0)                          
+    ##  hms           0.4.2    2018-03-10 CRAN (R 3.4.4)                         
+    ##  htmltools     0.3.6    2017-04-28 cran (@0.3.6)                          
+    ##  httr          1.3.1    2017-08-20 CRAN (R 3.4.2)                         
+    ##  knitr         1.20     2018-02-20 CRAN (R 3.4.4)                         
+    ##  magrittr    * 1.5      2014-11-22 CRAN (R 3.4.2)                         
+    ##  pillar        1.2.1    2018-02-27 CRAN (R 3.4.4)                         
+    ##  pkgconfig     2.0.1    2017-03-21 CRAN (R 3.4.2)                         
+    ##  R6            2.2.2    2017-06-17 CRAN (R 3.4.2)                         
+    ##  Rcpp          0.12.16  2018-03-13 CRAN (R 3.4.4)                         
+    ##  readr         1.1.1    2017-05-16 CRAN (R 3.4.2)                         
+    ##  rlang         0.2.0    2018-02-20 CRAN (R 3.4.4)                         
+    ##  rmarkdown     1.9      2018-03-01 CRAN (R 3.4.4)                         
+    ##  rprojroot     1.3-2    2018-01-03 cran (@1.3-2)                          
+    ##  sessioninfo   1.0.0    2017-06-21 CRAN (R 3.4.2)                         
+    ##  stringi       1.1.7    2018-03-12 CRAN (R 3.4.4)                         
+    ##  stringr       1.3.0    2018-02-19 CRAN (R 3.4.4)                         
+    ##  tibble        1.4.2    2018-01-22 cran (@1.4.2)                          
+    ##  utf8          1.1.3    2018-01-03 cran (@1.1.3)                          
+    ##  withr         2.1.2    2018-03-15 Github (r-lib/withr@79d7b0d)           
+    ##  yaml          2.1.18   2018-03-08 CRAN (R 3.4.4)
