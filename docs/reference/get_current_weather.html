@@ -18,13 +18,17 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+<meta property="og:title" content="Get Current Weather Observations of a BoM Station — get_current_weather" />
+
+<meta property="og:description" content="Get Current Weather Observations of a BoM Station" />
+<meta name="twitter:card" content="summary" />
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -76,7 +80,7 @@
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -99,6 +103,7 @@
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get Current Weather Observations of a BoM Station</h1>
+    <small>Source: <a href='https:/github.com/ropensci/bomrang/blob/master/R/get_current_weather.R'><code>R/get_current_weather.R</code></a></small>
     </div>
 
     
@@ -153,7 +158,7 @@ be nearest to the given coordinate).</p></td>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>full details of fields and units returned, see Appendix 1 in the
-<em>bomrang</em> vignette, use <code><a href='https://cran.rstudio.com/web/packages/bomrang/vignettes/bomrang.html'>vignette("bomrang", package = "bomrang")</a></code>
+<em>bomrang</em> vignette, use <code><a href='../articles/bomrang.html'>vignette("bomrang", package = "bomrang")</a></code>
 to view.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -219,7 +224,7 @@ Hugh Parsonage, <a href='mailto:hugh.parsonage@gmail.com'>hugh.parsonage@gmail.c
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>
@@ -227,3 +232,4 @@ Hugh Parsonage, <a href='mailto:hugh.parsonage@gmail.com'>hugh.parsonage@gmail.c
 
   </body>
 </html>
+
