@@ -65,124 +65,133 @@ library(magrittr)
 # we use download.file to fetch it first and then import it from the R
 # tempdir()
 
-  curl::curl_download(
-    url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
-                      destfile = file.path(tempdir(), "stations.zip"))
+curl::curl_download(
+  url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
+  destfile = file.path(tempdir(), "stations.zip"))
 
-  bom_stations_raw <-
-    readr::read_fwf(
+bom_stations_raw <-
+  readr::read_table(
     file.path(tempdir(), "stations.zip"),
     skip = 4,
-    readr::fwf_positions(
-    c(1, 9, 15, 56, 64, 72, 81, 91, 106, 110, 121, 130),
-    c(8, 14, 55, 63, 71, 80, 90, 105, 109, 120, 129, 136),
+    na = c("..", ".....", " "),
     col_names = c(
-    "site",
-    "dist",
-    "name",
-    "start",
-    "end",
-    "lat",
-    "lon",
-    "source",
-    "state",
-    "elev",
-    "bar_ht",
-    "wmo"
-    )),
-    col_types = c("ccciiddccddi"),
-    na = c("..", ".....")
+      "site",
+      "dist",
+      "name",
+      "start",
+      "end",
+      "lat",
+      "lon",
+      "NULL1",
+      "NULL2",
+      "state",
+      "elev",
+      "bar_ht",
+      "wmo"
     )
+  )
 ```
 
-    ## Warning in rbind(names(probs), probs_f): number of columns of result is not
-    ## a multiple of vector length (arg 1)
-
-    ## Warning: 19362 parsing failures.
-    ## row # A tibble: 5 x 5 col     row col   expected actual file                                         expected   <int> <chr> <chr>    <chr>  <chr>                                        actual 1     1 wmo   7 chars  6      '/var/folders/hk/1xg925vs6fsgfv2q9f9k6fp000… file 2     2 wmo   7 chars  6      '/var/folders/hk/1xg925vs6fsgfv2q9f9k6fp000… row 3     3 wmo   7 chars  6      '/var/folders/hk/1xg925vs6fsgfv2q9f9k6fp000… col 4     4 wmo   7 chars  6      '/var/folders/hk/1xg925vs6fsgfv2q9f9k6fp000… expected 5     5 wmo   7 chars  6      '/var/folders/hk/1xg925vs6fsgfv2q9f9k6fp000…
-    ## ... ................. ... .......................................................................... ........ .......................................................................... ...... .......................................................................... .... .......................................................................... ... .......................................................................... ... .......................................................................... ........ ..........................................................................
-    ## See problems(...) for more details.
+    ## Parsed with column specification:
+    ## cols(
+    ##   site = col_character(),
+    ##   dist = col_character(),
+    ##   name = col_character(),
+    ##   start = col_integer(),
+    ##   end = col_integer(),
+    ##   lat = col_double(),
+    ##   lon = col_double(),
+    ##   NULL1 = col_character(),
+    ##   NULL2 = col_character(),
+    ##   state = col_character(),
+    ##   elev = col_double(),
+    ##   bar_ht = col_double(),
+    ##   wmo = col_integer()
+    ## )
 
 ``` r
-    # trim the end of the rows off that have extra info that's not in columns
-  nrows <- nrow(bom_stations_raw) - 6
-  bom_stations_raw <- bom_stations_raw[1:nrows, ]
+# remove extra columns for source of location
+bom_stations_raw <- bom_stations_raw[, -c(8:9)]
 
-  # recode the states to match product codes
-  # IDD - NT,
-  # IDN - NSW/ACT,
-  # IDQ - Qld,
-  # IDS - SA,
-  # IDT - Tas/Antarctica,
-  # IDV - Vic, IDW - WA
+# trim the end of the rows off that have extra info that's not in columns
+nrows <- nrow(bom_stations_raw) - 6
+bom_stations_raw <- bom_stations_raw[1:nrows, ]
 
-  bom_stations_raw$state_code <- NA
-  bom_stations_raw$state_code[bom_stations_raw$state == "WA"] <- "W"
-  bom_stations_raw$state_code[bom_stations_raw$state == "QLD"] <- "Q"
-  bom_stations_raw$state_code[bom_stations_raw$state == "VIC"] <- "V"
-  bom_stations_raw$state_code[bom_stations_raw$state == "NT"] <- "D"
-  bom_stations_raw$state_code[bom_stations_raw$state == "TAS" |
+# recode the states to match product codes
+# IDD - NT,
+# IDN - NSW/ACT,
+# IDQ - Qld,
+# IDS - SA,
+# IDT - Tas/Antarctica,
+# IDV - Vic, IDW - WA
+
+bom_stations_raw$state_code <- NA
+bom_stations_raw$state_code[bom_stations_raw$state == "WA"] <- "W"
+bom_stations_raw$state_code[bom_stations_raw$state == "QLD"] <- "Q"
+bom_stations_raw$state_code[bom_stations_raw$state == "VIC"] <- "V"
+bom_stations_raw$state_code[bom_stations_raw$state == "NT"] <- "D"
+bom_stations_raw$state_code[bom_stations_raw$state == "TAS" |
                               bom_stations_raw$state == "ANT"] <- "T"
-  bom_stations_raw$state_code[bom_stations_raw$state == "NSW"] <- "N"
-  bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <- "S"
+bom_stations_raw$state_code[bom_stations_raw$state == "NSW"] <- "N"
+bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <- "S"
 
-  stations_site_list <-
-    bom_stations_raw %>%
-    dplyr::select(site:name, dplyr::everything()) %>%
-    dplyr::mutate(
-      url = dplyr::case_when(
-        .$state != "ANT" & !is.na(.$wmo) ~
-          paste0(
-            "http://www.bom.gov.au/fwo/ID",
-            .$state_code,
-            "60801",
-            "/",
-            "ID",
-            .$state_code,
-            "60801",
-            ".",
-            .$wmo,
-            ".json"
-          ),
-        .$state == "ANT" & !is.na(.$wmo) ~
-          paste0(
-            "http://www.bom.gov.au/fwo/ID",
-            .$state_code,
-            "60803",
-            "/",
-            "ID",
-            .$state_code,
-            "60803",
-            ".",
-            .$wmo,
-            ".json"
-          )
-      )
+stations_site_list <-
+  bom_stations_raw %>%
+  dplyr::select(site:name, dplyr::everything()) %>%
+  dplyr::mutate(
+    url = dplyr::case_when(
+      .$state != "ANT" & !is.na(.$wmo) ~
+        paste0(
+          "http://www.bom.gov.au/fwo/ID",
+          .$state_code,
+          "60801",
+          "/",
+          "ID",
+          .$state_code,
+          "60801",
+          ".",
+          .$wmo,
+          ".json"
+        ),
+      .$state == "ANT" & !is.na(.$wmo) ~
+        paste0(
+          "http://www.bom.gov.au/fwo/ID",
+          .$state_code,
+          "60803",
+          "/",
+          "ID",
+          .$state_code,
+          "60803",
+          ".",
+          .$wmo,
+          ".json"
+        )
     )
+  )
 
-  # return only current stations listing
-  stations_site_list <-
+# return only current stations listing
+stations_site_list <-
   stations_site_list[is.na(stations_site_list$end), ]
-  stations_site_list$end <- format(Sys.Date(), "%Y")
+stations_site_list$end <- format(Sys.Date(), "%Y")
 
 stations_site_list
 ```
 
-    ## # A tibble: 7,321 x 14
-    ##    site   dist  name    start end     lat   lon source state   elev bar_ht
-    ##    <chr>  <chr> <chr>   <int> <chr> <dbl> <dbl> <chr>  <chr>  <dbl>  <dbl>
-    ##  1 001006 01    WYNDHA…  1951 2018  -15.5  128. GPS    WA      3.80   4.30
-    ##  2 001007 01    TROUGH…  1956 2018  -13.8  126. GPS    WA      6.00   8.00
-    ##  3 001010 01    THEDA    1965 2018  -14.8  126. GPS    WA    210.    NA   
-    ##  4 001013 01    WYNDHAM  1968 2018  -15.5  128. GPS    WA     11.0   NA   
-    ##  5 001014 01    EMMA G…  1998 2018  -15.9  128. <NA>   WA    130.    NA   
-    ##  6 001018 01    MOUNT …  1973 2018  -16.4  126. GPS    WA    546.   547.  
-    ##  7 001019 01    KALUMB…  1997 2018  -14.3  127. GPS    WA     23.0   24.0 
-    ##  8 001020 01    TRUSCO…  1944 2018  -14.1  126. GPS    WA     51.0   52.5 
-    ##  9 001023 01    EL QUE…  1967 2018  -16.0  128. GPS    WA     90.0   NA   
-    ## 10 001024 01    ELLENB…  1986 2018  -16.0  127. GPS    WA    300.    NA   
-    ## # ... with 7,311 more rows, and 3 more variables: wmo <int>,
-    ## #   state_code <chr>, url <chr>
+    ## # A tibble: 7,320 x 13
+    ##    site   dist  name     start end     lat   lon state   elev bar_ht   wmo
+    ##    <chr>  <chr> <chr>    <int> <chr> <dbl> <dbl> <chr>  <dbl>  <dbl> <int>
+    ##  1 001006 01    WYNDHAM…  1951 2018  -15.5  128. WA      3.80   4.30 95214
+    ##  2 001007 01    TROUGHT…  1956 2018  -13.8  126. WA      6.00   8.00 94102
+    ##  3 001010 01    THEDA     1965 2018  -14.8  126. WA    210.    NA       NA
+    ##  4 001013 01    WYNDHAM   1968 2018  -15.5  128. WA     11.0   NA       NA
+    ##  5 001014 01    EMMA GO…  1998 2018  -15.9  128. WA    130.    NA       NA
+    ##  6 001018 01    MOUNT E…  1973 2018  -16.4  126. WA    546.   547.   94211
+    ##  7 001019 01    KALUMBU…  1997 2018  -14.3  127. WA     23.0   24.0  94100
+    ##  8 001020 01    TRUSCOTT  1944 2018  -14.1  126. WA     51.0   52.5  95101
+    ##  9 001023 01    EL QUES…  1967 2018  -16.0  128. WA     90.0   NA       NA
+    ## 10 001024 01    ELLENBR…  1986 2018  -16.0  127. WA    300.    NA       NA
+    ## # ... with 7,310 more rows, and 2 more variables: state_code <chr>,
+    ## #   url <chr>
 
 ## Save data
 
@@ -231,7 +240,7 @@ Lastly, create the database for use in the package.
 ``` r
 stations_site_list <-
   stations_site_list %>%
-  dplyr::select(-state_code, -source, -url) %>% 
+  dplyr::select(-state_code, -url) %>% 
   as.data.frame()
 
 stations_site_list$site <-
