@@ -25,8 +25,6 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
 <meta property="og:title" content="Manage Locally Cached BoM Files — manage_cache" />
 
 <meta property="og:description" content="Manage cached bomrang satellite imagery files with
@@ -83,7 +81,7 @@ hoardr." />
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -106,6 +104,7 @@ hoardr." />
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Manage Locally Cached BoM Files</h1>
+    <small>Source: <a href='https:/github.com/ropensci/bomrang/blob/master/R/manage_cached_files.R'><code>R/manage_cached_files.R</code></a></small>
     </div>
 
     
@@ -118,8 +117,8 @@ hoardr." />
 
     <p>The default cache directory is
 <code>file.path(rappdirs::user_cache_dir(), "R/bomrang")</code>, but you can
-set your own path using <code>manage_cache$cache_path_set()</code>
-    <code>manage_cache$cache_delete</code> only accepts one file name, while
+set your own path using <code>manage_cache$cache_path_set()</code></p>
+<p><code>manage_cache$cache_delete</code> only accepts one file name, while
 <code>manage_cache$cache_delete_all</code>
 does not accept any names, but deletes all files. For deleting many specific
 files, use <code>manage_cache$cache_delete</code> in an
