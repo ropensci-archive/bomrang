@@ -15,8 +15,10 @@ Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     email = "keith.pembleton@usq.edu.au",
     comment = c(ORCID = "0000-0002-1896-4516")),
     person("James ", "Balamuta", role = "ctb",
-    email = "balamut2@illinois.edu",
-    comment = c(ORCID = "0000-0003-2826-8458")))
+    email = "balamut2@illinois.edu"
+    comment = c(ORCID = "0000-0003-2826-8458")),
+    person("Sam", "Firke", role = "ctb",
+    e-mail = "samuel.firke@gmail.com"))
 Description: Provides functions to interface with Australian Government Bureau
     of Meteorology (BoM) data, fetching data and returning a tidy data frame of
     précis forecasts, current weather data from stations, agriculture
