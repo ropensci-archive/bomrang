@@ -198,7 +198,7 @@ bom_locations$state_code[bom_locations$state == "ANT"] <- "T"
 # generate URLs
 stations_site_list <-
   bom_locations %>%
-  dplyr::select(site:wmo, state_code) %>%
+  dplyr::select(site:wmo, org_state, state, state_code) %>%
   dplyr::mutate(
     url = dplyr::case_when(
       .$state != "ANT" & !is.na(.$wmo) ~
