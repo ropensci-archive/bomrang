@@ -187,7 +187,7 @@ bom_locations <-
 
 ``` r
 # join the new data from checking points with the BOM data
-bom_locations <- dplyr::full_join(points, bom_locations)
+bom_locations <- dplyr::full_join(bom_stations_raw, bom_locations)
 ```
 
     ## Joining, by = c("site", "dist", "name", "start", "end", "state", "elev", "bar_ht", "wmo")
@@ -216,38 +216,46 @@ BOM state codes are as follows:
 <!-- end list -->
 
 ``` r
-# create new list of corrected states
-bom_locations$corrected_state <- substr(bom_locations$HASC_1, 4, 5)
+# rename original state column from BOM and keep for reference
+bom_locations$org_state <- bom_locations$state
+
+# create new list of corrected state abbreviations based on spatial check
+bom_locations$state <- substr(bom_locations$HASC_1, 4, 5)
+
+# recode states from two to three letters where needed
+bom_locations$state[bom_locations$state == "QL"] <- "QLD"
+bom_locations$state[bom_locations$state == "VI"] <- "VIC"
+bom_locations$state[bom_locations$state == "TS"] <- "TAS"
+bom_locations$state[bom_locations$state == "NS"] <- "NSW"
 
 # fill any states not present in corrected set
-bom_locations$corrected_state[is.na(bom_locations$corrected_state)] <- 
-  bom_locations$state[is.na(bom_locations$corrected_state)]
+bom_locations$state[is.na(bom_locations$state)] <- 
+  bom_locations$state[is.na(bom_locations$state)]
 
-# replace state values with state code
+# replace state values with state code to generate URLs
 bom_stations_raw$state_code <- NA
-bom_locations$state_code[bom_locations$corrected_state == "WA"] <- "W"
+bom_locations$state_code[bom_locations$state == "WA"] <- "W"
 ```
 
     ## Warning: Unknown or uninitialised column: 'state_code'.
 
 ``` r
-bom_locations$state_code[bom_locations$corrected_state == "QL" |
-                           bom_locations$corrected_state == "QLD"] <- "Q"
-bom_locations$state_code[bom_locations$corrected_state == "VI" |
-                           bom_locations$corrected_state == "VIC"] <- "V"
-bom_locations$state_code[bom_locations$corrected_state == "NT"] <- "D"
-bom_locations$state_code[bom_locations$corrected_state == "TS" |
-                           bom_locations$corrected_state == "TAS"] <- "T"
-bom_locations$state_code[bom_locations$corrected_state == "NS" |
-                           bom_locations$corrected_state == "NSW"] <- "N"
-bom_locations$state_code[bom_locations$corrected_state == "SA"] <- "S"
-bom_locations$state_code[bom_locations$corrected_state == "ANT"] <- "T"
+bom_locations$state_code[bom_locations$state == "QL" |
+                           bom_locations$state == "QLD"] <- "Q"
+bom_locations$state_code[bom_locations$state == "VI" |
+                           bom_locations$state == "VIC"] <- "V"
+bom_locations$state_code[bom_locations$state == "NT"] <- "D"
+bom_locations$state_code[bom_locations$state == "TS" |
+                           bom_locations$state == "TAS"] <- "T"
+bom_locations$state_code[bom_locations$state == "NS" |
+                           bom_locations$state == "NSW"] <- "N"
+bom_locations$state_code[bom_locations$state == "SA"] <- "S"
+bom_locations$state_code[bom_locations$state == "ANT"] <- "T"
 
-# create URLs
-
+# generate URLs
 stations_site_list <-
   bom_locations %>%
-  dplyr::select(site:wmo, corrected_state:state_code) %>%
+  dplyr::select(site:wmo, org_state, state, state_code) %>%
   dplyr::mutate(
     url = dplyr::case_when(
       .$state != "ANT" & !is.na(.$wmo) ~
@@ -320,9 +328,8 @@ JSONurl_site_list <-
 
 First, rename columns and drop a few that aren’t necessary for the ag
 bulletin information. Then pad the `site` field with 0 to match the data
-in the XML file that holds the bulletin information.
-
-Lastly, create the database for use in the package.
+in the XML file that holds the bulletin information. Lastly, create the
+database for use in the package.
 
 ``` r
 stations_site_list <-
@@ -337,13 +344,21 @@ stations_site_list$site <-
      compress = "bzip2")
 ```
 
+# Cleanup
+
+# Cleanup the GADM file
+
+``` r
+unlink("GADM_2.8_AUS_adm1.rds")
+```
+
 ## Session Info
 
     ## ─ Session info ──────────────────────────────────────────────────────────
     ##  setting  value                       
     ##  version  R version 3.4.4 (2018-03-15)
-    ##  os       macOS Sierra 10.12.6        
-    ##  system   x86_64, darwin16.7.0        
+    ##  os       macOS High Sierra 10.13.3   
+    ##  system   x86_64, darwin17.4.0        
     ##  ui       unknown                     
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
@@ -351,47 +366,47 @@ stations_site_list$site <-
     ##  date     2018-03-19                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
-    ##  package     * version    date       source                          
-    ##  assertthat    0.2.0      2017-04-11 CRAN (R 3.4.3)                  
-    ##  backports     1.1.2      2017-12-13 CRAN (R 3.4.3)                  
-    ##  bindr         0.1.1      2018-03-13 CRAN (R 3.4.3)                  
-    ##  bindrcpp    * 0.2        2017-06-17 CRAN (R 3.4.3)                  
-    ##  class         7.3-14     2015-08-30 CRAN (R 3.4.4)                  
-    ##  classInt      0.1-24     2017-04-16 CRAN (R 3.4.3)                  
-    ##  cli           1.0.0      2017-11-05 CRAN (R 3.4.3)                  
-    ##  clisymbols    1.2.0      2017-05-21 CRAN (R 3.4.3)                  
-    ##  crayon        1.3.4      2017-09-16 CRAN (R 3.4.3)                  
-    ##  curl          3.1        2017-12-12 CRAN (R 3.4.3)                  
-    ##  data.table    1.10.4-3   2017-10-27 CRAN (R 3.4.3)                  
-    ##  DBI           0.8        2018-03-02 CRAN (R 3.4.3)                  
-    ##  digest        0.6.15     2018-01-28 CRAN (R 3.4.3)                  
-    ##  dplyr         0.7.4      2017-09-28 CRAN (R 3.4.3)                  
-    ##  e1071         1.6-8      2017-02-02 CRAN (R 3.4.3)                  
-    ##  evaluate      0.10.1     2017-06-24 CRAN (R 3.4.3)                  
-    ##  glue          1.2.0      2017-10-29 CRAN (R 3.4.3)                  
-    ##  hms           0.4.2      2018-03-10 CRAN (R 3.4.3)                  
-    ##  htmltools     0.3.6      2017-04-28 CRAN (R 3.4.3)                  
-    ##  httr          1.3.1      2017-08-20 CRAN (R 3.4.3)                  
-    ##  knitr         1.20       2018-02-20 CRAN (R 3.4.3)                  
-    ##  lattice       0.20-35    2017-03-25 CRAN (R 3.4.4)                  
-    ##  magrittr    * 1.5        2014-11-22 CRAN (R 3.4.3)                  
-    ##  pillar        1.2.1      2018-02-27 CRAN (R 3.4.3)                  
-    ##  pkgconfig     2.0.1      2017-03-21 CRAN (R 3.4.3)                  
-    ##  R6            2.2.2      2017-06-17 CRAN (R 3.4.3)                  
-    ##  raster      * 2.6-7      2017-11-13 CRAN (R 3.4.3)                  
-    ##  Rcpp          0.12.16    2018-03-13 CRAN (R 3.4.3)                  
-    ##  readr         1.1.1      2017-05-16 CRAN (R 3.4.3)                  
-    ##  rlang         0.2.0.9000 2018-03-16 Github (tidyverse/rlang@1b81816)
-    ##  rmarkdown     1.9        2018-03-01 CRAN (R 3.4.3)                  
-    ##  rprojroot     1.3-2      2018-01-03 CRAN (R 3.4.3)                  
-    ##  sessioninfo   1.0.0      2017-06-21 CRAN (R 3.4.3)                  
-    ##  sf          * 0.6-0      2018-01-06 CRAN (R 3.4.3)                  
-    ##  sp          * 1.2-7      2018-01-19 CRAN (R 3.4.3)                  
-    ##  stringi       1.1.7      2018-03-12 CRAN (R 3.4.3)                  
-    ##  stringr       1.3.0      2018-02-19 CRAN (R 3.4.3)                  
-    ##  tibble        1.4.2      2018-01-22 CRAN (R 3.4.3)                  
-    ##  udunits2      0.13       2016-11-17 CRAN (R 3.4.3)                  
-    ##  units         0.5-1      2018-01-08 CRAN (R 3.4.3)                  
-    ##  utf8          1.1.3      2018-01-03 CRAN (R 3.4.3)                  
-    ##  withr         2.1.2      2018-03-16 Github (jimhester/withr@79d7b0d)
-    ##  yaml          2.1.18     2018-03-08 CRAN (R 3.4.3)
+    ##  package     * version  date       source                                 
+    ##  assertthat    0.2.0    2017-04-11 CRAN (R 3.4.2)                         
+    ##  backports     1.1.2    2017-12-13 cran (@1.1.2)                          
+    ##  bindr         0.1.1    2018-03-13 CRAN (R 3.4.4)                         
+    ##  bindrcpp    * 0.2      2017-06-17 CRAN (R 3.4.2)                         
+    ##  class         7.3-14   2015-08-30 CRAN (R 3.4.4)                         
+    ##  classInt      0.1-24   2017-04-16 CRAN (R 3.4.2)                         
+    ##  cli           1.0.0    2017-11-05 CRAN (R 3.4.4)                         
+    ##  clisymbols    1.2.0    2018-01-30 Github (gaborcsardi/clisymbols@e49b4f5)
+    ##  crayon        1.3.4    2017-09-16 cran (@1.3.4)                          
+    ##  curl          3.1      2017-12-12 cran (@3.1)                            
+    ##  data.table    1.10.4-3 2017-10-27 cran (@1.10.4-)                        
+    ##  DBI           0.8      2018-03-02 CRAN (R 3.4.4)                         
+    ##  digest        0.6.15   2018-01-28 cran (@0.6.15)                         
+    ##  dplyr         0.7.4    2017-09-28 CRAN (R 3.4.2)                         
+    ##  e1071         1.6-8    2017-02-02 CRAN (R 3.4.2)                         
+    ##  evaluate      0.10.1   2017-06-24 cran (@0.10.1)                         
+    ##  glue          1.2.0    2017-10-29 cran (@1.2.0)                          
+    ##  hms           0.4.2    2018-03-10 CRAN (R 3.4.4)                         
+    ##  htmltools     0.3.6    2017-04-28 cran (@0.3.6)                          
+    ##  httr          1.3.1    2017-08-20 CRAN (R 3.4.2)                         
+    ##  knitr         1.20     2018-02-20 CRAN (R 3.4.4)                         
+    ##  lattice       0.20-35  2017-03-25 CRAN (R 3.4.4)                         
+    ##  magrittr    * 1.5      2014-11-22 CRAN (R 3.4.2)                         
+    ##  pillar        1.2.1    2018-02-27 CRAN (R 3.4.4)                         
+    ##  pkgconfig     2.0.1    2017-03-21 CRAN (R 3.4.2)                         
+    ##  R6            2.2.2    2017-06-17 CRAN (R 3.4.2)                         
+    ##  raster      * 2.6-7    2017-11-13 CRAN (R 3.4.3)                         
+    ##  Rcpp          0.12.16  2018-03-13 CRAN (R 3.4.4)                         
+    ##  readr         1.1.1    2017-05-16 CRAN (R 3.4.2)                         
+    ##  rlang         0.2.0    2018-02-20 CRAN (R 3.4.4)                         
+    ##  rmarkdown     1.9      2018-03-01 CRAN (R 3.4.4)                         
+    ##  rprojroot     1.3-2    2018-01-03 cran (@1.3-2)                          
+    ##  sessioninfo   1.0.0    2017-06-21 CRAN (R 3.4.2)                         
+    ##  sf          * 0.6-0    2018-01-06 CRAN (R 3.4.4)                         
+    ##  sp          * 1.2-7    2018-01-19 CRAN (R 3.4.4)                         
+    ##  stringi       1.1.7    2018-03-12 CRAN (R 3.4.4)                         
+    ##  stringr       1.3.0    2018-02-19 CRAN (R 3.4.4)                         
+    ##  tibble        1.4.2    2018-01-22 cran (@1.4.2)                          
+    ##  udunits2      0.13     2016-11-17 CRAN (R 3.4.2)                         
+    ##  units         0.5-1    2018-01-08 cran (@0.5-1)                          
+    ##  utf8          1.1.3    2018-01-03 cran (@1.1.3)                          
+    ##  withr         2.1.2    2018-03-15 Github (r-lib/withr@79d7b0d)           
+    ##  yaml          2.1.18   2018-03-08 CRAN (R 3.4.4)
