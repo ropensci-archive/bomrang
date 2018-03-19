@@ -137,48 +137,68 @@ bom_locations <-
   st_intersection(Oz, points) %>% 
   st_set_geometry(NULL)
 
-bom_locations <- dplyr::left_join(points, bom_locations)
+# join the new data from checking points with the BOM data
+bom_locations <- dplyr::full_join(bom_stations_raw, bom_locations)
 ```
 
-## Recode corrected state values 
+## Create state codes
 
-```{r recode-states}
+Using the state values extracted from GADM to set state codes from BOM rather
+than the sometimes incorrect `state` column from BOM.
 
-# Corrected states
+BOM state codes are as follows:
 
-bom_locations$corrected_state <- substr(bom_locations$HASC_1, 4, 5)
+- IDD - NT,
 
-# recode the states to match product codes using corrected state values
-# IDD - NT,
-# IDN - NSW/ACT,
-# IDQ - Qld,
-# IDS - SA,
-# IDT - Tas/Antarctica,
-# IDV - Vic, IDW - WA
+- IDN - NSW/ACT,
 
-bom_locations$state_code <- NA
-bom_locations$state_code[bom_locations$corrected_state == "WA"] <- "W"
-bom_locations$state_code[bom_locations$corrected_state == "QL"] <- "Q"
-bom_locations$state_code[bom_locations$corrected_state == "VI"] <- "V"
-bom_locations$state_code[bom_locations$corrected_state == "NT"] <- "D"
-bom_locations$state_code[bom_locations$corrected_state == "TS" |
-                              bom_locations$corrected_state == "ANT"] <- "T"
-bom_locations$state_code[bom_locations$corrected_state == "NS"] <- "N"
-bom_locations$state_code[bom_locations$corrected_state == "SA"] <- "S"
+- IDQ - Qld,
 
-# replace original state values with corrected state values
+- IDS - SA,
 
-bom_locations$state[bom_locations$corrected_state == "WA"] <- "WA"
-bom_locations$state[bom_locations$corrected_state == "QL"] <- "QLD"
-bom_locations$state[bom_locations$corrected_state == "VI"] <- "VIC"
-bom_locations$state[bom_locations$corrected_state == "NT"] <- "NT"
-bom_locations$state[bom_locations$corrected_state == "TS"] <- "TAS"
-bom_locations$state[bom_locations$corrected_state == "NS"] <- "NSW"
-bom_locations$state[bom_locations$corrected_state == "SA"] <- "SA"
+- IDT - Tas/Antarctica,
 
+- IDV - Vic, and
+
+- IDW - WA
+
+```{r state-codes}
+
+# rename original state column from BOM and keep for reference
+bom_locations$org_state <- bom_locations$state
+
+# create new list of corrected state abbreviations based on spatial check
+bom_locations$state <- substr(bom_locations$HASC_1, 4, 5)
+
+# recode states from two to three letters where needed
+bom_locations$state[bom_locations$state == "QL"] <- "QLD"
+bom_locations$state[bom_locations$state == "VI"] <- "VIC"
+bom_locations$state[bom_locations$state == "TS"] <- "TAS"
+bom_locations$state[bom_locations$state == "NS"] <- "NSW"
+
+# fill any states not present in corrected set
+bom_locations$state[is.na(bom_locations$state)] <- 
+  bom_locations$state[is.na(bom_locations$state)]
+
+# replace state values with state code to generate URLs
+bom_stations_raw$state_code <- NA
+bom_locations$state_code[bom_locations$state == "WA"] <- "W"
+bom_locations$state_code[bom_locations$state == "QL" |
+                           bom_locations$state == "QLD"] <- "Q"
+bom_locations$state_code[bom_locations$state == "VI" |
+                           bom_locations$state == "VIC"] <- "V"
+bom_locations$state_code[bom_locations$state == "NT"] <- "D"
+bom_locations$state_code[bom_locations$state == "TS" |
+                           bom_locations$state == "TAS"] <- "T"
+bom_locations$state_code[bom_locations$state == "NS" |
+                           bom_locations$state == "NSW"] <- "N"
+bom_locations$state_code[bom_locations$state == "SA"] <- "S"
+bom_locations$state_code[bom_locations$state == "ANT"] <- "T"
+
+# generate URLs
 stations_site_list <-
   bom_locations %>%
-  dplyr::select(names(bom_stations_raw), ) %>%
+  dplyr::select(site:wmo, state_code) %>%
   dplyr::mutate(
     url = dplyr::case_when(
       .$state != "ANT" & !is.na(.$wmo) ~
@@ -252,9 +272,8 @@ JSONurl_site_list <-
 
 First, rename columns and drop a few that aren't necessary for the ag bulletin
 information. Then pad the `site` field with 0 to match the data in the XML file
-that holds the bulletin information.
-
-Lastly, create the database for use in the package.
+that holds the bulletin information. Lastly, create the database for use in the
+package.
 
 ```{r save_location_data, eval=TRUE, message=FALSE}
 stations_site_list <-
@@ -267,6 +286,14 @@ stations_site_list$site <-
 
   save(stations_site_list, file = "../inst/extdata/stations_site_list.rda",
      compress = "bzip2")
+```
+
+# Cleanup
+
+# Cleanup the GADM file
+
+```{r cleanup}
+unlink("GADM_2.8_AUS_adm1.rds")
 ```
 
 ## Session Info
