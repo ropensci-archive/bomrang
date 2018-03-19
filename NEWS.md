@@ -1,5 +1,14 @@
 # bomrang 0.1.1.9000
 
+## Minor changes
+
+- The internal `stations_site_list` now is checked against GADM 
+(Global Administrative Areas), http://www.gadm.org/ to ensure state listed is
+correct. This is in response to an error where Alice Springs Airport was
+reported in South Australia in the 19 March 2018 update from BOM. There may be
+others. The original BOM values for state are in an `org_state` column.
+However, `bomrang` will use the corrected `state` column.
+
 ## Bug fixes
 
 - Correct issue with converting the timzeone in ag bulletin to character where
