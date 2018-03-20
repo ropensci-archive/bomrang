@@ -136,33 +136,33 @@
 ## 5     4   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ## 6     5   IDQ11295   QLD Brisbane QLD_PT001 -27.4808 153.0389  8.1
 ##      start_time_local end_time_local UTC_offset      start_time_utc
-## 1 2018-03-20 05:00:00     2018-03-21      10:00 2018-03-19 19:00:00
+## 1 2018-03-20 17:00:00     2018-03-21      10:00 2018-03-20 07:00:00
 ## 2 2018-03-21 00:00:00     2018-03-22      10:00 2018-03-20 14:00:00
 ## 3 2018-03-22 00:00:00     2018-03-23      10:00 2018-03-21 14:00:00
 ## 4 2018-03-23 00:00:00     2018-03-24      10:00 2018-03-22 14:00:00
 ## 5 2018-03-24 00:00:00     2018-03-25      10:00 2018-03-23 14:00:00
 ## 6 2018-03-25 00:00:00     2018-03-26      10:00 2018-03-24 14:00:00
 ##          end_time_utc minimum_temperature maximum_temperature
-## 1 2018-03-20 14:00:00                  NA                  30
+## 1 2018-03-20 14:00:00                  NA                  NA
 ## 2 2018-03-21 14:00:00                  21                  28
-## 3 2018-03-22 14:00:00                  21                  27
+## 3 2018-03-22 14:00:00                  21                  28
 ## 4 2018-03-23 14:00:00                  20                  27
 ## 5 2018-03-24 14:00:00                  20                  27
-## 6 2018-03-25 14:00:00                  20                  28
+## 6 2018-03-25 14:00:00                  20                  29
 ##   lower_precipitation_limit upper_precipitation_limit           precis
-## 1                         0                         1   Partly cloudy.
-## 2                         4                        15   A few showers.
-## 3                         2                         8   Shower or two.
-## 4                         1                        10   Shower or two.
-## 5                         1                         6   Shower or two.
-## 6                         0                         5 Possible shower.
+## 1                        NA                        NA   Partly cloudy.
+## 2                         4                        15         Showers.
+## 3                         3                        10         Showers.
+## 4                         4                        15         Showers.
+## 5                         1                         5   Shower or two.
+## 6                         0                         2 Possible shower.
 ##   probability_of_precipitation
-## 1                           30
+## 1                           NA
 ## 2                           28
-## 3                           27
+## 3                           28
 ## 4                           27
 ## 5                           27
-## 6                           28</code></pre>
+## 6                           29</code></pre>
 <p>Now we use a <code>for()</code> loop that searches through the Queensland précis forecast data frame and subsets it based on location each subscriber has nominated and the temperature threshold we have set. As part of the <code>for()</code> loop there is an <code>if()</code> statement that uses the <em>mailR</em> package to send an email to the subscribers if the forecast maximum temperatures are greater than or equal to the threshold. This email informs the recipient of the dates that high temperatures are expected.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">QLD_hotdates &lt;-</a>
 <a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span>QLD_forecast <span class="op">%&gt;%</span></a>

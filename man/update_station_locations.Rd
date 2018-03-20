@@ -17,11 +17,12 @@ know that a station exists in BoM's database that is not available in the
 databases distributed with \code{\link{bomrang}}.
 }
 \details{
-If \package[sf] is installed locally, this function will automatically check
-and correct any invalid state values for stations located in Australia. This
-process is time-consuming (<1hr) but not processor intensive. If \package[sf]
-is not installed, the function will update the internal database without
-validating the state values for stations by reported lon/lat location.
+If \code{\link[sf]{sf}} is installed locally, this function will
+automatically check and correct any invalid state values for stations located
+in Australia. This process is time-consuming (<1hr) but not processor
+intensive. If \code{\link[sf]{sf}} is not installed, the function will update
+the internal database without validating the state values for stations by
+reported lon/lat location.
 }
 \examples{
 \dontrun{
