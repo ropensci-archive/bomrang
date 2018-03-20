@@ -70,6 +70,50 @@ update_station_locations <- function() {
     bom_stations_raw[is.na(bom_stations_raw$end), ]
   bom_stations_raw$end <- format(Sys.Date(), "%Y")
 
+  # if sf is installed, correct the state column, otherwise skip
+
+  if (requireNamespace("sf", quietly = TRUE)) {
+    message("Package 'sf' is needed for this function to to validate and\n",
+            "correct any inconsistencies in the 'state' column. However,\n",
+            "this function will work, without that capability if you do not\n",
+            "wish to install the 'sf' package.",
+         call. = FALSE)
+
+    points <- sf::st_as_sf(x = bom_stations_raw,
+                       coords = c("lon", "lat"),
+                       crs = "+proj=longlat +datum=WGS84") %>%
+      sf::st_transform(., 3576)
+
+    Oz <- sf::st_as_sf(raster::getData(name = "GADM",
+                                   country = "AUS",
+                                   level = 1)) %>%
+      sf::st_transform(., 3576)
+
+    # check which state points fall in
+    bom_locations <-
+      sf::st_intersection(Oz, points) %>%
+      sf::st_set_geometry(NULL)
+
+    # join the new data from checking points with the BOM data
+    bom_stations_raw <- dplyr::full_join(bom_stations_raw, bom_locations)
+
+    bom_stations_raw$org_state <- bom_locations$state
+
+    # create new list of corrected state abbreviations based on spatial check
+    bom_locations$state <- substr(bom_locations$HASC_1, 4, 5)
+
+    # recode states from two to three letters where needed
+    bom_locations$state[bom_locations$state == "QL"] <- "QLD"
+    bom_locations$state[bom_locations$state == "VI"] <- "VIC"
+    bom_locations$state[bom_locations$state == "TS"] <- "TAS"
+    bom_locations$state[bom_locations$state == "NS"] <- "NSW"
+    bom_locations$state[bom_locations$state == "CT"] <- "ACT"
+
+    # fill any states not present in corrected set
+    bom_locations$state[is.na(bom_locations$state)] <-
+      bom_locations$state[is.na(bom_locations$state)]
+  }
+
   # recode the states to match product codes
   # IDD - NT,
   # IDN - NSW/ACT,
@@ -130,6 +174,8 @@ update_station_locations <- function() {
   # There are weather stations that do have a wmo but don't report online,
   # most of these don't have a "state" value, e.g., KIRIBATI NTC AWS or
   # MARSHALL ISLANDS NTC AWS, remove these from the list
+
+
 
   JSONurl_site_list <-
     stations_site_list[!is.na(stations_site_list$url), ]
