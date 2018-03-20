@@ -5,7 +5,7 @@
 
 * Ubuntu 14.04.5 LTS (on travis-ci), R version 3.4.3 (2017-11-30)
 
-* win-builder R Under development (unstable) (2017-09-12 r73242)
+* win-builder R Under development (unstable) (2018-03-18 r74422)
 
 * local Windows 7 install, R version 3.4.4 (2018-03-15)
 
