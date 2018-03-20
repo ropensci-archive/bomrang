@@ -178,14 +178,8 @@ Oz <- st_as_sf(raster::getData(name = "GADM",
 
 # check which state points fall in
 bom_locations <- 
-  st_intersection(Oz, points) %>% 
-  st_set_geometry(NULL)
-```
+  st_join(points, Oz)
 
-    ## Warning: attribute variables are assumed to be spatially constant
-    ## throughout all geometries
-
-``` r
 # join the new data from checking points with the BOM data
 bom_locations <- dplyr::full_join(bom_stations_raw, bom_locations)
 ```
@@ -234,13 +228,8 @@ bom_locations$state[is.na(bom_locations$state)] <-
   bom_locations$state[is.na(bom_locations$state)]
 
 # replace state values with state code to generate URLs
-bom_stations_raw$state_code <- NA
+bom_locations$state_code <- NA
 bom_locations$state_code[bom_locations$state == "WA"] <- "W"
-```
-
-    ## Warning: Unknown or uninitialised column: 'state_code'.
-
-``` r
 bom_locations$state_code[bom_locations$state == "QL" |
                            bom_locations$state == "QLD"] <- "Q"
 bom_locations$state_code[bom_locations$state == "VI" |
@@ -364,7 +353,7 @@ unlink("GADM_2.8_AUS_adm1.rds")
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2018-03-20                  
+    ##  date     2018-03-21                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version    date       source                          

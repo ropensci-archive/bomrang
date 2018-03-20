@@ -134,8 +134,7 @@ Oz <- st_as_sf(raster::getData(name = "GADM",
 
 # check which state points fall in
 bom_locations <- 
-  st_intersection(Oz, points) %>% 
-  st_set_geometry(NULL)
+  st_join(points, Oz)
 
 # join the new data from checking points with the BOM data
 bom_locations <- dplyr::full_join(bom_stations_raw, bom_locations)
@@ -162,7 +161,7 @@ BOM state codes are as follows:
 
 - IDW - WA
 
-```{r state-codes}
+```{r state-codes, message=FALSE}
 
 # rename original state column from BOM and keep for reference
 bom_locations$org_state <- bom_locations$state
@@ -182,7 +181,7 @@ bom_locations$state[is.na(bom_locations$state)] <-
   bom_locations$state[is.na(bom_locations$state)]
 
 # replace state values with state code to generate URLs
-bom_stations_raw$state_code <- NA
+bom_locations$state_code <- NA
 bom_locations$state_code[bom_locations$state == "WA"] <- "W"
 bom_locations$state_code[bom_locations$state == "QL" |
                            bom_locations$state == "QLD"] <- "Q"
