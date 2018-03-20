@@ -1,13 +1,13 @@
 
 ## Test environments
 
-* local macOS install, R version 3.4.3 (2017-11-30)
+* local macOS install, R version 3.4.4 (2017-11-30)
 
 * Ubuntu 14.04.5 LTS (on travis-ci), R version 3.4.3 (2017-11-30)
 
 * win-builder R Under development (unstable) (2017-09-12 r73242)
 
-* win-builder R version R version 3.4.3 (2017-11-30)
+* local Windows 7 install, R version 3.4.4 (2018-03-15)
 
 ## R CMD check results
 
@@ -17,11 +17,18 @@
 
 ## Minor changes
 
-- Correct comments for ORCID's in DESCRIPTION at the request of CRAN maintainers
+- Validate internal database station locations using GIS methodology
 
-- Update internal databases of metadata for station locations and URLs
+- Update code to be compliant with current and future versions of `janitor`
 
-- Add new hex-sticker image to README
+## Bug fixes
+
+- Correct issue with converting the timzeone in ag bulletin to character where
+the conversion resulted in a vector of numerals, not the expected string of 
+characters, e.g. "EST"
+
+- Remove redundant functionality in `update_station_locations()` where data were
+fetched using `tryCatch()` and then again without
 
 ## Reverse dependencies
 

@@ -9,6 +9,8 @@ reported in South Australia in the March 2018 update from BOM. There may be
 others. The original BOM values for state are in an `org_state` column.
 However, `bomrang` will use the corrected `state` column values.
 
+- Update code to be compliant with current and future versions of `janitor`
+
 ## Bug fixes
 
 - Correct issue with converting the timzeone in ag bulletin to character where
