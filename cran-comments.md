@@ -7,7 +7,7 @@
 
 * win-builder R Under development (unstable) (2018-03-18 r74422)
 
-* local Windows 7 install, R version 3.4.4 (2018-03-15)
+* win-builder R Release, R version 3.4.4 (2018-03-15)
 
 ## R CMD check results
 
@@ -29,6 +29,17 @@ characters, e.g. "EST"
 
 - Remove redundant functionality in `update_station_locations()` where data were
 fetched using `tryCatch()` and then again without
+
+## Notes
+
+- There is a note, `Missing or unexported object: 'janitor::remove_empty'`, this
+is because `janitor::remove_empty` is a new function in a to-be-released version
+of `janitor`. Sam Firke has a alerted me to the coming change so I've
+incorporated the new functionality to future proof `bomrang`. See lines
+74-83 of get_weather_bulletins.R for the if statement that checks the version
+of janitor, this allows it to work even before the new version is released. I've
+tested with the current version of `janitor` and the development version as well
+to be sure it functions as desired.
 
 ## Reverse dependencies
 
