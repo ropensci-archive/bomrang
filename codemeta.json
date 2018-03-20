@@ -10,14 +10,14 @@
   "codeRepository": "https://github.com/ropensci/bomrang",
   "issueTracker": "https://github.com/ropensci/bomrang/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.4.3",
+    "version": "3.4.4",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.4.3 (2017-11-30)",
+  "runtimePlatform": "R version 3.4.4 (2018-03-15)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -159,6 +159,17 @@
       "@type": "SoftwareApplication",
       "identifier": "mapproj",
       "name": "mapproj",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "sf",
+      "name": "sf",
       "provider": {
         "@id": "https://cran.r-project.org",
         "@type": "Organization",
@@ -357,7 +368,7 @@
   "contIntegration": "https://travis-ci.org/ropensci/bomrang",
   "releaseNotes": "https://github.com/ropensci/bomrang/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/bomrang/blob/master/README.md",
-  "fileSize": "805.323KB",
+  "fileSize": "793.04KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -402,5 +413,20 @@
   ],
   "applicationCategory": "Tools",
   "isPartOf": "https://ropensci.org",
-  "keywords": ["bom", "meteorological-data", "weather-forecast", "australia", "weather", "weather-data", "meteorology", "australia-bureau-of-meteorology"]
+  "keywords": ["bom", "meteorological-data", "weather-forecast", "australia", "weather", "weather-data", "meteorology", "australia-bureau-of-meteorology"],
+  "contributor": [
+    {
+      "@type": "Person",
+      "givenName": "James ",
+      "familyName": "Balamuta",
+      "email": "balamut2@illinois.edu",
+      "@id": "https://orcid.org/0000-0003-2826-8458"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Sam",
+      "familyName": "Firke",
+      "email": "samuel.firke@gmail.com"
+    }
+  ]
 }
