@@ -9,10 +9,9 @@
 #'
 #' If \code{\link[sf]{sf}} is installed locally, this function will
 #' automatically check and correct any invalid state values for stations located
-#' in Australia. This process is time-consuming (<1hr) but not processor
-#' intensive. If \code{\link[sf]{sf}} is not installed, the function will update
-#' the internal database without validating the state values for stations by
-#' reported lon/lat location.
+#' in Australia. If \code{\link[sf]{sf}} is not installed, the function will
+#' update the internal database without validating the state values for stations
+#' by reported lon/lat location.
 #'
 #' @examples
 #' \dontrun{
@@ -95,7 +94,6 @@ update_station_locations <- function() {
   # if sf is installed, correct the state column, otherwise skip
 
   if (requireNamespace("sf", quietly = TRUE)) {
-
     message("The package 'sf' is installed. Station locations will be\n",
             "checked against lat/lon location values and corrected in\n",
             "updated internal database lists of stations.")
@@ -114,8 +112,7 @@ update_station_locations <- function() {
 
     # check which state points fall in
     bom_locations <-
-      sf::st_intersection(Oz, points) %>%
-      sf::st_set_geometry(NULL)
+      sf::st_join(points, Oz)
 
     # join the new data from checking points with the BOM data
     bom_stations_raw <- dplyr::full_join(bom_stations_raw, bom_locations)
@@ -189,16 +186,9 @@ update_station_locations <- function() {
       )
     )
 
-  # return only current stations listing
-  stations_site_list <-
-    stations_site_list[is.na(stations_site_list$end), ]
-  stations_site_list$end <- format(Sys.Date(), "%Y")
-
   # There are weather stations that do have a wmo but don't report online,
   # most of these don't have a "state" value, e.g., KIRIBATI NTC AWS or
   # MARSHALL ISLANDS NTC AWS, remove these from the list
-
-
 
   JSONurl_site_list <-
     stations_site_list[!is.na(stations_site_list$url), ]

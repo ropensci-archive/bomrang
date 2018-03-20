@@ -19,10 +19,9 @@ databases distributed with \code{\link{bomrang}}.
 \details{
 If \code{\link[sf]{sf}} is installed locally, this function will
 automatically check and correct any invalid state values for stations located
-in Australia. This process is time-consuming (<1hr) but not processor
-intensive. If \code{\link[sf]{sf}} is not installed, the function will update
-the internal database without validating the state values for stations by
-reported lon/lat location.
+in Australia. If \code{\link[sf]{sf}} is not installed, the function will
+update the internal database without validating the state values for stations
+by reported lon/lat location.
 }
 \examples{
 \dontrun{
