@@ -37,33 +37,38 @@ update_station_locations <- function() {
     ))
 
   bom_stations_raw <-
-    readr::read_fwf(
+    readr::read_table(
       file.path(tempdir(), "stations.zip"),
       skip = 4,
-      readr::fwf_positions(
-        c(1, 9, 15, 56, 64, 72, 81, 91, 106, 110, 121, 130),
-        c(8, 14, 55, 63, 71, 80, 90, 105, 109, 120, 129, 136),
-        col_names = c(
-          "site",
-          "dist",
-          "name",
-          "start",
-          "end",
-          "lat",
-          "lon",
-          "source",
-          "state",
-          "elev",
-          "bar_ht",
-          "wmo"
-        )),
-      col_types = c("ccciiddccddi"),
-      na = c("..", ".....")
+      na = c("..", ".....", " "),
+      col_names = c(
+        "site",
+        "dist",
+        "name",
+        "start",
+        "end",
+        "lat",
+        "lon",
+        "NULL1",
+        "NULL2",
+        "state",
+        "elev",
+        "bar_ht",
+        "wmo"
+      )
     )
+
+  # remove extra columns for source of location
+  bom_stations_raw <- bom_stations_raw[, -c(8:9)]
 
   # trim the end of the rows off that have extra info that's not in columns
   nrows <- nrow(bom_stations_raw) - 6
   bom_stations_raw <- bom_stations_raw[1:nrows, ]
+
+  # return only current stations listing
+  bom_stations_raw <-
+    bom_stations_raw[is.na(bom_stations_raw$end), ]
+  bom_stations_raw$end <- format(Sys.Date(), "%Y")
 
   # recode the states to match product codes
   # IDD - NT,
