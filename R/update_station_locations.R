@@ -110,6 +110,8 @@ update_station_locations <- function() {
                                    level = 1)) %>%
       sf::st_transform(., 3576)
 
+    unlink("GADM_2.8_AUS_adm1.rds")
+
     # check which state points fall in
     bom_locations <-
       sf::st_intersection(Oz, points) %>%
