@@ -1,4 +1,4 @@
-# bomrang 0.1.1.9000
+# bomrang 0.1.2
 
 ## Minor changes
 
