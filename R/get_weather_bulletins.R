@@ -72,7 +72,15 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
     dplyr::bind_rows()
 
   # much easier than dplyr::rename, and names vary between 9am and 3pm bulletins
-  dat <- janitor::clean_names(dat)
+  if (utils::packageVersion("janitor") > "0.3.1") {
+    dat <- dat %>%
+      janitor::clean_names(case = "old_janitor") %>%
+      janitor::remove_empty("cols")
+  } else {
+    dat <- dat %>%
+      janitor::clean_names() %>%
+      janitor::remove_empty_cols()
+  }
 
   if (the_state %notin% c("WA", "SA")) {
     names(dat)[grepl("rain", names(dat))] <- "rain_mm"

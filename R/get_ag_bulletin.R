@@ -1,5 +1,4 @@
 
-
 #' Get BoM Agriculture Bulletin Information for Select Stations
 #'
 #' Fetch the BoM agricultural bulletin information and return it in a tidy data
@@ -131,7 +130,7 @@ get_ag_bulletin <- function(state = "AUS") {
                               stations_site_list,
                               by = c("site" = "site"))
 
-  tidy_df["time.zone"] <- as.character(tidy_df["time.zone"])
+  tidy_df$time.zone <- as.character(tidy_df$time.zone)
 
   names(tidy_df)[c(1:3, 21)] <-
     c("obs_time_local", "obs_time_utc", "time_zone", "full_name")

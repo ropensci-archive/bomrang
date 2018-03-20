@@ -7,6 +7,13 @@
 #' know that a station exists in BoM's database that is not available in the
 #' databases distributed with \code{\link{bomrang}}.
 #'
+#' If \code{\link[sf]{sf}} is installed locally, this function will
+#' automatically check and correct any invalid state values for stations located
+#' in Australia. This process is time-consuming (<1hr) but not processor
+#' intensive. If \code{\link[sf]{sf}} is not installed, the function will update
+#' the internal database without validating the state values for stations by
+#' reported lon/lat location.
+#'
 #' @examples
 #' \dontrun{
 #' update_station_locations()
@@ -36,38 +43,97 @@ update_station_locations <- function() {
       "Please retry again later.\n"
     ))
 
-  curl::curl_download(
-    url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
-    destfile = paste0(tempdir(), "stations.zip"))
-
   bom_stations_raw <-
-    readr::read_fwf(
+    readr::read_table(
       file.path(tempdir(), "stations.zip"),
       skip = 4,
-      readr::fwf_positions(
-        c(1, 9, 15, 56, 64, 72, 81, 91, 106, 110, 121, 130),
-        c(8, 14, 55, 63, 71, 80, 90, 105, 109, 120, 129, 136),
-        col_names = c(
-          "site",
-          "dist",
-          "name",
-          "start",
-          "end",
-          "lat",
-          "lon",
-          "source",
-          "state",
-          "elev",
-          "bar_ht",
-          "wmo"
-        )),
-      col_types = c("ccciiddccddi"),
-      na = c("..", ".....")
+      na = c("..", ".....", " "),
+      col_names = c(
+        "site",
+        "dist",
+        "name",
+        "start",
+        "end",
+        "lat",
+        "lon",
+        "NULL1",
+        "NULL2",
+        "state",
+        "elev",
+        "bar_ht",
+        "wmo"
+      ),
+      col_types = c(
+          site = readr::col_character(),
+          dist = readr::col_character(),
+          name = readr::col_character(),
+          start = readr::col_integer(),
+          end = readr::col_integer(),
+          lat = readr::col_double(),
+          lon = readr::col_double(),
+          NULL1 = readr::col_character(),
+          NULL2 = readr::col_character(),
+          state = readr::col_character(),
+          elev = readr::col_double(),
+          bar_ht = readr::col_double(),
+          wmo = readr::col_integer()
+      )
     )
+
+  # remove extra columns for source of location
+  bom_stations_raw <- bom_stations_raw[, -c(8:9)]
 
   # trim the end of the rows off that have extra info that's not in columns
   nrows <- nrow(bom_stations_raw) - 6
   bom_stations_raw <- bom_stations_raw[1:nrows, ]
+
+  # return only current stations listing
+  bom_stations_raw <-
+    bom_stations_raw[is.na(bom_stations_raw$end), ]
+  bom_stations_raw$end <- format(Sys.Date(), "%Y")
+
+  # if sf is installed, correct the state column, otherwise skip
+
+  if (requireNamespace("sf", quietly = TRUE)) {
+
+    message("The package 'sf' is installed. Station locations will be\n",
+            "checked against lat/lon location values and corrected in\n",
+            "updated internal database lists of stations.")
+
+    points <- sf::st_as_sf(x = bom_stations_raw,
+                       coords = c("lon", "lat"),
+                       crs = "+proj=longlat +datum=WGS84") %>%
+      sf::st_transform(., 3576)
+
+    Oz <- sf::st_as_sf(raster::getData(name = "GADM",
+                                   country = "AUS",
+                                   level = 1)) %>%
+      sf::st_transform(., 3576)
+
+    # check which state points fall in
+    bom_locations <-
+      sf::st_intersection(Oz, points) %>%
+      sf::st_set_geometry(NULL)
+
+    # join the new data from checking points with the BOM data
+    bom_stations_raw <- dplyr::full_join(bom_stations_raw, bom_locations)
+
+    bom_stations_raw$org_state <- bom_locations$state
+
+    # create new list of corrected state abbreviations based on spatial check
+    bom_locations$state <- substr(bom_locations$HASC_1, 4, 5)
+
+    # recode states from two to three letters where needed
+    bom_locations$state[bom_locations$state == "QL"] <- "QLD"
+    bom_locations$state[bom_locations$state == "VI"] <- "VIC"
+    bom_locations$state[bom_locations$state == "TS"] <- "TAS"
+    bom_locations$state[bom_locations$state == "NS"] <- "NSW"
+    bom_locations$state[bom_locations$state == "CT"] <- "ACT"
+
+    # fill any states not present in corrected set
+    bom_locations$state[is.na(bom_locations$state)] <-
+      bom_locations$state[is.na(bom_locations$state)]
+  }
 
   # recode the states to match product codes
   # IDD - NT,
@@ -129,6 +195,8 @@ update_station_locations <- function() {
   # There are weather stations that do have a wmo but don't report online,
   # most of these don't have a "state" value, e.g., KIRIBATI NTC AWS or
   # MARSHALL ISLANDS NTC AWS, remove these from the list
+
+
 
   JSONurl_site_list <-
     stations_site_list[!is.na(stations_site_list$url), ]

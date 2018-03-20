@@ -42,30 +42,30 @@ sessioninfo::session_info()
 
     ## ─ Session info ──────────────────────────────────────────────────────────
     ##  setting  value                       
-    ##  version  R version 3.4.3 (2017-11-30)
-    ##  os       macOS High Sierra 10.13.2   
-    ##  system   x86_64, darwin17.2.0        
+    ##  version  R version 3.4.4 (2018-03-15)
+    ##  os       macOS High Sierra 10.13.3   
+    ##  system   x86_64, darwin17.4.0        
     ##  ui       unknown                     
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2017-12-15                  
+    ##  date     2018-03-18                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version date       source                                 
     ##  backports     1.1.2   2017-12-13 cran (@1.1.2)                          
-    ##  clisymbols    1.2.0   2017-11-07 Github (gaborcsardi/clisymbols@e49b4f5)
-    ##  digest        0.6.13  2017-12-14 cran (@0.6.13)                         
+    ##  clisymbols    1.2.0   2018-01-30 Github (gaborcsardi/clisymbols@e49b4f5)
+    ##  digest        0.6.15  2018-01-28 cran (@0.6.15)                         
     ##  evaluate      0.10.1  2017-06-24 cran (@0.10.1)                         
-    ##  foreign       0.8-69  2017-06-22 CRAN (R 3.4.3)                         
+    ##  foreign       0.8-69  2017-06-22 CRAN (R 3.4.4)                         
     ##  htmltools     0.3.6   2017-04-28 cran (@0.3.6)                          
-    ##  knitr         1.17    2017-08-10 cran (@1.17)                           
+    ##  knitr         1.20    2018-02-20 CRAN (R 3.4.4)                         
     ##  magrittr      1.5     2014-11-22 CRAN (R 3.4.2)                         
-    ##  Rcpp          0.12.14 2017-11-23 cran (@0.12.14)                        
-    ##  rmarkdown     1.8.5   2017-12-13 Github (rstudio/rmarkdown@08c7567)     
-    ##  rprojroot     1.2     2017-01-16 cran (@1.2)                            
+    ##  Rcpp          0.12.16 2018-03-13 CRAN (R 3.4.4)                         
+    ##  rmarkdown     1.9     2018-03-01 CRAN (R 3.4.4)                         
+    ##  rprojroot     1.3-2   2018-01-03 cran (@1.3-2)                          
     ##  sessioninfo   1.0.0   2017-06-21 CRAN (R 3.4.2)                         
-    ##  stringi       1.1.6   2017-11-17 cran (@1.1.6)                          
-    ##  stringr       1.2.0   2017-02-18 CRAN (R 3.4.2)                         
-    ##  withr         2.1.0   2017-11-01 cran (@2.1.0)                          
-    ##  yaml          2.1.16  2017-12-12 cran (@2.1.16)
+    ##  stringi       1.1.7   2018-03-12 CRAN (R 3.4.4)                         
+    ##  stringr       1.3.0   2018-02-19 CRAN (R 3.4.4)                         
+    ##  withr         2.1.2   2018-03-15 Github (r-lib/withr@79d7b0d)           
+    ##  yaml          2.1.18  2018-03-08 CRAN (R 3.4.4)
