@@ -175,6 +175,7 @@ bom_locations$state[bom_locations$state == "QL"] <- "QLD"
 bom_locations$state[bom_locations$state == "VI"] <- "VIC"
 bom_locations$state[bom_locations$state == "TS"] <- "TAS"
 bom_locations$state[bom_locations$state == "NS"] <- "NSW"
+bom_locations$state[bom_locations$state == "CT"] <- "ACT"
 
 # fill any states not present in corrected set
 bom_locations$state[is.na(bom_locations$state)] <- 

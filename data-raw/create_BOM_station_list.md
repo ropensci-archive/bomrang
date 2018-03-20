@@ -227,6 +227,7 @@ bom_locations$state[bom_locations$state == "QL"] <- "QLD"
 bom_locations$state[bom_locations$state == "VI"] <- "VIC"
 bom_locations$state[bom_locations$state == "TS"] <- "TAS"
 bom_locations$state[bom_locations$state == "NS"] <- "NSW"
+bom_locations$state[bom_locations$state == "CT"] <- "ACT"
 
 # fill any states not present in corrected set
 bom_locations$state[is.na(bom_locations$state)] <- 
@@ -309,18 +310,18 @@ JSONurl_site_list <-
   JSONurl_site_list %>%
   dplyr::rowwise() %>%
   dplyr::mutate(url = dplyr::if_else(httr::http_error(url), NA_character_, url))
-
+  
 # Remove new NA values from invalid URLs and convert to data.table
 JSONurl_site_list <-
   data.table::data.table(stations_site_list[!is.na(stations_site_list$url), ])
 
-if (!dir.exists("../inst/extdata")) {
-  dir.create("../inst/extdata", recursive = TRUE)
-}
+ if (!dir.exists("../inst/extdata")) {
+      dir.create("../inst/extdata", recursive = TRUE)
+    }
 
 # Save database
-save(JSONurl_site_list,
-     file = "../inst/extdata/JSONurl_site_list.rda",
+  save(JSONurl_site_list,
+       file = "../inst/extdata/JSONurl_site_list.rda",
      compress = "bzip2")
 ```
 
@@ -340,7 +341,7 @@ stations_site_list <-
 stations_site_list$site <-
   gsub("^0{1,2}", "", stations_site_list$site)
 
-save(stations_site_list, file = "../inst/extdata/stations_site_list.rda",
+  save(stations_site_list, file = "../inst/extdata/stations_site_list.rda",
      compress = "bzip2")
 ```
 
