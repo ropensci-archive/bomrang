@@ -61,7 +61,8 @@ Suggests:
     grid,
     gridExtra,
     maps,
-    mapproj
+    mapproj,
+    sf
 RoxygenNote: 6.0.1
 NeedsCompilation: no
 ByteCompile: TRUE
