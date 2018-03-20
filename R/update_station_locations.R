@@ -7,6 +7,12 @@
 #' know that a station exists in BoM's database that is not available in the
 #' databases distributed with \code{\link{bomrang}}.
 #'
+#' If \package[sf] is installed locally, this function will automatically check
+#' and correct any invalid state values for stations located in Australia. This
+#' process is time-consuming (<1hr) but not processor intensive. If \package[sf]
+#' is not installed, the function will update the internal database without
+#' validating the state values for stations by reported lon/lat location.
+#'
 #' @examples
 #' \dontrun{
 #' update_station_locations()
@@ -55,6 +61,21 @@ update_station_locations <- function() {
         "elev",
         "bar_ht",
         "wmo"
+      ),
+      col_types = c(
+          site = readr::col_character(),
+          dist = readr::col_character(),
+          name = readr::col_character(),
+          start = readr::col_integer(),
+          end = readr::col_integer(),
+          lat = readr::col_double(),
+          lon = readr::col_double(),
+          NULL1 = readr::col_character(),
+          NULL2 = readr::col_character(),
+          state = readr::col_character(),
+          elev = readr::col_double(),
+          bar_ht = readr::col_double(),
+          wmo = readr::col_integer()
       )
     )
 
@@ -73,11 +94,10 @@ update_station_locations <- function() {
   # if sf is installed, correct the state column, otherwise skip
 
   if (requireNamespace("sf", quietly = TRUE)) {
-    message("Package 'sf' is needed for this function to to validate and\n",
-            "correct any inconsistencies in the 'state' column. However,\n",
-            "this function will work, without that capability if you do not\n",
-            "wish to install the 'sf' package.",
-         call. = FALSE)
+
+    message("The package 'sf' is installed. Station locations will be\n",
+            "checked against lat/lon location values and corrected in\n",
+            "updated internal database lists of stations.")
 
     points <- sf::st_as_sf(x = bom_stations_raw,
                        coords = c("lon", "lat"),
