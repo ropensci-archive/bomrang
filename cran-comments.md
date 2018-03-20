@@ -36,10 +36,13 @@ fetched using `tryCatch()` and then again without
 is because `janitor::remove_empty` is a new function in a to-be-released version
 of `janitor`. Sam Firke has a alerted me to the coming change so I've
 incorporated the new functionality to future proof `bomrang`. See lines
-74-83 of get_weather_bulletins.R for the if statement that checks the version
-of janitor, this allows it to work even before the new version is released. I've
-tested with the current version of `janitor` and the development version as well
-to be sure it functions as desired.
+74-83 of get_weather_bulletins.R for the `if` statement provided by Sam that
+checks the version of `janitor`, this allows it to work even before the new
+version is released. I've tested with the current version of `janitor` and the
+development version as well to be sure it functions as desired.
+
+Future versions of `bomrang` will remove this and require v1.0.0 of `janitor` in
+the DESCRIPTION file.
 
 ## Reverse dependencies
 
