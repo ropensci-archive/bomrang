@@ -37,7 +37,7 @@ test_that("update_station_locations() downloads and imports the proper file", {
     )
   )
 
-  expect_equal(ncol(JSONurl_site_list), 14)
+  expect_equal(ncol(JSONurl_site_list), 13)
   expect_named(
     JSONurl_site_list,
     c(
@@ -48,7 +48,6 @@ test_that("update_station_locations() downloads and imports the proper file", {
       "end",
       "lat",
       "lon",
-      "source",
       "state",
       "elev",
       "bar_ht",

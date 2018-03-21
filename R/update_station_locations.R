@@ -93,45 +93,26 @@ update_station_locations <- function() {
 
   # if sf is installed, correct the state column, otherwise skip
 
-  if (requireNamespace("sf", quietly = TRUE)) {
-    message("The package 'sf' is installed. Station locations will be\n",
-            "checked against lat/lon location values and corrected in\n",
-            "updated internal database lists of stations.")
+  if (requireNamespace("ASGS.foyer", quietly = TRUE)) {
+    data.table::setDT(bom_stations_raw)
+    latlon2state <- function(lat, lon) {
+      ASGS.foyer::latlon2SA(lat, lon, to = "STE", yr = "2016", return = "v")
+    }
 
-    points <- sf::st_as_sf(x = bom_stations_raw,
-                       coords = c("lon", "lat"),
-                       crs = "+proj=longlat +datum=WGS84") %>%
-      sf::st_transform(., 3576)
+    bom_stations_raw %>%
+      .[lon > -50, state_from_latlon := latlon2state(lat, lon)] %>%
+      .[state_from_latlon == "New South Wales", actual_state := "NSW"] %>%
+      .[state_from_latlon == "Victoria", actual_state := "VIC"] %>%
+      .[state_from_latlon == "Queensland", actual_state := "QLD"] %>%
+      .[state_from_latlon == "South Australia", actual_state := "SA"] %>%
+      .[state_from_latlon == "Western Australia", actual_state := "WA"] %>%
+      .[state_from_latlon == "Tasmania", actual_state := "TAS"] %>%
+      .[state_from_latlon == "Australian Capital Territory", actual_state := "ACT"] %>%
+      .[state_from_latlon == "Northern Territory", actual_state := "NT"] %>%
+      .[actual_state != state & state %notin% c("ANT", "ISL"), state := actual_state] %>%
+      .[, actual_state := NULL]
 
-    Oz <- sf::st_as_sf(raster::getData(name = "GADM",
-                                   country = "AUS",
-                                   level = 1)) %>%
-      sf::st_transform(., 3576)
-
-    unlink("GADM_2.8_AUS_adm1.rds")
-
-    # check which state points fall in
-    bom_locations <-
-      sf::st_join(points, Oz)
-
-    # join the new data from checking points with the BOM data
-    bom_stations_raw <- dplyr::full_join(bom_stations_raw, bom_locations)
-
-    bom_stations_raw$org_state <- bom_locations$state
-
-    # create new list of corrected state abbreviations based on spatial check
-    bom_locations$state <- substr(bom_locations$HASC_1, 4, 5)
-
-    # recode states from two to three letters where needed
-    bom_locations$state[bom_locations$state == "QL"] <- "QLD"
-    bom_locations$state[bom_locations$state == "VI"] <- "VIC"
-    bom_locations$state[bom_locations$state == "TS"] <- "TAS"
-    bom_locations$state[bom_locations$state == "NS"] <- "NSW"
-    bom_locations$state[bom_locations$state == "CT"] <- "ACT"
-
-    # fill any states not present in corrected set
-    bom_locations$state[is.na(bom_locations$state)] <-
-      bom_locations$state[is.na(bom_locations$state)]
+    data.table::setDF(bom_stations_raw)
   }
 
   # recode the states to match product codes
@@ -154,7 +135,7 @@ update_station_locations <- function() {
 
   stations_site_list <-
     bom_stations_raw %>%
-    dplyr::select(site:wmo, org_state, state, state_code) %>%
+    dplyr::select(site:wmo, state, state_code) %>%
     dplyr::mutate(
       url = dplyr::case_when(
         .$state != "ANT" & !is.na(.$wmo) ~
@@ -212,7 +193,7 @@ update_station_locations <- function() {
 
   stations_site_list <-
     stations_site_list %>%
-    dplyr::select(-state_code, -source, -url)
+    dplyr::select(-state_code, -url)
   stations_site_list$site <-
     gsub("^0{1,2}", "", stations_site_list$site)
 
