@@ -39,7 +39,7 @@ Imports:
     foreign,
     httr (>= 1.2.1),
     hoardr,
-    janitor,
+    janitor (> 0.3.1),
     jsonlite (>= 1.5),
     magrittr (>= 1.5),
     raster,
