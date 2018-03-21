@@ -32,6 +32,7 @@ irrigate their crops prior to the event to minimise any resulting yield
 loss. It does this by using the `get_precis_forecast()` function from
 _bomrang_ along with functionality from 
 [_mailR_](https://CRAN.R-project.org/package=mailR) (Rahul 2015).
+
 ```{r install_packages, eval=FALSE}
 install.packages("bomrang")
 install.packages("mailR")
@@ -39,6 +40,7 @@ library(dplyr)  # filter()
 library(bomrang)
 library(mailR)
 ```
+
 For this to work we require a list of alert subscribers. Here we create a dummy
 set of subscribers, locations, and email addresses.
 
@@ -77,9 +79,8 @@ threshold_temp <- 40
 ```
 
 We then use _bomrang_ to access the latest précis forecast for Queensland.
-```{r forecast, eval=TRUE}
+```{r forecast, eval=FALSE}
 QLD_forecast <- get_precis_forecast(state = "QLD")
-head(QLD_forecast)
 ```
 
 Now we use a `for()` loop that searches through the Queensland précis forecast

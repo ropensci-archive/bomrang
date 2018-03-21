@@ -10,6 +10,10 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
+```{r libraries, echo=FALSE, message=FALSE}
+library(bomrang)
+```
+
 ## Introduction
 
 _bomrang_ provides functions for interacting with 
@@ -62,14 +66,9 @@ selected.
 
 Following is an example fetching the current weather for Melbourne.
 
-```{r current_weather, eval=TRUE}
-library("bomrang")
-
+```{r current_weather, eval=FALSE}
 Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
-head(Melbourne_weather)
 ```
-
-
 
 ## Using `get_precis_forecast`
 
@@ -107,11 +106,8 @@ description of the fields and values.
 
 Following is an example fetching the forecast for Queensland.
 
-```{r precis_forecast, eval=TRUE}
-library("bomrang")
-
+```{r precis_forecast, eval=FALSE}
 QLD_forecast <- get_precis_forecast(state = "QLD")
-head(QLD_forecast)
 ```
 
 
@@ -148,11 +144,8 @@ of the fields and values.
 
 Following is an example fetching the ag bulletin for Queensland.
 
-```{r ag_bulletin, eval=TRUE}
-library("bomrang")
-
+```{r ag_bulletin, eval=FALSE}
 QLD_bulletin <- get_ag_bulletin(state = "QLD")
-head(QLD_bulletin)
 ```
 
 ## Using `get_weather_bulletin`
@@ -185,11 +178,16 @@ for the requested state(s) or territory.
 
 #### Example
 
+Following is an example fetching the 9AM bulletin for Queensland.
+
+```{r weather-bulletin-AM, eval=FALSE}
+qld_weather <- get_weather_bulletin(state = "QLD", morning = TRUE)
+```
+
 Following is an example fetching the 3PM bulletin for Queensland.
 
-```{r weather_bulletin}
+```{r weather-bulletin-PM, eval=FALSE}
 qld_weather <- get_weather_bulletin(state = "QLD")
-head(qld_weather)
 ```
 
 ## Using `sweep_for_stations`
