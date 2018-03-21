@@ -290,8 +290,6 @@ stations_site_list$site <-
 
 # Cleanup
 
-# Cleanup the GADM file
-
 ```{r cleanup}
 unlink("GADM_2.8_AUS_adm1.rds")
 ```
