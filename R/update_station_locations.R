@@ -212,7 +212,7 @@ update_station_locations <- function() {
 
   stations_site_list <-
     stations_site_list %>%
-    dplyr::select(-state_code, -source, -url)
+    dplyr::select(-state_code, -url)
   stations_site_list$site <-
     gsub("^0{1,2}", "", stations_site_list$site)
 
