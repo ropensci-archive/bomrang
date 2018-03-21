@@ -49,7 +49,6 @@ test_that("update_station_locations() downloads and imports the proper file", {
       "end",
       "lat",
       "lon",
-      "source",
       "state",
       "elev",
       "bar_ht",
