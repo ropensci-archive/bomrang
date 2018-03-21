@@ -1,3 +1,13 @@
+# bomrang 0.1.3
+
+## Minor changes
+
+- Much faster station location checking using `sf::st_join()`
+
+## Bug fixes
+
+- Correct issues with updating internal databases
+
 # bomrang 0.1.2
 
 ## Minor changes
