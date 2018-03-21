@@ -105,21 +105,41 @@
     </div>
 
     <div class="contents">
-    <div id="bomrang-0-1-2" class="section level1">
+    <div id="bomrang-0-1-3" class="section level1">
 <h1 class="page-header">
-<a href="#bomrang-0-1-2" class="anchor"></a>bomrang 0.1.2<small> Unreleased </small>
+<a href="#bomrang-0-1-3" class="anchor"></a>bomrang 0.1.3<small> Unreleased </small>
 </h1>
 <div id="minor-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h2>
 <ul>
-<li><p>The internal <code>stations_site_list</code> now is checked against GADM (Global Administrative Areas), <a href="http://www.gadm.org/" class="uri">http://www.gadm.org/</a> to ensure state listed is correct. This is in response to an error where Alice Springs Airport was reported in South Australia in the March 2018 update from BOM. There may be others. The original BOM values for state are in an <code>org_state</code> column. However, <code>bomrang</code> will use the corrected <code>state</code> column values.</p></li>
-<li><p>Update code to be compliant with current and future versions of <code>janitor</code></p></li>
+<li>Much faster station location checking using <code><a href="http://www.rdocumentation.org/packages/sf/topics/st_join">sf::st_join()</a></code>
+</li>
 </ul>
 </div>
 <div id="bug-fixes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<ul>
+<li>Correct issues with updating internal databases</li>
+</ul>
+</div>
+</div>
+    <div id="bomrang-0-1-2" class="section level1">
+<h1 class="page-header">
+<a href="#bomrang-0-1-2" class="anchor"></a>bomrang 0.1.2<small> Unreleased </small>
+</h1>
+<div id="minor-changes-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#minor-changes-1" class="anchor"></a>Minor changes</h2>
+<ul>
+<li><p>The internal <code>stations_site_list</code> now is checked against GADM (Global Administrative Areas), <a href="http://www.gadm.org/" class="uri">http://www.gadm.org/</a> to ensure state listed is correct. This is in response to an error where Alice Springs Airport was reported in South Australia in the March 2018 update from BOM. There may be others. The original BOM values for state are in an <code>org_state</code> column. However, <code>bomrang</code> will use the corrected <code>state</code> column values.</p></li>
+<li><p>Update code to be compliant with current and future versions of <code>janitor</code></p></li>
+</ul>
+</div>
+<div id="bug-fixes-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li><p>Correct issue with converting the timzeone in ag bulletin to character where the conversion resulted in a vector of numerals, not the expected string of characters, e.g. “EST”</p></li>
 <li><p>Remove redundant functionality in <code><a href="../reference/update_station_locations.html">update_station_locations()</a></code> where data were fetched using <code>tryCatch()</code> and then again without</p></li>
@@ -131,9 +151,9 @@
 <h1 class="page-header">
 <a href="#bomrang-0-1-1" class="anchor"></a>bomrang 0.1.1<small> 2017-12-15 </small>
 </h1>
-<div id="minor-changes-1" class="section level2">
+<div id="minor-changes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-1" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-2" class="anchor"></a>Minor changes</h2>
 <ul>
 <li><p>Correct comments for ORCID’s in DESCRIPTION at the request of CRAN maintainers</p></li>
 <li><p>Update internal databases of metadata for station locations and URLs</p></li>
@@ -153,17 +173,17 @@
 <li>Use <em>hoardr</em> to manage file caching</li>
 </ul>
 </div>
-<div id="minor-changes-2" class="section level2">
+<div id="minor-changes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-2" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-3" class="anchor"></a>Minor changes</h2>
 <ul>
 <li><p>Enhanced documentation for the cached files in satellite imagery</p></li>
 <li><p>Update internal databases of metadata for station locations and URLs</p></li>
 </ul>
 </div>
-<div id="bug-fixes-1" class="section level2">
+<div id="bug-fixes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Fix issues with <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> where they failed to work properly. This fix lessens internal dependencies on <em>dplyr</em> and removes <em>rlang</em> usage from package.</li>
 </ul>
@@ -191,9 +211,9 @@
 <li>Antarctic stations reporting with a valid .json file are now included in internal database</li>
 </ul>
 </div>
-<div id="minor-changes-3" class="section level2">
+<div id="minor-changes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-3" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-4" class="anchor"></a>Minor changes</h2>
 <ul>
 <li><p>Fix typo in DESCRIPTION, Scott’s ORCID wasn’t given as a full URL</p></li>
 <li><p>Update authors in vignettes to credit everyone who helped write them</p></li>
@@ -202,9 +222,9 @@
 <li><p>Update internal stations list with latest data from BoM</p></li>
 </ul>
 </div>
-<div id="bug-fixes-2" class="section level2">
+<div id="bug-fixes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-3" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Fix issue where updating internal stations would fail</li>
 </ul>
@@ -222,9 +242,9 @@
 <li>Handle typos in the weather bulletins</li>
 </ul>
 </div>
-<div id="minor-changes-4" class="section level2">
+<div id="minor-changes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-4" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-5" class="anchor"></a>Minor changes</h2>
 <ul>
 <li><p>Document <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> functionality in Appendix 4 of <em>bomrang</em> vignette, thanks <a href='http://github.com/mpadge'>@mpadge</a></p></li>
 <li><p>Spell checking</p></li>
@@ -239,9 +259,9 @@
 <h1 class="page-header">
 <a href="#bomrang-0-0-6" class="anchor"></a>bomrang 0.0.6<small> Unreleased </small>
 </h1>
-<div id="bug-fixes-3" class="section level2">
+<div id="bug-fixes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-3" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-4" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li><p>Fix typo in <code>check_states()</code></p></li>
 <li><p>Replace <code>warning()</code> with <code>message()</code> in <code>get_states()</code></p></li>
@@ -260,9 +280,9 @@
 <h1 class="page-header">
 <a href="#bomrang-0-0-5" class="anchor"></a>bomrang 0.0.5<small> Unreleased </small>
 </h1>
-<div id="bug-fixes-4" class="section level2">
+<div id="bug-fixes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-4" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-5" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li><p>Recommended <code>station_name</code> values are separated by spaces in <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code></p></li>
 <li><p>Station names and location names are more consistent in the supplied data and returned data frames.</p></li>
@@ -373,9 +393,9 @@
 <h1 class="page-header">
 <a href="#bomrang-0-0-3-3" class="anchor"></a>bomrang 0.0.3-3<small> Unreleased </small>
 </h1>
-<div id="minor-changes-5" class="section level2">
+<div id="minor-changes-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-5" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-6" class="anchor"></a>Minor changes</h2>
 <ul>
 <li><p>Add links to vignettes documenting the fields returned in the data frames from the <code>get_*()</code> functions</p></li>
 <li><p>Use the DOI that always points to latest version</p></li>
@@ -386,9 +406,9 @@
 <h1 class="page-header">
 <a href="#bomrang-0-0-3-2-2017-06-03" class="anchor"></a>bomrang 0.0.3-2 2017-06-03<small> Unreleased </small>
 </h1>
-<div id="minor-changes-6" class="section level2">
+<div id="minor-changes-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-6" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-7" class="anchor"></a>Minor changes</h2>
 <ul>
 <li><p>Add vignettes describing the data returned from <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, remove this from function help files</p></li>
 <li><p>Correct documentation reference in README file</p></li>
@@ -400,9 +420,9 @@
 <h1 class="page-header">
 <a href="#bomrang-0-0-3-1" class="anchor"></a>bomrang 0.0.3-1<small> Unreleased </small>
 </h1>
-<div id="minor-changes-7" class="section level2">
+<div id="minor-changes-8" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-7" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-8" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Add vignette describing the data returned from <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>
 </li>
@@ -423,9 +443,9 @@
 <li><p>Generation of the JSON URL list is much faster, now can be updated by the user in a few seconds as desired using the new <code><a href="../reference/update_station_locations.html">update_station_locations()</a></code> function</p></li>
 </ul>
 </div>
-<div id="minor-changes-8" class="section level2">
+<div id="minor-changes-9" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-8" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-9" class="anchor"></a>Minor changes</h2>
 <ul>
 <li><p>Better tests written for the package</p></li>
 <li><p>Add a new file describing internal database creation for station locations, metadata and JSON URLs, create_BoM_station_list.md</p></li>
@@ -437,9 +457,9 @@
 <h1 class="page-header">
 <a href="#bomrang-0-0-2-1" class="anchor"></a>bomrang 0.0.2-1<small> Unreleased </small>
 </h1>
-<div id="minor-changes-9" class="section level2">
+<div id="minor-changes-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-9" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-10" class="anchor"></a>Minor changes</h2>
 <ul>
 <li>Add more information to description field in DESCRIPTION file</li>
 </ul>
@@ -467,9 +487,9 @@
 </li>
 </ul>
 </div>
-<div id="minor-changes-10" class="section level2">
+<div id="minor-changes-11" class="section level2">
 <h2 class="hasAnchor">
-<a href="#minor-changes-10" class="anchor"></a>Minor changes</h2>
+<a href="#minor-changes-11" class="anchor"></a>Minor changes</h2>
 <ul>
 <li><p>All functions will return a <code>data.frame</code> object, not a <code>tibble</code></p></li>
 <li><p>If a server is not responding, the function returns a more meaningful error message on exit</p></li>
@@ -479,9 +499,9 @@
 <li><p>Enhanced documentation</p></li>
 </ul>
 </div>
-<div id="bug-fixes-5" class="section level2">
+<div id="bug-fixes-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-5" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-6" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Correct output for ag bulletin where the observation site is listed but has no values. The site will be listed with location data and <code>NA</code> for all meteorological values</li>
 </ul>
@@ -504,6 +524,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#bomrang-0-1-3">0.1.3</a></li>
         <li><a href="#bomrang-0-1-2">0.1.2</a></li>
         <li><a href="#bomrang-0-1-1">0.1.1</a></li>
         <li><a href="#bomrang-0-1-0">0.1.0</a></li>
