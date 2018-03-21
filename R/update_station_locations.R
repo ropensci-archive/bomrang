@@ -29,7 +29,7 @@
 #'
 update_station_locations <- function() {
   # CRAN NOTE avoidance
-  name <- site <- state_code <-  NULL
+  name <- site <- state_code <- wmo <- org_state <- state <-  NULL
   tryCatch({
     curl::curl_download(
       url =
@@ -154,7 +154,7 @@ update_station_locations <- function() {
 
   stations_site_list <-
     bom_stations_raw %>%
-    dplyr::select(site:name, dplyr::everything()) %>%
+    dplyr::select(site:wmo, org_state, state, state_code) %>%
     dplyr::mutate(
       url = dplyr::case_when(
         .$state != "ANT" & !is.na(.$wmo) ~
