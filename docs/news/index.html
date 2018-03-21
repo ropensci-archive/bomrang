@@ -135,6 +135,7 @@
 <ul>
 <li><p>The internal <code>stations_site_list</code> now is checked against GADM (Global Administrative Areas), <a href="http://www.gadm.org/" class="uri">http://www.gadm.org/</a> to ensure state listed is correct. This is in response to an error where Alice Springs Airport was reported in South Australia in the March 2018 update from BOM. There may be others. The original BOM values for state are in an <code>org_state</code> column. However, <code>bomrang</code> will use the corrected <code>state</code> column values.</p></li>
 <li><p>Update code to be compliant with current and future versions of <code>janitor</code></p></li>
+<li><p>Vignettes no longer evaluate code on-the-fly that requires BOM servers to respond in response to CRAN rejecting <code>bomrang</code> for a failure of a vingette to build due to this issue</p></li>
 </ul>
 </div>
 <div id="bug-fixes-1" class="section level2">
