@@ -21,6 +21,10 @@
 
 - Update code to be compliant with current and future versions of `janitor`
 
+- Vignettes no longer evaluate code on-the-fly that requires BOM servers to
+respond in response to CRAN rejecting `bomrang` for a failure of a vingette to
+build due to this issue
+
 ## Bug fixes
 
 - Correct issue with converting the timzeone in ag bulletin to character where
