@@ -368,7 +368,7 @@
   "contIntegration": "https://travis-ci.org/ropensci/bomrang",
   "releaseNotes": "https://github.com/ropensci/bomrang/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/bomrang/blob/master/README.md",
-  "fileSize": "793.04KB",
+  "fileSize": "792.952KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
