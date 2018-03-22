@@ -1,6 +1,6 @@
 pandoc: 2.1.3
 pkgdown: 0.1.0.9000
-pkgdown_sha: 33ed98635ee5aad483501dd1a3f2d5d7b38eab4e
+pkgdown_sha: 7d6043dbbea03c56c280c479a77f3d027c26530e
 articles:
   bomrang: bomrang.html
   use_case: use_case.html
