@@ -363,7 +363,7 @@
   "contIntegration": "https://travis-ci.org/ropensci/bomrang",
   "releaseNotes": "https://github.com/ropensci/bomrang/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/bomrang/blob/master/README.md",
-  "fileSize": "1167.428KB",
+  "fileSize": "1167.483KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -412,16 +412,10 @@
   "contributor": [
     {
       "@type": "Person",
-      "givenName": "James ",
+      "givenName": "James",
       "familyName": "Balamuta",
       "email": "balamut2@illinois.edu",
       "@id": "https://orcid.org/0000-0003-2826-8458"
-    },
-    {
-      "@type": "Person",
-      "givenName": "Sam",
-      "familyName": "Firke",
-      "email": "samuel.firke@gmail.com"
     }
   ]
 }
