@@ -14,11 +14,15 @@ Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     person("Keith", "Pembleton", role = "aut",
     email = "keith.pembleton@usq.edu.au",
     comment = c(ORCID = "0000-0002-1896-4516")),
-    person("James ", "Balamuta", role = "ctb",
+    person("James", "Balamuta", role = "ctb",
     email = "balamut2@illinois.edu",
     comment = c(ORCID = "0000-0003-2826-8458")),
-    person("Sam", "Firke", email = "samuel.firke@gmail.com",
-    role = "ctb"))
+    person("Brooke", "Anderson", role = "rev",
+    email = "brooke.anderson@colostate.edu",
+    comment = c(ORCID = "0000-0002-5012-9035")),
+    person("Michael", "Sumner", role = "rev",
+    email = "mdsumner@gmail.com",
+    comment = c(ORCID = "0000-0002-2471-7511")))
 Description: Provides functions to interface with Australian Government Bureau
     of Meteorology (BOM) data, fetching data and returning a tidy data frame of
     précis forecasts, current weather data from stations, agriculture
