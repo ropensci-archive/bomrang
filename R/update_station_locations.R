@@ -94,6 +94,9 @@ update_station_locations <- function() {
   # if sf is installed, correct the state column, otherwise skip
 
   if (requireNamespace("ASGS.foyer", quietly = TRUE)) {
+    message("The package 'ASGS.foyer' is installed. Station locations will\n",
+            "be checked against lat/lon location values and corrected in the\n",
+            "updated internal database lists of stations.")
     data.table::setDT(bom_stations_raw)
     latlon2state <- function(lat, lon) {
       ASGS.foyer::latlon2SA(lat, lon, to = "STE", yr = "2016", return = "v")
