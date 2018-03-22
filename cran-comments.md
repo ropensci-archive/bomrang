@@ -1,9 +1,9 @@
 
 ## Test environments
 
-* local macOS install, R version 3.4.4 (2017-11-30)
+* local macOS install, R version 3.4.4 (2018-03-15)
 
-* Ubuntu 14.04.5 LTS (on travis-ci), R version 3.4.3 (2017-11-30)
+* local Ubuntu 17.10, R version 3.4.4 (2018-03-15)
 
 * win-builder R Under development (unstable) (2018-03-18 r74422)
 
