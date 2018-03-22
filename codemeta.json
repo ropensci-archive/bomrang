@@ -65,7 +65,13 @@
     {
       "@type": "SoftwareApplication",
       "identifier": "ASGS.foyer",
-      "name": "ASGS.foyer"
+      "name": "ASGS.foyer",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Central R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      }
     },
     {
       "@type": "SoftwareApplication",
@@ -363,7 +369,7 @@
   "contIntegration": "https://travis-ci.org/ropensci/bomrang",
   "releaseNotes": "https://github.com/ropensci/bomrang/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/bomrang/blob/master/README.md",
-  "fileSize": "1167.456KB",
+  "fileSize": "1167.461KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
