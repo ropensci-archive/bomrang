@@ -7,7 +7,7 @@
 
 * win-builder R Under development (unstable) (2018-03-18 r74422)
 
-* win-builder R Release, R version 3.4.4 (2018-03-15)
+* local Windows 7 install, R version 3.4.4 (2018-03-15)
 
 ## R CMD check results
 
