@@ -1,7 +1,7 @@
 
-#' Get BoM Daily Précis Forecast for Select Towns
+#' Get BOM Daily Précis Forecast for Select Towns
 #'
-#' Fetch the BoM daily précis forecast and return a tidy data frame of the seven
+#' Fetch the BOM daily précis forecast and return a tidy data frame of the seven
 #' day town forecast for a specified state or territory.
 #'
 #' @param state Australian state or territory as full name or postal code.
@@ -23,21 +23,21 @@
 #'  }
 #'
 #' @return
-#' Tidy data frame of a Australia BoM précis seven day forecasts for select
+#' Tidy data frame of a Australia BOM précis seven day forecasts for select
 #' towns.  For full details of fields and units returned see Appendix 2 in the
 #' \emph{bomrang} vignette, use \code{vignette("bomrang", package = "bomrang")}
 #' to view.
 #'
 #' @examples
 #' \dontrun{
-#' BoM_forecast <- get_precis_forecast(state = "QLD")
+#' BOM_forecast <- get_precis_forecast(state = "QLD")
 #'}
 #' @references
-#' Forecast data come from Australian Bureau of Meteorology (BoM) Weather Data
+#' Forecast data come from Australian Bureau of Meteorology (BOM) Weather Data
 #' Services \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 #'
 #' Location data and other metadata for towns come from
-#' the BoM anonymous FTP server with spatial data
+#' the BOM anonymous FTP server with spatial data
 #' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/}, specifically the DBF
 #' file portion of a shapefile,
 #' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}

@@ -2,19 +2,19 @@
 % Please edit documentation in R/update_forecast_towns.R
 \name{update_forecast_towns}
 \alias{update_forecast_towns}
-\title{Update bomrang Internal Database with Latest BoM Forecast Towns}
+\title{Update bomrang Internal Database with Latest BOM Forecast Towns}
 \usage{
 update_forecast_towns()
 }
 \value{
-Updated database of BoM précis forecast towns
+Updated database of BOM précis forecast towns
 }
 \description{
-Download the latest select forecast towns from the BoM server and update
+Download the latest select forecast towns from the BOM server and update
 bomrang's internal database of précis forecast town names and
 AAC codes used by \code{\link{get_precis_forecast}}.  There is
 no need to use this unless you know that a forecast town exists in a
-more current version of the BoM précis forecast town name database that is
+more current version of the BOM précis forecast town name database that is
 not available in the database distributed with \code{\link{bomrang}}.
 }
 \examples{
@@ -23,7 +23,7 @@ update_forecast_towns()
 }
 }
 \references{
-Data are sourced from: Australian Bureau of Meteorology (BoM) webpage,
+Data are sourced from: Australian Bureau of Meteorology (BOM) webpage,
 "Weather Data Services",
 \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 }

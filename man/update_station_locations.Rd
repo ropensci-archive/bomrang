@@ -2,18 +2,18 @@
 % Please edit documentation in R/update_station_locations.R
 \name{update_station_locations}
 \alias{update_station_locations}
-\title{Update bomrang Internal Databases with Latest BoM Station Metadata}
+\title{Update bomrang Internal Databases with Latest BOM Station Metadata}
 \usage{
 update_station_locations()
 }
 \value{
-Updated internal databases of BoM station locations and JSON URLs
+Updated internal databases of BOM station locations and JSON URLs
 }
 \description{
 Download the latest station locations and metadata and update bomrang's
 internal databases that support the use of \code{\link{get_current_weather}}
 and \code{\link{get_ag_bulletin}}.  There is no need to use this unless you
-know that a station exists in BoM's database that is not available in the
+know that a station exists in BOM's database that is not available in the
 databases distributed with \code{\link{bomrang}}.
 }
 \details{
@@ -30,7 +30,7 @@ update_station_locations()
 }
 \references{
 Station location and other metadata are sourced from the Australian Bureau of
-Meteorology (BoM) webpage, Bureau of Meteorology Site Numbers:
+Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers:
 \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 }
 \author{

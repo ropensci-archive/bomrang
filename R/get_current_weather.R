@@ -1,5 +1,5 @@
 
-#' Get Current Weather Observations of a BoM Station
+#' Get Current Weather Observations of a BOM Station
 #'
 #' @param station_name The name of the weather station. Fuzzy string matching
 #' via \code{\link[base]{agrep}} is done.
@@ -33,7 +33,7 @@
 #' \code{vignette("Current Weather Fields", package = "bomrang")}
 #' for a complete list of fields and units.
 #' @return
-# Tidy data frame of requested BoM station's current and prior 72hr data.  For
+# Tidy data frame of requested BOM station's current and prior 72hr data.  For
 #' full details of fields and units returned, see Appendix 1 in the
 #' \emph{bomrang} vignette, use \code{vignette("bomrang", package = "bomrang")}
 #' to view.
@@ -50,12 +50,12 @@
 #' }
 #' @references
 #' Weather data observations are retrieved from:
-#' Australian Bureau of Meteorology (BoM) Weather Data Services,
+#' Australian Bureau of Meteorology (BOM) Weather Data Services,
 #' Observations - individual stations:
 #' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 #'
 #' Station location and other metadata are sourced from the Australian Bureau of
-#' Meteorology (BoM) webpage, Bureau of Meteorology Site Numbers:
+#' Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers:
 #' \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 #'
 #' @author Hugh Parsonage, \email{hugh.parsonage@gmail.com}
@@ -276,7 +276,7 @@ get_current_weather <-
       out[["lon"]] <- full_lon
     }
 
-    # BoM raw JSON uses `name`, which is ambiguous (see #27)
+    # BOM raw JSON uses `name`, which is ambiguous (see #27)
     if ("name" %in% names(out)) {
       setnames(out, "name", "full_name")
     }

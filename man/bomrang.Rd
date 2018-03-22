@@ -4,10 +4,10 @@
 \name{bomrang}
 \alias{bomrang}
 \alias{bomrang-package}
-\title{Fetches Australian Government Bureau of Meteorology (BoM) Weather Data Files
+\title{Fetches Australian Government Bureau of Meteorology (BOM) Weather Data Files
 and Returns a Tidy Data Frame or Raster Stack Object of the Data.}
 \description{
-Fetches Australian Government Bureau of Meteorology (BoM) Weather Data Files
+Fetches Australian Government Bureau of Meteorology (BOM) Weather Data Files
 and Returns a Tidy Data Frame or Raster Stack Object of the Data.
 }
 \seealso{

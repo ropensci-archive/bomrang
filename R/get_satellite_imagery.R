@@ -1,18 +1,18 @@
 
-#' Get a Listing of Available BoM Satellite GeoTIFF Imagery
+#' Get a Listing of Available BOM Satellite GeoTIFF Imagery
 #'
-#' Fetch a listing of BoM GeoTIFF satellite imagery from
+#' Fetch a listing of BOM GeoTIFF satellite imagery from
 #' \url{ftp://ftp.bom.gov.au/anon/gen/gms/} to determine which files are
 #' currently available for download.  Files are available at ten minute update
 #' frequency with a 24 hour delete time.  Useful to know the most recent files
 #' available and then specify in the \code{\link{get_satellite_imagery}}
 #' function.
 #'
-#' @param product_id Character.  BoM product ID of interest for which a list of
+#' @param product_id Character.  BOM product ID of interest for which a list of
 #' available images will be returned.  Defaults to all images currently
 #' available.
 #'
-#' @details Valid BoM satellite Product IDs for GeoTIFF files include:
+#' @details Valid BOM satellite Product IDs for GeoTIFF files include:
 #'\describe{
 #'\item{IDE00420}{AHI cloud cover only 2km FD GEOS GIS}
 #'\item{IDE00421}{AHI IR (Ch13) greyscale 2km FD GEOS GIS}
@@ -39,7 +39,7 @@
 #' A vector of all available files for the requested Product ID(s).
 #'
 #' @references
-#' Australian Bureau of Meteorology (BoM) High-definition satellite images
+#' Australian Bureau of Meteorology (BOM) High-definition satellite images
 #' \url{http://www.bom.gov.au/australia/satellite/index.shtml}
 #'
 #' @examples
@@ -61,15 +61,15 @@ get_available_imagery <- function(product_id = "all") {
   print(tif_list)
 }
 
-#' Get BoM Satellite GeoTIFF Imagery
+#' Get BOM Satellite GeoTIFF Imagery
 #'
-#' Fetch BoM satellite GeoTIFF imagery from
+#' Fetch BOM satellite GeoTIFF imagery from
 #' \url{ftp://ftp.bom.gov.au/anon/gen/gms/} and return a raster
 #' \code{\link[raster]{stack}} object of GeoTIFF files. Files are available at
 #' ten minute update frequency with a 24 hour delete time. Suggested to check
 #' file availability first by using \code{\link{get_available_imagery}}.
 #'
-#' @param product_id Character.  BoM product ID to download in GeoTIFF format
+#' @param product_id Character.  BOM product ID to download in GeoTIFF format
 #' and import as a \code{\link[raster]{stack}} object.  A vector of values from
 #' \code{\link{get_available_imagery}} may be used here.  Value is required.
 #' @param scans Numeric.  Number of scans to download, starting with most recent
@@ -82,7 +82,7 @@ get_available_imagery <- function(product_id = "all") {
 #' take advantage of cached files in future sessions, use \code{cache = TRUE}.
 #' Defaults to \code{FALSE}.  Value is optional.
 #'
-#' @details Valid BoM satellite Product IDs include:
+#' @details Valid BOM satellite Product IDs include:
 #'\describe{
 #' \item{IDE00420}{AHI cloud cover only 2km FD GEOS GIS}
 #' \item{IDE00421}{AHI IR (Ch13) greyscale 2km FD GEOS GIS}
@@ -114,11 +114,11 @@ get_available_imagery <- function(product_id = "all") {
 #'\code{\link{manage_cache}}
 #'
 #' @return
-#' A raster stack of GeoTIFF images with layers named by BoM Product ID,
+#' A raster stack of GeoTIFF images with layers named by BOM Product ID,
 #' timestamp and band.
 #'
 #' @references
-#' Australian Bureau of Meteorology (BoM) High-definition satellite images
+#' Australian Bureau of Meteorology (BOM) High-definition satellite images
 #' \url{http://www.bom.gov.au/australia/satellite/index.shtml}
 #'
 #' @examples
@@ -143,7 +143,7 @@ get_satellite_imagery <-
            scans = 1,
            cache = FALSE) {
     if (is.null(product_id)) {
-      stop("\nYou must select a valid BoM satellite imagery Product ID.\n")
+      stop("\nYou must select a valid BOM satellite imagery Product ID.\n")
     }
     if (length(unique(substr(product_id, 1, 8))) != 1) {
       stop("\nbomrang only supports working with one Product ID at a time\n")

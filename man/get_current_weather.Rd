@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_current_weather.R
 \name{get_current_weather}
 \alias{get_current_weather}
-\title{Get Current Weather Observations of a BoM Station}
+\title{Get Current Weather Observations of a BOM Station}
 \usage{
 get_current_weather(station_name, strict = FALSE, latlon = NULL,
   raw = FALSE, emit_latlon_msg = TRUE, as.data.table = FALSE)
@@ -39,7 +39,7 @@ full details of fields and units returned, see Appendix 1 in the
 to view.
 }
 \description{
-Get Current Weather Observations of a BoM Station
+Get Current Weather Observations of a BOM Station
 }
 \details{
 Station names are not consistently named within the Bureau, so
@@ -68,12 +68,12 @@ for a complete list of fields and units.
 }
 \references{
 Weather data observations are retrieved from:
-Australian Bureau of Meteorology (BoM) Weather Data Services,
+Australian Bureau of Meteorology (BOM) Weather Data Services,
 Observations - individual stations:
 \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 
 Station location and other metadata are sourced from the Australian Bureau of
-Meteorology (BoM) webpage, Bureau of Meteorology Site Numbers:
+Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers:
 \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 }
 \author{

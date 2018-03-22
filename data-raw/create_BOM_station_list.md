@@ -1,12 +1,12 @@
-Create Databases of BoM Station Locations and JSON URLs
+Create Databases of BOM Station Locations and JSON URLs
 ================
 
 This document provides details on methods used to create the database of
-BoM JSON files for stations and corresponding metadata, *e.g.*,
+BOM JSON files for stations and corresponding metadata, *e.g.*,
 latitude, longitude (which are more detailed than what is in the JSON
 file), start, end, elevation, etc.
 
-Refer to these BoM pages for more reference:
+Refer to these BOM pages for more reference:
 
   - <http://www.bom.gov.au/inside/itb/dm/idcodes/struc.shtml>
 
@@ -61,7 +61,7 @@ library(magrittr)
 # This file is a pseudo-fixed width file. Line five contains the headers at
 # fixed widths which are coded in the read_table() call.
 # The last six lines contain other information that we don't want.
-# For some reason, reading it directly from the BoM website does not work, so
+# For some reason, reading it directly from the BOM website does not work, so
 # we use download.file to fetch it first and then import it from the R
 # tempdir()
 
@@ -258,7 +258,7 @@ data as a database for *bomrang* to use.
 There are weather stations that do have a WMO but don’t report online,
 e.g., KIRIBATI NTC AWS or MARSHALL ISLANDS NTC AWS, in this section
 remove these from the list and then create a database for use with the
-current weather information from BoM.
+current weather information from BOM.
 
 ### Save JSON URL database for `get_current_weather()`
 
@@ -345,7 +345,7 @@ stations_site_list$site <-
     ##  R6            2.2.2      2017-06-17 CRAN (R 3.4.3)                  
     ##  Rcpp          0.12.16    2018-03-13 CRAN (R 3.4.3)                  
     ##  readr         1.1.1      2017-05-16 CRAN (R 3.4.3)                  
-    ##  rlang         0.2.0.9000 2018-03-16 Github (tidyverse/rlang@1b81816)
+    ##  rlang         0.2.0.9000 2018-03-22 Github (tidyverse/rlang@a273d80)
     ##  rmarkdown     1.9        2018-03-01 CRAN (R 3.4.3)                  
     ##  rprojroot     1.3-2      2018-01-03 CRAN (R 3.4.3)                  
     ##  sessioninfo   1.0.0      2017-06-21 CRAN (R 3.4.3)                  

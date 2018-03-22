@@ -2,12 +2,12 @@
 % Please edit documentation in R/get_satellite_imagery.R
 \name{get_satellite_imagery}
 \alias{get_satellite_imagery}
-\title{Get BoM Satellite GeoTIFF Imagery}
+\title{Get BOM Satellite GeoTIFF Imagery}
 \usage{
 get_satellite_imagery(product_id = NULL, scans = 1, cache = FALSE)
 }
 \arguments{
-\item{product_id}{Character.  BoM product ID to download in GeoTIFF format
+\item{product_id}{Character.  BOM product ID to download in GeoTIFF format
 and import as a \code{\link[raster]{stack}} object.  A vector of values from
 \code{\link{get_available_imagery}} may be used here.  Value is required.}
 
@@ -23,18 +23,18 @@ take advantage of cached files in future sessions, use \code{cache = TRUE}.
 Defaults to \code{FALSE}.  Value is optional.}
 }
 \value{
-A raster stack of GeoTIFF images with layers named by BoM Product ID,
+A raster stack of GeoTIFF images with layers named by BOM Product ID,
 timestamp and band.
 }
 \description{
-Fetch BoM satellite GeoTIFF imagery from
+Fetch BOM satellite GeoTIFF imagery from
 \url{ftp://ftp.bom.gov.au/anon/gen/gms/} and return a raster
 \code{\link[raster]{stack}} object of GeoTIFF files. Files are available at
 ten minute update frequency with a 24 hour delete time. Suggested to check
 file availability first by using \code{\link{get_available_imagery}}.
 }
 \details{
-Valid BoM satellite Product IDs include:
+Valid BOM satellite Product IDs include:
 \describe{
 \item{IDE00420}{AHI cloud cover only 2km FD GEOS GIS}
 \item{IDE00421}{AHI IR (Ch13) greyscale 2km FD GEOS GIS}
@@ -76,7 +76,7 @@ imagery <- get_satellite_imagery(product_id = avail, scans = 2)
 }
 }
 \references{
-Australian Bureau of Meteorology (BoM) High-definition satellite images
+Australian Bureau of Meteorology (BOM) High-definition satellite images
 \url{http://www.bom.gov.au/australia/satellite/index.shtml}
 }
 \seealso{

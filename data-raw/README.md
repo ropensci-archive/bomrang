@@ -1,7 +1,7 @@
-# Australian Bureau of Meteorology (BoM) Data
+# Australian Bureau of Meteorology (BOM) Data
 
 All data included in this package or downloaded during use are copyright
-Australian Bureau of Meteorology (BoM). See BoM's
+Australian Bureau of Meteorology (BOM). See BOM's
 [Copyright Notice](http://www.bom.gov.au/other/copyright.shtml) for full
 details.
 

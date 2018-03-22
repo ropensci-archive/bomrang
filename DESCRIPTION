@@ -20,9 +20,9 @@ Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     person("Sam", "Firke", email = "samuel.firke@gmail.com",
     role = "ctb"))
 Description: Provides functions to interface with Australian Government Bureau
-    of Meteorology (BoM) data, fetching data and returning a tidy data frame of
+    of Meteorology (BOM) data, fetching data and returning a tidy data frame of
     précis forecasts, current weather data from stations, agriculture
-    bulletin data, BoM 0900 or 1500 weather bulletins or a raster stack object
+    bulletin data, BOM 0900 or 1500 weather bulletins or a raster stack object
     of satellite imagery from GeoTIFF files. Data (c) Australian Government
     Bureau of Meteorology Creative Commons (CC) Attribution 3.0 licence or
     Public Access Licence (PAL) as appropriate. See

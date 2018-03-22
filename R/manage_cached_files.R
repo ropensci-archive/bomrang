@@ -1,5 +1,5 @@
 
-#' @title Manage Locally Cached BoM Files
+#' @title Manage Locally Cached BOM Files
 #'
 #' @description Manage cached \pkg{bomrang} satellite imagery files with
 #' \pkg{hoardr}.

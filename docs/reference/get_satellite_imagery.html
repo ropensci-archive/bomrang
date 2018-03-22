@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get BoM Satellite GeoTIFF Imagery — get_satellite_imagery • bomrang</title>
+<title>Get BOM Satellite GeoTIFF Imagery — get_satellite_imagery • bomrang</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -25,9 +25,9 @@
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-<meta property="og:title" content="Get BoM Satellite GeoTIFF Imagery — get_satellite_imagery" />
+<meta property="og:title" content="Get BOM Satellite GeoTIFF Imagery — get_satellite_imagery" />
 
-<meta property="og:description" content="Fetch BoM satellite GeoTIFF imagery from
+<meta property="og:description" content="Fetch BOM satellite GeoTIFF imagery from
 ftp://ftp.bom.gov.au/anon/gen/gms/ and return a raster
 stack object of GeoTIFF files. Files are available at
 ten minute update frequency with a 24 hour delete time. Suggested to check
@@ -106,12 +106,12 @@ file availability first by using get_available_imagery." />
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get BoM Satellite GeoTIFF Imagery</h1>
+    <h1>Get BOM Satellite GeoTIFF Imagery</h1>
     <small>Source: <a href='https://github.com/ropensci/bomrang/blob/master/R/get_satellite_imagery.R'><code>R/get_satellite_imagery.R</code></a></small>
     </div>
 
     
-    <p>Fetch BoM satellite GeoTIFF imagery from
+    <p>Fetch BOM satellite GeoTIFF imagery from
 <a href='ftp://ftp.bom.gov.au/anon/gen/gms/'>ftp://ftp.bom.gov.au/anon/gen/gms/</a> and return a raster
 <code><a href='http://www.rdocumentation.org/packages/raster/topics/stack'>stack</a></code> object of GeoTIFF files. Files are available at
 ten minute update frequency with a 24 hour delete time. Suggested to check
@@ -125,7 +125,7 @@ file availability first by using <code><a href='get_available_imagery.html'>get_
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>product_id</th>
-      <td><p>Character.  BoM product ID to download in GeoTIFF format
+      <td><p>Character.  BOM product ID to download in GeoTIFF format
 and import as a <code><a href='http://www.rdocumentation.org/packages/raster/topics/stack'>stack</a></code> object.  A vector of values from
 <code><a href='get_available_imagery.html'>get_available_imagery</a></code> may be used here.  Value is required.</p></td>
     </tr>
@@ -148,12 +148,12 @@ Defaults to <code>FALSE</code>.  Value is optional.</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A raster stack of GeoTIFF images with layers named by BoM Product ID,
+    <p>A raster stack of GeoTIFF images with layers named by BOM Product ID,
 timestamp and band.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Valid BoM satellite Product IDs include:</p><dl class='dl-horizontal'>
+    <p>Valid BOM satellite Product IDs include:</p><dl class='dl-horizontal'>
 <dt>IDE00420</dt><dd><p>AHI cloud cover only 2km FD GEOS GIS</p></dd>
 <dt>IDE00421</dt><dd><p>AHI IR (Ch13) greyscale 2km FD GEOS GIS</p></dd>
 <dt>IDE00422</dt><dd><p>AHI VIS (Ch3) greyscale 2km FD GEOS GIS</p></dd>
@@ -179,7 +179,7 @@ timestamp and band.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Australian Bureau of Meteorology (BoM) High-definition satellite images
+    <p>Australian Bureau of Meteorology (BOM) High-definition satellite images
 <a href='http://www.bom.gov.au/australia/satellite/index.shtml'>http://www.bom.gov.au/australia/satellite/index.shtml</a></p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>

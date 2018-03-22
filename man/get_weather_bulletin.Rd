@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_weather_bulletins.R
 \name{get_weather_bulletin}
 \alias{get_weather_bulletin}
-\title{Get BoM 0900 or 1500 Weather Bulletin}
+\title{Get BOM 0900 or 1500 Weather Bulletin}
 \usage{
 get_weather_bulletin(state = "qld", morning = TRUE)
 }
@@ -20,7 +20,7 @@ For full details of fields and units returned see Appendix 4 in the
 to view.
 }
 \description{
-Fetch the daily BoM 0900 or 1500 weather bulletins and return a tidy data
+Fetch the daily BOM 0900 or 1500 weather bulletins and return a tidy data
 frame for a specified state or territory.
 }
 \details{
@@ -48,7 +48,7 @@ qld_weather <- get_weather_bulletin (state = "QLD", morning = FALSE)
 }
 }
 \references{
-Daily observation data come from Australian Bureau of Meteorology (BoM)
+Daily observation data come from Australian Bureau of Meteorology (BOM)
 website. The 3pm bulletin for Queensland is, for example,
 \url{http://www.bom.gov.au/qld/observations/3pm_bulletin.shtml}
 }

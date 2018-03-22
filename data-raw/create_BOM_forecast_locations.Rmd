@@ -1,5 +1,5 @@
 ---
-title: "Get BoM Précis Forecast Town Names"
+title: "Get BOM Précis Forecast Town Names"
 output: github_document
 ---
 
@@ -7,12 +7,12 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Get BoM Forecast Town Names and Geographic Locations
+## Get BOM Forecast Town Names and Geographic Locations
 
-BoM maintains a shapefile of forecast town names and their geographic locations.
+BOM maintains a shapefile of forecast town names and their geographic locations.
 For ease, we'll just use the .dbf file part of the shapefile to extract AAC
 codes that can be used to add lat/lon values to the forecast `data.frame` that 
-`get_precis_forecast()` returns. The file is available from BoM's anonymous
+`get_precis_forecast()` returns. The file is available from BOM's anonymous
 FTP server with spatial data \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/},
 specifically the DBF file portion of a shapefile, 
 <ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf>

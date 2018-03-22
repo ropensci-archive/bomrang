@@ -1,5 +1,5 @@
 ---
-title: "Create Databases of BoM Station Locations and JSON URLs"
+title: "Create Databases of BOM Station Locations and JSON URLs"
 output: github_document
 ---
 
@@ -7,12 +7,12 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This document provides details on methods used to create the database of BoM
+This document provides details on methods used to create the database of BOM
 JSON files for stations and corresponding metadata, _e.g._, latitude, longitude
 (which are more detailed than what is in the JSON file), start, end, elevation,
 etc.
 
-Refer to these BoM pages for more reference:
+Refer to these BOM pages for more reference:
 
 - http://www.bom.gov.au/inside/itb/dm/idcodes/struc.shtml
 
@@ -66,7 +66,7 @@ library(magrittr)
 # This file is a pseudo-fixed width file. Line five contains the headers at
 # fixed widths which are coded in the read_table() call.
 # The last six lines contain other information that we don't want.
-# For some reason, reading it directly from the BoM website does not work, so
+# For some reason, reading it directly from the BOM website does not work, so
 # we use download.file to fetch it first and then import it from the R
 # tempdir()
 
@@ -242,7 +242,7 @@ database for _bomrang_ to use.
 There are weather stations that do have a WMO but don't report online, e.g.,
 KIRIBATI NTC AWS or MARSHALL ISLANDS NTC AWS, in this section remove these from
 the list and then create a database for use with the current weather information
-from BoM.
+from BOM.
 
 ### Save JSON URL database for `get_current_weather()`
 

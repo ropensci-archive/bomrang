@@ -1,10 +1,10 @@
 
-#' Update bomrang Internal Databases with Latest BoM Station Metadata
+#' Update bomrang Internal Databases with Latest BOM Station Metadata
 #'
 #' Download the latest station locations and metadata and update bomrang's
 #' internal databases that support the use of \code{\link{get_current_weather}}
 #' and \code{\link{get_ag_bulletin}}.  There is no need to use this unless you
-#' know that a station exists in BoM's database that is not available in the
+#' know that a station exists in BOM's database that is not available in the
 #' databases distributed with \code{\link{bomrang}}.
 #'
 #' If \code{\link[sf]{sf}} is installed locally, this function will
@@ -17,11 +17,11 @@
 #' \dontrun{
 #' update_station_locations()
 #' }
-#' @return Updated internal databases of BoM station locations and JSON URLs
+#' @return Updated internal databases of BOM station locations and JSON URLs
 #'
 #' @references
 #' Station location and other metadata are sourced from the Australian Bureau of
-#' Meteorology (BoM) webpage, Bureau of Meteorology Site Numbers:
+#' Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers:
 #' \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 #'
 #' @author Adam H Sparks, \email{adamhsparks@gmail.com}

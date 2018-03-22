@@ -11,9 +11,9 @@
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script><!-- pkgdown --><link href="pkgdown.css" rel="stylesheet">
 <script src="jquery.sticky-kit.min.js"></script><script src="pkgdown.js"></script><meta property="og:title" content="Australian Government Bureau of Meteorology Data from R">
 <meta property="og:description" content="Provides functions to interface with Australian Government Bureau
-    of Meteorology (BoM) data, fetching data and returning a tidy data frame of
+    of Meteorology (BOM) data, fetching data and returning a tidy data frame of
     précis forecasts, current weather data from stations, agriculture
-    bulletin data, BoM 0900 or 1500 weather bulletins or a raster stack object
+    bulletin data, BOM 0900 or 1500 weather bulletins or a raster stack object
     of satellite imagery from GeoTIFF files. Data (c) Australian Government
     Bureau of Meteorology Creative Commons (CC) Attribution 3.0 licence or
     Public Access Licence (PAL) as appropriate. See
@@ -88,8 +88,8 @@
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#bomrang-australian-government-bureau-of-meteorology-data-from-r" class="anchor"></a><em>bomrang</em>: Australian Government Bureau of Meteorology Data from R</h1></div>
 
-<p><img align="right" src="reference/figures/bomrang-hex.png"> Provides functions to interface with Australian Government Bureau of Meteorology (BoM) data, fetching data and returning a tidy data frame of précis forecasts, current weather data from stations, ag information bulletins or a <code><a href="http://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code> object of satellite imagery from GeoTIFF files.</p>
-<p>Credit for the name, <em>bomrang</em>, goes to <a href="http://dicook.github.io">Di Cook</a>, who suggested it while attending the rOpenSci AUUnconf in Brisbane, 2016, upon seeing the <a href="https://github.com/saundersk1/auunconf16/blob/master/Vignette_BoM.pdf">vignette</a> that we had assembled during the Unconf.</p>
+<p><img align="right" src="reference/figures/bomrang-hex.png"> Provides functions to interface with Australian Government Bureau of Meteorology (BOM) data, fetching data and returning a tidy data frame of précis forecasts, current weather data from stations, ag information bulletins or a <code><a href="http://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code> object of satellite imagery from GeoTIFF files.</p>
+<p>Credit for the name, <em>bomrang</em>, goes to <a href="http://dicook.github.io">Di Cook</a>, who suggested it while attending the rOpenSci AUUnconf in Brisbane, 2016, upon seeing the <a href="https://github.com/saundersk1/auunconf16/blob/master/Vignette_BOM.pdf">vignette</a> that we had assembled during the Unconf.</p>
 <div id="quick-start" class="section level2">
 <h2 class="hasAnchor">
 <a href="#quick-start" class="anchor"></a>Quick Start</h2>
@@ -107,7 +107,7 @@
 <h2 class="hasAnchor">
 <a href="#using-bomrang" class="anchor"></a>Using <em>bomrang</em>
 </h2>
-<p>Several functions are provided by <em>bomrang</em> to retrieve Australian Bureau of Meteorology (BoM) data. A family of functions retrieve weather data and return tidy data frames; <code><a href="reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; <code><a href="reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin; and <code><a href="reference/get_weather_bulletin.html">get_weather_bulletin()</a></code>, which retrieves the BoM 0900 or 1500 bulletins. A second group of functions retrieve information pertaining to satellite imagery, <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code> and the imagery itself, <code><a href="reference/get_satellite_imagery.html">get_satellite_imagery()</a></code>.</p>
+<p>Several functions are provided by <em>bomrang</em> to retrieve Australian Bureau of Meteorology (BOM) data. A family of functions retrieve weather data and return tidy data frames; <code><a href="reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; <code><a href="reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin; and <code><a href="reference/get_weather_bulletin.html">get_weather_bulletin()</a></code>, which retrieves the BOM 0900 or 1500 bulletins. A second group of functions retrieve information pertaining to satellite imagery, <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code> and the imagery itself, <code><a href="reference/get_satellite_imagery.html">get_satellite_imagery()</a></code>.</p>
 <div id="using-get_current_weather" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-get_current_weather" class="anchor"></a>Using <code>get_current_weather</code>
@@ -209,7 +209,7 @@
 <div id="get_precis_forecast-results" class="section level4">
 <h4 class="hasAnchor">
 <a href="#get_precis_forecast-results" class="anchor"></a><code>get_precis_forecast</code> Results</h4>
-<p>The function <code><a href="reference/get_precis_forecast.html">get_precis_forecast()</a></code> will return a tidy data frame of BoM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see Appendix 2, <code>Output from get_precis_forecast()</code> in the <em>bomrang</em> vignette.</p>
+<p>The function <code><a href="reference/get_precis_forecast.html">get_precis_forecast()</a></code> will return a tidy data frame of BOM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see Appendix 2, <code>Output from get_precis_forecast()</code> in the <em>bomrang</em> vignette.</p>
 </div>
 <div id="example-using-get_precis_forecast" class="section level4">
 <h4 class="hasAnchor">
@@ -272,7 +272,7 @@
 <div id="get_ag_bulletin-results" class="section level4">
 <h4 class="hasAnchor">
 <a href="#get_ag_bulletin-results" class="anchor"></a><code>get_ag_bulletin</code> Results</h4>
-<p>The function <code><a href="reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> will return a tidy data frame of BoM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see Appendix 3, <code>Output from get_ag_bulletin()</code> in the <em>bomrang</em> vignette.</p>
+<p>The function <code><a href="reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> will return a tidy data frame of BOM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see Appendix 3, <code>Output from get_ag_bulletin()</code> in the <em>bomrang</em> vignette.</p>
 </div>
 <div id="example-using-get_ag_bulletin" class="section level4">
 <h4 class="hasAnchor">
@@ -330,7 +330,7 @@
 <div id="get_weather_bulletin-results" class="section level4">
 <h4 class="hasAnchor">
 <a href="#get_weather_bulletin-results" class="anchor"></a><code>get_weather_bulletin</code> Results</h4>
-<p>The function <code><a href="reference/get_weather_bulletin.html">get_weather_bulletin()</a></code> will return a tidy data frame of BoM data for the requested state(s) or territory.</p>
+<p>The function <code><a href="reference/get_weather_bulletin.html">get_weather_bulletin()</a></code> will return a tidy data frame of BOM data for the requested state(s) or territory.</p>
 </div>
 <div id="example-using-get_weather_bulletin" class="section level4">
 <h4 class="hasAnchor">
@@ -359,8 +359,8 @@
 <h3 class="hasAnchor">
 <a href="#using-get_satellite_imagery" class="anchor"></a>Using <code>get_satellite_imagery</code>
 </h3>
-<p><em>bomrang</em> provides two functions to check and retrieve satellite imagery from BoM, <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code> and <code><a href="reference/get_satellite_imagery.html">get_satellite_imagery()</a></code>.</p>
-<p>The function <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code> only takes one argument, <code>product_id</code>, a BoM identifier for the imagery that you wish to check for available imagery. Using this function will fetch a listing of BoM GeoTIFF satellite imagery from <a href="ftp://ftp.bom.gov.au/anon/gen/gms/" class="uri">ftp://ftp.bom.gov.au/anon/gen/gms/</a> to display which files are currently available for download. These files are available at ten minute update frequency with a 24 hour delete time. This function can be used see the most recent files available and then specify in the <code><a href="reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> function. If no valid Product ID is supplied, defaults to all GeoTIFF images currently available.</p>
+<p><em>bomrang</em> provides two functions to check and retrieve satellite imagery from BOM, <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code> and <code><a href="reference/get_satellite_imagery.html">get_satellite_imagery()</a></code>.</p>
+<p>The function <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code> only takes one argument, <code>product_id</code>, a BOM identifier for the imagery that you wish to check for available imagery. Using this function will fetch a listing of BOM GeoTIFF satellite imagery from <a href="ftp://ftp.bom.gov.au/anon/gen/gms/" class="uri">ftp://ftp.bom.gov.au/anon/gen/gms/</a> to display which files are currently available for download. These files are available at ten minute update frequency with a 24 hour delete time. This function can be used see the most recent files available and then specify in the <code><a href="reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> function. If no valid Product ID is supplied, defaults to all GeoTIFF images currently available.</p>
 <div id="example-using-get_available_imagery" class="section level4">
 <h4 class="hasAnchor">
 <a href="#example-using-get_available_imagery" class="anchor"></a>Example using <code>get_available_imagery</code>
@@ -519,9 +519,9 @@
 <h4 class="hasAnchor">
 <a href="#example-using-get_satellite_imagery" class="anchor"></a>Example using <code>get_satellite_imagery</code>
 </h4>
-<p><code><a href="reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> fetches BoM satellite GeoTIFF imagery, returning a raster stack object and takes three arguments. Files are available at ten minute update frequency with a 24 hour delete time. It is suggested to check file availability first by using <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code>. The arguments are:</p>
+<p><code><a href="reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> fetches BOM satellite GeoTIFF imagery, returning a raster stack object and takes three arguments. Files are available at ten minute update frequency with a 24 hour delete time. It is suggested to check file availability first by using <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code>. The arguments are:</p>
 <ul>
-<li><p><code>product_id</code>, a character value of the BoM product ID to download. Alternatively, a vector of values from <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code> may be used here. This argument is mandatory.</p></li>
+<li><p><code>product_id</code>, a character value of the BOM product ID to download. Alternatively, a vector of values from <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code> may be used here. This argument is mandatory.</p></li>
 <li><p><code>scans</code> a numeric value for the number of scans to download, starting with the most recent and progressing backwards, <em>e.g.</em>, <code>1</code> - the most recent single scan available , <code>6</code> - the most recent hour available, <code>12</code> - the most recent 2 hours available, etc. Negating will return the oldest files first. Defaults to 1. This argument is optional.</p></li>
 <li><p><code>cache</code> a logical value that indicates whether or not to store image files locally for later use? If <code>FALSE</code>, the downloaded files are removed when R session is closed. To take advantage of cached files in future sessions, set <code>TRUE</code>. Defaults to <code>FALSE</code>. This argument is optional. Cached files may be managed with the <code>manage_bomrang_cache()</code> function.</p></li>
 </ul>
@@ -544,7 +544,7 @@
 <li>License:
 <ul>
 <li><p>All code is licenced MIT</p></li>
-<li><p>All data is copyright Australia Bureau of Meteorology, BoM Copyright Notice <a href="http://reg.bom.gov.au/other/copyright.shtml" class="uri">http://reg.bom.gov.au/other/copyright.shtml</a></p></li>
+<li><p>All data is copyright Australia Bureau of Meteorology, BOM Copyright Notice <a href="http://reg.bom.gov.au/other/copyright.shtml" class="uri">http://reg.bom.gov.au/other/copyright.shtml</a></p></li>
 </ul>
 </li>
 <li>
@@ -572,9 +572,9 @@ journal = {The Journal of Open Source Software}</code></pre>
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
-<p><a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services</a></p>
-<p><a href="http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services Agriculture Bulletins</a></p>
-<p><a href="http://www.bom.gov.au/climate/how/observations/rain-measure.shtml">Australian Bureau of Meteorology (BoM) Weather Data Services Observation of Rainfall</a></p>
+<p><a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services</a></p>
+<p><a href="http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services Agriculture Bulletins</a></p>
+<p><a href="http://www.bom.gov.au/climate/how/observations/rain-measure.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services Observation of Rainfall</a></p>
 <p><a href="http://ropensci.org"><img src="http://ropensci.org/public_images/github_footer.png"></a></p>
 </div>
 </div>

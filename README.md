@@ -6,9 +6,9 @@
 [![](https://badges.ropensci.org/121_status.svg)](https://github.com/ropensci/onboarding/issues/121)
 [![status](http://joss.theoj.org/papers/350bf005bded599e4b0f3ac2acf138e8/status.svg)](http://joss.theoj.org/papers/350bf005bded599e4b0f3ac2acf138e8)
 
-<img align="right" src="man/figures/bomrang-hex.png"> Provides functions to interface with Australian Government Bureau of Meteorology (BoM) data, fetching data and returning a tidy data frame of précis forecasts, current weather data from stations, ag information bulletins or a `raster::stack()` object of satellite imagery from GeoTIFF files.
+<img align="right" src="man/figures/bomrang-hex.png"> Provides functions to interface with Australian Government Bureau of Meteorology (BOM) data, fetching data and returning a tidy data frame of précis forecasts, current weather data from stations, ag information bulletins or a `raster::stack()` object of satellite imagery from GeoTIFF files.
 
-Credit for the name, *bomrang*, goes to [Di Cook](http://dicook.github.io), who suggested it while attending the rOpenSci AUUnconf in Brisbane, 2016, upon seeing the [vignette](https://github.com/saundersk1/auunconf16/blob/master/Vignette_BoM.pdf) that we had assembled during the Unconf.
+Credit for the name, *bomrang*, goes to [Di Cook](http://dicook.github.io), who suggested it while attending the rOpenSci AUUnconf in Brisbane, 2016, upon seeing the [vignette](https://github.com/saundersk1/auunconf16/blob/master/Vignette_BOM.pdf) that we had assembled during the Unconf.
 
 Quick Start
 -----------
@@ -33,7 +33,7 @@ devtools::install_github("ropensci/bomrang")
 Using *bomrang*
 ---------------
 
-Several functions are provided by *bomrang* to retrieve Australian Bureau of Meteorology (BoM) data. A family of functions retrieve weather data and return tidy data frames; `get_precis_forecast()`, which retrieves the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; `get_ag_bulletin()`, which retrieves the agriculture bulletin; and `get_weather_bulletin()`, which retrieves the BoM 0900 or 1500 bulletins. A second group of functions retrieve information pertaining to satellite imagery, `get_available_imagery()` and the imagery itself, `get_satellite_imagery()`.
+Several functions are provided by *bomrang* to retrieve Australian Bureau of Meteorology (BOM) data. A family of functions retrieve weather data and return tidy data frames; `get_precis_forecast()`, which retrieves the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; `get_ag_bulletin()`, which retrieves the agriculture bulletin; and `get_weather_bulletin()`, which retrieves the BOM 0900 or 1500 bulletins. A second group of functions retrieve information pertaining to satellite imagery, `get_available_imagery()` and the imagery itself, `get_satellite_imagery()`.
 
 ### Using `get_current_weather`
 
@@ -146,7 +146,7 @@ This function only takes one argument, `state`. States or territories are specif
 
 #### `get_precis_forecast` Results
 
-The function `get_precis_forecast()` will return a tidy data frame of BoM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see Appendix 2, `Output from get_precis_forecast()` in the *bomrang* vignette.
+The function `get_precis_forecast()` will return a tidy data frame of BOM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see Appendix 2, `Output from get_precis_forecast()` in the *bomrang* vignette.
 
 #### Example Using `get_precis_forecast`
 
@@ -213,7 +213,7 @@ This function only takes one argument, `state`. The `state` parameter allows the
 
 #### `get_ag_bulletin` Results
 
-The function `get_ag_bulletin()` will return a tidy data frame of BoM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see Appendix 3, `Output from get_ag_bulletin()` in the *bomrang* vignette.
+The function `get_ag_bulletin()` will return a tidy data frame of BOM data for the requested state(s) or territory. For a complete listing of the fields in the data frame see Appendix 3, `Output from get_ag_bulletin()` in the *bomrang* vignette.
 
 #### Example Using `get_ag_bulletin`
 
@@ -279,7 +279,7 @@ if `TRUE`, return the 9am bulletin for the nominated state; otherwise return the
 
 #### `get_weather_bulletin` Results
 
-The function `get_weather_bulletin()` will return a tidy data frame of BoM data for the requested state(s) or territory.
+The function `get_weather_bulletin()` will return a tidy data frame of BOM data for the requested state(s) or territory.
 
 #### Example using `get_weather_bulletin`
 
@@ -307,9 +307,9 @@ head(qld_weather)
 
 ### Using `get_satellite_imagery`
 
-_bomrang_ provides two functions to check and retrieve satellite imagery from BoM, `get_available_imagery()` and `get_satellite_imagery()`.
+_bomrang_ provides two functions to check and retrieve satellite imagery from BOM, `get_available_imagery()` and `get_satellite_imagery()`.
 
-The function `get_available_imagery()` only takes one argument, `product_id`, a BoM identifier for the imagery that you wish to check for available imagery. Using this function will fetch a listing of BoM GeoTIFF satellite imagery from <ftp://ftp.bom.gov.au/anon/gen/gms/> to display which files are currently available for download. These files are available at ten minute update frequency with a 24 hour delete time. This function can be used see the most recent files available and then specify in the `get_satellite_imagery()` function. If no valid Product ID is supplied, defaults to all GeoTIFF images currently available.
+The function `get_available_imagery()` only takes one argument, `product_id`, a BOM identifier for the imagery that you wish to check for available imagery. Using this function will fetch a listing of BOM GeoTIFF satellite imagery from <ftp://ftp.bom.gov.au/anon/gen/gms/> to display which files are currently available for download. These files are available at ten minute update frequency with a 24 hour delete time. This function can be used see the most recent files available and then specify in the `get_satellite_imagery()` function. If no valid Product ID is supplied, defaults to all GeoTIFF images currently available.
 
 #### Example using `get_available_imagery`
 
@@ -468,9 +468,9 @@ avail <- get_available_imagery(product_id = "IDE00426")
 
 #### Example using `get_satellite_imagery`
 
-`get_satellite_imagery()` fetches BoM satellite GeoTIFF imagery, returning a raster stack object and takes three arguments. Files are available at ten minute update frequency with a 24 hour delete time. It is suggested to check file availability first by using `get_available_imagery()`. The arguments are:
+`get_satellite_imagery()` fetches BOM satellite GeoTIFF imagery, returning a raster stack object and takes three arguments. Files are available at ten minute update frequency with a 24 hour delete time. It is suggested to check file availability first by using `get_available_imagery()`. The arguments are:
 
--   `product_id`, a character value of the BoM product ID to download. Alternatively, a vector of values from `get_available_imagery()` may be used here. This argument is mandatory.
+-   `product_id`, a character value of the BOM product ID to download. Alternatively, a vector of values from `get_available_imagery()` may be used here. This argument is mandatory.
 
 -   `scans` a numeric value for the number of scans to download, starting with the most recent and progressing backwards, *e.g.*, `1` - the most recent single scan available , `6` - the most recent hour available, `12` - the most recent 2 hours available, etc. Negating will return the oldest files first. Defaults to 1. This argument is optional.
 
@@ -500,7 +500,7 @@ Meta
 -   License:
     -   All code is licenced MIT
 
-    -   All data is copyright Australia Bureau of Meteorology, BoM Copyright Notice <http://reg.bom.gov.au/other/copyright.shtml>
+    -   All data is copyright Australia Bureau of Meteorology, BOM Copyright Notice <http://reg.bom.gov.au/other/copyright.shtml>
 
 -   To cite *bomrang*, please use: 
         
@@ -525,15 +525,17 @@ Meta
     journal = {The Journal of Open Source Software}
     ```
 
--   Please note that this project is released with a [Contributor Code of Conduct](CONDUCT.md). By participating in this project you agree to abide by its terms.
+-   Please note that this project is released with a
+[Contributor Code of Conduct](CONDUCT.md). By participating in this project you
+agree to abide by its terms.
 
 References
 ----------
 
-[Australian Bureau of Meteorology (BoM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml)
+[Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml)
 
-[Australian Bureau of Meteorology (BoM) Weather Data Services Agriculture Bulletins](http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml)
+[Australian Bureau of Meteorology (BOM) Weather Data Services Agriculture Bulletins](http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml)
 
-[Australian Bureau of Meteorology (BoM) Weather Data Services Observation of Rainfall](http://www.bom.gov.au/climate/how/observations/rain-measure.shtml)
+[Australian Bureau of Meteorology (BOM) Weather Data Services Observation of Rainfall](http://www.bom.gov.au/climate/how/observations/rain-measure.shtml)
 
 [![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
