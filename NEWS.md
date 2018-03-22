@@ -1,3 +1,13 @@
+# bomrang 0.1.4
+
+## Minor changes
+
+- Much faster station location checking using `ASDS.foyer::latlon2SA`
+
+- "BoM" is replaced with "BOM" throughout the package for consistency
+
+- `janitor` >= 1.0.0 is now required
+
 # bomrang 0.1.3
 
 ## Minor changes
