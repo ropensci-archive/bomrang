@@ -29,7 +29,7 @@
 #'
 update_station_locations <- function() {
   # CRAN NOTE avoidance
-  name <- site <- state_code <- wmo <- org_state <- state <-  NULL
+  name <- site <- state_code <- wmo <- state <-  NULL
   tryCatch({
     curl::curl_download(
       url =
