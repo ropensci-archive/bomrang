@@ -61,7 +61,6 @@ website. The zip file may be directly downloaded,
 [file of site details](ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip).
 
 ```{r get_bom_station_data, eval=TRUE}
-
 library(magrittr)
 
 # This file is a pseudo-fixed width file. Line five contains the headers at
@@ -75,27 +74,42 @@ curl::curl_download(
   url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
   destfile = file.path(tempdir(), "stations.zip"))
 
-bom_stations_raw <-
-  readr::read_table(
-    file.path(tempdir(), "stations.zip"),
-    skip = 4,
-    na = c("..", ".....", " "),
-    col_names = c(
-      "site",
-      "dist",
-      "name",
-      "start",
-      "end",
-      "lat",
-      "lon",
-      "NULL1",
-      "NULL2",
-      "state",
-      "elev",
-      "bar_ht",
-      "wmo"
+  bom_stations_raw <-
+    readr::read_table(
+      file.path(tempdir(), "stations.zip"),
+      skip = 4,
+      na = c("..", ".....", " "),
+      col_names = c(
+        "site",
+        "dist",
+        "name",
+        "start",
+        "end",
+        "lat",
+        "lon",
+        "NULL1",
+        "NULL2",
+        "state",
+        "elev",
+        "bar_ht",
+        "wmo"
+      ),
+      col_types = c(
+          site = readr::col_character(),
+          dist = readr::col_character(),
+          name = readr::col_character(),
+          start = readr::col_integer(),
+          end = readr::col_integer(),
+          lat = readr::col_double(),
+          lon = readr::col_double(),
+          NULL1 = readr::col_character(),
+          NULL2 = readr::col_character(),
+          state = readr::col_character(),
+          elev = readr::col_double(),
+          bar_ht = readr::col_double(),
+          wmo = readr::col_integer()
+      )
     )
-  )
 
 # remove extra columns for source of location
 bom_stations_raw <- bom_stations_raw[, -c(8:9)]
@@ -119,25 +133,33 @@ Airport in SA. Perform quality check to ensure that the station locations are
 accurate based on the lat/lon values provided.
 
 ```{r check-locations}
-library(sf)
-library(raster)
+library(ASGS.foyer)
+library(data.table)
 
-points <- st_as_sf(x = bom_stations_raw, 
-                   coords = c("lon", "lat"),
-                   crs = "+proj=longlat +datum=WGS84") %>%
-  st_transform(., 3576)
+`%notin%` <- function(x, table) {
+  # Same as !(x %in% table)
+  match(x, table, nomatch = 0L) == 0L
+}
 
-Oz <- st_as_sf(raster::getData(name = "GADM",
-                               country = "AUS",
-                               level = 1)) %>% 
-  st_transform(., 3576)
+data.table::setDT(bom_stations_raw)
+latlon2state <- function(lat, lon) {
+  ASGS.foyer::latlon2SA(lat, lon, to = "STE", yr = "2016", return = "v")
+}
 
-# check which state points fall in
-bom_locations <- 
-  st_join(points, Oz)
+    bom_stations_raw %>%
+      .[lon > -50, state_from_latlon := latlon2state(lat, lon)] %>%
+      .[state_from_latlon == "New South Wales", actual_state := "NSW"] %>%
+      .[state_from_latlon == "Victoria", actual_state := "VIC"] %>%
+      .[state_from_latlon == "Queensland", actual_state := "QLD"] %>%
+      .[state_from_latlon == "South Australia", actual_state := "SA"] %>%
+      .[state_from_latlon == "Western Australia", actual_state := "WA"] %>%
+      .[state_from_latlon == "Tasmania", actual_state := "TAS"] %>%
+      .[state_from_latlon == "Australian Capital Territory", actual_state := "ACT"] %>%
+      .[state_from_latlon == "Northern Territory", actual_state := "NT"] %>%
+      .[actual_state != state & state %notin% c("ANT", "ISL"), state := actual_state] %>%
+      .[, actual_state := NULL]
 
-# join the new data from checking points with the BOM data
-bom_locations <- dplyr::full_join(bom_stations_raw, bom_locations)
+    data.table::setDF(bom_stations_raw)
 ```
 
 ## Create state codes
@@ -162,74 +184,53 @@ BOM state codes are as follows:
 - IDW - WA
 
 ```{r state-codes, message=FALSE}
+  bom_stations_raw$state_code <- NA
+  bom_stations_raw$state_code[bom_stations_raw$state == "WA"] <- "W"
+  bom_stations_raw$state_code[bom_stations_raw$state == "QLD"] <- "Q"
+  bom_stations_raw$state_code[bom_stations_raw$state == "VIC"] <- "V"
+  bom_stations_raw$state_code[bom_stations_raw$state == "NT"] <- "D"
+  bom_stations_raw$state_code[bom_stations_raw$state == "TAS" |
+                                bom_stations_raw$state == "ANT"] <- "T"
+  bom_stations_raw$state_code[bom_stations_raw$state == "NSW"] <- "N"
+  bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <- "S"
+```
 
-# rename original state column from BOM and keep for reference
-bom_locations$org_state <- bom_locations$state
+## Generate station URLs
 
-# create new list of corrected state abbreviations based on spatial check
-bom_locations$state <- substr(bom_locations$HASC_1, 4, 5)
-
-# recode states from two to three letters where needed
-bom_locations$state[bom_locations$state == "QL"] <- "QLD"
-bom_locations$state[bom_locations$state == "VI"] <- "VIC"
-bom_locations$state[bom_locations$state == "TS"] <- "TAS"
-bom_locations$state[bom_locations$state == "NS"] <- "NSW"
-bom_locations$state[bom_locations$state == "CT"] <- "ACT"
-
-# fill any states not present in corrected set
-bom_locations$state[is.na(bom_locations$state)] <- 
-  bom_locations$state[is.na(bom_locations$state)]
-
-# replace state values with state code to generate URLs
-bom_locations$state_code <- NA
-bom_locations$state_code[bom_locations$state == "WA"] <- "W"
-bom_locations$state_code[bom_locations$state == "QL" |
-                           bom_locations$state == "QLD"] <- "Q"
-bom_locations$state_code[bom_locations$state == "VI" |
-                           bom_locations$state == "VIC"] <- "V"
-bom_locations$state_code[bom_locations$state == "NT"] <- "D"
-bom_locations$state_code[bom_locations$state == "TS" |
-                           bom_locations$state == "TAS"] <- "T"
-bom_locations$state_code[bom_locations$state == "NS" |
-                           bom_locations$state == "NSW"] <- "N"
-bom_locations$state_code[bom_locations$state == "SA"] <- "S"
-bom_locations$state_code[bom_locations$state == "ANT"] <- "T"
-
-# generate URLs
-stations_site_list <-
-  bom_locations %>%
-  dplyr::select(site:wmo, org_state, state, state_code) %>%
-  dplyr::mutate(
-    url = dplyr::case_when(
-      .$state != "ANT" & !is.na(.$wmo) ~
-        paste0(
-          "http://www.bom.gov.au/fwo/ID",
-          .$state_code,
-          "60801",
-          "/",
-          "ID",
-          .$state_code,
-          "60801",
-          ".",
-          .$wmo,
-          ".json"
-        ),
-      .$state == "ANT" & !is.na(.$wmo) ~
-        paste0(
-          "http://www.bom.gov.au/fwo/ID",
-          .$state_code,
-          "60803",
-          "/",
-          "ID",
-          .$state_code,
-          "60803",
-          ".",
-          .$wmo,
-          ".json"
-        )
+```{r station-urls}
+  stations_site_list <-
+    bom_stations_raw %>%
+    dplyr::select(site:wmo, state, state_code) %>%
+    dplyr::mutate(
+      url = dplyr::case_when(
+        .$state != "ANT" & !is.na(.$wmo) ~
+          paste0(
+            "http://www.bom.gov.au/fwo/ID",
+            .$state_code,
+            "60801",
+            "/",
+            "ID",
+            .$state_code,
+            "60801",
+            ".",
+            .$wmo,
+            ".json"
+          ),
+        .$state == "ANT" & !is.na(.$wmo) ~
+          paste0(
+            "http://www.bom.gov.au/fwo/ID",
+            .$state_code,
+            "60803",
+            "/",
+            "ID",
+            .$state_code,
+            "60803",
+            ".",
+            .$wmo,
+            ".json"
+          )
+      )
     )
-  )
-
 ```
 
 ## Save data
@@ -286,12 +287,6 @@ stations_site_list$site <-
 
   save(stations_site_list, file = "../inst/extdata/stations_site_list.rda",
      compress = "bzip2")
-```
-
-# Cleanup
-
-```{r cleanup}
-unlink("GADM_2.8_AUS_adm1.rds")
 ```
 
 ## Session Info
