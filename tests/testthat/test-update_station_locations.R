@@ -4,8 +4,6 @@ context("update_station_locations")
 
 test_that("update_station_locations() downloads and imports the proper file", {
   skip_on_cran()
-  skip_on_travis()
-  skip_on_appveyor()
 
   update_station_locations()
 
@@ -19,7 +17,7 @@ test_that("update_station_locations() downloads and imports the proper file", {
                    "JSONurl_site_list.rda",
                    package = "bomrang"))
 
-  expect_equal(ncol(stations_site_list), 12)
+  expect_equal(ncol(stations_site_list), 11)
   expect_named(
     stations_site_list,
     c(
@@ -33,8 +31,7 @@ test_that("update_station_locations() downloads and imports the proper file", {
       "state",
       "elev",
       "bar_ht",
-      "wmo",
-      "org_state"
+      "wmo"
     )
   )
 
@@ -53,7 +50,6 @@ test_that("update_station_locations() downloads and imports the proper file", {
       "elev",
       "bar_ht",
       "wmo",
-      "org_state",
       "state_code",
       "url"
     ))
