@@ -7,11 +7,11 @@
 #' know that a station exists in BOM's database that is not available in the
 #' databases distributed with \code{\link{bomrang}}.
 #'
-#' If \code{\link[ASGS.foyer]} is installed locally, this function will
+#' If \code{\link[ASGS.foyer]}} is installed locally, this function will
 #' automatically check and correct any invalid state values for stations located
-#' in Australia. If \code{\link[ASGS.foyer]} is not installed, the function will
-#' update the internal database without validating the state values for stations
-#' by reported lon/lat location.
+#' in Australia. If \code{\link[ASGS.foyer]}} is not installed, the function
+#' will update the internal database without validating the state values for
+#' stations by reported lon/lat location.
 #'
 #' @examples
 #' \dontrun{
