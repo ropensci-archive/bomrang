@@ -1,7 +1,7 @@
 context("get_ag_bulletin")
 
 # Test that get_ag_bulletin returns a data frame with 29 columns ---------------
-test_that("get_ag_bulletin returns 30 columns", {
+test_that("get_ag_bulletin returns 29 columns", {
   skip_on_cran()
   bom_bulletin <- get_ag_bulletin(state = "QLD")
   expect_equal(ncol(bom_bulletin), 29)
