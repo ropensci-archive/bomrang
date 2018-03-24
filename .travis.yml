@@ -23,7 +23,7 @@ env:
 script:
   - |
     R CMD build .
-    travis_wait 20 R CMD check bomrang*tar.gz
+    travis_wait 30 R CMD check bomrang*tar.gz
 
 after_failure:
   - ./pkg-build.sh dump_logs
