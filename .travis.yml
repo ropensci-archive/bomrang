@@ -38,6 +38,10 @@ script:
 after_failure:
   - R -e 'devtools::test(filter = "bulletin")'
   - R -e 'devtools::test(filter = "pr.cis")'
+  # What error is being produced
+  - R -e 'httr::http_error("ftp://ftp.bom.gov.au/anon/gen/fwo/IDN11060.xml")'
+  - R -e 'httr::HEAD("ftp://ftp.bom.gov.au/anon/gen/fwo/IDN11060.xml")'
+  - R -e 'xml2::read_xml("ftp://ftp.bom.gov.au/anon/gen/fwo/IDN11060.xml")'
   - ./pkg-build.sh dump_logs
 
 notifications:
