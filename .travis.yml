@@ -26,6 +26,7 @@ script:
     travis_wait 40 R CMD check bomrang*tar.gz
 
 after_failure:
+  - R -e 'devtools::test(filter = "bulletin")
   - ./pkg-build.sh dump_logs
 
 notifications:
