@@ -7,8 +7,14 @@ addons:
       - libgdal-dev
       - libproj-dev
 r_binary_packages:
+   - Rcpp
+   - stringi
+   - dplyr
+   - readr
    - rgdal
    - rgeos
+   - raster
+   - xml2
 
 ## Set up the matrix of different runs
 env:
@@ -26,7 +32,8 @@ script:
     travis_wait 40 R CMD check bomrang*tar.gz
 
 after_failure:
-  - R -e 'devtools::test(filter = "bulletin")
+  - R -e 'devtools::test(filter = "bulletin")'
+  - R -e 'devtools::test(filter = "pr.cis")'
   - ./pkg-build.sh dump_logs
 
 notifications:
