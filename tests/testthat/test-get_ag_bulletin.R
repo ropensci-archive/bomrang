@@ -4,7 +4,7 @@ context("get_ag_bulletin")
 test_that("get_ag_bulletin returns 29 columns", {
   skip_on_cran()
   bom_bulletin <- get_ag_bulletin(state = "QLD")
-  expect_equal(ncol(bom_bulletin), 29)
+  expect_equal(ncol(bom_bulletin), 29, info = print(ncol(bom_bulletin)))
   expect_named(
     bom_bulletin,
     c(
@@ -37,7 +37,8 @@ test_that("get_ag_bulletin returns 29 columns", {
       "t50",
       "t1m",
       "wr"
-    )
+    ),
+    info = print(names(bom_bulletin))
   )
 })
 
