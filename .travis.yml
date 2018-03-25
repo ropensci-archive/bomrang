@@ -14,7 +14,11 @@ r_binary_packages:
    - rgdal
    - rgeos
    - raster
+   - tidyr
+   - purrr
+   - roxygen2
    - xml2
+   - ggplot2
 
 ## Set up the matrix of different runs
 env:
