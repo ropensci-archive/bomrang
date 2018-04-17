@@ -165,3 +165,62 @@ convert_state <- function(state) {
 
   return(state)
 }
+
+#' Identify URL of historical observations resources
+#'
+#' BOM data is available via URL endpoints but the arguments are not (well)
+#' documented. This function first obtains an auxilliary data file for the given
+#' station/measurement type which contains the remaining value `p_c`. It then
+#' constructs the approriate resource URL.
+#'
+#' @md
+#' @param site site ID.
+#' @param code measurement type. See internals of [get_historical].
+#' @importFrom httr GET content
+#'
+#' @return URL of the historical observation resource
+#' @keywords internal
+#' @author Jonathan Carroll, \email{rpkg@jcarroll.com.au}
+#' @noRd
+.get_zip_url <- function(site, code = 122) {
+  url1 <-
+    paste0(
+      "http://www.bom.gov.au/jsp/ncc/cdio/weatherData/av?p_stn_num=",
+      site,
+      "&p_display_type=availableYears&p_nccObsCode=",
+      code
+    )
+  raw <- httr::content(httr::GET(url1), "text")
+  pc <- sub("^.*:", "", raw)
+  url2 <-
+    paste0(
+      "http://www.bom.gov.au/jsp/ncc/cdio/weatherData/av?p_display_type=dailyZippedDataFile&p_stn_num=",
+      site,
+      "&p_c=",
+      pc,
+      "&p_nccObsCode=",
+      code
+    )
+  url2
+}
+
+#' Download a BOM Data .zip File and Load into Session
+#'
+#' @param url URL of zip file to be downloaded/extracted/loaded.
+#' @importFrom utils download.file unzip read.csv
+#'
+#' @return data loaded from the zip file
+#' @keywords internal
+#' @author Jonathan Carroll, \email{rpkg@jcarroll.com.au}
+#' @noRd
+.get_zip_and_load <- function(url) {
+  tmp <- tempfile(fileext = ".zip")
+  utils::download.file(url, tmp)
+  zipped <- utils::unzip(tmp, exdir = dirname(tmp))
+  unlink(tmp)
+  datfile <- grep("Data.csv", zipped, value = TRUE)
+  message("Data saved as ", datfile)
+  dat <- utils::read.csv(datfile, header = TRUE)
+  dat
+}
+
