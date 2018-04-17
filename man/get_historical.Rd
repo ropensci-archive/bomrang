@@ -30,7 +30,7 @@ return fewer observations.
 Retrieves daily observations for a given station.
 }
 \examples{
-get_historical(stationid = "023000", type = "max") ## 33,700+ daily records 
+get_historical(stationid = "023000", type = "max") ## 33,700+ daily records
 }
 \author{
 Jonathan Carroll, \email{rpkg@jcarroll.com.au}
