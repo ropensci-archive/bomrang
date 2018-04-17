@@ -1,3 +1,10 @@
+# bomrang 0.1.5
+
+## New features
+
+- `get_historical` retrieves historical daily rainfall, min/max temperatures, 
+or solar exposure. (@jonocarroll)
+
 # bomrang 0.1.4
 
 ## Minor changes

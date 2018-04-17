@@ -19,7 +19,10 @@ Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     comment = c(ORCID = "0000-0003-2826-8458")),
     person("Brooke", "Anderson", role = "rev",
     email = "brooke.anderson@colostate.edu",
-    comment = c(ORCID = "0000-0002-5012-9035")))
+    comment = c(ORCID = "0000-0002-5012-9035")),
+    person("Jonathan", "Carroll", 
+    email = "rpkg@jcarroll.com.au", role = "aut", 
+    comment = c(ORCID = "0000-0002-1404-5264")))
 Description: Provides functions to interface with Australian Government Bureau
     of Meteorology (BOM) data, fetching data and returning a tidy data frame of
     précis forecasts, current weather data from stations, agriculture
@@ -64,7 +67,7 @@ Suggests:
     gridExtra,
     maps,
     mapproj
-RoxygenNote: 6.0.1
+RoxygenNote: 6.0.1.9000
 NeedsCompilation: no
 ByteCompile: TRUE
 VignetteBuilder: knitr
