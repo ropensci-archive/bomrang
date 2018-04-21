@@ -21,6 +21,8 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
@@ -43,6 +45,8 @@ function." />
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
 
 
   </head>
@@ -103,6 +107,7 @@ function." />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -110,13 +115,15 @@ function." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get a Listing of Available BOM Satellite GeoTIFF Imagery</h1>
-    <small>Source: <a href='https://github.com/ropensci/bomrang/blob/master/R/get_satellite_imagery.R'><code>R/get_satellite_imagery.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/bomrang/blob/master/R/get_satellite_imagery.R'><code>R/get_satellite_imagery.R</code></a></small>
+    <div class="hidden name"><code>get_available_imagery.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Fetch a listing of BOM GeoTIFF satellite imagery from
 <a href='ftp://ftp.bom.gov.au/anon/gen/gms/'>ftp://ftp.bom.gov.au/anon/gen/gms/</a> to determine which files are
@@ -125,6 +132,7 @@ frequency with a 24 hour delete time.  Useful to know the most recent files
 available and then specify in the <code><a href='get_satellite_imagery.html'>get_satellite_imagery</a></code>
 function.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>get_available_imagery</span>(<span class='kw'>product_id</span> <span class='kw'>=</span> <span class='st'>"all"</span>)</pre>
     
@@ -205,7 +213,7 @@ Adam H Sparks, <a href='mailto:adamhsparks@gmail.com'>adamhsparks@gmail.com</a>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Adam Sparks, Mark Padgham, Hugh Parsonage, Keith Pembleton.</p>
+  <p>Developed by Adam Sparks, Mark Padgham, Hugh Parsonage, Keith Pembleton, Jonathan Carroll.</p>
 </div>
 
 <div class="pkgdown">
@@ -214,6 +222,8 @@ Adam H Sparks, <a href='mailto:adamhsparks@gmail.com'>adamhsparks@gmail.com</a>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>
