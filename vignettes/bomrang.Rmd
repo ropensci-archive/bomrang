@@ -1,6 +1,6 @@
 ---
 title: "bomrang"
-author: "Adam H Sparks, Jono Carroll, Mark Padgham and Hugh Parsonage"
+author: "Adam H Sparks, Jonathan Carroll, Mark Padgham and Hugh Parsonage"
 output:
   rmarkdown::html_vignette:
     toc: true
