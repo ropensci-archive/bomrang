@@ -48,7 +48,7 @@
 #' @export
 get_precis_forecast <- function(state = "AUS") {
 
-the_state <- .check_states(state) # see internal_functions.R
+  the_state <- .check_states(state) # see internal_functions.R
 
   # ftp server
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
@@ -122,19 +122,13 @@ the_state <- .check_states(state) # see internal_functions.R
 
   out <- tidyr::spread(out, key = attrs, value = values)
 
-  names(out) <- c(
-    "aac",
-    "index",
-    "start_time_local",
-    "end_time_local",
-    "start_time_utc",
-    "end_time_utc",
-    "maximum_temperature",
-    "minimum_temperature",
-    "precipitation_range",
-    "precis",
-    "probability_of_precipitation"
-  )
+  # tidy up names
+  names(out) <- stringr::str_replace_all(names(out), "c\\(", "")
+  names(out) <- stringr::str_replace_all(names(out), "\\)", "")
+
+  out <- out %>%
+    janitor::clean_names() %>%
+    janitor::remove_empty("cols")
 
   out <-
     out %>%
@@ -173,20 +167,27 @@ the_state <- .check_states(state) # see internal_functions.R
                   "end_time_utc")], 2, function(x)
                     chartr("Z", " ", x))
 
-  out[, "precipitation_range"] <- as.character(out[, "precipitation_range"])
-  # format any values that are only zero to make next step easier
-  out$precipitation_range[which(out$precipitation_range == "0 mm")] <-
-    "0 mm to 0 mm"
+  if ("precipitation_range" %in% colnames(out))
+  {
+    out[, "precipitation_range"] <- as.character(out[, "precipitation_range"])
+    # format any values that are only zero to make next step easier
+    out$precipitation_range[which(out$precipitation_range == "0 mm")] <-
+      "0 mm to 0 mm"
 
-  # separate the precipitation column into two, upper/lower limit ------------
-  out <-
-    out %>%
-    tidyr::separate(
-      precipitation_range,
-      into = c("lower_precipitation_limit", "upper_precipitation_limit"),
-      sep = "to",
-      fill = "left"
-    )
+    # separate the precipitation column into two, upper/lower limit ------------
+    out <-
+      out %>%
+      tidyr::separate(
+        precipitation_range,
+        into = c("lower_precipitation_limit", "upper_precipitation_limit"),
+        sep = "to",
+        fill = "left"
+      )
+  } else {# if the columns don't exist insert as NA
+    out$lower_precipitation_limit <- NA
+    out$upper_precipitation_limit <- NA
+    out <- out[, c(1:9, 13, 12, 10, 11)]
+  }
 
   # remove unnecessary text (mm in prcp cols) ----------------------------------
   out <- as.data.frame(lapply(out, function(x) {
@@ -194,7 +195,7 @@ the_state <- .check_states(state) # see internal_functions.R
   }))
 
   # convert factors to character for left merge, otherwise funny stuff happens
-  out[, c(1, 3:4, 6:13)] <- lapply(out[, c(1, 3, 4, 6:13)], as.character)
+  out[, c(1:ncol(out))] <- lapply(out[, c(1:ncol(out))], as.character)
 
   # convert dates to POSIXct format
   out[, c(3:4, 6:7)] <- lapply(out[, c(3:4, 6:7)],
@@ -225,7 +226,13 @@ the_state <- .check_states(state) # see internal_functions.R
                                1,
                                nchar(basename(xmlforecast_url)) - 4)
 
-  names(tidy_df)[names(tidy_df) == "PT_NAME"] <- "town"
+  data.table::setnames(tidy_df,
+                       old = c("PT_NAME",
+                               "air_temperature_minimum_celsius",
+                               "air_temperature_maximum_celsius"),
+                       new = c("town",
+                               "minimum_temperature",
+                               "maximum_temperature"))
 
   # reorder columns
   refcols <- c(
