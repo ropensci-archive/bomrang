@@ -34,7 +34,8 @@ get_historical <-
       stop("stationid or latlon must be provided.",
            call. = FALSE)
     if (!is.null(stationid) & !is.null(latlon)) {
-      warning("Only one of stationid or latlon may be provided. Using stationid.")
+      warning("Only one of stationid or latlon may be provided. ",
+              "Using stationid.")
     }
     if (is.null(stationid)) {
       if (!identical(length(latlon), 2L) ||
