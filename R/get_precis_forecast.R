@@ -123,8 +123,8 @@ get_precis_forecast <- function(state = "AUS") {
   out <- tidyr::spread(out, key = attrs, value = values)
 
   # tidy up names
-  names(out) <- stringr::str_remove_all(names(out), "c\\(")
-  names(out) <- stringr::str_remove_all(names(out), "\\)")
+  names(out) <- gsub( "c\\(", "", names(out))
+  names(out) <- gsub( "\\)", "", names(out))
 
   out <- out %>%
     janitor::clean_names() %>%
@@ -195,7 +195,7 @@ get_precis_forecast <- function(state = "AUS") {
   }))
 
   # convert factors to character for left merge, otherwise funny stuff happens
-  out[, c(1:ncol(out))] <- lapply(out[, c(1:ncol(out))], as.character)
+  out[, seq_len(ncol(out))] <- lapply(out[, seq_len(ncol(out))], as.character)
 
   # convert dates to POSIXct format
   out[, c(3:4, 6:7)] <- lapply(out[, c(3:4, 6:7)],
