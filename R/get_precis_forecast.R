@@ -123,8 +123,8 @@ get_precis_forecast <- function(state = "AUS") {
   out <- tidyr::spread(out, key = attrs, value = values)
 
   # tidy up names
-  names(out) <- stringr::str_replace_all(names(out), "c\\(", "")
-  names(out) <- stringr::str_replace_all(names(out), "\\)", "")
+  names(out) <- stringr::str_remove_all(names(out), "c\\(")
+  names(out) <- stringr::str_remove_all(names(out), "\\)")
 
   out <- out %>%
     janitor::clean_names() %>%
