@@ -1,4 +1,5 @@
 
+
 `%notin%` <- function(x, table) {
   # Same as !(x %in% table)
   match(x, table, nomatch = 0L) == 0L
@@ -191,7 +192,8 @@ convert_state <- function(state) {
       code
     )
   raw <- httr::content(httr::GET(url1), "text")
-  if (grepl("BUREAU FOOTER", raw)) stop("Error in retrieving resource identifiers.")
+  if (grepl("BUREAU FOOTER", raw))
+    stop("Error in retrieving resource identifiers.")
   pc <- sub("^.*:", "", raw)
   url2 <-
     paste0(
@@ -224,4 +226,3 @@ convert_state <- function(state) {
   dat <- utils::read.csv(datfile, header = TRUE)
   dat
 }
-
