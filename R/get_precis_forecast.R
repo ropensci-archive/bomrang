@@ -258,6 +258,9 @@ get_precis_forecast <- function(state = "AUS") {
   )
   tidy_df <- tidy_df[c(refcols, setdiff(names(tidy_df), refcols))]
 
+  # set factors
+  tidy_df[, c(1, 11)] <- lapply(tidy_df[, c(1, 11)], as.factor)
+
   return(tidy_df)
 }
 
