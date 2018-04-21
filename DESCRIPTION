@@ -50,6 +50,7 @@ Imports:
     rgdal,
     readr (>= 1.1.1),
     rvest,
+    stringr,
     tidyr (>= 0.6.3),
     utils,
     xml2 (>= 1.1.1)
