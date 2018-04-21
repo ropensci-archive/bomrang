@@ -27,3 +27,9 @@ test_that("Query latlon = c(-34.9285, 138.6007), type = 'rain' returns data.fram
   expect_equal(ADLhistrain$Product.code[1], factor("IDCJAC0009"))
   expect_equal(ADLhistrain$Bureau.of.Meteorology.station.number[1], 23000)
 })
+
+test_that("Zip file URL is correctly obtained", {
+  expect_error(bomrang:::.get_zip_url("023001", 122), regexp = "resource identifiers")
+  expect_silent(ADLzipURL <- bomrang:::.get_zip_url("023000", 122))
+  expect_match(ADLzipURL, "-105815575")
+})

@@ -191,6 +191,7 @@ convert_state <- function(state) {
       code
     )
   raw <- httr::content(httr::GET(url1), "text")
+  if (grepl("BUREAU FOOTER", raw)) stop("Error in retrieving resource identifiers.")
   pc <- sub("^.*:", "", raw)
   url2 <-
     paste0(
