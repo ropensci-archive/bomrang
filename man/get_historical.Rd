@@ -12,8 +12,8 @@ get_historical(stationid = NULL, latlon = NULL, type = c("rain", "min",
 
 \item{latlon}{Length-2 numeric vector of Latitude/Longitude. See Details.}
 
-\item{type}{Measurement type, either daily "rain", "min" (temp), "max" (temp), or
-"solar" (exposure). Partial matching is performed.}
+\item{type}{Measurement type, either daily "rain", "min" (temp), "max"
+(temp), or "solar" (exposure). Partial matching is performed.}
 }
 \value{
 a complete \link{data.frame} of historical observations for the chosen
