@@ -226,3 +226,49 @@ convert_state <- function(state) {
   dat <- utils::read.csv(datfile, header = TRUE)
   dat
 }
+
+#' Parse areas for précis forecasts
+#'
+#' @param x a précis forecast object
+#'
+#' @return a data.frame of forecast areas and aac codes
+#' @keywords internal
+#' @author Adam H Sparks, \email{adamhsparks@gmail.com}
+#' @noRd
+
+# get the data from areas --------------------------------------------------
+.parse_areas <- function(x) {
+  aac <- as.character(xml2::xml_attr(x, "aac"))
+
+  # get xml children for the forecast (there are seven of these for each area)
+  forecast_periods <- xml2::xml_children(x)
+
+  sub_out <-
+    lapply(X = forecast_periods, FUN = .extract_values)
+  sub_out <- do.call(rbind, sub_out)
+  sub_out <- cbind(aac, sub_out)
+  return(sub_out)
+}
+
+#' extract the values of the forecast items
+#'
+#' @param y précis forecast values
+#'
+#' @return a data.frame of forecast values
+#' @keywords internal
+#' @author Adam H Sparks, \email{adamhsparks@gmail.com}
+#' @noRd
+
+.extract_values <- function(y) {
+  values <- xml2::xml_children(y)
+  attrs <- unlist(as.character(xml2::xml_attrs(values)))
+  values <- unlist(as.character(xml2::xml_contents(values)))
+
+  time_period <- unlist(t(as.data.frame(xml2::xml_attrs(y))))
+  time_period <-
+    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)), ]
+
+  sub_out <- cbind(time_period, attrs, values)
+  row.names(sub_out) <- NULL
+  return(sub_out)
+}

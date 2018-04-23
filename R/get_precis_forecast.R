@@ -1,4 +1,5 @@
 
+
 #' Get BOM Daily Précis Forecast for Select Towns
 #'
 #' Fetch the BOM daily précis forecast and return a tidy data frame of the seven
@@ -47,7 +48,6 @@
 #' @importFrom magrittr %>%
 #' @export
 get_precis_forecast <- function(state = "AUS") {
-
   the_state <- .check_states(state) # see internal_functions.R
 
   # ftp server
@@ -55,12 +55,18 @@ get_precis_forecast <- function(state = "AUS") {
 
   # create vector of XML files
   AUS_XML <- c(
-    "IDN11060.xml", # NSW
-    "IDD10207.xml", # NT
-    "IDQ11295.xml", # QLD
-    "IDS10044.xml", # SA
-    "IDT16710.xml", # TAS
-    "IDV10753.xml", # VIC
+    "IDN11060.xml",
+    # NSW
+    "IDD10207.xml",
+    # NT
+    "IDQ11295.xml",
+    # QLD
+    "IDS10044.xml",
+    # SA
+    "IDT16710.xml",
+    # TAS
+    "IDV10753.xml",
+    # VIC
     "IDW14199.xml"  # WA
   )
 
@@ -123,8 +129,8 @@ get_precis_forecast <- function(state = "AUS") {
   out <- tidyr::spread(out, key = attrs, value = values)
 
   # tidy up names
-  names(out) <- gsub( "c\\(", "", names(out))
-  names(out) <- gsub( "\\)", "", names(out))
+  names(out) <- gsub("c\\(", "", names(out))
+  names(out) <- gsub("\\)", "", names(out))
 
   out <- out %>%
     janitor::clean_names() %>%
@@ -132,11 +138,9 @@ get_precis_forecast <- function(state = "AUS") {
 
   out <-
     out %>%
-    tidyr::separate(
-      end_time_local,
-      into = c("end_time_local", "UTC_offset"),
-      sep = "\\+"
-    ) %>%
+    tidyr::separate(end_time_local,
+                    into = c("end_time_local", "UTC_offset"),
+                    sep = "\\+") %>%
     tidyr::separate(
       start_time_local,
       into = c("start_time_local", "UTC_offset_drop"),
@@ -169,7 +173,8 @@ get_precis_forecast <- function(state = "AUS") {
 
   if ("precipitation_range" %in% colnames(out))
   {
-    out[, "precipitation_range"] <- as.character(out[, "precipitation_range"])
+    out[, "precipitation_range"] <-
+      as.character(out[, "precipitation_range"])
     # format any values that are only zero to make next step easier
     out$precipitation_range[which(out$precipitation_range == "0 mm")] <-
       "0 mm to 0 mm"
@@ -179,11 +184,15 @@ get_precis_forecast <- function(state = "AUS") {
       out %>%
       tidyr::separate(
         precipitation_range,
-        into = c("lower_precipitation_limit", "upper_precipitation_limit"),
+        into = c(
+          "lower_precipitation_limit",
+          "upper_precipitation_limit"
+        ),
         sep = "to",
         fill = "left"
       )
-  } else {# if the columns don't exist insert as NA
+  } else {
+    # if the columns don't exist insert as NA
     out$lower_precipitation_limit <- NA
     out$upper_precipitation_limit <- NA
     out <- out[, c(1:9, 13, 12, 10, 11)]
@@ -195,7 +204,8 @@ get_precis_forecast <- function(state = "AUS") {
   }))
 
   # convert factors to character for left merge, otherwise funny stuff happens
-  out[, seq_len(ncol(out))] <- lapply(out[, seq_len(ncol(out))], as.character)
+  out[, seq_len(ncol(out))] <-
+    lapply(out[, seq_len(ncol(out))], as.character)
 
   # convert dates to POSIXct format
   out[, c(3:4, 6:7)] <- lapply(out[, c(3:4, 6:7)],
@@ -226,13 +236,17 @@ get_precis_forecast <- function(state = "AUS") {
                                1,
                                nchar(basename(xmlforecast_url)) - 4)
 
-  data.table::setnames(tidy_df,
-                       old = c("PT_NAME",
-                               "air_temperature_minimum_celsius",
-                               "air_temperature_maximum_celsius"),
-                       new = c("town",
-                               "minimum_temperature",
-                               "maximum_temperature"))
+  data.table::setnames(
+    tidy_df,
+    old = c(
+      "PT_NAME",
+      "type_air_temperature_maximum_units_celsius",
+      "type_air_temperature_minimum_units_celsius"
+    ),
+    new = c("town",
+            "minimum_temperature",
+            "maximum_temperature")
+  )
 
   # reorder columns
   refcols <- c(
@@ -262,33 +276,4 @@ get_precis_forecast <- function(state = "AUS") {
   tidy_df[, c(1, 11)] <- lapply(tidy_df[, c(1, 11)], as.factor)
 
   return(tidy_df)
-}
-
-# get the data from areas --------------------------------------------------
-.parse_areas <- function(x) {
-  aac <- as.character(xml2::xml_attr(x, "aac"))
-
-  # get xml children for the forecast (there are seven of these for each area)
-  forecast_periods <- xml2::xml_children(x)
-
-  sub_out <-
-    lapply(X = forecast_periods, FUN = .extract_values)
-  sub_out <- do.call(rbind, sub_out)
-  sub_out <- cbind(aac, sub_out)
-  return(sub_out)
-}
-
-# extract the values of the forecast items
-.extract_values <- function(y) {
-  values <- xml2::xml_children(y)
-  attrs <- unlist(as.character(xml2::xml_attrs(values)))
-  values <- unlist(as.character(xml2::xml_contents(values)))
-
-  time_period <- unlist(t(as.data.frame(xml2::xml_attrs(y))))
-  time_period <-
-    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)), ]
-
-  sub_out <- cbind(time_period, attrs, values)
-  row.names(sub_out) <- NULL
-  return(sub_out)
 }
