@@ -33,7 +33,7 @@ devtools::install_github("ropensci/bomrang")
 Using *bomrang*
 ---------------
 
-Several functions are provided by *bomrang* to retrieve Australian Bureau of Meteorology (BOM) data. A family of functions retrieve weather data and return tidy data frames; `get_precis_forecast()`, which retrieves the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; `get_ag_bulletin()`, which retrieves the agriculture bulletin; and `get_weather_bulletin()`, which retrieves the BOM 0900 or 1500 bulletins. A second group of functions retrieve information pertaining to satellite imagery, `get_available_imagery()` and the imagery itself, `get_satellite_imagery()`.
+Several functions are provided by *bomrang* to retrieve Australian Bureau of Meteorology (BOM) data. A family of functions retrieve weather data and return tidy data frames; `get_precis_forecast()`, which retrieves the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; `get_ag_bulletin()`, which retrieves the agriculture bulletin; `get_weather_bulletin()`, which retrieves the BOM 0900 or 1500 bulletins; and `get_historical()`, which retrieves historical daily observations for a given station. A second group of functions retrieve information pertaining to satellite imagery, `get_available_imagery()` and the imagery itself, `get_satellite_imagery()`.
 
 ### Using `get_current_weather`
 
@@ -279,7 +279,8 @@ if `TRUE`, return the 9am bulletin for the nominated state; otherwise return the
 
 #### `get_weather_bulletin` Results
 
-The function `get_weather_bulletin()` will return a tidy data frame of BOM data for the requested state(s) or territory.
+The function `get_weather_bulletin()` will return a tidy data frame of BOM data
+for the requested state(s) or territory.
 
 #### Example using `get_weather_bulletin`
 
@@ -305,11 +306,72 @@ head(qld_weather)
     ## 5         35         13        NA   1015      NA                 
     ## 6         34         17        NA   1014      NA
 
+## Using `get_historical`
+
+`get_historical()` takes either of two arguments: `stationid` and `latlon`, as 
+well as a type of observation (`"rain"`, `"min"` (temperature), `"max"`
+(temperature), or `"solar"`), returning the historical daily weather
+observations of that type for the given location.
+
+If `latlon` is used, the observations returned are from the station nearest to
+that latitude-longitude coordinate. `latlon` values are entered as decimal
+degrees, _e.g._ -34, 151 for Sydney. The function also emits a message, to
+tell the user which station was used.
+
+### Results
+
+The table returned may have different fields depending on the station that is
+selected. The time period over which observations are available will be highly
+dependent on the station requested. Some stations may only have a decade or less
+of data  (e.g. max temperature at `070351 (CANBERRA AIRPORT)` has ~3,700+
+observations back to 2008) while others may have very extensive records (e.g.
+rainfall at `ADELAIDE (WEST TERRACE / NGAYIRDAPIRA)` has ~65,000+ observations
+back to 1839, three years after the city was founded.) 
+
+### Example
+
+Following is an example fetching the historical daily temperature minimum
+observations for the station closest to 35.2809°S, 149.1300°E (Canberra)
+
+```r
+Canberra_mintemps <- get_historical(latlon = c(-35.2809, 149.1300),
+                                    type = "min")
+```
+
+    ## Closest station: 070351 (CANBERRA AIRPORT)
+    ## trying URL 'http://www.bom.gov.au/jsp/ncc/cdio/weatherData/av?p_display_type=dailyZippedDataFile&p_stn_num=070351&p_c=-989869218&p_nccObsCode=123'
+    ## Content type 'application/zip' length 19508 bytes (19 KB)
+    ## ==================================================
+    ## downloaded 19 KB
+    ##
+    ## Data saved as /var/folders/47/rh3mqv4j3w31bch7f_tcj3jr0000gn/T//RtmpVxfght/IDCJAC0011_070351_1800_Data.csv
+
+``` r
+head(Canberra_mintemps)
+```
+
+    ##   Product.code Bureau.of.Meteorology.station.number Year Month Day Minimum.temperature..Degree.C. Days.of.accumulation.of.minimum.temperature Quality
+    ## 1   IDCJAC0011                                70351 2008     1   1                             NA                                          NA        
+    ## 2   IDCJAC0011                                70351 2008     1   2                             NA                                          NA        
+    ## 3   IDCJAC0011                                70351 2008     1   3                             NA                                          NA        
+    ## 4   IDCJAC0011                                70351 2008     1   4                             NA                                          NA        
+    ## 5   IDCJAC0011                                70351 2008     1   5                             NA                                          NA        
+    ## 6   IDCJAC0011                                70351 2008     1   6                             NA                                          NA        
+
 ### Using `get_satellite_imagery`
 
-_bomrang_ provides two functions to check and retrieve satellite imagery from BOM, `get_available_imagery()` and `get_satellite_imagery()`.
+_bomrang_ provides two functions to check and retrieve satellite imagery from
+BOM, `get_available_imagery()` and `get_satellite_imagery()`.
 
-The function `get_available_imagery()` only takes one argument, `product_id`, a BOM identifier for the imagery that you wish to check for available imagery. Using this function will fetch a listing of BOM GeoTIFF satellite imagery from <ftp://ftp.bom.gov.au/anon/gen/gms/> to display which files are currently available for download. These files are available at ten minute update frequency with a 24 hour delete time. This function can be used see the most recent files available and then specify in the `get_satellite_imagery()` function. If no valid Product ID is supplied, defaults to all GeoTIFF images currently available.
+The function `get_available_imagery()` only takes one argument, `product_id`, a
+BOM identifier for the imagery that you wish to check for available imagery.
+Using this function will fetch a listing of BOM GeoTIFF satellite imagery from
+<ftp://ftp.bom.gov.au/anon/gen/gms/> to display which files are currently
+available for download. These files are available at ten minute update frequency
+with a 24 hour delete time. This function can be used see the most recent files
+available and then specify in the `get_satellite_imagery()` function. If no
+valid Product ID is supplied, defaults to all GeoTIFF images currently
+available.
 
 #### Example using `get_available_imagery`
 

@@ -1,4 +1,5 @@
 
+
 #' Get BOM Daily Précis Forecast for Select Towns
 #'
 #' Fetch the BOM daily précis forecast and return a tidy data frame of the seven
@@ -23,7 +24,7 @@
 #'  }
 #'
 #' @return
-#' Tidy data frame of a Australia BOM précis seven day forecasts for select
+#' Tidy [data.frame] of a Australia BOM précis seven day forecasts for select
 #' towns.  For full details of fields and units returned see Appendix 2 in the
 #' \emph{bomrang} vignette, use \code{vignette("bomrang", package = "bomrang")}
 #' to view.
@@ -47,20 +48,25 @@
 #' @importFrom magrittr %>%
 #' @export
 get_precis_forecast <- function(state = "AUS") {
-
-the_state <- .check_states(state) # see internal_functions.R
+  the_state <- .check_states(state) # see internal_functions.R
 
   # ftp server
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
 
   # create vector of XML files
   AUS_XML <- c(
-    "IDN11060.xml", # NSW
-    "IDD10207.xml", # NT
-    "IDQ11295.xml", # QLD
-    "IDS10044.xml", # SA
-    "IDT16710.xml", # TAS
-    "IDV10753.xml", # VIC
+    "IDN11060.xml",
+    # NSW
+    "IDD10207.xml",
+    # NT
+    "IDQ11295.xml",
+    # QLD
+    "IDS10044.xml",
+    # SA
+    "IDT16710.xml",
+    # TAS
+    "IDV10753.xml",
+    # VIC
     "IDW14199.xml"  # WA
   )
 
@@ -122,27 +128,19 @@ the_state <- .check_states(state) # see internal_functions.R
 
   out <- tidyr::spread(out, key = attrs, value = values)
 
-  names(out) <- c(
-    "aac",
-    "index",
-    "start_time_local",
-    "end_time_local",
-    "start_time_utc",
-    "end_time_utc",
-    "maximum_temperature",
-    "minimum_temperature",
-    "precipitation_range",
-    "precis",
-    "probability_of_precipitation"
-  )
+  # tidy up names
+  names(out) <- gsub("c\\(", "", names(out))
+  names(out) <- gsub("\\)", "", names(out))
+
+  out <- out %>%
+    janitor::clean_names() %>%
+    janitor::remove_empty("cols")
 
   out <-
     out %>%
-    tidyr::separate(
-      end_time_local,
-      into = c("end_time_local", "UTC_offset"),
-      sep = "\\+"
-    ) %>%
+    tidyr::separate(end_time_local,
+                    into = c("end_time_local", "UTC_offset"),
+                    sep = "\\+") %>%
     tidyr::separate(
       start_time_local,
       into = c("start_time_local", "UTC_offset_drop"),
@@ -173,20 +171,32 @@ the_state <- .check_states(state) # see internal_functions.R
                   "end_time_utc")], 2, function(x)
                     chartr("Z", " ", x))
 
-  out[, "precipitation_range"] <- as.character(out[, "precipitation_range"])
-  # format any values that are only zero to make next step easier
-  out$precipitation_range[which(out$precipitation_range == "0 mm")] <-
-    "0 mm to 0 mm"
+  if ("precipitation_range" %in% colnames(out))
+  {
+    out[, "precipitation_range"] <-
+      as.character(out[, "precipitation_range"])
+    # format any values that are only zero to make next step easier
+    out$precipitation_range[which(out$precipitation_range == "0 mm")] <-
+      "0 mm to 0 mm"
 
-  # separate the precipitation column into two, upper/lower limit ------------
-  out <-
-    out %>%
-    tidyr::separate(
-      precipitation_range,
-      into = c("lower_precipitation_limit", "upper_precipitation_limit"),
-      sep = "to",
-      fill = "left"
-    )
+    # separate the precipitation column into two, upper/lower limit ------------
+    out <-
+      out %>%
+      tidyr::separate(
+        precipitation_range,
+        into = c(
+          "lower_precipitation_limit",
+          "upper_precipitation_limit"
+        ),
+        sep = "to",
+        fill = "left"
+      )
+  } else {
+    # if the columns don't exist insert as NA
+    out$lower_precipitation_limit <- NA
+    out$upper_precipitation_limit <- NA
+    out <- out[, c(1:9, 13, 12, 10, 11)]
+  }
 
   # remove unnecessary text (mm in prcp cols) ----------------------------------
   out <- as.data.frame(lapply(out, function(x) {
@@ -194,7 +204,8 @@ the_state <- .check_states(state) # see internal_functions.R
   }))
 
   # convert factors to character for left merge, otherwise funny stuff happens
-  out[, c(1, 3:4, 6:13)] <- lapply(out[, c(1, 3, 4, 6:13)], as.character)
+  out[, seq_len(ncol(out))] <-
+    lapply(out[, seq_len(ncol(out))], as.character)
 
   # convert dates to POSIXct format
   out[, c(3:4, 6:7)] <- lapply(out[, c(3:4, 6:7)],
@@ -225,7 +236,17 @@ the_state <- .check_states(state) # see internal_functions.R
                                1,
                                nchar(basename(xmlforecast_url)) - 4)
 
-  names(tidy_df)[names(tidy_df) == "PT_NAME"] <- "town"
+  data.table::setnames(
+    tidy_df,
+    old = c(
+      "PT_NAME",
+      "type_air_temperature_maximum_units_celsius",
+      "type_air_temperature_minimum_units_celsius"
+    ),
+    new = c("town",
+            "minimum_temperature",
+            "maximum_temperature")
+  )
 
   # reorder columns
   refcols <- c(
@@ -251,34 +272,8 @@ the_state <- .check_states(state) # see internal_functions.R
   )
   tidy_df <- tidy_df[c(refcols, setdiff(names(tidy_df), refcols))]
 
+  # set factors
+  tidy_df[, c(1, 11)] <- lapply(tidy_df[, c(1, 11)], as.factor)
+
   return(tidy_df)
-}
-
-# get the data from areas --------------------------------------------------
-.parse_areas <- function(x) {
-  aac <- as.character(xml2::xml_attr(x, "aac"))
-
-  # get xml children for the forecast (there are seven of these for each area)
-  forecast_periods <- xml2::xml_children(x)
-
-  sub_out <-
-    lapply(X = forecast_periods, FUN = .extract_values)
-  sub_out <- do.call(rbind, sub_out)
-  sub_out <- cbind(aac, sub_out)
-  return(sub_out)
-}
-
-# extract the values of the forecast items
-.extract_values <- function(y) {
-  values <- xml2::xml_children(y)
-  attrs <- unlist(as.character(xml2::xml_attrs(values)))
-  values <- unlist(as.character(xml2::xml_contents(values)))
-
-  time_period <- unlist(t(as.data.frame(xml2::xml_attrs(y))))
-  time_period <-
-    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)), ]
-
-  sub_out <- cbind(time_period, attrs, values)
-  row.names(sub_out) <- NULL
-  return(sub_out)
 }

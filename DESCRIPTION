@@ -1,10 +1,13 @@
 Package: bomrang
 Type: Package
 Title: Australian Government Bureau of Meteorology Data from R
-Version: 0.1.4
+Version: 0.1.4.9000
 Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     email = "adamhsparks@gmail.com",
     comment = c(ORCID = "0000-0002-0061-8359")),
+    person("Jonathan", "Carroll", 
+    email = "rpkg@jcarroll.com.au", role = "aut", 
+    comment = c(ORCID = "0000-0002-1404-5264")),
     person("Mark", "Padgham", role = c("aut", "rev"),
     email = "mark.padgham@email.com",
     comment = c(ORCID = "0000-0003-2172-5265")),
@@ -19,10 +22,7 @@ Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     comment = c(ORCID = "0000-0003-2826-8458")),
     person("Brooke", "Anderson", role = "rev",
     email = "brooke.anderson@colostate.edu",
-    comment = c(ORCID = "0000-0002-5012-9035")),
-    person("Jonathan", "Carroll", 
-    email = "rpkg@jcarroll.com.au", role = "aut", 
-    comment = c(ORCID = "0000-0002-1404-5264")))
+    comment = c(ORCID = "0000-0002-5012-9035")))
 Description: Provides functions to interface with Australian Government Bureau
     of Meteorology (BOM) data, fetching data and returning a tidy data frame of
     précis forecasts, current weather data from stations, agriculture

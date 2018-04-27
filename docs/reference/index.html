@@ -21,6 +21,8 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
@@ -35,6 +37,8 @@
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
+
+
 
 
   </head>
@@ -52,7 +56,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bomrang</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.4.9000</span>
       </span>
     </div>
 
@@ -95,6 +99,7 @@
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -102,104 +107,108 @@
       
       </header>
 
-      <div class="row">
-  <div class="col-md-9">
+<div class="row">
+  <div class="contents col-md-9">
     <div class="page-header">
       <h1>Reference</h1>
     </div>
 
-    <div class="contents">
-      <table class="ref-index">
+    <table class="ref-index">
 
-      <colgroup>
-        <col class="alias" />
-        <col class="title" />
-      </colgroup>
+    <colgroup>
+      <col class="alias" />
+      <col class="title" />
+    </colgroup>
 
-      <tbody>
-        <tr>
-          <th colspan="2">
-            <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
-            <p class="section-desc"></p>
-          </th>
-        </tr>
-        <tr>
-          <!--  -->
-          <td>
-            <p><code><a href="bomrang-deprecated.html">bomrang_cache_list()</a></code> <code><a href="bomrang-deprecated.html">bomrang_cache_details()</a></code> <code><a href="bomrang-deprecated.html">bomrang_cache_delete()</a></code> <code><a href="bomrang-deprecated.html">bomrang_cache_delete_all()</a></code> </p>
-          </td>
-          <td><p>Deprecated function(s) in the bomrang package</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="bomrang.html">bomrang</a></code> </p>
-          </td>
-          <td><p>Fetches Australian Government Bureau of Meteorology (BOM) Weather Data Files
+    <tbody>
+      <tr>
+        <th colspan="2">
+          <h2 id="section-all-functions" class="hasAnchor"><a href="#section-all-functions" class="anchor"></a>All functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr>
+      <tr>
+        <!--  -->
+        <td>
+          <p><code><a href="bomrang-deprecated.html">bomrang_cache_list()</a></code> <code><a href="bomrang-deprecated.html">bomrang_cache_details()</a></code> <code><a href="bomrang-deprecated.html">bomrang_cache_delete()</a></code> <code><a href="bomrang-deprecated.html">bomrang_cache_delete_all()</a></code> </p>
+        </td>
+        <td><p>Deprecated function(s) in the bomrang package</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="bomrang.html">bomrang</a></code> </p>
+        </td>
+        <td><p>Fetches Australian Government Bureau of Meteorology (BOM) Weather Data Files
 and Returns a Tidy Data Frame or Raster Stack Object of the Data.</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_ag_bulletin.html">get_ag_bulletin()</a></code> </p>
-          </td>
-          <td><p>Get BOM Agriculture Bulletin Information for Select Stations</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_available_imagery.html">get_available_imagery()</a></code> </p>
-          </td>
-          <td><p>Get a Listing of Available BOM Satellite GeoTIFF Imagery</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_current_weather.html">get_current_weather()</a></code> </p>
-          </td>
-          <td><p>Get Current Weather Observations of a BOM Station</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_precis_forecast.html">get_precis_forecast()</a></code> </p>
-          </td>
-          <td><p>Get BOM Daily Précis Forecast for Select Towns</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_satellite_imagery.html">get_satellite_imagery()</a></code> </p>
-          </td>
-          <td><p>Get BOM Satellite GeoTIFF Imagery</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="get_weather_bulletin.html">get_weather_bulletin()</a></code> </p>
-          </td>
-          <td><p>Get BOM 0900 or 1500 Weather Bulletin</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="manage_cache.html">manage_cache</a></code> </p>
-          </td>
-          <td><p>Manage Locally Cached BOM Files</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="sweep_for_stations.html">sweep_for_stations()</a></code> </p>
-          </td>
-          <td><p>Find Nearest BOM Weather Stations</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="update_forecast_towns.html">update_forecast_towns()</a></code> </p>
-          </td>
-          <td><p>Update bomrang Internal Database with Latest BOM Forecast Towns</p></td>
-        </tr><tr>
-          <!--  -->
-          <td>
-            <p><code><a href="update_station_locations.html">update_station_locations()</a></code> </p>
-          </td>
-          <td><p>Update bomrang Internal Databases with Latest BOM Station Metadata</p></td>
-        </tr>
-      </tbody>
-      </table>
-    </div>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="get_ag_bulletin.html">get_ag_bulletin()</a></code> </p>
+        </td>
+        <td><p>Get BOM Agriculture Bulletin Information for Select Stations</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="get_available_imagery.html">get_available_imagery()</a></code> </p>
+        </td>
+        <td><p>Get a Listing of Available BOM Satellite GeoTIFF Imagery</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="get_current_weather.html">get_current_weather()</a></code> </p>
+        </td>
+        <td><p>Get Current Weather Observations of a BOM Station</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="get_historical.html">get_historical()</a></code> </p>
+        </td>
+        <td><p>Obtain Historical BOM Data</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="get_precis_forecast.html">get_precis_forecast()</a></code> </p>
+        </td>
+        <td><p>Get BOM Daily Précis Forecast for Select Towns</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="get_satellite_imagery.html">get_satellite_imagery()</a></code> </p>
+        </td>
+        <td><p>Get BOM Satellite GeoTIFF Imagery</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="get_weather_bulletin.html">get_weather_bulletin()</a></code> </p>
+        </td>
+        <td><p>Get BOM 0900 or 1500 Weather Bulletin</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="manage_cache.html">manage_cache</a></code> </p>
+        </td>
+        <td><p>Manage Locally Cached BOM Files</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="sweep_for_stations.html">sweep_for_stations()</a></code> </p>
+        </td>
+        <td><p>Find Nearest BOM Weather Stations</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="update_forecast_towns.html">update_forecast_towns()</a></code> </p>
+        </td>
+        <td><p>Update bomrang Internal Database with Latest BOM Forecast Towns</p></td>
+      </tr><tr>
+        <!--  -->
+        <td>
+          <p><code><a href="update_station_locations.html">update_station_locations()</a></code> </p>
+        </td>
+        <td><p>Update bomrang Internal Databases with Latest BOM Station Metadata</p></td>
+      </tr>
+    </tbody>
+    </table>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -212,7 +221,7 @@ and Returns a Tidy Data Frame or Raster Stack Object of the Data.</p></td>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Adam Sparks, Mark Padgham, Hugh Parsonage, Keith Pembleton.</p>
+  <p>Developed by Adam Sparks, Jonathan Carroll, Mark Padgham, Hugh Parsonage, Keith Pembleton.</p>
 </div>
 
 <div class="pkgdown">
@@ -221,6 +230,8 @@ and Returns a Tidy Data Frame or Raster Stack Object of the Data.</p></td>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>

@@ -1,4 +1,5 @@
 
+
 #' Update bomrang Internal Databases with Latest BOM Station Metadata
 #'
 #' Download the latest station locations and metadata and update bomrang's
@@ -32,9 +33,8 @@ update_station_locations <- function() {
   name <- site <- state_code <- wmo <- state <- lon <- lat <-
     actual_state <- state_from_latlon <- NULL
   tryCatch({
-    curl::curl_download(
-      url =
-        "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
+    curl::curl_download(url =
+                          "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
                         destfile = file.path(tempdir(), "stations.zip"))
   },
   error = function(x)
@@ -64,19 +64,19 @@ update_station_locations <- function() {
         "wmo"
       ),
       col_types = c(
-          site = readr::col_character(),
-          dist = readr::col_character(),
-          name = readr::col_character(),
-          start = readr::col_integer(),
-          end = readr::col_integer(),
-          lat = readr::col_double(),
-          lon = readr::col_double(),
-          NULL1 = readr::col_character(),
-          NULL2 = readr::col_character(),
-          state = readr::col_character(),
-          elev = readr::col_double(),
-          bar_ht = readr::col_double(),
-          wmo = readr::col_integer()
+        site = readr::col_character(),
+        dist = readr::col_character(),
+        name = readr::col_character(),
+        start = readr::col_integer(),
+        end = readr::col_integer(),
+        lat = readr::col_double(),
+        lon = readr::col_double(),
+        NULL1 = readr::col_character(),
+        NULL2 = readr::col_character(),
+        state = readr::col_character(),
+        elev = readr::col_double(),
+        bar_ht = readr::col_double(),
+        wmo = readr::col_integer()
       )
     )
 
@@ -85,22 +85,28 @@ update_station_locations <- function() {
 
   # trim the end of the rows off that have extra info that's not in columns
   nrows <- nrow(bom_stations_raw) - 6
-  bom_stations_raw <- bom_stations_raw[1:nrows, ]
+  bom_stations_raw <- bom_stations_raw[1:nrows,]
 
   # return only current stations listing
   bom_stations_raw <-
-    bom_stations_raw[is.na(bom_stations_raw$end), ]
+    bom_stations_raw[is.na(bom_stations_raw$end),]
   bom_stations_raw$end <- format(Sys.Date(), "%Y")
 
   # if sf is installed, correct the state column, otherwise skip
 
   if (requireNamespace("ASGS.foyer", quietly = TRUE)) {
-    message("The package 'ASGS.foyer' is installed. Station locations will\n",
-            "be checked against lat/lon location values and corrected in the\n",
-            "updated internal database lists of stations.")
+    message(
+      "The package 'ASGS.foyer' is installed. Station locations will\n",
+      "be checked against lat/lon location values and corrected in the\n",
+      "updated internal database lists of stations."
+    )
     data.table::setDT(bom_stations_raw)
     latlon2state <- function(lat, lon) {
-      ASGS.foyer::latlon2SA(lat, lon, to = "STE", yr = "2016", return = "v")
+      ASGS.foyer::latlon2SA(lat,
+                            lon,
+                            to = "STE",
+                            yr = "2016",
+                            return = "v")
     }
 
     bom_stations_raw %>%
@@ -111,9 +117,11 @@ update_station_locations <- function() {
       .[state_from_latlon == "South Australia", actual_state := "SA"] %>%
       .[state_from_latlon == "Western Australia", actual_state := "WA"] %>%
       .[state_from_latlon == "Tasmania", actual_state := "TAS"] %>%
-      .[state_from_latlon == "Australian Capital Territory", actual_state := "ACT"] %>%
+      .[state_from_latlon == "Australian Capital Territory",
+        actual_state := "ACT"] %>%
       .[state_from_latlon == "Northern Territory", actual_state := "NT"] %>%
-      .[actual_state != state & state %notin% c("ANT", "ISL"), state := actual_state] %>%
+      .[actual_state != state &
+          state %notin% c("ANT", "ISL"), state := actual_state] %>%
       .[, actual_state := NULL]
 
     data.table::setDF(bom_stations_raw)
@@ -129,12 +137,16 @@ update_station_locations <- function() {
 
   bom_stations_raw$state_code <- NA
   bom_stations_raw$state_code[bom_stations_raw$state == "WA"] <- "W"
-  bom_stations_raw$state_code[bom_stations_raw$state == "QLD"] <- "Q"
-  bom_stations_raw$state_code[bom_stations_raw$state == "VIC"] <- "V"
+  bom_stations_raw$state_code[bom_stations_raw$state == "QLD"] <-
+    "Q"
+  bom_stations_raw$state_code[bom_stations_raw$state == "VIC"] <-
+    "V"
   bom_stations_raw$state_code[bom_stations_raw$state == "NT"] <- "D"
   bom_stations_raw$state_code[bom_stations_raw$state == "TAS" |
-                                bom_stations_raw$state == "ANT"] <- "T"
-  bom_stations_raw$state_code[bom_stations_raw$state == "NSW"] <- "N"
+                                bom_stations_raw$state == "ANT"] <-
+    "T"
+  bom_stations_raw$state_code[bom_stations_raw$state == "NSW"] <-
+    "N"
   bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <- "S"
 
   stations_site_list <-
@@ -176,7 +188,7 @@ update_station_locations <- function() {
   # MARSHALL ISLANDS NTC AWS, remove these from the list
 
   JSONurl_site_list <-
-    stations_site_list[!is.na(stations_site_list$url), ]
+    stations_site_list[!is.na(stations_site_list$url),]
 
   JSONurl_site_list <-
     JSONurl_site_list %>%
@@ -187,7 +199,7 @@ update_station_locations <- function() {
 
   # Remove new NA values from invalid URLs and convert to data.table
   JSONurl_site_list <-
-    data.table::data.table(JSONurl_site_list[!is.na(JSONurl_site_list$url), ])
+    data.table::data.table(JSONurl_site_list[!is.na(JSONurl_site_list$url),])
 
   message("Overwriting existing databases")
 
@@ -201,6 +213,7 @@ update_station_locations <- function() {
   stations_site_list$site <-
     gsub("^0{1,2}", "", stations_site_list$site)
 
-  fname <- system.file("extdata", "stations_site_list.rda", package = "bomrang")
+  fname <-
+    system.file("extdata", "stations_site_list.rda", package = "bomrang")
   save(stations_site_list, file = fname, compress = "bzip2")
 }

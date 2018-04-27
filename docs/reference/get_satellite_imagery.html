@@ -21,6 +21,8 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
@@ -44,6 +46,8 @@ file availability first by using get_available_imagery." />
 <![endif]-->
 
 
+
+
   </head>
 
   <body>
@@ -59,7 +63,7 @@ file availability first by using get_available_imagery." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bomrang</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.4</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.4.9000</span>
       </span>
     </div>
 
@@ -102,6 +106,7 @@ file availability first by using get_available_imagery." />
   </a>
 </li>
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -109,13 +114,15 @@ file availability first by using get_available_imagery." />
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Get BOM Satellite GeoTIFF Imagery</h1>
-    <small>Source: <a href='https://github.com/ropensci/bomrang/blob/master/R/get_satellite_imagery.R'><code>R/get_satellite_imagery.R</code></a></small>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/bomrang/blob/master/R/get_satellite_imagery.R'><code>R/get_satellite_imagery.R</code></a></small>
+    <div class="hidden name"><code>get_satellite_imagery.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     
     <p>Fetch BOM satellite GeoTIFF imagery from
 <a href='ftp://ftp.bom.gov.au/anon/gen/gms/'>ftp://ftp.bom.gov.au/anon/gen/gms/</a> and return a raster
@@ -123,6 +130,7 @@ file availability first by using get_available_imagery." />
 ten minute update frequency with a 24 hour delete time. Suggested to check
 file availability first by using <code><a href='get_available_imagery.html'>get_available_imagery</a></code>.</p>
     
+    </div>
 
     <pre class="usage"><span class='fu'>get_satellite_imagery</span>(<span class='kw'>product_id</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>scans</span> <span class='kw'>=</span> <span class='fl'>1</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
@@ -190,8 +198,8 @@ timestamp and band.</p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='get_available_imagery.html'>get_available_imagery</a></code>
-<code><a href='manage_cache.html'>manage_cache</a></code></p>
+    <div class='dont-index'><p><code><a href='get_available_imagery.html'>get_available_imagery</a></code>
+<code><a href='manage_cache.html'>manage_cache</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
@@ -234,7 +242,7 @@ Adam H Sparks, <a href='mailto:adamhsparks@gmail.com'>adamhsparks@gmail.com</a>
 
       <footer>
       <div class="copyright">
-  <p>Developed by Adam Sparks, Mark Padgham, Hugh Parsonage, Keith Pembleton.</p>
+  <p>Developed by Adam Sparks, Jonathan Carroll, Mark Padgham, Hugh Parsonage, Keith Pembleton.</p>
 </div>
 
 <div class="pkgdown">
@@ -243,6 +251,8 @@ Adam H Sparks, <a href='mailto:adamhsparks@gmail.com'>adamhsparks@gmail.com</a>
 
       </footer>
    </div>
+
+  
 
   </body>
 </html>
