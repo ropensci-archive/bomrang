@@ -12,12 +12,39 @@ get_historical(stationid = NULL, latlon = NULL, type = c("rain", "min",
 
 \item{latlon}{Length-2 numeric vector of Latitude/Longitude. See Details.}
 
-\item{type}{Measurement type, either daily "rain", "min" (temp), "max" (temp), or
-"solar" (exposure). Partial matching is performed.}
+\item{type}{Measurement type, either daily "rain", "min" (temp), "max"
+(temp), or "solar" (exposure). Partial matching is performed.}
 }
 \value{
 a complete \link{data.frame} of historical observations for the chosen
-station.
+station, with some subset of the following columns
+
+\tabular{rl}{
+\strong{Product_code}:\tab BOM internal code.\cr
+\strong{Station_number}:\tab BOM station ID.\cr
+\strong{Year}:\tab Year of observation (YYYY).\cr
+\strong{Month}:\tab Month of observation (1-12).\cr
+\strong{Day}:\tab Day of observation (1-31).\cr
+\strong{Min_temperature}:\tab Minimum daily recorded temperature (degrees C).\cr
+\strong{Max_temperature}:\tab Maximum daily recorded temperature (degrees C).\cr
+\strong{Accum_days_min}:\tab Accumulated number of days of minimum temperature.\cr
+\strong{Accum_days_max}:\tab Accumulated number of days of maximum temperature.\cr
+\strong{Rainfall}:\tab Daily recorded rainfall in mm.\cr
+\strong{Period}:\tab Period over which rainfall was measured.\cr
+\strong{Solar_exposure}:\tab Daily global solar exposure in MJ/m^2.\cr
+\strong{Quality}:\tab Y, N, or missing. Data which have not yet completed the
+routine quality control process are marked accordingly.
+}
+
+Temperature data prior to 1910 should be used with extreme caution as many
+stations, prior to that date, were exposed in non-standard shelters, some
+of which give readings which are several degrees warmer or cooler than
+those measured according to post-1910 standards.
+
+Daily maximum temperatures usually occur in the afternoon and daily minimum
+temperatures overnight or near dawn. Occasionally, however, the lowest
+temperature in the 24 hours to prior to 9 am can occur around 9 am the
+previous day if the night was particularly warm.
 
 Either \code{stationid} or \code{latlon} must be provided, but if both are, then
 \code{stationid} will be used as it is more reliable.
