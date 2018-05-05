@@ -35,5 +35,5 @@ test_that("Zip file URL is correctly obtained", {
   expect_error(bomrang:::.get_zip_url("023001", 122),
                regexp = "resource identifiers")
   expect_silent(ADLzipURL <- bomrang:::.get_zip_url("023000", 122))
-  expect_match(ADLzipURL, "-105815575")
+  expect_match(ADLzipURL, "p_c=[-]+[0-9]*&")
 })
