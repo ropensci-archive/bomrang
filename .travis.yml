@@ -6,7 +6,8 @@ addons:
     packages:
       - libgdal-dev
       - libproj-dev
-r_binary_packages:
+# r_binary_packages: # temp unavbl due to R 3.5.0
+r_packages:
    - Rcpp
    - stringi
    - dplyr
