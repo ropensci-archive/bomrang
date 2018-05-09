@@ -4,6 +4,8 @@ jobs:
     working_directory: ~/main
     docker:
       - image: rocker/geospatial:latest
+              environment:
+                NOT_CRAN: true
     steps:
       - checkout
       - restore_cache:
@@ -28,8 +30,8 @@ jobs:
             mkdir /root/main/artifacts
             R -e "devtools::install()"
             R -e "goodpractice::gp(checks = grep('(rcmdcheck|covr)', goodpractice::all_checks(), invert=TRUE, value=TRUE))"
-            R -e "cv <- covr::package_coverage(); print(cv); covr::report(x = cv, file = '/root/main/artifacts/cites-coverage.html', browse=FALSE)"
-            R CMD Rd2pdf --force --output='/root/main/artifacts/cites-manual.pdf' .
+            R -e "cv <- covr::package_coverage(); print(cv); covr::report(x = cv, file = '/root/main/artifacts/bomrang-coverage.html', browse=FALSE)"
+            R CMD Rd2pdf --force --output='/root/main/artifacts/bomrang-manual.pdf' .
       - store_artifacts:
           path: /root/main/artifacts/
           destination: artifacts
