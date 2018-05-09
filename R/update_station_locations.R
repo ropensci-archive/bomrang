@@ -34,7 +34,7 @@ update_station_locations <- function() {
     actual_state <- state_from_latlon <- NULL
   tryCatch({
     curl::curl_download(url =
-                          "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
+          "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
                         destfile = file.path(tempdir(), "stations.zip"))
   },
   error = function(x)
