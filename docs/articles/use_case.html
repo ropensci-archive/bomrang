@@ -154,7 +154,7 @@
 <a class="sourceLine" id="cb7-20" data-line-number="20">      )</a>
 <a class="sourceLine" id="cb7-21" data-line-number="21">    recipient &lt;-</a>
 <a class="sourceLine" id="cb7-22" data-line-number="22"><span class="st">      </span><span class="kw">as.character</span>(subscribers_list<span class="op">$</span>email[x])</a>
-<a class="sourceLine" id="cb7-23" data-line-number="23">    <span class="kw"><a href="http://www.rdocumentation.org/packages/mailR/topics/send.mail">send.mail</a></span>(</a>
+<a class="sourceLine" id="cb7-23" data-line-number="23">    <span class="kw">send.mail</span>(</a>
 <a class="sourceLine" id="cb7-24" data-line-number="24">      <span class="dt">from =</span> our_email,</a>
 <a class="sourceLine" id="cb7-25" data-line-number="25">      <span class="dt">to =</span> recipient,</a>
 <a class="sourceLine" id="cb7-26" data-line-number="26">      <span class="dt">subject =</span> <span class="st">"Mungbean Heat Stress Warning"</span>,</a>

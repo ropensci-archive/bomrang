@@ -1,7 +1,7 @@
 *bomrang*: Australian Government Bureau of Meteorology Data from R
 ================
 
-[![CircleCI](https://circleci.com/gh/ropensci/bomrang.svg?style=svg)](https://circleci.com/gh/ropensci/bomrang) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/bomrang?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/bomrang) [![codecov](https://codecov.io/gh/ropensci/bomrang/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/bomrang) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.598301.svg)](https://doi.org/10.5281/zenodo.598301)
+[![CircleCI](https://circleci.com/gh/ropensci/bomrang.svg?style=sheild)](https://circleci.com/gh/ropensci/bomrang) [![AppVeyor Build Status](https://ci.appveyor.com/api/projects/status/github/ropensci/bomrang?branch=master&svg=true)](https://ci.appveyor.com/project/ropensci/bomrang) [![codecov](https://codecov.io/gh/ropensci/bomrang/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/bomrang) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.598301.svg)](https://doi.org/10.5281/zenodo.598301)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/bomrang)](https://cran.r-project.org/package=bomrang)
 [![](https://badges.ropensci.org/121_status.svg)](https://github.com/ropensci/onboarding/issues/121)
 [![status](http://joss.theoj.org/papers/350bf005bded599e4b0f3ac2acf138e8/status.svg)](http://joss.theoj.org/papers/350bf005bded599e4b0f3ac2acf138e8)

@@ -359,6 +359,40 @@
 <a class="sourceLine" id="cb12-14" data-line-number="14">## 6         34         17        NA   1014      NA</a></code></pre></div>
 </div>
 </div>
+</div>
+<div id="using-get_historical" class="section level2">
+<h2 class="hasAnchor">
+<a href="#using-get_historical" class="anchor"></a>Using <code>get_historical</code>
+</h2>
+<p><code><a href="reference/get_historical.html">get_historical()</a></code> takes either of two arguments: <code>stationid</code> and <code>latlon</code>, as well as a type of observation (<code>"rain"</code>, <code>"min"</code> (temperature), <code>"max"</code> (temperature), or <code>"solar"</code>), returning the historical daily weather observations of that type for the given location.</p>
+<p>If <code>latlon</code> is used, the observations returned are from the station nearest to that latitude-longitude coordinate. <code>latlon</code> values are entered as decimal degrees, <em>e.g.</em> -34, 151 for Sydney. The function also emits a message, to tell the user which station was used.</p>
+<div id="results" class="section level3">
+<h3 class="hasAnchor">
+<a href="#results" class="anchor"></a>Results</h3>
+<p>The table returned may have different fields depending on the station that is selected. The time period over which observations are available will be highly dependent on the station requested. Some stations may only have a decade or less of data (e.g. max temperature at <code>070351 (CANBERRA AIRPORT)</code> has ~3,700+ observations back to 2008) while others may have very extensive records ( e.g. rainfall at <code>ADELAIDE (WEST TERRACE / NGAYIRDAPIRA)</code> has ~65,000+ observations back to 1839, three years after the city was founded.)</p>
+</div>
+<div id="example" class="section level3">
+<h3 class="hasAnchor">
+<a href="#example" class="anchor"></a>Example</h3>
+<p>Following is an example fetching the historical daily temperature minimum observations for the station closest to 35.2809°S, 149.1300°E (Canberra)</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">Canberra_mintemps &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_historical.html">get_historical</a></span>(<span class="dt">latlon =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">35.2809</span>, <span class="fl">149.1300</span>),</a>
+<a class="sourceLine" id="cb13-2" data-line-number="2">                                    <span class="dt">type =</span> <span class="st">"min"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">## Closest station: 070351 (CANBERRA AIRPORT)</a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">## trying URL 'http://www.bom.gov.au/jsp/ncc/cdio/weatherData/av?p_display_type=dailyZippedDataFile&amp;p_stn_num=070351&amp;p_c=-989869218&amp;p_nccObsCode=123'</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3">## Content type 'application/zip' length 19508 bytes (19 KB)</a>
+<a class="sourceLine" id="cb14-4" data-line-number="4">## ==================================================</a>
+<a class="sourceLine" id="cb14-5" data-line-number="5">## downloaded 19 KB</a>
+<a class="sourceLine" id="cb14-6" data-line-number="6">##</a>
+<a class="sourceLine" id="cb14-7" data-line-number="7">## Data saved as /var/folders/47/rh3mqv4j3w31bch7f_tcj3jr0000gn/T//RtmpVxfght/IDCJAC0011_070351_1800_Data.csv</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="kw">head</span>(Canberra_mintemps)</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">##   Product.code Bureau.of.Meteorology.station.number Year Month Day Minimum.temperature..Degree.C. Days.of.accumulation.of.minimum.temperature Quality</a>
+<a class="sourceLine" id="cb16-2" data-line-number="2">## 1   IDCJAC0011                                70351 2008     1   1                             NA                                          NA        </a>
+<a class="sourceLine" id="cb16-3" data-line-number="3">## 2   IDCJAC0011                                70351 2008     1   2                             NA                                          NA        </a>
+<a class="sourceLine" id="cb16-4" data-line-number="4">## 3   IDCJAC0011                                70351 2008     1   3                             NA                                          NA        </a>
+<a class="sourceLine" id="cb16-5" data-line-number="5">## 4   IDCJAC0011                                70351 2008     1   4                             NA                                          NA        </a>
+<a class="sourceLine" id="cb16-6" data-line-number="6">## 5   IDCJAC0011                                70351 2008     1   5                             NA                                          NA        </a>
+<a class="sourceLine" id="cb16-7" data-line-number="7">## 6   IDCJAC0011                                70351 2008     1   6                             NA                                          NA        </a></code></pre></div>
+</div>
 <div id="using-get_satellite_imagery" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-get_satellite_imagery" class="anchor"></a>Using <code>get_satellite_imagery</code>
@@ -369,155 +403,155 @@
 <h4 class="hasAnchor">
 <a href="#example-using-get_available_imagery" class="anchor"></a>Example using <code>get_available_imagery</code>
 </h4>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># Most recent 5 images available for IDE00425</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2">avail &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_available_imagery.html">get_available_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDE00426"</span>)</a></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">## </a>
-<a class="sourceLine" id="cb14-2" data-line-number="2">## The following files are currently available for download:</a>
-<a class="sourceLine" id="cb14-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb14-4" data-line-number="4">##   [1] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120210.tif"</a>
-<a class="sourceLine" id="cb14-5" data-line-number="5">##   [2] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120220.tif"</a>
-<a class="sourceLine" id="cb14-6" data-line-number="6">##   [3] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120230.tif"</a>
-<a class="sourceLine" id="cb14-7" data-line-number="7">##   [4] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120250.tif"</a>
-<a class="sourceLine" id="cb14-8" data-line-number="8">##   [5] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120300.tif"</a>
-<a class="sourceLine" id="cb14-9" data-line-number="9">##   [6] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120310.tif"</a>
-<a class="sourceLine" id="cb14-10" data-line-number="10">##   [7] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120320.tif"</a>
-<a class="sourceLine" id="cb14-11" data-line-number="11">##   [8] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120330.tif"</a>
-<a class="sourceLine" id="cb14-12" data-line-number="12">##   [9] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120340.tif"</a>
-<a class="sourceLine" id="cb14-13" data-line-number="13">##  [10] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120350.tif"</a>
-<a class="sourceLine" id="cb14-14" data-line-number="14">##  [11] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120400.tif"</a>
-<a class="sourceLine" id="cb14-15" data-line-number="15">##  [12] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120410.tif"</a>
-<a class="sourceLine" id="cb14-16" data-line-number="16">##  [13] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120420.tif"</a>
-<a class="sourceLine" id="cb14-17" data-line-number="17">##  [14] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120430.tif"</a>
-<a class="sourceLine" id="cb14-18" data-line-number="18">##  [15] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120440.tif"</a>
-<a class="sourceLine" id="cb14-19" data-line-number="19">##  [16] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120450.tif"</a>
-<a class="sourceLine" id="cb14-20" data-line-number="20">##  [17] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120500.tif"</a>
-<a class="sourceLine" id="cb14-21" data-line-number="21">##  [18] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120510.tif"</a>
-<a class="sourceLine" id="cb14-22" data-line-number="22">##  [19] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120520.tif"</a>
-<a class="sourceLine" id="cb14-23" data-line-number="23">##  [20] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120530.tif"</a>
-<a class="sourceLine" id="cb14-24" data-line-number="24">##  [21] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120540.tif"</a>
-<a class="sourceLine" id="cb14-25" data-line-number="25">##  [22] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120550.tif"</a>
-<a class="sourceLine" id="cb14-26" data-line-number="26">##  [23] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120600.tif"</a>
-<a class="sourceLine" id="cb14-27" data-line-number="27">##  [24] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120610.tif"</a>
-<a class="sourceLine" id="cb14-28" data-line-number="28">##  [25] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120620.tif"</a>
-<a class="sourceLine" id="cb14-29" data-line-number="29">##  [26] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120630.tif"</a>
-<a class="sourceLine" id="cb14-30" data-line-number="30">##  [27] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120640.tif"</a>
-<a class="sourceLine" id="cb14-31" data-line-number="31">##  [28] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120650.tif"</a>
-<a class="sourceLine" id="cb14-32" data-line-number="32">##  [29] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120700.tif"</a>
-<a class="sourceLine" id="cb14-33" data-line-number="33">##  [30] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120710.tif"</a>
-<a class="sourceLine" id="cb14-34" data-line-number="34">##  [31] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120720.tif"</a>
-<a class="sourceLine" id="cb14-35" data-line-number="35">##  [32] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120730.tif"</a>
-<a class="sourceLine" id="cb14-36" data-line-number="36">##  [33] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120740.tif"</a>
-<a class="sourceLine" id="cb14-37" data-line-number="37">##  [34] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120750.tif"</a>
-<a class="sourceLine" id="cb14-38" data-line-number="38">##  [35] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120800.tif"</a>
-<a class="sourceLine" id="cb14-39" data-line-number="39">##  [36] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120810.tif"</a>
-<a class="sourceLine" id="cb14-40" data-line-number="40">##  [37] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120820.tif"</a>
-<a class="sourceLine" id="cb14-41" data-line-number="41">##  [38] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120830.tif"</a>
-<a class="sourceLine" id="cb14-42" data-line-number="42">##  [39] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120840.tif"</a>
-<a class="sourceLine" id="cb14-43" data-line-number="43">##  [40] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120850.tif"</a>
-<a class="sourceLine" id="cb14-44" data-line-number="44">##  [41] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120900.tif"</a>
-<a class="sourceLine" id="cb14-45" data-line-number="45">##  [42] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120910.tif"</a>
-<a class="sourceLine" id="cb14-46" data-line-number="46">##  [43] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120920.tif"</a>
-<a class="sourceLine" id="cb14-47" data-line-number="47">##  [44] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120930.tif"</a>
-<a class="sourceLine" id="cb14-48" data-line-number="48">##  [45] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120940.tif"</a>
-<a class="sourceLine" id="cb14-49" data-line-number="49">##  [46] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120950.tif"</a>
-<a class="sourceLine" id="cb14-50" data-line-number="50">##  [47] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121000.tif"</a>
-<a class="sourceLine" id="cb14-51" data-line-number="51">##  [48] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121010.tif"</a>
-<a class="sourceLine" id="cb14-52" data-line-number="52">##  [49] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121020.tif"</a>
-<a class="sourceLine" id="cb14-53" data-line-number="53">##  [50] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121030.tif"</a>
-<a class="sourceLine" id="cb14-54" data-line-number="54">##  [51] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121040.tif"</a>
-<a class="sourceLine" id="cb14-55" data-line-number="55">##  [52] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121050.tif"</a>
-<a class="sourceLine" id="cb14-56" data-line-number="56">##  [53] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121100.tif"</a>
-<a class="sourceLine" id="cb14-57" data-line-number="57">##  [54] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121110.tif"</a>
-<a class="sourceLine" id="cb14-58" data-line-number="58">##  [55] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121120.tif"</a>
-<a class="sourceLine" id="cb14-59" data-line-number="59">##  [56] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121130.tif"</a>
-<a class="sourceLine" id="cb14-60" data-line-number="60">##  [57] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121140.tif"</a>
-<a class="sourceLine" id="cb14-61" data-line-number="61">##  [58] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121150.tif"</a>
-<a class="sourceLine" id="cb14-62" data-line-number="62">##  [59] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121200.tif"</a>
-<a class="sourceLine" id="cb14-63" data-line-number="63">##  [60] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121210.tif"</a>
-<a class="sourceLine" id="cb14-64" data-line-number="64">##  [61] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121220.tif"</a>
-<a class="sourceLine" id="cb14-65" data-line-number="65">##  [62] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121230.tif"</a>
-<a class="sourceLine" id="cb14-66" data-line-number="66">##  [63] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121240.tif"</a>
-<a class="sourceLine" id="cb14-67" data-line-number="67">##  [64] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121250.tif"</a>
-<a class="sourceLine" id="cb14-68" data-line-number="68">##  [65] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121300.tif"</a>
-<a class="sourceLine" id="cb14-69" data-line-number="69">##  [66] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121310.tif"</a>
-<a class="sourceLine" id="cb14-70" data-line-number="70">##  [67] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121320.tif"</a>
-<a class="sourceLine" id="cb14-71" data-line-number="71">##  [68] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121330.tif"</a>
-<a class="sourceLine" id="cb14-72" data-line-number="72">##  [69] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121340.tif"</a>
-<a class="sourceLine" id="cb14-73" data-line-number="73">##  [70] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121350.tif"</a>
-<a class="sourceLine" id="cb14-74" data-line-number="74">##  [71] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121400.tif"</a>
-<a class="sourceLine" id="cb14-75" data-line-number="75">##  [72] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121410.tif"</a>
-<a class="sourceLine" id="cb14-76" data-line-number="76">##  [73] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121420.tif"</a>
-<a class="sourceLine" id="cb14-77" data-line-number="77">##  [74] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121430.tif"</a>
-<a class="sourceLine" id="cb14-78" data-line-number="78">##  [75] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121450.tif"</a>
-<a class="sourceLine" id="cb14-79" data-line-number="79">##  [76] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121500.tif"</a>
-<a class="sourceLine" id="cb14-80" data-line-number="80">##  [77] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121510.tif"</a>
-<a class="sourceLine" id="cb14-81" data-line-number="81">##  [78] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121520.tif"</a>
-<a class="sourceLine" id="cb14-82" data-line-number="82">##  [79] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121530.tif"</a>
-<a class="sourceLine" id="cb14-83" data-line-number="83">##  [80] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121540.tif"</a>
-<a class="sourceLine" id="cb14-84" data-line-number="84">##  [81] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121550.tif"</a>
-<a class="sourceLine" id="cb14-85" data-line-number="85">##  [82] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121600.tif"</a>
-<a class="sourceLine" id="cb14-86" data-line-number="86">##  [83] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121610.tif"</a>
-<a class="sourceLine" id="cb14-87" data-line-number="87">##  [84] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121620.tif"</a>
-<a class="sourceLine" id="cb14-88" data-line-number="88">##  [85] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121630.tif"</a>
-<a class="sourceLine" id="cb14-89" data-line-number="89">##  [86] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121640.tif"</a>
-<a class="sourceLine" id="cb14-90" data-line-number="90">##  [87] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121650.tif"</a>
-<a class="sourceLine" id="cb14-91" data-line-number="91">##  [88] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121700.tif"</a>
-<a class="sourceLine" id="cb14-92" data-line-number="92">##  [89] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121710.tif"</a>
-<a class="sourceLine" id="cb14-93" data-line-number="93">##  [90] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121720.tif"</a>
-<a class="sourceLine" id="cb14-94" data-line-number="94">##  [91] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121730.tif"</a>
-<a class="sourceLine" id="cb14-95" data-line-number="95">##  [92] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121740.tif"</a>
-<a class="sourceLine" id="cb14-96" data-line-number="96">##  [93] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121750.tif"</a>
-<a class="sourceLine" id="cb14-97" data-line-number="97">##  [94] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121800.tif"</a>
-<a class="sourceLine" id="cb14-98" data-line-number="98">##  [95] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121810.tif"</a>
-<a class="sourceLine" id="cb14-99" data-line-number="99">##  [96] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121820.tif"</a>
-<a class="sourceLine" id="cb14-100" data-line-number="100">##  [97] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121830.tif"</a>
-<a class="sourceLine" id="cb14-101" data-line-number="101">##  [98] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121840.tif"</a>
-<a class="sourceLine" id="cb14-102" data-line-number="102">##  [99] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121850.tif"</a>
-<a class="sourceLine" id="cb14-103" data-line-number="103">## [100] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121900.tif"</a>
-<a class="sourceLine" id="cb14-104" data-line-number="104">## [101] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121910.tif"</a>
-<a class="sourceLine" id="cb14-105" data-line-number="105">## [102] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121920.tif"</a>
-<a class="sourceLine" id="cb14-106" data-line-number="106">## [103] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121930.tif"</a>
-<a class="sourceLine" id="cb14-107" data-line-number="107">## [104] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121940.tif"</a>
-<a class="sourceLine" id="cb14-108" data-line-number="108">## [105] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121950.tif"</a>
-<a class="sourceLine" id="cb14-109" data-line-number="109">## [106] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122000.tif"</a>
-<a class="sourceLine" id="cb14-110" data-line-number="110">## [107] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122010.tif"</a>
-<a class="sourceLine" id="cb14-111" data-line-number="111">## [108] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122020.tif"</a>
-<a class="sourceLine" id="cb14-112" data-line-number="112">## [109] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122030.tif"</a>
-<a class="sourceLine" id="cb14-113" data-line-number="113">## [110] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122040.tif"</a>
-<a class="sourceLine" id="cb14-114" data-line-number="114">## [111] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122050.tif"</a>
-<a class="sourceLine" id="cb14-115" data-line-number="115">## [112] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122100.tif"</a>
-<a class="sourceLine" id="cb14-116" data-line-number="116">## [113] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122110.tif"</a>
-<a class="sourceLine" id="cb14-117" data-line-number="117">## [114] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122120.tif"</a>
-<a class="sourceLine" id="cb14-118" data-line-number="118">## [115] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122130.tif"</a>
-<a class="sourceLine" id="cb14-119" data-line-number="119">## [116] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122140.tif"</a>
-<a class="sourceLine" id="cb14-120" data-line-number="120">## [117] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122150.tif"</a>
-<a class="sourceLine" id="cb14-121" data-line-number="121">## [118] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122200.tif"</a>
-<a class="sourceLine" id="cb14-122" data-line-number="122">## [119] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122210.tif"</a>
-<a class="sourceLine" id="cb14-123" data-line-number="123">## [120] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122220.tif"</a>
-<a class="sourceLine" id="cb14-124" data-line-number="124">## [121] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122230.tif"</a>
-<a class="sourceLine" id="cb14-125" data-line-number="125">## [122] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122240.tif"</a>
-<a class="sourceLine" id="cb14-126" data-line-number="126">## [123] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122250.tif"</a>
-<a class="sourceLine" id="cb14-127" data-line-number="127">## [124] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122300.tif"</a>
-<a class="sourceLine" id="cb14-128" data-line-number="128">## [125] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122310.tif"</a>
-<a class="sourceLine" id="cb14-129" data-line-number="129">## [126] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122320.tif"</a>
-<a class="sourceLine" id="cb14-130" data-line-number="130">## [127] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122330.tif"</a>
-<a class="sourceLine" id="cb14-131" data-line-number="131">## [128] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122340.tif"</a>
-<a class="sourceLine" id="cb14-132" data-line-number="132">## [129] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122350.tif"</a>
-<a class="sourceLine" id="cb14-133" data-line-number="133">## [130] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130000.tif"</a>
-<a class="sourceLine" id="cb14-134" data-line-number="134">## [131] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130010.tif"</a>
-<a class="sourceLine" id="cb14-135" data-line-number="135">## [132] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130020.tif"</a>
-<a class="sourceLine" id="cb14-136" data-line-number="136">## [133] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130030.tif"</a>
-<a class="sourceLine" id="cb14-137" data-line-number="137">## [134] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130040.tif"</a>
-<a class="sourceLine" id="cb14-138" data-line-number="138">## [135] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130050.tif"</a>
-<a class="sourceLine" id="cb14-139" data-line-number="139">## [136] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130100.tif"</a>
-<a class="sourceLine" id="cb14-140" data-line-number="140">## [137] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130110.tif"</a>
-<a class="sourceLine" id="cb14-141" data-line-number="141">## [138] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130120.tif"</a>
-<a class="sourceLine" id="cb14-142" data-line-number="142">## [139] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130130.tif"</a>
-<a class="sourceLine" id="cb14-143" data-line-number="143">## [140] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130140.tif"</a>
-<a class="sourceLine" id="cb14-144" data-line-number="144">## [141] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130150.tif"</a>
-<a class="sourceLine" id="cb14-145" data-line-number="145">## [142] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130200.tif"</a>
-<a class="sourceLine" id="cb14-146" data-line-number="146">## [143] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130210.tif"</a>
-<a class="sourceLine" id="cb14-147" data-line-number="147">## [144] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130220.tif"</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># Most recent 5 images available for IDE00425</span></a>
+<a class="sourceLine" id="cb17-2" data-line-number="2">avail &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_available_imagery.html">get_available_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDE00426"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">## </a>
+<a class="sourceLine" id="cb18-2" data-line-number="2">## The following files are currently available for download:</a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4">##   [1] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120210.tif"</a>
+<a class="sourceLine" id="cb18-5" data-line-number="5">##   [2] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120220.tif"</a>
+<a class="sourceLine" id="cb18-6" data-line-number="6">##   [3] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120230.tif"</a>
+<a class="sourceLine" id="cb18-7" data-line-number="7">##   [4] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120250.tif"</a>
+<a class="sourceLine" id="cb18-8" data-line-number="8">##   [5] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120300.tif"</a>
+<a class="sourceLine" id="cb18-9" data-line-number="9">##   [6] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120310.tif"</a>
+<a class="sourceLine" id="cb18-10" data-line-number="10">##   [7] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120320.tif"</a>
+<a class="sourceLine" id="cb18-11" data-line-number="11">##   [8] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120330.tif"</a>
+<a class="sourceLine" id="cb18-12" data-line-number="12">##   [9] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120340.tif"</a>
+<a class="sourceLine" id="cb18-13" data-line-number="13">##  [10] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120350.tif"</a>
+<a class="sourceLine" id="cb18-14" data-line-number="14">##  [11] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120400.tif"</a>
+<a class="sourceLine" id="cb18-15" data-line-number="15">##  [12] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120410.tif"</a>
+<a class="sourceLine" id="cb18-16" data-line-number="16">##  [13] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120420.tif"</a>
+<a class="sourceLine" id="cb18-17" data-line-number="17">##  [14] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120430.tif"</a>
+<a class="sourceLine" id="cb18-18" data-line-number="18">##  [15] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120440.tif"</a>
+<a class="sourceLine" id="cb18-19" data-line-number="19">##  [16] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120450.tif"</a>
+<a class="sourceLine" id="cb18-20" data-line-number="20">##  [17] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120500.tif"</a>
+<a class="sourceLine" id="cb18-21" data-line-number="21">##  [18] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120510.tif"</a>
+<a class="sourceLine" id="cb18-22" data-line-number="22">##  [19] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120520.tif"</a>
+<a class="sourceLine" id="cb18-23" data-line-number="23">##  [20] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120530.tif"</a>
+<a class="sourceLine" id="cb18-24" data-line-number="24">##  [21] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120540.tif"</a>
+<a class="sourceLine" id="cb18-25" data-line-number="25">##  [22] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120550.tif"</a>
+<a class="sourceLine" id="cb18-26" data-line-number="26">##  [23] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120600.tif"</a>
+<a class="sourceLine" id="cb18-27" data-line-number="27">##  [24] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120610.tif"</a>
+<a class="sourceLine" id="cb18-28" data-line-number="28">##  [25] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120620.tif"</a>
+<a class="sourceLine" id="cb18-29" data-line-number="29">##  [26] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120630.tif"</a>
+<a class="sourceLine" id="cb18-30" data-line-number="30">##  [27] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120640.tif"</a>
+<a class="sourceLine" id="cb18-31" data-line-number="31">##  [28] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120650.tif"</a>
+<a class="sourceLine" id="cb18-32" data-line-number="32">##  [29] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120700.tif"</a>
+<a class="sourceLine" id="cb18-33" data-line-number="33">##  [30] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120710.tif"</a>
+<a class="sourceLine" id="cb18-34" data-line-number="34">##  [31] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120720.tif"</a>
+<a class="sourceLine" id="cb18-35" data-line-number="35">##  [32] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120730.tif"</a>
+<a class="sourceLine" id="cb18-36" data-line-number="36">##  [33] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120740.tif"</a>
+<a class="sourceLine" id="cb18-37" data-line-number="37">##  [34] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120750.tif"</a>
+<a class="sourceLine" id="cb18-38" data-line-number="38">##  [35] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120800.tif"</a>
+<a class="sourceLine" id="cb18-39" data-line-number="39">##  [36] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120810.tif"</a>
+<a class="sourceLine" id="cb18-40" data-line-number="40">##  [37] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120820.tif"</a>
+<a class="sourceLine" id="cb18-41" data-line-number="41">##  [38] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120830.tif"</a>
+<a class="sourceLine" id="cb18-42" data-line-number="42">##  [39] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120840.tif"</a>
+<a class="sourceLine" id="cb18-43" data-line-number="43">##  [40] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120850.tif"</a>
+<a class="sourceLine" id="cb18-44" data-line-number="44">##  [41] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120900.tif"</a>
+<a class="sourceLine" id="cb18-45" data-line-number="45">##  [42] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120910.tif"</a>
+<a class="sourceLine" id="cb18-46" data-line-number="46">##  [43] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120920.tif"</a>
+<a class="sourceLine" id="cb18-47" data-line-number="47">##  [44] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120930.tif"</a>
+<a class="sourceLine" id="cb18-48" data-line-number="48">##  [45] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120940.tif"</a>
+<a class="sourceLine" id="cb18-49" data-line-number="49">##  [46] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708120950.tif"</a>
+<a class="sourceLine" id="cb18-50" data-line-number="50">##  [47] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121000.tif"</a>
+<a class="sourceLine" id="cb18-51" data-line-number="51">##  [48] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121010.tif"</a>
+<a class="sourceLine" id="cb18-52" data-line-number="52">##  [49] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121020.tif"</a>
+<a class="sourceLine" id="cb18-53" data-line-number="53">##  [50] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121030.tif"</a>
+<a class="sourceLine" id="cb18-54" data-line-number="54">##  [51] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121040.tif"</a>
+<a class="sourceLine" id="cb18-55" data-line-number="55">##  [52] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121050.tif"</a>
+<a class="sourceLine" id="cb18-56" data-line-number="56">##  [53] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121100.tif"</a>
+<a class="sourceLine" id="cb18-57" data-line-number="57">##  [54] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121110.tif"</a>
+<a class="sourceLine" id="cb18-58" data-line-number="58">##  [55] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121120.tif"</a>
+<a class="sourceLine" id="cb18-59" data-line-number="59">##  [56] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121130.tif"</a>
+<a class="sourceLine" id="cb18-60" data-line-number="60">##  [57] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121140.tif"</a>
+<a class="sourceLine" id="cb18-61" data-line-number="61">##  [58] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121150.tif"</a>
+<a class="sourceLine" id="cb18-62" data-line-number="62">##  [59] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121200.tif"</a>
+<a class="sourceLine" id="cb18-63" data-line-number="63">##  [60] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121210.tif"</a>
+<a class="sourceLine" id="cb18-64" data-line-number="64">##  [61] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121220.tif"</a>
+<a class="sourceLine" id="cb18-65" data-line-number="65">##  [62] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121230.tif"</a>
+<a class="sourceLine" id="cb18-66" data-line-number="66">##  [63] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121240.tif"</a>
+<a class="sourceLine" id="cb18-67" data-line-number="67">##  [64] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121250.tif"</a>
+<a class="sourceLine" id="cb18-68" data-line-number="68">##  [65] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121300.tif"</a>
+<a class="sourceLine" id="cb18-69" data-line-number="69">##  [66] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121310.tif"</a>
+<a class="sourceLine" id="cb18-70" data-line-number="70">##  [67] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121320.tif"</a>
+<a class="sourceLine" id="cb18-71" data-line-number="71">##  [68] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121330.tif"</a>
+<a class="sourceLine" id="cb18-72" data-line-number="72">##  [69] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121340.tif"</a>
+<a class="sourceLine" id="cb18-73" data-line-number="73">##  [70] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121350.tif"</a>
+<a class="sourceLine" id="cb18-74" data-line-number="74">##  [71] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121400.tif"</a>
+<a class="sourceLine" id="cb18-75" data-line-number="75">##  [72] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121410.tif"</a>
+<a class="sourceLine" id="cb18-76" data-line-number="76">##  [73] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121420.tif"</a>
+<a class="sourceLine" id="cb18-77" data-line-number="77">##  [74] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121430.tif"</a>
+<a class="sourceLine" id="cb18-78" data-line-number="78">##  [75] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121450.tif"</a>
+<a class="sourceLine" id="cb18-79" data-line-number="79">##  [76] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121500.tif"</a>
+<a class="sourceLine" id="cb18-80" data-line-number="80">##  [77] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121510.tif"</a>
+<a class="sourceLine" id="cb18-81" data-line-number="81">##  [78] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121520.tif"</a>
+<a class="sourceLine" id="cb18-82" data-line-number="82">##  [79] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121530.tif"</a>
+<a class="sourceLine" id="cb18-83" data-line-number="83">##  [80] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121540.tif"</a>
+<a class="sourceLine" id="cb18-84" data-line-number="84">##  [81] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121550.tif"</a>
+<a class="sourceLine" id="cb18-85" data-line-number="85">##  [82] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121600.tif"</a>
+<a class="sourceLine" id="cb18-86" data-line-number="86">##  [83] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121610.tif"</a>
+<a class="sourceLine" id="cb18-87" data-line-number="87">##  [84] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121620.tif"</a>
+<a class="sourceLine" id="cb18-88" data-line-number="88">##  [85] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121630.tif"</a>
+<a class="sourceLine" id="cb18-89" data-line-number="89">##  [86] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121640.tif"</a>
+<a class="sourceLine" id="cb18-90" data-line-number="90">##  [87] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121650.tif"</a>
+<a class="sourceLine" id="cb18-91" data-line-number="91">##  [88] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121700.tif"</a>
+<a class="sourceLine" id="cb18-92" data-line-number="92">##  [89] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121710.tif"</a>
+<a class="sourceLine" id="cb18-93" data-line-number="93">##  [90] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121720.tif"</a>
+<a class="sourceLine" id="cb18-94" data-line-number="94">##  [91] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121730.tif"</a>
+<a class="sourceLine" id="cb18-95" data-line-number="95">##  [92] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121740.tif"</a>
+<a class="sourceLine" id="cb18-96" data-line-number="96">##  [93] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121750.tif"</a>
+<a class="sourceLine" id="cb18-97" data-line-number="97">##  [94] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121800.tif"</a>
+<a class="sourceLine" id="cb18-98" data-line-number="98">##  [95] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121810.tif"</a>
+<a class="sourceLine" id="cb18-99" data-line-number="99">##  [96] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121820.tif"</a>
+<a class="sourceLine" id="cb18-100" data-line-number="100">##  [97] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121830.tif"</a>
+<a class="sourceLine" id="cb18-101" data-line-number="101">##  [98] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121840.tif"</a>
+<a class="sourceLine" id="cb18-102" data-line-number="102">##  [99] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121850.tif"</a>
+<a class="sourceLine" id="cb18-103" data-line-number="103">## [100] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121900.tif"</a>
+<a class="sourceLine" id="cb18-104" data-line-number="104">## [101] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121910.tif"</a>
+<a class="sourceLine" id="cb18-105" data-line-number="105">## [102] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121920.tif"</a>
+<a class="sourceLine" id="cb18-106" data-line-number="106">## [103] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121930.tif"</a>
+<a class="sourceLine" id="cb18-107" data-line-number="107">## [104] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121940.tif"</a>
+<a class="sourceLine" id="cb18-108" data-line-number="108">## [105] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708121950.tif"</a>
+<a class="sourceLine" id="cb18-109" data-line-number="109">## [106] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122000.tif"</a>
+<a class="sourceLine" id="cb18-110" data-line-number="110">## [107] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122010.tif"</a>
+<a class="sourceLine" id="cb18-111" data-line-number="111">## [108] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122020.tif"</a>
+<a class="sourceLine" id="cb18-112" data-line-number="112">## [109] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122030.tif"</a>
+<a class="sourceLine" id="cb18-113" data-line-number="113">## [110] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122040.tif"</a>
+<a class="sourceLine" id="cb18-114" data-line-number="114">## [111] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122050.tif"</a>
+<a class="sourceLine" id="cb18-115" data-line-number="115">## [112] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122100.tif"</a>
+<a class="sourceLine" id="cb18-116" data-line-number="116">## [113] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122110.tif"</a>
+<a class="sourceLine" id="cb18-117" data-line-number="117">## [114] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122120.tif"</a>
+<a class="sourceLine" id="cb18-118" data-line-number="118">## [115] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122130.tif"</a>
+<a class="sourceLine" id="cb18-119" data-line-number="119">## [116] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122140.tif"</a>
+<a class="sourceLine" id="cb18-120" data-line-number="120">## [117] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122150.tif"</a>
+<a class="sourceLine" id="cb18-121" data-line-number="121">## [118] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122200.tif"</a>
+<a class="sourceLine" id="cb18-122" data-line-number="122">## [119] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122210.tif"</a>
+<a class="sourceLine" id="cb18-123" data-line-number="123">## [120] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122220.tif"</a>
+<a class="sourceLine" id="cb18-124" data-line-number="124">## [121] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122230.tif"</a>
+<a class="sourceLine" id="cb18-125" data-line-number="125">## [122] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122240.tif"</a>
+<a class="sourceLine" id="cb18-126" data-line-number="126">## [123] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122250.tif"</a>
+<a class="sourceLine" id="cb18-127" data-line-number="127">## [124] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122300.tif"</a>
+<a class="sourceLine" id="cb18-128" data-line-number="128">## [125] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122310.tif"</a>
+<a class="sourceLine" id="cb18-129" data-line-number="129">## [126] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122320.tif"</a>
+<a class="sourceLine" id="cb18-130" data-line-number="130">## [127] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122330.tif"</a>
+<a class="sourceLine" id="cb18-131" data-line-number="131">## [128] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122340.tif"</a>
+<a class="sourceLine" id="cb18-132" data-line-number="132">## [129] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708122350.tif"</a>
+<a class="sourceLine" id="cb18-133" data-line-number="133">## [130] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130000.tif"</a>
+<a class="sourceLine" id="cb18-134" data-line-number="134">## [131] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130010.tif"</a>
+<a class="sourceLine" id="cb18-135" data-line-number="135">## [132] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130020.tif"</a>
+<a class="sourceLine" id="cb18-136" data-line-number="136">## [133] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130030.tif"</a>
+<a class="sourceLine" id="cb18-137" data-line-number="137">## [134] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130040.tif"</a>
+<a class="sourceLine" id="cb18-138" data-line-number="138">## [135] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130050.tif"</a>
+<a class="sourceLine" id="cb18-139" data-line-number="139">## [136] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130100.tif"</a>
+<a class="sourceLine" id="cb18-140" data-line-number="140">## [137] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130110.tif"</a>
+<a class="sourceLine" id="cb18-141" data-line-number="141">## [138] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130120.tif"</a>
+<a class="sourceLine" id="cb18-142" data-line-number="142">## [139] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130130.tif"</a>
+<a class="sourceLine" id="cb18-143" data-line-number="143">## [140] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130140.tif"</a>
+<a class="sourceLine" id="cb18-144" data-line-number="144">## [141] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130150.tif"</a>
+<a class="sourceLine" id="cb18-145" data-line-number="145">## [142] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130200.tif"</a>
+<a class="sourceLine" id="cb18-146" data-line-number="146">## [143] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130210.tif"</a>
+<a class="sourceLine" id="cb18-147" data-line-number="147">## [144] "ftp://ftp.bom.gov.au/anon/gen/gms/IDE00426.201708130220.tif"</a></code></pre></div>
 </div>
 <div id="example-using-get_satellite_imagery" class="section level4">
 <h4 class="hasAnchor">
@@ -529,13 +563,13 @@
 <li><p><code>scans</code> a numeric value for the number of scans to download, starting with the most recent and progressing backwards, <em>e.g.</em>, <code>1</code> - the most recent single scan available , <code>6</code> - the most recent hour available, <code>12</code> - the most recent 2 hours available, etc. Negating will return the oldest files first. Defaults to 1. This argument is optional.</p></li>
 <li><p><code>cache</code> a logical value that indicates whether or not to store image files locally for later use? If <code>FALSE</code>, the downloaded files are removed when R session is closed. To take advantage of cached files in future sessions, set <code>TRUE</code>. Defaults to <code>FALSE</code>. This argument is optional. Cached files may be managed with the <code>manage_bomrang_cache()</code> function.</p></li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># Use `avail` from prior and download only most recent scan</span></a>
-<a class="sourceLine" id="cb15-2" data-line-number="2">imagery &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_satellite_imagery.html">get_satellite_imagery</a></span>(<span class="dt">product_id =</span> avail, <span class="dt">scans =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb15-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="co"># load the raster library to work with the GeoTIFF files</span></a>
-<a class="sourceLine" id="cb15-5" data-line-number="5"><span class="kw">library</span>(raster)</a></code></pre></div>
-<div class="sourceCode" id="cb16"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">## Loading required package: sp</a></code></pre></div>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(imagery)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># Use `avail` from prior and download only most recent scan</span></a>
+<a class="sourceLine" id="cb19-2" data-line-number="2">imagery &lt;-<span class="st"> </span><span class="kw"><a href="reference/get_satellite_imagery.html">get_satellite_imagery</a></span>(<span class="dt">product_id =</span> avail, <span class="dt">scans =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb19-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="co"># load the raster library to work with the GeoTIFF files</span></a>
+<a class="sourceLine" id="cb19-5" data-line-number="5"><span class="kw">library</span>(raster)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">## Loading required package: sp</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(imagery)</a></code></pre></div>
 <p><img src="reference/figures/get_satellite_imagery-1.png"></p>
 </div>
 </div>
@@ -553,10 +587,10 @@
 </li>
 <li>
 <p>To cite <em>bomrang</em>, please use:</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">Adam H Sparks, Mark Padgham, Hugh Parsonage and Keith <span class="kw">Pembleton</span> (<span class="dv">2017</span>).</a>
-<a class="sourceLine" id="cb18-2" data-line-number="2">bomrang<span class="op">:</span><span class="st"> </span>Fetch Australian Government Bureau of Meteorology Weather Data.</a>
-<a class="sourceLine" id="cb18-3" data-line-number="3">The Journal of Open Source Software, <span class="dv">2</span>(<span class="dv">17</span>).</a>
-<a class="sourceLine" id="cb18-4" data-line-number="4">DOI<span class="op">:</span><span class="st"> </span>[<span class="fl">10.21105</span><span class="op">/</span>joss<span class="fl">.00411</span>](https<span class="op">:</span><span class="er">//</span>doi.org<span class="op">/</span><span class="fl">10.21105</span><span class="op">/</span>joss<span class="fl">.00411</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode R"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">Adam H Sparks, Mark Padgham, Hugh Parsonage and Keith <span class="kw">Pembleton</span> (<span class="dv">2017</span>).</a>
+<a class="sourceLine" id="cb22-2" data-line-number="2">bomrang<span class="op">:</span><span class="st"> </span>Fetch Australian Government Bureau of Meteorology Weather Data.</a>
+<a class="sourceLine" id="cb22-3" data-line-number="3">The Journal of Open Source Software, <span class="dv">2</span>(<span class="dv">17</span>).</a>
+<a class="sourceLine" id="cb22-4" data-line-number="4">DOI<span class="op">:</span><span class="st"> </span>[<span class="fl">10.21105</span><span class="op">/</span>joss<span class="fl">.00411</span>](https<span class="op">:</span><span class="er">//</span>doi.org<span class="op">/</span><span class="fl">10.21105</span><span class="op">/</span>joss<span class="fl">.00411</span>)</a></code></pre></div>
 <p>or the BibTeX entry:</p>
 <pre><code>@article{AHSparks2017,
 doi = {10.21105/joss.00411},
@@ -625,7 +659,7 @@ journal = {The Journal of Open Source Software}</code></pre>
   <div class="dev-status">
 <h2>Dev status</h2>
 <ul class="list-unstyled">
-<li><a href="https://travis-ci.org/ropensci/bomrang"><img src="https://travis-ci.org/ropensci/bomrang.svg?branch=master" alt="Travis-CI Build Status"></a></li>
+<li><a href="https://circleci.com/gh/ropensci/bomrang"><img src="https://circleci.com/gh/ropensci/bomrang.svg?style=sheild" alt="CircleCI"></a></li>
 <li><a href="https://ci.appveyor.com/project/ropensci/bomrang"><img src="https://ci.appveyor.com/api/projects/status/github/ropensci/bomrang?branch=master&amp;svg=true" alt="AppVeyor Build Status"></a></li>
 <li><a href="https://codecov.io/gh/ropensci/bomrang"><img src="https://codecov.io/gh/ropensci/bomrang/branch/master/graph/badge.svg" alt="codecov"></a></li>
 <li><a href="https://doi.org/10.5281/zenodo.598301"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.598301.svg" alt="DOI"></a></li>
