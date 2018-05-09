@@ -32,6 +32,9 @@ jobs:
             R -e "goodpractice::gp(checks = grep('(rcmdcheck|covr)', goodpractice::all_checks(), invert=TRUE, value=TRUE))"
             R -e "cv <- covr::package_coverage(); print(cv); covr::report(x = cv, file = '/root/main/artifacts/bomrang-coverage.html', browse=FALSE)"
             R CMD Rd2pdf --force --output='/root/main/artifacts/bomrang-manual.pdf' .
+      - run:
+          command:
+            R -e 'covr::codecov()'
       - store_artifacts:
           path: /root/main/artifacts/
           destination: artifacts
