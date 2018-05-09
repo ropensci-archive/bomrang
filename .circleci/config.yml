@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/main
     docker:
-      - image: rocker/verse:latest
+      - image: rocker/geospatial:latest
     steps:
       - checkout
       - restore_cache:
