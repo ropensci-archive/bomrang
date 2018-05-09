@@ -4,8 +4,8 @@ jobs:
     working_directory: ~/main
     docker:
       - image: rocker/geospatial:latest
-              environment:
-                NOT_CRAN: true
+        environment:
+          NOT_CRAN: true
     steps:
       - checkout
       - restore_cache:
