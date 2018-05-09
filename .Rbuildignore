@@ -3,7 +3,6 @@
 ^CONDUCT\.md$
 ^README\.Rmd$
 ^README-.*\.png$
-^\.travis\.yml$
 ^appveyor\.yml$
 ^codecov\.yml$
 ^_pkgdown\.yml$
@@ -13,3 +12,4 @@
 ^revdep$
 ^paper$
 ^codemeta\.json$
+^\.circleci$
