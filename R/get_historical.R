@@ -51,7 +51,7 @@
 #'
 #' @examples
 #' \dontrun{get_historical(stationid = "023000", type = "max") ## ~48,000+ daily records}
-#' get_historical(latlon = c(-35.2809, 149.1300), type = "min") ## 3,500+ daily records
+#' \dontrun{get_historical(latlon = c(-35.2809, 149.1300), type = "min") ## 3,500+ daily records}
 get_historical <-
   function(stationid = NULL,
            latlon = NULL,
@@ -100,37 +100,37 @@ get_historical <-
 
     zipurl <- .get_zip_url(stationid, obscode)
     dat <- .get_zip_and_load(zipurl)
-    
-    names(dat) <- switch(type, 
-                         min = c("Product_code", 
-                                 "Station_number", 
-                                 "Year", 
-                                 "Month", 
-                                 "Day", 
-                                 "Min_temperature", 
-                                 "Accum_days_min", 
+
+    names(dat) <- switch(type,
+                         min = c("Product_code",
+                                 "Station_number",
+                                 "Year",
+                                 "Month",
+                                 "Day",
+                                 "Min_temperature",
+                                 "Accum_days_min",
                                  "Quality"),
-                         max = c("Product_code", 
-                                 "Station_number", 
-                                 "Year", 
-                                 "Month", 
-                                 "Day", 
-                                 "Max_temperature", 
-                                 "Accum_days_max", 
+                         max = c("Product_code",
+                                 "Station_number",
+                                 "Year",
+                                 "Month",
+                                 "Day",
+                                 "Max_temperature",
+                                 "Accum_days_max",
                                  "Quality"),
-                         rain = c("Product_code", 
-                                  "Station_number", 
-                                  "Year", 
-                                  "Month", 
-                                  "Day", 
-                                  "Rainfall", 
-                                  "Period", 
+                         rain = c("Product_code",
+                                  "Station_number",
+                                  "Year",
+                                  "Month",
+                                  "Day",
+                                  "Rainfall",
+                                  "Period",
                                   "Quality"),
-                         solar = c("Product_code", 
-                                   "Station_number", 
-                                   "Year", 
-                                   "Month", 
-                                   "Day", 
+                         solar = c("Product_code",
+                                   "Station_number",
+                                   "Year",
+                                   "Month",
+                                   "Day",
                                    "Solar_exposure")
     )
     dat
