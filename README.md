@@ -6,7 +6,7 @@
 [![](https://badges.ropensci.org/121_status.svg)](https://github.com/ropensci/onboarding/issues/121)
 [![status](http://joss.theoj.org/papers/350bf005bded599e4b0f3ac2acf138e8/status.svg)](http://joss.theoj.org/papers/350bf005bded599e4b0f3ac2acf138e8)
 
-<img align="right" src="man/figures/bomrang-hex.png"> Provides functions to interface with Australian Government Bureau of Meteorology (BOM) data, fetching data and returning a tidy data frame of précis forecasts, current weather data from stations, ag information bulletins or a `raster::stack()` object of satellite imagery from GeoTIFF files.
+<img align="right" src="man/figures/bomrang-hex.png"> Provides functions to interface with Australian Government Bureau of Meteorology (BOM) data, fetching data and returning a tidy data frame of précis forecasts, current weather data from stations, ag information bulletins, historical weather data or a `raster::stack()` object of satellite imagery from GeoTIFF files.
 
 Credit for the name, *bomrang*, goes to [Di Cook](http://dicook.github.io), who suggested it while attending the rOpenSci AUUnconf in Brisbane, 2016, upon seeing the [vignette](https://github.com/saundersk1/auunconf16/blob/master/Vignette_BOM.pdf) that we had assembled during the Unconf.
 
