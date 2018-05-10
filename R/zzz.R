@@ -1,5 +1,5 @@
 
-manage_cache <- NULL
+manage_cache <- NULL # nocov start
 
 .onLoad <-
   function(libname = find.package("bomrang"),
@@ -30,4 +30,4 @@ manage_cache <- NULL
 
 stub <- function(){
   rgdal::readGDAL()
-}
+} # nocov end

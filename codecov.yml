@@ -1,4 +1,1 @@
 comment: false
-
-ignore:
-  - "./R/zzz.R"
