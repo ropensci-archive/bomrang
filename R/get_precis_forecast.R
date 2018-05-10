@@ -101,8 +101,8 @@ get_precis_forecast <- function(state = "AUS") {
 
 .parse_forecast <- function(xmlforecast_url) {
   # CRAN note avoidance
-  AAC_codes <- attrs <- end_time_local <- precipitation_range <-
-    start_time_local <- values <- NULL
+  AAC_codes <- attrs <- end_time_local <- precipitation_range <- # nocov start
+    start_time_local <- values <- NULL # nocov end
 
   # download the XML forecast --------------------------------------------------
   tryCatch({

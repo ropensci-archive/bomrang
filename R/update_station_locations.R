@@ -30,8 +30,8 @@
 #'
 update_station_locations <- function() {
   # CRAN NOTE avoidance
-  name <- site <- state_code <- wmo <- state <- lon <- lat <-
-    actual_state <- state_from_latlon <- NULL
+  name <- site <- state_code <- wmo <- state <- lon <- lat <- # nocov start
+    actual_state <- state_from_latlon <- NULL # nocov end
   tryCatch({
     curl::curl_download(url =
           "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",

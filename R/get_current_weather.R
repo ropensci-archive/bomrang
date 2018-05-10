@@ -74,7 +74,7 @@ get_current_weather <-
            emit_latlon_msg = TRUE,
            as.data.table = FALSE) {
     # CRAN NOTE avoidance
-    JSONurl_site_list <- NULL
+    JSONurl_site_list <- NULL # nocov
 
     # Load JSON URL list
     load(system.file("extdata", "JSONurl_site_list.rda",
@@ -93,7 +93,7 @@ get_current_weather <-
                 length(station_name) == 1)
 
       # CRAN NOTE avoidance
-      name <- NULL
+      name <- NULL # nocov
 
       station_name <- toupper(station_name)
 
@@ -195,7 +195,7 @@ get_current_weather <-
       Lon <- latlon[2]
 
       # CRAN NOTE avoidance: names of JSONurl_site_list
-      lat <- lon <- NULL
+      lat <- lon <- NULL # nocov
 
       station_nrst_latlon <-
         JSONurl_site_list %>%
@@ -297,7 +297,7 @@ cook <- function(DT, as.DT, double_cols) {
   DTnoms <- names(DT)
 
   # CRAN NOTE avoidance
-  local_date_time_full <- NULL
+  local_date_time_full <- NULL # nocov
   if ("local_date_time_full" %chin% DTnoms) {
     DT[, local_date_time_full := as.POSIXct(
       local_date_time_full,

@@ -51,7 +51,7 @@
 #' @export
 get_ag_bulletin <- function(state = "AUS") {
   # CRAN NOTE avoidance
-  stations_site_list <- NULL
+  stations_site_list <- NULL # nocov
 
   # Load AAC code/town name list to join with final output
   load(system.file("extdata", "stations_site_list.rda", package = "bomrang"))
