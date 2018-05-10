@@ -57,8 +57,11 @@ return fewer observations.
 Retrieves daily observations for a given station.
 }
 \examples{
-\dontrun{get_historical(stationid = "023000", type = "max") ## ~48,000+ daily records}
-get_historical(latlon = c(-35.2809, 149.1300), type = "min") ## 3,500+ daily records
+\dontrun{
+get_historical(stationid = "023000", type = "max") ## ~48,000+ daily records
+get_historical(latlon = c(-35.2809, 149.1300),
+               type = "min") ## 3,500+ daily records
+}
 }
 \author{
 Jonathan Carroll, \email{rpkg@jcarroll.com.au}
