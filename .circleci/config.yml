@@ -25,7 +25,7 @@ jobs:
           paths:
             - "/usr/local/lib/R/site-library"
       - run:
-          no_output_timeout: 20m
+          no_output_timeout: 30m
           command: |
             mkdir /root/main/artifacts
             R -e "devtools::install()"
