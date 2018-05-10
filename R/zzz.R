@@ -1,5 +1,5 @@
 
-manage_cache <- NULL # nocov
+manage_cache <- NULL
 
 .onLoad <-
   function(libname = find.package("bomrang"),
