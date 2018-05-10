@@ -54,7 +54,7 @@ get_ag_bulletin <- function(state = "AUS") {
   stations_site_list <- NULL # nocov
 
   # Load AAC code/town name list to join with final output
-  load(system.file("extdata", "stations_site_list.rda", package = "bomrang"))
+  load(system.file("extdata", "stations_site_list.rda", package = "bomrang")) # nocov
 
   the_state <- .check_states(state) # see internal_functions.R
 

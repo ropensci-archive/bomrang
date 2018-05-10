@@ -217,7 +217,7 @@ get_precis_forecast <- function(state = "AUS") {
   out[, c(8:11, 13)] <- lapply(out[, 8:11, 13], as.numeric)
 
   # Load AAC code/town name list to join with final output
-  load(system.file("extdata", "AAC_codes.rda", package = "bomrang"))
+  load(system.file("extdata", "AAC_codes.rda", package = "bomrang"))  # nocov
 
   # return final forecast object -----------------------------------------------
   # merge with aac codes for location information
