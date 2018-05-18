@@ -71,6 +71,7 @@ get_historical <-
       if (!identical(length(latlon), 2L) || !is.numeric(latlon)) {
         stop("latlon must be a 2-element numeric vector.",
              call. = FALSE)
+      }
         stationdetails <-
           sweep_for_stations(latlon = latlon)[1, , drop = TRUE]
         message("Closest station: ",
@@ -80,7 +81,6 @@ get_historical <-
                 ")")
         stationid <- stationdetails$site
       }
-    }
     ## ensure station is known
     # CRAN NOTE avoidance
     JSONurl_site_list <- NULL # nocov
