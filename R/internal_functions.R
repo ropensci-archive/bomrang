@@ -222,11 +222,7 @@ convert_state <- function(state) {
   zipped <- utils::unzip(tmp, exdir = dirname(tmp))
   unlink(tmp)
   datfile <- grep("Data.csv", zipped, value = TRUE)
-<<<<<<< HEAD
-  message("Data saved as ", datfile)
-=======
   message("\nData saved as ", datfile, "\n")
->>>>>>> devel
   dat <- utils::read.csv(datfile, header = TRUE)
   dat
 }
