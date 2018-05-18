@@ -59,29 +59,28 @@ get_historical <-
   function(stationid = NULL,
            latlon = NULL,
            type = c("rain", "min", "max", "solar")) {
-    if (is.null(stationid) &
-        is.null(latlon))
+    if (is.null(stationid) & is.null(latlon)) {
       stop("stationid or latlon must be provided.",
            call. = FALSE)
+    }
     if (!is.null(stationid) & !is.null(latlon)) {
       warning("Only one of stationid or latlon may be provided. ",
               "Using stationid.")
     }
     if (is.null(stationid)) {
-      if (!identical(length(latlon), 2L) ||
-          !is.numeric(latlon))
+      if (!identical(length(latlon), 2L) || !is.numeric(latlon)) {
         stop("latlon must be a 2-element numeric vector.",
              call. = FALSE)
-      stationdetails <-
-        sweep_for_stations(latlon = latlon)[1, , drop = TRUE]
-      message("Closest station: ",
-              stationdetails$site,
-              " (",
-              stationdetails$name,
-              ")")
-      stationid <- stationdetails$site
+        stationdetails <-
+          sweep_for_stations(latlon = latlon)[1, , drop = TRUE]
+        message("Closest station: ",
+                stationdetails$site,
+                " (",
+                stationdetails$name,
+                ")")
+        stationid <- stationdetails$site
+      }
     }
-
     ## ensure station is known
     # CRAN NOTE avoidance
     JSONurl_site_list <- NULL # nocov
