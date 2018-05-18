@@ -10,6 +10,10 @@ or solar exposure. (@jonocarroll)
 - `get_precis_forecast()` handles states/territories with no/missing
 precipitation data gracefully
 
+## Bug fixes
+
+- Add `rappdirs` to Imports section of DESCRIPTION file to fix missing import
+
 # bomrang 0.1.4
 
 ## Minor changes

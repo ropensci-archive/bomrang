@@ -87,7 +87,7 @@ get_historical <-
     JSONurl_site_list <- NULL # nocov start
     load(system.file("extdata",
                      "JSONurl_site_list.rda",
-                     package = "bomrang")) # nocov stop
+                     package = "bomrang")) # nocov end
     if (!stationid %in% JSONurl_site_list$site)
       stop("Station not recognised.",
            call. = FALSE)

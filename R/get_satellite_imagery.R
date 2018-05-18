@@ -331,7 +331,8 @@ get_satellite_imagery <-
   # check if the Product ID requested provides any files on server -------------
   if (length(tif_files) == 0 |
       tif_files[1] == "ftp://ftp.bom.gov.au/anon/gen/gms/") {
-    stop(paste0("\nSorry, no files are currently available for ", product_id))
+    stop(paste0("\nSorry, no files are currently available for ", product_id),
+         call. = FALSE)
   }
   return(tif_files)
 }

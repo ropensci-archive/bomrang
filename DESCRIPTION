@@ -46,6 +46,7 @@ Imports:
     janitor (>= 1.0.0),
     jsonlite (>= 1.5),
     magrittr (>= 1.5),
+    rappdirs,
     raster,
     rgdal,
     readr (>= 1.1.1),
