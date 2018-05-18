@@ -1,4 +1,5 @@
 
+
 `%notin%` <- function(x, table) {
   # Same as !(x %in% table)
   match(x, table, nomatch = 0L) == 0L
@@ -192,8 +193,7 @@ convert_state <- function(state) {
     )
   raw <- httr::content(httr::GET(url1), "text")
   if (grepl("BUREAU FOOTER", raw))
-    stop("Error in retrieving resource identifiers.",
-         call. = FALSE)
+    stop("Error in retrieving resource identifiers.")
   pc <- sub("^.*:", "", raw)
   url2 <-
     paste0(
@@ -216,15 +216,14 @@ convert_state <- function(state) {
 #' @keywords internal
 #' @author Jonathan Carroll, \email{rpkg@jcarroll.com.au}
 #' @noRd
-.get_zip_and_load <- function(zipurl) {
-  utils::download.file(zipurl, file.path(tempdir(), "zipfile.zip"))
-  utils::unzip(file.path(tempdir(), "zipfile.zip"), exdir = tempdir())
-  datfile <- list.files(tempdir(), pattern = ".csv$", full.names = TRUE)
+.get_zip_and_load <- function(url) {
+  tmp <- tempfile(fileext = ".zip")
+  utils::download.file(url, tmp)
+  zipped <- utils::unzip(tmp, exdir = dirname(tmp))
+  unlink(tmp)
+  datfile <- grep("Data.csv", zipped, value = TRUE)
   message("Data saved as ", datfile)
   dat <- utils::read.csv(datfile, header = TRUE)
-  tmp_files <- list.files(tempdir(), full.names = TRUE)
-  unlink(tmp_files)
-  rm(tmp_files)
   dat
 }
 
