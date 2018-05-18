@@ -218,7 +218,7 @@ convert_state <- function(state) {
 #' @noRd
 .get_zip_and_load <- function(url) {
   tmp <- tempfile(fileext = ".zip")
-  utils::download.file(url, tmp)
+  utils::download.file(url, tmp, mode = "wb")
   zipped <- utils::unzip(tmp, exdir = dirname(tmp))
   unlink(tmp)
   datfile <- grep("Data.csv", zipped, value = TRUE)
