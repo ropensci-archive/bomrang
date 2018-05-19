@@ -15,13 +15,19 @@
 
 * This is a new patch release
 
+## Requested corrections by CRAN
+
+- Add `rappdirs` to Imports section of DESCRIPTION file to fix missing import
+
+## New features
+
+- `get_historical()` retrieves historical daily rainfall, min/max temperatures,
+or solar exposure
+
 ## Minor changes
 
-- Much faster station location checking using `ASDS.foyer::latlon2SA`
-
-- "BoM" is replaced with "BOM" throughout the package for consistency
-
-- `janitor` >= 1.0.0 is now required
+- `get_precis_forecast()` handles states/territories with no/missing
+precipitation data gracefully
 
 ## Reverse dependencies
 
