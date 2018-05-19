@@ -171,8 +171,7 @@ get_precis_forecast <- function(state = "AUS") {
                   "end_time_utc")], 2, function(x)
                     chartr("Z", " ", x))
 
-  if ("precipitation_range" %in% colnames(out))
-  {
+  if ("precipitation_range" %in% colnames(out)) {
     out[, "precipitation_range"] <-
       as.character(out[, "precipitation_range"])
     # format any values that are only zero to make next step easier
