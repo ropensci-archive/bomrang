@@ -1,4 +1,4 @@
-# bomrang 0.1.5
+# bomrang 0.2.0
 
 ## New features
 
