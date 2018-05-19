@@ -1,13 +1,13 @@
 
 ## Test environments
 
-* local macOS install, R version 3.4.4 (2018-03-15)
+* local macOS install, R version 3.5.0 (2018-04-23)
 
-* local Ubuntu 17.10, R version 3.4.4 (2018-03-15)
+* local Ubuntu 18.04, R version 3.5.0 (2018-04-23)
 
-* win-builder R Under development (unstable) (2018-03-18 r74422)
+* win-builder R Under development (unstable) (2018-05-15 r74727)
 
-* local Windows 7 install, R version 3.4.4 (2018-03-15)
+* win-builder R version 3.5.0 (2018-04-23)
 
 ## R CMD check results
 
