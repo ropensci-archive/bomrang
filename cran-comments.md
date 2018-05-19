@@ -13,7 +13,7 @@
 
 0 errors | 0 warnings | 1 note
 
-* This is a new patch release
+* This is a new minor release with added functionality and corrections
 
 ## Requested corrections by CRAN
 
