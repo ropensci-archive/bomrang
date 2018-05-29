@@ -100,7 +100,8 @@ get_precis_forecast <- function(state = "AUS") {
 
 .parse_forecast <- function(xmlforecast_url) {
   # CRAN note avoidance
-  AAC_codes <- attrs <- end_time_local <- precipitation_range <- # nocov start
+  AAC_codes <- # nocov start
+    attrs <- end_time_local <- precipitation_range <-
     start_time_local <- values <- NULL # nocov end
 
   # download the XML forecast --------------------------------------------------
@@ -170,7 +171,7 @@ get_precis_forecast <- function(state = "AUS") {
                   "end_time_utc")], 2, function(x)
                     chartr("Z", " ", x))
 
-  if ("precipitation_range" %in% colnames(out)){
+  if ("precipitation_range" %in% colnames(out)) {
     out[, "precipitation_range"] <-
       as.character(out[, "precipitation_range"])
     # format any values that are only zero to make next step easier
