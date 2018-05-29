@@ -18,7 +18,7 @@ jobs:
             R -e "devtools::install_deps(dependencies = TRUE)"
             R -e "devtools::install_github('MangoTheCat/goodpractice')"
       - run:
-          no_output_timeout: 20m
+          no_output_timeout: 30m
           command: |
             R -e 'devtools::check()'
       - save_cache:
