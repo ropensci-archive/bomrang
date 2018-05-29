@@ -84,10 +84,10 @@ get_historical <-
 
     ## ensure station is known
     # CRAN NOTE avoidance
-    JSONurl_site_list <- NULL # nocov start
+    JSONurl_site_list <- NULL # nocov
     load(system.file("extdata",
                      "JSONurl_site_list.rda",
-                     package = "bomrang")) # nocov end
+                     package = "bomrang"))
     if (!stationid %in% JSONurl_site_list$site)
       stop("Station not recognised.",
            call. = FALSE)

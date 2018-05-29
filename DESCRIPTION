@@ -1,7 +1,7 @@
 Package: bomrang
 Type: Package
 Title: Australian Government Bureau of Meteorology Data from R
-Version: 0.2.0.9000
+Version: 0.1.4.9000
 Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     email = "adamhsparks@gmail.com",
     comment = c(ORCID = "0000-0002-0061-8359")),
@@ -68,7 +68,7 @@ Suggests:
     gridExtra,
     maps,
     mapproj
-RoxygenNote: 6.0.1
+RoxygenNote: 6.0.1.9000
 NeedsCompilation: no
 ByteCompile: TRUE
 VignetteBuilder: knitr

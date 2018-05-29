@@ -3,9 +3,8 @@
 
 [![CircleCI](https://circleci.com/gh/ropensci/bomrang.svg?style=shield)](https://circleci.com/gh/ropensci/bomrang) [![Appveyor](https://ci.appveyor.com/api/projects/status/au6p6qy1ah2lrtl5/branch/master?svg=true)](https://ci.appveyor.com/project/adamhsparks/bomrang/branch/master) [![codecov](https://codecov.io/gh/ropensci/bomrang/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/bomrang) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.598301.svg)](https://doi.org/10.5281/zenodo.598301)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/bomrang)](https://cran.r-project.org/package=bomrang)
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![](https://badges.ropensci.org/121_status.svg)](https://github.com/ropensci/onboarding/issues/121)
-[![JOSS status](http://joss.theoj.org/papers/350bf005bded599e4b0f3ac2acf138e8/status.svg)](http://joss.theoj.org/papers/350bf005bded599e4b0f3ac2acf138e8)
+[![status](http://joss.theoj.org/papers/350bf005bded599e4b0f3ac2acf138e8/status.svg)](http://joss.theoj.org/papers/350bf005bded599e4b0f3ac2acf138e8)
 
 <img align="right" src="man/figures/bomrang-hex.png"> Provides functions to interface with Australian Government Bureau of Meteorology (BOM) data, fetching data and returning a tidy data frame of précis forecasts, current weather data from stations, ag information bulletins, historical weather data or a `raster::stack()` object of satellite imagery from GeoTIFF files.
 
