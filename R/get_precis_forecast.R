@@ -1,5 +1,4 @@
 
-
 #' Get BOM Daily Précis Forecast for Select Towns
 #'
 #' Fetch the BOM daily précis forecast and return a tidy data frame of the seven
@@ -171,7 +170,7 @@ get_precis_forecast <- function(state = "AUS") {
                   "end_time_utc")], 2, function(x)
                     chartr("Z", " ", x))
 
-  if ("precipitation_range" %in% colnames(out)) {
+  if ("precipitation_range" %in% colnames(out)){
     out[, "precipitation_range"] <-
       as.character(out[, "precipitation_range"])
     # format any values that are only zero to make next step easier
@@ -234,6 +233,20 @@ get_precis_forecast <- function(state = "AUS") {
   tidy_df$product_id <- substr(basename(xmlforecast_url),
                                1,
                                nchar(basename(xmlforecast_url)) - 4)
+
+  if (getRversion() < "3.5.0") {
+    data.table::setnames(
+      tidy_df,
+      old = c(
+        "PT_NAME",
+        "type_air_temperature_maximum_celsius",
+        "type_air_temperature_minimum_celsius"
+      ),
+      new = c("town",
+              "minimum_temperature",
+              "maximum_temperature")
+    )
+  }
 
   data.table::setnames(
     tidy_df,
