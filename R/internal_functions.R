@@ -216,13 +216,13 @@ convert_state <- function(state) {
 #' @keywords internal
 #' @author Jonathan Carroll, \email{rpkg@jcarroll.com.au}
 #' @noRd
-.get_zip_and_load <- function(url) {
+.get_zip_and_load <- function(zipurl) {
   tmp <- tempfile(fileext = ".zip")
-  utils::download.file(url, tmp)
+  utils::download.file(zipurl, tmp, mode = "wb")
   zipped <- utils::unzip(tmp, exdir = dirname(tmp))
   unlink(tmp)
   datfile <- grep("Data.csv", zipped, value = TRUE)
-  message("Data saved as ", datfile)
+  message("\nData saved as ", datfile, "\n")
   dat <- utils::read.csv(datfile, header = TRUE)
   dat
 }

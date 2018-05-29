@@ -1,6 +1,7 @@
 context("Historical Observations")
 
 test_that("Error handling", {
+  skip_on_cran() # warning message only works when downloading, don't want to on CRAN
   expect_error(get_historical(), regexp = "stationid.*latlon.*provided")
   expect_error(get_historical("sodiuhfosdhfoisdh"),
                regexp = "Station not recognised")
@@ -9,7 +10,7 @@ test_that("Error handling", {
   expect_error(get_historical("023001"), regexp = "Station not recognised.")
   expect_error(get_historical(latlon = 1), regexp = "2-element")
   expect_error(get_historical(latlon = c("a", "b")), regexp = "2-element")
-  #expect_warning(get_historical("023000", c(1, 2)), regexp = "Only one.*stationid.*latlon")
+  expect_warning(get_historical("023000", c(1, 2)), regexp = "Only one.*stationid.*latlon")
   expect_error(get_historical("023000", type = "sodiuhfosdhfoisdh"), regexp = "arg.*rain.*solar")
 })
 

@@ -1,5 +1,4 @@
 
-
 #' Get BOM Daily Précis Forecast for Select Towns
 #'
 #' Fetch the BOM daily précis forecast and return a tidy data frame of the seven
@@ -101,7 +100,8 @@ get_precis_forecast <- function(state = "AUS") {
 
 .parse_forecast <- function(xmlforecast_url) {
   # CRAN note avoidance
-  AAC_codes <- attrs <- end_time_local <- precipitation_range <- # nocov start
+  AAC_codes <- # nocov start
+    attrs <- end_time_local <- precipitation_range <-
     start_time_local <- values <- NULL # nocov end
 
   # download the XML forecast --------------------------------------------------
@@ -171,8 +171,7 @@ get_precis_forecast <- function(state = "AUS") {
                   "end_time_utc")], 2, function(x)
                     chartr("Z", " ", x))
 
-  if ("precipitation_range" %in% colnames(out))
-  {
+  if ("precipitation_range" %in% colnames(out)) {
     out[, "precipitation_range"] <-
       as.character(out[, "precipitation_range"])
     # format any values that are only zero to make next step easier
@@ -236,17 +235,31 @@ get_precis_forecast <- function(state = "AUS") {
                                1,
                                nchar(basename(xmlforecast_url)) - 4)
 
-  data.table::setnames(
-    tidy_df,
-    old = c(
-      "PT_NAME",
-      "type_air_temperature_maximum_units_celsius",
-      "type_air_temperature_minimum_units_celsius"
-    ),
-    new = c("town",
-            "minimum_temperature",
-            "maximum_temperature")
-  )
+  if (getRversion() < "3.5.0") {
+    data.table::setnames(
+      tidy_df,
+      old = c(
+        "PT_NAME",
+        "air_temperature_maximum_celsius",
+        "air_temperature_minimum_celsius"
+      ),
+      new = c("town",
+              "minimum_temperature",
+              "maximum_temperature")
+    )
+  } else {
+    data.table::setnames(
+      tidy_df,
+      old = c(
+        "PT_NAME",
+        "type_air_temperature_maximum_units_celsius",
+        "type_air_temperature_minimum_units_celsius"
+      ),
+      new = c("town",
+              "minimum_temperature",
+              "maximum_temperature")
+    )
+  }
 
   # reorder columns
   refcols <- c(

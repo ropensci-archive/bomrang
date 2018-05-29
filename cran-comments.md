@@ -1,27 +1,33 @@
 
+This is a new minor release with added functionality and corrections
+
+## Requested corrections by CRAN
+
+- Add `rappdirs` to Imports section of DESCRIPTION file to fix missing import
+
+## New features
+
+- `get_historical()` retrieves historical daily rainfall, min/max temperatures,
+or solar exposure
+
+## Minor changes
+
+- `get_precis_forecast()` handles states/territories with no/missing
+precipitation data gracefully
+
 ## Test environments
 
-* local macOS install, R version 3.4.4 (2018-03-15)
+* local macOS install, R version 3.5.0 (2018-04-23)
 
-* local Ubuntu 17.10, R version 3.4.4 (2018-03-15)
+* local Ubuntu 18.04, R version 3.5.0 (2018-04-23)
 
-* win-builder R Under development (unstable) (2018-03-18 r74422)
+* win-builder R Under development (unstable) (2018-05-15 r74727)
 
-* local Windows 7 install, R version 3.4.4 (2018-03-15)
+* win-builder R version 3.5.0 (2018-04-23)
 
 ## R CMD check results
 
 0 errors | 0 warnings | 1 note
-
-* This is a new patch release
-
-## Minor changes
-
-- Much faster station location checking using `ASDS.foyer::latlon2SA`
-
-- "BoM" is replaced with "BOM" throughout the package for consistency
-
-- `janitor` >= 1.0.0 is now required
 
 ## Reverse dependencies
 
