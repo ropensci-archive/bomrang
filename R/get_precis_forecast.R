@@ -236,17 +236,31 @@ get_precis_forecast <- function(state = "AUS") {
                                1,
                                nchar(basename(xmlforecast_url)) - 4)
 
-  data.table::setnames(
-    tidy_df,
-    old = c(
-      "PT_NAME",
-      "type_air_temperature_maximum_units_celsius",
-      "type_air_temperature_minimum_units_celsius"
-    ),
-    new = c("town",
-            "minimum_temperature",
-            "maximum_temperature")
-  )
+  if (getRversion() < "3.5.0") {
+    data.table::setnames(
+      tidy_df,
+      old = c(
+        "PT_NAME",
+        "air_temperature_maximum_celsius",
+        "air_temperature_minimum_celsius"
+      ),
+      new = c("town",
+              "minimum_temperature",
+              "maximum_temperature")
+    )
+  } else {
+    data.table::setnames(
+      tidy_df,
+      old = c(
+        "PT_NAME",
+        "type_air_temperature_maximum_units_celsius",
+        "type_air_temperature_minimum_units_celsius"
+      ),
+      new = c("town",
+              "minimum_temperature",
+              "maximum_temperature")
+    )
+  }
 
   # reorder columns
   refcols <- c(
