@@ -245,8 +245,8 @@ get_precis_forecast <- function(state = "AUS") {
         "air_temperature_minimum_celsius"
       ),
       new = c("town",
-              "minimum_temperature",
-              "maximum_temperature")
+              "maximum_temperature",
+              "minimum_temperature")
     )
   } else {
     data.table::setnames(
@@ -257,8 +257,8 @@ get_precis_forecast <- function(state = "AUS") {
         "type_air_temperature_minimum_units_celsius"
       ),
       new = c("town",
-              "minimum_temperature",
-              "maximum_temperature")
+              "maximum_temperature",
+              "minimum_temperature")
     )
   }
 
