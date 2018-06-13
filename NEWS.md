@@ -1,4 +1,4 @@
-# bomrang 0.2.1
+# bomrang 0.2.0.9000
 
 - Reduce R requirement back to >= 3.2.0 from 3.5.0
 
