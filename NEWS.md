@@ -1,4 +1,11 @@
-# bomrang 0.1.4.9000
+# bomrang 0.2.1
+
+- Reduce R requirement back to >= 3.2.0 from 3.5.0
+
+- Correct field names in `get_precis_forecast()` where `maximum_temperature` and
+`minimum_temperature` were reversed
+
+# bomrang 0.2.0
 
 ## New features
 
