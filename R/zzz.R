@@ -19,7 +19,11 @@ manage_cache <- NULL # nocov start
   msg <- paste0("\nData (c) Australian Government Bureau of Meteorology,\n",
                 "Creative Commons (CC) Attribution 3.0 licence or\n",
                 "Public Access Licence (PAL) as appropriate.\n",
-                "See http://www.bom.gov.au/other/copyright.shtml\n")
+                "See http://www.bom.gov.au/other/copyright.shtml\n",
+                "\n",
+                "\nIf you use bomrang, please cite it.\n",
+                "See `citation('bomrang')` for the proper citation.\n"
+                )
   packageStartupMessage(msg)
 }
 
