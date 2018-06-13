@@ -1,7 +1,7 @@
 context("get_precis_forecast")
 
 # Test that get_precis_forecast returns a data frame with 19 colums -------------------
-test_that("get_precis_forecast returns 19 columns", {
+test_that("get_precis_forecast returns 19 columns and min < max", {
   skip_on_cran()
   bom_forecast <- get_precis_forecast(state = "QLD")
   expect_equal(ncol(bom_forecast), 19)
@@ -50,7 +50,8 @@ test_that("get_precis_forecast returns 19 columns", {
   expect_is(bom_forecast$upper_precipitation_limit, "numeric")
   expect_is(bom_forecast$precis, "character")
   expect_is(bom_forecast$probability_of_precipitation, "numeric")
-
+  expect_less_than(mean(bom_forecast$minimum_temperature, na.rm = TRUE),
+                   mean(bom_forecast$maximum_temperature, na.rm = TRUE))
 })
 
 # Test that get_precis_forecast returns the requested state forecast ------------------
