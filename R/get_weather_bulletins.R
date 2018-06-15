@@ -23,13 +23,14 @@
 #' single call. Rainfall figures for the 9am bulletin are generally for the
 #' preceding 24 hours, while those for the 3pm bulletin are for the preceding 6
 #' hours since 9am. Note that values are manually entered into the bulletins and
-#' sometimes contain typographical errors which may lead to warnings about "NAs
-#' introduced by coercion".
+#' sometimes contain typographical errors which may lead to warnings about
+#' \code{"NAs introduced by coercion"}.
 #'
 #' @return
 #' Tidy data frame of Australian 9am or 3pm weather observations for a state.
 #' For full details of fields and units returned see Appendix 4 in the
-#' \emph{bomrang} vignette, use \code{vignette("bomrang", package = "bomrang")}
+#' \pkg{bomrang} vignette, use \cr
+#' \code{vignette("bomrang", package = "bomrang")}
 #' to view.
 #'
 #' @examples
@@ -38,7 +39,7 @@
 #'}
 #' @references
 #' Daily observation data come from Australian Bureau of Meteorology (BOM)
-#' website. The 3pm bulletin for Queensland is, for example,
+#' website. The 3pm bulletin for Queensland is, for example, \cr
 #' \url{http://www.bom.gov.au/qld/observations/3pm_bulletin.shtml}
 #'
 #' @author Mark Padgham, \email{mark.padgham@@email.com}

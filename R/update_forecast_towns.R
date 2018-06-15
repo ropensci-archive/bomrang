@@ -7,7 +7,7 @@
 #' AAC codes used by \code{\link{get_precis_forecast}}.  There is
 #' no need to use this unless you know that a forecast town exists in a
 #' more current version of the BOM précis forecast town name database that is
-#' not available in the database distributed with \code{\link{bomrang}}.
+#' not available in the database distributed with [bomrang].
 #'
 #' @examples
 #' \dontrun{

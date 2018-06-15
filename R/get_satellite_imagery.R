@@ -118,7 +118,7 @@ get_available_imagery <- function(product_id = "all") {
 #' timestamp and band.
 #'
 #' @references
-#' Australian Bureau of Meteorology (BOM) High-definition satellite images
+#' Australian Bureau of Meteorology (BOM) high-definition satellite images \cr
 #' \url{http://www.bom.gov.au/australia/satellite/index.shtml}
 #'
 #' @examples

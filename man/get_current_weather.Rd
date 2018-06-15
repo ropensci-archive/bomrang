@@ -31,12 +31,13 @@ appropriate classes. (\code{FALSE} by default.)}
 indicating which station was actually used (i.e. which station was found to
 be nearest to the given coordinate).}
 
-\item{as.data.table}{Return result as a \code{data.table}.}
+\item{as.data.table}{Return result as a \code{\link[data.table]{data.table}}.}
 }
 \value{
+Tidy data frame of requested BOM station's current and prior 72hr data.  For
 full details of fields and units returned, see Appendix 1 in the
-\emph{bomrang} vignette, use \code{vignette("bomrang", package = "bomrang")}
-to view.
+\pkg{bomrang} vignette, use \cr
+\code{vignette("bomrang", package = "bomrang")} to view.
 }
 \description{
 Get Current Weather Observations of a BOM Station
@@ -44,14 +45,14 @@ Get Current Weather Observations of a BOM Station
 \details{
 Station names are not consistently named within the Bureau, so
 the response may contain a different \code{full_name} to the one
-matched, even if \code{strict = TRUE}. For example,
-\code{get_current_weather("CASTLEMAINE PRISON")[["full_name"]][1]}
+matched, even if \code{strict = TRUE}. For example, \cr
+\code{get_current_weather("CASTLEMAINE PRISON")[["full_name"]][1]} \cr
 is \code{Castlemaine}, not \code{Castlemaine Prison}.
 
 Note that the column \code{local_date_time_full} is set to a
 \code{POSIXct} object in the local time of the \strong{user}.
-For more details see the vignette "Current Weather Fields":
-\code{vignette("Current Weather Fields", package = "bomrang")}
+For more details see the vignette "Current Weather Fields": \cr
+\code{vignette("Current Weather Fields", package = "bomrang")} \cr
 for a complete list of fields and units.
 }
 \examples{
@@ -69,11 +70,11 @@ for a complete list of fields and units.
 \references{
 Weather data observations are retrieved from:
 Australian Bureau of Meteorology (BOM) Weather Data Services,
-Observations - individual stations:
+Observations - individual stations: \cr
 \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 
 Station location and other metadata are sourced from the Australian Bureau of
-Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers:
+Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers: \cr
 \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 }
 \author{

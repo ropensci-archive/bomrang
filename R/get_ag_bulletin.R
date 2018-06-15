@@ -24,8 +24,8 @@
 #' @return
 #' Tidy data frame of a Australia BOM agricultural bulletin information.  For
 #' full details of fields and units returned see Appendix 3 in the
-#' \emph{bomrang} vignette, use \code{vignette("bomrang", package = "bomrang")}
-#' to view.
+#' \pkg{bomrang} vignette, use \cr
+#' \code{vignette("bomrang", package = "bomrang")} to view.
 #'
 #' @examples
 #' \dontrun{
@@ -34,17 +34,17 @@
 #'
 #' @references
 #' Agricultural observations are retrieved from the Australian Bureau of
-#' Meteorology (BOM) Weather Data Services Agriculture Bulletins,
+#' Meteorology (BOM) Weather Data Services Agriculture Bulletins, \cr
 #' \url{http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml}
 #'
 #'and
 #'
 #' Australian Bureau of Meteorology (BOM) Weather Data Services Observation of
-#' Rainfall,
+#' Rainfall, \cr
 #' \url{http://www.bom.gov.au/climate/how/observations/rain-measure.shtml}
 #'
 #' Station location and other metadata are sourced from the Australian Bureau of
-#' Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers:
+#' Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers: \cr
 #' \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}

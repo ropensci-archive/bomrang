@@ -9,8 +9,8 @@
 #' @param type Measurement type, either daily "rain", "min" (temp), "max"
 #'   (temp), or "solar" (exposure). Partial matching is performed.
 #'
-#' @return a complete [data.frame] of historical observations for the chosen
-#'   station, with some subset of the following columns
+#' @return A complete \code{\link[base]{data.frame}} of historical observations for
+#' the chosen station, with some subset of the following columns
 #'
 #'   \tabular{rl}{
 #'   **Product_code**:\tab BOM internal code.\cr
@@ -25,8 +25,8 @@
 #'   **Rainfall**:\tab Daily recorded rainfall in mm.\cr
 #'   **Period**:\tab Period over which rainfall was measured.\cr
 #'   **Solar_exposure**:\tab Daily global solar exposure in MJ/m^2.\cr
-#'   **Quality**:\tab Y, N, or missing. Data which have not yet completed the
-#'   routine quality control process are marked accordingly.
+#'   **Quality**:\tab Y, N, or missing. Data which have not yet completed the\cr
+#'               \tab routine quality control process are marked accordingly.
 #'   }
 #'
 #'   Temperature data prior to 1910 should be used with extreme caution as many

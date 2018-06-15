@@ -1,16 +1,15 @@
 
-
 #' Update bomrang Internal Databases with Latest BOM Station Metadata
 #'
 #' Download the latest station locations and metadata and update bomrang's
 #' internal databases that support the use of \code{\link{get_current_weather}}
 #' and \code{\link{get_ag_bulletin}}.  There is no need to use this unless you
 #' know that a station exists in BOM's database that is not available in the
-#' databases distributed with \code{\link{bomrang}}.
+#' databases distributed with \pkg{bomrang}.
 #'
-#' If \code{ASGS.foyer} is installed locally, this function will automatically
+#' If \pkg{ASGS.foyer} is installed locally, this function will automatically
 #' check and correct any invalid state values for stations located in Australia.
-#' If \code{ASGS.foyer} is not installed, the function will update the internal
+#' If \pkg{ASGS.foyer} is not installed, the function will update the internal
 #' database without validating the state values for stations by reported lon/lat
 #' location.
 #'
@@ -22,7 +21,7 @@
 #'
 #' @references
 #' Station location and other metadata are sourced from the Australian Bureau of
-#' Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers:
+#' Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers:\cr
 #' \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}

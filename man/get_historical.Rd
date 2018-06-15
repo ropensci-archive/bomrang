@@ -16,8 +16,8 @@ get_historical(stationid = NULL, latlon = NULL, type = c("rain", "min",
 (temp), or "solar" (exposure). Partial matching is performed.}
 }
 \value{
-a complete \link{data.frame} of historical observations for the chosen
-station, with some subset of the following columns
+A complete \code{\link[base]{data.frame}} of historical observations for
+the chosen station, with some subset of the following columns
 
 \tabular{rl}{
 \strong{Product_code}:\tab BOM internal code.\cr
@@ -32,8 +32,8 @@ station, with some subset of the following columns
 \strong{Rainfall}:\tab Daily recorded rainfall in mm.\cr
 \strong{Period}:\tab Period over which rainfall was measured.\cr
 \strong{Solar_exposure}:\tab Daily global solar exposure in MJ/m^2.\cr
-\strong{Quality}:\tab Y, N, or missing. Data which have not yet completed the
-routine quality control process are marked accordingly.
+\strong{Quality}:\tab Y, N, or missing. Data which have not yet completed the\cr
+\tab routine quality control process are marked accordingly.
 }
 
 Temperature data prior to 1910 should be used with extreme caution as many

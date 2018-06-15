@@ -76,7 +76,7 @@ imagery <- get_satellite_imagery(product_id = avail, scans = 2)
 }
 }
 \references{
-Australian Bureau of Meteorology (BOM) High-definition satellite images
+Australian Bureau of Meteorology (BOM) high-definition satellite images \cr
 \url{http://www.bom.gov.au/australia/satellite/index.shtml}
 }
 \seealso{

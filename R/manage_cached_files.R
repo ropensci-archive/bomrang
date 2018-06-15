@@ -7,15 +7,14 @@
 #' @export
 #' @name manage_cache
 #'
-#' @details The default cache directory is
+#' @details The default cache directory is\cr
 #' \code{file.path(rappdirs::user_cache_dir(), "R/bomrang")}, but you can
 #' set your own path using \code{manage_cache$cache_path_set()}
 #'
 #' \code{manage_cache$cache_delete} only accepts one file name, while
-#' \code{manage_cache$cache_delete_all}
-#' does not accept any names, but deletes all files. For deleting many specific
-#' files, use \code{manage_cache$cache_delete} in an
-#' \code{\link[base]{lapply}()} type call.
+#' \code{manage_cache$cache_delete_all} does not accept any names, but deletes
+#' all files. For deleting many specific files, use\cr
+#' \code{manage_cache$cache_delete} in an \code{\link[base]{lapply}} type call.
 #'
 #' @section Useful user functions:
 #' \itemize{

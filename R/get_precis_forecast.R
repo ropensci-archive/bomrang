@@ -24,10 +24,10 @@
 #'  }
 #'
 #' @return
-#' Tidy [data.frame] of a Australia BOM précis seven day forecasts for select
-#' towns.  For full details of fields and units returned see Appendix 2 in the
-#' \emph{bomrang} vignette, use \code{vignette("bomrang", package = "bomrang")}
-#' to view.
+#' Tidy  \code{\link[base]{data.frame}} of a Australia BOM précis seven day
+#' forecasts for select towns.  For full details of fields and units returned
+#' see Appendix 2 in the \pkg{bomrang} vignette, use \cr
+#' \code{vignette("bomrang", package = "bomrang")} to view.
 #'
 #' @examples
 #' \dontrun{
@@ -35,12 +35,13 @@
 #'}
 #' @references
 #' Forecast data come from Australian Bureau of Meteorology (BOM) Weather Data
-#' Services \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
+#' Services \cr
+#' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 #'
 #' Location data and other metadata for towns come from
-#' the BOM anonymous FTP server with spatial data
+#' the BOM anonymous FTP server with spatial data \cr
 #' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/}, specifically the DBF
-#' file portion of a shapefile,
+#' file portion of a shapefile, \cr
 #' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com} and Keith Pembleton,
