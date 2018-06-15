@@ -31,7 +31,7 @@ Description: Provides functions to interface with Australian Government Bureau
     Government Bureau of Meteorology Creative Commons (CC) Attribution 3.0
     licence or Public Access Licence (PAL) as appropriate. See
     <http://www.bom.gov.au/other/copyright.shtml> for further details.
-URL: https://github.com/ropensci/bomrang
+URL: https://github.com/ropensci/bomrang, https://ropensci.github.io/bomrang/
 BugReports: https://github.com/ropensci/bomrang/issues
 License: MIT + file LICENSE
 Depends:
