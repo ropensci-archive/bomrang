@@ -43,8 +43,8 @@
 #' file portion of a shapefile,
 #' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 #'
-#' @author Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton,
-#' \email{keith.pembleton@usq.edu.au}
+#' @author Adam H Sparks, \email{adamhsparks@@gmail.com} and Keith Pembleton,
+#' \email{keith.pembleton@@usq.edu.au}
 #' @importFrom magrittr %>%
 #' @export
 get_precis_forecast <- function(state = "AUS") {

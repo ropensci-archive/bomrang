@@ -58,7 +58,7 @@
 #' Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers:
 #' \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 #'
-#' @author Hugh Parsonage, \email{hugh.parsonage@gmail.com}
+#' @author Hugh Parsonage, \email{hugh.parsonage@@gmail.com}
 #' @importFrom magrittr use_series
 #' @importFrom magrittr %$%
 #' @importFrom data.table :=

@@ -5,7 +5,7 @@
 #' (approximately).
 #' @return A data frame of all weather stations (in this package) sorted
 #' by distance from \code{latlon}, ascending.
-#' @author Hugh Parsonage, \email{hugh.parsonage@gmail.com}
+#' @author Hugh Parsonage, \email{hugh.parsonage@@gmail.com}
 #' @importFrom data.table copy setorderv
 #' @export
 

@@ -41,7 +41,7 @@
 #' website. The 3pm bulletin for Queensland is, for example,
 #' \url{http://www.bom.gov.au/qld/observations/3pm_bulletin.shtml}
 #'
-#' @author Mark Padgham, \email{mark.padgham@email.com}
+#' @author Mark Padgham, \email{mark.padgham@@email.com}
 #' @export
 get_weather_bulletin <- function(state = "qld", morning = TRUE) {
   the_state <- convert_state(state) # see internal_functions.R

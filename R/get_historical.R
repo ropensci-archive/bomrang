@@ -47,7 +47,7 @@
 #'   return fewer observations.
 #'
 #' @export
-#' @author Jonathan Carroll, \email{rpkg@jcarroll.com.au}
+#' @author Jonathan Carroll, \email{rpkg@@jcarroll.com.au}
 #'
 #' @examples
 #' \dontrun{

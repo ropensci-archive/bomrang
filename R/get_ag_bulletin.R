@@ -47,7 +47,7 @@
 #' Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers:
 #' \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 #'
-#' @author Adam H Sparks, \email{adamhsparks@gmail.com}
+#' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
 #' @export
 get_ag_bulletin <- function(state = "AUS") {
   # CRAN NOTE avoidance
