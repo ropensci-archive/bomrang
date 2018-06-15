@@ -19,7 +19,7 @@ Value is optional.}
 
 \item{cache}{Logical.  Store image files locally for later use?  If
 \code{FALSE}, the downloaded files are removed when R session is closed. To
-take advantage of cached files in future sessions, use \code{cache = TRUE}.
+take advantage of cached files in future sessions, use \var{cache = TRUE}.
 Defaults to \code{FALSE}.  Value is optional.}
 }
 \value{

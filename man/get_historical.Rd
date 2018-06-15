@@ -46,8 +46,8 @@ temperatures overnight or near dawn. Occasionally, however, the lowest
 temperature in the 24 hours to prior to 9 am can occur around 9 am the
 previous day if the night was particularly warm.
 
-Either \code{stationid} or \code{latlon} must be provided, but if both are, then
-\code{stationid} will be used as it is more reliable.
+Either \var{stationid} or \var{latlon} must be provided, but if both are,
+then \var{stationid} will be used as it is more reliable.
 
 In some cases data is available back to the 1800s, so tens of thousands of
 daily records will be returned. Other stations will be newer and will

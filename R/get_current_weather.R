@@ -24,14 +24,14 @@
 #' @details
 #' Station names are not consistently named within the Bureau, so
 #' the response may contain a different \code{full_name} to the one
-#' matched, even if \code{strict = TRUE}. For example, \cr
+#' matched, even if \var{strict = TRUE}. For example, \cr
 #' \code{get_current_weather("CASTLEMAINE PRISON")[["full_name"]][1]} \cr
 #' is \code{Castlemaine}, not \code{Castlemaine Prison}.
 #'
 #' Note that the column \code{local_date_time_full} is set to a
 #' \code{POSIXct} object in the local time of the \strong{user}.
-#' For more details see the vignette "Current Weather Fields": \cr
-#' \code{vignette("Current Weather Fields", package = "bomrang")} \cr
+#' For more details see the vignette "Current Weather Fields":\cr
+#' \code{vignette("Current Weather Fields", package = "bomrang")}\cr
 #' for a complete list of fields and units.
 #'
 #' @return
