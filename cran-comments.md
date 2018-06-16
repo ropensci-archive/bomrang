@@ -5,7 +5,7 @@
 
 - local Ubuntu 18.04, R version 3.5.0 (2018-04-23)
 
-- win-builder R Under development (unstable) (2018-05-15 r74727)
+- win-builder R Under development (unstable) (2018-06-15 r74904)
 
 - win-builder R version 3.5.0 (2018-04-23)
 
