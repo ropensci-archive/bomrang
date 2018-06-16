@@ -21,9 +21,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -32,6 +34,7 @@
 
 <meta property="og:description" content="Retrieves daily observations for a given station." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -58,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bomrang</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.4.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -146,8 +149,8 @@
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a complete data.frame of historical observations for the chosen
-station, with some subset of the following columns</p>
+    <p>A complete <code><a href='http://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></code> of historical observations for
+the chosen station, with some subset of the following columns</p>
 <table class='table'>
 <tr><td><strong>Product_code</strong>:</td><td>BOM internal code.</td></tr>
 <tr><td><strong>Station_number</strong>:</td><td>BOM station ID.</td></tr>
@@ -161,6 +164,8 @@ station, with some subset of the following columns</p>
 <tr><td><strong>Rainfall</strong>:</td><td>Daily recorded rainfall in mm.</td></tr>
 <tr><td><strong>Period</strong>:</td><td>Period over which rainfall was measured.</td></tr>
 <tr><td><strong>Solar_exposure</strong>:</td><td>Daily global solar exposure in MJ/m^2.</td></tr>
+<tr><td><strong>Quality</strong>:</td><td>Y, N, or missing. Data which have not yet completed the</td></tr>
+<tr><td></td><td>routine quality control process are marked accordingly.</td></tr>
 </table>
 
 
@@ -172,8 +177,8 @@ those measured according to post-1910 standards.</p>
 temperatures overnight or near dawn. Occasionally, however, the lowest
 temperature in the 24 hours to prior to 9 am can occur around 9 am the
 previous day if the night was particularly warm.</p>
-<p>Either <code>stationid</code> or <code>latlon</code> must be provided, but if both are, then
-<code>stationid</code> will be used as it is more reliable.</p>
+<p>Either <var>stationid</var> or <var>latlon</var> must be provided, but if both are,
+then <var>stationid</var> will be used as it is more reliable.</p>
 <p>In some cases data is available back to the 1800s, so tens of thousands of
 daily records will be returned. Other stations will be newer and will
 return fewer observations.</p>

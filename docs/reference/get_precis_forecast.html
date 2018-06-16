@@ -21,9 +21,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -33,6 +35,7 @@
 <meta property="og:description" content="Fetch the BOM daily précis forecast and return a tidy data frame of the seven
 day town forecast for a specified state or territory." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -59,7 +62,7 @@ day town forecast for a specified state or territory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bomrang</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.4.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -140,10 +143,10 @@ Fuzzy string matching via <code><a href='http://www.rdocumentation.org/packages/
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Tidy [data.frame] of a Australia BOM précis seven day forecasts for select
-towns.  For full details of fields and units returned see Appendix 2 in the
-<em>bomrang</em> vignette, use <code><a href='../articles/bomrang.html'>vignette("bomrang", package = "bomrang")</a></code>
-to view.</p>
+    <p>Tidy  <code><a href='http://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></code> of a Australia BOM précis seven day
+forecasts for select towns.  For full details of fields and units returned
+see Appendix 2 in the <span class="pkg">bomrang</span> vignette, use <br />
+<code><a href='../articles/bomrang.html'>vignette("bomrang", package = "bomrang")</a></code> to view.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -163,11 +166,12 @@ or all using <code>AUS</code>.</p><dl class='dl-horizontal'>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Forecast data come from Australian Bureau of Meteorology (BOM) Weather Data
-Services <a href='http://www.bom.gov.au/catalogue/data-feeds.shtml'>http://www.bom.gov.au/catalogue/data-feeds.shtml</a></p>
+Services <br />
+<a href='http://www.bom.gov.au/catalogue/data-feeds.shtml'>http://www.bom.gov.au/catalogue/data-feeds.shtml</a></p>
 <p>Location data and other metadata for towns come from
-the BOM anonymous FTP server with spatial data
+the BOM anonymous FTP server with spatial data <br />
 <a href='ftp://ftp.bom.gov.au/anon/home/adfd/spatial/'>ftp://ftp.bom.gov.au/anon/home/adfd/spatial/</a>, specifically the DBF
-file portion of a shapefile,
+file portion of a shapefile, <br />
 <a href='ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf'>ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf</a></p>
     
 

@@ -21,9 +21,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -32,6 +34,7 @@
 
 <meta property="og:description" content="Get Current Weather Observations of a BOM Station" />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -58,7 +61,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bomrang</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.4.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -164,37 +167,38 @@ be nearest to the given coordinate).</p></td>
     </tr>
     <tr>
       <th>as.data.table</th>
-      <td><p>Return result as a <code>data.table</code>.</p></td>
+      <td><p>Return result as a <code><a href='http://www.rdocumentation.org/packages/data.table/topics/data.table'>data.table</a></code>.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>full details of fields and units returned, see Appendix 1 in the
-<em>bomrang</em> vignette, use <code><a href='../articles/bomrang.html'>vignette("bomrang", package = "bomrang")</a></code>
-to view.</p>
+    <p>Tidy data frame of requested BOM station's current and prior 72hr data.  For
+full details of fields and units returned, see Appendix 1 in the
+<span class="pkg">bomrang</span> vignette, use <br />
+<code><a href='../articles/bomrang.html'>vignette("bomrang", package = "bomrang")</a></code> to view.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Station names are not consistently named within the Bureau, so
 the response may contain a different <code>full_name</code> to the one
-matched, even if <code>strict = TRUE</code>. For example,
-<code>get_current_weather("CASTLEMAINE PRISON")[["full_name"]][1]</code>
+matched, even if <var>strict = TRUE</var>. For example, <br />
+<code>get_current_weather("CASTLEMAINE PRISON")[["full_name"]][1]</code> <br />
 is <code>Castlemaine</code>, not <code>Castlemaine Prison</code>.</p>
 <p>Note that the column <code>local_date_time_full</code> is set to a
 <code>POSIXct</code> object in the local time of the <strong>user</strong>.
-For more details see the vignette "Current Weather Fields":
-<code>vignette("Current Weather Fields", package = "bomrang")</code>
+For more details see the vignette "Current Weather Fields":<br />
+<code>vignette("Current Weather Fields", package = "bomrang")</code><br />
 for a complete list of fields and units.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>Weather data observations are retrieved from:
 Australian Bureau of Meteorology (BOM) Weather Data Services,
-Observations - individual stations:
+Observations - individual stations: <br />
 <a href='http://www.bom.gov.au/catalogue/data-feeds.shtml'>http://www.bom.gov.au/catalogue/data-feeds.shtml</a></p>
 <p>Station location and other metadata are sourced from the Australian Bureau of
-Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers:
+Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers: <br />
 <a href='http://www.bom.gov.au/climate/cdo/about/site-num.shtml'>http://www.bom.gov.au/climate/cdo/about/site-num.shtml</a></p>
     
 

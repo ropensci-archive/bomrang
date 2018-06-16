@@ -21,9 +21,11 @@
 <!-- clipboard.js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
+<!-- sticky kit -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
+
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
-<script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
 
 
@@ -36,6 +38,7 @@ stack object of GeoTIFF files. Files are available at
 ten minute update frequency with a 24 hour delete time. Suggested to check
 file availability first by using get_available_imagery." />
 <meta name="twitter:card" content="summary" />
+
 
 
 <!-- mathjax -->
@@ -62,7 +65,7 @@ file availability first by using get_available_imagery." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bomrang</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.1.4.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
       </span>
     </div>
 
@@ -154,7 +157,7 @@ Value is optional.</p></td>
       <th>cache</th>
       <td><p>Logical.  Store image files locally for later use?  If
 <code>FALSE</code>, the downloaded files are removed when R session is closed. To
-take advantage of cached files in future sessions, use <code>cache = TRUE</code>.
+take advantage of cached files in future sessions, use <var>cache = TRUE</var>.
 Defaults to <code>FALSE</code>.  Value is optional.</p></td>
     </tr>
     </table>
@@ -192,7 +195,7 @@ timestamp and band.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Australian Bureau of Meteorology (BOM) High-definition satellite images
+    <p>Australian Bureau of Meteorology (BOM) high-definition satellite images <br />
 <a href='http://www.bom.gov.au/australia/satellite/index.shtml'>http://www.bom.gov.au/australia/satellite/index.shtml</a></p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
