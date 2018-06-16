@@ -10,6 +10,8 @@ field names according to the R version due to `tidyr`'s behaviour
 - Clean up and reformat documentation, standardise references to packages,
 links and author e-mail addresses
 
+- Remove deprecated functions
+
 ## Bug fixes
 
 - Correct field names in `get_precis_forecast()` where `maximum_temperature` and
