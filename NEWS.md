@@ -15,7 +15,7 @@ links and author e-mail addresses
 - Correct field names in `get_precis_forecast()` where `maximum_temperature` and
 `minimum_temperature` were reversed
 
-Move rappdirs to SUGGESTS to fix NOTEs on https://cran.rstudio.com/web/checks/check_results_bomrang.html
+- Move rappdirs to Suggests to fix NOTEs on https://cran.rstudio.com/web/checks/check_results_bomrang.html
 
 # bomrang 0.2.0
 
