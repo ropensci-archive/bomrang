@@ -1,13 +1,13 @@
 
 ## Test environments
 
-* local macOS install, R version 3.5.0 (2018-04-23)
+- local macOS install, R version 3.5.0 (2018-04-23)
 
-* local Ubuntu 18.04, R version 3.5.0 (2018-04-23)
+- local Ubuntu 18.04, R version 3.5.0 (2018-04-23)
 
-* win-builder R Under development (unstable) (2018-05-15 r74727)
+- win-builder R Under development (unstable) (2018-05-15 r74727)
 
-* win-builder R version 3.5.0 (2018-04-23)
+- win-builder R version 3.5.0 (2018-04-23)
 
 ## R CMD check results
 
@@ -23,6 +23,8 @@
 
 - Correct field names in `get_precis_forecast()` where `maximum_temperature` and
 `minimum_temperature` were reversed
+
+- Move rappdirs to Suggests to fix NOTEs on https://cran.rstudio.com/web/checks/check_results_getCRUCLdata.html
 
 ## Reverse dependencies
 
