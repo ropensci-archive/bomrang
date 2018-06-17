@@ -1,5 +1,9 @@
 # bomrang 0.2.1.9000
 
+## Bug fixes
+
+Fix corrupted zip file download issue for `get_historica()` on Windows
+
 # bomrang 0.2.1
 
 ## Minor changes
