@@ -9,6 +9,9 @@ init:
 install:
   ps: Bootstrap
 
+environment:
+  NOT_CRAN: true
+
 # Adapt as necessary starting from here
 build_script:
   - travis-tool.sh r_binary_install rgdal
