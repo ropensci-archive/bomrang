@@ -5,6 +5,6 @@ articles:
   bomrang: bomrang.html
   use_case: use_case.html
 urls:
-  reference: https://ropensci.github.io/bomrang//reference
-  article: https://ropensci.github.io/bomrang//articles
+  reference: https://ropensci.github.io/bomrang/reference
+  article: https://ropensci.github.io/bomrang/articles
 

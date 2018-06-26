@@ -2,21 +2,21 @@
   "index_name": "bomrang",
   "start_urls": [
     {
-      "url": "https://ropensci.github.io/bomrang//index.html",
+      "url": "https://ropensci.github.io/bomrang/index.html",
       "selectors_key": "homepage",
       "tags": [
         "homepage"
       ]
     },
     {
-      "url": "https://ropensci.github.io/bomrang//reference",
+      "url": "https://ropensci.github.io/bomrang/reference",
       "selectors_key": "reference",
       "tags": [
         "reference"
       ]
     },
     {
-      "url": "https://ropensci.github.io/bomrang//articles",
+      "url": "https://ropensci.github.io/bomrang/articles",
       "selectors_key": "articles",
       "tags": [
         "articles"
@@ -30,7 +30,7 @@
     "/articles/index.html"
   ],
   "sitemap_urls": [
-    "https://ropensci.github.io/bomrang//sitemap.xml"
+    "https://ropensci.github.io/bomrang/sitemap.xml"
   ],
   "selectors": {
     "homepage": {
