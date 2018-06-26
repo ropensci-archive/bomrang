@@ -3,3 +3,6 @@ url: https://ropensci.github.io/bomrang/
 template:
   params:
     bootswatch: spacelab
+    docsearch:
+      api_key: facca3867b59b88ba642023231b07134
+      index_name: bomrang

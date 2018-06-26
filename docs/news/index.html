@@ -29,6 +29,12 @@
 <script src="../pkgdown.js"></script>
 
 
+<!-- docsearch -->
+<script src="../docsearch.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css" />
+<link href="../docsearch.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
+
 
 <meta property="og:title" content="Changelog" />
 
@@ -58,7 +64,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bomrang</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.2.1.9000</span>
       </span>
     </div>
 
@@ -102,6 +108,12 @@
 </li>
       </ul>
       
+      <form class="navbar-form navbar-right" role="search">
+        <div class="form-group">
+          <input type="search" class="form-control" name="search-input" id="search-input" placeholder="Search..." aria-label="Search for..." autocomplete="off">
+        </div>
+      </form>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -116,6 +128,16 @@
       <small>Source: <a href='https://github.com/ropensci/bomrang/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
+    <div id="bomrang-0-2-1-9000" class="section level1">
+<h1 class="page-header">
+<a href="#bomrang-0-2-1-9000" class="anchor"></a>bomrang 0.2.1.9000<small> Unreleased </small>
+</h1>
+<div id="bug-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<p>Fix corrupted zip file download issue for <code>get_historica()</code> on Windows</p>
+</div>
+</div>
     <div id="bomrang-0-2-1" class="section level1">
 <h1 class="page-header">
 <a href="#bomrang-0-2-1" class="anchor"></a>bomrang 0.2.1<small> 2018-06-16 </small>
@@ -130,9 +152,9 @@
 <li><p>Remove deprecated functions</p></li>
 </ul>
 </div>
-<div id="bug-fixes" class="section level2">
+<div id="bug-fixes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li><p>Correct field names in <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code> where <code>maximum_temperature</code> and <code>minimum_temperature</code> were reversed</p></li>
 <li><p>Move rappdirs to Suggests to fix NOTEs on <a href="https://cran.rstudio.com/web/checks/check_results_bomrang.html" class="uri">https://cran.rstudio.com/web/checks/check_results_bomrang.html</a></p></li>
@@ -159,9 +181,9 @@
 <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code> handles states/territories with no/missing precipitation data gracefully</li>
 </ul>
 </div>
-<div id="bug-fixes-1" class="section level2">
+<div id="bug-fixes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Add <code>rappdirs</code> to Imports section of DESCRIPTION file to fix missing import</li>
 </ul>
@@ -193,9 +215,9 @@
 </li>
 </ul>
 </div>
-<div id="bug-fixes-2" class="section level2">
+<div id="bug-fixes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-3" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Correct issues with updating internal databases</li>
 </ul>
@@ -214,9 +236,9 @@
 <li><p>Vignettes no longer evaluate code on-the-fly that requires BOM servers to respond in response to CRAN rejecting <code>bomrang</code> for a failure of a vingette to build due to this issue</p></li>
 </ul>
 </div>
-<div id="bug-fixes-3" class="section level2">
+<div id="bug-fixes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-3" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-4" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li><p>Correct issue with converting the timzeone in ag bulletin to character where the conversion resulted in a vector of numerals, not the expected string of characters, e.g. “EST”</p></li>
 <li><p>Remove redundant functionality in <code><a href="../reference/update_station_locations.html">update_station_locations()</a></code> where data were fetched using <code>tryCatch()</code> and then again without</p></li>
@@ -258,9 +280,9 @@
 <li><p>Update internal databases of metadata for station locations and URLs</p></li>
 </ul>
 </div>
-<div id="bug-fixes-4" class="section level2">
+<div id="bug-fixes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-4" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-5" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Fix issues with <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> where they failed to work properly. This fix lessens internal dependencies on <em>dplyr</em> and removes <em>rlang</em> usage from package.</li>
 </ul>
@@ -299,9 +321,9 @@
 <li><p>Update internal stations list with latest data from BOM</p></li>
 </ul>
 </div>
-<div id="bug-fixes-5" class="section level2">
+<div id="bug-fixes-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-5" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-6" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Fix issue where updating internal stations would fail</li>
 </ul>
@@ -336,9 +358,9 @@
 <h1 class="page-header">
 <a href="#bomrang-0-0-6" class="anchor"></a>bomrang 0.0.6<small> Unreleased </small>
 </h1>
-<div id="bug-fixes-6" class="section level2">
+<div id="bug-fixes-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-6" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-7" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li><p>Fix typo in <code>check_states()</code></p></li>
 <li><p>Replace <code>warning()</code> with <code>message()</code> in <code>get_states()</code></p></li>
@@ -357,9 +379,9 @@
 <h1 class="page-header">
 <a href="#bomrang-0-0-5" class="anchor"></a>bomrang 0.0.5<small> Unreleased </small>
 </h1>
-<div id="bug-fixes-7" class="section level2">
+<div id="bug-fixes-8" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-7" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-8" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li><p>Recommended <code>station_name</code> values are separated by spaces in <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code></p></li>
 <li><p>Station names and location names are more consistent in the supplied data and returned data frames.</p></li>
@@ -576,9 +598,9 @@
 <li><p>Enhanced documentation</p></li>
 </ul>
 </div>
-<div id="bug-fixes-8" class="section level2">
+<div id="bug-fixes-9" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-8" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-9" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Correct output for ag bulletin where the observation site is listed but has no values. The site will be listed with location data and <code>NA</code> for all meteorological values</li>
 </ul>
@@ -600,6 +622,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
+        <li><a href="#bomrang-0-2-1-9000">0.2.1.9000</a></li>
         <li><a href="#bomrang-0-2-1">0.2.1</a></li>
         <li><a href="#bomrang-0-2-0">0.2.0</a></li>
         <li><a href="#bomrang-0-1-4">0.1.4</a></li>
@@ -641,6 +664,23 @@
    </div>
 
   
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.js"></script>
+<script>
+  docsearch({
+    
+    
+    apiKey: 'facca3867b59b88ba642023231b07134',
+    indexName: 'bomrang',
+    inputSelector: 'input#search-input.form-control',
+    transformData: function(hits) {
+      return hits.map(function (hit) {
+        hit.url = updateHitURL(hit);
+        return hit;
+      });
+    }
+  });
+</script>
+
 
   </body>
 </html>
