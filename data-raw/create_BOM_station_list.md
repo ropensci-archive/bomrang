@@ -121,7 +121,7 @@ bom_stations_raw$end <- format(Sys.Date(), "%Y")
 bom_stations_raw
 ```
 
-    ## # A tibble: 7,318 x 11
+    ## # A tibble: 7,316 x 11
     ##    site   dist  name      start end     lat   lon state  elev bar_ht   wmo
     ##    <chr>  <chr> <chr>     <int> <chr> <dbl> <dbl> <chr> <dbl>  <dbl> <int>
     ##  1 001006 01    WYNDHAM …  1951 2018  -15.5  128. WA      3.8    4.3 95214
@@ -134,7 +134,7 @@ bom_stations_raw
     ##  8 001020 01    TRUSCOTT   1944 2018  -14.1  126. WA     51     52.5 95101
     ##  9 001023 01    EL QUEST…  1967 2018  -16.0  128. WA     90     NA      NA
     ## 10 001024 01    ELLENBRAE  1986 2018  -16.0  127. WA    300     NA      NA
-    ## # ... with 7,308 more rows
+    ## # ... with 7,306 more rows
 
 ## Check that station locations
 
@@ -309,52 +309,52 @@ stations_site_list$site <-
 
     ## ─ Session info ──────────────────────────────────────────────────────────
     ##  setting  value                       
-    ##  version  R version 3.5.0 (2018-04-23)
+    ##  version  R version 3.5.1 (2018-07-02)
     ##  os       macOS Sierra 10.12.6        
     ##  system   x86_64, darwin16.7.0        
     ##  ui       X11                         
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2018-06-13                  
+    ##  date     2018-07-10                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version date       source        
-    ##  ASGS.foyer  * 0.2.1   2018-05-17 CRAN (R 3.5.0)
-    ##  assertthat    0.2.0   2017-04-11 CRAN (R 3.5.0)
-    ##  backports     1.1.2   2017-12-13 CRAN (R 3.5.0)
-    ##  bindr         0.1.1   2018-03-13 CRAN (R 3.5.0)
-    ##  bindrcpp    * 0.2.2   2018-03-29 CRAN (R 3.5.0)
-    ##  cli           1.0.0   2017-11-05 CRAN (R 3.5.0)
-    ##  clisymbols    1.2.0   2017-05-21 CRAN (R 3.5.0)
-    ##  crayon        1.3.4   2017-09-16 CRAN (R 3.5.0)
-    ##  curl          3.2     2018-03-28 CRAN (R 3.5.0)
-    ##  data.table  * 1.11.4  2018-05-27 CRAN (R 3.5.0)
-    ##  digest        0.6.15  2018-01-28 CRAN (R 3.5.0)
-    ##  dplyr         0.7.5   2018-05-19 CRAN (R 3.5.0)
-    ##  evaluate      0.10.1  2017-06-24 CRAN (R 3.5.0)
-    ##  glue          1.2.0   2017-10-29 CRAN (R 3.5.0)
-    ##  hms           0.4.2   2018-03-10 CRAN (R 3.5.0)
-    ##  htmltools     0.3.6   2017-04-28 CRAN (R 3.5.0)
-    ##  httr          1.3.1   2017-08-20 CRAN (R 3.5.0)
-    ##  knitr         1.20    2018-02-20 CRAN (R 3.5.0)
-    ##  lattice       0.20-35 2017-03-25 CRAN (R 3.5.0)
-    ##  magrittr    * 1.5     2014-11-22 CRAN (R 3.5.0)
-    ##  pillar        1.2.3   2018-05-25 CRAN (R 3.5.0)
-    ##  pkgconfig     2.0.1   2017-03-21 CRAN (R 3.5.0)
-    ##  purrr         0.2.5   2018-05-29 CRAN (R 3.5.0)
-    ##  R6            2.2.2   2017-06-17 CRAN (R 3.5.0)
-    ##  Rcpp          0.12.17 2018-05-18 CRAN (R 3.5.0)
-    ##  readr         1.1.1   2017-05-16 CRAN (R 3.5.0)
-    ##  rlang         0.2.1   2018-05-30 CRAN (R 3.5.0)
-    ##  rmarkdown     1.10    2018-06-11 CRAN (R 3.5.0)
-    ##  rprojroot     1.3-2   2018-01-03 CRAN (R 3.5.0)
-    ##  sessioninfo   1.0.0   2017-06-21 CRAN (R 3.5.0)
-    ##  sp          * 1.3-1   2018-06-05 CRAN (R 3.5.0)
-    ##  stringi       1.2.3   2018-06-12 cran (@1.2.3) 
-    ##  stringr       1.3.1   2018-05-10 CRAN (R 3.5.0)
-    ##  tibble        1.4.2   2018-01-22 CRAN (R 3.5.0)
-    ##  tidyselect    0.2.4   2018-02-26 CRAN (R 3.5.0)
-    ##  utf8          1.1.4   2018-05-24 CRAN (R 3.5.0)
-    ##  withr         2.1.2   2018-03-15 CRAN (R 3.5.0)
-    ##  yaml          2.1.19  2018-05-01 CRAN (R 3.5.0)
+    ##  ASGS.foyer  * 0.2.1   2018-05-17 CRAN (R 3.5.1)
+    ##  assertthat    0.2.0   2017-04-11 CRAN (R 3.5.1)
+    ##  backports     1.1.2   2017-12-13 CRAN (R 3.5.1)
+    ##  bindr         0.1.1   2018-03-13 CRAN (R 3.5.1)
+    ##  bindrcpp    * 0.2.2   2018-03-29 CRAN (R 3.5.1)
+    ##  cli           1.0.0   2017-11-05 CRAN (R 3.5.1)
+    ##  clisymbols    1.2.0   2017-05-21 CRAN (R 3.5.1)
+    ##  crayon        1.3.4   2017-09-16 CRAN (R 3.5.1)
+    ##  curl          3.2     2018-03-28 CRAN (R 3.5.1)
+    ##  data.table  * 1.11.4  2018-05-27 CRAN (R 3.5.1)
+    ##  digest        0.6.15  2018-01-28 CRAN (R 3.5.1)
+    ##  dplyr         0.7.6   2018-06-29 CRAN (R 3.5.1)
+    ##  evaluate      0.10.1  2017-06-24 CRAN (R 3.5.1)
+    ##  glue          1.2.0   2017-10-29 CRAN (R 3.5.1)
+    ##  hms           0.4.2   2018-03-10 CRAN (R 3.5.1)
+    ##  htmltools     0.3.6   2017-04-28 CRAN (R 3.5.1)
+    ##  httr          1.3.1   2017-08-20 CRAN (R 3.5.1)
+    ##  knitr         1.20    2018-02-20 CRAN (R 3.5.1)
+    ##  lattice       0.20-35 2017-03-25 CRAN (R 3.5.1)
+    ##  magrittr    * 1.5     2014-11-22 CRAN (R 3.5.1)
+    ##  pillar        1.2.3   2018-05-25 CRAN (R 3.5.1)
+    ##  pkgconfig     2.0.1   2017-03-21 CRAN (R 3.5.1)
+    ##  purrr         0.2.5   2018-05-29 CRAN (R 3.5.1)
+    ##  R6            2.2.2   2017-06-17 CRAN (R 3.5.1)
+    ##  Rcpp          0.12.17 2018-05-18 CRAN (R 3.5.1)
+    ##  readr         1.1.1   2017-05-16 CRAN (R 3.5.1)
+    ##  rlang         0.2.1   2018-05-30 CRAN (R 3.5.1)
+    ##  rmarkdown     1.10    2018-06-11 CRAN (R 3.5.1)
+    ##  rprojroot     1.3-2   2018-01-03 CRAN (R 3.5.1)
+    ##  sessioninfo   1.0.0   2017-06-21 CRAN (R 3.5.1)
+    ##  sp          * 1.3-1   2018-06-05 CRAN (R 3.5.1)
+    ##  stringi       1.2.3   2018-06-12 CRAN (R 3.5.1)
+    ##  stringr       1.3.1   2018-05-10 CRAN (R 3.5.1)
+    ##  tibble        1.4.2   2018-01-22 CRAN (R 3.5.1)
+    ##  tidyselect    0.2.4   2018-02-26 CRAN (R 3.5.1)
+    ##  utf8          1.1.4   2018-05-24 CRAN (R 3.5.1)
+    ##  withr         2.1.2   2018-03-15 CRAN (R 3.5.1)
+    ##  yaml          2.1.19  2018-05-01 CRAN (R 3.5.1)
