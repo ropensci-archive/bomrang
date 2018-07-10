@@ -2,7 +2,7 @@
 
 ## Bug fixes
 
-Fix corrupted zip file download issue for `get_historica()` on Windows
+Fix corrupted zip file download issue for `get_historical()` on Windows
 
 # bomrang 0.2.1
 
