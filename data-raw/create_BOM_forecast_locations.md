@@ -43,30 +43,30 @@ sessioninfo::session_info()
 
     ## ─ Session info ──────────────────────────────────────────────────────────
     ##  setting  value                       
-    ##  version  R version 3.5.0 (2018-04-23)
+    ##  version  R version 3.5.1 (2018-07-02)
     ##  os       macOS Sierra 10.12.6        
     ##  system   x86_64, darwin16.7.0        
     ##  ui       X11                         
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2018-06-13                  
+    ##  date     2018-07-10                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version date       source        
-    ##  backports     1.1.2   2017-12-13 CRAN (R 3.5.0)
-    ##  clisymbols    1.2.0   2017-05-21 CRAN (R 3.5.0)
-    ##  digest        0.6.15  2018-01-28 CRAN (R 3.5.0)
-    ##  evaluate      0.10.1  2017-06-24 CRAN (R 3.5.0)
-    ##  foreign       0.8-70  2017-11-28 CRAN (R 3.5.0)
-    ##  htmltools     0.3.6   2017-04-28 CRAN (R 3.5.0)
-    ##  knitr         1.20    2018-02-20 CRAN (R 3.5.0)
-    ##  magrittr      1.5     2014-11-22 CRAN (R 3.5.0)
-    ##  Rcpp          0.12.17 2018-05-18 CRAN (R 3.5.0)
-    ##  rmarkdown     1.10    2018-06-11 CRAN (R 3.5.0)
-    ##  rprojroot     1.3-2   2018-01-03 CRAN (R 3.5.0)
-    ##  sessioninfo   1.0.0   2017-06-21 CRAN (R 3.5.0)
-    ##  stringi       1.2.3   2018-06-12 cran (@1.2.3) 
-    ##  stringr       1.3.1   2018-05-10 CRAN (R 3.5.0)
-    ##  withr         2.1.2   2018-03-15 CRAN (R 3.5.0)
-    ##  yaml          2.1.19  2018-05-01 CRAN (R 3.5.0)
+    ##  backports     1.1.2   2017-12-13 CRAN (R 3.5.1)
+    ##  clisymbols    1.2.0   2017-05-21 CRAN (R 3.5.1)
+    ##  digest        0.6.15  2018-01-28 CRAN (R 3.5.1)
+    ##  evaluate      0.10.1  2017-06-24 CRAN (R 3.5.1)
+    ##  foreign       0.8-70  2017-11-28 CRAN (R 3.5.1)
+    ##  htmltools     0.3.6   2017-04-28 CRAN (R 3.5.1)
+    ##  knitr         1.20    2018-02-20 CRAN (R 3.5.1)
+    ##  magrittr      1.5     2014-11-22 CRAN (R 3.5.1)
+    ##  Rcpp          0.12.17 2018-05-18 CRAN (R 3.5.1)
+    ##  rmarkdown     1.10    2018-06-11 CRAN (R 3.5.1)
+    ##  rprojroot     1.3-2   2018-01-03 CRAN (R 3.5.1)
+    ##  sessioninfo   1.0.0   2017-06-21 CRAN (R 3.5.1)
+    ##  stringi       1.2.3   2018-06-12 CRAN (R 3.5.1)
+    ##  stringr       1.3.1   2018-05-10 CRAN (R 3.5.1)
+    ##  withr         2.1.2   2018-03-15 CRAN (R 3.5.1)
+    ##  yaml          2.1.19  2018-05-01 CRAN (R 3.5.1)
