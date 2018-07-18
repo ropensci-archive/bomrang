@@ -44,20 +44,20 @@ sessioninfo::session_info()
     ## ─ Session info ──────────────────────────────────────────────────────────
     ##  setting  value                       
     ##  version  R version 3.5.1 (2018-07-02)
-    ##  os       macOS Sierra 10.12.6        
-    ##  system   x86_64, darwin16.7.0        
+    ##  os       macOS High Sierra 10.13.6   
+    ##  system   x86_64, darwin17.7.0        
     ##  ui       X11                         
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2018-07-10                  
+    ##  date     2018-07-19                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version date       source        
     ##  backports     1.1.2   2017-12-13 CRAN (R 3.5.1)
     ##  clisymbols    1.2.0   2017-05-21 CRAN (R 3.5.1)
     ##  digest        0.6.15  2018-01-28 CRAN (R 3.5.1)
-    ##  evaluate      0.10.1  2017-06-24 CRAN (R 3.5.1)
+    ##  evaluate      0.11    2018-07-17 CRAN (R 3.5.1)
     ##  foreign       0.8-70  2017-11-28 CRAN (R 3.5.1)
     ##  htmltools     0.3.6   2017-04-28 CRAN (R 3.5.1)
     ##  knitr         1.20    2018-02-20 CRAN (R 3.5.1)
