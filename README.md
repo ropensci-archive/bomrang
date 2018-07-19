@@ -46,28 +46,8 @@ Meta
 
     -   All data is copyright Australia Bureau of Meteorology, BOM Copyright Notice <http://reg.bom.gov.au/other/copyright.shtml>
 
--   To cite *bomrang*, please use: 
-        
-        Adam H Sparks, Mark Padgham, Hugh Parsonage and Keith Pembleton (2017).
-        bomrang: Fetch Australian Government Bureau of Meteorology Weather Data.
-        The Journal of Open Source Software, 2(17).
-        DOI: [10.21105/joss.00411](https://doi.org/10.21105/joss.00411)
-
-    or the BibTeX entry:
-
-    ```
-    @article{AHSparks2017,
-    doi = {10.21105/joss.00411},
-    url = {https://doi.org/10.21105/joss.00411},
-    year  = {2017},
-    month = {sep},
-    publisher = {The Open Journal},
-    volume = {2},
-    number = {17},
-    author = {Adam H Sparks and Mark Padgham and Hugh Parsonage and Keith Pembleton},
-    title = {bomrang: Fetch Australian Government Bureau of Meteorology Data in R},
-    journal = {The Journal of Open Source Software}
-    ```
+-   To cite *bomrang*, please use the output from `citation("bomrang")` to
+cite it properly
 
 -   Please note that this project is released with a
 [Contributor Code of Conduct](CONDUCT.md). By participating in this project you
