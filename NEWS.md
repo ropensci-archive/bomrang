@@ -1,8 +1,12 @@
-# bomrang 0.2.1.9000
+# bomrang 0.2.2
 
 ## Bug fixes
 
 Fix corrupted zip file download issue for `get_historical()` on Windows
+
+## Minor changes
+
+- Update citations for package to reflect current package and paper citation
 
 # bomrang 0.2.1
 

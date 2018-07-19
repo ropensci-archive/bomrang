@@ -18,5 +18,26 @@ citEntry(
   textVersion = paste("Adam H Sparks, Mark Padgham, Hugh Parsonage and Keith Pembleton (2017).",
         "bomrang: Fetch Australian Government Bureau of Meteorology Weather Data",
         "The Journal of Open Source Software, 2(17).",
-        "DOI: 10.21105/joss.00411"),
+        "DOI: 10.21105/joss.00411")
+        )
+
+year <- sub("-.*", "", packageDate("bomrang"))
+note <- sprintf("R package version %s", packageVersion("bomrang"))
+
+citEntry(
+  entry = "Manual",
+  author = personList(as.person("Adam H Sparks"),
+                      as.person("Jonathan Carroll"),
+                      as.person("Mark Padgham"),
+                      as.person("Hugh Parsonage"),
+                      as.person("Keith Pembleton")),
+  title = "{bomrang}: Australian government Bureau of Meteorology (BOM) data from R",
+  year = year,
+  note = note,
+  url = "https://CRAN.R-project.org/package=bomrang",
+
+  textVersion = paste("Adam H Sparks, Jonathan Carroll, Mark Padgham, Hugh Parsonage and Keith Pembleton. (", year, ").",
+  " bomrang:  Australian government Bureau of Meteorology (BOM) data from R. ",
+  note, ".",
+  " https://CRAN.R-project.org/package=bomrang", sep = "")
 )

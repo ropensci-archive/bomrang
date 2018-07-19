@@ -310,13 +310,13 @@ stations_site_list$site <-
     ## ─ Session info ──────────────────────────────────────────────────────────
     ##  setting  value                       
     ##  version  R version 3.5.1 (2018-07-02)
-    ##  os       macOS Sierra 10.12.6        
-    ##  system   x86_64, darwin16.7.0        
+    ##  os       macOS High Sierra 10.13.6   
+    ##  system   x86_64, darwin17.7.0        
     ##  ui       X11                         
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2018-07-10                  
+    ##  date     2018-07-19                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version date       source        
@@ -332,15 +332,16 @@ stations_site_list$site <-
     ##  data.table  * 1.11.4  2018-05-27 CRAN (R 3.5.1)
     ##  digest        0.6.15  2018-01-28 CRAN (R 3.5.1)
     ##  dplyr         0.7.6   2018-06-29 CRAN (R 3.5.1)
-    ##  evaluate      0.10.1  2017-06-24 CRAN (R 3.5.1)
-    ##  glue          1.2.0   2017-10-29 CRAN (R 3.5.1)
+    ##  evaluate      0.11    2018-07-17 CRAN (R 3.5.1)
+    ##  fansi         0.2.3   2018-05-06 CRAN (R 3.5.1)
+    ##  glue          1.3.0   2018-07-17 CRAN (R 3.5.1)
     ##  hms           0.4.2   2018-03-10 CRAN (R 3.5.1)
     ##  htmltools     0.3.6   2017-04-28 CRAN (R 3.5.1)
     ##  httr          1.3.1   2017-08-20 CRAN (R 3.5.1)
     ##  knitr         1.20    2018-02-20 CRAN (R 3.5.1)
     ##  lattice       0.20-35 2017-03-25 CRAN (R 3.5.1)
     ##  magrittr    * 1.5     2014-11-22 CRAN (R 3.5.1)
-    ##  pillar        1.2.3   2018-05-25 CRAN (R 3.5.1)
+    ##  pillar        1.3.0   2018-07-14 CRAN (R 3.5.1)
     ##  pkgconfig     2.0.1   2017-03-21 CRAN (R 3.5.1)
     ##  purrr         0.2.5   2018-05-29 CRAN (R 3.5.1)
     ##  R6            2.2.2   2017-06-17 CRAN (R 3.5.1)
