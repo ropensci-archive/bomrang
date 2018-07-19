@@ -53,7 +53,7 @@ Meta
         The Journal of Open Source Software, 2(17).
         DOI: [10.21105/joss.00411](https://doi.org/10.21105/joss.00411)
 
-    or the BibTeX entries:
+    or the BibTeX entry:
 
     ```
     @article{AHSparks2017,
