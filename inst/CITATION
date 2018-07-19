@@ -21,8 +21,8 @@ citEntry(
         "DOI: 10.21105/joss.00411")
         )
 
-year <- sub("-.*", "", packageDate("bomrang"))
-note <- sprintf("R package version %s", packageVersion("bomrang"))
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
 
 citEntry(
   entry = "Manual",
