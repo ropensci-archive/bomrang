@@ -46,8 +46,7 @@ Meta
 
     -   All data is copyright Australia Bureau of Meteorology, BOM Copyright Notice <http://reg.bom.gov.au/other/copyright.shtml>
 
--   To cite *bomrang*, please use the output from `citation("bomrang")` to
-cite it properly
+-   To cite *bomrang*, please use the output from `citation("bomrang")`
 
 -   Please note that this project is released with a
 [Contributor Code of Conduct](CONDUCT.md). By participating in this project you
