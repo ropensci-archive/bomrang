@@ -1,5 +1,5 @@
 
-#' Australian government Bureau of Meteorology (BOM) data from R.
+#' Australian Government Bureau of Meteorology (BOM) Data from R
 #'
 #' @name bomrang
 #' @author Adam H Sparks and Jonathan Carroll and  Mark Padgham and Hugh
