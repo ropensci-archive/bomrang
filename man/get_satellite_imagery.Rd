@@ -75,6 +75,9 @@ imagery <- get_satellite_imagery(product_id = avail, scans = 2)
 
 }
 }
+\author{
+Adam H Sparks, \email{adamhsparks@gmail.com}
+}
 \references{
 Australian Bureau of Meteorology (BOM) high-definition satellite images \cr
 \url{http://www.bom.gov.au/australia/satellite/index.shtml}
@@ -83,6 +86,4 @@ Australian Bureau of Meteorology (BOM) high-definition satellite images \cr
 \code{\link{get_available_imagery}}
 \code{\link{manage_cache}}
 }
-\author{
-Adam H Sparks, \email{adamhsparks@gmail.com}
-}
+

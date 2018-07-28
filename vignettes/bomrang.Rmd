@@ -32,7 +32,7 @@ tidy data frames; `get_precis_forecast()`, which retrieves the précis (short)
 forecast; `get_current_weather()`, which fetches the current weather from a
 given station; `get_ag_bulletin()`, which retrieves the agriculture
 bulletin; `get_weather_bulletin()` which fetches the 0900 and 1500 weather
-bulletins; and `get_historical()` which fetches historical daily temperature min/max, 
+bulletins; `get_coastal_forecast()` which fetches coastal waters forecasts for each state and `get_historical()` which fetches historical daily temperature min/max, 
 rainfall, or solar exposure data. A second family of functions retrieve 
 information pertaining to
 satellite imagery, `get_available_imagery()` and the imagery itself,
@@ -173,12 +173,12 @@ codes.
 
 -   **WA** - Western Australia
 
-#### Results
+### Results
 
 The function `get_weather_bulletin()` will return a tidy data frame of BOM data
 for the requested state(s) or territory.
 
-#### Example
+### Example
 
 Following is an example fetching the 9AM bulletin for Queensland.
 
@@ -191,6 +191,48 @@ Following is an example fetching the 3PM bulletin for Queensland.
 ```{r weather-bulletin-PM, eval=FALSE}
 qld_weather <- get_weather_bulletin(state = "QLD")
 ```
+
+
+## Using `get_coastal_forecast`
+
+This function only takes one argument, `state`. The `state` parameter allows the
+user to select the forecast for just one state or a national forecast. States or
+territories are specified using the official postal codes or full name with
+fuzzy matching performed via `agrep()`
+
+- **ACT** - Australian Capital Territory
+
+- **NSW** - New South Wales
+
+- **NT** - Northern Territory
+
+- **QLD** - Queensland
+
+- **SA** - South Australia
+
+- **TAS** - Tasmania
+
+- **VIC** - Victoria
+
+- **WA** - Western Australia
+
+- **AUS** - Australia, returns national forecast including all states, NT and
+ACT.
+
+### Results
+
+The function, `get_coastal_forecast()`, will return a data frame of the coastal waters
+forecast for marine zones in each state. See Appendix 6 for a full
+description of the fields and values.
+
+### Example
+
+Following is an example fetching the forecast for Queensland.
+
+```{r coastal_forecast, eval=FALSE}
+QLD_coastal_forecast <- get_coastal_forecast(state = "QLD")
+```
+
 
 ## Using `get_historical`
 
@@ -1033,3 +1075,31 @@ if (requireNamespace("ggplot2", quietly = TRUE) &&
                             fill = NA))
 }
 ```
+
+
+## Appendix 6 - Output from `get_coastal_forecast`  
+
+The output of `get_coastal_forecast` will return a data frame with coastal waters forecast values of each area within the given state with the following fields:  
+
+<table>
+<tr><th>Field Name</th><th>Description</th></tr>
+<tr><td>index</td><td>Forecast index number.  0 = current day </td></tr>
+<tr><td>product_id</td><td>BOM Product ID from which the data are derived</td></tr>
+<tr><td>type</td><td>Forecast Region type e.g. Coastal</td></tr>
+<tr><td>state_code</td><td>State name (postal code abbreviation)</td></tr>
+<tr><td>dist_name</td><td>Name of forecast district</td></tr>
+<tr><td>pt_1_name</td><td>Start of forecast district</td></tr>
+<tr><td>pt_2_name</td><td>End of forecast district</td></tr>
+<tr><td>aac</td><td>AMOC Area Code, _e.g._, WA_MW008, a unique identifier for each location</td></tr>
+<tr><td>start_time_local</td><td>Start of forecast date and time in local TZ</td></tr>
+<tr><td>end_time_local</td><td>End of forecast date and time in local TZ</td></tr>
+<tr><td>UTC_offset</td><td>Hours offset from difference in hours and minutes from Coordinated Universal Time (UTC) for `start_time_local` and `end_time_local`</td></tr>
+<tr><td>start_time_utc</td><td>Start of forecast date and time in UTC</td></tr>
+<tr><td>end_time_utc</td><td>End of forecast date and time in UTC</td></tr>
+<tr><td>forecast_seas</td><td>Forecast sea conditions</td></tr>
+<tr><td>forecast_weather</td><td>Forecast weather summary</td></tr>
+<tr><td>forecast_winds</td><td>Forecast winds summary</td></tr>
+<tr><td>forecast_swell1</td><td>Forecast primary swell summary</td></tr>
+<tr><td>forecast_swell2</td><td>Forecast seondary swell summary (not always provided)</td></tr>
+<tr><td>marine_forecast</td><td>Additional marine forecast warning information (not always provided)</td></tr>
+</table><br>

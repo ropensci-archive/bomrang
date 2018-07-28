@@ -4,9 +4,13 @@
 \name{bomrang}
 \alias{bomrang}
 \alias{bomrang-package}
-\title{Australian government Bureau of Meteorology (BOM) data from R.}
+\title{Australian Government Bureau of Meteorology (BOM) Data from R}
 \description{
-Australian government Bureau of Meteorology (BOM) data from R.
+Australian Government Bureau of Meteorology (BOM) Data from R
+}
+\author{
+Adam H Sparks and Jonathan Carroll and  Mark Padgham and Hugh
+Parsonage and Keith Pembleton
 }
 \seealso{
 \strong{Useful links:}
@@ -16,7 +20,4 @@ Australian government Bureau of Meteorology (BOM) data from R.
 \item{Report bugs at \url{https://github.com/ropensci/bomrang/issues}}
 }
 }
-\author{
-Adam H Sparks and Jonathan Carroll and  Mark Padgham and Hugh
-Parsonage and Keith Pembleton
-}
+

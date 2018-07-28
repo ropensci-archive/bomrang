@@ -1,6 +1,6 @@
 Package: bomrang
 Type: Package
-Title: Australian government Bureau of Meteorology (BOM) data from R
+Title: Australian Government Bureau of Meteorology (BOM) Data from R
 Version: 0.2.2
 Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     email = "adamhsparks@gmail.com",
@@ -68,10 +68,11 @@ Suggests:
     maps,
     mapproj,
     rappdirs
-RoxygenNote: 6.0.1
+RoxygenNote: 5.0.1
 NeedsCompilation: no
 ByteCompile: TRUE
 VignetteBuilder: knitr
 X-schema.org-applicationCategory: Tools
-X-schema.org-keywords: bom, meteorological-data, weather-forecast, australia, weather, weather-data, meteorology, australia-bureau-of-meteorology
+X-schema.org-keywords: bom, meteorological-data, weather-forecast, australia,
+    weather, weather-data, meteorology, australia-bureau-of-meteorology
 X-schema.org-isPartOf: https://ropensci.org

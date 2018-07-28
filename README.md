@@ -1,4 +1,4 @@
-_bomrang_: Australian Government Bureau of Meteorology Data from R <img align="right" src="man/figures/logo.png">
+_bomrang_: Australian Government Bureau of Meteorology (BOM) Data from R <img align="right" src="man/figures/logo.png">
 ================
 
 [![CircleCI](https://circleci.com/gh/ropensci/bomrang.svg?style=shield)](https://circleci.com/gh/ropensci/bomrang) [![Appveyor](https://ci.appveyor.com/api/projects/status/au6p6qy1ah2lrtl5/branch/master?svg=true)](https://ci.appveyor.com/project/adamhsparks/bomrang/branch/master) [![codecov](https://codecov.io/gh/ropensci/bomrang/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/bomrang) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.598301.svg)](https://doi.org/10.5281/zenodo.598301)
@@ -34,7 +34,7 @@ devtools::install_github("ropensci/bomrang", build_vignettes = TRUE)
 Using *bomrang*
 ---------------
 
-Several functions are provided by *bomrang* to retrieve Australian Bureau of Meteorology (BOM) data. A family of functions retrieve weather data and return tidy data frames; `get_precis_forecast()`, which retrieves the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; `get_ag_bulletin()`, which retrieves the agriculture bulletin; `get_weather_bulletin()`, which retrieves the BOM 0900 or 1500 bulletins; and `get_historical()`, which retrieves historical daily observations for a given station. A second group of functions retrieve information pertaining to satellite imagery, `get_available_imagery()` and the imagery itself, `get_satellite_imagery()`. Vignettes are provided illustrating examples of all functions and a use case.
+Several functions are provided by *bomrang* to retrieve Australian Bureau of Meteorology (BOM) data. A family of functions retrieve weather data and return tidy data frames; `get_precis_forecast()`, which retrieves the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; `get_ag_bulletin()`, which retrieves the agriculture bulletin; `get_weather_bulletin()`, which retrieves the BOM 0900 or 1500 bulletins; `get_coastal_forecast()`, which returns coastal waters forecasts and `get_historical()`, which retrieves historical daily observations for a given station. A second group of functions retrieve information pertaining to satellite imagery, `get_available_imagery()` and the imagery itself, `get_satellite_imagery()`. Vignettes are provided illustrating examples of all functions and a use case.
 
 Meta
 ----
