@@ -70,7 +70,7 @@ Suggests:
     maps,
     mapproj,
     rappdirs
-RoxygenNote: 6.0.1
+RoxygenNote: 6.1.0
 NeedsCompilation: no
 ByteCompile: TRUE
 VignetteBuilder: knitr
