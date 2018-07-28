@@ -12,7 +12,7 @@ Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 "AUS" returning all state bulletins, see details for further information.}
 }
 \value{
-Tidy  \code{\link[base]{data.frame}} of a Australia BOM précis seven day
+Tidy \code{\link[base]{data.frame}} of a Australia BOM précis seven day
 forecasts for select towns.  For full details of fields and units returned
 see Appendix 2 in the \pkg{bomrang} vignette, use \cr
 \code{vignette("bomrang", package = "bomrang")} to view.

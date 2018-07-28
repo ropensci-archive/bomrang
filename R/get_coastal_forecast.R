@@ -22,7 +22,7 @@
 #'  }
 #'
 #' @return
-#' Tidy  \code{\link[base]{data.frame}} of a Australia BOM Coastal Waters
+#' Tidy \code{\link[base]{data.frame}} of a Australia BOM Coastal Waters
 #' Forecast.
 #'
 #' @examples
