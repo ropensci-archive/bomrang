@@ -28,15 +28,16 @@ citEntry(
   entry = "Manual",
   author = personList(as.person("Adam H Sparks"),
                       as.person("Jonathan Carroll"),
+                      as.person("Dean Marchiori"),
                       as.person("Mark Padgham"),
                       as.person("Hugh Parsonage"),
                       as.person("Keith Pembleton")),
-  title = "{bomrang}: Australian government Bureau of Meteorology (BOM) data from R",
+  title = "{bomrang}: Australian Government Bureau of Meteorology (BOM) Data from R",
   year = year,
   note = note,
   url = "https://CRAN.R-project.org/package=bomrang",
 
-  textVersion = paste("Adam H Sparks, Jonathan Carroll, Mark Padgham, Hugh Parsonage and Keith Pembleton. (", year, ").",
+  textVersion = paste("Adam H Sparks, Jonathan Carroll, Dean Marchiori, Mark Padgham, Hugh Parsonage and Keith Pembleton. (", year, ").",
   " bomrang:  Australian government Bureau of Meteorology (BOM) data from R. ",
   note, ".",
   " https://CRAN.R-project.org/package=bomrang", sep = "")
