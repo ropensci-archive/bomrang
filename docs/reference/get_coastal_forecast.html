@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Articles • bomrang</title>
+<title>Get BOM Coastal Waters Forecast — get_coastal_forecast • bomrang</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -36,7 +36,10 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Articles" />
+<meta property="og:title" content="Get BOM Coastal Waters Forecast — get_coastal_forecast" />
+
+<meta property="og:description" content="Fetch the BOM daily Coastal Waters Forecast and return a tidy data frame of
+the forecast regions for a specified state or region." />
 
 <meta property="og:image" content="https://ropensci.github.io/bomrang/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -55,7 +58,7 @@
   </head>
 
   <body>
-    <div class="container template-article-index">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -127,18 +130,86 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Articles</h1>
+    <h1>Get BOM Coastal Waters Forecast</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/bomrang/blob/master/R/get_coastal_forecast.R'><code>R/get_coastal_forecast.R</code></a></small>
+    <div class="hidden name"><code>get_coastal_forecast.Rd</code></div>
     </div>
 
-    <div class="section ">
-      <h3>All vignettes</h3>
-      <p class="section-desc"></p>
-
-      <ul>
-        <li><a href="bomrang.html">bomrang</a></li>
-        <li><a href="use_case.html">bomrang Use Case</a></li>
-      </ul>
+    <div class="ref-description">
+    
+    <p>Fetch the BOM daily Coastal Waters Forecast and return a tidy data frame of
+the forecast regions for a specified state or region.</p>
+    
     </div>
+
+    <pre class="usage"><span class='fu'>get_coastal_forecast</span>(<span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"AUS"</span>)</pre>
+    
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>state</th>
+      <td><p>Australian state or territory as full name or postal code.
+Fuzzy string matching via <code><a href='http://www.rdocumentation.org/packages/base/topics/agrep'>agrep</a></code> is done.  Defaults to
+"AUS" returning all state forecasts, see details for further information.</p></td>
+    </tr>
+    </table>
+    
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>Tidy <code><a href='http://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></code> of a Australia BOM Coastal Waters
+Forecast.</p>
+    
+    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+
+    <p>Allowed state and territory postal codes, only one state per request
+or all using <code>AUS</code>.</p><dl class='dl-horizontal'>
+   <dt>ACT</dt><dd><p>Australian Capital Territory (will return NSW)</p></dd>
+   <dt>NSW</dt><dd><p>New South Wales</p></dd>
+   <dt>NT</dt><dd><p>Northern Territory</p></dd>
+   <dt>QLD</dt><dd><p>Queensland</p></dd>
+   <dt>SA</dt><dd><p>South Australia</p></dd>
+   <dt>TAS</dt><dd><p>Tasmania</p></dd>
+   <dt>VIC</dt><dd><p>Victoria</p></dd>
+   <dt>WA</dt><dd><p>Western Australia</p></dd>
+   <dt>AUS</dt><dd><p>Australia, returns forecast for all states, NT and ACT</p></dd>
+ </dl>
+    
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>Forecast data come from Australian Bureau of Meteorology (BOM) Weather Data
+Services <br />
+<a href='http://www.bom.gov.au/catalogue/data-feeds.shtml'>http://www.bom.gov.au/catalogue/data-feeds.shtml</a></p>
+<p>Location data and other metadata come from
+the BOM anonymous FTP server with spatial data <br />
+<a href='ftp://ftp.bom.gov.au/anon/home/adfd/spatial/'>ftp://ftp.bom.gov.au/anon/home/adfd/spatial/</a>, specifically the DBF
+file portion of a shapefile, <br />
+<a href='ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00003.dbf'>ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00003.dbf</a></p>
+    
+
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
+<span class='no'>coastal_forecast</span> <span class='kw'>&lt;-</span> <span class='fu'>get_coastal_forecast</span>(<span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"NSW"</span>)
+<span class='co'># }</span></pre>
+  </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#arguments">Arguments</a></li>
+      
+      <li><a href="#value">Value</a></li>
+
+      <li><a href="#details">Details</a></li>
+
+      <li><a href="#references">References</a></li>
+      
+      <li><a href="#examples">Examples</a></li>
+    </ul>
+
+    <h2>Author</h2>
+    
+Dean Marchiori, <a href='mailto:deanmarchiori@gmail.com'>deanmarchiori@gmail.com</a>
+
   </div>
 </div>
 
