@@ -39,9 +39,6 @@ or all using \code{AUS}.
 coastal_forecast <- get_coastal_forecast(state = "NSW")
 }
 }
-\author{
-Dean Marchiori, \email{deanmarchiori@gmail.com}
-}
 \references{
 Forecast data come from Australian Bureau of Meteorology (BOM) Weather Data
 Services \cr
@@ -53,4 +50,6 @@ the BOM anonymous FTP server with spatial data \cr
 file portion of a shapefile, \cr
 \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00003.dbf}
 }
-
+\author{
+Dean Marchiori, \email{deanmarchiori@gmail.com}
+}

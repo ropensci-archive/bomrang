@@ -67,9 +67,6 @@ for a complete list of fields and units.
   get_current_weather(latlon = c(-34, 151))
 }
 }
-\author{
-Hugh Parsonage, \email{hugh.parsonage@gmail.com}
-}
 \references{
 Weather data observations are retrieved from:
 Australian Bureau of Meteorology (BOM) Weather Data Services,
@@ -80,4 +77,6 @@ Station location and other metadata are sourced from the Australian Bureau of
 Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers: \cr
 \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 }
-
+\author{
+Hugh Parsonage, \email{hugh.parsonage@gmail.com}
+}

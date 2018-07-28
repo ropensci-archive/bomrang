@@ -48,12 +48,11 @@ sometimes contain typographical errors which may lead to warnings about
 qld_weather <- get_weather_bulletin (state = "QLD", morning = FALSE)
 }
 }
-\author{
-Mark Padgham, \email{mark.padgham@email.com}
-}
 \references{
 Daily observation data come from Australian Bureau of Meteorology (BOM)
 website. The 3pm bulletin for Queensland is, for example, \cr
 \url{http://www.bom.gov.au/qld/observations/3pm_bulletin.shtml}
 }
-
+\author{
+Mark Padgham, \email{mark.padgham@email.com}
+}
