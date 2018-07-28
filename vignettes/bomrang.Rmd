@@ -32,13 +32,13 @@ tidy data frames; `get_precis_forecast()`, which retrieves the précis (short)
 forecast; `get_current_weather()`, which fetches the current weather from a
 given station; `get_ag_bulletin()`, which retrieves the agriculture
 bulletin; `get_weather_bulletin()` which fetches the 0900 and 1500 weather
-bulletins; `get_coastal_forecast()` which fetches coastal waters forecasts for each state and `get_historical()` which fetches historical daily temperature min/max, 
-rainfall, or solar exposure data. A second family of functions retrieve 
-information pertaining to
-satellite imagery, `get_available_imagery()` and the imagery itself,
-`get_satellite_imagery()`. The last group functions provides internal
-functionality for _bomrang_ itself; `update_forecast_towns()`, which updates
-an internal database of forecast locations distributed with the package, 
+bulletins; `get_coastal_forecast()` which fetches coastal waters forecasts for
+each state and `get_historical()` which fetches historical daily temperature
+min/max, rainfall, or solar exposure data. A second family of functions retrieve 
+information pertaining to satellite imagery, `get_available_imagery()` and the
+imagery itself, `get_satellite_imagery()`. The last group functions provides
+internal functionality for _bomrang_ itself; `update_forecast_towns()`, which
+updates an internal database of forecast locations distributed with the package, 
 `sweep_for_stations()` which returns the nearest weather stations to a point in
 Australia and, `manage_cache()` that provides facilities for managing
 cached satellite imagery.
@@ -221,8 +221,8 @@ ACT.
 
 ### Results
 
-The function, `get_coastal_forecast()`, will return a data frame of the coastal waters
-forecast for marine zones in each state. See Appendix 6 for a full
+The function, `get_coastal_forecast()`, will return a data frame of the coastal
+waters forecast for marine zones in each state. See Appendix 6 for a full
 description of the fields and values.
 
 ### Example
@@ -237,9 +237,9 @@ QLD_coastal_forecast <- get_coastal_forecast(state = "QLD")
 ## Using `get_historical`
 
 `get_historical()` takes either of two arguments: `stationid` and `latlon`, as 
-well as a type of observation (`"rain"`, `"min"` (temperature), `"max"` (temperature), 
-or `"solar"`), returning the historical daily weather observations of that type for the 
-given location.
+well as a type of observation (`"rain"`, `"min"` (temperature), `"max"`
+(temperature), or `"solar"`), returning the historical daily weather
+observations of that type for the given location.
 
 If `latlon` is used, the observations returned are from the station nearest to
 that latitude-longitude coordinate. `latlon` values are entered as decimal
@@ -249,18 +249,18 @@ tell the user which station was used.
 ### Results
 
 The table returned may have different fields depending on the station that is
-selected. The time period over which observations are available will be highly dependent 
-on the station requested. Some stations may only have a decade or less of data 
-(e.g. max temperature at `070351 (CANBERRA AIRPORT)` has ~3,700+ observations back to 2008) 
-while others may have very extensive records (e.g. rainfall at 
-`ADELAIDE (WEST TERRACE / NGAYIRDAPIRA)` has ~65,000+ observations back to 1839, three years
-after the city was founded.) 
+selected. The time period over which observations are available will be highly
+dependent on the station requested. Some stations may only have a decade or less
+of data (e.g. max temperature at `070351 (CANBERRA AIRPORT)` has ~3,700+
+observations back to 2008) while others may have very extensive records (e.g.
+rainfall at `ADELAIDE (WEST TERRACE / NGAYIRDAPIRA)` has ~65,000+ observations
+back to 1839, three years after the city was founded.) 
 
 
 ### Example
 
-Following is an example fetching the historical daily temperature minimum observations 
-for the station closest to 35.2809°S, 149.1300°E (Canberra)
+Following is an example fetching the historical daily temperature minimum
+observations for the station closest to 35.2809°S, 149.1300°E (Canberra).
 
 ```{r historical_mintemps, eval=FALSE}
 Canberra_mintemps <- get_historical(latlon = c(-35.2809, 149.1300), type = "min")
@@ -465,7 +465,8 @@ the cached files:
 
 - Delete all files in cache, `manage_cache$delete_all()`
 
-To access the files directly, outside of R, the following command will give you the location of the directory:
+To access the files directly, outside of R, the following command will give you
+the location of the directory:
 
 `manage_cache$cache_path_get()`
 
