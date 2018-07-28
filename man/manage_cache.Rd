@@ -31,7 +31,6 @@ all files. For deleting many specific files, use\cr
  nothing
 }
 }
-
 \examples{
 \dontrun{
 
@@ -50,3 +49,4 @@ manage_cache$list()
 manage_cache$cache_path_set("~/tmp")
 }
 }
+

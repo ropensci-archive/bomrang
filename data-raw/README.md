@@ -6,7 +6,8 @@ Australian Bureau of Meteorology (BOM). See BOM's
 details.
 
 Data sources are acknowledged in the
-[create_BOM_forecast_locations.md](create_BOM_forecast_locations.md) and
+[create_BOM_forecast_locations.md](create_BOM_forecast_locations.md) and  
+[create_BOM_marine_locations.md](create_BOM_marine_locations.md) and
 [create_BOM_station_list.md](create_BOM_station_list.md) files respectively.
 
 Also data sources are acknowledged in the references section for each applicable

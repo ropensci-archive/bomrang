@@ -4,7 +4,7 @@ Get BOM Marine Zones
 Get BOM Forecast Marine Zones
 -----------------------------
 
-BOM maintains a shapefile of forecast marine zone names and their geographic locations. For ease, we'll just use the .dbf file part of the shapefile to extract AAC codes that can be used to add lat/lon values to the forecast `data.frame` that `get_coastal_forecast()` returns. The file is available from BOM's anonymous FTP server with spatial data <ftp://ftp.bom.gov.au/anon/home/adfd/spatial/>, specifically the DBF file portion of a shapefile, <ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00003.dbf>
+BOM maintains a shapefile of forecast marine zone names and their geographic locations. For ease, we'll just use the .dbf file part of the shapefile to extract AAC codes that can be used to add locations to the forecast `data.frame` that `get_coastal_forecast()` returns. The file is available from BOM's anonymous FTP server with spatial data <ftp://ftp.bom.gov.au/anon/home/adfd/spatial/>, specifically the DBF file portion of a shapefile, <ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00003.dbf>
 
 ``` r
   utils::download.file(

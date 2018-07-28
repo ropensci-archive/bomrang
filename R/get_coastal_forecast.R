@@ -1,11 +1,11 @@
 #' Get BOM Coastal Waters Forecast
 #'
-#' Fetch the BOM daily Coastal Waters Forecast and retun a tidy data frame of
+#' Fetch the BOM daily Coastal Waters Forecast and return a tidy data frame of
 #' the forecast regions for a specified state or region.
 #'
 #' @param state Australian state or territory as full name or postal code.
 #' Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
-#' "AUS" returning all state bulletins, see details for further information.
+#' "AUS" returning all state forecasts, see details for further information.
 #'
 #' @details Allowed state and territory postal codes, only one state per request
 #' or all using \code{AUS}.
@@ -34,14 +34,13 @@
 #' Services \cr
 #' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 #'
-#' Location data and other metadata for towns come from
+#' Location data and other metadata come from
 #' the BOM anonymous FTP server with spatial data \cr
 #' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/}, specifically the DBF
 #' file portion of a shapefile, \cr
-#' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
+#' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00003.dbf}
 #'
-#' @author Adam H Sparks, \email{adamhsparks@@gmail.com} and Keith Pembleton,
-#' \email{keith.pembleton@@usq.edu.au}
+#' @author Dean Marchiori, \email{deanmarchiori@@gmail.com}
 #' @importFrom magrittr %>%
 #' @export
 get_coastal_forecast <- function(state = "AUS") {
@@ -81,24 +80,21 @@ get_coastal_forecast <- function(state = "AUS") {
         the_state == "WA" |
           the_state == "WESTERN AUSTRALIA" ~ paste0(ftp_base, AUS_XML[7])
       )
-    out <- .parse_forecast(xmlforecast_url)
+    out <- .parse_coastal_forecast(xmlforecast_url)
   } else {
     file_list <- paste0(ftp_base, AUS_XML)
-    out <- lapply(X = file_list, FUN = .parse_forecast)
+    out <- lapply(X = file_list, FUN = .parse_coastal_forecast)
     out <- as.data.frame(data.table::rbindlist(out, fill = TRUE))
   }
-
   return(out)
-
 }
 
-
-.parse_forecast <- function(xmlforecast_url) {
+.parse_coastal_forecast <- function(xmlforecast_url) {
   # CRAN note avoidance
-  AAC_codes <- attrs <- end_time_local <- precipitation_range <- # nocov start
+  AAC_codes <- marine_AAC_codes <- attrs <- end_time_local <- precipitation_range <- # nocov start
     start_time_local <- values <- NULL # nocov end
 
-  # download the XML forecast --------------------------------------------------
+  # download the XML forecast
   tryCatch({
     xmlforecast <- xml2::read_xml(xmlforecast_url)
   },
@@ -109,38 +105,27 @@ get_coastal_forecast <- function(state = "AUS") {
     ))
 
   areas <- xml2::xml_find_all(xmlforecast, ".//*[@type='coast']")
-
   out <- lapply(X = areas, FUN = .parse_areas)
   out <- as.data.frame(do.call("rbind", out))
 
-  # This is the actual returned value for the main function. The functions
-  # below chunk the xml into locations and then days, this assembles into
-  # the final data frame
-
   out <- tidyr::spread(out, key = attrs, value = values)
 
-  # tidy up names
-  names(out) <- gsub("c\\(", "", names(out))
-  names(out) <- gsub("\\)", "", names(out))
-
   out <- out %>%
-    janitor::clean_names() %>%
+    janitor::clean_names(., case = "snake") %>%
     janitor::remove_empty("cols")
 
-  out <-
-    out %>%
-    tidyr::separate(end_time_local,
-                    into = c("end_time_local", "UTC_offset"),
-                    sep = "\\+") %>%
+  out <- out %>%
+    tidyr::separate(
+      end_time_local,
+      into = c("end_time_local", "UTC_offset"),
+      sep = "\\+") %>%
     tidyr::separate(
       start_time_local,
       into = c("start_time_local", "UTC_offset_drop"),
-      sep = "\\+"
-    )
-
+      sep = "\\+")
+  
   # drop the "UTC_offset_drop" column
   out <- out[!names(out) %in% "UTC_offset_drop"]
-
 
   # remove the "T" from the date/time columns
   out[, c("start_time_local",
@@ -160,7 +145,6 @@ get_coastal_forecast <- function(state = "AUS") {
                   "end_time_utc")], 2, function(x)
                     chartr("Z", " ", x))
 
-
   # convert factors to character for left merge, otherwise funny stuff happens
   out[, seq_len(ncol(out))] <-
     lapply(out[, seq_len(ncol(out))], as.character)
@@ -178,6 +162,7 @@ get_coastal_forecast <- function(state = "AUS") {
   load(system.file("extdata", "marine_AAC_codes.rda", package = "bomrang"))  # nocov
 
   # return final forecast object -----------------------------------------------
+  
   # merge with aac codes for location information
   tidy_df <-
     dplyr::left_join(out,
@@ -205,12 +190,15 @@ get_coastal_forecast <- function(state = "AUS") {
     "start_time_utc",
     "end_time_utc",
     "forecast_seas",
-    "forecast_swell1",
     "forecast_weather",
-    "forecast_winds"
+    "forecast_winds",
+    "forecast_swell1"
   )
+  
+  # create factors
+  tidy_df$index <- as.factor(tidy_df$index)
+  
   tidy_df <- tidy_df[c(refcols, setdiff(names(tidy_df), refcols))]
-
   return(tidy_df)
 }
 
