@@ -1,5 +1,10 @@
 # bomrang 0.2.2.9000
 
+## Minor changes
+
+- Add new function `get_coastal_forecast()`, which fetches the BOM coastal
+waters forecast
+
 # bomrang 0.2.2
 
 ## Bug fixes
