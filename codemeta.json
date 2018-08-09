@@ -6,18 +6,18 @@
   "@type": "SoftwareSourceCode",
   "identifier": "bomrang",
   "description": "Provides functions to interface with Australian Government Bureau\n    of Meteorology (BOM) data, fetching data and returning a tidy data frame of\n    précis forecasts, historical and current weather data from stations,\n    agriculture bulletin data, BOM 0900 or 1500 weather bulletins or a raster\n    stack object of satellite imagery from GeoTIFF files. Data (c) Australian\n    Government Bureau of Meteorology Creative Commons (CC) Attribution 3.0\n    licence or Public Access Licence (PAL) as appropriate. See\n    <http://www.bom.gov.au/other/copyright.shtml> for further details.",
-  "name": "bomrang: Australian Government Bureau of Meteorology Data from R",
+  "name": "bomrang: Australian Government Bureau of Meteorology (BOM) Data from R",
   "codeRepository": "https://github.com/ropensci/bomrang",
   "issueTracker": "https://github.com/ropensci/bomrang/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.2.1",
+  "version": "0.2.2.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.0",
+    "version": "3.5.1",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.0 (2018-04-23)",
+  "runtimePlatform": "R version 3.5.1 (2018-07-02)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -38,6 +38,12 @@
       "familyName": "Carroll",
       "email": "rpkg@jcarroll.com.au",
       "@id": "https://orcid.org/0000-0002-1404-5264"
+    },
+    {
+      "@type": "Person",
+      "givenName": "Dean",
+      "familyName": "Marchiori",
+      "email": "deanmarchiori@gmail.com"
     },
     {
       "@type": "Person",
@@ -207,6 +213,19 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=rappdirs"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "roxygen2",
+      "name": "roxygen2",
+      "version": ">= 6.1.0",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=roxygen2"
     }
   ],
   "softwareRequirements": [
@@ -415,7 +434,7 @@
   "contIntegration": "https://travis-ci.org/ropensci/bomrang",
   "releaseNotes": "https://github.com/ropensci/bomrang/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/bomrang/blob/master/README.md",
-  "fileSize": "800.337KB",
+  "fileSize": "788.925KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -456,6 +475,43 @@
           "name": "The Journal of Open Source Software"
         }
       }
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "author": [
+        {
+          "@type": "Person",
+          "givenName": ["Adam", "H"],
+          "familyName": "Sparks"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Jonathan",
+          "familyName": "Carroll"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Dean",
+          "familyName": "Marchiori"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Mark",
+          "familyName": "Padgham"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Hugh",
+          "familyName": "Parsonage"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Keith",
+          "familyName": "Pembleton"
+        }
+      ],
+      "name": "{bomrang}: Australian Government Bureau of Meteorology (BOM) Data from R",
+      "url": "https://CRAN.R-project.org/package=bomrang"
     }
   ],
   "applicationCategory": "Tools",
@@ -478,5 +534,6 @@
     "@type": "Review",
     "url": "https://github.com/ropensci/onboarding/issues/121",
     "provider": "http://ropensci.org"
-  }
+  },
+  "developmentStatus": "http://www.repostatus.org/#active"
 }
