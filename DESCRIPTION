@@ -69,7 +69,8 @@ Suggests:
     gridExtra,
     maps,
     mapproj,
-    rappdirs
+    rappdirs,
+    roxygen2 (>= 6.1.0)
 RoxygenNote: 6.1.0
 NeedsCompilation: no
 ByteCompile: TRUE
