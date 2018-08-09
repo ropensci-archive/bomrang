@@ -23,12 +23,12 @@ install.packages("bomrang")
 Or from GitHub for the version in development.
 
 ``` r
-if (!require("devtools")) {
-  install.packages("devtools", repos = "http://cran.rstudio.com/")
-  library("devtools")
+if (!require("remotes")) {
+  install.packages("remotes", repos = "http://cran.rstudio.com/")
+  library("remotes")
 }
 
-devtools::install_github("ropensci/bomrang", build_vignettes = TRUE)
+install_github("ropensci/bomrang", build_vignettes = TRUE)
 ```
 
 Using *bomrang*
