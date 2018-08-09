@@ -108,14 +108,14 @@
 <h2 class="hasAnchor">
 <a href="#quick-start" class="anchor"></a>Quick Start</h2>
 <p>Install the stable release from CRAN.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"bomrang"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"bomrang"</span>)</code></pre></div>
 <p>Or from GitHub for the version in development.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"devtools"</span>)) {</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="kw">install.packages</span>(<span class="st">"devtools"</span>, <span class="dt">repos =</span> <span class="st">"http://cran.rstudio.com/"</span>)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3">  <span class="kw">library</span>(<span class="st">"devtools"</span>)</a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">}</a>
-<a class="sourceLine" id="cb2-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6">devtools<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ropensci/bomrang"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"remotes"</span>)) {
+  <span class="kw">install.packages</span>(<span class="st">"remotes"</span>, <span class="dt">repos =</span> <span class="st">"http://cran.rstudio.com/"</span>)
+  <span class="kw">library</span>(<span class="st">"remotes"</span>)
+}
+
+<span class="kw"><a href="http://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"ropensci/bomrang"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</code></pre></div>
 </div>
 <div id="using-bomrang" class="section level2">
 <h2 class="hasAnchor">

@@ -421,14 +421,14 @@
 <li><p>Product IDs are included in outputs from <code>get_*()</code> functions that return a tidy dataframe</p></li>
 <li><p>Full station names are reported along with BOM’s current name used to refer to a station location. In some cases a station “name” may be the same for both a current and retired station.</p></li>
 <li><p>Fuzzy matching is used for all functions now when user enters a value for a desired state, station or the whole country for functions that require a <code>state</code> argument</p></li>
-<li>Onload a message regarding the copyright and data source,</li>
-</ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">                <span class="kw">Data</span> (c) Australian Government Bureau of Meteorology,,</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2">                Creative <span class="kw">Commons</span> (CC) Attribution <span class="fl">3.0</span> licence or,</a>
-<a class="sourceLine" id="cb1-3" data-line-number="3">                Public Access <span class="kw">Licence</span> (PAL) as appropriate.,</a>
-<a class="sourceLine" id="cb1-4" data-line-number="4">                See http<span class="op">:</span><span class="er">//</span>www.bom.gov.au<span class="op">/</span>other<span class="op">/</span>copyright.shtml</a></code></pre></div>
+<li>
+<p>Onload a message regarding the copyright and data source,</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">            <span class="kw">Data</span> (c) Australian Government Bureau of Meteorology,,
+            Creative <span class="kw">Commons</span> (CC) Attribution <span class="fl">3.0</span> licence or,
+            Public Access <span class="kw">Licence</span> (PAL) as appropriate.,
+            See http<span class="op">:</span><span class="er">//</span>www.bom.gov.au<span class="op">/</span>other<span class="op">/</span>copyright.shtml</code></pre></div>
 <p>is displayed</p>
-<ul>
+</li>
 <li><p>the <em>bomrang</em> vignette now contains instructions for use along with appendices that document the data fields and units, rather than separate vingettes</p></li>
 <li><p>ramifications of updating station lists are now stated clearly in the vignette and help files for applicable functions</p></li>
 <li><p>a map of BOM stations is included in an appendix of the <em>bomrang</em> vingette</p></li>
@@ -598,14 +598,10 @@
 <li><p>Hugh Parsonage has joined as a contributor</p></li>
 <li><p>Added a new function <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> to retrieve weather data from specified BOM weather stations</p></li>
 <li><p>Added a new function <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> to find stations used in <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> function, based on distance from a specified latitude and longitude</p></li>
-<li>
-<p>Renamed existing functions for more clarity.</p>
-<ul>
+<li><p>Renamed existing functions for more clarity.</p></li>
 <li><p><code>get_forecast()</code> is now <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code></p></li>
 <li><p><code>get_bulletin()</code> is now <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code></p></li>
 <li><p><code>update_locations()</code> is now <code>update_precis_locations()</code></p></li>
-</ul>
-</li>
 </ul>
 </div>
 <div id="minor-changes-16" class="section level2">
