@@ -129,7 +129,7 @@
 <h3 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h3>
 <p>Following is an example fetching the current weather for Melbourne.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_current_weather.html">get_current_weather</a></span>(<span class="st">"Melbourne (Olympic Park)"</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_current_weather.html">get_current_weather</a></span>(<span class="st">"Melbourne (Olympic Park)"</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="using-get_precis_forecast" class="section level2">
@@ -157,7 +157,7 @@
 <h3 class="hasAnchor">
 <a href="#example-1" class="anchor"></a>Example</h3>
 <p>Following is an example fetching the forecast for Queensland.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_precis_forecast.html">get_precis_forecast</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1">QLD_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_precis_forecast.html">get_precis_forecast</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="using-get_ag_bulletin" class="section level2">
@@ -184,7 +184,7 @@
 <h3 class="hasAnchor">
 <a href="#example-2" class="anchor"></a>Example</h3>
 <p>Following is an example fetching the ag bulletin for Queensland.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_ag_bulletin.html">get_ag_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)</code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">QLD_bulletin &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_ag_bulletin.html">get_ag_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="using-get_weather_bulletin" class="section level2">
@@ -211,9 +211,9 @@
 <h3 class="hasAnchor">
 <a href="#example-3" class="anchor"></a>Example</h3>
 <p>Following is an example fetching the 9AM bulletin for Queensland.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qld_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_weather_bulletin.html">get_weather_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>, <span class="dt">morning =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">qld_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_weather_bulletin.html">get_weather_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>, <span class="dt">morning =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p>Following is an example fetching the 3PM bulletin for Queensland.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">qld_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_weather_bulletin.html">get_weather_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)</code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">qld_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_weather_bulletin.html">get_weather_bulletin</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="using-get_coastal_forecast" class="section level2">
@@ -241,7 +241,7 @@
 <h3 class="hasAnchor">
 <a href="#example-4" class="anchor"></a>Example</h3>
 <p>Following is an example fetching the forecast for Queensland.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">QLD_coastal_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_coastal_forecast.html">get_coastal_forecast</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)</code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1">QLD_coastal_forecast &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_coastal_forecast.html">get_coastal_forecast</a></span>(<span class="dt">state =</span> <span class="st">"QLD"</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="using-get_historical" class="section level2">
@@ -253,13 +253,13 @@
 <div id="results-5" class="section level3">
 <h3 class="hasAnchor">
 <a href="#results-5" class="anchor"></a>Results</h3>
-<p>The table returned may have different fields depending on the station that is selected. The time period over which observations are available will be highly dependent on the station requested. Some stations may only have a decade or less of data (e.g. max temperature at <code>070351 (CANBERRA AIRPORT)</code> has ~3,700+ observations back to 2008) while others may have very extensive records (e.g. rainfall at <code>ADELAIDE (WEST TERRACE / NGAYIRDAPIRA)</code> has ~65,000+ observations back to 1839, three years after the city was founded.)</p>
+<p>The table returned may have different fields depending on the station that is selected. The time period over which observations are available will be highly dependent on the station requested. Some stations may only have a decade or less of data (e.g. max temperature at <code>070351 (CANBERRA AIRPORT)</code> has ~3,700+ observations back to 2008) while others may have very extensive records ( e.g. rainfall at <code>ADELAIDE (WEST TERRACE / NGAYIRDAPIRA)</code> has ~65,000+ observations back to 1839, three years after the city was founded.)</p>
 </div>
 <div id="example-5" class="section level3">
 <h3 class="hasAnchor">
 <a href="#example-5" class="anchor"></a>Example</h3>
 <p>Following is an example fetching the historical daily temperature minimum observations for the station closest to 35.2809°S, 149.1300°E (Canberra).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">Canberra_mintemps &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_historical.html">get_historical</a></span>(<span class="dt">latlon =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">35.2809</span>, <span class="fl">149.1300</span>), <span class="dt">type =</span> <span class="st">"min"</span>)</code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">Canberra_mintemps &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_historical.html">get_historical</a></span>(<span class="dt">latlon =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">35.2809</span>, <span class="fl">149.1300</span>), <span class="dt">type =</span> <span class="st">"min"</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="using-sweep_for_stations" class="section level2">
@@ -280,8 +280,8 @@
 <h3 class="hasAnchor">
 <a href="#example-6" class="anchor"></a>Example</h3>
 <p>Following is an example sweeping for stations starting with Canberra.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Show only the first ten stations in the list</span>
-<span class="kw">head</span>(<span class="kw"><a href="../reference/sweep_for_stations.html">sweep_for_stations</a></span>(<span class="dt">latlon =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">35.3</span>, <span class="fl">149.2</span>)), <span class="dv">10</span>)</code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="co"># Show only the first ten stations in the list</span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="kw">head</span>(<span class="kw"><a href="../reference/sweep_for_stations.html">sweep_for_stations</a></span>(<span class="dt">latlon =</span> <span class="kw">c</span>(<span class="op">-</span><span class="fl">35.3</span>, <span class="fl">149.2</span>)), <span class="dv">10</span>)</a></code></pre></div>
 <pre><code>##      site dist                              name start  end      lat
 ## 1  070351   70                  CANBERRA AIRPORT  2008 2018 -35.3088
 ## 2  070339   70 TUGGERANONG (ISABELLA PLAINS) AWS  1996 2018 -35.4184
@@ -322,7 +322,7 @@
 <a href="#using-the-update-functions" class="anchor"></a>Using the update functions</h2>
 <p><em>bomrang</em> uses internal databases of station location data from BOM to provide location and other metadata, <em>e.g.</em> elevation, station names, WMO codes, etc. to make the process of querying for weather data faster. These databases are created and packaged with <em>bomrang</em> for distribution and are updated with new releases. Users have the option of updating these databases after installing <em>bomrang</em>. While this option gives the users the ability to keep the databases up-to-date and gives <em>bomrang</em>’s authors flexibility in maintaining it, this also means that reproducibility may be affected since the same version of <em>bomrang</em> may have different databases on different machines. If reproducibility is necessary, care should be taken to ensure that the version of the databases is the same across different machines.</p>
 <p>The databases consist of three files, used by <em>bomrang</em>, <code>AAC_codes.rda</code>, <code>JSONurl_latlon_by_station_name.rda</code> and <code>stations_site_list.rda</code>. These files can be located on your local system by using the following command,</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">paste0</span>(<span class="kw">.libPaths</span>(), <span class="st">"/bomrang/extdata"</span>)[<span class="dv">1</span>]</code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">paste0</span>(<span class="kw">.libPaths</span>(), <span class="st">"/bomrang/extdata"</span>)[<span class="dv">1</span>]</a></code></pre></div>
 <p>unless you have specified another location for library installations and installed <em>bomrang</em> there, in which case it would still be in <code>bomrang/extdata</code>.</p>
 <div id="using-update_forecast_towns" class="section level3">
 <h3 class="hasAnchor">
@@ -334,7 +334,7 @@
 <h3 class="hasAnchor">
 <a href="#example-7" class="anchor"></a>Example</h3>
 <p>Following is an example updating the précis forecast locations internal database.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/update_forecast_towns.html">update_forecast_towns</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw"><a href="../reference/update_forecast_towns.html">update_forecast_towns</a></span>()</a></code></pre></div>
 </div>
 <div id="using-update_station_locations" class="section level3">
 <h3 class="hasAnchor">
@@ -346,7 +346,7 @@
 <h3 class="hasAnchor">
 <a href="#example-8" class="anchor"></a>Example</h3>
 <p>Following is an example updating the précis forecast locations internal database.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="../reference/update_station_locations.html">update_station_locations</a></span>()</code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw"><a href="../reference/update_station_locations.html">update_station_locations</a></span>()</a></code></pre></div>
 </div>
 </div>
 <div id="using-bomrang-to-retrieve-satellite-imagery" class="section level2">
@@ -590,7 +590,7 @@ Satellite
 <a href="#using-get_available_imagery" class="anchor"></a>Using <code>get_available_imagery</code>
 </h3>
 <p><code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> only takes one argument, <code>product_id</code>, a BOM identifier for the imagery that you wish to check for available imagery. Using this function will fetch a listing of BOM GeoTIFF satellite imagery from <a href="ftp://ftp.bom.gov.au/anon/gen/gms/" class="uri">ftp://ftp.bom.gov.au/anon/gen/gms/</a> to display which files are currently available for download. These files are available at ten minute update frequency with a 24 hour delete time. This function can be used see the most recent files available and then specify in the <code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> function. If no valid Product ID is supplied, defaults to all GeoTIFF images currently available.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">avail &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_available_imagery.html">get_available_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDE00425"</span>)</code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">avail &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_available_imagery.html">get_available_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDE00425"</span>)</a></code></pre></div>
 </div>
 <div id="using-get_satellite_imagery" class="section level3">
 <h3 class="hasAnchor">
@@ -602,18 +602,18 @@ Satellite
 <li><p><code>scans</code> a numeric value for the number of scans to download, starting with the most recent and progressing backwards, <em>e.g.</em>, <code>1</code> - the most recent single scan available , <code>6</code> - the most recent hour available, <code>12</code> - the most recent 2 hours available, etc. Negating will return the oldest files first. Defaults to 1. This argument is optional.</p></li>
 <li><p><code>cache</code> a logical value that indicates whether or not to store image files locally for later use? If <code>FALSE</code>, the downloaded files are removed when R session is closed. To take advantage of cached files in future sessions, set <code>TRUE</code>. Defaults to <code>FALSE</code>. This argument is optional. Cached files may be managed with the <code><a href="../reference/manage_cache.html">manage_cache()</a></code> function.</p></li>
 </ul>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Specify product ID and scans</span>
-i &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_satellite_imagery.html">get_satellite_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDE00425"</span>, <span class="dt">scans =</span> <span class="dv">1</span>)
-
-<span class="co"># Same, but use "avail" from prior to specify images for download</span>
-i &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_satellite_imagery.html">get_satellite_imagery</a></span>(<span class="dt">product_id =</span> avail, <span class="dt">scans =</span> <span class="dv">1</span>)
-
-<span class="co"># Cache image for later use</span>
-i &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_satellite_imagery.html">get_satellite_imagery</a></span>(<span class="dt">product_id =</span> avail, <span class="dt">scans =</span> <span class="dv">1</span>, <span class="dt">cache =</span> <span class="ot">TRUE</span>)
-
-<span class="co"># load the raster library to work with the GeoTIFF files</span>
-<span class="kw">library</span>(raster)
-<span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(i)</code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="co"># Specify product ID and scans</span></a>
+<a class="sourceLine" id="cb14-2" data-line-number="2">i &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_satellite_imagery.html">get_satellite_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDE00425"</span>, <span class="dt">scans =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb14-3" data-line-number="3"></a>
+<a class="sourceLine" id="cb14-4" data-line-number="4"><span class="co"># Same, but use "avail" from prior to specify images for download</span></a>
+<a class="sourceLine" id="cb14-5" data-line-number="5">i &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_satellite_imagery.html">get_satellite_imagery</a></span>(<span class="dt">product_id =</span> avail, <span class="dt">scans =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb14-6" data-line-number="6"></a>
+<a class="sourceLine" id="cb14-7" data-line-number="7"><span class="co"># Cache image for later use</span></a>
+<a class="sourceLine" id="cb14-8" data-line-number="8">i &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_satellite_imagery.html">get_satellite_imagery</a></span>(<span class="dt">product_id =</span> avail, <span class="dt">scans =</span> <span class="dv">1</span>, <span class="dt">cache =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb14-9" data-line-number="9"></a>
+<a class="sourceLine" id="cb14-10" data-line-number="10"><span class="co"># load the raster library to work with the GeoTIFF files</span></a>
+<a class="sourceLine" id="cb14-11" data-line-number="11"><span class="kw">library</span>(raster)</a>
+<a class="sourceLine" id="cb14-12" data-line-number="12"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/plot">plot</a></span>(i)</a></code></pre></div>
 <div class="figure">
 <img src="get_satellite_imagery-1.png" alt="get_satellite_imagery-1.png"><p class="caption">get_satellite_imagery-1.png</p>
 </div>
@@ -1051,9 +1051,11 @@ Plain language comments
 </li>
 <li>2 Increasing<br>
 </li>
-<li>3 Decreasing or steady, then increasing, or<br>
-</li>
+<li>3 Decreasing or steady, then increasing, or
+<ul>
 <li>Increasing, then increasing more rapidly, current pressure higher<br>
+</li>
+</ul>
 </li>
 <li>4 Steady<br>
 </li>
@@ -1062,9 +1064,11 @@ Plain language comments
 <li>6 Decreasing, then steady or decreasing more slowly<br>
 </li>
 <li>7 Decreasing<br>
--8 Steady or increasing, then then decreasing, current pressure lower, or<br>
-</li>
+-8 Steady or increasing, then then decreasing, current pressure lower, or
+<ul>
 <li>Decreasing, then decreasing more rapidly</li>
+</ul>
+</li>
 </ul>
 </div>
 <div id="wx9---present-weather" class="section level3">
@@ -1887,8 +1891,8 @@ Direction from which wind blows (16 compass directions, measured at height of 10
 <td>
 wind_speed_kmh
 </td>
-<td>
-</td>
+&lt;td
+
 </tr>
 <tr>
 <td>
@@ -1986,49 +1990,49 @@ See below for description
 <div id="appendix-5---map-of-station-locations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#appendix-5---map-of-station-locations" class="anchor"></a>Appendix 5 - Map of station locations</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="kw">requireNamespace</span>(<span class="st">"ggplot2"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span>
-<span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"ggthemes"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span>
-<span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"maps"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span>
-<span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"mapproj"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span>
-<span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"gridExtra"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span>
-<span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"grid"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)) {
-  <span class="kw">library</span>(ggplot2)
-  <span class="kw">library</span>(mapproj)
-  <span class="kw">library</span>(ggthemes)
-  <span class="kw">library</span>(maps)
-  <span class="kw">library</span>(data.table)
-  <span class="kw">library</span>(grid)
-  <span class="kw">library</span>(gridExtra)
-  <span class="kw">load</span>(<span class="kw">system.file</span>(<span class="st">"extdata"</span>, <span class="st">"stations_site_list.rda"</span>, <span class="dt">package =</span> <span class="st">"bomrang"</span>))
-  <span class="kw"><a href="http://www.rdocumentation.org/packages/data.table/topics/setDT">setDT</a></span>(stations_site_list)
-  
-  Aust_stations &lt;-<span class="st"> </span>
-<span class="st">    </span>stations_site_list[(<span class="op">!</span>(state <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">"ANT"</span>, <span class="st">"null"</span>))) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">grepl</span>(<span class="st">"VANUATU|HONIARA"</span>, name)]
-  
-  Aust_map &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/map_data">map_data</a></span>(<span class="st">"world"</span>, <span class="dt">region =</span> <span class="st">"Australia"</span>)
-  
-  BOM_stations &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(Aust_stations, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_polygon">geom_polygon</a></span>(<span class="dt">data =</span> Aust_map, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), 
-                 <span class="dt">color =</span> <span class="kw">grey</span>(<span class="fl">0.7</span>),
-                 <span class="dt">fill =</span> <span class="ot">NA</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="dt">color =</span> <span class="st">"red"</span>,
-               <span class="dt">size =</span> <span class="fl">0.05</span>) <span class="op">+</span>
-<span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/coord_map">coord_map</a></span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">45</span>, <span class="op">-</span><span class="dv">5</span>),
-              <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">96</span>, <span class="dv">167</span>)) <span class="op">+</span>
-<span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_map">theme_map</a></span>() <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">title =</span> <span class="st">"BOM Station Locations"</span>,
-         <span class="dt">subtitle =</span> <span class="st">"Australia, outlying islands and buoys (excl. Antarctic stations)"</span>,
-         <span class="dt">caption =</span> <span class="st">"Data: Australia Bureau of Meteorology (BOM)</span><span class="ch">\n</span>
-<span class="st">         and NaturalEarthdata, http://naturalearthdata.com"</span>)
-  
-  <span class="co"># Using the gridExtra and grid packages add a neatline to the map</span>
-  <span class="kw"><a href="http://www.rdocumentation.org/packages/gridExtra/topics/arrangeGrob">grid.arrange</a></span>(BOM_stations, <span class="dt">ncol =</span> <span class="dv">1</span>)
-  <span class="kw"><a href="http://www.rdocumentation.org/packages/grid/topics/grid.rect">grid.rect</a></span>(<span class="dt">width =</span> <span class="fl">0.98</span>, 
-            <span class="dt">height =</span> <span class="fl">0.98</span>, 
-            <span class="dt">gp =</span> grid<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/grid/topics/gpar">gpar</a></span>(<span class="dt">lwd =</span> <span class="fl">0.25</span>, 
-                            <span class="dt">col =</span> <span class="st">"black"</span>,
-                            <span class="dt">fill =</span> <span class="ot">NA</span>))
-}</code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="cf">if</span> (<span class="kw">requireNamespace</span>(<span class="st">"ggplot2"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"ggthemes"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"maps"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"mapproj"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
+<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"gridExtra"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
+<a class="sourceLine" id="cb21-6" data-line-number="6"><span class="st">    </span><span class="kw">requireNamespace</span>(<span class="st">"grid"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)) {</a>
+<a class="sourceLine" id="cb21-7" data-line-number="7">  <span class="kw">library</span>(ggplot2)</a>
+<a class="sourceLine" id="cb21-8" data-line-number="8">  <span class="kw">library</span>(mapproj)</a>
+<a class="sourceLine" id="cb21-9" data-line-number="9">  <span class="kw">library</span>(ggthemes)</a>
+<a class="sourceLine" id="cb21-10" data-line-number="10">  <span class="kw">library</span>(maps)</a>
+<a class="sourceLine" id="cb21-11" data-line-number="11">  <span class="kw">library</span>(data.table)</a>
+<a class="sourceLine" id="cb21-12" data-line-number="12">  <span class="kw">library</span>(grid)</a>
+<a class="sourceLine" id="cb21-13" data-line-number="13">  <span class="kw">library</span>(gridExtra)</a>
+<a class="sourceLine" id="cb21-14" data-line-number="14">  <span class="kw">load</span>(<span class="kw">system.file</span>(<span class="st">"extdata"</span>, <span class="st">"stations_site_list.rda"</span>, <span class="dt">package =</span> <span class="st">"bomrang"</span>))</a>
+<a class="sourceLine" id="cb21-15" data-line-number="15">  <span class="kw"><a href="http://www.rdocumentation.org/packages/data.table/topics/setDT">setDT</a></span>(stations_site_list)</a>
+<a class="sourceLine" id="cb21-16" data-line-number="16">  </a>
+<a class="sourceLine" id="cb21-17" data-line-number="17">  Aust_stations &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb21-18" data-line-number="18"><span class="st">    </span>stations_site_list[(<span class="op">!</span>(state <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">"ANT"</span>, <span class="st">"null"</span>))) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">grepl</span>(<span class="st">"VANUATU|HONIARA"</span>, name)]</a>
+<a class="sourceLine" id="cb21-19" data-line-number="19">  </a>
+<a class="sourceLine" id="cb21-20" data-line-number="20">  Aust_map &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/map_data">map_data</a></span>(<span class="st">"world"</span>, <span class="dt">region =</span> <span class="st">"Australia"</span>)</a>
+<a class="sourceLine" id="cb21-21" data-line-number="21">  </a>
+<a class="sourceLine" id="cb21-22" data-line-number="22">  BOM_stations &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(Aust_stations, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-23" data-line-number="23"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_polygon">geom_polygon</a></span>(<span class="dt">data =</span> Aust_map, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </a>
+<a class="sourceLine" id="cb21-24" data-line-number="24">                 <span class="dt">color =</span> <span class="kw">grey</span>(<span class="fl">0.7</span>),</a>
+<a class="sourceLine" id="cb21-25" data-line-number="25">                 <span class="dt">fill =</span> <span class="ot">NA</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb21-26" data-line-number="26"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="dt">color =</span> <span class="st">"red"</span>,</a>
+<a class="sourceLine" id="cb21-27" data-line-number="27">               <span class="dt">size =</span> <span class="fl">0.05</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb21-28" data-line-number="28"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/coord_map">coord_map</a></span>(<span class="dt">ylim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">45</span>, <span class="dv">-5</span>),</a>
+<a class="sourceLine" id="cb21-29" data-line-number="29">              <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="dv">96</span>, <span class="dv">167</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb21-30" data-line-number="30"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggthemes/topics/theme_map">theme_map</a></span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-31" data-line-number="31"><span class="st">    </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">title =</span> <span class="st">"BOM Station Locations"</span>,</a>
+<a class="sourceLine" id="cb21-32" data-line-number="32">         <span class="dt">subtitle =</span> <span class="st">"Australia, outlying islands and buoys (excl. Antarctic stations)"</span>,</a>
+<a class="sourceLine" id="cb21-33" data-line-number="33">         <span class="dt">caption =</span> <span class="st">"Data: Australia Bureau of Meteorology (BOM)</span><span class="ch">\n</span></a>
+<a class="sourceLine" id="cb21-34" data-line-number="34"><span class="st">         and NaturalEarthdata, http://naturalearthdata.com"</span>)</a>
+<a class="sourceLine" id="cb21-35" data-line-number="35">  </a>
+<a class="sourceLine" id="cb21-36" data-line-number="36">  <span class="co"># Using the gridExtra and grid packages add a neatline to the map</span></a>
+<a class="sourceLine" id="cb21-37" data-line-number="37">  <span class="kw"><a href="http://www.rdocumentation.org/packages/gridExtra/topics/arrangeGrob">grid.arrange</a></span>(BOM_stations, <span class="dt">ncol =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb21-38" data-line-number="38">  <span class="kw"><a href="http://www.rdocumentation.org/packages/grid/topics/grid.rect">grid.rect</a></span>(<span class="dt">width =</span> <span class="fl">0.98</span>, </a>
+<a class="sourceLine" id="cb21-39" data-line-number="39">            <span class="dt">height =</span> <span class="fl">0.98</span>, </a>
+<a class="sourceLine" id="cb21-40" data-line-number="40">            <span class="dt">gp =</span> grid<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/grid/topics/gpar">gpar</a></span>(<span class="dt">lwd =</span> <span class="fl">0.25</span>, </a>
+<a class="sourceLine" id="cb21-41" data-line-number="41">                            <span class="dt">col =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb21-42" data-line-number="42">                            <span class="dt">fill =</span> <span class="ot">NA</span>))</a>
+<a class="sourceLine" id="cb21-43" data-line-number="43">}</a></code></pre></div>
 <p><img src="bomrang_files/figure-html/station-locations-map-1.png" width="672"></p>
 </div>
 <div id="appendix-6---output-from-get_coastal_forecast" class="section level2">

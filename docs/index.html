@@ -108,20 +108,41 @@
 <h2 class="hasAnchor">
 <a href="#quick-start" class="anchor"></a>Quick Start</h2>
 <p>Install the stable release from CRAN.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">install.packages</span>(<span class="st">"bomrang"</span>)</code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">"bomrang"</span>)</a></code></pre></div>
 <p>Or from GitHub for the version in development.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"remotes"</span>)) {
-  <span class="kw">install.packages</span>(<span class="st">"remotes"</span>, <span class="dt">repos =</span> <span class="st">"http://cran.rstudio.com/"</span>)
-  <span class="kw">library</span>(<span class="st">"remotes"</span>)
-}
-
-<span class="kw"><a href="http://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"ropensci/bomrang"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="cf">if</span> (<span class="op">!</span><span class="kw">require</span>(<span class="st">"remotes"</span>)) {</a>
+<a class="sourceLine" id="cb2-2" data-line-number="2">  <span class="kw">install.packages</span>(<span class="st">"remotes"</span>, <span class="dt">repos =</span> <span class="st">"http://cran.rstudio.com/"</span>)</a>
+<a class="sourceLine" id="cb2-3" data-line-number="3">  <span class="kw">library</span>(<span class="st">"remotes"</span>)</a>
+<a class="sourceLine" id="cb2-4" data-line-number="4">}</a>
+<a class="sourceLine" id="cb2-5" data-line-number="5"></a>
+<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="kw"><a href="http://www.rdocumentation.org/packages/remotes/topics/install_github">install_github</a></span>(<span class="st">"ropensci/bomrang"</span>, <span class="dt">build_vignettes =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
 <div id="using-bomrang" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-bomrang" class="anchor"></a>Using <em>bomrang</em>
 </h2>
-<p>Several functions are provided by <em>bomrang</em> to retrieve Australian Bureau of Meteorology (BOM) data. A family of functions retrieve weather data and return tidy data frames; <code><a href="reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; <code><a href="reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin; <code><a href="reference/get_weather_bulletin.html">get_weather_bulletin()</a></code>, which retrieves the BOM 0900 or 1500 bulletins; <code><a href="reference/get_coastal_forecast.html">get_coastal_forecast()</a></code>, which returns coastal waters forecasts and <code><a href="reference/get_historical.html">get_historical()</a></code>, which retrieves historical daily observations for a given station. A second group of functions retrieve information pertaining to satellite imagery, <code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code> and the imagery itself, <code><a href="reference/get_satellite_imagery.html">get_satellite_imagery()</a></code>. Vignettes are provided illustrating examples of all functions and a use case.</p>
+<p>Several functions are provided by <em>bomrang</em> to retrieve Australian Bureau of Meteorology (BOM) data. A family of functions retrieve weather data and return tidy data frames;</p>
+<ul>
+<li>
+<code><a href="reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast;</li>
+<li>
+<code><a href="reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station;</li>
+<li>
+<code><a href="reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin;</li>
+<li>
+<code><a href="reference/get_weather_bulletin.html">get_weather_bulletin()</a></code>, which retrieves the BOM 0900 or 1500 bulletins;</li>
+<li>
+<code><a href="reference/get_coastal_forecast.html">get_coastal_forecast()</a></code>, which returns coastal waters forecasts; and</li>
+<li>
+<code><a href="reference/get_historical.html">get_historical()</a></code>, which retrieves historical daily observations for a given station.</li>
+</ul>
+<p>A second group of functions retrieve information pertaining to satellite imagery,</p>
+<ul>
+<li>
+<code><a href="reference/get_available_imagery.html">get_available_imagery()</a></code> and the imagery itself,</li>
+<li>
+<code><a href="reference/get_satellite_imagery.html">get_satellite_imagery()</a></code>. Vignettes are provided illustrating examples of all functions and a use case.</li>
+</ul>
 </div>
 <div id="meta" class="section level2">
 <h2 class="hasAnchor">
