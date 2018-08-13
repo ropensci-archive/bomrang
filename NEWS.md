@@ -5,6 +5,9 @@
 - Add new function `get_coastal_forecast()`, which fetches the BOM coastal
 waters forecast
 
+- Add spaces between sentences in some error messages when interacting with the
+BOM servers
+
 # bomrang 0.2.2
 
 ## Bug fixes

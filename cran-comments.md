@@ -13,16 +13,13 @@
 
 0 errors | 0 warnings | 1 note
 
-* This is a new patch release
-
-## Bug fixes
-
-- Fix bug where historical data downloaded on Windows OS failed
+* This is a new patch release that adds new functionality
 
 ## Minor changes
 
-- Add citation for current version of package, along with original paper
-citation
+- Add new function, `get_coastal_forecast()` to get BOM coastal waters forecast
+
+- Add spaces between sentences in some error messages
 
 ## Reverse dependencies
 
