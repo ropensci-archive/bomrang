@@ -121,7 +121,7 @@ bom_stations_raw$end <- format(Sys.Date(), "%Y")
 bom_stations_raw
 ```
 
-    ## # A tibble: 7,316 x 11
+    ## # A tibble: 7,280 x 11
     ##    site   dist  name      start end     lat   lon state  elev bar_ht   wmo
     ##    <chr>  <chr> <chr>     <int> <chr> <dbl> <dbl> <chr> <dbl>  <dbl> <int>
     ##  1 001006 01    WYNDHAM …  1951 2018  -15.5  128. WA      3.8    4.3 95214
@@ -134,7 +134,7 @@ bom_stations_raw
     ##  8 001020 01    TRUSCOTT   1944 2018  -14.1  126. WA     51     52.5 95101
     ##  9 001023 01    EL QUEST…  1967 2018  -16.0  128. WA     90     NA      NA
     ## 10 001024 01    ELLENBRAE  1986 2018  -16.0  127. WA    300     NA      NA
-    ## # ... with 7,306 more rows
+    ## # ... with 7,270 more rows
 
 ## Check that station locations
 
@@ -316,7 +316,7 @@ stations_site_list$site <-
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2018-07-19                  
+    ##  date     2018-08-13                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version date       source        
@@ -345,17 +345,17 @@ stations_site_list$site <-
     ##  pkgconfig     2.0.1   2017-03-21 CRAN (R 3.5.1)
     ##  purrr         0.2.5   2018-05-29 CRAN (R 3.5.1)
     ##  R6            2.2.2   2017-06-17 CRAN (R 3.5.1)
-    ##  Rcpp          0.12.17 2018-05-18 CRAN (R 3.5.1)
+    ##  Rcpp          0.12.18 2018-07-23 CRAN (R 3.5.1)
     ##  readr         1.1.1   2017-05-16 CRAN (R 3.5.1)
     ##  rlang         0.2.1   2018-05-30 CRAN (R 3.5.1)
     ##  rmarkdown     1.10    2018-06-11 CRAN (R 3.5.1)
     ##  rprojroot     1.3-2   2018-01-03 CRAN (R 3.5.1)
     ##  sessioninfo   1.0.0   2017-06-21 CRAN (R 3.5.1)
     ##  sp          * 1.3-1   2018-06-05 CRAN (R 3.5.1)
-    ##  stringi       1.2.3   2018-06-12 CRAN (R 3.5.1)
+    ##  stringi       1.2.4   2018-07-20 CRAN (R 3.5.1)
     ##  stringr       1.3.1   2018-05-10 CRAN (R 3.5.1)
     ##  tibble        1.4.2   2018-01-22 CRAN (R 3.5.1)
     ##  tidyselect    0.2.4   2018-02-26 CRAN (R 3.5.1)
     ##  utf8          1.1.4   2018-05-24 CRAN (R 3.5.1)
     ##  withr         2.1.2   2018-03-15 CRAN (R 3.5.1)
-    ##  yaml          2.1.19  2018-05-01 CRAN (R 3.5.1)
+    ##  yaml          2.2.0   2018-07-25 CRAN (R 3.5.1)
