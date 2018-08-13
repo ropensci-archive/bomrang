@@ -47,7 +47,7 @@
 get_weather_bulletin <- function(state = "qld", morning = TRUE) {
   the_state <- convert_state(state) # see internal_functions.R
   if (the_state == "AUS") {
-    stop("Weather bulletins can only be extracted for individual states")
+    stop("Weather bulletins can only be extracted for individual states.")
   }
 
   if (morning) {
@@ -203,7 +203,7 @@ tidy_bulletin_header <- function(bull) {
     names(bull) <- paste0(r1, r2, r3)
     bull <- bull[3:nrow(bull), ]
   } else {
-    stop("Weather bulletin has unrecognised format")
+    stop("Weather bulletin has unrecognised format.")
   }
 
   bull

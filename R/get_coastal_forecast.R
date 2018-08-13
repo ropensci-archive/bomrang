@@ -91,8 +91,8 @@ get_coastal_forecast <- function(state = "AUS") {
 
 .parse_coastal_forecast <- function(xmlforecast_url) {
   # CRAN note avoidance
-  AAC_codes <- marine_AAC_codes <- attrs <- end_time_local <- precipitation_range <- # nocov start
-    start_time_local <- values <- NULL # nocov end
+  AAC_codes <- marine_AAC_codes <- attrs <- end_time_local <- # nocov start
+    precipitation_range <- start_time_local <- values <- NULL # nocov end
 
   # download the XML forecast
   tryCatch({
@@ -100,7 +100,7 @@ get_coastal_forecast <- function(state = "AUS") {
   },
   error = function(x)
     stop(
-      "\nThe server with the forecast is not responding.",
+      "\nThe server with the forecast is not responding. ",
       "Please retry again later.\n"
     ))
 

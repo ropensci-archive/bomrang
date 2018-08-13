@@ -238,7 +238,7 @@ get_current_weather <-
     },
     error = function(e) {
       e$message <-
-        paste("\nA station was matched.",
+        paste("\nA station was matched. ",
               "However, a corresponding JSON file was not found at",
               "bom.gov.au.\n")
       # Otherwise refers to open.connection
@@ -249,8 +249,8 @@ get_current_weather <-
       if ("observations" %notin% names(observations.json) ||
           "data" %notin% names(observations.json$observations)) {
         stop(
-          "\nA station was matched",
-          "but the JSON returned by bom.gov.au was not in expected form.\n"
+          "\nA station was matched ",
+          "However, the JSON returned by bom.gov.au was not in expected form.\n"
         )
       }
 

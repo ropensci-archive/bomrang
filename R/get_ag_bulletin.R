@@ -113,7 +113,7 @@ get_ag_bulletin <- function(state = "AUS") {
   },
   error = function(x)
     stop(
-      "\nThe server with the bulletin files is not responding.",
+      "\nThe server with the bulletin files is not responding. ",
       "Please retry again later.\n"
     ))
 

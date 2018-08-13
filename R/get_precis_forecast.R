@@ -111,7 +111,7 @@ get_precis_forecast <- function(state = "AUS") {
   },
   error = function(x)
     stop(
-      "\nThe server with the forecast is not responding.",
+      "\nThe server with the forecast is not responding. ",
       "Please retry again later.\n"
     ))
 
