@@ -7,9 +7,16 @@ _bomrang_: Australian Government Bureau of Meteorology (BOM) Data from R <img al
 [![status](http://joss.theoj.org/papers/350bf005bded599e4b0f3ac2acf138e8/status.svg)](http://joss.theoj.org/papers/350bf005bded599e4b0f3ac2acf138e8)
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 
-Provides functions to interface with Australian Government Bureau of Meteorology (BOM) data, fetching data and returning a tidy data frame of précis forecasts, current weather data from stations, ag information bulletins, historical weather data or a `raster::stack()` object of satellite imagery from GeoTIFF files.
+Provides functions to interface with Australian Government Bureau of Meteorology
+(BOM) data, fetching data and returning a tidy data frame of précis forecasts,
+current weather data from stations, ag information bulletins, historical weather
+data or a `raster::stack()` object of satellite imagery from GeoTIFF files.
 
-Credit for the name, *bomrang*, goes to [Di Cook](http://dicook.github.io), who suggested it while attending the rOpenSci AUUnconf in Brisbane, 2016, upon seeing the [vignette](https://github.com/saundersk1/auunconf16/blob/master/Vignette_BOM.pdf) that we had assembled during the Unconf.
+Credit for the name, *bomrang*, goes to [Di Cook](http://dicook.github.io), who
+suggested it while attending the rOpenSci AUUnconf in Brisbane, 2016, upon
+seeing the
+[vignette](https://github.com/saundersk1/auunconf16/blob/master/Vignette_BOM.pdf)
+that we had assembled during the Unconf.
 
 Quick Start
 -----------
@@ -34,7 +41,23 @@ install_github("ropensci/bomrang", build_vignettes = TRUE)
 Using *bomrang*
 ---------------
 
-Several functions are provided by *bomrang* to retrieve Australian Bureau of Meteorology (BOM) data. A family of functions retrieve weather data and return tidy data frames; `get_precis_forecast()`, which retrieves the précis (short) forecast; `get_current_weather()`, which fetches the current weather from a given station; `get_ag_bulletin()`, which retrieves the agriculture bulletin; `get_weather_bulletin()`, which retrieves the BOM 0900 or 1500 bulletins; `get_coastal_forecast()`, which returns coastal waters forecasts and `get_historical()`, which retrieves historical daily observations for a given station. A second group of functions retrieve information pertaining to satellite imagery, `get_available_imagery()` and the imagery itself, `get_satellite_imagery()`. Vignettes are provided illustrating examples of all functions and a use case.
+Several functions are provided by *bomrang* to retrieve Australian Bureau of
+Meteorology (BOM) data. A family of functions retrieve weather data and return
+tidy data frames;
+  - `get_precis_forecast()`, which retrieves the précis (short) forecast;
+  - `get_current_weather()`, which fetches the current weather from a given
+  station;
+  - `get_ag_bulletin()`, which retrieves the agriculture bulletin;
+  - `get_weather_bulletin()`, which retrieves the BOM 0900 or 1500 bulletins;
+  - `get_coastal_forecast()`, which returns coastal waters forecasts; and
+  - `get_historical()`, which retrieves historical daily observations for a given
+station.
+
+A second group of functions retrieve information pertaining to satellite
+imagery,
+  - `get_available_imagery()` and the imagery itself,
+  - `get_satellite_imagery()`. Vignettes are provided illustrating examples of
+  all functions and a use case.
 
 Meta
 ----
