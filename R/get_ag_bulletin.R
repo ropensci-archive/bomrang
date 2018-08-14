@@ -54,12 +54,13 @@ get_ag_bulletin <- function(state = "AUS") {
   stations_site_list <- NULL # nocov
 
   # Load AAC code/town name list to join with final output
-  load(system.file("extdata", "stations_site_list.rda", package = "bomrang")) # nocov
+  load(system.file("extdata", "stations_site_list.rda", # nocov
+                   package = "bomrang")) # nocov
 
   the_state <- .check_states(state) # see internal_functions.R
 
   # ftp server
-  ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
+  ftp_base <- "ftp://ftp2.bom.gov.au/anon/gen/fwo/"
 
   # create vector of XML files
   AUS_XML <- c(

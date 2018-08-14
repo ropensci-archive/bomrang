@@ -46,9 +46,9 @@ Services \cr
 
 Location data and other metadata come from
 the BOM anonymous FTP server with spatial data \cr
-\url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/}, specifically the DBF
+\url{ftp://ftp2.bom.gov.au/anon/home/adfd/spatial/}, specifically the DBF
 file portion of a shapefile, \cr
-\url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00003.dbf}
+\url{ftp://ftp2.bom.gov.au/anon/home/adfd/spatial/IDM00003.dbf}
 }
 \author{
 Dean Marchiori, \email{deanmarchiori@gmail.com}

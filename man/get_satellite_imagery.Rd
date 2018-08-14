@@ -28,7 +28,7 @@ timestamp and band.
 }
 \description{
 Fetch BOM satellite GeoTIFF imagery from
-\url{ftp://ftp.bom.gov.au/anon/gen/gms/} and return a raster
+\url{ftp://ftp2.bom.gov.au/anon/gen/gms/} and return a raster
 \code{\link[raster]{stack}} object of GeoTIFF files. Files are available at
 ten minute update frequency with a 24 hour delete time. Suggested to check
 file availability first by using \code{\link{get_available_imagery}}.

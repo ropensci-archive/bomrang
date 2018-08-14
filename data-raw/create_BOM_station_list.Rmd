@@ -58,7 +58,7 @@ Refer to these BOM pages for more reference:
 The station metadata are downloaded from a zip file linked from the 
 "[Bureau of Meteorology Site Numbers](http://www.bom.gov.au/climate/cdo/about/site-num.shtml)"
 website. The zip file may be directly downloaded, 
-[file of site details](ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip).
+[file of site details](ftp://ftp2.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip).
 
 ```{r get_bom_station_data, eval=TRUE}
 library(magrittr)
@@ -71,7 +71,7 @@ library(magrittr)
 # tempdir()
 
 curl::curl_download(
-  url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
+  url = "ftp://ftp2.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
   destfile = file.path(tempdir(), "stations.zip"))
 
   bom_stations_raw <-

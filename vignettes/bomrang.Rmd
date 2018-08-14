@@ -390,7 +390,7 @@ Valid BOM satellite Product IDs for GeoTIFF files include:
 `get_available_imagery()` only takes one argument, `product_id`, a BOM identifier
 for the imagery that you wish to check for available imagery. Using this
 function will fetch a listing of BOM GeoTIFF satellite imagery from
-[ftp://ftp.bom.gov.au/anon/gen/gms/](ftp://ftp.bom.gov.au/anon/gen/gms/) to
+[ftp://ftp2.bom.gov.au/anon/gen/gms/](ftp://ftp2.bom.gov.au/anon/gen/gms/) to
 display which files are currently available for download. These files are
 available at ten minute update frequency with a 24 hour delete time. 
 This function can be used see the most recent files available and then specify

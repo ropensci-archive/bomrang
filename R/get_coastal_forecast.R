@@ -36,9 +36,9 @@
 #'
 #' Location data and other metadata come from
 #' the BOM anonymous FTP server with spatial data \cr
-#' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/}, specifically the DBF
+#' \url{ftp://ftp2.bom.gov.au/anon/home/adfd/spatial/}, specifically the DBF
 #' file portion of a shapefile, \cr
-#' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00003.dbf}
+#' \url{ftp://ftp2.bom.gov.au/anon/home/adfd/spatial/IDM00003.dbf}
 #'
 #' @author Dean Marchiori, \email{deanmarchiori@@gmail.com}
 #' @importFrom magrittr %>%
@@ -47,7 +47,7 @@ get_coastal_forecast <- function(state = "AUS") {
   the_state <- .check_states(state) # see internal_functions.R
 
   # ftp server
-  ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
+  ftp_base <- "ftp://ftp2.bom.gov.au/anon/gen/fwo/"
 
   # create vector of XML files
   AUS_XML <- c(

@@ -2,7 +2,7 @@
 #' Get a Listing of Available BOM Satellite GeoTIFF Imagery
 #'
 #' Fetch a listing of BOM GeoTIFF satellite imagery from
-#' \url{ftp://ftp.bom.gov.au/anon/gen/gms/} to determine which files are
+#' \url{ftp://ftp2.bom.gov.au/anon/gen/gms/} to determine which files are
 #' currently available for download.  Files are available at ten minute update
 #' frequency with a 24 hour delete time.  Useful to know the most recent files
 #' available and then specify in the \code{\link{get_satellite_imagery}}
@@ -53,7 +53,7 @@
 #'
 #' @export
 get_available_imagery <- function(product_id = "all") {
-  ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/gms/"
+  ftp_base <- "ftp://ftp2.bom.gov.au/anon/gen/gms/"
   .check_IDs(product_id)
   message("\nThe following files are currently available for download:\n")
   tif_list <- .ftp_images(product_id, bom_server = ftp_base)
@@ -64,7 +64,7 @@ get_available_imagery <- function(product_id = "all") {
 #' Get BOM Satellite GeoTIFF Imagery
 #'
 #' Fetch BOM satellite GeoTIFF imagery from
-#' \url{ftp://ftp.bom.gov.au/anon/gen/gms/} and return a raster
+#' \url{ftp://ftp2.bom.gov.au/anon/gen/gms/} and return a raster
 #' \code{\link[raster]{stack}} object of GeoTIFF files. Files are available at
 #' ten minute update frequency with a 24 hour delete time. Suggested to check
 #' file availability first by using \code{\link{get_available_imagery}}.
@@ -149,7 +149,7 @@ get_satellite_imagery <-
       stop("\nbomrang only supports working with one Product ID at a time\n")
     }
 
-    ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/gms/"
+    ftp_base <- "ftp://ftp2.bom.gov.au/anon/gen/gms/"
 
     # set the cache dir --------------------------------------------------------
     cache_dir <- .set_cache(cache)
@@ -330,7 +330,7 @@ get_satellite_imagery <-
 
   # check if the Product ID requested provides any files on server -------------
   if (length(tif_files) == 0 |
-      tif_files[1] == "ftp://ftp.bom.gov.au/anon/gen/gms/") {
+      tif_files[1] == "ftp://ftp2.bom.gov.au/anon/gen/gms/") {
     stop(paste0("\nSorry, no files are currently available for ", product_id))
   }
   return(tif_files)

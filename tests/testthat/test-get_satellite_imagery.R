@@ -28,7 +28,7 @@ test_that("get_available_imagery functions properly", {
 
 test_that("product ID urls are properly handled", {
   skip_on_cran()
-  ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/gms/"
+  ftp_base <- "ftp://ftp2.bom.gov.au/anon/gen/gms/"
 
   pid <- "IDE00420"
   x <- .ftp_images(product_id = pid, ftp_base)
