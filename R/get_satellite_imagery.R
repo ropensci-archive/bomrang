@@ -196,7 +196,7 @@ get_satellite_imagery <-
       list.files(cache_dir, pattern = "\\.tif$", full.names = TRUE)
     files <- basename(files)[basename(files) %in% basename(tif_files)]
     files <- file.path(cache_dir, files)
-    if (all(substr(files, nchar(files) - 3, nchar(files))) == ".tif") {
+    if (all(substr(files, nchar(files) - 3, nchar(files)) == ".tif")) {
       read_tif <- raster::stack(files)
     } else {
       stop(paste0("\nCannot create a raster stack object of ", files, ".\n",
