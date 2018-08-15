@@ -159,7 +159,7 @@ get_coastal_forecast <- function(state = "AUS") {
   out[, 2] <- as.numeric(out[,2])
 
   # Load AAC code/town name list to join with final output
-  load(system.file("extdata", "marine_AAC_codes.rda", package = "bomrang"))  # nocov
+  load(system.file("extdata", "marine_AAC_codes.rda", package = "bomrang")) # nocov
 
   # return final forecast object -----------------------------------------------
   
@@ -201,12 +201,3 @@ get_coastal_forecast <- function(state = "AUS") {
   tidy_df <- tidy_df[c(refcols, setdiff(names(tidy_df), refcols))]
   return(tidy_df)
 }
-
-
-
-
-
-
-
-
-
