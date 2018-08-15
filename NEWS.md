@@ -1,12 +1,16 @@
-# bomrang 0.2.2.9000
+# bomrang 0.3.0
 
-## Minor changes
+## Major changes
 
 - Add new function `get_coastal_forecast()`, which fetches the BOM coastal
 waters forecast
 
+## Minor changes
+
 - Add spaces between sentences in some error messages when interacting with the
 BOM servers
+
+- Enhance testing for `get_historical()`
 
 - Handle checking multiple imagery files gracefully without returning warning
 message if more than one file is to be loaded in current session
