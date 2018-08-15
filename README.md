@@ -55,8 +55,8 @@ station.
 
 A second group of functions retrieve information pertaining to satellite
 imagery,
-  - `get_available_imagery()` and the imagery itself;
-  - `get_satellite_imagery()`.
+  - `get_available_imagery()`; and
+  -  the imagery itself, `get_satellite_imagery()`.
   
 Vignettes are provided illustrating examples of all functions and a use case.
 
