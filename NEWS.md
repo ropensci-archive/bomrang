@@ -15,6 +15,8 @@ BOM servers
 - Handle checking multiple imagery files gracefully without returning warning
 message if more than one file is to be loaded in current session
 
+- Update citations for package to reflect current package and paper citation
+
 --------------------------------------------------------------------------------
 
 # bomrang 0.2.2
