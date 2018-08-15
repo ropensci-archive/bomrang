@@ -30,7 +30,7 @@ test_that("get_precis_forecast returns 19 columns and min < max", {
       "probability_of_precipitation"
     )
   )
-
+  
   expect_is(bom_forecast$index, "factor")
   expect_is(bom_forecast$product_id, "character")
   expect_is(bom_forecast$state, "character")
@@ -50,8 +50,8 @@ test_that("get_precis_forecast returns 19 columns and min < max", {
   expect_is(bom_forecast$upper_precipitation_limit, "numeric")
   expect_is(bom_forecast$precis, "character")
   expect_is(bom_forecast$probability_of_precipitation, "numeric")
-  expect_less_than(mean(bom_forecast$minimum_temperature, na.rm = TRUE),
-                   mean(bom_forecast$maximum_temperature, na.rm = TRUE))
+  expect_lt(mean(bom_forecast$minimum_temperature, na.rm = TRUE),
+            mean(bom_forecast$maximum_temperature, na.rm = TRUE))
 })
 
 # Test that get_precis_forecast returns the requested state forecast ------------------
