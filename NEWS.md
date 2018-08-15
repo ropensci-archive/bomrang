@@ -8,6 +8,11 @@ waters forecast
 - Add spaces between sentences in some error messages when interacting with the
 BOM servers
 
+- Handle checking multiple imagery files gracefully without returning warning
+message if more than one file is to be loaded in current session
+
+--------------------------------------------------------------------------------
+
 # bomrang 0.2.2
 
 ## Bug fixes
@@ -17,6 +22,8 @@ Fix corrupted zip file download issue for `get_historical()` on Windows
 ## Minor changes
 
 - Update citations for package to reflect current package and paper citation
+
+--------------------------------------------------------------------------------
 
 # bomrang 0.2.1
 
@@ -37,7 +44,10 @@ links and author e-mail addresses
 - Correct field names in `get_precis_forecast()` where `maximum_temperature` and
 `minimum_temperature` were reversed
 
-- Move rappdirs to Suggests to fix NOTEs on https://cran.rstudio.com/web/checks/check_results_bomrang.html
+- Move rappdirs to Suggests to fix NOTEs on
+https://cran.rstudio.com/web/checks/check_results_bomrang.html
+
+--------------------------------------------------------------------------------
 
 # bomrang 0.2.0
 
@@ -54,6 +64,8 @@ precipitation data gracefully
 ## Bug fixes
 
 - Add `rappdirs` to Imports section of DESCRIPTION file to fix missing import
+
+--------------------------------------------------------------------------------
 
 # bomrang 0.1.4
 
@@ -74,6 +86,8 @@ precipitation data gracefully
 ## Bug fixes
 
 - Correct issues with updating internal databases
+
+--------------------------------------------------------------------------------
 
 # bomrang 0.1.2
 
