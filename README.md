@@ -63,17 +63,19 @@ Vignettes are provided illustrating examples of all functions and a use case.
 Meta
 ----
 
--   Please [report any issues or bugs](https://github.com/ropensci/bomrang/issues).
+-   Please
+  [report any issues or bugs](https://github.com/ropensci/bomrang/issues).
 
 -   License:
-    -   All code is licenced MIT
+    - All code is licenced MIT
 
-    -   All data is copyright Australia Bureau of Meteorology, BOM Copyright Notice <http://reg.bom.gov.au/other/copyright.shtml>
+    - All data is copyright Australia Bureau of Meteorology, BOM Copyright
+    Notice <br /><http://reg.bom.gov.au/other/copyright.shtml>
 
--   To cite *bomrang*, please use the output from `citation("bomrang")`
+- To cite *bomrang*, please use the output from `citation("bomrang")`
 
--   Please note that this *bomrang* project is released with a
-[Contributor Code of Conduct](CONDUCT.md). By participating in this *bomrang*
+- Please note that the *bomrang* project is released with a
+[Contributor Code of Conduct](CONDUCT.md). By participating in the *bomrang*
 project you agree to abide by its terms.
 
 References
