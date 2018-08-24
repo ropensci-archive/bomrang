@@ -41,6 +41,10 @@ or all using \code{AUS}.
 BOM_forecast <- get_precis_forecast(state = "QLD")
 }
 }
+\author{
+Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton,
+\email{keith.pembleton@usq.edu.au}
+}
 \references{
 Forecast data come from Australian Bureau of Meteorology (BOM) Weather Data
 Services \cr
@@ -52,7 +56,4 @@ the BOM anonymous FTP server with spatial data \cr
 file portion of a shapefile, \cr
 \url{ftp://ftp2.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 }
-\author{
-Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton,
-\email{keith.pembleton@usq.edu.au}
-}
+

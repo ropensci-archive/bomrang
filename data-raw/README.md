@@ -8,7 +8,8 @@ details.
 Data sources are acknowledged in the
 [create_BOM_forecast_locations.md](create_BOM_forecast_locations.md) and  
 [create_BOM_marine_locations.md](create_BOM_marine_locations.md) and
-[create_BOM_station_list.md](create_BOM_station_list.md) files respectively.
+[create_BOM_station_list.md](create_BOM_station_list.md) and 
+[create_BOM_radar_locations.md](create_BOM_radar_locations.md) files respectively.
 
 Also data sources are acknowledged in the references section for each applicable
 function in the _bomrang_ R package.
