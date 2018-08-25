@@ -1,6 +1,6 @@
 ---
 title: "bomrang"
-author: "Adam H Sparks, Jonathan Carroll, Mark Padgham and Hugh Parsonage"
+author: "Adam H Sparks, Jonathan Carroll, Dean Marchiori, Mark Padgham and Hugh Parsonage"
 output:
   rmarkdown::html_vignette:
     toc: true
@@ -19,8 +19,7 @@ library(bomrang)
 _bomrang_ provides functions for interacting with 
 [Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BOM
 serves several types of data data as XML, JSON and SHTML files. This
-package fetches these files, parses them and return a tidy data frame. Satellite
-imagery files are also made available to the public via anonymous ftp. _bomrang_
+package fetches these files, parses them and return a tidy data frame. Satellite and radar imagery files are also made available to the public via anonymous ftp. _bomrang_
 provides functionality to query, fetch and create `raster::stack()` objects of
 the GeoTIFF imagery.
 
@@ -35,8 +34,9 @@ bulletin; `get_weather_bulletin()` which fetches the 0900 and 1500 weather
 bulletins; `get_coastal_forecast()` which fetches coastal waters forecasts for
 each state and `get_historical()` which fetches historical daily temperature
 min/max, rainfall, or solar exposure data. A second family of functions retrieve 
-information pertaining to satellite imagery, `get_available_imagery()` and the
-imagery itself, `get_satellite_imagery()`. The last group functions provides
+information pertaining to satellite and radar imagery, `get_available_imagery()` and the
+imagery itself, `get_satellite_imagery()` for satellite, and `get_available_radar()` 
+and `get_radar_imagery()`  for radar images. The last group functions provides
 internal functionality for _bomrang_ itself; `update_forecast_towns()`, which
 updates an internal database of forecast locations distributed with the package, 
 `sweep_for_stations()` which returns the nearest weather stations to a point in
@@ -468,7 +468,49 @@ the cached files:
 To access the files directly, outside of R, the following command will give you
 the location of the directory:
 
-`manage_cache$cache_path_get()`
+`manage_cache$cache_path_get()`   
+
+## Using _bomrang_ to retrieve radar imagery   
+bomrang provides functionality to retrieve the latest radar imagery provided by 
+BOM through public FTP. These are the latest snapshots for each radar locations
+at various radar ranges e.g. 512km, 256km, 128km and 64km for some stations.  
+
+### Using `get_available_radar`  
+`get_available_radar` fetches the available radar imagery from the BOM ftp and
+returns a data frame for reference. This data frame contains the product_id 
+which is required when using the `get_radar_imagery` function. The
+files available are the latest `.gif` files of BOM radar imagery which are 
+typically updated each 6-10 minutes. Only the most recent image is retireved 
+for each radar location. There are usually several radar ranges available for
+each radar location, such as 512km, 256km, 128km and possibly 64km.   
+The arguments are:   
+
+* `radar_id`  which is the BOM radar ID number. This defaults to 'all' which 
+will return a data frame of all radar ID's in Australia.  
+
+```{r}
+x <- get_available_radar()
+head(x)  
+```
+
+### Using `get_radar_imagery`   
+`get_radar_imagery` fetches the latest BOM radar imagery for a given product ID.  
+The files available are the latest `.gif` files of BOM radar imagery which are 
+typically updated each 6-10 minutes. Only the most recent image is retireved 
+for each radar location. There are usually several radar ranges available for
+each radar location, such as 512km, 256km, 128km and possibly 64km.   
+The arguments are:  
+
+* `product_id`  the BOM product_id associated with each radar imagery file. 
+These can be obtained from the `get_available_radar` function. This value must
+be specified and the function will accept only one at a time.   
+
+```{r}
+x <- get_radar_imagery(product_id = "IDR032")
+raster::plot(x)
+```
+
+
 
 ## References
 
