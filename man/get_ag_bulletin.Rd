@@ -41,9 +41,6 @@ ag_bulletin <- get_ag_bulletin(state = "QLD")
 }
 
 }
-\author{
-Adam H Sparks, \email{adamhsparks@gmail.com}
-}
 \references{
 Agricultural observations are retrieved from the Australian Bureau of
 Meteorology (BOM) Weather Data Services Agriculture Bulletins, \cr
@@ -59,4 +56,6 @@ Station location and other metadata are sourced from the Australian Bureau of
 Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers: \cr
 \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 }
-
+\author{
+Adam H Sparks, \email{adamhsparks@gmail.com}
+}

@@ -20,4 +20,3 @@ Find Nearest BOM Weather Stations
 \author{
 Hugh Parsonage, \email{hugh.parsonage@gmail.com}
 }
-

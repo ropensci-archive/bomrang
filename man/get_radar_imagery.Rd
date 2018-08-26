@@ -35,9 +35,6 @@ raster::plot(imagery)
 }
 
 }
-\author{
-Dean Marchiori, \email{deanmarchiori@gmail.com}
-}
 \references{
 Australian Bureau of Meteorology (BOM) radar images
 \url{http://www.bom.gov.au/australia/radar/}
@@ -45,4 +42,6 @@ Australian Bureau of Meteorology (BOM) radar images
 \seealso{
 \code{\link{get_available_radar}}
 }
-
+\author{
+Dean Marchiori, \email{deanmarchiori@gmail.com}
+}

@@ -32,11 +32,10 @@ imagery <- get_available_radar(radar_id = "3")
 }
 
 }
-\author{
-Dean Marchiori, \email{deanmarchiori@gmail.com}
-}
 \references{
 Australian Bureau of Meteorology (BOM) radar images
 \url{http://www.bom.gov.au/australia/radar/}
 }
-
+\author{
+Dean Marchiori, \email{deanmarchiori@gmail.com}
+}

@@ -30,12 +30,11 @@ location.
 update_station_locations()
 }
 }
-\author{
-Adam H Sparks, \email{adamhsparks@gmail.com}
-}
 \references{
 Station location and other metadata are sourced from the Australian Bureau of
 Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers:\cr
 \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 }
-
+\author{
+Adam H Sparks, \email{adamhsparks@gmail.com}
+}

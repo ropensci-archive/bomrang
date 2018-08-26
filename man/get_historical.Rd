@@ -19,39 +19,39 @@ get_historical(stationid = NULL, latlon = NULL, type = c("rain", "min",
 A complete \code{\link[base]{data.frame}} of historical observations for
 the chosen station, with some subset of the following columns
 
-  \tabular{rl}{
-  **Product_code**:\tab BOM internal code.\cr
-  **Station_number**:\tab BOM station ID.\cr
-  **Year**:\tab Year of observation (YYYY).\cr
-  **Month**:\tab Month of observation (1-12).\cr
-  **Day**:\tab Day of observation (1-31).\cr
-  **Min_temperature**:\tab Minimum daily recorded temperature (degrees C).\cr
-  **Max_temperature**:\tab Maximum daily recorded temperature (degrees C).\cr
-  **Accum_days_min**:\tab Accumulated number of days of minimum temperature.\cr
-  **Accum_days_max**:\tab Accumulated number of days of maximum temperature.\cr
-  **Rainfall**:\tab Daily recorded rainfall in mm.\cr
-  **Period**:\tab Period over which rainfall was measured.\cr
-  **Solar_exposure**:\tab Daily global solar exposure in MJ/m^2.\cr
-  **Quality**:\tab Y, N, or missing. Data which have not yet completed the\cr
-              \tab routine quality control process are marked accordingly.
-  }
+\tabular{rl}{
+\strong{Product_code}:\tab BOM internal code.\cr
+\strong{Station_number}:\tab BOM station ID.\cr
+\strong{Year}:\tab Year of observation (YYYY).\cr
+\strong{Month}:\tab Month of observation (1-12).\cr
+\strong{Day}:\tab Day of observation (1-31).\cr
+\strong{Min_temperature}:\tab Minimum daily recorded temperature (degrees C).\cr
+\strong{Max_temperature}:\tab Maximum daily recorded temperature (degrees C).\cr
+\strong{Accum_days_min}:\tab Accumulated number of days of minimum temperature.\cr
+\strong{Accum_days_max}:\tab Accumulated number of days of maximum temperature.\cr
+\strong{Rainfall}:\tab Daily recorded rainfall in mm.\cr
+\strong{Period}:\tab Period over which rainfall was measured.\cr
+\strong{Solar_exposure}:\tab Daily global solar exposure in MJ/m^2.\cr
+\strong{Quality}:\tab Y, N, or missing. Data which have not yet completed the\cr
+\tab routine quality control process are marked accordingly.
+}
 
-  Temperature data prior to 1910 should be used with extreme caution as many
-  stations, prior to that date, were exposed in non-standard shelters, some
-  of which give readings which are several degrees warmer or cooler than
-  those measured according to post-1910 standards.
+Temperature data prior to 1910 should be used with extreme caution as many
+stations, prior to that date, were exposed in non-standard shelters, some
+of which give readings which are several degrees warmer or cooler than
+those measured according to post-1910 standards.
 
-  Daily maximum temperatures usually occur in the afternoon and daily minimum
-  temperatures overnight or near dawn. Occasionally, however, the lowest
-  temperature in the 24 hours to prior to 9 am can occur around 9 am the
-  previous day if the night was particularly warm.
+Daily maximum temperatures usually occur in the afternoon and daily minimum
+temperatures overnight or near dawn. Occasionally, however, the lowest
+temperature in the 24 hours to prior to 9 am can occur around 9 am the
+previous day if the night was particularly warm.
 
-  Either \var{stationid} or \var{latlon} must be provided, but if both are,
-  then \var{stationid} will be used as it is more reliable.
+Either \var{stationid} or \var{latlon} must be provided, but if both are,
+then \var{stationid} will be used as it is more reliable.
 
-  In some cases data is available back to the 1800s, so tens of thousands of
-  daily records will be returned. Other stations will be newer and will
-  return fewer observations.
+In some cases data is available back to the 1800s, so tens of thousands of
+daily records will be returned. Other stations will be newer and will
+return fewer observations.
 }
 \description{
 Retrieves daily observations for a given station.
@@ -66,4 +66,3 @@ get_historical(latlon = c(-35.2809, 149.1300),
 \author{
 Jonathan Carroll, \email{rpkg@jcarroll.com.au}
 }
-

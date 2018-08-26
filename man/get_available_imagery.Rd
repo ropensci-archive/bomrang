@@ -54,11 +54,10 @@ imagery <- get_available_imagery(product_id = "IDE00425")
 }
 
 }
-\author{
-Adam H Sparks, \email{adamhsparks@gmail.com}
-}
 \references{
 Australian Bureau of Meteorology (BOM) High-definition satellite images
 \url{http://www.bom.gov.au/australia/satellite/index.shtml}
 }
-
+\author{
+Adam H Sparks, \email{adamhsparks@gmail.com}
+}
