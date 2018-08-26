@@ -30,26 +30,27 @@
 #' @export
 #'
 update_station_locations <- function() {
-  # CRAN NOTE avoidance
-  name <-
-    site <-
-    state_code <- wmo <- state <- lon <- lat <- # nocov start
-    actual_state <- state_from_latlon <- end <- NULL # nocov end
+
+  message(
+    "This will overwrite the current internal databases of BOM stations.\n",
+    "If reproducibility is necessary, you may not wish to proceed.\n",
+    "Do you understand and wish to proceed (y/n)?\n")
   
-  ifelse(
-    isTRUE(interactive()),
-    answer <- readline(
-      prompt =
-        "This will overwrite the current internal database of station
-      locations. If reproducibility is necessary, you may not wish to
-      proceed. Do you understand and wish to proceed (y/n)?\n"
-    ),
-    answer <- "y"
-    )
+  answer <-
+    readLines(con = getOption("bomrang_connection"), n = 1)
   
-  if (answer != "y") {
-    stop("Station locations not updated.")
+  answer <- toupper(answer)
+  
+  if (answer != "Y" | answer != "YES") {
+    stop("Station databases were not updated.",
+         call. = FALSE)
   }
+  
+  message("Updating internal station databases.\n")
+  
+    # CRAN NOTE avoidance
+  name <- site <- state_code <- wmo <- state <- lon <- lat <- # nocov start
+    actual_state <- state_from_latlon <- end <- NULL # nocov end
   
   tryCatch({
     curl::curl_download(url =
@@ -59,7 +60,8 @@ update_station_locations <- function() {
   error = function(x)
     stop(
       "\nThe server with the location information is not responding.",
-      "Please retry again later.\n"
+      "Please retry again later.\n",
+      call. = FALSE
     ))
   
   

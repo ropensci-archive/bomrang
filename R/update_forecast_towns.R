@@ -1,4 +1,5 @@
 
+
 #' Update bomrang Internal Database with Latest BOM Forecast Towns
 #'
 #' @description
@@ -24,19 +25,22 @@
 #' @export
 #'
 update_forecast_towns <- function() {
-  ifelse(
-    isTRUE(interactive()),
-    answer <- readline(
-      prompt =
-        "This will overwrite the current internal database of forecast
-      towns. If reproducibility is necessary, you may not wish to proceed.
-      Do you understand and wish to proceed (y/n)?\n"),
-    answer <- "y"
-    )
+  message(
+    "This will overwrite the current internal database of forecast towns.\n",
+    "If reproducibility is necessary, you may not wish to proceed.\n",
+    "Do you understand and wish to proceed (y/n)?\n")
   
-  if (answer != "y") {
-    stop("Station locations not updated.")
+  answer <-
+    readLines(con = getOption("bomrang_connection"), n = 1)
+  
+  answer <- toupper(answer)
+  
+  if (answer != "Y" | answer != "YES") {
+    stop("Forecast towns were not updated.",
+         call. = FALSE)
   }
+  
+  message("Updating forecast towns.\n")
   
   original_timeout <- options("timeout")[[1]]
   options(timeout = 300)
