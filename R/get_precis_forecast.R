@@ -40,9 +40,9 @@
 #'
 #' Location data and other metadata for towns come from
 #' the BOM anonymous FTP server with spatial data \cr
-#' \url{ftp://ftp2.bom.gov.au/anon/home/adfd/spatial/}, specifically the DBF
+#' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/}, specifically the DBF
 #' file portion of a shapefile, \cr
-#' \url{ftp://ftp2.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
+#' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com} and Keith Pembleton,
 #' \email{keith.pembleton@@usq.edu.au}
@@ -52,7 +52,7 @@ get_precis_forecast <- function(state = "AUS") {
   the_state <- .check_states(state) # see internal_functions.R
 
   # ftp server
-  ftp_base <- "ftp://ftp2.bom.gov.au/anon/gen/fwo/"
+  ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
 
   # create vector of XML files
   AUS_XML <- c(

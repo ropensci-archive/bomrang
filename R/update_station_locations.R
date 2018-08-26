@@ -48,7 +48,7 @@ update_station_locations <- function() {
   
   tryCatch({
     curl::curl_download(url =
-                          "ftp://ftp2.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
+                          "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
                         destfile = file.path(tempdir(), "stations.zip"))
   },
   error = function(x)
@@ -220,7 +220,10 @@ update_station_locations <- function() {
   
   stations_site_list <-
     stations_site_list %>%
-    dplyr::select(-state_code, -url)
+    dplyr::select(-state_code, -url) %>% 
+    dplyr::filter(end == 2018) %>% 
+    as.data.frame()
+  
   stations_site_list$site <-
     gsub("^0{1,2}", "", stations_site_list$site)
   
