@@ -46,7 +46,7 @@ Several functions are provided by *bomrang* to retrieve Australian Bureau of
 Meteorology (BOM) data. A family of functions retrieve weather data and return
 tidy data frames;
   - `get_precis_forecast()`, which retrieves the précis (short) forecast;
-  - `get_current_weather()`, which fetches the current weather from a given
+  - `get_current_weather()`, which fetches the current weather for a given
   station;
   - `get_ag_bulletin()`, which retrieves the agriculture bulletin;
   - `get_weather_bulletin()`, which retrieves the BOM 0900 or 1500 bulletins;
@@ -61,7 +61,8 @@ and radar imagery,
   - `get_available_radar`; and 
   - the imagery itself, `get_radar_imagery`.  
   
-Vignettes are provided illustrating examples of all functions and a use case.
+[Vignettes are provided illustrating examples](https://ropensci.github.io/bomrang/articles/bomrang.html)
+of all functions and a [use case](https://ropensci.github.io/bomrang/articles/use_case.html).
 
 Meta
 ----

@@ -24,24 +24,42 @@
 #' @export
 #'
 update_forecast_towns <- function() {
+  message(
+    "This will overwrite the current internal database of forecast towns.\n",
+    "If reproducibility is necessary, you may not wish to proceed.\n",
+    "Do you understand and wish to proceed (y/n)?\n")
+  
+  answer <-
+    readLines(con = getOption("bomrang_connection"), n = 1)
+  
+  answer <- toupper(answer)
+  
+  if (answer != "Y" & answer != "YES") {
+    stop("Forecast towns were not updated.",
+         call. = FALSE)
+  }
+  
+  message("Updating forecast towns.\n")
+  
   original_timeout <- options("timeout")[[1]]
   options(timeout = 300)
   on.exit(options(timeout = original_timeout))
-
+  
   # fetch new database from BOM server
   curl::curl_download(
-    "ftp://ftp2.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf",
+    "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf",
     destfile = file.path(tempdir(), "AAC_codes.dbf"),
     mode = "wb"
   )
-
+  
   # import BOM dbf file
   AAC_codes <-
     foreign::read.dbf(file.path(tempdir(), "AAC_codes.dbf"), as.is = TRUE)
   AAC_codes <- AAC_codes[, c(2:3, 7:9)]
-
+  
   # overwrite the existing isd_history.rda file on disk
   message("\nOverwriting existing database of forecast towns and AAC codes.\n")
-  fname <- system.file("extdata", "AAC_codes.rda", package = "bomrang")
+  fname <-
+    system.file("extdata", "AAC_codes.rda", package = "bomrang")
   save(AAC_codes, file = fname, compress = "bzip2")
 }

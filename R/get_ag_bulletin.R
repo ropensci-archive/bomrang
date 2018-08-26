@@ -60,7 +60,7 @@ get_ag_bulletin <- function(state = "AUS") {
   the_state <- .check_states(state) # see internal_functions.R
 
   # ftp server
-  ftp_base <- "ftp://ftp2.bom.gov.au/anon/gen/fwo/"
+  ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
 
   # create vector of XML files
   AUS_XML <- c(

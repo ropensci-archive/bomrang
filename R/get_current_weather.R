@@ -76,11 +76,14 @@ get_current_weather <-
            emit_latlon_msg = TRUE,
            as.data.table = FALSE) {
     # CRAN NOTE avoidance
-    JSONurl_site_list <- NULL # nocov
+    JSONurl_site_list <- end <- name <- NULL # nocov
 
     # Load JSON URL list
     load(system.file("extdata", "JSONurl_site_list.rda",  # nocov start
                      package = "bomrang"))  # nocov end
+    
+    # Current weather requires only currently reporting stations
+    JSONurl_site_list <- JSONurl_site_list[end %in% format(Sys.Date(), "%Y")]
 
     if (missing(station_name) && is.null(latlon)) {
       stop("One of 'station_name' or 'latlon' must be provided.")
@@ -93,9 +96,6 @@ get_current_weather <-
       }
       stopifnot(is.character(station_name),
                 length(station_name) == 1)
-
-      # CRAN NOTE avoidance
-      name <- NULL # nocov
 
       station_name <- toupper(station_name)
 

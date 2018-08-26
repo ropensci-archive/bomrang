@@ -25,6 +25,7 @@ manage_cache <- NULL # nocov start
                 "See `citation('bomrang')` for the proper citation.\n"
                 )
   packageStartupMessage(msg)
+  options(bomrang_connection = stdin())
 }
 
 # This function is never called.
