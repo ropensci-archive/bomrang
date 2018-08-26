@@ -24,6 +24,18 @@
 #' @export
 #'
 update_forecast_towns <- function() {
+  
+  answer <- readline(
+    prompt =
+    "This will overwrite the current internal database of forecast towns. If
+    reproducibility is necessary, you may not wish to proceed. Do you understand
+    and wish to proceed (y/n)?\n"
+  )
+  
+  if (answer != "y") {
+    stop("Station locations not updated.")
+  }
+  
   original_timeout <- options("timeout")[[1]]
   options(timeout = 300)
   on.exit(options(timeout = original_timeout))
