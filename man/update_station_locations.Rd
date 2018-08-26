@@ -12,9 +12,11 @@ Updated internal databases of BOM station locations and JSON URLs
 \description{
 Download the latest station locations and metadata and update bomrang's
 internal databases that support the use of \code{\link{get_current_weather}}
-and \code{\link{get_ag_bulletin}}.  There is no need to use this unless you
-know that a station exists in BOM's database that is not available in the
-databases distributed with \pkg{bomrang}.
+\code{\link{get_ag_bulletin}} and \code{\link{get_historical}}.  There is no
+need to use this unless you know that a station exists in BOM's database
+that is not available in the databases distributed with \pkg{bomrang}. In
+fact, for reproducibility purposes, users are discouraged from using this
+function.
 }
 \details{
 If \pkg{ASGS.foyer} is installed locally, this function will automatically
