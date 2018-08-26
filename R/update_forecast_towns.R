@@ -35,7 +35,7 @@ update_forecast_towns <- function() {
   
   answer <- toupper(answer)
   
-  if (answer != "Y" | answer != "YES") {
+  if (answer != "Y" & answer != "YES") {
     stop("Forecast towns were not updated.",
          call. = FALSE)
   }

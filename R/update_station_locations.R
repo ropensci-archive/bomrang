@@ -41,7 +41,7 @@ update_station_locations <- function() {
   
   answer <- toupper(answer)
   
-  if (answer != "Y" | answer != "YES") {
+  if (answer != "Y" & answer != "YES") {
     stop("Station databases were not updated.",
          call. = FALSE)
   }
