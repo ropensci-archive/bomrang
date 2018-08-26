@@ -140,9 +140,6 @@ station locations are accurate based on the lat/lon values provided for
 the currently reporting stations only.
 
 ``` r
-bom_stations_current <- subset(bom_stations_raw,
-                               end == format(Sys.Date(), "%Y"))
-
 library(ASGS.foyer)
 library(data.table)
 
@@ -151,12 +148,12 @@ library(data.table)
   match(x, table, nomatch = 0L) == 0L
 }
 
-data.table::setDT(bom_stations_current)
+data.table::setDT(bom_stations_raw)
 latlon2state <- function(lat, lon) {
   ASGS.foyer::latlon2SA(lat, lon, to = "STE", yr = "2016", return = "v")
 }
 
-bom_stations_current %>%
+bom_stations_raw %>%
   .[lon > -50, state_from_latlon := latlon2state(lat, lon)] %>%
   .[state_from_latlon == "New South Wales", actual_state := "NSW"] %>%
   .[state_from_latlon == "Victoria", actual_state := "VIC"] %>%
@@ -175,7 +172,7 @@ bom_stations_current %>%
     ## Loading required package: sp
 
 ``` r
-data.table::setDF(bom_stations_current)
+data.table::setDF(bom_stations_raw)
 ```
 
 ## Create state codes
@@ -202,22 +199,22 @@ BOM state codes are as follows:
 <!-- end list -->
 
 ``` r
-bom_stations_current$state_code <- NA
-bom_stations_current$state_code[bom_stations_current$state == "WA"] <- "W"
-bom_stations_current$state_code[bom_stations_current$state == "QLD"] <- "Q"
-bom_stations_current$state_code[bom_stations_current$state == "VIC"] <- "V"
-bom_stations_current$state_code[bom_stations_current$state == "NT"] <- "D"
-bom_stations_current$state_code[bom_stations_current$state == "TAS" |
-                              bom_stations_current$state == "ANT"] <- "T"
-bom_stations_current$state_code[bom_stations_current$state == "NSW"] <- "N"
-bom_stations_current$state_code[bom_stations_current$state == "SA"] <- "S"
+bom_stations_raw$state_code <- NA
+bom_stations_raw$state_code[bom_stations_raw$state == "WA"] <- "W"
+bom_stations_raw$state_code[bom_stations_raw$state == "QLD"] <- "Q"
+bom_stations_raw$state_code[bom_stations_raw$state == "VIC"] <- "V"
+bom_stations_raw$state_code[bom_stations_raw$state == "NT"] <- "D"
+bom_stations_raw$state_code[bom_stations_raw$state == "TAS" |
+                              bom_stations_raw$state == "ANT"] <- "T"
+bom_stations_raw$state_code[bom_stations_raw$state == "NSW"] <- "N"
+bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <- "S"
 ```
 
 ## Generate station URLs
 
 ``` r
 stations_site_list <-
-  bom_stations_current %>%
+  bom_stations_raw %>%
   dplyr::select(site:wmo, state, state_code) %>%
   dplyr::mutate(
     url = dplyr::case_when(
@@ -255,7 +252,7 @@ stations_site_list <-
 
 Now that we have the data frame of stations and have generated the URLs
 for the JSON files for stations providing weather data feeds, save the
-data as a database for *bomrang* to use.
+data as databases for *bomrang* to use.
 
 There are weather stations that do have a WMO but don’t report online,
 e.g., KIRIBATI NTC AWS or MARSHALL ISLANDS NTC AWS, in this section
@@ -305,6 +302,20 @@ stations_site_list$site <-
 
 save(stations_site_list,
      file = "../inst/extdata/current_stations_site_list.rda",
+     compress = "bzip2")
+```
+
+### Save station location data for `get_historical()`
+
+There are many, many stations that are no longer reporting that still
+have records online. This database is the complete history of stations
+as reported by BOM for this function. Corrects a bug reported by
+[mbertolacci](https://github.com/mbertolacci) in
+<https://github.com/ropensci/bomrang/issues/81>
+
+``` r
+save(bom_stations_raw,
+     file = "../inst/extdata/historical_stations_site_list.rda",
      compress = "bzip2")
 ```
 
