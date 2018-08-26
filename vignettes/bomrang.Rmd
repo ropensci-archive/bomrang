@@ -505,9 +505,15 @@ The arguments are:
 These can be obtained from the `get_available_radar` function. This value must
 be specified and the function will accept only one at a time.   
 
-```{r}
+```{r fig.height=9, fig.width=8}
 x <- get_radar_imagery(product_id = "IDR032")
-raster::plot(x)
+
+# create a blank raster plot and add the radar layer
+r <- raster::raster(ncol=564, nrow=524,xmn=0, xmx=524, ymn=0, ymx=564)
+raster::values(r) <- NA
+raster::plot(r)
+raster::plot(x, add = TRUE)
+
 ```
 
 
