@@ -34,7 +34,7 @@ update_station_locations <- function() {
   message(
     "This will overwrite the current internal databases of BOM stations.\n",
     "If reproducibility is necessary, you may not wish to proceed.\n",
-    "Do you understand and wish to proceed (y/n)?\n")
+    "Do you understand and wish to proceed (Y/n)?\n")
   
   answer <-
     readLines(con = getOption("bomrang_connection"), n = 1)
