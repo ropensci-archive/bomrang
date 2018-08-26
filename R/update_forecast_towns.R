@@ -1,5 +1,4 @@
 
-
 #' Update bomrang Internal Database with Latest BOM Forecast Towns
 #'
 #' @description
