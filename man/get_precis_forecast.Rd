@@ -48,9 +48,9 @@ Services \cr
 
 Location data and other metadata for towns come from
 the BOM anonymous FTP server with spatial data \cr
-\url{ftp://ftp2.bom.gov.au/anon/home/adfd/spatial/}, specifically the DBF
+\url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/}, specifically the DBF
 file portion of a shapefile, \cr
-\url{ftp://ftp2.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
+\url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 }
 \author{
 Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton,
