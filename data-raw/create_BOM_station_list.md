@@ -53,7 +53,7 @@ The station metadata are downloaded from a zip file linked from the
 “[Bureau of Meteorology Site
 Numbers](http://www.bom.gov.au/climate/cdo/about/site-num.shtml)”
 website. The zip file may be directly downloaded, [file of site
-details](ftp://ftp2.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip).
+details](ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip).
 
 ``` r
 library(magrittr)
@@ -66,7 +66,7 @@ library(magrittr)
 # tempdir()
 
 curl::curl_download(
-  url = "ftp://ftp2.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
+  url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
   destfile = file.path(tempdir(), "stations.zip"))
 
 bom_stations_raw <-
@@ -136,8 +136,7 @@ bom_stations_raw
 
 Occasionally the stations are listed in the wrong location, *e.g.*,
 Alice Springs Airport in SA. Perform quality check to ensure that the
-station locations are accurate based on the lat/lon values provided for
-the currently reporting stations only.
+station locations are accurate based on the lat/lon values.
 
 ``` r
 library(ASGS.foyer)
@@ -256,10 +255,11 @@ data as databases for *bomrang* to use.
 
 There are weather stations that do have a WMO but don’t report online,
 e.g., KIRIBATI NTC AWS or MARSHALL ISLANDS NTC AWS, in this section
-remove these from the list and then create a database for use with the
-current weather information from BOM.
+remove these from the list and then create a database to provide URLs
+for valid JSON files providing weather data from
+BOM.
 
-### Save JSON URL database for `get_current_weather()`
+### Save JSON URL database for `get_current_weather()` and `get_historical()`
 
 ``` r
 JSONurl_site_list <-
@@ -287,14 +287,17 @@ save(JSONurl_site_list,
 ### Save station location data for `get_ag_bulletin()`
 
 First, rename columns and drop a few that aren’t necessary for the ag
-bulletin information. Then pad the `site` field with 0 to match the data
-in the XML file that holds the bulletin information. Lastly, create the
-database for use in the package.
+bulletin information. Filter for only stations currently reporting
+values. Then pad the `site` field with 0 to match the data in the XML
+file that holds the ag bulletin information. Lastly, create the database
+for use in `bomrang`.
 
 ``` r
 stations_site_list <-
   stations_site_list %>%
   dplyr::select(-state_code, -url) %>% 
+  dplyr::filter(end == 2018) %>% 
+  dplyr::mutate(end = as.integer(end)) %>% 
   as.data.frame()
 
 stations_site_list$site <-
@@ -302,20 +305,6 @@ stations_site_list$site <-
 
 save(stations_site_list,
      file = "../inst/extdata/current_stations_site_list.rda",
-     compress = "bzip2")
-```
-
-### Save station location data for `get_historical()`
-
-There are many, many stations that are no longer reporting that still
-have records online. This database is the complete history of stations
-as reported by BOM for this function. Corrects a bug reported by
-[mbertolacci](https://github.com/mbertolacci) in
-<https://github.com/ropensci/bomrang/issues/81>
-
-``` r
-save(bom_stations_raw,
-     file = "../inst/extdata/historical_stations_site_list.rda",
      compress = "bzip2")
 ```
 
