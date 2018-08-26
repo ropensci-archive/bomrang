@@ -1,5 +1,18 @@
 # bomrang 0.3.0.9000
 
+## Minor changes
+
+- Historical stations that are no longer reporting, but have valid JSON URLs
+are now included in the database for `get_historical()`
+
+- When using `update_station_locations()` or `update_forecast_towns()` the user
+is now prompted with a message about reproducibility before proceeding
+
+- Update code of conduct statement in README to reflect that it only applies to
+the `bomrang` project
+
+--------------------------------------------------------------------------------
+
 # bomrang 0.3.0
 
 ## Major changes
