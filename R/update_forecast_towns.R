@@ -25,11 +25,14 @@
 #'
 update_forecast_towns <- function() {
   
-  answer <- readline(
-    prompt =
-    "This will overwrite the current internal database of forecast towns. If
-    reproducibility is necessary, you may not wish to proceed. Do you understand
-    and wish to proceed (y/n)?\n"
+  ifelse(isTRUE(interactive),
+         answer <- "y",
+         answer <- readline(
+           prompt =
+             "This will overwrite the current internal database of forecast
+          towns. If reproducibility is necessary, you may not wish to proceed.
+          Do you understand and wish to proceed (y/n)?\n"
+         )
   )
   
   if (answer != "y") {
@@ -39,19 +42,19 @@ update_forecast_towns <- function() {
   original_timeout <- options("timeout")[[1]]
   options(timeout = 300)
   on.exit(options(timeout = original_timeout))
-
+  
   # fetch new database from BOM server
   curl::curl_download(
     "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf",
     destfile = file.path(tempdir(), "AAC_codes.dbf"),
     mode = "wb"
   )
-
+  
   # import BOM dbf file
   AAC_codes <-
     foreign::read.dbf(file.path(tempdir(), "AAC_codes.dbf"), as.is = TRUE)
   AAC_codes <- AAC_codes[, c(2:3, 7:9)]
-
+  
   # overwrite the existing isd_history.rda file on disk
   message("\nOverwriting existing database of forecast towns and AAC codes.\n")
   fname <- system.file("extdata", "AAC_codes.rda", package = "bomrang")

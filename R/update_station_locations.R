@@ -35,11 +35,13 @@ update_station_locations <- function() {
     site <- state_code <- wmo <- state <- lon <- lat <- # nocov start
     actual_state <- state_from_latlon <- end <- NULL # nocov end
   
-  answer <- readline(
-    prompt =
-    "This will overwrite the current internal database of station locations. If
-    reproducibility is necessary, you may not wish to proceed. Do you understand
-    and wish to proceed (y/n)?\n"
+  ifelse(isTRUE(interactive),
+         answer <- "y",
+         answer <- readline(
+           prompt =
+             "This will overwrite the current internal database of station
+          locations. If reproducibility is necessary, you may not wish to
+          proceed. Do you understand and wish to proceed (y/n)?\n")
   )
   
   if (answer != "y") {
