@@ -32,17 +32,20 @@
 update_station_locations <- function() {
   # CRAN NOTE avoidance
   name <-
-    site <- state_code <- wmo <- state <- lon <- lat <- # nocov start
+    site <-
+    state_code <- wmo <- state <- lon <- lat <- # nocov start
     actual_state <- state_from_latlon <- end <- NULL # nocov end
   
-  ifelse(isTRUE(interactive),
-         answer <- "y",
-         answer <- readline(
-           prompt =
-             "This will overwrite the current internal database of station
-          locations. If reproducibility is necessary, you may not wish to
-          proceed. Do you understand and wish to proceed (y/n)?\n")
-  )
+  ifelse(
+    isTRUE(interactive()),
+    answer <- readline(
+      prompt =
+        "This will overwrite the current internal database of station
+      locations. If reproducibility is necessary, you may not wish to
+      proceed. Do you understand and wish to proceed (y/n)?\n"
+    ),
+    answer <- "y"
+    )
   
   if (answer != "y") {
     stop("Station locations not updated.")
@@ -100,7 +103,7 @@ update_station_locations <- function() {
   
   # trim the end of the rows off that have extra info that's not in columns
   nrows <- nrow(bom_stations_raw) - 7
-  bom_stations_raw <- bom_stations_raw[1:nrows,]
+  bom_stations_raw <- bom_stations_raw[1:nrows, ]
   
   # add current year to stations that are still active
   bom_stations_raw$end[is.na(bom_stations_raw$end)] <-
@@ -201,7 +204,7 @@ update_station_locations <- function() {
   # MARSHALL ISLANDS NTC AWS, remove these from the list
   
   JSONurl_site_list <-
-    stations_site_list[!is.na(stations_site_list$url), ]
+    stations_site_list[!is.na(stations_site_list$url),]
   
   JSONurl_site_list <-
     JSONurl_site_list %>%
@@ -212,7 +215,7 @@ update_station_locations <- function() {
   
   # Remove new NA values from invalid URLs and convert to data.table
   JSONurl_site_list <-
-    data.table::data.table(JSONurl_site_list[!is.na(JSONurl_site_list$url), ])
+    data.table::data.table(JSONurl_site_list[!is.na(JSONurl_site_list$url),])
   
   message("Overwriting existing databases")
   
@@ -222,8 +225,8 @@ update_station_locations <- function() {
   
   stations_site_list <-
     stations_site_list %>%
-    dplyr::select(-state_code, -url) %>% 
-    dplyr::filter(end == 2018) %>% 
+    dplyr::select(-state_code, -url) %>%
+    dplyr::filter(end == 2018) %>%
     as.data.frame()
   
   stations_site_list$site <-

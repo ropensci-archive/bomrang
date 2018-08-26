@@ -24,16 +24,15 @@
 #' @export
 #'
 update_forecast_towns <- function() {
-  
-  ifelse(isTRUE(interactive),
-         answer <- "y",
-         answer <- readline(
-           prompt =
-             "This will overwrite the current internal database of forecast
-          towns. If reproducibility is necessary, you may not wish to proceed.
-          Do you understand and wish to proceed (y/n)?\n"
-         )
-  )
+  ifelse(
+    isTRUE(interactive()),
+    answer <- readline(
+      prompt =
+        "This will overwrite the current internal database of forecast
+      towns. If reproducibility is necessary, you may not wish to proceed.
+      Do you understand and wish to proceed (y/n)?\n"),
+    answer <- "y"
+    )
   
   if (answer != "y") {
     stop("Station locations not updated.")
@@ -57,6 +56,7 @@ update_forecast_towns <- function() {
   
   # overwrite the existing isd_history.rda file on disk
   message("\nOverwriting existing database of forecast towns and AAC codes.\n")
-  fname <- system.file("extdata", "AAC_codes.rda", package = "bomrang")
+  fname <-
+    system.file("extdata", "AAC_codes.rda", package = "bomrang")
   save(AAC_codes, file = fname, compress = "bzip2")
 }
