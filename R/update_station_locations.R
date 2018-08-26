@@ -33,7 +33,7 @@ update_station_locations <- function() {
   # CRAN NOTE avoidance
   name <-
     site <- state_code <- wmo <- state <- lon <- lat <- # nocov start
-    actual_state <- state_from_latlon <- NULL # nocov end
+    actual_state <- state_from_latlon <- end <- NULL # nocov end
   
   answer <- readline(
     prompt =
