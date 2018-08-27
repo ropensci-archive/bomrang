@@ -4,7 +4,7 @@
 \alias{get_satellite_imagery}
 \title{Get BOM Satellite GeoTIFF Imagery}
 \usage{
-get_satellite_imagery(product_id = NULL, scans = 1, cache = FALSE)
+get_satellite_imagery(product_id, scans = 1, cache = FALSE)
 }
 \arguments{
 \item{product_id}{Character.  BOM product ID to download in GeoTIFF format

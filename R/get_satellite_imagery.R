@@ -139,12 +139,10 @@ get_available_imagery <- function(product_id = "all") {
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
 #' @export
 get_satellite_imagery <-
-  function(product_id = NULL,
+  function(product_id,
            scans = 1,
            cache = FALSE) {
-    if (is.null(product_id)) {
-      stop("\nYou must select a valid BOM satellite imagery Product ID.\n")
-    }
+
     if (length(unique(substr(product_id, 1, 8))) != 1) {
       stop("\nbomrang only supports working with one Product ID at a time\n")
     }
