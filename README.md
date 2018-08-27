@@ -10,8 +10,7 @@ _bomrang_: Australian Government Bureau of Meteorology (BOM) Data from R <img al
 Provides functions to interface with Australian Government Bureau of Meteorology
 (BOM) data, fetching data and returning a tidy data frame of précis forecasts,
 current weather data from stations, ag information bulletins, historical weather
-data, radar imagery or a `raster::stack()` object of satellite imagery from 
-GeoTIFF files.
+data and downloading and importing radar or satellite imagery.
 
 Credit for the name, *bomrang*, goes to [Di Cook](http://dicook.github.io), who
 suggested it while attending the rOpenSci AUUnconf in Brisbane, 2016, upon
