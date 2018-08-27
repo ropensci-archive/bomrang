@@ -19,7 +19,8 @@ Fetch BOM radar imagery from
 \url{ftp://ftp.bom.gov.au/anon/gen/radar/} and return a raster
 \code{\link[raster]{raster}} object. Files available are the most recent 
 radar snapshot which are updated approximately every 6 to 10 minutes. 
-Suggested to check file availability first by using \code{\link{get_available_radar}}.
+Suggested to check file availability first by using
+\code{\link{get_available_radar}}.
 }
 \details{
 Valid BOM satellite Product IDs for radar imagery can be obtained
