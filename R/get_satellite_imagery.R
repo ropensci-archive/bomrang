@@ -139,10 +139,10 @@ get_available_imagery <- function(product_id = "all") {
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
 #' @export
 get_satellite_imagery <-
-  function(product_id,
+  function(product_id = NULL,
            scans = 1,
            cache = FALSE) {
-    if (length(product_id) != 1) {
+    if (is.null(product_id)) {
       stop("\nYou must select a valid BOM satellite imagery Product ID.\n")
     }
     if (length(unique(substr(product_id, 1, 8))) != 1) {
