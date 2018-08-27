@@ -87,8 +87,14 @@ References
 
 [Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml)
 
+[Australian Bureau of Meteorology (BOM) FTP Public 
+Products](http://www.bom.gov.au/catalogue/anon-ftp.shtml)
+
 [Australian Bureau of Meteorology (BOM) Weather Data Services Agriculture Bulletins](http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml)
 
 [Australian Bureau of Meteorology (BOM) Weather Data Services Observation of Rainfall](http://www.bom.gov.au/climate/how/observations/rain-measure.shtml)
+
+[Australian Bureau of Meteorology (BOM) High-definition satellite images](http://www.bom.gov.au/australia/satellite/index.shtml)
+
 
 [![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org)
