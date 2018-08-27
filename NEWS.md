@@ -17,7 +17,8 @@ the `bomrang` project
 
 - Standardise use of vocabulary in README
 
-- Add new functionality to interact with and download radar imagery from BOM
+- Add new functionality to interact with and download radar imagery from BOM,
+`get_available_radar()` and `get_radar_imagery()`
 
 --------------------------------------------------------------------------------
 
