@@ -4,7 +4,7 @@
 \alias{get_radar_imagery}
 \title{Get BOM Radar Imagery}
 \usage{
-get_radar_imagery(product_id = NULL)
+get_radar_imagery(product_id)
 }
 \arguments{
 \item{product_id}{Character.  BOM product ID to download and import as a 

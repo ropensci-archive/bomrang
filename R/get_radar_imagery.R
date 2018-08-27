@@ -105,11 +105,7 @@ get_available_radar <- function(radar_id = "all") {
 #' 
 #' @author Dean Marchiori, \email{deanmarchiori@@gmail.com}
 #' @export
-get_radar_imagery <- function(product_id = NULL) {
-  if (is.null(product_id)) {
-    stop("\nYou must select a valid BOM radar imagery Product ID.\n",
-         call. = FALSE)
-  }
+get_radar_imagery <- function(product_id) {
   if (length(product_id) != 1) {
     stop("\nbomrang only supports working with one Product ID at a time",
         "for radar images\n",
