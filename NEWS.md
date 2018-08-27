@@ -17,6 +17,8 @@ the `bomrang` project
 
 - Standardise use of vocabulary in README
 
+- Add new functionality to interact with and download radar imagery from BOM
+
 --------------------------------------------------------------------------------
 
 # bomrang 0.3.0
