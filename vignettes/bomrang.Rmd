@@ -468,55 +468,62 @@ the cached files:
 To access the files directly, outside of R, the following command will give you
 the location of the directory:
 
-`manage_cache$cache_path_get()`   
+`manage_cache$cache_path_get()`
 
-## Using _bomrang_ to retrieve radar imagery   
-bomrang provides functionality to retrieve the latest radar imagery provided by 
-BOM through public FTP. These are the latest snapshots for each radar locations
-at various radar ranges e.g. 512km, 256km, 128km and 64km for some stations.  
+## Using _bomrang_ to retrieve radar imagery
 
-### Using `get_available_radar`  
-`get_available_radar` fetches the available radar imagery from the BOM ftp and
+_bomrang_ provides functionality to retrieve the latest radar imagery provided
+by BOM through public FTP. These are the latest snapshots for each radar
+locations at various radar ranges _e.g._, 512km, 256km, 128km and 64km for some
+stations.
+
+### Using `get_available_radar`
+
+`get_available_radar()` fetches the available radar imagery from the BOM ftp and
 returns a data frame for reference. This data frame contains the product_id 
-which is required when using the `get_radar_imagery` function. The
-files available are the latest `.gif` files of BOM radar imagery which are 
-typically updated each 6-10 minutes. Only the most recent image is retireved 
-for each radar location. There are usually several radar ranges available for
-each radar location, such as 512km, 256km, 128km and possibly 64km.   
-The arguments are:   
+which is required when using the `get_radar_imagery()` function. The files
+available are the latest `.gif` files of BOM radar imagery which are typically
+updated each 6-10 minutes. Only the most recent image is retrieved for each
+radar location. There are usually several radar ranges available for each radar location, such as 512km, 256km, 128km and possibly 64km. The arguments are:
 
 * `radar_id`  which is the BOM radar ID number. This defaults to 'all' which 
-will return a data frame of all radar ID's in Australia.  
+will return a data frame of all radar ID's in Australia.
 
-```{r}
+```{r, get_available_radar}
 x <- get_available_radar()
 head(x)  
 ```
 
-### Using `get_radar_imagery`   
-`get_radar_imagery` fetches the latest BOM radar imagery for a given product ID.  
-The files available are the latest `.gif` files of BOM radar imagery which are 
-typically updated each 6-10 minutes. Only the most recent image is retireved 
-for each radar location. There are usually several radar ranges available for
-each radar location, such as 512km, 256km, 128km and possibly 64km.   
-The arguments are:  
+### Using `get_radar_imagery`
 
-* `product_id`  the BOM product_id associated with each radar imagery file. 
-These can be obtained from the `get_available_radar` function. This value must
-be specified and the function will accept only one at a time.   
+`get_radar_imagery()` fetches the latest BOM radar imagery for a given product
+ID. The files available are the latest `.gif` files of BOM radar imagery which
+are typically updated each 6-10 minutes. Only the most recent image is retrieved
+for each radar location. There are usually several radar ranges available for
+each radar location, such as 512km, 256km, 128km and possibly 64km. The only
+argument is:
+
+* `product_id` the BOM product_id associated with each radar imagery file. 
+These can be obtained from the `get_available_radar()` function. This value must
+be specified and the function will accept only one at a time.
 
 ```{r fig.height=9, fig.width=8}
 x <- get_radar_imagery(product_id = "IDR032")
 
 # create a blank raster plot and add the radar layer
-r <- raster::raster(ncol=564, nrow=524,xmn=0, xmx=524, ymn=0, ymx=564)
-raster::values(r) <- NA
-raster::plot(r)
-raster::plot(x, add = TRUE)
-
+r <-
+  raster::raster(
+  ncol = 564,
+  nrow = 524,
+  xmn = 0,
+  xmx = 524,
+  ymn = 0,
+  ymx = 564
+  )
+  raster::values(r) <- NA
+  raster::plot(r)
+  raster::plot(x, add = TRUE)
 ```
-
-
 
 ## References
 
@@ -1152,3 +1159,4 @@ The output of `get_coastal_forecast` will return a data frame with coastal water
 <tr><td>forecast_swell2</td><td>Forecast seondary swell summary (not always provided)</td></tr>
 <tr><td>marine_forecast</td><td>Additional marine forecast warning information (not always provided)</td></tr>
 </table><br>
+ 
