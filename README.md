@@ -59,7 +59,7 @@ and radar imagery,
   - `get_available_imagery()`; and
   -  the imagery itself, `get_satellite_imagery()`.  
   - `get_available_radar`; and 
-  - the imagery itself, `get_radar_imagery`.  
+  - the imagery itself, `get_radar_imagery`.
   
 [Vignettes are provided illustrating examples](https://ropensci.github.io/bomrang/articles/bomrang.html)
 of all functions and a [use case](https://ropensci.github.io/bomrang/articles/use_case.html).
