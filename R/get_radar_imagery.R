@@ -78,7 +78,14 @@ get_available_radar <- function(radar_id = "all") {
 #' \code{\link{get_available_radar}}.
 #'
 #' @param product_id Character.  BOM product ID to download and import as a 
-#' \code{\link[raster]{raster}} object. Value is required.
+#' \code{\link[raster]{raster}} object. Value is required.  
+#' 
+#' @param path Character. A character string with the name where the downloaded 
+#' file is saved. If not provided, the default value NULL is used which saves
+#' the file in a temp directory.  
+#' 
+#' @param download_only Logical. Whether the radar image is loaded into the
+#' environment as a \code{\link[raster]{raster}} layer, or just downloded.  
 #'
 #' @details Valid BOM satellite Product IDs for radar imagery can be obtained
 #' from \code{\link{get_available_radar}}.
@@ -88,7 +95,8 @@ get_available_radar <- function(radar_id = "all") {
 #'
 #' @return
 #' A raster layer based on the most recent `.gif` radar image snapshot published
-#' by the BOM.
+#' by the BOM. If \code{download_only = TRUE} there will be a NULL return value
+#' with the download path printed in the console as a message.  
 #'
 #' @references
 #' Australian Bureau of Meteorology (BOM) radar images
@@ -97,25 +105,42 @@ get_available_radar <- function(radar_id = "all") {
 #' @examples
 #' \dontrun{
 #' # Fetch most recent radar image for Wollongong 256km radar
-#'
 #' imagery <- get_radar_imagery(product_id = "IDR032")  
-#' raster::plot(imagery)
+#' raster::plot(imagery)  
+#' 
+#' # Save imagery to a local path  
+#' imagery <- get_radar_imagery(product_id = "IDR032", path = 'image.gif') 
 #'
 #' }
 #' 
 #' @author Dean Marchiori, \email{deanmarchiori@@gmail.com}
 #' @export
-get_radar_imagery <- function(product_id) {
+get_radar_imagery <- function(product_id, 
+                              path = NULL, 
+                              download_only = FALSE) {
+  
   if (length(product_id) != 1) {
     stop("\nbomrang only supports working with one Product ID at a time",
-        "for radar images\n",
+         "for radar images\n",
          call. = FALSE)
   }
+  
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/radar"
   fp <- file.path(ftp_base, paste0(product_id, ".gif"))
-  tf <- tempfile(fileext = ".gif", tmpdir = tempdir())
-  download.file(url = fp, destfile = tf, mode = "wb") 
-  y <- raster::raster(x = tf)
-  y[is.na(y)] <- 999
-  return(y)
+  
+  if (is.null(path)) {
+    path <- tempfile(fileext = ".gif", tmpdir = tempdir())
+  }
+  
+  if (download_only == TRUE) {
+    download.file(url = fp, destfile = path, mode = "wb") 
+    message(paste("file downloaded to:", path))
+  } else {
+    download.file(url = fp, destfile = path, mode = "wb") 
+    message(paste("file downloaded to:", path))
+    y <- raster::raster(x = path)
+    y[is.na(y)] <- 999
+    return(y)
+  }
+  
 }

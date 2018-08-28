@@ -105,7 +105,7 @@ get_coastal_forecast <- function(state = "AUS") {
     ))
 
   areas <- xml2::xml_find_all(xmlforecast, ".//*[@type='coast']")
-  out <- lapply(X = areas, FUN = .parse_areas)
+  out <- suppressWarnings(lapply(X = areas, FUN = .parse_areas))
   out <- as.data.frame(do.call("rbind", out))
 
   out <- tidyr::spread(out, key = attrs, value = values)
@@ -173,6 +173,19 @@ get_coastal_forecast <- function(state = "AUS") {
   tidy_df$product_id <- substr(basename(xmlforecast_url),
                                1,
                                nchar(basename(xmlforecast_url)) - 4)
+  
+  # some fields only come out on special occasions, if absent, add as NA
+  if(!"forecast_swell2" %in% colnames(tidy_df)) {
+    tidy_df$forecast_swell2 <- NA
+  }
+  
+  if(!"forecast_caution" %in% colnames(tidy_df)) {
+    tidy_df$forecast_caution <- NA
+  }
+  
+  if(!"marine_forecast" %in% colnames(tidy_df)) {
+    tidy_df$marine_forecast <- NA
+  }
 
   # reorder columns
   refcols <- c(
@@ -192,7 +205,10 @@ get_coastal_forecast <- function(state = "AUS") {
     "forecast_seas",
     "forecast_weather",
     "forecast_winds",
-    "forecast_swell1"
+    "forecast_swell1",
+    "forecast_swell2",
+    "forecast_caution",
+    "marine_forecast"
   )
   
   # create factors

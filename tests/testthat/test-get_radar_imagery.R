@@ -1,15 +1,13 @@
 
 context("Radar imagery")
 
-test_that("Error handling works", {
+# get_available_radar 
+
+test_that("get_available_radar error handling works", {
   skip_on_cran()
   expect_error(expect_warning(get_available_radar(radar_id = "abc")))
-  expect_error(expect_warning(get_radar_imagery(product_id = "abc")))
-  expect_error(expect_warning(get_radar_imagery()))
 })
 
-
-# get avail radar works
 test_that("get_available_radar functions properly", {
   skip_on_cran()
   
@@ -27,11 +25,26 @@ test_that("get_available_radar functions properly", {
   expect_gt(nrow(xxx), 0)
   expect_lt(nrow(xxx), 5)
   expect_equal(unique(xxx$Radar_id) , 1)
-  })
+})
+
+
+# get_radar_imagery
+
+test_that("Error handling works", {
+  skip_on_cran()
+  expect_error(expect_warning(get_radar_imagery(product_id = "abc")))
+  expect_error(expect_warning(get_radar_imagery()))
+  expect_error(get_radar_imagery(c("IDR032", "IDR022")))
+})
 
 
 test_that("get_radar_imagery functions properly", {
   skip_on_cran()
+  
   y <- get_radar_imagery(product_id = "IDR022")
   expect_is(y, "RasterLayer")
+  
+  yy <- get_radar_imagery(product_id = "IDR022", download_only = TRUE)
+  expect_null(yy)
+  
 })

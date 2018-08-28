@@ -1156,7 +1156,8 @@ The output of `get_coastal_forecast` will return a data frame with coastal water
 <tr><td>forecast_weather</td><td>Forecast weather summary</td></tr>
 <tr><td>forecast_winds</td><td>Forecast winds summary</td></tr>
 <tr><td>forecast_swell1</td><td>Forecast primary swell summary</td></tr>
-<tr><td>forecast_swell2</td><td>Forecast seondary swell summary (not always provided)</td></tr>
+<tr><td>forecast_swell2</td><td>Forecast seondary swell summary (not always provided)</td></tr>  
+<tr><td>forecast_caution</td><td>Forecast caution issued (not always provided)</td></tr>
 <tr><td>marine_forecast</td><td>Additional marine forecast warning information (not always provided)</td></tr>
 </table><br>
  
