@@ -4,7 +4,7 @@
 \alias{get_radar_imagery}
 \title{Get BOM Radar Imagery}
 \usage{
-get_radar_imagery(product_id, path = NULL, download.only = FALSE)
+get_radar_imagery(product_id, path = NULL, download_only = FALSE)
 }
 \arguments{
 \item{product_id}{Character.  BOM product ID to download and import as a 
@@ -14,12 +14,12 @@ get_radar_imagery(product_id, path = NULL, download.only = FALSE)
 file is saved. If not provided, the default value NULL is used which saves
 the file in a temp directory.}
 
-\item{download.only}{Logical. Whether the radar image is loaded into the
+\item{download_only}{Logical. Whether the radar image is loaded into the
 environment as a \code{\link[raster]{raster}} layer, or just downloded.}
 }
 \value{
 A raster layer based on the most recent `.gif` radar image snapshot published
-by the BOM. If \code{download.only = TRUE} there will be a NULL return value
+by the BOM. If \code{download_only = TRUE} there will be a NULL return value
 with the download path printed in the console as a message.
 }
 \description{
