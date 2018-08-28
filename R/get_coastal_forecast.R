@@ -105,7 +105,7 @@ get_coastal_forecast <- function(state = "AUS") {
     ))
 
   areas <- xml2::xml_find_all(xmlforecast, ".//*[@type='coast']")
-  out <- lapply(X = areas, FUN = .parse_areas)
+  out <- suppressWarnings(lapply(X = areas, FUN = .parse_areas))
   out <- as.data.frame(do.call("rbind", out))
 
   out <- tidyr::spread(out, key = attrs, value = values)
