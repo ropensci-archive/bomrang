@@ -84,7 +84,7 @@ get_available_radar <- function(radar_id = "all") {
 #' file is saved. If not provided, the default value NULL is used which saves
 #' the file in a temp directory.  
 #' 
-#' @param download.only Logical. Whether the radar image is loaded into the
+#' @param download_only Logical. Whether the radar image is loaded into the
 #' environment as a \code{\link[raster]{raster}} layer, or just downloded.  
 #'
 #' @details Valid BOM satellite Product IDs for radar imagery can be obtained
@@ -95,7 +95,7 @@ get_available_radar <- function(radar_id = "all") {
 #'
 #' @return
 #' A raster layer based on the most recent `.gif` radar image snapshot published
-#' by the BOM. If \code{download.only = TRUE} there will be a NULL return value
+#' by the BOM. If \code{download_only = TRUE} there will be a NULL return value
 #' with the download path printed in the console as a message.  
 #'
 #' @references
@@ -117,7 +117,7 @@ get_available_radar <- function(radar_id = "all") {
 #' @export
 get_radar_imagery <- function(product_id, 
                               path = NULL, 
-                              download.only = FALSE) {
+                              download_only = FALSE) {
   
   if (length(product_id) != 1) {
     stop("\nbomrang only supports working with one Product ID at a time",
@@ -132,7 +132,7 @@ get_radar_imagery <- function(product_id,
     path <- tempfile(fileext = ".gif", tmpdir = tempdir())
   }
   
-  if (download.only == TRUE) {
+  if (download_only == TRUE) {
     download.file(url = fp, destfile = path, mode = "wb") 
     message(paste("file downloaded to:", path))
   } else {
