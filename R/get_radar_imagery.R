@@ -105,17 +105,32 @@ get_available_radar <- function(radar_id = "all") {
 #' 
 #' @author Dean Marchiori, \email{deanmarchiori@@gmail.com}
 #' @export
-get_radar_imagery <- function(product_id) {
+get_radar_imagery <- function(product_id, 
+                              path = NULL, 
+                              download.only = FALSE) {
+  
   if (length(product_id) != 1) {
     stop("\nbomrang only supports working with one Product ID at a time",
-        "for radar images\n",
+         "for radar images\n",
          call. = FALSE)
   }
+  
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/radar"
   fp <- file.path(ftp_base, paste0(product_id, ".gif"))
-  tf <- tempfile(fileext = ".gif", tmpdir = tempdir())
-  download.file(url = fp, destfile = tf, mode = "wb") 
-  y <- raster::raster(x = tf)
-  y[is.na(y)] <- 999
-  return(y)
+  
+  if (is.null(path)) {
+    path <- tempfile(fileext = ".gif", tmpdir = tempdir())
+  }
+  
+  if (download.only == TRUE) {
+    download.file(url = fp, destfile = path, mode = "wb") 
+    message(paste("file downloaded to:", path))
+  } else {
+    download.file(url = fp, destfile = path, mode = "wb") 
+    message(paste("file downloaded to:", path))
+    y <- raster::raster(x = path)
+    y[is.na(y)] <- 999
+    return(y)
+  }
+  
 }
