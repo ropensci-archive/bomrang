@@ -4,7 +4,7 @@ context("get_coastal_forecast")
 test_that("get_coastal_forecast returns at most 19 columns", {
   skip_on_cran()
   bom_forecast <- get_coastal_forecast(state = "NSW")
-  expect_lte(ncol(bom_forecast), 19)
+  expect_lte(ncol(bom_forecast), 20)
   expect_equal(bom_forecast[["state_code"]][1], "NSW")
 
   expect_is(bom_forecast$index, "factor")
