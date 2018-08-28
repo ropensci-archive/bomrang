@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get BOM Daily Précis Forecast for Select Towns — get_precis_forecast • bomrang</title>
+<title>Get BOM Radar Imagery — get_radar_imagery • bomrang</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -36,10 +36,14 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Get BOM Daily Précis Forecast for Select Towns — get_precis_forecast" />
+<meta property="og:title" content="Get BOM Radar Imagery — get_radar_imagery" />
 
-<meta property="og:description" content="Fetch the BOM daily précis forecast and return a tidy data frame of the seven
-day town forecast for a specified state or territory." />
+<meta property="og:description" content="Fetch BOM radar imagery from
+ftp://ftp.bom.gov.au/anon/gen/radar/ and return a raster
+raster object. Files available are the most recent 
+radar snapshot which are updated approximately every 6 to 10 minutes. 
+Suggested to check file availability first by using
+get_available_radar." />
 
 <meta property="og:image" content="https://ropensci.github.io/bomrang/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -130,69 +134,77 @@ day town forecast for a specified state or territory." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get BOM Daily Précis Forecast for Select Towns</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/bomrang/blob/master/R/get_precis_forecast.R'><code>R/get_precis_forecast.R</code></a></small>
-    <div class="hidden name"><code>get_precis_forecast.Rd</code></div>
+    <h1>Get BOM Radar Imagery</h1>
+    <small class="dont-index">Source: <a href='https://github.com/ropensci/bomrang/blob/master/R/get_radar_imagery.R'><code>R/get_radar_imagery.R</code></a></small>
+    <div class="hidden name"><code>get_radar_imagery.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Fetch the BOM daily précis forecast and return a tidy data frame of the seven
-day town forecast for a specified state or territory.</p>
+    <p>Fetch BOM radar imagery from
+<a href='ftp://ftp.bom.gov.au/anon/gen/radar/'>ftp://ftp.bom.gov.au/anon/gen/radar/</a> and return a raster
+<code><a href='http://www.rdocumentation.org/packages/raster/topics/raster'>raster</a></code> object. Files available are the most recent 
+radar snapshot which are updated approximately every 6 to 10 minutes. 
+Suggested to check file availability first by using
+<code><a href='get_available_radar.html'>get_available_radar</a></code>.</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_precis_forecast</span>(<span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"AUS"</span>)</pre>
+    <pre class="usage"><span class='fu'>get_radar_imagery</span>(<span class='no'>product_id</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>download_only</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>state</th>
-      <td><p>Australian state or territory as full name or postal code.
-Fuzzy string matching via <code><a href='http://www.rdocumentation.org/packages/base/topics/agrep'>agrep</a></code> is done.  Defaults to
-"AUS" returning all state bulletins, see details for further information.</p></td>
+      <th>product_id</th>
+      <td><p>Character.  BOM product ID to download and import as a 
+<code><a href='http://www.rdocumentation.org/packages/raster/topics/raster'>raster</a></code> object. Value is required.</p></td>
+    </tr>
+    <tr>
+      <th>path</th>
+      <td><p>Character. A character string with the name where the downloaded 
+file is saved. If not provided, the default value NULL is used which saves
+the file in a temp directory.</p></td>
+    </tr>
+    <tr>
+      <th>download_only</th>
+      <td><p>Logical. Whether the radar image is loaded into the
+environment as a <code><a href='http://www.rdocumentation.org/packages/raster/topics/raster'>raster</a></code> layer, or just downloded.</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Tidy <code><a href='http://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></code> of a Australia BOM précis seven day
-forecasts for select towns.  For full details of fields and units returned
-see Appendix 2 in the <span class="pkg">bomrang</span> vignette, use <br />
-<code><a href='../articles/bomrang.html'>vignette("bomrang", package = "bomrang")</a></code> to view.</p>
+    <p>A raster layer based on the most recent `.gif` radar image snapshot published
+by the BOM. If <code>download_only = TRUE</code> there will be a NULL return value
+with the download path printed in the console as a message.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Allowed state and territory postal codes, only one state per request
-or all using <code>AUS</code>.</p><dl class='dl-horizontal'>
-   <dt>ACT</dt><dd><p>Australian Capital Territory (will return NSW)</p></dd>
-   <dt>NSW</dt><dd><p>New South Wales</p></dd>
-   <dt>NT</dt><dd><p>Northern Territory</p></dd>
-   <dt>QLD</dt><dd><p>Queensland</p></dd>
-   <dt>SA</dt><dd><p>South Australia</p></dd>
-   <dt>TAS</dt><dd><p>Tasmania</p></dd>
-   <dt>VIC</dt><dd><p>Victoria</p></dd>
-   <dt>WA</dt><dd><p>Western Australia</p></dd>
-   <dt>AUS</dt><dd><p>Australia, returns forecast for all states, NT and ACT</p></dd>
- </dl>
+    <p>Valid BOM satellite Product IDs for radar imagery can be obtained
+from <code><a href='get_available_radar.html'>get_available_radar</a></code>.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Forecast data come from Australian Bureau of Meteorology (BOM) Weather Data
-Services <br />
-<a href='http://www.bom.gov.au/catalogue/data-feeds.shtml'>http://www.bom.gov.au/catalogue/data-feeds.shtml</a></p>
-<p>Location data and other metadata for towns come from
-the BOM anonymous FTP server with spatial data <br />
-<a href='ftp://ftp.bom.gov.au/anon/home/adfd/spatial/'>ftp://ftp.bom.gov.au/anon/home/adfd/spatial/</a>, specifically the DBF
-file portion of a shapefile, <br />
-<a href='ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf'>ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf</a></p>
+    <p>Australian Bureau of Meteorology (BOM) radar images
+<a href='http://www.bom.gov.au/australia/radar/'>http://www.bom.gov.au/australia/radar/</a></p>
+    
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
+
+    <div class='dont-index'><p><code><a href='get_available_radar.html'>get_available_radar</a></code></p></div>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='no'>BOM_forecast</span> <span class='kw'>&lt;-</span> <span class='fu'>get_precis_forecast</span>(<span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"QLD"</span>)
-<span class='co'># }</span></pre>
+<span class='co'># Fetch most recent radar image for Wollongong 256km radar</span>
+<span class='no'>imagery</span> <span class='kw'>&lt;-</span> <span class='fu'>get_radar_imagery</span>(<span class='kw'>product_id</span> <span class='kw'>=</span> <span class='st'>"IDR032"</span>)
+<span class='kw pkg'>raster</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/raster/topics/plot'>plot</a></span>(<span class='no'>imagery</span>)
+
+<span class='co'># Save imagery to a local path  </span>
+<span class='no'>imagery</span> <span class='kw'>&lt;-</span> <span class='fu'>get_radar_imagery</span>(<span class='kw'>product_id</span> <span class='kw'>=</span> <span class='st'>"IDR032"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>'image.gif'</span>)
+
+<span class='co'># }</span><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -204,14 +216,15 @@ file portion of a shapefile, <br />
       <li><a href="#details">Details</a></li>
 
       <li><a href="#references">References</a></li>
+
+      <li><a href="#see-also">See also</a></li>
       
       <li><a href="#examples">Examples</a></li>
     </ul>
 
     <h2>Author</h2>
     
-Adam H Sparks, <a href='mailto:adamhsparks@gmail.com'>adamhsparks@gmail.com</a> and Keith Pembleton,
-<a href='mailto:keith.pembleton@usq.edu.au'>keith.pembleton@usq.edu.au</a>
+Dean Marchiori, <a href='mailto:deanmarchiori@gmail.com'>deanmarchiori@gmail.com</a>
 
   </div>
 </div>
