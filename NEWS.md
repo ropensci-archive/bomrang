@@ -1,9 +1,11 @@
 # bomrang 0.3.0.9000
 
-## Minor changes
+## Major changes
 
-- Historical stations that are no longer reporting, but have valid JSON URLs
-are now included in the database for `get_historical()`
+- Add new functionality to interact with and download radar imagery from BOM,
+`get_available_radar()` and `get_radar_imagery()`
+
+## Minor changes
 
 - When using `update_station_locations()` or `update_forecast_towns()` the user
 is now prompted with a message about reproducibility before proceeding
@@ -17,8 +19,9 @@ the `bomrang` project
 
 - Standardise use of vocabulary in README
 
-- Add new functionality to interact with and download radar imagery from BOM,
-`get_available_radar()` and `get_radar_imagery()`
+- Enforce standardised output for `get_coastal_forecast()`. In some cases BOM
+does not report all fields available, _bomrang_ will always report these with
+`NA` if empty
 
 --------------------------------------------------------------------------------
 
