@@ -4,15 +4,23 @@
 \alias{get_radar_imagery}
 \title{Get BOM Radar Imagery}
 \usage{
-get_radar_imagery(product_id)
+get_radar_imagery(product_id, path = NULL, download.only = FALSE)
 }
 \arguments{
 \item{product_id}{Character.  BOM product ID to download and import as a 
 \code{\link[raster]{raster}} object. Value is required.}
+
+\item{path}{Character. A character string with the name where the downloaded 
+file is saved. If not provided, the default value NULL is used which saves
+the file in a temp directory.}
+
+\item{download.only}{Logical. Whether the radar image is loaded into the
+environment as a \code{\link[raster]{raster}} layer, or just downloded.}
 }
 \value{
 A raster layer based on the most recent `.gif` radar image snapshot published
-by the BOM.
+by the BOM. If \code{download.only = TRUE} there will be a NULL return value
+with the download path printed in the console as a message.
 }
 \description{
 Fetch BOM radar imagery from
@@ -29,9 +37,11 @@ from \code{\link{get_available_radar}}.
 \examples{
 \dontrun{
 # Fetch most recent radar image for Wollongong 256km radar
-
 imagery <- get_radar_imagery(product_id = "IDR032")  
-raster::plot(imagery)
+raster::plot(imagery)  
+
+# Save imagery to a local path  
+imagery <- get_radar_imagery(product_id = "IDR032", path = 'image.gif') 
 
 }
 
