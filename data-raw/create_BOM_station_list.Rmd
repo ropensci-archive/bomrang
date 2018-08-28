@@ -119,6 +119,13 @@ bom_stations_raw <- bom_stations_raw[1:nrows, ]
 # add current year to stations that are still active
 bom_stations_raw$end[is.na(bom_stations_raw$end)] <- format(Sys.Date(), "%Y")
 
+# keep only currently reporting stations
+bom_stations_raw <- 
+  bom_stations_raw[bom_stations_raw$end == format(Sys.Date(), "%Y"), ] %>% 
+  dplyr::mutate(end = as.integer(end))
+
+str(bom_stations_raw)
+
 bom_stations_raw
 ```
 

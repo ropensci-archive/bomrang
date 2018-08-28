@@ -81,9 +81,6 @@ get_current_weather <-
     # Load JSON URL list
     load(system.file("extdata", "JSONurl_site_list.rda",  # nocov start
                      package = "bomrang"))  # nocov end
-    
-    # Current weather requires only currently reporting stations
-    JSONurl_site_list <- JSONurl_site_list[end %in% format(Sys.Date(), "%Y")]
 
     if (missing(station_name) && is.null(latlon)) {
       stop("One of 'station_name' or 'latlon' must be provided.")

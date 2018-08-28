@@ -114,23 +114,45 @@ bom_stations_raw <- bom_stations_raw[1:nrows, ]
 # add current year to stations that are still active
 bom_stations_raw$end[is.na(bom_stations_raw$end)] <- format(Sys.Date(), "%Y")
 
+# keep only currently reporting stations
+bom_stations_raw <- 
+  bom_stations_raw[bom_stations_raw$end == format(Sys.Date(), "%Y"), ] %>% 
+  dplyr::mutate(end = as.integer(end))
+
+str(bom_stations_raw)
+```
+
+    ## Classes 'tbl_df', 'tbl' and 'data.frame':    7281 obs. of  11 variables:
+    ##  $ site  : chr  "001006" "001007" "001010" "001013" ...
+    ##  $ dist  : chr  "01" "01" "01" "01" ...
+    ##  $ name  : chr  "WYNDHAM AERO" "TROUGHTON ISLAND" "THEDA" "WYNDHAM" ...
+    ##  $ start : int  1951 1956 1965 1968 1998 1973 1997 1944 1967 1986 ...
+    ##  $ end   : int  2018 2018 2018 2018 2018 2018 2018 2018 2018 2018 ...
+    ##  $ lat   : num  -15.5 -13.8 -14.8 -15.5 -15.9 ...
+    ##  $ lon   : num  128 126 126 128 128 ...
+    ##  $ state : chr  "WA" "WA" "WA" "WA" ...
+    ##  $ elev  : num  3.8 6 210 11 130 546 23 51 90 300 ...
+    ##  $ bar_ht: num  4.3 8 NA NA NA 547 24 52.5 NA NA ...
+    ##  $ wmo   : int  95214 94102 NA NA NA 94211 94100 95101 NA NA ...
+
+``` r
 bom_stations_raw
 ```
 
-    ## # A tibble: 19,348 x 11
-    ##    site   dist  name      start end     lat   lon state  elev bar_ht   wmo
-    ##    <chr>  <chr> <chr>     <int> <chr> <dbl> <dbl> <chr> <dbl>  <dbl> <int>
-    ##  1 001000 01    KARUNJIE   1940 1983  -16.3  127. WA    320     NA      NA
-    ##  2 001001 01    OOMBULGU…  1914 2012  -15.2  128. WA      2     NA      NA
-    ##  3 001002 01    BEVERLEY…  1959 1967  -16.6  125. WA     NA     NA      NA
-    ##  4 001003 01    PAGO MIS…  1908 1940  -14.1  127. WA      5     24.4    NA
-    ##  5 001004 01    KUNMUNYA   1915 1948  -15.4  125. WA     47     NA      NA
-    ##  6 001005 01    WYNDHAM …  1886 1995  -15.5  128. WA     20     NA      NA
-    ##  7 001006 01    WYNDHAM …  1951 2018  -15.5  128. WA      3.8    4.3 95214
-    ##  8 001007 01    TROUGHTO…  1956 2018  -13.8  126. WA      6      8   94102
-    ##  9 001008 01    MOUNT EL…  1959 1978  -16.3  126. WA    640     NA      NA
-    ## 10 001009 01    KURI BAY   1961 2012  -15.5  125. WA     12     17      NA
-    ## # ... with 19,338 more rows
+    ## # A tibble: 7,281 x 11
+    ##    site   dist  name      start   end   lat   lon state  elev bar_ht   wmo
+    ##    <chr>  <chr> <chr>     <int> <int> <dbl> <dbl> <chr> <dbl>  <dbl> <int>
+    ##  1 001006 01    WYNDHAM …  1951  2018 -15.5  128. WA      3.8    4.3 95214
+    ##  2 001007 01    TROUGHTO…  1956  2018 -13.8  126. WA      6      8   94102
+    ##  3 001010 01    THEDA      1965  2018 -14.8  126. WA    210     NA      NA
+    ##  4 001013 01    WYNDHAM    1968  2018 -15.5  128. WA     11     NA      NA
+    ##  5 001014 01    EMMA GOR…  1998  2018 -15.9  128. WA    130     NA      NA
+    ##  6 001018 01    MOUNT EL…  1973  2018 -16.4  126. WA    546    547   94211
+    ##  7 001019 01    KALUMBURU  1997  2018 -14.3  127. WA     23     24   94100
+    ##  8 001020 01    TRUSCOTT   1944  2018 -14.1  126. WA     51     52.5 95101
+    ##  9 001023 01    EL QUEST…  1967  2018 -16.0  128. WA     90     NA      NA
+    ## 10 001024 01    ELLENBRAE  1986  2018 -16.0  127. WA    300     NA      NA
+    ## # ... with 7,271 more rows
 
 ## Check station locations
 
@@ -319,7 +341,7 @@ save(stations_site_list,
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2018-08-26                  
+    ##  date     2018-08-28                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version date       source                            
