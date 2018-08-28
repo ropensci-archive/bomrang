@@ -44,7 +44,7 @@ test_that("get_radar_imagery functions properly", {
   y <- get_radar_imagery(product_id = "IDR022")
   expect_is(y, "RasterLayer")
   
-  yy <- get_radar_imagery(product_id = "IDR022", download.only = TRUE)
+  yy <- get_radar_imagery(product_id = "IDR022", download_only = TRUE)
   expect_null(yy)
   
 })
