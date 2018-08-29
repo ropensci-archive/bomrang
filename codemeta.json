@@ -5,12 +5,12 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "bomrang",
-  "description": "Provides functions to interface with Australian Government Bureau\n    of Meteorology (BOM) data, fetching data and returning a tidy data frame of\n    précis forecasts, historical and current weather data from stations,\n    agriculture bulletin data, BOM 0900 or 1500 weather bulletins or a raster\n    stack object of satellite imagery from GeoTIFF files. Data (c) Australian\n    Government Bureau of Meteorology Creative Commons (CC) Attribution 3.0\n    licence or Public Access Licence (PAL) as appropriate. See\n    <http://www.bom.gov.au/other/copyright.shtml> for further details.",
+  "description": "Provides functions to interface with Australian Government Bureau\n    of Meteorology (BOM) data, fetching data and returning a tidy data frame of\n    précis forecasts, historical and current weather data from stations,\n    agriculture bulletin data, BOM 0900 or 1500 weather bulletins and\n    downloading and importing radar and satellite imagery files. Data (c)\n    Australian Government Bureau of Meteorology Creative Commons (CC)\n    Attribution 3.0 licence or Public Access Licence (PAL) as appropriate. See\n    <http://www.bom.gov.au/other/copyright.shtml> for further details.",
   "name": "bomrang: Australian Government Bureau of Meteorology (BOM) Data from R",
   "codeRepository": "https://github.com/ropensci/bomrang",
   "issueTracker": "https://github.com/ropensci/bomrang/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.3.0",
+  "version": "0.3.0.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -434,7 +434,7 @@
   "contIntegration": "https://travis-ci.org/ropensci/bomrang",
   "releaseNotes": "https://github.com/ropensci/bomrang/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/bomrang/blob/master/README.md",
-  "fileSize": "790.669KB",
+  "fileSize": "942.007KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
