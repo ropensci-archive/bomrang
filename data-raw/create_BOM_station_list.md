@@ -122,7 +122,7 @@ bom_stations_raw <-
 str(bom_stations_raw)
 ```
 
-    ## Classes 'tbl_df', 'tbl' and 'data.frame':    7281 obs. of  11 variables:
+    ## Classes 'tbl_df', 'tbl' and 'data.frame':    7283 obs. of  11 variables:
     ##  $ site  : chr  "001006" "001007" "001010" "001013" ...
     ##  $ dist  : chr  "01" "01" "01" "01" ...
     ##  $ name  : chr  "WYNDHAM AERO" "TROUGHTON ISLAND" "THEDA" "WYNDHAM" ...
@@ -139,7 +139,7 @@ str(bom_stations_raw)
 bom_stations_raw
 ```
 
-    ## # A tibble: 7,281 x 11
+    ## # A tibble: 7,283 x 11
     ##    site   dist  name      start   end   lat   lon state  elev bar_ht   wmo
     ##    <chr>  <chr> <chr>     <int> <int> <dbl> <dbl> <chr> <dbl>  <dbl> <int>
     ##  1 001006 01    WYNDHAM …  1951  2018 -15.5  128. WA      3.8    4.3 95214
@@ -152,7 +152,7 @@ bom_stations_raw
     ##  8 001020 01    TRUSCOTT   1944  2018 -14.1  126. WA     51     52.5 95101
     ##  9 001023 01    EL QUEST…  1967  2018 -16.0  128. WA     90     NA      NA
     ## 10 001024 01    ELLENBRAE  1986  2018 -16.0  127. WA    300     NA      NA
-    ## # ... with 7,271 more rows
+    ## # ... with 7,273 more rows
 
 ## Check station locations
 
@@ -341,7 +341,7 @@ save(stations_site_list,
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2018-08-28                  
+    ##  date     2018-09-01                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version date       source                            
@@ -356,7 +356,8 @@ save(stations_site_list,
     ##  crayon        1.3.4   2017-09-16 CRAN (R 3.5.1)                    
     ##  curl          3.2     2018-03-28 CRAN (R 3.5.1)                    
     ##  data.table  * 1.11.4  2018-05-27 CRAN (R 3.5.1)                    
-    ##  digest        0.6.16  2018-08-22 cran (@0.6.16)                    
+    ##  devtools      1.13.6  2018-06-27 CRAN (R 3.5.1)                    
+    ##  digest        0.6.16  2018-08-22 CRAN (R 3.5.1)                    
     ##  dplyr         0.7.6   2018-06-29 CRAN (R 3.5.1)                    
     ##  evaluate      0.11    2018-07-17 CRAN (R 3.5.1)                    
     ##  fansi         0.3.0   2018-08-13 CRAN (R 3.5.1)                    
@@ -367,6 +368,7 @@ save(stations_site_list,
     ##  knitr         1.20    2018-02-20 CRAN (R 3.5.1)                    
     ##  lattice       0.20-35 2017-03-25 CRAN (R 3.5.1)                    
     ##  magrittr    * 1.5     2014-11-22 CRAN (R 3.5.1)                    
+    ##  memoise       1.1.0   2017-04-21 CRAN (R 3.5.1)                    
     ##  pillar        1.3.0   2018-07-14 CRAN (R 3.5.1)                    
     ##  pkgconfig     2.0.2   2018-08-16 CRAN (R 3.5.1)                    
     ##  purrr         0.2.5   2018-05-29 CRAN (R 3.5.1)                    
