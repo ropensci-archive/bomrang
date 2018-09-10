@@ -287,7 +287,8 @@ Following is an example fetching the historical daily temperature minimum
 observations for the station closest to 35.2809°S, 149.1300°E (Canberra).
 
 ```{r historical_mintemps, eval=FALSE}
-Canberra_mintemps <- get_historical(latlon = c(-35.2809, 149.1300), type = "min")
+Canberra_mintemps <- get_historical(latlon = c(-35.2809, 149.1300),
+                                    type = "min")
 ```
 
 ## Using `sweep_for_stations`
