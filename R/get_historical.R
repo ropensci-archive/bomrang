@@ -82,6 +82,9 @@ get_historical <-
            latlon = NULL,
            type = c("rain", "min", "max", "solar"),
            meta = FALSE) {
+    
+    site <- ncc_obs_code <- NULL #nocov
+    
     if (is.null(stationid) & is.null(latlon))
       stop("stationid or latlon must be provided.",
            call. = FALSE)

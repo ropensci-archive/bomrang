@@ -226,13 +226,12 @@ convert_state <- function(state) {
 
 .get_ncc <- function() {
   
-  rain <- "http://www.bom.gov.au/climate/data/lists_by_element/alphaAUS_136.txt"
+  base_url <- "http://www.bom.gov.au/climate/data/lists_by_element/"
   
-  tmax <- "http://www.bom.gov.au/climate/data/lists_by_element/alphaAUS_122.txt"
-  
-  tmin <- "http://www.bom.gov.au/climate/data/lists_by_element/alphaAUS_123.txt"
-  
-  solar <- "http://www.bom.gov.au/climate/data/lists_by_element/alphaAUS_193.txt"
+  rain <- paste0(base_url, "alphaAUS_136.txt")
+  tmax <- paste0(base_url, "alphaAUS_122.txt")
+  tmin <- paste0(base_url, "alphaAUS_123.txt")
+  solar <- paste0(base_url, "alphaAUS_193.txt")
   
   weather <- c(rain, tmax, tmin, solar)
   names(weather) <- c("rain", "tmax", "tmin", "solar")
@@ -244,6 +243,11 @@ convert_state <- function(state) {
     ncc_obs_code <- substr(weather[i],
                            nchar(weather[i]) - 6,
                            nchar(weather[i]) - 4)
+    
+    # CRAN NOTE avoidance
+    site <- name <- lat <- lon <- start_month <- #nocov start
+      start_year <- end_month <- end_year <- years <- percent <- AWS <-
+      start <- end <- ncc_obs_code <- site <- NULL #nocov end
     
     ncc <-
       readr::read_table(
