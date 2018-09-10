@@ -13,7 +13,7 @@ available.}
 }
 \value{
 A data frame of all selected radar locations with location information and
-product_ids.
+\var{product_ids}.
 }
 \description{
 Fetch a listing of available BOM radar imagery from
@@ -23,7 +23,7 @@ radar imagery for each location, which are updated approximately every 6 to
 10 minutes by the BOM.
 }
 \details{
-Valid BOM radar Id for each location required.
+Valid BOM radar ID for each location required.
 }
 \examples{
 \dontrun{

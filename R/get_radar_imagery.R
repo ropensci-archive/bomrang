@@ -11,11 +11,11 @@
 #' available images will be returned.  Defaults to all images currently
 #' available.
 #'
-#' @details Valid BOM radar Id for each location required.  
+#' @details Valid BOM radar ID for each location required.  
 #'
 #' @return
 #' A data frame of all selected radar locations with location information and
-#' product_ids. 
+#' \var{product_ids}.
 #'
 #' @references
 #' Australian Bureau of Meteorology (BOM) radar images
@@ -142,5 +142,4 @@ get_radar_imagery <- function(product_id,
     y[is.na(y)] <- 999
     return(y)
   }
-  
 }
