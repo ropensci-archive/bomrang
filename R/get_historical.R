@@ -109,7 +109,8 @@ get_historical <-
     ## ensure station is known
     ncc_list <- .get_ncc()
     
-    if (as.numeric(stationid) %notin% ncc_list$site)
+    if (suppressWarnings(all(is.na(as.numeric(stationid)) |
+              as.numeric(stationid) %notin% ncc_list$site)))
       stop("\nStation not recognised.\n",
            call. = FALSE)
     
