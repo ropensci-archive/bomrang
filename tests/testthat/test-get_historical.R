@@ -4,9 +4,8 @@ test_that("Error handling", {
   expect_error(get_historical(), regexp = "stationid.*latlon.*provided")
   expect_error(get_historical("sodiuhfosdhfoisdh"),
                regexp = "Station not recognised")
-  expect_error(get_historical(1), regexp = "Station not recognised.")
-  expect_error(get_historical("1"), regexp = "Station not recognised.")
-  expect_error(get_historical("023001"), regexp = "Station not recognised.")
+  expect_error(get_historical(2), regexp = "Station not recognised.")
+  expect_error(get_historical("2"), regexp = "Station not recognised.")
   expect_error(get_historical(latlon = 1), regexp = "2-element")
   expect_error(get_historical(latlon = c("a", "b")), regexp = "2-element")
   expect_warning(get_historical(stationid = "023000", latlon = c(1, 2)),
