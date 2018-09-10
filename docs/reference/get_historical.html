@@ -141,7 +141,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>get_historical</span>(<span class='kw'>stationid</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>latlon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'>c</span>(<span class='st'>"rain"</span>,
-  <span class='st'>"min"</span>, <span class='st'>"max"</span>, <span class='st'>"solar"</span>))</pre>
+  <span class='st'>"min"</span>, <span class='st'>"max"</span>, <span class='st'>"solar"</span>), <span class='kw'>meta</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -157,14 +157,21 @@
     <tr>
       <th>type</th>
       <td><p>Measurement type, either daily "rain", "min" (temp), "max"
-(temp), or "solar" (exposure). Partial matching is performed.</p></td>
+(temp), or "solar" (exposure). Partial matching is performed. If not
+specified returns the first matching type in the order listed.</p></td>
+    </tr>
+    <tr>
+      <th>meta</th>
+      <td><p>Logical switch to include metadata information on the station and
+data from BOM. If set to TRUE a list is returned with a</p></td>
     </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A complete <code><a href='http://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></code> of historical observations for
-the chosen station, with some subset of the following columns</p>
+    <p>By default a complete <code><a href='http://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></code> of historical
+observations for the chosen station, with some subset of the following
+columns</p>
 <table class='table'>
 <tr><td><strong>Product_code</strong>:</td><td>BOM internal code.</td></tr>
 <tr><td><strong>Station_number</strong>:</td><td>BOM station ID.</td></tr>
@@ -183,13 +190,31 @@ the chosen station, with some subset of the following columns</p>
 </table>
 
 
+<p>If <var>meta</var> is set <code>TRUE</code>, then a list is returned with an
+additional <code><a href='http://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></code> with the following columns
+giving information on the station and data.</p>
+<table class='table'>
+<tr><td><strong>site</strong>:</td><td>BOM station ID.</td></tr>
+<tr><td><strong>name</strong>:</td><td>BOM station name.</td></tr>
+<tr><td><strong>lat</strong>:</td><td>Latitude in decimal degrees.</td></tr>
+<tr><td><strong>lon</strong>:</td><td>Longitude in decimal degrees.</td></tr>
+<tr><td><strong>start</strong>:</td><td>Date observations start.</td></tr>
+<tr><td><strong>end</strong>:</td><td>Date observations end.</td></tr>
+<tr><td><strong>years</strong>:</td><td>Available number of years data.</td></tr>
+<tr><td><strong>percent</strong>:</td><td>Percent complete.</td></tr>
+<tr><td><strong>AWS</strong>:</td><td>Automated weather station?</td></tr>
+<tr><td><strong>type</strong>:</td><td>Measurement types available for the station.</td></tr>
+<tr><td></td><td><strong>site</strong>:</td></tr>
+</table>
+
+
 <p>Temperature data prior to 1910 should be used with extreme caution as many
 stations, prior to that date, were exposed in non-standard shelters, some
 of which give readings which are several degrees warmer or cooler than
 those measured according to post-1910 standards.</p>
 <p>Daily maximum temperatures usually occur in the afternoon and daily minimum
 temperatures overnight or near dawn. Occasionally, however, the lowest
-temperature in the 24 hours to prior to 9 am can occur around 9 am the
+temperature in the 24 hours to prior to 9 AM can occur around 9 AM the
 previous day if the night was particularly warm.</p>
 <p>Either <var>stationid</var> or <var>latlon</var> must be provided, but if both are,
 then <var>stationid</var> will be used as it is more reliable.</p>

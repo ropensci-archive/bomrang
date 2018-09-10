@@ -5,7 +5,7 @@
 \title{Obtain Historical BOM Data}
 \usage{
 get_historical(stationid = NULL, latlon = NULL, type = c("rain",
-  "min", "max", "solar"))
+  "min", "max", "solar"), meta = FALSE)
 }
 \arguments{
 \item{stationid}{BOM station ID. See Details.}
@@ -13,11 +13,16 @@ get_historical(stationid = NULL, latlon = NULL, type = c("rain",
 \item{latlon}{Length-2 numeric vector of Latitude/Longitude. See Details.}
 
 \item{type}{Measurement type, either daily "rain", "min" (temp), "max"
-(temp), or "solar" (exposure). Partial matching is performed.}
+(temp), or "solar" (exposure). Partial matching is performed. If not
+specified returns the first matching type in the order listed.}
+
+\item{meta}{Logical switch to include metadata information on the station and
+data from BOM. If set to TRUE a list is returned with a}
 }
 \value{
-A complete \code{\link[base]{data.frame}} of historical observations for
-the chosen station, with some subset of the following columns
+By default a complete \code{\link[base]{data.frame}} of historical
+observations for the chosen station, with some subset of the following
+columns
 
 \tabular{rl}{
 \strong{Product_code}:\tab BOM internal code.\cr
@@ -36,6 +41,23 @@ the chosen station, with some subset of the following columns
 \tab routine quality control process are marked accordingly.
 }
 
+If \var{meta} is set \code{TRUE}, then a list is returned with an
+additional \code{\link[base]{data.frame}} with the following columns
+giving information on the station and data.
+
+\tabular{rl}{
+\strong{site}:\tab BOM station ID.\cr
+\strong{name}:\tab BOM station name.\cr
+\strong{lat}:\tab Latitude in decimal degrees.\cr
+\strong{lon}:\tab Longitude in decimal degrees.\cr
+\strong{start}:\tab Date observations start.\cr
+\strong{end}:\tab Date observations end.\cr
+\strong{years}:\tab Available number of years data.\cr
+\strong{percent}:\tab Percent complete.\cr
+\strong{AWS}:\tab Automated weather station?\cr
+\strong{type}:\tab Measurement types available for the station.\cr
+}
+
 Temperature data prior to 1910 should be used with extreme caution as many
 stations, prior to that date, were exposed in non-standard shelters, some
 of which give readings which are several degrees warmer or cooler than
@@ -43,7 +65,7 @@ those measured according to post-1910 standards.
 
 Daily maximum temperatures usually occur in the afternoon and daily minimum
 temperatures overnight or near dawn. Occasionally, however, the lowest
-temperature in the 24 hours to prior to 9 am can occur around 9 am the
+temperature in the 24 hours to prior to 9 AM can occur around 9 AM the
 previous day if the night was particularly warm.
 
 Either \var{stationid} or \var{latlon} must be provided, but if both are,

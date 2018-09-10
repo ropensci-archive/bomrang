@@ -239,7 +239,10 @@ QLD_coastal_forecast <- get_coastal_forecast(state = "QLD")
 `get_historical()` takes either of two arguments: `stationid` and `latlon`, as 
 well as a type of observation (`"rain"`, `"min"` (temperature), `"max"`
 (temperature), or `"solar"`), returning the historical daily weather
-observations of that type for the given location.
+observations of that type for the given location. An optional fourth argument,
+`meta` returns a `list()` object of two data frames when set to `TRUE`. The
+first table, `"meta"`, will include metadata on the station and data. The second
+table, `"historical_data"`, will be as discussed in *Results* below.
 
 If `latlon` is used, the observations returned are from the station nearest to
 that latitude-longitude coordinate. `latlon` values are entered as decimal
@@ -254,8 +257,29 @@ dependent on the station requested. Some stations may only have a decade or less
 of data (e.g. max temperature at `070351 (CANBERRA AIRPORT)` has ~3,700+
 observations back to 2008) while others may have very extensive records (e.g.
 rainfall at `ADELAIDE (WEST TERRACE / NGAYIRDAPIRA)` has ~65,000+ observations
-back to 1839, three years after the city was founded.) 
+back to 1839, three years after the city was founded.)
 
+The optional metadata table will always have the following fields 
+  
+  - **site**: BOM station ID
+  
+  - **name**: BOM station name.
+  
+  - **lat**: Latitude in decimal degrees.
+  
+  - **lon**: Longitude in decimal degrees.
+  
+  - **start**: Date observations start.
+  
+  - **end**: Date observations end.
+  
+  - **years**: Available number of years data.
+  
+  - **percent**: Percent complete.
+  
+  - **AWS**: Automated weather station?
+  
+  - **type**: Measurement types available for the station.
 
 ### Example
 
