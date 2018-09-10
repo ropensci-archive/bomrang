@@ -7,10 +7,15 @@
 #' @param stationid BOM station ID. See Details.
 #' @param latlon Length-2 numeric vector of Latitude/Longitude. See Details.
 #' @param type Measurement type, either daily "rain", "min" (temp), "max"
-#'   (temp), or "solar" (exposure). Partial matching is performed.
-#'
-#' @return A complete \code{\link[base]{data.frame}} of historical observations for
-#' the chosen station, with some subset of the following columns
+#'   (temp), or "solar" (exposure). Partial matching is performed. If not
+#'   specified returns the first matching type in the order listed.
+#' @param meta Logical switch to include metadata information on the station and
+#'   data from BOM. If set to TRUE a list is returned with a
+
+#'   
+#' @return By default a complete \code{\link[base]{data.frame}} of historical
+#'   observations for the chosen station, with some subset of the following
+#'   columns
 #'
 #'   \tabular{rl}{
 #'   **Product_code**:\tab BOM internal code.\cr
@@ -28,6 +33,23 @@
 #'   **Quality**:\tab Y, N, or missing. Data which have not yet completed the\cr
 #'               \tab routine quality control process are marked accordingly.
 #'   }
+#'   
+#'   If \var{meta} is set \code{TRUE}, then a list is returned with an
+#'   additional \code{\link[base]{data.frame}} with the following columns
+#'   giving information on the station and data.
+#'   
+#'   \tabular{rl}{
+#'   **site**:\tab BOM station ID.\cr
+#'   **name**:\tab BOM station name.\cr
+#'   **lat**:\tab Latitude in decimal degrees.\cr
+#'   **lon**:\tab Longitude in decimal degrees.\cr
+#'   **start**:\tab Date observations start.\cr
+#'   **end**:\tab Date observations end.\cr
+#'   **years**:\tab Available number of years data.\cr
+#'   **percent**:\tab Percent complete.\cr
+#'   **AWS**:\tab Automated weather station?\cr
+#'   **type**:\tab Measurement types available for the station.\cr
+#'   }
 #'
 #'   Temperature data prior to 1910 should be used with extreme caution as many
 #'   stations, prior to that date, were exposed in non-standard shelters, some
@@ -36,7 +58,7 @@
 #'
 #'   Daily maximum temperatures usually occur in the afternoon and daily minimum
 #'   temperatures overnight or near dawn. Occasionally, however, the lowest
-#'   temperature in the 24 hours to prior to 9 am can occur around 9 am the
+#'   temperature in the 24 hours to prior to 9 AM can occur around 9 AM the
 #'   previous day if the night was particularly warm.
 #'
 #'   Either \var{stationid} or \var{latlon} must be provided, but if both are,
@@ -58,9 +80,9 @@
 get_historical <-
   function(stationid = NULL,
            latlon = NULL,
-           type = c("rain", "min", "max", "solar")) {
-    if (is.null(stationid) &
-        is.null(latlon))
+           type = c("rain", "min", "max", "solar"),
+           meta = FALSE) {
+    if (is.null(stationid) & is.null(latlon))
       stop("stationid or latlon must be provided.",
            call. = FALSE)
     if (!is.null(stationid) & !is.null(latlon)) {
@@ -68,8 +90,7 @@ get_historical <-
               "Using stationid.")
     }
     if (is.null(stationid)) {
-      if (!identical(length(latlon), 2L) ||
-          !is.numeric(latlon))
+      if (!identical(length(latlon), 2L) || !is.numeric(latlon))
         stop("latlon must be a 2-element numeric vector.",
              call. = FALSE)
       stationdetails <-
@@ -81,17 +102,14 @@ get_historical <-
               ")")
       stationid <- stationdetails$site
     }
-
+    
     ## ensure station is known
-    # CRAN NOTE avoidance
-    JSONurl_site_list <- NULL # nocov
-    load(system.file("extdata",
-                     "JSONurl_site_list.rda",
-                     package = "bomrang"))
-    if (!stationid %in% JSONurl_site_list$site)
-      stop("Station not recognised.",
+    ncc_list <- .get_ncc()
+    
+    if (as.numeric(stationid) %notin% ncc_list$site)
+      stop("\nStation not recognised.\n",
            call. = FALSE)
-
+    
     type <- match.arg(type)
     obscode <- switch(
       type,
@@ -100,10 +118,18 @@ get_historical <-
       max = 122,
       solar = 193
     )
-
+    
+    ncc_list <- dplyr::filter(ncc_list, c(site == as.numeric(stationid) &
+                                            ncc_obs_code == obscode))
+    
+    if (obscode %notin% ncc_list$ncc_obs_code)
+      stop(call. = FALSE,
+           "\n`type` ", type, " is not available for `stationid` ",
+           stationid, "\n")
+    
     zipurl <- .get_zip_url(stationid, obscode)
     dat <- .get_zip_and_load(zipurl)
-
+    
     names(dat) <- switch(type,
                          min = c("Product_code",
                                  "Station_number",
@@ -137,4 +163,10 @@ get_historical <-
                                    "Solar_exposure")
     )
     dat
+    if (isTRUE(meta)) {
+      dat <- list(ncc_list, dat)
+      names(dat) <- c("meta", "historical_data")
+    }
+    return(dat)
   }
+

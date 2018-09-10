@@ -1,5 +1,4 @@
 
-
 `%notin%` <- function(x, table) {
   # Same as !(x %in% table)
   match(x, table, nomatch = 0L) == 0L
@@ -167,6 +166,136 @@ convert_state <- function(state) {
   return(state)
 }
 
+#' Parse areas for précis forecasts
+#'
+#' @param x a précis forecast object
+#'
+#' @return a data.frame of forecast areas and aac codes
+#' @keywords internal
+#' @author Adam H Sparks, \email{adamhspark@@s@gmail.com}
+#' @noRd
+
+# get the data from areas --------------------------------------------------
+.parse_areas <- function(x) {
+  aac <- as.character(xml2::xml_attr(x, "aac"))
+
+  # get xml children for the forecast (there are seven of these for each area)
+  forecast_periods <- xml2::xml_children(x)
+
+  sub_out <-
+    lapply(X = forecast_periods, FUN = .extract_values)
+  sub_out <- do.call(rbind, sub_out)
+  sub_out <- cbind(aac, sub_out)
+  return(sub_out)
+}
+
+#' extract the values of the forecast items
+#'
+#' @param y précis forecast values
+#'
+#' @return a data.frame of forecast values
+#' @keywords internal
+#' @author Adam H Sparks, \email{adamhsparks@gmail.com}
+#' @noRd
+
+.extract_values <- function(y) {
+  values <- xml2::xml_children(y)
+  attrs <- unlist(as.character(xml2::xml_attrs(values)))
+  values <- unlist(as.character(xml2::xml_contents(values)))
+
+  time_period <- unlist(t(as.data.frame(xml2::xml_attrs(y))))
+  time_period <-
+    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)), ]
+
+  sub_out <- cbind(time_period, attrs, values)
+  row.names(sub_out) <- NULL
+  return(sub_out)
+}
+
+#' Get latest historical station metadata
+#'
+#' Fetches BOM metadata for checking historical record availability. Also can be
+#' used to return the metadata if user desires.
+#'
+#' @md
+#'
+#' @return A data frame of metadata for BOM historical records
+#' @keywords internal
+#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
+#' @noRd
+
+.get_ncc <- function() {
+  
+  rain <- "http://www.bom.gov.au/climate/data/lists_by_element/alphaAUS_136.txt"
+  
+  tmax <- "http://www.bom.gov.au/climate/data/lists_by_element/alphaAUS_122.txt"
+  
+  tmin <- "http://www.bom.gov.au/climate/data/lists_by_element/alphaAUS_123.txt"
+  
+  solar <- "http://www.bom.gov.au/climate/data/lists_by_element/alphaAUS_193.txt"
+  
+  weather <- c(rain, tmax, tmin, solar)
+  names(weather) <- c("rain", "tmax", "tmin", "solar")
+  
+  ncc_codes <- vector(mode = "list", length = length(weather))
+  names(ncc_codes) <- names(weather)
+  
+  for (i in seq_along(weather)) {
+    ncc_obs_code <- substr(weather[i],
+                           nchar(weather[i]) - 6,
+                           nchar(weather[i]) - 4)
+    
+    ncc <-
+      readr::read_table(
+        weather[i],
+        skip = 4,
+        col_names = c(
+          "site",
+          "name",
+          "lat",
+          "lon",
+          "start_month",
+          "start_year",
+          "end_month",
+          "end_year",
+          "years",
+          "percent",
+          "AWS"
+        ),
+        col_types = c(
+          site = readr::col_integer(),
+          name = readr::col_character(),
+          lat = readr::col_double(),
+          lon = readr::col_double(),
+          start_month = readr::col_character(),
+          start_year = readr::col_character(),
+          end_month = readr::col_character(),
+          end_year = readr::col_character(),
+          years = readr::col_double(),
+          percent = readr::col_integer(),
+          AWS = readr::col_character()
+        ),
+        na = ""
+      )
+    
+    # trim the end of the rows off that have extra info that's not in columns
+    nrows <- nrow(ncc) - 7
+    ncc <- ncc[1:nrows, ]
+    
+    # unite month and year, convert to a date and add ncc_obs_code
+    ncc <- 
+      ncc %>% 
+      tidyr::unite(start, start_month, start_year, sep = "-") %>% 
+      tidyr::unite(end, end_month, end_year, sep = "-") %>% 
+      dplyr::mutate(start = lubridate::dmy(paste0("01-", start))) %>% 
+      dplyr::mutate(end = lubridate::dmy(paste0("01-", end))) %>% 
+      dplyr::mutate(ncc_obs_code = ncc_obs_code)
+    
+    ncc_codes[[i]] <- ncc
+  }
+  dplyr::bind_rows(ncc_codes)
+}
+
 #' Identify URL of historical observations resources
 #'
 #' BOM data is available via URL endpoints but the arguments are not (well)
@@ -225,50 +354,4 @@ convert_state <- function(state) {
   message("Data saved as ", datfile)
   dat <- utils::read.csv(datfile, header = TRUE)
   dat
-}
-
-#' Parse areas for précis forecasts
-#'
-#' @param x a précis forecast object
-#'
-#' @return a data.frame of forecast areas and aac codes
-#' @keywords internal
-#' @author Adam H Sparks, \email{adamhspark@@s@gmail.com}
-#' @noRd
-
-# get the data from areas --------------------------------------------------
-.parse_areas <- function(x) {
-  aac <- as.character(xml2::xml_attr(x, "aac"))
-
-  # get xml children for the forecast (there are seven of these for each area)
-  forecast_periods <- xml2::xml_children(x)
-
-  sub_out <-
-    lapply(X = forecast_periods, FUN = .extract_values)
-  sub_out <- do.call(rbind, sub_out)
-  sub_out <- cbind(aac, sub_out)
-  return(sub_out)
-}
-
-#' extract the values of the forecast items
-#'
-#' @param y précis forecast values
-#'
-#' @return a data.frame of forecast values
-#' @keywords internal
-#' @author Adam H Sparks, \email{adamhsparks@gmail.com}
-#' @noRd
-
-.extract_values <- function(y) {
-  values <- xml2::xml_children(y)
-  attrs <- unlist(as.character(xml2::xml_attrs(values)))
-  values <- unlist(as.character(xml2::xml_contents(values)))
-
-  time_period <- unlist(t(as.data.frame(xml2::xml_attrs(y))))
-  time_period <-
-    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)), ]
-
-  sub_out <- cbind(time_period, attrs, values)
-  row.names(sub_out) <- NULL
-  return(sub_out)
 }
