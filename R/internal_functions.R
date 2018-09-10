@@ -226,6 +226,11 @@ convert_state <- function(state) {
 
 .get_ncc <- function() {
   
+  # CRAN NOTE avoidance
+  site <- name <- lat <- lon <- start_month <- #nocov start
+    start_year <- end_month <- end_year <- years <- percent <- AWS <-
+    start <- end <- ncc_obs_code <- site <- NULL #nocov end
+  
   base_url <- "http://www.bom.gov.au/climate/data/lists_by_element/"
   
   rain <- paste0(base_url, "alphaAUS_136.txt")
@@ -243,12 +248,7 @@ convert_state <- function(state) {
     ncc_obs_code <- substr(weather[i],
                            nchar(weather[i]) - 6,
                            nchar(weather[i]) - 4)
-    
-    # CRAN NOTE avoidance
-    site <- name <- lat <- lon <- start_month <- #nocov start
-      start_year <- end_month <- end_year <- years <- percent <- AWS <-
-      start <- end <- ncc_obs_code <- site <- NULL #nocov end
-    
+
     ncc <-
       readr::read_table(
         weather[i],
