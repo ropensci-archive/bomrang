@@ -291,6 +291,17 @@ Canberra_mintemps <- get_historical(latlon = c(-35.2809, 149.1300),
                                     type = "min")
 ```
 
+If you want to see the data associated with the station, use `meta = TRUE` and
+`get_historica()` will return a list with a data frame containing
+information about the station's data as well as the historical data in a
+second data frame object.
+
+```{r historical_meta, eval=FALSE}
+Canberra_mintemps <- get_historical(latlon = c(-35.2809, 149.1300),
+                                    type = "min",
+                                    meta = TRUE)
+```
+
 ## Using `sweep_for_stations`
 
 `sweep_for_stations()` only takes one argument, `latlon`, a length-2 numeric
