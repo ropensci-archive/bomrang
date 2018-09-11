@@ -1,4 +1,9 @@
-citHeader("To cite bomrang in publications, please use:")
+citHeader("Data (c) Australian Government Bureau of Meteorology,\n",
+           "Creative Commons (CC) Attribution 3.0 licence or\n",
+           "Public Access Licence (PAL) as appropriate.\n",
+           "See http://www.bom.gov.au/other/copyright.shtml\n",
+           "\n",
+           "To cite bomrang in publications, please use:")
 
 citEntry(
   entry = "Article",
