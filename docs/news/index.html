@@ -143,6 +143,14 @@
 </li>
 </ul>
 </div>
+<div id="bug-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<ul>
+<li>
+<code><a href="../reference/get_historical.html">get_historical()</a></code> now fetches data for any station with historical data available corrected an issue where previously it only fetched data for stations that currently reported</li>
+</ul>
+</div>
 <div id="minor-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h2>
@@ -153,6 +161,8 @@
 <li><p>Add links to on-line versions of vignettes from README</p></li>
 <li><p>Standardise use of vocabulary in README</p></li>
 <li><p>Enforce standardised output for <code><a href="../reference/get_coastal_forecast.html">get_coastal_forecast()</a></code>. In some cases BOM does not report all fields available, <em>bomrang</em> will always report these with <code>NA</code> if empty</p></li>
+<li><p>Reorder vignette to have output from all functions before maps</p></li>
+<li><p>Add maps of historical data completeness and availability to vignette, Appendix 7</p></li>
 </ul>
 <hr>
 </div>
@@ -184,9 +194,9 @@
 <h1 class="page-header">
 <a href="#bomrang-0-2-2" class="anchor"></a>bomrang 0.2.2<small> 2018-07-19 </small>
 </h1>
-<div id="bug-fixes" class="section level2">
+<div id="bug-fixes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h2>
 <p>Fix corrupted zip file download issue for <code><a href="../reference/get_historical.html">get_historical()</a></code> on Windows</p>
 </div>
 <div id="minor-changes-2" class="section level2">
@@ -212,9 +222,9 @@
 <li><p>Remove deprecated functions</p></li>
 </ul>
 </div>
-<div id="bug-fixes-1" class="section level2">
+<div id="bug-fixes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li><p>Correct field names in <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code> where <code>maximum_temperature</code> and <code>minimum_temperature</code> were reversed</p></li>
 <li><p>Move rappdirs to Suggests to fix NOTEs on <a href="https://cran.rstudio.com/web/checks/check_results_bomrang.html" class="uri">https://cran.rstudio.com/web/checks/check_results_bomrang.html</a></p></li>
@@ -242,9 +252,9 @@
 <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code> handles states/territories with no/missing precipitation data gracefully</li>
 </ul>
 </div>
-<div id="bug-fixes-2" class="section level2">
+<div id="bug-fixes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-3" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Add <code>rappdirs</code> to Imports section of DESCRIPTION file to fix missing import</li>
 </ul>
@@ -277,9 +287,9 @@
 </li>
 </ul>
 </div>
-<div id="bug-fixes-3" class="section level2">
+<div id="bug-fixes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-3" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-4" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Correct issues with updating internal databases</li>
 </ul>
@@ -299,9 +309,9 @@
 <li><p>Vignettes no longer evaluate code on-the-fly that requires BOM servers to respond in response to CRAN rejecting <code>bomrang</code> for a failure of a vingette to build due to this issue</p></li>
 </ul>
 </div>
-<div id="bug-fixes-4" class="section level2">
+<div id="bug-fixes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-4" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-5" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li><p>Correct issue with converting the timzeone in ag bulletin to character where the conversion resulted in a vector of numerals, not the expected string of characters, e.g. “EST”</p></li>
 <li><p>Remove redundant functionality in <code><a href="../reference/update_station_locations.html">update_station_locations()</a></code> where data were fetched using <code>tryCatch()</code> and then again without</p></li>
@@ -343,9 +353,9 @@
 <li><p>Update internal databases of metadata for station locations and URLs</p></li>
 </ul>
 </div>
-<div id="bug-fixes-5" class="section level2">
+<div id="bug-fixes-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-5" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-6" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Fix issues with <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> where they failed to work properly. This fix lessens internal dependencies on <em>dplyr</em> and removes <em>rlang</em> usage from package.</li>
 </ul>
@@ -384,9 +394,9 @@
 <li><p>Update internal stations list with latest data from BOM</p></li>
 </ul>
 </div>
-<div id="bug-fixes-6" class="section level2">
+<div id="bug-fixes-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-6" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-7" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Fix issue where updating internal stations would fail</li>
 </ul>
@@ -421,9 +431,9 @@
 <h1 class="page-header">
 <a href="#bomrang-0-0-6" class="anchor"></a>bomrang 0.0.6<small> Unreleased </small>
 </h1>
-<div id="bug-fixes-7" class="section level2">
+<div id="bug-fixes-8" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-7" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-8" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li><p>Fix typo in <code>check_states()</code></p></li>
 <li><p>Replace <code>warning()</code> with <code>message()</code> in <code>get_states()</code></p></li>
@@ -442,9 +452,9 @@
 <h1 class="page-header">
 <a href="#bomrang-0-0-5" class="anchor"></a>bomrang 0.0.5<small> Unreleased </small>
 </h1>
-<div id="bug-fixes-8" class="section level2">
+<div id="bug-fixes-9" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-8" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-9" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li><p>Recommended <code>station_name</code> values are separated by spaces in <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code></p></li>
 <li><p>Station names and location names are more consistent in the supplied data and returned data frames.</p></li>
@@ -661,9 +671,9 @@
 <li><p>Enhanced documentation</p></li>
 </ul>
 </div>
-<div id="bug-fixes-9" class="section level2">
+<div id="bug-fixes-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-9" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-10" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Correct output for ag bulletin where the observation site is listed but has no values. The site will be listed with location data and <code>NA</code> for all meteorological values</li>
 </ul>
