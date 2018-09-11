@@ -1109,7 +1109,35 @@ suffixes defining the time period over which observations apply (for example,
 for minimum temperature observed at 9am yet included in 1500 bulletin).
 
 
-## Appendix 5 - Map of station locations
+## Appendix 5 - Output from `get_coastal_forecast`
+
+The output of `get_coastal_forecast()` will return a data frame with coastal waters forecast values of each area within the given state with the following fields:  
+
+<table>
+<tr><th>Field Name</th><th>Description</th></tr>
+<tr><td>index</td><td>Forecast index number.  0 = current day </td></tr>
+<tr><td>product_id</td><td>BOM Product ID from which the data are derived</td></tr>
+<tr><td>type</td><td>Forecast Region type e.g. Coastal</td></tr>
+<tr><td>state_code</td><td>State name (postal code abbreviation)</td></tr>
+<tr><td>dist_name</td><td>Name of forecast district</td></tr>
+<tr><td>pt_1_name</td><td>Start of forecast district</td></tr>
+<tr><td>pt_2_name</td><td>End of forecast district</td></tr>
+<tr><td>aac</td><td>AMOC Area Code, _e.g._, WA_MW008, a unique identifier for each location</td></tr>
+<tr><td>start_time_local</td><td>Start of forecast date and time in local TZ</td></tr>
+<tr><td>end_time_local</td><td>End of forecast date and time in local TZ</td></tr>
+<tr><td>UTC_offset</td><td>Hours offset from difference in hours and minutes from Coordinated Universal Time (UTC) for `start_time_local` and `end_time_local`</td></tr>
+<tr><td>start_time_utc</td><td>Start of forecast date and time in UTC</td></tr>
+<tr><td>end_time_utc</td><td>End of forecast date and time in UTC</td></tr>
+<tr><td>forecast_seas</td><td>Forecast sea conditions</td></tr>
+<tr><td>forecast_weather</td><td>Forecast weather summary</td></tr>
+<tr><td>forecast_winds</td><td>Forecast winds summary</td></tr>
+<tr><td>forecast_swell1</td><td>Forecast primary swell summary</td></tr>
+<tr><td>forecast_swell2</td><td>Forecast seondary swell summary (not always provided)</td></tr>  
+<tr><td>forecast_caution</td><td>Forecast caution issued (not always provided)</td></tr>
+<tr><td>marine_forecast</td><td>Additional marine forecast warning information (not always provided)</td></tr>
+</table><br>
+
+## Appendix 6 - Map of station locations
 
 ```{r station-locations-map, fig.width = 7, fig.height = 5, message = FALSE}
 if (requireNamespace("ggplot2", quietly = TRUE) &&
@@ -1157,32 +1185,87 @@ if (requireNamespace("ggplot2", quietly = TRUE) &&
 }
 ```
 
+## Appendix 7 - Maps of historical data availability
 
-## Appendix 6 - Output from `get_coastal_forecast`  
+Note that these maps are current as of `Sys.Date()` and may have changed.
 
-The output of `get_coastal_forecast` will return a data frame with coastal waters forecast values of each area within the given state with the following fields:  
+```{r historical_data, message=FALSE}
+library(magrittr)
 
-<table>
-<tr><th>Field Name</th><th>Description</th></tr>
-<tr><td>index</td><td>Forecast index number.  0 = current day </td></tr>
-<tr><td>product_id</td><td>BOM Product ID from which the data are derived</td></tr>
-<tr><td>type</td><td>Forecast Region type e.g. Coastal</td></tr>
-<tr><td>state_code</td><td>State name (postal code abbreviation)</td></tr>
-<tr><td>dist_name</td><td>Name of forecast district</td></tr>
-<tr><td>pt_1_name</td><td>Start of forecast district</td></tr>
-<tr><td>pt_2_name</td><td>End of forecast district</td></tr>
-<tr><td>aac</td><td>AMOC Area Code, _e.g._, WA_MW008, a unique identifier for each location</td></tr>
-<tr><td>start_time_local</td><td>Start of forecast date and time in local TZ</td></tr>
-<tr><td>end_time_local</td><td>End of forecast date and time in local TZ</td></tr>
-<tr><td>UTC_offset</td><td>Hours offset from difference in hours and minutes from Coordinated Universal Time (UTC) for `start_time_local` and `end_time_local`</td></tr>
-<tr><td>start_time_utc</td><td>Start of forecast date and time in UTC</td></tr>
-<tr><td>end_time_utc</td><td>End of forecast date and time in UTC</td></tr>
-<tr><td>forecast_seas</td><td>Forecast sea conditions</td></tr>
-<tr><td>forecast_weather</td><td>Forecast weather summary</td></tr>
-<tr><td>forecast_winds</td><td>Forecast winds summary</td></tr>
-<tr><td>forecast_swell1</td><td>Forecast primary swell summary</td></tr>
-<tr><td>forecast_swell2</td><td>Forecast seondary swell summary (not always provided)</td></tr>  
-<tr><td>forecast_caution</td><td>Forecast caution issued (not always provided)</td></tr>
-<tr><td>marine_forecast</td><td>Additional marine forecast warning information (not always provided)</td></tr>
-</table><br>
- 
+ncc <- bomrang:::.get_ncc()
+
+ncc <- 
+  ncc %>%
+  dplyr::mutate(ncc_obs_code = replace(ncc_obs_code,
+                                       ncc_obs_code == 136,
+                                       "rain")) %>% 
+  dplyr::mutate(ncc_obs_code = replace(ncc_obs_code,
+                                       ncc_obs_code == 123,
+                                       "tmin")) %>%
+  dplyr::mutate(ncc_obs_code = replace(ncc_obs_code,
+                                       ncc_obs_code == 122,
+                                       "tmax")) %>% 
+  dplyr::mutate(ncc_obs_code = replace(ncc_obs_code,
+                                       ncc_obs_code == 193,
+                                       "solar"))
+```
+
+### Completeness of historical data for stations
+
+```{r completeness_map, , fig.width = 7, fig.height = 5, message = FALSE}
+perc_complete <- ggplot(ncc, aes(x = lon, y = lat)) + 
+  geom_polygon(data = Aust_map, aes(x = long, y = lat, group = group), 
+               color = grey(0.7),
+               fill = NA) +
+  geom_point(aes(color = percent),
+             alpha = 0.5,
+             size = 0.05) +
+  scale_colour_viridis_c(direction = -1,
+                         option = "A") +
+  coord_map(ylim = c(-45, -5),
+            xlim = c(96, 167)) +
+  theme_map() +
+  facet_wrap(. ~ ncc_obs_code) +
+  labs(title = "BOM Historical Station Data Completeness",
+       subtitle = "Australia, outlying islands and buoys (excl. Antarctic stations)",
+       caption = "Data: Australia Bureau of Meteorology (BOM)\n
+     and NaturalEarthdata, http://naturalearthdata.com")
+
+# Using the gridExtra and grid packages add a neatline to the map
+grid.arrange(perc_complete, ncol = 1)
+grid.rect(width = 0.98, 
+          height = 0.98, 
+          gp = grid::gpar(lwd = 0.25, 
+                          col = "black",
+                          fill = NA))
+```
+
+### Historical data years available for stations
+
+```{r years_available, fig.width = 7, fig.height = 5, message = FALSE}
+years_available <- ggplot(ncc, aes(x = lon, y = lat)) + 
+  geom_polygon(data = Aust_map, aes(x = long, y = lat, group = group), 
+               color = grey(0.7),
+               fill = NA) +
+  geom_point(aes(color = years),
+             alpha = 0.5,
+             size = 0.05) +
+  scale_colour_viridis_c(direction = -1,
+                         option = "A") +
+  coord_map(ylim = c(-45, -5),
+            xlim = c(96, 167)) +
+  theme_map() +
+  facet_wrap(. ~ ncc_obs_code) +
+  labs(title = "BOM Historical Station Data Years Available",
+       subtitle = "Australia, outlying islands and buoys (excl. Antarctic stations)",
+       caption = "Data: Australia Bureau of Meteorology (BOM)\n
+     and NaturalEarthdata, http://naturalearthdata.com")
+
+# Using the gridExtra and grid packages add a neatline to the map
+grid.arrange(years_available, ncol = 1)
+grid.rect(width = 0.98, 
+          height = 0.98, 
+          gp = grid::gpar(lwd = 0.25, 
+                          col = "black",
+                          fill = NA))
+```
