@@ -139,8 +139,8 @@
 <h2 class="hasAnchor">
 <a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
 <ul>
-<li>
-<code><a href="../reference/get_historical.html">get_historical()</a></code> now fetches data for any station with historical data available corrected an issue where previously it only fetched data for stations that currently reported</li>
+<li><p><code><a href="../reference/get_historical.html">get_historical()</a></code> now fetches data for any station with historical data available corrected an issue where previously it only fetched data for stations that currently reported</p></li>
+<li><p>Enforce standardised output for <code><a href="../reference/get_coastal_forecast.html">get_coastal_forecast()</a></code>. In some cases BOM does not report all fields available, <em>bomrang</em> will always report these with <code>NA</code> if empty</p></li>
 </ul>
 </div>
 <div id="minor-changes" class="section level2">
@@ -153,7 +153,6 @@
 <li><p>Update authors’ list in vignette to include Dean Marchiori</p></li>
 <li><p>Add links to on-line versions of vignettes from README</p></li>
 <li><p>Standardise use of vocabulary in README</p></li>
-<li><p>Enforce standardised output for <code><a href="../reference/get_coastal_forecast.html">get_coastal_forecast()</a></code>. In some cases BOM does not report all fields available, <em>bomrang</em> will always report these with <code>NA</code> if empty</p></li>
 <li><p>Reorder vignette to have output from functions before maps</p></li>
 <li><p>Add maps of historical data completeness and availability to vignette, Appendix 7</p></li>
 <li><p>Move copyright information from startup message into CITATION file</p></li>
