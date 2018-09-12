@@ -1,10 +1,5 @@
 # bomrang 0.3.0.9000
 
-## Major changes
-
-- Add new functionality to interact with and download radar imagery from BOM,
-`get_available_radar()` and `get_radar_imagery()`
-
 ## Bug fixes
 
 - `get_historical()` now fetches data for any station with historical data
@@ -12,6 +7,9 @@ available corrected an issue where previously it only fetched data for stations
 that currently reported
 
 ## Minor changes
+
+- Add new functionality to interact with and download radar imagery from BOM,
+`get_available_radar()` and `get_radar_imagery()`
 
 - When using `update_station_locations()` or `update_forecast_towns()` the user
 is now prompted with a message about reproducibility before proceeding
