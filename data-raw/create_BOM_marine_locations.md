@@ -39,24 +39,38 @@ Save the marine zones to disk for use in the R package.
 ## Session Info
 
 ``` r
-sessionInfo()
+sessioninfo::session_info()
 ```
 
-    ## R version 3.5.1 (2018-07-02)
-    ## Platform: x86_64-apple-darwin17.7.0 (64-bit)
-    ## Running under: macOS High Sierra 10.13.6
+    ## ─ Session info ──────────────────────────────────────────────────────────
+    ##  setting  value                       
+    ##  version  R version 3.5.1 (2018-07-02)
+    ##  os       macOS High Sierra 10.13.6   
+    ##  system   x86_64, darwin17.7.0        
+    ##  ui       X11                         
+    ##  language (EN)                        
+    ##  collate  en_AU.UTF-8                 
+    ##  tz       Australia/Brisbane          
+    ##  date     2018-09-12                  
     ## 
-    ## Matrix products: default
-    ## BLAS/LAPACK: /usr/local/Cellar/openblas/0.3.2/lib/libopenblas_haswellp-r0.3.2.dylib
-    ## 
-    ## locale:
-    ## [1] en_AU.UTF-8/en_AU.UTF-8/en_AU.UTF-8/C/en_AU.UTF-8/en_AU.UTF-8
-    ## 
-    ## attached base packages:
-    ## [1] stats     graphics  grDevices utils     datasets  methods   base     
-    ## 
-    ## loaded via a namespace (and not attached):
-    ##  [1] compiler_3.5.1  backports_1.1.2 magrittr_1.5    rprojroot_1.3-2
-    ##  [5] tools_3.5.1     htmltools_0.3.6 foreign_0.8-70  yaml_2.2.0     
-    ##  [9] Rcpp_0.12.18    stringi_1.2.4   rmarkdown_1.10  knitr_1.20     
-    ## [13] stringr_1.3.1   digest_0.6.15   evaluate_0.11
+    ## ─ Packages ──────────────────────────────────────────────────────────────
+    ##  package     * version date       source                            
+    ##  backports     1.1.2   2017-12-13 CRAN (R 3.5.1)                    
+    ##  clisymbols    1.2.0   2017-05-21 CRAN (R 3.5.1)                    
+    ##  colorout    * 1.2-0   2018-08-16 Github (jalvesaq/colorout@cc5fbfa)
+    ##  devtools      1.13.6  2018-06-27 CRAN (R 3.5.1)                    
+    ##  digest        0.6.16  2018-08-22 CRAN (R 3.5.1)                    
+    ##  evaluate      0.11    2018-07-17 CRAN (R 3.5.1)                    
+    ##  foreign       0.8-71  2018-07-20 CRAN (R 3.5.1)                    
+    ##  htmltools     0.3.6   2017-04-28 CRAN (R 3.5.1)                    
+    ##  knitr         1.20    2018-02-20 CRAN (R 3.5.1)                    
+    ##  magrittr      1.5     2014-11-22 CRAN (R 3.5.1)                    
+    ##  memoise       1.1.0   2017-04-21 CRAN (R 3.5.1)                    
+    ##  Rcpp          0.12.18 2018-07-23 CRAN (R 3.5.1)                    
+    ##  rmarkdown     1.10    2018-06-11 CRAN (R 3.5.1)                    
+    ##  rprojroot     1.3-2   2018-01-03 CRAN (R 3.5.1)                    
+    ##  sessioninfo   1.0.0   2017-06-21 CRAN (R 3.5.1)                    
+    ##  stringi       1.2.4   2018-07-20 CRAN (R 3.5.1)                    
+    ##  stringr       1.3.1   2018-05-10 CRAN (R 3.5.1)                    
+    ##  withr         2.1.2   2018-03-15 CRAN (R 3.5.1)                    
+    ##  yaml          2.2.0   2018-07-25 CRAN (R 3.5.1)

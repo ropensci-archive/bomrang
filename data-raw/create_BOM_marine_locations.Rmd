@@ -9,12 +9,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Get BOM Forecast Marine Zones
 
-BOM maintains a shapefile of forecast marine zone names and their geographic locations.
-For ease, we'll just use the .dbf file part of the shapefile to extract AAC
-codes that can be used to add locations to the forecast `data.frame` that 
-`get_coastal_forecast()` returns. The file is available from BOM's anonymous
-FTP server with spatial data <ftp://ftp.bom.gov.au/anon/home/adfd/spatial/>,
-specifically the DBF file portion of a shapefile, 
+BOM maintains a shapefile of forecast marine zone names and their geographic
+locations. For ease, we'll just use the .dbf file part of the shapefile to
+extract AAC codes that can be used to add locations to the forecast `data.frame`
+that `get_coastal_forecast()` returns. The file is available from BOM's
+anonymous FTP server with spatial data
+<ftp://ftp.bom.gov.au/anon/home/adfd/spatial/>, specifically the DBF file
+portion of a shapefile,
 <ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00003.dbf>
 
 ```{r get_forecast_towns}
@@ -43,5 +44,5 @@ Save the marine zones to disk for use in the R package.
 
 ## Session Info
 ```{r session_info}
-sessionInfo()
+sessioninfo::session_info()
 ```
