@@ -29,10 +29,12 @@ the `bomrang` project
 does not report all fields available, _bomrang_ will always report these with
 `NA` if empty
 
-- Reorder vignette to have output from all functions before maps
+- Reorder vignette to have output from functions before maps
 
 - Add maps of historical data completeness and availability to vignette,
 Appendix 7
+
+- Move copyright information from startup message into CITATION file
 
 --------------------------------------------------------------------------------
 
