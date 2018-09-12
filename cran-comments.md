@@ -32,7 +32,7 @@ is now prompted with a message about reproducibility before proceeding
 - Update code of conduct statement in README to reflect that it only applies to
 the `bomrang` project
 
-- Update authors' list in vignette to includ Dean Marchiori
+- Update authors' list in vignette to include Dean Marchiori
 
 - Add links to on-line versions of vignettes from README
 
