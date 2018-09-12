@@ -13,7 +13,7 @@
 
 0 errors | 0 warnings | 1 note
 
-* This is a new minor release that adds new functionality
+This is a new minor release that adds new functionality
 
 ## Bug fixes
 
