@@ -1,65 +1,77 @@
 Get BOM Radar Locations
 ================
 
-Get BOM Radar Locations
------------------------
+## Get BOM Radar Locations
 
-BOM maintains a shapefile of radar site names and their geographic locations. For ease, we'll just use the .dbf file part of the shapefile to extract the product codes and radar locations. The file is available from BOM's anonymous FTP server with spatial data <ftp://ftp.bom.gov.au/anon/home/adfd/spatial/>, specifically the DBF file portion of a shapefile, <ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDR00007.dbf>
+BOM maintains a shapefile of radar site names and their geographic
+locations. For ease, we’ll just use the .dbf file part of the shapefile
+to extract the product codes and radar locations. The file is available
+from BOM’s anonymous FTP server with spatial data
+<ftp://ftp.bom.gov.au/anon/home/adfd/spatial/>, specifically the DBF
+file portion of a shapefile,
+<ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDR00007.dbf>
 
 ``` r
-  utils::download.file(
-    "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDR00007.dbf",
-    destfile = paste0(tempdir(), "radar_locations.dbf"),
-    mode = "wb"
-  )
+utils::download.file(
+  "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDR00007.dbf",
+  destfile = paste0(tempdir(), "radar_locations.dbf"),
+  mode = "wb"
+)
 
-  radar_locations <-
-    foreign::read.dbf(paste0(tempdir(), "radar_locations.dbf"), as.is = TRUE)
-  
-  radar_locations$LocationID <- ifelse(test = nchar(radar_locations$LocationID) == 1, 
-                                       yes = paste0("0", radar_locations$LocationID), 
-                                       no = radar_locations$LocationID)
+radar_locations <-
+  foreign::read.dbf(paste0(tempdir(), "radar_locations.dbf"), as.is = TRUE)
+
+radar_locations$LocationID <- ifelse(test = nchar(radar_locations$LocationID) == 1, 
+                                     yes = paste0("0", radar_locations$LocationID), 
+                                     no = radar_locations$LocationID)
 ```
 
 Save the radar locations to disk for use in the R package.
 
 ``` r
- if (!dir.exists("../inst/extdata")) {
-      dir.create("../inst/extdata", recursive = TRUE)
-    }
+if (!dir.exists("../inst/extdata")) {
+  dir.create("../inst/extdata", recursive = TRUE)
+}
 
-  save(radar_locations, file = "../inst/extdata/radar_locations.rda",
+save(radar_locations, file = "../inst/extdata/radar_locations.rda",
      compress = "bzip2")
 ```
 
-Session Info
-------------
+## Session Info
 
 ``` r
-sessionInfo()
+sessioninfo::session_info()
 ```
 
-    ## R version 3.4.3 (2017-11-30)
-    ## Platform: x86_64-pc-linux-gnu (64-bit)
-    ## Running under: Ubuntu 14.04.5 LTS
+    ## ─ Session info ──────────────────────────────────────────────────────────
+    ##  setting  value                       
+    ##  version  R version 3.5.1 (2018-07-02)
+    ##  os       macOS High Sierra 10.13.6   
+    ##  system   x86_64, darwin17.7.0        
+    ##  ui       X11                         
+    ##  language (EN)                        
+    ##  collate  en_AU.UTF-8                 
+    ##  tz       Australia/Brisbane          
+    ##  date     2018-09-12                  
     ## 
-    ## Matrix products: default
-    ## BLAS: /usr/lib/libblas/libblas.so.3.0
-    ## LAPACK: /usr/lib/lapack/liblapack.so.3.0
-    ## 
-    ## locale:
-    ##  [1] LC_CTYPE=en_AU.UTF-8       LC_NUMERIC=C              
-    ##  [3] LC_TIME=en_AU.UTF-8        LC_COLLATE=en_AU.UTF-8    
-    ##  [5] LC_MONETARY=en_AU.UTF-8    LC_MESSAGES=en_AU.UTF-8   
-    ##  [7] LC_PAPER=en_AU.UTF-8       LC_NAME=C                 
-    ##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-    ## [11] LC_MEASUREMENT=en_AU.UTF-8 LC_IDENTIFICATION=C       
-    ## 
-    ## attached base packages:
-    ## [1] stats     graphics  grDevices utils     datasets  methods   base     
-    ## 
-    ## loaded via a namespace (and not attached):
-    ##  [1] compiler_3.4.3  backports_1.1.2 magrittr_1.5    rprojroot_1.3-2
-    ##  [5] tools_3.4.3     htmltools_0.3.6 foreign_0.8-66  yaml_2.2.0     
-    ##  [9] Rcpp_0.12.18    stringi_1.2.4   rmarkdown_1.10  knitr_1.20     
-    ## [13] stringr_1.3.1   digest_0.6.15   evaluate_0.11
+    ## ─ Packages ──────────────────────────────────────────────────────────────
+    ##  package     * version date       source                            
+    ##  backports     1.1.2   2017-12-13 CRAN (R 3.5.1)                    
+    ##  clisymbols    1.2.0   2017-05-21 CRAN (R 3.5.1)                    
+    ##  colorout    * 1.2-0   2018-08-16 Github (jalvesaq/colorout@cc5fbfa)
+    ##  devtools      1.13.6  2018-06-27 CRAN (R 3.5.1)                    
+    ##  digest        0.6.16  2018-08-22 CRAN (R 3.5.1)                    
+    ##  evaluate      0.11    2018-07-17 CRAN (R 3.5.1)                    
+    ##  foreign       0.8-71  2018-07-20 CRAN (R 3.5.1)                    
+    ##  htmltools     0.3.6   2017-04-28 CRAN (R 3.5.1)                    
+    ##  knitr         1.20    2018-02-20 CRAN (R 3.5.1)                    
+    ##  magrittr      1.5     2014-11-22 CRAN (R 3.5.1)                    
+    ##  memoise       1.1.0   2017-04-21 CRAN (R 3.5.1)                    
+    ##  Rcpp          0.12.18 2018-07-23 CRAN (R 3.5.1)                    
+    ##  rmarkdown     1.10    2018-06-11 CRAN (R 3.5.1)                    
+    ##  rprojroot     1.3-2   2018-01-03 CRAN (R 3.5.1)                    
+    ##  sessioninfo   1.0.0   2017-06-21 CRAN (R 3.5.1)                    
+    ##  stringi       1.2.4   2018-07-20 CRAN (R 3.5.1)                    
+    ##  stringr       1.3.1   2018-05-10 CRAN (R 3.5.1)                    
+    ##  withr         2.1.2   2018-03-15 CRAN (R 3.5.1)                    
+    ##  yaml          2.2.0   2018-07-25 CRAN (R 3.5.1)
