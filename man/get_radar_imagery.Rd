@@ -31,7 +31,7 @@ Suggested to check file availability first by using
 \code{\link{get_available_radar}}.
 }
 \details{
-Valid BOM satellite Product IDs for radar imagery can be obtained
+Valid BOM Radar Product IDs for radar imagery can be obtained
 from \code{\link{get_available_radar}}.
 }
 \examples{

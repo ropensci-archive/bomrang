@@ -87,7 +87,7 @@ get_available_radar <- function(radar_id = "all") {
 #' @param download_only Logical. Whether the radar image is loaded into the
 #' environment as a \code{\link[raster]{raster}} layer, or just downloded.  
 #'
-#' @details Valid BOM satellite Product IDs for radar imagery can be obtained
+#' @details Valid BOM Radar Product IDs for radar imagery can be obtained
 #' from \code{\link{get_available_radar}}.
 #'
 #'@seealso
