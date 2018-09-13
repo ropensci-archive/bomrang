@@ -1,9 +1,4 @@
-# bomrang 0.3.0.9000
-
-## Major changes
-
-- Add new functionality to interact with and download radar imagery from BOM,
-`get_available_radar()` and `get_radar_imagery()`
+# bomrang 0.4.0
 
 ## Bug fixes
 
@@ -11,7 +6,14 @@
 available corrected an issue where previously it only fetched data for stations
 that currently reported
 
+- Enforce standardised output for `get_coastal_forecast()`. In some cases BOM
+does not report all fields available, _bomrang_ will always report these with
+`NA` if empty
+
 ## Minor changes
+
+- Add new functionality to interact with and download radar imagery from BOM,
+`get_available_radar()` and `get_radar_imagery()`
 
 - When using `update_station_locations()` or `update_forecast_towns()` the user
 is now prompted with a message about reproducibility before proceeding
@@ -19,15 +21,11 @@ is now prompted with a message about reproducibility before proceeding
 - Update code of conduct statement in README to reflect that it only applies to
 the `bomrang` project
 
-- Update authors' list in vignette to includ Dean Marchiori
+- Update authors' list in vignette to include Dean Marchiori
 
 - Add links to on-line versions of vignettes from README
 
 - Standardise use of vocabulary in README
-
-- Enforce standardised output for `get_coastal_forecast()`. In some cases BOM
-does not report all fields available, _bomrang_ will always report these with
-`NA` if empty
 
 - Reorder vignette to have output from functions before maps
 

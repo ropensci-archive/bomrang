@@ -32,7 +32,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bomrang</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.3.0.9000</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">0.4.0</span>
       </span>
     </div>
 
@@ -677,27 +677,27 @@ Satellite
 </ul>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_available_radar.html">get_available_radar</a></span>()</a>
 <a class="sourceLine" id="cb16-2" data-line-number="2"><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/headtail">head</a></span>(x)  </a></code></pre></div>
-<pre><code>##   product_id LocationID range       Name Longitude  Latitude Radar_id
-## 1     IDR021         02 512km  Melbourne  144.7554 -37.85525        2
-## 2     IDR022         02 256km  Melbourne  144.7554 -37.85525        2
-## 3     IDR023         02 128km  Melbourne  144.7554 -37.85525        2
-## 4     IDR024         02  64km  Melbourne  144.7554 -37.85525        2
-## 5     IDR031         03 512km Wollongong  150.8752 -34.26250        3
-## 6     IDR032         03 256km Wollongong  150.8752 -34.26250        3
-##              Full_Name IDRnn0name IDRnn1name State    Type Group Status
-## 1 Melbourne (Laverton)       Melb  Melbourne   VIC Doppler   Yes Public
-## 2 Melbourne (Laverton)       Melb  Melbourne   VIC Doppler   Yes Public
-## 3 Melbourne (Laverton)       Melb  Melbourne   VIC Doppler   Yes Public
-## 4 Melbourne (Laverton)       Melb  Melbourne   VIC Doppler   Yes Public
-## 5   Wollongong (Appin)    Wollgng    Wollgng   NSW Doppler   Yes Public
-## 6   Wollongong (Appin)    Wollgng    Wollgng   NSW Doppler   Yes Public
-##   Archive
-## 1    Melb
-## 2    Melb
-## 3    Melb
-## 4    Melb
-## 5 Wollgng
-## 6 Wollgng</code></pre>
+<pre><code>##   product_id LocationID range                     Name Longitude  Latitude
+## 1     IDR011         01 512km Melbourne (Broadmeadows)  144.9460 -37.69100
+## 2     IDR012         01 256km Melbourne (Broadmeadows)  144.9460 -37.69100
+## 3     IDR013         01 128km Melbourne (Broadmeadows)  144.9460 -37.69100
+## 4     IDR014         01  64km Melbourne (Broadmeadows)  144.9460 -37.69100
+## 5     IDR021         02 512km                Melbourne  144.7554 -37.85525
+## 6     IDR022         02 256km                Melbourne  144.7554 -37.85525
+##   Radar_id                Full_Name IDRnn0name IDRnn1name State    Type
+## 1        1 Melbourne (Broadmeadows)     CampRd     CampRd   VIC Doppler
+## 2        1 Melbourne (Broadmeadows)     CampRd     CampRd   VIC Doppler
+## 3        1 Melbourne (Broadmeadows)     CampRd     CampRd   VIC Doppler
+## 4        1 Melbourne (Broadmeadows)     CampRd     CampRd   VIC Doppler
+## 5        2     Melbourne (Laverton)       Melb  Melbourne   VIC Doppler
+## 6        2     Melbourne (Laverton)       Melb  Melbourne   VIC Doppler
+##   Group    Status Archive
+## 1   Yes Reg_users  CampRd
+## 2   Yes Reg_users  CampRd
+## 3   Yes Reg_users  CampRd
+## 4   Yes Reg_users  CampRd
+## 5   Yes    Public    Melb
+## 6   Yes    Public    Melb</code></pre>
 </div>
 <div id="using-get_radar_imagery" class="section level3">
 <h3 class="hasAnchor">
@@ -709,7 +709,7 @@ Satellite
 <code>product_id</code> the BOM product_id associated with each radar imagery file. These can be obtained from the <code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> function. This value must be specified and the function will accept only one at a time.</li>
 </ul>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_radar_imagery.html">get_radar_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDR032"</span>)</a></code></pre></div>
-<pre><code>## file downloaded to: /var/folders/47/rh3mqv4j3w31bch7f_tcj3jr0000gn/T//RtmpzzKz8S/file10882173ceba4.gif</code></pre>
+<pre><code>## file downloaded to: /var/folders/hk/1xg925vs6fsgfv2q9f9k6fp00000gn/T//RtmpXl3txj/file35197fa88029.gif</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># create a blank raster plot and add the radar layer</span></a>
 <a class="sourceLine" id="cb20-2" data-line-number="2">r &lt;-</a>
 <a class="sourceLine" id="cb20-3" data-line-number="3"><span class="st">  </span>raster<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/raster/topics/raster">raster</a></span>(</a>
