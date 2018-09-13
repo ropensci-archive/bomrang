@@ -2,7 +2,7 @@
 #' Australian Government Bureau of Meteorology (BOM) Data from R
 #'
 #' @name bomrang
-#' @author Adam H Sparks and Jonathan Carroll and Dean Mariochi and  Mark
+#' @author Adam H Sparks and Jonathan Carroll and Dean Marchiori and Mark
 #' Padgham and Hugh Parsonage and Keith Pembleton
 #' @docType package
 #'
