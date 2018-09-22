@@ -4,8 +4,8 @@
 \alias{get_historical}
 \title{Obtain Historical BOM Data}
 \usage{
-get_historical(stationid = NULL, latlon = NULL, type = c("rain",
-  "min", "max", "solar"), meta = FALSE)
+get_historical(stationid = NULL, latlon = NULL, type = c("rain", "min",
+  "max", "solar"), meta = TRUE)
 }
 \arguments{
 \item{stationid}{BOM station ID. See Details.}
@@ -17,7 +17,8 @@ get_historical(stationid = NULL, latlon = NULL, type = c("rain",
 specified returns the first matching type in the order listed.}
 
 \item{meta}{Logical switch to include metadata information on the station and
-data from BOM. If set to TRUE a list is returned with a}
+data from BOM. If set to TRUE a list is returned with a
+TODO missing info}
 }
 \value{
 By default a complete \code{\link[base]{data.frame}} of historical

@@ -11,7 +11,7 @@
 #'   specified returns the first matching type in the order listed.
 #' @param meta Logical switch to include metadata information on the station and
 #'   data from BOM. If set to TRUE a list is returned with a
-
+#' TODO missing info
 #'   
 #' @return By default a complete \code{\link[base]{data.frame}} of historical
 #'   observations for the chosen station, with some subset of the following
@@ -81,7 +81,7 @@ get_historical <-
   function(stationid = NULL,
            latlon = NULL,
            type = c("rain", "min", "max", "solar"),
-           meta = FALSE) {
+           meta = TRUE) {
     
     site <- ncc_obs_code <- NULL #nocov
     
@@ -166,11 +166,141 @@ get_historical <-
                                    "Day",
                                    "Solar_exposure")
     )
-    dat
+    # dat ## unnecessary
+    # if (isTRUE(meta)) {
+    #   dat <- list(ncc_list, dat)
+    #   names(dat) <- c("meta", "historical_data")
+    # }
     if (isTRUE(meta)) {
-      dat <- list(ncc_list, dat)
-      names(dat) <- c("meta", "historical_data")
+    return(structure(dat, 
+                     class = union("bomrang_tbl", class(dat)),
+                     station = stationid,
+                     type = type,
+                     origin = "historical",
+                     location = ncc_list$name,
+                     lat = ncc_list$lat,
+                     lon = ncc_list$lon,
+                     start = ncc_list$start,
+                     end = ncc_list$end,
+                     years = ncc_list$years,
+                     ncc_list = ncc_list
+                     ))
+    } else {
+      return(dat)
     }
-    return(dat)
   }
 
+.bomrang_attribs <- c("class", "station", "type", "origin", 
+                      "location", "lat", "lon", "start", 
+                      "end", "years", "ncc_list", "vars", "indices")
+
+#' @export
+#' @noRd
+print.bomrang_tbl <- function(x, ...) {
+  .bomrang_header(x)
+  print(data.table::as.data.table(x), ...)
+}
+
+.bomrang_header <- function(x) {
+  
+  location <- attr(x, "location") %||% "UNKNOWN"
+  station <- attr(x, "station") %||% "UNKNOWN"
+  lat <- attr(x, "lat") %||% "UNKNOWN"
+  lon <- attr(x, "lon") %||% "UNKNOWN"
+  type <- tools::toTitleCase(attr(x, "type")) %||% "UNKNOWN"
+  origin <- tools::toTitleCase(attr(x, "origin")) %||% "UNKNOWN"
+  start <- attr(x, "start") %||% "UNKNOWN"
+  end <- attr(x, "end") %||% "UNKNOWN"
+  years <- attr(x, "years") %||% "UNKNOWN"
+  vars <- attr(x, "vars") %||% "UNKNOWN"
+  indices <- attr(x, "indices") %||% "UNKNOWN"
+  
+  .stylecat("  ---- Australian Bureau of Meterorology (BOM) Data Resource ----\n")
+  .stylecat("  (Original Request Parameters)\n")
+  .stylecat("  Station:\t\t", location, " [", station, "] \n")
+  .stylecat("  Location:\t\t", "lat: ", lat, ", lon: ", lon, "\n")
+  .stylecat("  Measurement / Origin:\t", type, " / ", origin, "\n")
+  .stylecat("  Timespan:\t\t", start, " -- ", end, " [", years, " years]", "\n")
+  ## dplyr groupings
+  if (!is.null(attr(x, "vars"))) {
+    .stylecat("  Groups:\t\t", vars, paste0(" [", length(indices), "]\n"))
+  }
+  .stylecat("  ", strrep("-", 63), "  \n")
+  
+}
+
+.stylecat <- function(...) {
+  cat(
+    crayon::cyan(
+      # crayon::italic(
+        paste0(...)
+      )
+    # )
+  )
+}
+
+## Preserve attributes through dplyr operations
+
+#' @export
+filter.bomrang_tbl <- function(.data, ...) {
+  attribs <- attributes(.data)[.bomrang_attribs]
+  .data <- NextMethod(.data)
+  attributes(.data) <- modifyList(attributes(.data), attribs)
+  .data
+}
+
+#' @export
+#' @noRd
+select.bomrang_tbl <- function(.data, ...) {
+  attribs <- attributes(.data)[.bomrang_attribs]
+  .data <- NextMethod(.data)
+  attributes(.data) <- modifyList(attributes(.data), attribs)
+  .data
+}
+
+#' @export
+#' @noRd
+mutate.bomrang_tbl <- function(.data, ...) {
+  attribs <- attributes(.data)[.bomrang_attribs]
+  .data <- NextMethod(.data)
+  attributes(.data) <- modifyList(attributes(.data), attribs)
+  .data
+}
+
+#' @export
+#' @noRd
+rename.bomrang_tbl <- function(.data, ...) {
+  attribs <- attributes(.data)[.bomrang_attribs]
+  .data <- NextMethod(.data)
+  attributes(.data) <- modifyList(attributes(.data), attribs)
+  .data
+}
+
+#' @export
+#' @noRd
+arrange.bomrang_tbl <- function(.data, ...) {
+  attribs <- attributes(.data)[.bomrang_attribs]
+  .data <- NextMethod(.data)
+  attributes(.data) <- modifyList(attributes(.data), attribs)
+  .data
+}
+
+#' @export
+#' @noRd
+group_by.bomrang_tbl <- function(.data, ...) {
+  attribs <- attributes(.data)[.bomrang_attribs]
+  .data <- NextMethod(.data)
+  attributes(.data) <- modifyList(attributes(.data), attribs)
+  .data
+}
+
+#' @export
+#' @noRd
+slice.bomrang_tbl <- function(.data, ...) {
+  attribs <- attributes(.data)[.bomrang_attribs]
+  .data <- NextMethod(.data)
+  attributes(.data) <- modifyList(attributes(.data), attribs)
+  .data
+}
+
+  

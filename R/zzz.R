@@ -22,3 +22,5 @@ manage_cache <- NULL # nocov start
 stub <- function(){
   rgdal::readGDAL()
 } # nocov end
+
+"%||%" <- function(a, b) if (!is.null(a)) a else b
