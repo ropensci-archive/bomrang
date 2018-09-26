@@ -133,17 +133,17 @@ get_ag_bulletin <- function(state = "AUS") {
 
   tidy_df$time.zone <- as.character(tidy_df$time.zone)
 
-  names(tidy_df)[c(1:3, 21)] <-
-    c("obs_time_local", "obs_time_utc", "time_zone", "full_name")
+  names(tidy_df)[c(1:3, 22)] <-
+    c("obs_time_local", "obs_time_utc", "time_zone", "name")
 
   refcols <- c(
       "product_id",
       "state",
       "dist",
+      "name",
       "wmo",
       "site",
       "station",
-      "full_name",
       "obs_time_local",
       "obs_time_utc",
       "time_zone",
@@ -165,7 +165,8 @@ get_ag_bulletin <- function(state = "AUS") {
       "t20",
       "t50",
       "t1m",
-      "wr"
+      "wr",
+      "solr"
       )
 
   tidy_df <- tidy_df[c(refcols, setdiff(names(tidy_df), refcols))]
@@ -282,6 +283,9 @@ get_ag_bulletin <- function(state = "AUS") {
   }
   if (!"t1m" %in% colnames(out)) {
     out$t1m <- NA
+  }
+  if (!"solr" %in% colnames(out)) {
+    out$solr <- NA
   }
   return(out)
 }
