@@ -160,13 +160,13 @@ get_ag_bulletin <- function(state = "AUS") {
       "ev",
       "tg",
       "sn",
+      "solr",
       "t5",
       "t10",
       "t20",
       "t50",
       "t1m",
-      "wr",
-      "solr"
+      "wr"
       )
 
   tidy_df <- tidy_df[c(refcols, setdiff(names(tidy_df), refcols))]
