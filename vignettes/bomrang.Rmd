@@ -1067,6 +1067,7 @@ worldwide)</td></tr>
 <tr><td>ev</td><td>Evaporation (millimetres)</td></tr>
 <tr><td>tg</td><td>Terrestrial minimum temperature (degrees Celsius)</td></tr>
 <tr><td>sn</td><td>Sunshine (hours)</td></tr>
+<tr><td>solr</td><td>Solar Radiation MJ/sq m</td></tr>
 <tr><td>t5</td><td>5cm soil temperature (degrees Celsius)</td></tr>
 <tr><td>t10</td><td>10cm soil temperature (degrees Celsius)</td></tr>
 <tr><td>t20</td><td>20cm soil temperature (degrees Celsius)</td></tr>
