@@ -1043,12 +1043,12 @@ agriculture bulletin with the following fields:
 </tr>
 <tr><td>state</td><td>State name (postal code abbreviation)</td></tr>
 <tr><td>dist</td><td>BOM rainfall district</td></tr>
+<tr><td>name</td><td>Full station name (some stations have been retired so
+"station" will be same, this is the full designation</td></tr>
 <tr><td>wmo</td><td>World Meteorological Organization number (unique ID used
 worldwide)</td></tr>
 <tr><td>site</td><td>Unique BOM identifier for each station</td></tr>
 <tr><td>station</td><td>Station name</td></tr>
-<tr><td>full_name</td><td>Full station name (some stations have been retired so
-"name" will be same, this is the full designation</td></tr>
 <tr><td>obs-time-local</td><td>Observation time</td></tr>
 <tr><td>obs-time-utc</td><td>Observation time (time in UTC)</td></tr>
 <tr><td>time-zone</td><td>Time zone for observation</td></tr>
