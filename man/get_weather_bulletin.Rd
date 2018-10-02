@@ -44,7 +44,7 @@ sometimes contain typographical errors which may lead to warnings about
 \code{"NAs introduced by coercion"}.
 }
 \examples{
-\dontrun{
+\donttest{
 qld_weather <- get_weather_bulletin (state = "QLD", morning = FALSE)
 }
 }

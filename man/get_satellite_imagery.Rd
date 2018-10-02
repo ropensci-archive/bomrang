@@ -61,7 +61,7 @@ We cache using \pkg{hoardr}, find your cache folder by executing
 \code{manage_cache$cache_path_get}.
 }
 \examples{
-\dontrun{
+\donttest{
 # Fetch AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km FD
 # GEOS GIS raster stack for most recent single scan available
 

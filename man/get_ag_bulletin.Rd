@@ -36,7 +36,7 @@ or all using \code{AUS}.
  }
 }
 \examples{
-\dontrun{
+\donttest{
 ag_bulletin <- get_ag_bulletin(state = "QLD")
 }
 

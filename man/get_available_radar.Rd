@@ -26,7 +26,7 @@ radar imagery for each location, which are updated approximately every 6 to
 Valid BOM radar ID for each location required.
 }
 \examples{
-\dontrun{
+\donttest{
 Check availability radar imagey for Wollongong (radar_id = 3)
 imagery <- get_available_radar(radar_id = "3")
 }

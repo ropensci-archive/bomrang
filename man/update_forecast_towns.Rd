@@ -18,7 +18,7 @@ more current version of the BOM précis forecast town name database that is
 not available in the database distributed with [bomrang].
 }
 \examples{
-\dontrun{
+\donttest{
 update_forecast_towns()
 }
 }

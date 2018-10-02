@@ -219,8 +219,7 @@ timestamp and band.</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><span class='co'># NOT RUN {</span>
-<span class='co'># Fetch AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km FD</span>
+    <pre class="examples"><div class='input'><span class='co'># Fetch AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km FD</span>
 <span class='co'># GEOS GIS raster stack for most recent single scan available</span>
 
 <span class='no'>imagery</span> <span class='kw'>&lt;-</span> <span class='fu'>get_satellite_imagery</span>(<span class='kw'>product_id</span> <span class='kw'>=</span> <span class='st'>"IDE00425"</span>, <span class='kw'>scans</span> <span class='kw'>=</span> <span class='fl'>1</span>)
@@ -228,10 +227,79 @@ timestamp and band.</p>
 <span class='co'># Get a list of available image files and use that to specify files for</span>
 <span class='co'># download, downloading the two most recent files available</span>
 
-<span class='no'>avail</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='get_available_imagery.html'>get_available_imagery</a></span>(<span class='kw'>product_id</span> <span class='kw'>=</span> <span class='st'>"IDE00425"</span>)
-<span class='no'>imagery</span> <span class='kw'>&lt;-</span> <span class='fu'>get_satellite_imagery</span>(<span class='kw'>product_id</span> <span class='kw'>=</span> <span class='no'>avail</span>, <span class='kw'>scans</span> <span class='kw'>=</span> <span class='fl'>2</span>)
-
-<span class='co'># }</span></pre>
+<span class='no'>avail</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='get_available_imagery.html'>get_available_imagery</a></span>(<span class='kw'>product_id</span> <span class='kw'>=</span> <span class='st'>"IDE00425"</span>)</div><div class='output co'>#&gt; <span class='message'></span>
+#&gt; <span class='message'>The following files are currently available for download:</span></div><div class='output co'>#&gt;   [1] "IDE00425.201810010510.tif" "IDE00425.201810010520.tif"
+#&gt;   [3] "IDE00425.201810010530.tif" "IDE00425.201810010540.tif"
+#&gt;   [5] "IDE00425.201810010550.tif" "IDE00425.201810010600.tif"
+#&gt;   [7] "IDE00425.201810010610.tif" "IDE00425.201810010620.tif"
+#&gt;   [9] "IDE00425.201810010630.tif" "IDE00425.201810010640.tif"
+#&gt;  [11] "IDE00425.201810010650.tif" "IDE00425.201810010700.tif"
+#&gt;  [13] "IDE00425.201810010710.tif" "IDE00425.201810010720.tif"
+#&gt;  [15] "IDE00425.201810010730.tif" "IDE00425.201810010740.tif"
+#&gt;  [17] "IDE00425.201810010750.tif" "IDE00425.201810010800.tif"
+#&gt;  [19] "IDE00425.201810010810.tif" "IDE00425.201810010820.tif"
+#&gt;  [21] "IDE00425.201810010830.tif" "IDE00425.201810010840.tif"
+#&gt;  [23] "IDE00425.201810010850.tif" "IDE00425.201810010900.tif"
+#&gt;  [25] "IDE00425.201810010910.tif" "IDE00425.201810010920.tif"
+#&gt;  [27] "IDE00425.201810010930.tif" "IDE00425.201810010940.tif"
+#&gt;  [29] "IDE00425.201810010950.tif" "IDE00425.201810011000.tif"
+#&gt;  [31] "IDE00425.201810011010.tif" "IDE00425.201810011020.tif"
+#&gt;  [33] "IDE00425.201810011030.tif" "IDE00425.201810011040.tif"
+#&gt;  [35] "IDE00425.201810011050.tif" "IDE00425.201810011100.tif"
+#&gt;  [37] "IDE00425.201810011110.tif" "IDE00425.201810011120.tif"
+#&gt;  [39] "IDE00425.201810011130.tif" "IDE00425.201810011140.tif"
+#&gt;  [41] "IDE00425.201810011150.tif" "IDE00425.201810011200.tif"
+#&gt;  [43] "IDE00425.201810011210.tif" "IDE00425.201810011220.tif"
+#&gt;  [45] "IDE00425.201810011230.tif" "IDE00425.201810011240.tif"
+#&gt;  [47] "IDE00425.201810011250.tif" "IDE00425.201810011300.tif"
+#&gt;  [49] "IDE00425.201810011310.tif" "IDE00425.201810011320.tif"
+#&gt;  [51] "IDE00425.201810011330.tif" "IDE00425.201810011340.tif"
+#&gt;  [53] "IDE00425.201810011350.tif" "IDE00425.201810011400.tif"
+#&gt;  [55] "IDE00425.201810011410.tif" "IDE00425.201810011420.tif"
+#&gt;  [57] "IDE00425.201810011430.tif" "IDE00425.201810011450.tif"
+#&gt;  [59] "IDE00425.201810011500.tif" "IDE00425.201810011510.tif"
+#&gt;  [61] "IDE00425.201810011520.tif" "IDE00425.201810011530.tif"
+#&gt;  [63] "IDE00425.201810011540.tif" "IDE00425.201810011550.tif"
+#&gt;  [65] "IDE00425.201810011600.tif" "IDE00425.201810011610.tif"
+#&gt;  [67] "IDE00425.201810011620.tif" "IDE00425.201810011630.tif"
+#&gt;  [69] "IDE00425.201810011640.tif" "IDE00425.201810011650.tif"
+#&gt;  [71] "IDE00425.201810011700.tif" "IDE00425.201810011710.tif"
+#&gt;  [73] "IDE00425.201810011720.tif" "IDE00425.201810011730.tif"
+#&gt;  [75] "IDE00425.201810011740.tif" "IDE00425.201810011750.tif"
+#&gt;  [77] "IDE00425.201810011800.tif" "IDE00425.201810011810.tif"
+#&gt;  [79] "IDE00425.201810011820.tif" "IDE00425.201810011830.tif"
+#&gt;  [81] "IDE00425.201810011840.tif" "IDE00425.201810011850.tif"
+#&gt;  [83] "IDE00425.201810011900.tif" "IDE00425.201810011910.tif"
+#&gt;  [85] "IDE00425.201810011920.tif" "IDE00425.201810011930.tif"
+#&gt;  [87] "IDE00425.201810011940.tif" "IDE00425.201810011950.tif"
+#&gt;  [89] "IDE00425.201810012000.tif" "IDE00425.201810012010.tif"
+#&gt;  [91] "IDE00425.201810012020.tif" "IDE00425.201810012030.tif"
+#&gt;  [93] "IDE00425.201810012040.tif" "IDE00425.201810012050.tif"
+#&gt;  [95] "IDE00425.201810012100.tif" "IDE00425.201810012110.tif"
+#&gt;  [97] "IDE00425.201810012120.tif" "IDE00425.201810012130.tif"
+#&gt;  [99] "IDE00425.201810012140.tif" "IDE00425.201810012150.tif"
+#&gt; [101] "IDE00425.201810012200.tif" "IDE00425.201810012210.tif"
+#&gt; [103] "IDE00425.201810012220.tif" "IDE00425.201810012230.tif"
+#&gt; [105] "IDE00425.201810012240.tif" "IDE00425.201810012250.tif"
+#&gt; [107] "IDE00425.201810012300.tif" "IDE00425.201810012310.tif"
+#&gt; [109] "IDE00425.201810012320.tif" "IDE00425.201810012330.tif"
+#&gt; [111] "IDE00425.201810012340.tif" "IDE00425.201810012350.tif"
+#&gt; [113] "IDE00425.201810020000.tif" "IDE00425.201810020010.tif"
+#&gt; [115] "IDE00425.201810020020.tif" "IDE00425.201810020030.tif"
+#&gt; [117] "IDE00425.201810020040.tif" "IDE00425.201810020050.tif"
+#&gt; [119] "IDE00425.201810020100.tif" "IDE00425.201810020110.tif"
+#&gt; [121] "IDE00425.201810020120.tif" "IDE00425.201810020130.tif"
+#&gt; [123] "IDE00425.201810020140.tif" "IDE00425.201810020150.tif"
+#&gt; [125] "IDE00425.201810020200.tif" "IDE00425.201810020210.tif"
+#&gt; [127] "IDE00425.201810020220.tif" "IDE00425.201810020230.tif"
+#&gt; [129] "IDE00425.201810020250.tif" "IDE00425.201810020300.tif"
+#&gt; [131] "IDE00425.201810020310.tif" "IDE00425.201810020320.tif"
+#&gt; [133] "IDE00425.201810020330.tif" "IDE00425.201810020340.tif"
+#&gt; [135] "IDE00425.201810020350.tif" "IDE00425.201810020400.tif"
+#&gt; [137] "IDE00425.201810020410.tif" "IDE00425.201810020420.tif"
+#&gt; [139] "IDE00425.201810020430.tif" "IDE00425.201810020440.tif"
+#&gt; [141] "IDE00425.201810020450.tif" "IDE00425.201810020500.tif"
+#&gt; [143] "IDE00425.201810020510.tif" "IDE00425.201810020520.tif"</div><div class='input'><span class='no'>imagery</span> <span class='kw'>&lt;-</span> <span class='fu'>get_satellite_imagery</span>(<span class='kw'>product_id</span> <span class='kw'>=</span> <span class='no'>avail</span>, <span class='kw'>scans</span> <span class='kw'>=</span> <span class='fl'>2</span>)</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -4,9 +4,9 @@
 \name{bomrang}
 \alias{bomrang}
 \alias{bomrang-package}
-\title{Australian Government Bureau of Meteorology (BOM) Data from R}
+\title{Australian Government Bureau of Meteorology (BOM) Data Client}
 \description{
-Australian Government Bureau of Meteorology (BOM) Data from R
+Australian Government Bureau of Meteorology (BOM) Data Client
 }
 \seealso{
 \strong{Useful links:}

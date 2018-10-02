@@ -35,7 +35,7 @@ Valid BOM Radar Product IDs for radar imagery can be obtained
 from \code{\link{get_available_radar}}.
 }
 \examples{
-\dontrun{
+\donttest{
 # Fetch most recent radar image for Wollongong 256km radar
 imagery <- get_radar_imagery(product_id = "IDR032")  
 raster::plot(imagery)  

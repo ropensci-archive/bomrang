@@ -56,7 +56,7 @@ For more details see the vignette "Current Weather Fields":\cr
 for a complete list of fields and units.
 }
 \examples{
-\dontrun{
+\donttest{
   # warning
   Melbourne_weather <- get_current_weather("Melbourne")
 
