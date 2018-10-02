@@ -22,7 +22,7 @@
 #' \url{http://www.bom.gov.au/australia/radar/}
 #'
 #' @examples
-#' \dontttest{
+#' \donttest{
 #' Check availability radar imagey for Wollongong (radar_id = 3)
 #' imagery <- get_available_radar(radar_id = "3")
 #' }
