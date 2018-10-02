@@ -29,3 +29,4 @@ sweep_for_stations <- function(latlon = c(-35.3, 149.2)) {
     .[] %>%
     as.data.frame
 }
+

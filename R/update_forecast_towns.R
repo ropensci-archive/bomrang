@@ -10,7 +10,7 @@
 #' not available in the database distributed with [bomrang].
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' update_forecast_towns()
 #' }
 #' @return Updated database of BOM précis forecast towns

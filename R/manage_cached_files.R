@@ -29,7 +29,7 @@
 #'  nothing
 #' }
 #'
-#' @examples \dontrun{
+#' @examples \donttest{
 #'
 #' # list files in cache
 #' manage_cache$list()
@@ -46,3 +46,4 @@
 #' manage_cache$cache_path_set("~/tmp")
 #' }
 NULL
+

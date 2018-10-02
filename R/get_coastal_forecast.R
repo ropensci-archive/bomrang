@@ -26,7 +26,7 @@
 #' Forecast.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' coastal_forecast <- get_coastal_forecast(state = "NSW")
 #'}
 #' @references

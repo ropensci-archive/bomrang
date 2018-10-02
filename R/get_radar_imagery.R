@@ -22,7 +22,7 @@
 #' \url{http://www.bom.gov.au/australia/radar/}
 #'
 #' @examples
-#' \dontrun{
+#' \dontttest{
 #' Check availability radar imagey for Wollongong (radar_id = 3)
 #' imagery <- get_available_radar(radar_id = "3")
 #' }
@@ -103,7 +103,7 @@ get_available_radar <- function(radar_id = "all") {
 #' \url{http://www.bom.gov.au/australia/radar/}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Fetch most recent radar image for Wollongong 256km radar
 #' imagery <- get_radar_imagery(product_id = "IDR032")  
 #' raster::plot(imagery)  

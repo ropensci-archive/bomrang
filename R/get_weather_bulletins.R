@@ -34,7 +34,7 @@
 #' to view.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' qld_weather <- get_weather_bulletin (state = "QLD", morning = FALSE)
 #'}
 #' @references
@@ -213,3 +213,4 @@ pad_white <- function(x) {
   x[nzchar(x)] <- paste0(" ", x[nzchar(x)])
   return(x)
 }
+

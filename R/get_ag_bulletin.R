@@ -28,7 +28,7 @@
 #' \code{vignette("bomrang", package = "bomrang")} to view.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ag_bulletin <- get_ag_bulletin(state = "QLD")
 #' }
 #'

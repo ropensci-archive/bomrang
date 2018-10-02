@@ -40,7 +40,7 @@
 #' \pkg{bomrang} vignette, use \cr
 #' \code{vignette("bomrang", package = "bomrang")} to view.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   # warning
 #'   Melbourne_weather <- get_current_weather("Melbourne")
 #'

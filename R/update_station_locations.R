@@ -16,7 +16,7 @@
 #' location.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' update_station_locations()
 #' }
 #' @return Updated internal databases of BOM station locations and JSON URLs
@@ -238,3 +238,4 @@ update_station_locations <- function() {
     system.file("extdata", "stations_site_list.rda", package = "bomrang")
   save(stations_site_list, file = fname, compress = "bzip2")
 }
+

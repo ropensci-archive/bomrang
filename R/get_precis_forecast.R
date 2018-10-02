@@ -30,7 +30,7 @@
 #' \code{vignette("bomrang", package = "bomrang")} to view.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' BOM_forecast <- get_precis_forecast(state = "QLD")
 #'}
 #' @references
