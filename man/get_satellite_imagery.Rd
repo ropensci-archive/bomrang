@@ -2,14 +2,15 @@
 % Please edit documentation in R/get_satellite_imagery.R
 \name{get_satellite_imagery}
 \alias{get_satellite_imagery}
-\title{Get BOM Satellite GeoTIFF Imagery}
+\title{Get \acronym{BOM} Satellite GeoTIFF Imagery}
 \usage{
 get_satellite_imagery(product_id, scans = 1, cache = FALSE)
 }
 \arguments{
-\item{product_id}{Character.  BOM product ID to download in GeoTIFF format
-and import as a \code{\link[raster]{stack}} object.  A vector of values from
-\code{\link{get_available_imagery}} may be used here.  Value is required.}
+\item{product_id}{Character.  \acronym{BOM} product ID to download in GeoTIFF
+format and import as a \code{\link[raster]{stack}} object.  A vector of
+values from \code{\link{get_available_imagery}} may be used here.  Value is
+required.}
 
 \item{scans}{Numeric.  Number of scans to download, starting with most recent
 and progressing backwards, \emph{e.g.}, 1 - the most recent single scan
@@ -23,8 +24,8 @@ take advantage of cached files in future sessions, use \var{cache = TRUE}.
 Defaults to \code{FALSE}.  Value is optional.}
 }
 \value{
-A raster stack of GeoTIFF images with layers named by BOM Product ID,
-timestamp and band.
+A raster stack of GeoTIFF images with layers named by \acronym{BOM} Product
+ID, timestamp and band.
 }
 \description{
 Fetch BOM satellite GeoTIFF imagery from
@@ -34,7 +35,7 @@ ten minute update frequency with a 24 hour delete time. Suggested to check
 file availability first by using \code{\link{get_available_imagery}}.
 }
 \details{
-Valid BOM satellite Product IDs include:
+Valid \acronym{BOM} satellite Product IDs include:
 \describe{
 \item{IDE00420}{AHI cloud cover only 2km FD GEOS GIS}
 \item{IDE00421}{AHI IR (Ch13) greyscale 2km FD GEOS GIS}

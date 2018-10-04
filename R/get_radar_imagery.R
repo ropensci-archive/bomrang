@@ -1,17 +1,17 @@
 
-#' Get a Listing of Available BOM Radar Imagery
+#' Get a Listing of Available \acronym{BOM} Radar Imagery
 #'
 #' Fetch a listing of available BOM radar imagery from
 #' \url{ftp://ftp.bom.gov.au/anon/gen/radar/} to determine which files are
 #' currently available for download.  The files available are the most recent 
 #' radar imagery for each location, which are updated approximately every 6 to 
-#' 10 minutes by the BOM. 
+#' 10 minutes by the \acronym{BOM}. 
 #'
-#' @param radar_id Character.  BOM radar ID of interest for which a list of
-#' available images will be returned.  Defaults to all images currently
+#' @param radar_id Character.  \acronym{BOM} radar ID of interest for which a
+#' list of available images will be returned.  Defaults to all images currently
 #' available.
 #'
-#' @details Valid BOM radar ID for each location required.  
+#' @details Valid \acronym{BOM} radar ID for each location required.  
 #'
 #' @return
 #' A data frame of all selected radar locations with location information and
@@ -68,35 +68,35 @@ get_available_radar <- function(radar_id = "all") {
   return(dat)
 }
 
-#' Get BOM Radar Imagery
+#' Get \acronym{BOM} Radar Imagery
 #'
-#' Fetch BOM radar imagery from
+#' Fetch \acronym{BOM} radar imagery from
 #' \url{ftp://ftp.bom.gov.au/anon/gen/radar/} and return a raster
 #' \code{\link[raster]{raster}} object. Files available are the most recent 
 #' radar snapshot which are updated approximately every 6 to 10 minutes. 
 #' Suggested to check file availability first by using
 #' \code{\link{get_available_radar}}.
 #'
-#' @param product_id Character.  BOM product ID to download and import as a 
-#' \code{\link[raster]{raster}} object. Value is required.  
+#' @param product_id Character.  \acronym{BOM} product ID to download and import
+#' as a  \code{\link[raster]{raster}} object. Value is required.  
 #' 
 #' @param path Character. A character string with the name where the downloaded 
 #' file is saved. If not provided, the default value NULL is used which saves
-#' the file in a temp directory.  
+#' the file in a temp directory.
 #' 
 #' @param download_only Logical. Whether the radar image is loaded into the
 #' environment as a \code{\link[raster]{raster}} layer, or just downloded.  
 #'
-#' @details Valid BOM Radar Product IDs for radar imagery can be obtained
-#' from \code{\link{get_available_radar}}.
+#' @details Valid \acronym{BOM} Radar Product IDs for radar imagery can be
+#' obtained from \code{\link{get_available_radar}}.
 #'
 #'@seealso
 #'\code{\link{get_available_radar}}
 #'
 #' @return
-#' A raster layer based on the most recent `.gif` radar image snapshot published
+#' A raster layer based on the most recent `.gif' radar image snapshot published
 #' by the BOM. If \code{download_only = TRUE} there will be a NULL return value
-#' with the download path printed in the console as a message.  
+#' with the download path printed in the console as a message.
 #'
 #' @references
 #' Australian Bureau of Meteorology (BOM) radar images

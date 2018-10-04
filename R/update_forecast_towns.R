@@ -1,19 +1,19 @@
 
-#' Update bomrang Internal Database with Latest BOM Forecast Towns
+#' Update bomrang Internal Database with Latest \acronym{BOM} Forecast Towns
 #'
 #' @description
-#' Download the latest select forecast towns from the BOM server and update
-#' bomrang's internal database of précis forecast town names and
-#' AAC codes used by \code{\link{get_precis_forecast}}.  There is
+#' Download the latest select forecast towns from the \acronym{BOM} server and
+#' update \pkg{bomrang}'s internal database of précis forecast town names and
+#' \acronym{AAC} codes used by \code{\link{get_precis_forecast}}.  There is
 #' no need to use this unless you know that a forecast town exists in a
-#' more current version of the BOM précis forecast town name database that is
-#' not available in the database distributed with [bomrang].
+#' more current version of the \acronym{BOM} précis forecast town name database
+#' that is not available in the database distributed with [bomrang].
 #'
 #' @examples
 #' \donttest{
 #' update_forecast_towns()
 #' }
-#' @return Updated database of BOM précis forecast towns
+#' @return Updated database of \acronym{BOM} précis forecast towns
 #'
 #' @references
 #' Data are sourced from: Australian Bureau of Meteorology (BOM) webpage,

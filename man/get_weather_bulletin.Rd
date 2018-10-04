@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_weather_bulletins.R
 \name{get_weather_bulletin}
 \alias{get_weather_bulletin}
-\title{Get BOM 0900 or 1500 Weather Bulletin}
+\title{Get \acronym{BOM} 0900 or 1500 Weather Bulletin}
 \usage{
 get_weather_bulletin(state = "qld", morning = TRUE)
 }
@@ -21,8 +21,8 @@ For full details of fields and units returned see Appendix 4 in the
 to view.
 }
 \description{
-Fetch the daily BOM 0900 or 1500 weather bulletins and return a tidy data
-frame for a specified state or territory.
+Fetch the daily \acronym{BOM} 0900 or 1500 weather bulletins and return a
+tidy data frame for a specified state or territory.
 }
 \details{
 Allowed state and territory postal codes:

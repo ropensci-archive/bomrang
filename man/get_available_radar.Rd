@@ -2,13 +2,13 @@
 % Please edit documentation in R/get_radar_imagery.R
 \name{get_available_radar}
 \alias{get_available_radar}
-\title{Get a Listing of Available BOM Radar Imagery}
+\title{Get a Listing of Available \acronym{BOM} Radar Imagery}
 \usage{
 get_available_radar(radar_id = "all")
 }
 \arguments{
-\item{radar_id}{Character.  BOM radar ID of interest for which a list of
-available images will be returned.  Defaults to all images currently
+\item{radar_id}{Character.  \acronym{BOM} radar ID of interest for which a
+list of available images will be returned.  Defaults to all images currently
 available.}
 }
 \value{
@@ -20,10 +20,10 @@ Fetch a listing of available BOM radar imagery from
 \url{ftp://ftp.bom.gov.au/anon/gen/radar/} to determine which files are
 currently available for download.  The files available are the most recent 
 radar imagery for each location, which are updated approximately every 6 to 
-10 minutes by the BOM.
+10 minutes by the \acronym{BOM}.
 }
 \details{
-Valid BOM radar ID for each location required.
+Valid \acronym{BOM} radar ID for each location required.
 }
 \examples{
 \donttest{

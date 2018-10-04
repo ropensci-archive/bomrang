@@ -1,5 +1,5 @@
 
-#' @title Manage Locally Cached BOM Files
+#' @title Manage Locally Cached \acronym{BOM} Files
 #'
 #' @description Manage cached \pkg{bomrang} satellite imagery files with
 #' \pkg{hoardr}.
@@ -46,4 +46,3 @@
 #' manage_cache$cache_path_set("~/tmp")
 #' }
 NULL
-

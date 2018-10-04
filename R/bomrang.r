@@ -1,5 +1,5 @@
 
-#' Australian Government Bureau of Meteorology (BOM) Data Client
+#' Australian Government Bureau of Meteorology (\acronym{BOM}) Data Client
 #'
 #' @name bomrang
 #' @author Adam H Sparks and Jonathan Carroll and Dean Marchiori and Mark

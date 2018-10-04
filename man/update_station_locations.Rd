@@ -2,15 +2,15 @@
 % Please edit documentation in R/update_station_locations.R
 \name{update_station_locations}
 \alias{update_station_locations}
-\title{Update bomrang Internal Databases with Latest BOM Station Metadata}
+\title{Update \pkg{bomrang} Internal Databases with Latest \acronym{BOM} Station Metadata}
 \usage{
 update_station_locations()
 }
 \value{
-Updated internal databases of BOM station locations and JSON URLs
+Updated internal databases of \acronym{BOM} station locations and \acronym{JSON} URLs
 }
 \description{
-Download the latest station locations and metadata and update bomrang's
+Download the latest station locations and metadata and update \pkg{bomrang}'s
 internal databases that support the use of \code{\link{get_current_weather}}
 \code{\link{get_ag_bulletin}} and \code{\link{get_historical}}.  There is no
 need to use this unless you know that a station exists in BOM's database

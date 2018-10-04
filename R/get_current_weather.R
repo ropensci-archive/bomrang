@@ -1,5 +1,5 @@
 
-#' Get Current Weather Observations of a BOM Station
+#' Get Current Weather Observations of a \acronym{BOM} Station
 #'
 #' @param station_name The name of the weather station. Fuzzy string matching
 #' via \code{\link[base]{agrep}} is done.

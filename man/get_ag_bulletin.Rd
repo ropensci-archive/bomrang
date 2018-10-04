@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_ag_bulletin.R
 \name{get_ag_bulletin}
 \alias{get_ag_bulletin}
-\title{Get BOM Agriculture Bulletin Information for Select Stations}
+\title{Get \acronym{BOM} Agriculture Bulletin Information for Select Stations}
 \usage{
 get_ag_bulletin(state = "AUS")
 }
@@ -12,14 +12,15 @@ Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 "AUS" returning all state bulletins, see details for more.}
 }
 \value{
-Tidy data frame of a Australia BOM agricultural bulletin information.  For
-full details of fields and units returned see Appendix 3 in the
+Tidy data frame of a Australia \acronym{BOM} agricultural bulletin
+ information.  For full details of fields and units returned see Appendix 3
+ in the
 \pkg{bomrang} vignette, use \cr
 \code{vignette("bomrang", package = "bomrang")} to view.
 }
 \description{
-Fetch the BOM agricultural bulletin information and return it in a tidy data
-frame
+Fetch the \acronym{BOM} agricultural bulletin information and return it in a
+tidy data frame
 }
 \details{
 Allowed state and territory postal codes, only one state per request
@@ -53,7 +54,7 @@ Rainfall, \cr
 \url{http://www.bom.gov.au/climate/how/observations/rain-measure.shtml}
 
 Station location and other metadata are sourced from the Australian Bureau of
-Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers: \cr
+Meteorology (\acronym{BOM}) webpage, Bureau of Meteorology Site Numbers: \cr
 \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 }
 \author{

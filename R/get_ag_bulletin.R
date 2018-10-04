@@ -1,8 +1,8 @@
 
-#' Get BOM Agriculture Bulletin Information for Select Stations
+#' Get \acronym{BOM} Agriculture Bulletin Information for Select Stations
 #'
-#' Fetch the BOM agricultural bulletin information and return it in a tidy data
-#' frame
+#' Fetch the \acronym{BOM} agricultural bulletin information and return it in a
+#' tidy data frame
 #'
 #' @param state Australian state or territory as full name or postal code.
 #' Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
@@ -22,8 +22,9 @@
 #'  }
 #'
 #' @return
-#' Tidy data frame of a Australia BOM agricultural bulletin information.  For
-#' full details of fields and units returned see Appendix 3 in the
+#' Tidy data frame of a Australia \acronym{BOM} agricultural bulletin
+#'  information.  For full details of fields and units returned see Appendix 3
+#'  in the
 #' \pkg{bomrang} vignette, use \cr
 #' \code{vignette("bomrang", package = "bomrang")} to view.
 #'
@@ -44,11 +45,12 @@
 #' \url{http://www.bom.gov.au/climate/how/observations/rain-measure.shtml}
 #'
 #' Station location and other metadata are sourced from the Australian Bureau of
-#' Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers: \cr
+#' Meteorology (\acronym{BOM}) webpage, Bureau of Meteorology Site Numbers: \cr
 #' \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
-#' @export
+#' @export get_ag_bulletin
+#' 
 get_ag_bulletin <- function(state = "AUS") {
   # CRAN NOTE avoidance
   stations_site_list <- NULL # nocov

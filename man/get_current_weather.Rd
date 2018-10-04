@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_current_weather.R
 \name{get_current_weather}
 \alias{get_current_weather}
-\title{Get Current Weather Observations of a BOM Station}
+\title{Get Current Weather Observations of a \acronym{BOM} Station}
 \usage{
 get_current_weather(station_name, strict = FALSE, latlon = NULL,
   raw = FALSE, emit_latlon_msg = TRUE, as.data.table = FALSE)
@@ -40,7 +40,7 @@ full details of fields and units returned, see Appendix 1 in the
 \code{vignette("bomrang", package = "bomrang")} to view.
 }
 \description{
-Get Current Weather Observations of a BOM Station
+Get Current Weather Observations of a \acronym{BOM} Station
 }
 \details{
 Station names are not consistently named within the Bureau, so

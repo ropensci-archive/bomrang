@@ -2,13 +2,13 @@
 % Please edit documentation in R/get_radar_imagery.R
 \name{get_radar_imagery}
 \alias{get_radar_imagery}
-\title{Get BOM Radar Imagery}
+\title{Get \acronym{BOM} Radar Imagery}
 \usage{
 get_radar_imagery(product_id, path = NULL, download_only = FALSE)
 }
 \arguments{
-\item{product_id}{Character.  BOM product ID to download and import as a 
-\code{\link[raster]{raster}} object. Value is required.}
+\item{product_id}{Character.  \acronym{BOM} product ID to download and import
+as a  \code{\link[raster]{raster}} object. Value is required.}
 
 \item{path}{Character. A character string with the name where the downloaded 
 file is saved. If not provided, the default value NULL is used which saves
@@ -18,12 +18,12 @@ the file in a temp directory.}
 environment as a \code{\link[raster]{raster}} layer, or just downloded.}
 }
 \value{
-A raster layer based on the most recent `.gif` radar image snapshot published
+A raster layer based on the most recent `.gif' radar image snapshot published
 by the BOM. If \code{download_only = TRUE} there will be a NULL return value
 with the download path printed in the console as a message.
 }
 \description{
-Fetch BOM radar imagery from
+Fetch \acronym{BOM} radar imagery from
 \url{ftp://ftp.bom.gov.au/anon/gen/radar/} and return a raster
 \code{\link[raster]{raster}} object. Files available are the most recent 
 radar snapshot which are updated approximately every 6 to 10 minutes. 
@@ -31,8 +31,8 @@ Suggested to check file availability first by using
 \code{\link{get_available_radar}}.
 }
 \details{
-Valid BOM Radar Product IDs for radar imagery can be obtained
-from \code{\link{get_available_radar}}.
+Valid \acronym{BOM} Radar Product IDs for radar imagery can be
+obtained from \code{\link{get_available_radar}}.
 }
 \examples{
 \donttest{
