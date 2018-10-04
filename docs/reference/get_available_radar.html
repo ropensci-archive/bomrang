@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get a Listing of Available BOM Radar Imagery — get_available_radar • bomrang</title>
+<title>Get a Listing of Available <acronym>BOM</acronym> Radar Imagery — get_available_radar • bomrang</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -36,7 +36,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Get a Listing of Available BOM Radar Imagery — get_available_radar" />
+<meta property="og:title" content="Get a Listing of Available <acronym>BOM</acronym> Radar Imagery — get_available_radar" />
 
 <meta property="og:description" content="Fetch a listing of available BOM radar imagery from
 ftp://ftp.bom.gov.au/anon/gen/radar/ to determine which files are
@@ -133,18 +133,18 @@ radar imagery for each location, which are updated approximately every 6 to
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get a Listing of Available BOM Radar Imagery</h1>
+    <h1>Get a Listing of Available <acronym>BOM</acronym> Radar Imagery</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/bomrang/blob/master/R/get_radar_imagery.R'><code>R/get_radar_imagery.R</code></a></small>
     <div class="hidden name"><code>get_available_radar.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Fetch a listing of available BOM radar imagery from
+    <p>Fetch a listing of available <acronym>BOM</acronym> radar imagery from
 <a href='ftp://ftp.bom.gov.au/anon/gen/radar/'>ftp://ftp.bom.gov.au/anon/gen/radar/</a> to determine which files are
 currently available for download.  The files available are the most recent 
 radar imagery for each location, which are updated approximately every 6 to 
-10 minutes by the BOM.</p>
+10 minutes by the <acronym>BOM</acronym>.</p>
     
     </div>
 
@@ -155,8 +155,8 @@ radar imagery for each location, which are updated approximately every 6 to
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>radar_id</th>
-      <td><p>Character.  BOM radar ID of interest for which a list of
-available images will be returned.  Defaults to all images currently
+      <td><p>Character.  <acronym>BOM</acronym> radar ID of interest for which a
+list of available images will be returned.  Defaults to all images currently
 available.</p></td>
     </tr>
     </table>
@@ -168,20 +168,17 @@ available.</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Valid BOM radar ID for each location required.</p>
+    <p>Valid <acronym>BOM</acronym> radar ID for each location required.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Australian Bureau of Meteorology (BOM) radar images
+    <p>Australian Bureau of Meteorology (BOM) radar images<br />
 <a href='http://www.bom.gov.au/australia/radar/'>http://www.bom.gov.au/australia/radar/</a></p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>Check availability radar imagey for Wollongong (radar_id = 3)
-imagery <- get_available_radar(radar_id = "3")
-</div><div class='output co'>#&gt; <span class='error'>Error: &lt;text&gt;:1:7: unexpected symbol</span>
-#&gt; <span class='error'>1: Check availability</span>
-#&gt; <span class='error'>          ^</span></div><div class='input'>
+    <pre class="examples"><div class='input'><span class='co'># Check availability radar imagey for Wollongong (radar_id = 3)</span>
+<span class='no'>imagery</span> <span class='kw'>&lt;-</span> <span class='fu'>get_available_radar</span>(<span class='kw'>radar_id</span> <span class='kw'>=</span> <span class='st'>"3"</span>)</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

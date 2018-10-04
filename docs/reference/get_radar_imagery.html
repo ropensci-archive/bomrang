@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get BOM Radar Imagery — get_radar_imagery • bomrang</title>
+<title>Get <acronym>BOM</acronym> Radar Imagery — get_radar_imagery • bomrang</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -36,12 +36,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Get BOM Radar Imagery — get_radar_imagery" />
+<meta property="og:title" content="Get <acronym>BOM</acronym> Radar Imagery — get_radar_imagery" />
 
 <meta property="og:description" content="Fetch BOM radar imagery from
-ftp://ftp.bom.gov.au/anon/gen/radar/ and return a raster
-raster object. Files available are the most recent 
-radar snapshot which are updated approximately every 6 to 10 minutes. 
+ftp://ftp.bom.gov.au/anon/gen/radar/ and return a
+raster layer object.  Files available are the most
+recent radar snapshot which are updated approximately every 6 to 10 minutes. 
 Suggested to check file availability first by using
 get_available_radar." />
 
@@ -134,17 +134,17 @@ get_available_radar." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get BOM Radar Imagery</h1>
+    <h1>Get <acronym>BOM</acronym> Radar Imagery</h1>
     <small class="dont-index">Source: <a href='https://github.com/ropensci/bomrang/blob/master/R/get_radar_imagery.R'><code>R/get_radar_imagery.R</code></a></small>
     <div class="hidden name"><code>get_radar_imagery.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>Fetch BOM radar imagery from
-<a href='ftp://ftp.bom.gov.au/anon/gen/radar/'>ftp://ftp.bom.gov.au/anon/gen/radar/</a> and return a raster
-<code><a href='http://www.rdocumentation.org/packages/raster/topics/raster'>raster</a></code> object. Files available are the most recent 
-radar snapshot which are updated approximately every 6 to 10 minutes. 
+    <p>Fetch <acronym>BOM</acronym> radar imagery from
+<a href='ftp://ftp.bom.gov.au/anon/gen/radar/'>ftp://ftp.bom.gov.au/anon/gen/radar/</a> and return a
+<code><a href='http://www.rdocumentation.org/packages/raster/topics/raster'>raster</a></code> layer object.  Files available are the most
+recent radar snapshot which are updated approximately every 6 to 10 minutes. 
 Suggested to check file availability first by using
 <code><a href='get_available_radar.html'>get_available_radar</a></code>.</p>
     
@@ -157,14 +157,14 @@ Suggested to check file availability first by using
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
       <th>product_id</th>
-      <td><p>Character.  BOM product ID to download and import as a 
-<code><a href='http://www.rdocumentation.org/packages/raster/topics/raster'>raster</a></code> object. Value is required.</p></td>
+      <td><p>Character.  <acronym>BOM</acronym> product ID to download and import
+as a  <code><a href='http://www.rdocumentation.org/packages/raster/topics/raster'>raster</a></code> object. Value is required.</p></td>
     </tr>
     <tr>
       <th>path</th>
       <td><p>Character. A character string with the name where the downloaded 
-file is saved. If not provided, the default value NULL is used which saves
-the file in a temp directory.</p></td>
+file is saved. If not provided, the default value <code>NULL</code> is used which
+saves the file in a temp directory.</p></td>
     </tr>
     <tr>
       <th>download_only</th>
@@ -175,18 +175,18 @@ environment as a <code><a href='http://www.rdocumentation.org/packages/raster/to
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A raster layer based on the most recent `.gif` radar image snapshot published
+    <p>A raster layer based on the most recent `.gif' radar image snapshot published
 by the BOM. If <code>download_only = TRUE</code> there will be a NULL return value
 with the download path printed in the console as a message.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Valid BOM Radar Product IDs for radar imagery can be obtained
-from <code><a href='get_available_radar.html'>get_available_radar</a></code>.</p>
+    <p>Valid <acronym>BOM</acronym> Radar Product IDs for radar imagery can be
+obtained from <code><a href='get_available_radar.html'>get_available_radar</a></code>.</p>
     
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
-    <p>Australian Bureau of Meteorology (BOM) radar images
+    <p>Australian Bureau of Meteorology (BOM) radar images<br />
 <a href='http://www.bom.gov.au/australia/radar/'>http://www.bom.gov.au/australia/radar/</a></p>
     
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
@@ -196,10 +196,9 @@ from <code><a href='get_available_radar.html'>get_available_radar</a></code>.</p
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='co'># Fetch most recent radar image for Wollongong 256km radar</span>
-<span class='no'>imagery</span> <span class='kw'>&lt;-</span> <span class='fu'>get_radar_imagery</span>(<span class='kw'>product_id</span> <span class='kw'>=</span> <span class='st'>"IDR032"</span>)</div><div class='output co'>#&gt; <span class='message'>file downloaded to: /var/folders/_x/9x75180j2fd_t1cy5kgsp0180000gn/T//RtmpRMfej9/file6f177168b915.gif</span></div><div class='input'><span class='kw pkg'>raster</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/raster/topics/plot'>plot</a></span>(<span class='no'>imagery</span>)</div><div class='img'><img src='get_radar_imagery-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='get_radar_imagery-2.png' alt='' width='700' height='433' /></div><div class='input'>
-<span class='co'># Save imagery to a local path  </span>
+<span class='no'>imagery</span> <span class='kw'>&lt;-</span> <span class='fu'>get_radar_imagery</span>(<span class='kw'>product_id</span> <span class='kw'>=</span> <span class='st'>"IDR032"</span>)</div><div class='output co'>#&gt; <span class='message'>file downloaded to: /var/folders/hk/1xg925vs6fsgfv2q9f9k6fp00000gn/T//RtmpqmDgh3/file569d1ec8eae4.gif</span></div><div class='input'><span class='kw pkg'>raster</span><span class='kw ns'>::</span><span class='fu'><a href='http://www.rdocumentation.org/packages/raster/topics/plot'>plot</a></span>(<span class='no'>imagery</span>)</div><div class='img'><img src='get_radar_imagery-1.png' alt='' width='700' height='433' /></div><div class='img'><img src='get_radar_imagery-2.png' alt='' width='700' height='433' /></div><div class='input'>
+<span class='co'># Save imagery to a local path</span>
 <span class='no'>imagery</span> <span class='kw'>&lt;-</span> <span class='fu'>get_radar_imagery</span>(<span class='kw'>product_id</span> <span class='kw'>=</span> <span class='st'>"IDR032"</span>, <span class='kw'>path</span> <span class='kw'>=</span> <span class='st'>'image.gif'</span>)</div><div class='output co'>#&gt; <span class='message'>file downloaded to: image.gif</span></div><div class='input'>
-</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
