@@ -11,13 +11,12 @@ Updated database of \acronym{BOM} précis forecast towns
 }
 \description{
 Download the latest select forecast towns from the \acronym{BOM} server and
-update \pkg{bomrang}'s internal database of précis forecast town names and
-\acronym{AAC} codes used by \code{\link{get_precis_forecast}}.  There is
-no need to use this unless you know that a forecast town exists in a
-more current version of the \acronym{BOM} précis forecast town name database
-that is not available in the database distributed with \pkg{bomrang}.  In
-fact, for reproducibility purposes, users are discouraged from using this
-function.
+update internal database of précis forecast town names and \acronym{AAC}
+codes used by \code{\link{get_precis_forecast}}.  There is no need to use
+this unless you know that a forecast town exists in a more current version of
+the \acronym{BOM} précis forecast town name database that is not available in
+the database distributed with \pkg{bomrang}.  In fact, for reproducibility
+purposes, users are discouraged from using this function.
 }
 \examples{
 \donttest{
