@@ -1,5 +1,5 @@
 
-#' Update bomrang Internal Database with Latest \acronym{BOM} Forecast Towns
+#' Update Internal Database with Latest \acronym{BOM} Forecast Towns
 #'
 #' @description
 #' Download the latest select forecast towns from the \acronym{BOM} server and

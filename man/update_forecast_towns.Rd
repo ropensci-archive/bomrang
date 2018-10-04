@@ -2,7 +2,7 @@
 % Please edit documentation in R/update_forecast_towns.R
 \name{update_forecast_towns}
 \alias{update_forecast_towns}
-\title{Update bomrang Internal Database with Latest \acronym{BOM} Forecast Towns}
+\title{Update Internal Database with Latest \acronym{BOM} Forecast Towns}
 \usage{
 update_forecast_towns()
 }

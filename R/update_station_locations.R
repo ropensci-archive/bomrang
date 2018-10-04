@@ -1,5 +1,5 @@
 
-#' Update \pkg{bomrang} Internal Databases with Latest \acronym{BOM} Station Metadata
+#' Update Internal Databases with Latest \acronym{BOM} Station Metadata
 #'
 #' Download the latest station locations and metadata and update \pkg{bomrang}'s
 #' internal databases that support the use of \code{\link{get_current_weather}}
