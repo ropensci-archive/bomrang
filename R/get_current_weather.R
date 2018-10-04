@@ -19,7 +19,8 @@
 #' \code{latlon} is selected, a message is emitted before the table is returned
 #' indicating which station was actually used (i.e. which station was found to
 #' be nearest to the given coordinate).
-#' @param as.data.table Return result as a \code{\link[data.table]{data.table}}.
+#' @param as.data.table Logical. If \code{TRUE}, return result as a
+#' \code{\link[data.table]{data.table}}.
 #'
 #' @details
 #' Station names are not consistently named within the Bureau, so

@@ -50,7 +50,7 @@
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
 #' @export get_ag_bulletin
-#' 
+
 get_ag_bulletin <- function(state = "AUS") {
   # CRAN NOTE avoidance
   stations_site_list <- NULL # nocov

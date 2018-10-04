@@ -7,7 +7,9 @@
 #' \acronym{AAC} codes used by \code{\link{get_precis_forecast}}.  There is
 #' no need to use this unless you know that a forecast town exists in a
 #' more current version of the \acronym{BOM} précis forecast town name database
-#' that is not available in the database distributed with [bomrang].
+#' that is not available in the database distributed with \pkg{bomrang}.  In
+#' fact, for reproducibility purposes, users are discouraged from using this
+#' function.
 #'
 #' @examples
 #' \donttest{
@@ -21,8 +23,8 @@
 #' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
-#' @export
-#'
+#' @export update_forecast_towns
+
 update_forecast_towns <- function() {
   message(
     "This will overwrite the current internal database of forecast towns.\n",

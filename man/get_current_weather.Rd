@@ -31,7 +31,8 @@ appropriate classes. (\code{FALSE} by default.)}
 indicating which station was actually used (i.e. which station was found to
 be nearest to the given coordinate).}
 
-\item{as.data.table}{Return result as a \code{\link[data.table]{data.table}}.}
+\item{as.data.table}{Logical. If \code{TRUE}, return result as a
+\code{\link[data.table]{data.table}}.}
 }
 \value{
 Tidy data frame of requested BOM station's current and prior 72hr data.  For

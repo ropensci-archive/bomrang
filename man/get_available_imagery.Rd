@@ -55,7 +55,7 @@ imagery <- get_available_imagery(product_id = "IDE00425")
 
 }
 \references{
-Australian Bureau of Meteorology (BOM) High-definition satellite images
+Australian Bureau of Meteorology (BOM) high-definition satellite images
 \url{http://www.bom.gov.au/australia/satellite/index.shtml}
 }
 \author{

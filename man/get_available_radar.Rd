@@ -16,7 +16,7 @@ A data frame of all selected radar locations with location information and
 \var{product_ids}.
 }
 \description{
-Fetch a listing of available BOM radar imagery from
+Fetch a listing of available \acronym{BOM} radar imagery from
 \url{ftp://ftp.bom.gov.au/anon/gen/radar/} to determine which files are
 currently available for download.  The files available are the most recent 
 radar imagery for each location, which are updated approximately every 6 to 
@@ -27,13 +27,13 @@ Valid \acronym{BOM} radar ID for each location required.
 }
 \examples{
 \donttest{
-Check availability radar imagey for Wollongong (radar_id = 3)
+# Check availability radar imagey for Wollongong (radar_id = 3)
 imagery <- get_available_radar(radar_id = "3")
 }
 
 }
 \references{
-Australian Bureau of Meteorology (BOM) radar images
+Australian Bureau of Meteorology (BOM) radar images\cr
 \url{http://www.bom.gov.au/australia/radar/}
 }
 \author{

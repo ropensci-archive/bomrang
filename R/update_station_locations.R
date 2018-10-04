@@ -19,7 +19,8 @@
 #' \donttest{
 #' update_station_locations()
 #' }
-#' @return Updated internal databases of \acronym{BOM} station locations and \acronym{JSON} URLs
+#' @return Updated internal databases of \acronym{BOM} station locations and 
+#' \acronym{JSON} \acronym{URL}s
 #'
 #' @references
 #' Station location and other metadata are sourced from the Australian Bureau of
@@ -27,8 +28,8 @@
 #' \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
-#' @export
-#'
+#' @export update_station_locations
+
 update_station_locations <- function() {
 
   message(

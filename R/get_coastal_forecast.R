@@ -43,7 +43,7 @@
 #' @author Dean Marchiori, \email{deanmarchiori@@gmail.com}
 #' @importFrom magrittr %>%
 #' @export get_coastal_forecast
-#' 
+
 get_coastal_forecast <- function(state = "AUS") {
   the_state <- .check_states(state) # see internal_functions.R
 

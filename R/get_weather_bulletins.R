@@ -43,7 +43,8 @@
 #' \url{http://www.bom.gov.au/qld/observations/3pm_bulletin.shtml}
 #'
 #' @author Mark Padgham, \email{mark.padgham@@email.com}
-#' @export
+#' @export get_weather_bulletin
+
 get_weather_bulletin <- function(state = "qld", morning = TRUE) {
   the_state <- convert_state(state) # see internal_functions.R
   if (the_state == "AUS") {

@@ -4,7 +4,7 @@
 #' @param latlon A length-2 numeric vector. By default, Canberra
 #' (approximately).
 #' @return A data frame of all weather stations (in this package) sorted
-#' by distance from \code{latlon}, ascending.
+#' by distance from \var{latlon}, ascending.
 #' @author Hugh Parsonage, \email{hugh.parsonage@@gmail.com}
 #' @importFrom data.table copy setorderv
 #' @export sweep_for_stations

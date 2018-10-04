@@ -7,7 +7,8 @@
 update_station_locations()
 }
 \value{
-Updated internal databases of \acronym{BOM} station locations and \acronym{JSON} URLs
+Updated internal databases of \acronym{BOM} station locations and 
+\acronym{JSON} \acronym{URL}s
 }
 \description{
 Download the latest station locations and metadata and update \pkg{bomrang}'s

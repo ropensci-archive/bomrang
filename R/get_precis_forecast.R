@@ -46,7 +46,8 @@
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com} and Keith Pembleton,
 #' \email{keith.pembleton@@usq.edu.au}
 #' @importFrom magrittr %>%
-#' @export
+#' @export get_precis_forecast
+
 get_precis_forecast <- function(state = "AUS") {
   the_state <- .check_states(state) # see internal_functions.R
 

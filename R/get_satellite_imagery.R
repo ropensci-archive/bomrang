@@ -39,7 +39,7 @@
 #' A vector of all available files for the requested Product ID(s).
 #'
 #' @references
-#' Australian Bureau of Meteorology (BOM) High-definition satellite images
+#' Australian Bureau of Meteorology (BOM) high-definition satellite images
 #' \url{http://www.bom.gov.au/australia/satellite/index.shtml}
 #'
 #' @examples
@@ -51,7 +51,8 @@
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
 #'
-#' @export
+#' @export get_available_imagery
+
 get_available_imagery <- function(product_id = "all") {
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/gms/"
   .check_IDs(product_id)
@@ -72,7 +73,7 @@ get_available_imagery <- function(product_id = "all") {
 #' @param product_id Character.  \acronym{BOM} product ID to download in GeoTIFF
 #' format and import as a \code{\link[raster]{stack}} object.  A vector of
 #' values from \code{\link{get_available_imagery}} may be used here.  Value is
-#' required.  
+#' required.
 #' @param scans Numeric.  Number of scans to download, starting with most recent
 #' and progressing backwards, \emph{e.g.}, 1 - the most recent single scan
 #' available , 6 - the most recent hour available, 12 - the most recent 2 hours
@@ -138,7 +139,8 @@ get_available_imagery <- function(product_id = "all") {
 #' }
 
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
-#' @export
+#' @export get_satellite_imagery
+
 get_satellite_imagery <-
   function(product_id,
            scans = 1,

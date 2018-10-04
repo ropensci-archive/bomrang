@@ -12,7 +12,7 @@ sweep_for_stations(latlon = c(-35.3, 149.2))
 }
 \value{
 A data frame of all weather stations (in this package) sorted
-by distance from \code{latlon}, ascending.
+by distance from \var{latlon}, ascending.
 }
 \description{
 Find Nearest \acronym{BOM} Weather Stations

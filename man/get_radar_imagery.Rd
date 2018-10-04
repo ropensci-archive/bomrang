@@ -11,8 +11,8 @@ get_radar_imagery(product_id, path = NULL, download_only = FALSE)
 as a  \code{\link[raster]{raster}} object. Value is required.}
 
 \item{path}{Character. A character string with the name where the downloaded 
-file is saved. If not provided, the default value NULL is used which saves
-the file in a temp directory.}
+file is saved. If not provided, the default value \code{NULL} is used which
+saves the file in a temp directory.}
 
 \item{download_only}{Logical. Whether the radar image is loaded into the
 environment as a \code{\link[raster]{raster}} layer, or just downloded.}
@@ -24,9 +24,9 @@ with the download path printed in the console as a message.
 }
 \description{
 Fetch \acronym{BOM} radar imagery from
-\url{ftp://ftp.bom.gov.au/anon/gen/radar/} and return a raster
-\code{\link[raster]{raster}} object. Files available are the most recent 
-radar snapshot which are updated approximately every 6 to 10 minutes. 
+\url{ftp://ftp.bom.gov.au/anon/gen/radar/} and return a
+\code{\link[raster]{raster}} layer object.  Files available are the most
+recent radar snapshot which are updated approximately every 6 to 10 minutes. 
 Suggested to check file availability first by using
 \code{\link{get_available_radar}}.
 }
@@ -37,17 +37,16 @@ obtained from \code{\link{get_available_radar}}.
 \examples{
 \donttest{
 # Fetch most recent radar image for Wollongong 256km radar
-imagery <- get_radar_imagery(product_id = "IDR032")  
-raster::plot(imagery)  
+imagery <- get_radar_imagery(product_id = "IDR032")
+raster::plot(imagery)
 
-# Save imagery to a local path  
+# Save imagery to a local path
 imagery <- get_radar_imagery(product_id = "IDR032", path = 'image.gif') 
-
 }
 
 }
 \references{
-Australian Bureau of Meteorology (BOM) radar images
+Australian Bureau of Meteorology (BOM) radar images\cr
 \url{http://www.bom.gov.au/australia/radar/}
 }
 \seealso{
