@@ -1,5 +1,19 @@
 # bomrang 0.4.0.9000
 
+## Minor changes
+
+- Updates documentation formatting and corrects minor issues
+
+- Uses `curl` to download XML files before parsing them, rather than reading
+directly from the server. `curl` gives more flexiblity in handling the
+server connections
+
+- Correct formatting of DESCRIPTION file to conform with CRAN guidelines
+
+- Replaces `\dontrun{}` with `\donttest{}` for examples in documentation
+
+- 
+
 # bomrang 0.4.0
 
 ## Bug fixes
