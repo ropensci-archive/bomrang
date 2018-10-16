@@ -11,8 +11,8 @@ get_current_weather(station_name, strict = FALSE, latlon = NULL,
 \item{station_name}{The name of the weather station. Fuzzy string matching
 via \code{\link[base]{agrep}} is done.}
 
-\item{strict}{(logical) If \code{TRUE}, \code{station_name} must match the
-station name exactly, except that \code{station_name} need not be upper case.
+\item{strict}{(logical) If \code{TRUE}, \var{station_name} must match the
+station name exactly, except that \var{station_name} need not be upper case.
 Note this may be different to \code{full_name} in the response. See
 \strong{Details}.}
 
@@ -21,7 +21,7 @@ latitude and longitude (in that order), \emph{e.g.} \code{latlon =
 c(-34, 151)} for Sydney. When given instead of \code{station_name}, the
 nearest station (in this package) is used, with a message indicating the
 nearest such station. (See also \code{\link{sweep_for_stations}}.) Ignored if
-used in combination with \code{station_name}, with a warning.}
+used in combination with \var{station_name}, with a warning.}
 
 \item{raw}{Logical. Do not convert the columns \code{data.table} to the
 appropriate classes. (\code{FALSE} by default.)}

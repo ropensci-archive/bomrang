@@ -38,6 +38,7 @@ or all using \code{AUS}.
 }
 \examples{
 \donttest{
+# get the short forecast for Queensland
 BOM_forecast <- get_precis_forecast(state = "QLD")
 }
 }

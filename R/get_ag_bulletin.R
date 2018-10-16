@@ -111,8 +111,15 @@ get_ag_bulletin <- function(state = "AUS") {
 .parse_bulletin <- function(xmlbulletin_url, stations_site_list) {
   # download the XML bulletin --------------------------------------------------
 
+  xmlbulletin_file <- file.path(tempdir(), "xmlbulletin")
+  
   tryCatch({
-    xmlbulletin <- xml2::read_xml(xmlbulletin_url)
+    curl::curl_download(xmlbulletin_url,
+                        destfile = xmlbulletin_file,
+                        mode = "wb",
+                        quiet = TRUE
+    )
+    xmlbulletin <- xml2::read_xml(xmlbulletin_file)
   },
   error = function(x)
     stop(

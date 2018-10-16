@@ -30,6 +30,7 @@
 #'
 #' @examples
 #' \donttest{
+#' # get the short forecast for Queensland
 #' BOM_forecast <- get_precis_forecast(state = "QLD")
 #'}
 #' @references
@@ -106,8 +107,16 @@ get_precis_forecast <- function(state = "AUS") {
     start_time_local <- values <- NULL # nocov end
 
   # download the XML forecast --------------------------------------------------
+  
+  xmlforecast_file <- file.path(tempdir(), "xmlforecast")
+  
   tryCatch({
-    xmlforecast <- xml2::read_xml(xmlforecast_url)
+    curl::curl_download(xmlforecast_url,
+                        destfile = xmlforecast_file,
+                        mode = "wb",
+                        quiet = TRUE
+    )
+    xmlforecast <- xml2::read_xml(xmlforecast_file)
   },
   error = function(x)
     stop(

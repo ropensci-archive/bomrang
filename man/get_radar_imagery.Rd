@@ -37,11 +37,12 @@ obtained from \code{\link{get_available_radar}}.
 \examples{
 \donttest{
 # Fetch most recent radar image for Wollongong 256km radar
+library(raster)
 imagery <- get_radar_imagery(product_id = "IDR032")
-raster::plot(imagery)
+plot(imagery)
 
 # Save imagery to a local path
-imagery <- get_radar_imagery(product_id = "IDR032", path = 'image.gif') 
+imagery <- get_radar_imagery(product_id = "IDR032", path = "image.gif") 
 }
 
 }

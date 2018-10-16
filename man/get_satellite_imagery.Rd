@@ -20,7 +20,7 @@ Value is optional.}
 
 \item{cache}{Logical.  Store image files locally for later use?  If
 \code{FALSE}, the downloaded files are removed when R session is closed. To
-take advantage of cached files in future sessions, use \var{cache = TRUE}.
+take advantage of cached files in future sessions, use \code{cache = TRUE}.
 Defaults to \code{FALSE}.  Value is optional.}
 }
 \value{
@@ -35,7 +35,8 @@ ten minute update frequency with a 24 hour delete time. Suggested to check
 file availability first by using \code{\link{get_available_imagery}}.
 }
 \details{
-Valid \acronym{BOM} satellite Product IDs include:
+Valid \acronym{BOM} satellite Product IDs for use with
+\var{product_id} include:
 \describe{
 \item{IDE00420}{AHI cloud cover only 2km FD GEOS GIS}
 \item{IDE00421}{AHI IR (Ch13) greyscale 2km FD GEOS GIS}

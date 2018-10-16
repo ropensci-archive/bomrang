@@ -1,3 +1,4 @@
+
 #' Get BOM Coastal Waters Forecast
 #'
 #' Fetch the \acronym{BOM} daily Coastal Waters Forecast and return a tidy data
@@ -96,21 +97,28 @@ get_coastal_forecast <- function(state = "AUS") {
     precipitation_range <- start_time_local <- values <- NULL # nocov end
 
   # download the XML forecast
+  xmlforecast_file <- file.path(tempdir(), "xmlforecast")
+  
   tryCatch({
-    xmlforecast <- xml2::read_xml(xmlforecast_url)
+    curl::curl_download(xmlforecast_url,
+                        destfile = xmlforecast_file,
+                        mode = "wb",
+                        quiet = TRUE
+    )
+    xmlforecast <- xml2::read_xml(xmlforecast_file)
   },
   error = function(x)
     stop(
       "\nThe server with the forecast is not responding. ",
       "Please retry again later.\n"
     ))
-
+  
   areas <- xml2::xml_find_all(xmlforecast, ".//*[@type='coast']")
   out <- suppressWarnings(lapply(X = areas, FUN = .parse_areas))
   out <- as.data.frame(do.call("rbind", out))
-
+  
   out <- tidyr::spread(out, key = attrs, value = values)
-
+  
   out <- out %>%
     janitor::clean_names(., case = "snake") %>%
     janitor::remove_empty("cols")

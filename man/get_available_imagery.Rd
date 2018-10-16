@@ -48,8 +48,8 @@ equirect. GIS}
 }
 \examples{
 \donttest{
-Check availability of AHI VIS (true colour) / IR (Ch13 greyscale) composite
-1km FD GEOS GIS images
+# Check availability of AHI VIS (true colour) / IR (Ch13 greyscale) composite
+# 1km FD GEOS GIS images
 imagery <- get_available_imagery(product_id = "IDE00425")
 }
 
