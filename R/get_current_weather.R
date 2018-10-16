@@ -3,8 +3,8 @@
 #'
 #' @param station_name The name of the weather station. Fuzzy string matching
 #' via \code{\link[base]{agrep}} is done.
-#' @param strict (logical) If \code{TRUE}, \code{station_name} must match the
-#' station name exactly, except that \code{station_name} need not be upper case.
+#' @param strict (logical) If \code{TRUE}, \var{station_name} must match the
+#' station name exactly, except that \var{station_name} need not be upper case.
 #' Note this may be different to \code{full_name} in the response. See
 #' \strong{Details}.
 #' @param latlon A length-2 numeric vector giving the decimal degree
@@ -12,7 +12,7 @@
 #' c(-34, 151)} for Sydney. When given instead of \code{station_name}, the
 #' nearest station (in this package) is used, with a message indicating the
 #' nearest such station. (See also \code{\link{sweep_for_stations}}.) Ignored if
-#' used in combination with \code{station_name}, with a warning.
+#' used in combination with \var{station_name}, with a warning.
 #' @param raw Logical. Do not convert the columns \code{data.table} to the
 #' appropriate classes. (\code{FALSE} by default.)
 #' @param emit_latlon_msg Logical. If \code{TRUE} (the default), and

@@ -44,8 +44,8 @@
 #'
 #' @examples
 #' \donttest{
-#' Check availability of AHI VIS (true colour) / IR (Ch13 greyscale) composite
-#' 1km FD GEOS GIS images
+#' # Check availability of AHI VIS (true colour) / IR (Ch13 greyscale) composite
+#' # 1km FD GEOS GIS images
 #' imagery <- get_available_imagery(product_id = "IDE00425")
 #' }
 #'
@@ -81,10 +81,11 @@ get_available_imagery <- function(product_id = "all") {
 #' Value is optional.
 #' @param cache Logical.  Store image files locally for later use?  If
 #' \code{FALSE}, the downloaded files are removed when R session is closed. To
-#' take advantage of cached files in future sessions, use \var{cache = TRUE}.
+#' take advantage of cached files in future sessions, use \code{cache = TRUE}.
 #' Defaults to \code{FALSE}.  Value is optional.
 #'
-#' @details Valid \acronym{BOM} satellite Product IDs include:
+#' @details Valid \acronym{BOM} satellite Product IDs for use with
+#' \var{product_id} include:
 #'\describe{
 #' \item{IDE00420}{AHI cloud cover only 2km FD GEOS GIS}
 #' \item{IDE00421}{AHI IR (Ch13) greyscale 2km FD GEOS GIS}
@@ -109,7 +110,6 @@ get_available_imagery <- function(product_id = "all") {
 #'
 #' We cache using \pkg{hoardr}, find your cache folder by executing
 #' \code{manage_cache$cache_path_get}.
-#'
 #'
 #'@seealso
 #'\code{\link{get_available_imagery}}
