@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_precis_forecast.R
 \name{get_precis_forecast}
 \alias{get_precis_forecast}
-\title{Get \acronym{BOM} Daily Précis Forecast for Select Towns}
+\title{Get BOM Daily Précis Forecast for Select Towns}
 \usage{
 get_precis_forecast(state = "AUS")
 }

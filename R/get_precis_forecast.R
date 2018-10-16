@@ -1,5 +1,5 @@
 
-#' Get \acronym{BOM} Daily Précis Forecast for Select Towns
+#' Get BOM Daily Précis Forecast for Select Towns
 #'
 #' Fetch the \acronym{BOM} daily précis forecast and return a tidy data frame of the seven
 #' day town forecast for a specified state or territory.

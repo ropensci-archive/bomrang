@@ -1,5 +1,5 @@
 
-#' Update Internal Databases with Latest \acronym{BOM} Station Metadata
+#' Update Internal Databases with Latest BOM Station Metadata
 #'
 #' Download the latest station locations and metadata and update internal
 #' databases that support the use of \code{\link{get_current_weather}}

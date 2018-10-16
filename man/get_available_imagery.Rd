@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_satellite_imagery.R
 \name{get_available_imagery}
 \alias{get_available_imagery}
-\title{Get a Listing of Available \acronym{BOM} Satellite GeoTIFF Imagery}
+\title{Get a Listing of Available BOM Satellite GeoTIFF Imagery}
 \usage{
 get_available_imagery(product_id = "all")
 }

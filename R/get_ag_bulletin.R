@@ -1,5 +1,5 @@
 
-#' Get \acronym{BOM} Agriculture Bulletin Information for Select Stations
+#' Get BOM Agriculture Bulletin Information for Select Stations
 #'
 #' Fetch the \acronym{BOM} agricultural bulletin information and return it in a
 #' tidy data frame

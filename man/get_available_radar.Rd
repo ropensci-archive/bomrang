@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_radar_imagery.R
 \name{get_available_radar}
 \alias{get_available_radar}
-\title{Get a Listing of Available \acronym{BOM} Radar Imagery}
+\title{Get a Listing of Available BOM Radar Imagery}
 \usage{
 get_available_radar(radar_id = "all")
 }

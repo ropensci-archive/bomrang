@@ -1,5 +1,5 @@
 
-#' Get a Listing of Available \acronym{BOM} Radar Imagery
+#' Get a Listing of Available BOM Radar Imagery
 #'
 #' Fetch a listing of available \acronym{BOM} radar imagery from
 #' \url{ftp://ftp.bom.gov.au/anon/gen/radar/} to determine which files are
