@@ -187,7 +187,7 @@ get_satellite_imagery <-
     # download files from server -----------------------------------------------
     Map(
       function(urls, destination)
-        utils::download.file(urls, destination, mode = "wb"),
+        curl::curl_download(urls, destination, mode = "wb"),
       tif_files,
       file.path(cache_dir, basename(tif_files))
     )

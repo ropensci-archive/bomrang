@@ -17,7 +17,7 @@ specifically the DBF file portion of a shapefile,
 <ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDR00007.dbf>
 
 ```{r get_radarlocs}
-utils::download.file(
+curl::curl_download(
   "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDR00007.dbf",
   destfile = paste0(tempdir(), "radar_locations.dbf"),
   mode = "wb"

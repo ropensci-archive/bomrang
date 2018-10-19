@@ -96,8 +96,8 @@ get_available_radar <- function(radar_id = "all") {
 #'
 #' @return 
 #' A raster layer based on the most recent `.gif' radar image snapshot published
-#' by the BOM. If \code{download_only = TRUE} there will be a NULL return value
-#' with the download path printed in the console as a message.
+#' by the \acronym{BOM}. If \code{download_only = TRUE} there will be a `NULL`
+#' return value with the download path printed in the console as a message.
 #'
 #' @references
 #' Australian Bureau of Meteorology (BOM) radar images\cr
@@ -135,10 +135,10 @@ get_radar_imagery <- function(product_id,
   }
   
   if (download_only == TRUE) {
-    download.file(url = fp, destfile = path, mode = "wb") 
+    curl::curl_download(url = fp, destfile = path, mode = "wb") 
     message(paste("file downloaded to:", path))
   } else {
-    download.file(url = fp, destfile = path, mode = "wb") 
+    curl::curl_download(url = fp, destfile = path, mode = "wb") 
     message(paste("file downloaded to:", path))
     y <- raster::raster(x = path)
     y[is.na(y)] <- 999

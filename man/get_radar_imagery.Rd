@@ -19,8 +19,8 @@ environment as a \code{\link[raster]{raster}} layer, or just downloded.}
 }
 \value{
 A raster layer based on the most recent `.gif' radar image snapshot published
-by the BOM. If \code{download_only = TRUE} there will be a NULL return value
-with the download path printed in the console as a message.
+by the \acronym{BOM}. If \code{download_only = TRUE} there will be a `NULL`
+return value with the download path printed in the console as a message.
 }
 \description{
 Fetch \acronym{BOM} radar imagery from

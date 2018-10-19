@@ -18,7 +18,7 @@ specifically the DBF file portion of a shapefile,
 <ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf>
 
 ```{r get_forecast_towns}
-  utils::download.file(
+  curl::curl_download(
     "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf",
     destfile = paste0(tempdir(), "AAC_codes.dbf"),
     mode = "wb"
