@@ -136,10 +136,10 @@ get_radar_imagery <- function(product_id,
   
   if (download_only == TRUE) {
     curl::curl_download(url = fp, destfile = path, mode = "wb") 
-    message(paste("file downloaded to:", path))
+    message("file downloaded to:", path)
   } else {
     curl::curl_download(url = fp, destfile = path, mode = "wb") 
-    message(paste("file downloaded to:", path))
+    message("file downloaded to:", path)
     y <- raster::raster(x = path)
     y[is.na(y)] <- 999
     return(y)
