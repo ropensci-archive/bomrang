@@ -74,7 +74,6 @@ imagery <- get_satellite_imagery(product_id = "IDE00425", scans = 1)
 
 avail <- get_available_imagery(product_id = "IDE00425")
 imagery <- get_satellite_imagery(product_id = avail, scans = 2)
-
 }
 }
 \references{

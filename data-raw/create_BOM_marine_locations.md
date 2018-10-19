@@ -16,7 +16,8 @@ file portion of a shapefile,
   curl::curl_download(
     "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00003.dbf",
     destfile = paste0(tempdir(), "marine_AAC_codes.dbf"),
-    mode = "wb"
+    mode = "wb",
+    quiet = TRUE
   )
 
   marine_AAC_codes <-

@@ -50,7 +50,8 @@ update_forecast_towns <- function() {
   curl::curl_download(
     "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf",
     destfile = file.path(tempdir(), "AAC_codes.dbf"),
-    mode = "wb"
+    mode = "wb",
+    quiet = TRUE
   )
   
   # import BOM dbf file

@@ -67,13 +67,13 @@ library(magrittr)
 # fixed widths which are coded in the read_table() call.
 # The last seven lines contain other information that we don't want.
 # For some reason, reading it directly from the BOM website does not work, so
-# we use download.file to fetch it first and then import it from the R
-# tempdir()
+# we use curl to fetch it first and then import it from the R tempdir()
 
 curl::curl_download(
   url = "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
   destfile = file.path(tempdir(), "stations.zip"),
-  mode = "wb")
+  mode = "wb",
+  quiet = TRUE)
 
 bom_stations_raw <-
   readr::read_table(

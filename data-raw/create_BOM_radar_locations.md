@@ -15,7 +15,8 @@ file portion of a shapefile,
 curl::curl_download(
   "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDR00007.dbf",
   destfile = paste0(tempdir(), "radar_locations.dbf"),
-  mode = "wb"
+  mode = "wb",
+  quiet = TRUE
 )
 
 radar_locations <-

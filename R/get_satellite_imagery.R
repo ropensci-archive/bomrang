@@ -135,7 +135,6 @@ get_available_imagery <- function(product_id = "all") {
 #'
 #' avail <- get_available_imagery(product_id = "IDE00425")
 #' imagery <- get_satellite_imagery(product_id = avail, scans = 2)
-#'
 #' }
 
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
@@ -187,7 +186,7 @@ get_satellite_imagery <-
     # download files from server -----------------------------------------------
     Map(
       function(urls, destination)
-        curl::curl_download(urls, destination, mode = "wb"),
+        curl::curl_download(urls, destination, mode = "wb", quiet = TRUE),
       tif_files,
       file.path(cache_dir, basename(tif_files))
     )
