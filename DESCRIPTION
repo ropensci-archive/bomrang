@@ -68,6 +68,7 @@ Suggests:
     ggthemes,
     grid,
     gridExtra,
+    pkgdown,
     maps,
     mapproj,
     rappdirs,
