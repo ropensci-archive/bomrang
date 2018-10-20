@@ -7,7 +7,7 @@
 #' radar imagery for each location, which are updated approximately every 6 to 
 #' 10 minutes by the \acronym{BOM}.
 #'
-#' @param radar_id Character.  \acronym{BOM} radar ID of interest for which a
+#' @param radar_id Character. \acronym{BOM} radar ID of interest for which a
 #' list of available images will be returned.  Defaults to all images currently
 #' available.
 #'
@@ -133,7 +133,7 @@ get_radar_imagery <- function(product_id,
   if (is.null(path)) {
     path <- tempfile(fileext = ".gif", tmpdir = tempdir())
   }
-  
+  tryCatch({
   if (download_only == TRUE) {
     curl::curl_download(url = fp, destfile = path, mode = "wb", quiet = TRUE) 
     message("file downloaded to:", path)
@@ -144,4 +144,10 @@ get_radar_imagery <- function(product_id,
     y[is.na(y)] <- 999
     return(y)
   }
+  },
+  error = function() {
+    y <- raster::raster("man/figures/image_error_message.gif")
+    return(y)
+  }
+  )
 }
