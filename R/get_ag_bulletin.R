@@ -24,9 +24,8 @@
 #' @return
 #' Tidy data frame of a Australia \acronym{BOM} agricultural bulletin
 #'  information.  For full details of fields and units returned see Appendix 3
-#'  in the
-#' \pkg{bomrang} vignette, use \cr
-#' \code{vignette("bomrang", package = "bomrang")} to view.
+#'  in the \pkg{bomrang} vignette, use \cr
+#'  \code{vignette("bomrang", package = "bomrang")} to view.
 #'
 #' @examples
 #' \donttest{
