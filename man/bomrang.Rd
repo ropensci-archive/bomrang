@@ -4,19 +4,19 @@
 \name{bomrang}
 \alias{bomrang}
 \alias{bomrang-package}
-\title{Australian Government Bureau of Meteorology (BOM) Data from R}
+\title{Australian Government Bureau of Meteorology (\acronym{BOM}) Data Client}
 \description{
-Australian Government Bureau of Meteorology (BOM) Data from R
+Australian Government Bureau of Meteorology (\acronym{BOM}) Data Client
 }
 \seealso{
 \strong{Useful links:}
 \itemize{
 \item{Development repository: \url{https://github.com/ropensci/bomrang}}
 \item{Static documentation: \url{https://ropensci.github.io/bomrang/}}
-\item{Report bugs at \url{https://github.com/ropensci/bomrang/issues}}
+\item{Report bugs: \url{https://github.com/ropensci/bomrang/issues}}
 }
 }
 \author{
-Adam H Sparks and Jonathan Carroll and  Mark Padgham and Hugh
-Parsonage and Keith Pembleton
+Adam H Sparks and Jonathan Carroll and Dean Marchiori and Mark
+Padgham and Hugh Parsonage and Keith Pembleton
 }

@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   id="svg2"
+   sodipodi:docname="bomrang-warning-image.svg"
+   viewBox="0 0 540.00003 360"
+   version="1.1"
+   inkscape:version="0.92.2 5c3e80d, 2017-08-06"
+   width="6in"
+   height="4in"
+   inkscape:export-filename="/Users/adamsparks/Development/bomrang/man/figures/image_error_message.png"
+   inkscape:export-xdpi="27.780001"
+   inkscape:export-ydpi="27.780001">
+  <title
+     id="title3652">bomrang error image</title>
+  <defs
+     id="defs4">
+    <style
+       id="style22186">.cls-1{fill:none;}.cls-2{fill:#ba6f38;}.cls-3{clip-path:url(#clip-path);}.cls-4{fill:#ed7d15;}.cls-5{opacity:0.25;fill:url(#linear-gradient);}.cls-6{fill:#ac5d12;}.cls-7{clip-path:url(#clip-path-2);}.cls-8{fill:#36a85d;}.cls-9{fill:#e6b35a;}.cls-10{fill:#fff;}.cls-11{opacity:0.94;}</style>
+    <clipPath
+       id="clip-path">
+      <polygon
+         id="polygon22189"
+         points="369.5,845 2.8,636.6 2.8,214.5 369.5,7.4 728.2,214.5 728.2,636.6 "
+         class="cls-1"
+         style="fill:none" />
+    </clipPath>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     bordercolor="#666666"
+     inkscape:pageshadow="2"
+     inkscape:window-y="0"
+     pagecolor="#ffffff"
+     inkscape:window-height="1006"
+     inkscape:window-maximized="1"
+     inkscape:zoom="0.35355339"
+     inkscape:window-x="0"
+     showgrid="false"
+     borderopacity="1.0"
+     inkscape:current-layer="layer1"
+     inkscape:cx="224.27334"
+     inkscape:cy="51.276353"
+     inkscape:window-width="1680"
+     inkscape:pageopacity="0.0"
+     inkscape:document-units="px"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     units="in" />
+  <g
+     id="layer1"
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     transform="translate(1585.1126,451.47629)">
+    <g
+       id="g7889"
+       transform="matrix(0.21169186,0,0,0.21213907,-809.05998,-317.98701)">
+      <g
+         style="fill:#78a890;fill-opacity:1"
+         transform="translate(-1874.837,-606.7263)"
+         clip-path="url(#clip-path)"
+         id="g22203"
+         class="cls-3">
+        <circle
+           id="circle22205"
+           r="442.10001"
+           cy="437.39999"
+           cx="365.5"
+           class="cls-4"
+           style="fill:#78a890;fill-opacity:1" />
+        <ellipse
+           id="ellipse22207"
+           ry="234.60001"
+           rx="315.20001"
+           cy="105.8"
+           cx="366.89999"
+           class="cls-5"
+           style="opacity:0.25;fill:#78a890;fill-opacity:1" />
+      </g>
+      <path
+         id="path22209"
+         d="m -1169.237,-410.5263 -277.8,-160.4 -60.3,-34.8 -60.3,34.8 -277.8,160.4 -29.3,16.9 v 424.3 l 29.3,16.9 281.2,162.4 56.9,32.8 56.9,-32.8 281.2,-162.4 29.3,-16.9 v -424.3 z m 0,425.3 -338.1,195.2 -338.1,-195.2 v -390.5 l 338.1,-195.2 v 0 l 338.1,195.2 z"
+         class="cls-6"
+         inkscape:connector-curvature="0"
+         style="fill:#a89000;fill-opacity:1" />
+      <path
+         id="path22217"
+         d="m -1547.837,41.1737 0.9,-0.9 h -0.3 z"
+         class="cls-9"
+         inkscape:connector-curvature="0"
+         style="fill:#e6b35a" />
+      <path
+         inkscape:connector-curvature="0"
+         d="m -1702.3625,-430.39512 c 466.1423,-64.97373 478.2117,172.32738 418.3814,464.983087 -12.2814,73.613203 -69.5749,77.629153 -58.7543,22.671459 57.6311,-303.638066 -75.5787,-443.844706 -384.5615,-437.981626 -58.3775,6.38304 -54.1294,-38.31241 24.9344,-49.67292 z"
+         style="fill:#004878;fill-opacity:1;stroke-width:1.48437512"
+         sodipodi:nodetypes="ccccc"
+         id="path4149" />
+      <text
+         inkscape:transform-center-y="-7.1059813"
+         inkscape:transform-center-x="-16.079462"
+         transform="rotate(0.7346563)"
+         id="text4366"
+         y="25.779596"
+         x="-1798.0829"
+         style="font-style:normal;font-weight:normal;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#481800;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:100px;line-height:1.25;font-family:'Fira Code';-inkscape-font-specification:'Fira Code'"
+           y="25.779596"
+           x="-1798.0829"
+           id="tspan4368"
+           sodipodi:role="line">bomrang</tspan></text>
+    </g>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:37.5px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.93750006"
+       x="-1577.1576"
+       y="-404.82602"
+       id="text835"><tspan
+         sodipodi:role="line"
+         id="tspan833"
+         x="-1577.1576"
+         y="-404.82602"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, ';stroke-width:0.93750006"><tspan
+   style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:condensed;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed,  Bold Condensed'"
+   id="tspan845">Error:</tspan> bomrang failed</tspan><tspan
+         sodipodi:role="line"
+         x="-1577.1576"
+         y="-356.64771"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, ';stroke-width:0.93750006"
+         id="tspan837">to retrieve data. This</tspan><tspan
+         sodipodi:role="line"
+         x="-1577.1576"
+         y="-308.46939"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, ';stroke-width:0.93750006"
+         id="tspan839">may be intermittent.</tspan><tspan
+         sodipodi:role="line"
+         x="-1577.1576"
+         y="-261.59439"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, ';stroke-width:0.93750006"
+         id="tspan841" /><tspan
+         sodipodi:role="line"
+         x="-1577.1576"
+         y="-213.41608"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, ';stroke-width:0.93750006"
+         id="tspan843">Please try using the function</tspan><tspan
+         sodipodi:role="line"
+         x="-1577.1576"
+         y="-165.23776"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, ';stroke-width:0.93750006"
+         id="tspan868">again later. If this message is</tspan><tspan
+         sodipodi:role="line"
+         x="-1577.1576"
+         y="-117.05946"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:'Roboto Condensed';-inkscape-font-specification:'Roboto Condensed, ';stroke-width:0.93750006"
+         id="tspan870">appearing in vignette, please rebuild..</tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot872"
+       style="fill:black;fill-opacity:1;stroke:none;font-family:sans-serif;font-style:normal;font-weight:normal;font-size:40px;line-height:1.25;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion874"><rect
+           id="rect876"
+           width="308.29855"
+           height="56.568542"
+           x="22.627417"
+           y="338.74518" /></flowRegion><flowPara
+         id="flowPara878"></flowPara></flowRoot>  </g>
+  <metadata
+     id="metadata207">
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <cc:license
+           rdf:resource="http://creativecommons.org/publicdomain/zero/1.0/" />
+        <dc:publisher>
+          <cc:Agent
+             rdf:about="http://openclipart.org/">
+            <dc:title />
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>bomrang error image</dc:title>
+        <dc:date>2017-12-12</dc:date>
+        <dc:description>This file is returned by bomrang as an error message where server fails to respond with the original requested image file.</dc:description>
+        <dc:source>https://github.com/ropenscia/bomrang/tree/master/inst/vector</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Adam H Sparks</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>Australia</rdf:li>
+            <rdf:li>R</rdf:li>
+            <rdf:li>weather</rdf:li>
+            <rdf:li>BoM</rdf:li>
+            <rdf:li>Bureau of Meteorology</rdf:li>
+            <rdf:li>Error message</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+        <dc:contributor>
+          <cc:Agent>
+            <dc:title>stevepetmonkey, Nikita Prokopov</dc:title>
+          </cc:Agent>
+        </dc:contributor>
+        <dc:rights>
+          <cc:Agent>
+            <dc:title>CC0</dc:title>
+          </cc:Agent>
+        </dc:rights>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/publicdomain/zero/1.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

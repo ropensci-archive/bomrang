@@ -1,8 +1,7 @@
 
-
 #' Get BOM Daily Précis Forecast for Select Towns
 #'
-#' Fetch the BOM daily précis forecast and return a tidy data frame of the seven
+#' Fetch the \acronym{BOM} daily précis forecast and return a tidy data frame of the seven
 #' day town forecast for a specified state or territory.
 #'
 #' @param state Australian state or territory as full name or postal code.
@@ -24,13 +23,14 @@
 #'  }
 #'
 #' @return
-#' Tidy \code{\link[base]{data.frame}} of a Australia BOM précis seven day
-#' forecasts for select towns.  For full details of fields and units returned
-#' see Appendix 2 in the \pkg{bomrang} vignette, use \cr
+#' Tidy \code{\link[base]{data.frame}} of a Australia \acronym{BOM} précis seven
+#' day forecasts for select towns.  For full details of fields and units
+#' returned see Appendix 2 in the \pkg{bomrang} vignette, use \cr
 #' \code{vignette("bomrang", package = "bomrang")} to view.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
+#' # get the short forecast for Queensland
 #' BOM_forecast <- get_precis_forecast(state = "QLD")
 #'}
 #' @references
@@ -39,15 +39,16 @@
 #' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 #'
 #' Location data and other metadata for towns come from
-#' the BOM anonymous FTP server with spatial data \cr
-#' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/}, specifically the DBF
-#' file portion of a shapefile, \cr
+#' the \acronym{BOM} anonymous \acronym{FTP} server with spatial data \cr
+#' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/}, specifically the
+#' \acronym{DBF} file portion of a shapefile, \cr
 #' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com} and Keith Pembleton,
 #' \email{keith.pembleton@@usq.edu.au}
 #' @importFrom magrittr %>%
-#' @export
+#' @export get_precis_forecast
+
 get_precis_forecast <- function(state = "AUS") {
   the_state <- .check_states(state) # see internal_functions.R
 
@@ -106,8 +107,16 @@ get_precis_forecast <- function(state = "AUS") {
     start_time_local <- values <- NULL # nocov end
 
   # download the XML forecast --------------------------------------------------
+  
+  xmlforecast_file <- file.path(tempdir(), "xmlforecast")
+  
   tryCatch({
-    xmlforecast <- xml2::read_xml(xmlforecast_url)
+    curl::curl_download(xmlforecast_url,
+                        destfile = xmlforecast_file,
+                        mode = "wb",
+                        quiet = TRUE
+    )
+    xmlforecast <- xml2::read_xml(xmlforecast_file)
   },
   error = function(x)
     stop(

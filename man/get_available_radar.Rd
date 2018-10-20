@@ -7,8 +7,8 @@
 get_available_radar(radar_id = "all")
 }
 \arguments{
-\item{radar_id}{Character.  BOM radar ID of interest for which a list of
-available images will be returned.  Defaults to all images currently
+\item{radar_id}{Character. \acronym{BOM} radar ID of interest for which a
+list of available images will be returned.  Defaults to all images currently
 available.}
 }
 \value{
@@ -16,24 +16,24 @@ A data frame of all selected radar locations with location information and
 \var{product_ids}.
 }
 \description{
-Fetch a listing of available BOM radar imagery from
+Fetch a listing of available \acronym{BOM} radar imagery from
 \url{ftp://ftp.bom.gov.au/anon/gen/radar/} to determine which files are
 currently available for download.  The files available are the most recent 
 radar imagery for each location, which are updated approximately every 6 to 
-10 minutes by the BOM.
+10 minutes by the \acronym{BOM}.
 }
 \details{
-Valid BOM radar ID for each location required.
+Valid \acronym{BOM} radar ID for each location required.
 }
 \examples{
-\dontrun{
-Check availability radar imagey for Wollongong (radar_id = 3)
+\donttest{
+# Check availability radar imagey for Wollongong (radar_id = 3)
 imagery <- get_available_radar(radar_id = "3")
 }
 
 }
 \references{
-Australian Bureau of Meteorology (BOM) radar images
+Australian Bureau of Meteorology (BOM) radar images\cr
 \url{http://www.bom.gov.au/australia/radar/}
 }
 \author{

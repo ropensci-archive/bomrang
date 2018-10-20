@@ -2,16 +2,17 @@
 % Please edit documentation in R/update_station_locations.R
 \name{update_station_locations}
 \alias{update_station_locations}
-\title{Update bomrang Internal Databases with Latest BOM Station Metadata}
+\title{Update Internal Databases with Latest BOM Station Metadata}
 \usage{
 update_station_locations()
 }
 \value{
-Updated internal databases of BOM station locations and JSON URLs
+Updated internal databases of \acronym{BOM} station locations and 
+\acronym{JSON} \acronym{URL}s
 }
 \description{
-Download the latest station locations and metadata and update bomrang's
-internal databases that support the use of \code{\link{get_current_weather}}
+Download the latest station locations and metadata and update internal
+databases that support the use of \code{\link{get_current_weather}}
 \code{\link{get_ag_bulletin}} and \code{\link{get_historical}}.  There is no
 need to use this unless you know that a station exists in BOM's database
 that is not available in the databases distributed with \pkg{bomrang}. In
@@ -26,7 +27,7 @@ database without validating the state values for stations by reported lon/lat
 location.
 }
 \examples{
-\dontrun{
+\donttest{
 update_station_locations()
 }
 }

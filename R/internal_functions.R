@@ -343,7 +343,6 @@ convert_state <- function(state) {
 #' Download a BOM Data .zip File and Load into Session
 #'
 #' @param url URL of zip file to be downloaded/extracted/loaded.
-#' @importFrom utils download.file unzip read.csv
 #'
 #' @return data loaded from the zip file
 #' @keywords internal
@@ -351,7 +350,7 @@ convert_state <- function(state) {
 #' @noRd
 .get_zip_and_load <- function(url) {
   tmp <- tempfile(fileext = ".zip")
-  utils::download.file(url, tmp, mode = "wb")
+  curl::curl_download(url, tmp, mode = "wb", quiet = TRUE)
   zipped <- utils::unzip(tmp, exdir = dirname(tmp))
   unlink(tmp)
   datfile <- grep("Data.csv", zipped, value = TRUE)

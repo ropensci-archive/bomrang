@@ -12,13 +12,13 @@ Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 "AUS" returning all state bulletins, see details for further information.}
 }
 \value{
-Tidy \code{\link[base]{data.frame}} of a Australia BOM précis seven day
-forecasts for select towns.  For full details of fields and units returned
-see Appendix 2 in the \pkg{bomrang} vignette, use \cr
+Tidy \code{\link[base]{data.frame}} of a Australia \acronym{BOM} précis seven
+day forecasts for select towns.  For full details of fields and units
+returned see Appendix 2 in the \pkg{bomrang} vignette, use \cr
 \code{vignette("bomrang", package = "bomrang")} to view.
 }
 \description{
-Fetch the BOM daily précis forecast and return a tidy data frame of the seven
+Fetch the \acronym{BOM} daily précis forecast and return a tidy data frame of the seven
 day town forecast for a specified state or territory.
 }
 \details{
@@ -37,7 +37,8 @@ or all using \code{AUS}.
  }
 }
 \examples{
-\dontrun{
+\donttest{
+# get the short forecast for Queensland
 BOM_forecast <- get_precis_forecast(state = "QLD")
 }
 }
@@ -47,9 +48,9 @@ Services \cr
 \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 
 Location data and other metadata for towns come from
-the BOM anonymous FTP server with spatial data \cr
-\url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/}, specifically the DBF
-file portion of a shapefile, \cr
+the \acronym{BOM} anonymous \acronym{FTP} server with spatial data \cr
+\url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/}, specifically the
+\acronym{DBF} file portion of a shapefile, \cr
 \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 }
 \author{

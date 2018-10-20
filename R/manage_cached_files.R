@@ -29,7 +29,7 @@
 #'  nothing
 #' }
 #'
-#' @examples \dontrun{
+#' @examples \donttest{
 #'
 #' # list files in cache
 #' manage_cache$list()

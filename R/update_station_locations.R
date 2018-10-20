@@ -1,8 +1,8 @@
 
-#' Update bomrang Internal Databases with Latest BOM Station Metadata
+#' Update Internal Databases with Latest BOM Station Metadata
 #'
-#' Download the latest station locations and metadata and update bomrang's
-#' internal databases that support the use of \code{\link{get_current_weather}}
+#' Download the latest station locations and metadata and update internal
+#' databases that support the use of \code{\link{get_current_weather}}
 #' \code{\link{get_ag_bulletin}} and \code{\link{get_historical}}.  There is no
 #' need to use this unless you know that a station exists in BOM's database
 #' that is not available in the databases distributed with \pkg{bomrang}. In
@@ -16,10 +16,11 @@
 #' location.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' update_station_locations()
 #' }
-#' @return Updated internal databases of BOM station locations and JSON URLs
+#' @return Updated internal databases of \acronym{BOM} station locations and 
+#' \acronym{JSON} \acronym{URL}s
 #'
 #' @references
 #' Station location and other metadata are sourced from the Australian Bureau of
@@ -27,8 +28,8 @@
 #' \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
-#' @export
-#'
+#' @export update_station_locations
+
 update_station_locations <- function() {
 
   message(
@@ -55,7 +56,9 @@ update_station_locations <- function() {
   tryCatch({
     curl::curl_download(url =
                           "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
-                        destfile = file.path(tempdir(), "stations.zip"))
+                        destfile = file.path(tempdir(), "stations.zip"),
+                        mode = "wb",
+                        quiet = TRUE)
   },
   error = function(x)
     stop(
@@ -238,3 +241,4 @@ update_station_locations <- function() {
     system.file("extdata", "stations_site_list.rda", package = "bomrang")
   save(stations_site_list, file = fname, compress = "bzip2")
 }
+

@@ -33,7 +33,7 @@ all files. For deleting many specific files, use\cr
 }
 
 \examples{
-\dontrun{
+\donttest{
 
 # list files in cache
 manage_cache$list()

@@ -1,8 +1,8 @@
 
 #' Get BOM Agriculture Bulletin Information for Select Stations
 #'
-#' Fetch the BOM agricultural bulletin information and return it in a tidy data
-#' frame
+#' Fetch the \acronym{BOM} agricultural bulletin information and return it in a
+#' tidy data frame
 #'
 #' @param state Australian state or territory as full name or postal code.
 #' Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
@@ -22,13 +22,14 @@
 #'  }
 #'
 #' @return
-#' Tidy data frame of a Australia BOM agricultural bulletin information.  For
-#' full details of fields and units returned see Appendix 3 in the
+#' Tidy data frame of a Australia \acronym{BOM} agricultural bulletin
+#'  information.  For full details of fields and units returned see Appendix 3
+#'  in the
 #' \pkg{bomrang} vignette, use \cr
 #' \code{vignette("bomrang", package = "bomrang")} to view.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' ag_bulletin <- get_ag_bulletin(state = "QLD")
 #' }
 #'
@@ -44,11 +45,12 @@
 #' \url{http://www.bom.gov.au/climate/how/observations/rain-measure.shtml}
 #'
 #' Station location and other metadata are sourced from the Australian Bureau of
-#' Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers: \cr
+#' Meteorology (\acronym{BOM}) webpage, Bureau of Meteorology Site Numbers: \cr
 #' \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
-#' @export
+#' @export get_ag_bulletin
+
 get_ag_bulletin <- function(state = "AUS") {
   # CRAN NOTE avoidance
   stations_site_list <- NULL # nocov
@@ -109,8 +111,15 @@ get_ag_bulletin <- function(state = "AUS") {
 .parse_bulletin <- function(xmlbulletin_url, stations_site_list) {
   # download the XML bulletin --------------------------------------------------
 
+  xmlbulletin_file <- file.path(tempdir(), "xmlbulletin")
+  
   tryCatch({
-    xmlbulletin <- xml2::read_xml(xmlbulletin_url)
+    curl::curl_download(xmlbulletin_url,
+                        destfile = xmlbulletin_file,
+                        mode = "wb",
+                        quiet = TRUE
+    )
+    xmlbulletin <- xml2::read_xml(xmlbulletin_file)
   },
   error = function(x)
     stop(
@@ -133,17 +142,17 @@ get_ag_bulletin <- function(state = "AUS") {
 
   tidy_df$time.zone <- as.character(tidy_df$time.zone)
 
-  names(tidy_df)[c(1:3, 21)] <-
-    c("obs_time_local", "obs_time_utc", "time_zone", "full_name")
+  names(tidy_df)[c(1:3, 22)] <-
+    c("obs_time_local", "obs_time_utc", "time_zone", "name")
 
   refcols <- c(
       "product_id",
       "state",
       "dist",
+      "name",
       "wmo",
       "site",
       "station",
-      "full_name",
       "obs_time_local",
       "obs_time_utc",
       "time_zone",
@@ -160,6 +169,7 @@ get_ag_bulletin <- function(state = "AUS") {
       "ev",
       "tg",
       "sn",
+      "solr",
       "t5",
       "t10",
       "t20",
@@ -282,6 +292,9 @@ get_ag_bulletin <- function(state = "AUS") {
   }
   if (!"t1m" %in% colnames(out)) {
     out$t1m <- NA
+  }
+  if (!"solr" %in% colnames(out)) {
+    out$solr <- NA
   }
   return(out)
 }
