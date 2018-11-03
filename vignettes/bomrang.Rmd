@@ -561,6 +561,32 @@ r <-
   raster::plot(x, add = TRUE)
 ```
 
+# `dplyr` compatibility
+
+Some returned objects have been classed as `bomrang_tbl` which allow dispatch for 
+dplyr methods, e.g. `mutate`, `filter`, `select`, `arrange`, `slice`, `rename`, and 
+`group_by` while preserving the header information.
+
+For example:
+
+```{r}
+adlmax <- get_historical(stationid = "023000", type = "max")
+adlmax
+
+
+filter(adlmax, Month == 10)
+```
+
+The `magrittr` pipe has also been re-exported, so that too can be used 
+to chain together operations
+
+```{r}
+adlmax %>% 
+  select(Station_number, Year:Day, Max_temperature) %>% 
+  filter(Month == 10)
+```
+
+
 ## References
 
 [Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml)
