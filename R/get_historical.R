@@ -241,26 +241,23 @@ print.bomrang_tbl <- function(x, ...) {
 
 ## Preserve attributes through dplyr operations
 
-## stats::filter is too high on the search list 
 #' @export
-#' @noRd
-filter <- dplyr::filter
+dplyr::filter
 
 #' @importFrom dplyr filter
 #' @export
-#' @noRd
 filter.bomrang_tbl <- function(.data, ...) {
   attribs <- attributes(.data)[.bomrang_attribs]
-  .data <- NextMethod(.data)
+  .data <- NextMethod()
   attributes(.data) <- utils::modifyList(attributes(.data), attribs)
   .data
 }
 
-select <- dplyr::select
+#' @export
+dplyr::select
 
 #' @importFrom dplyr select
 #' @export
-#' @noRd
 select.bomrang_tbl <- function(.data, ...) {
   attribs <- attributes(.data)[.bomrang_attribs]
   .data <- NextMethod(.data)
@@ -268,11 +265,11 @@ select.bomrang_tbl <- function(.data, ...) {
   .data
 }
 
-mutate <- dplyr::mutate
+#' @export
+dplyr::mutate
 
 #' @inheritParams dplyr mutate
 #' @export
-#' @noRd
 mutate.bomrang_tbl <- function(.data, ...) {
   attribs <- attributes(.data)[.bomrang_attribs]
   .data <- NextMethod(.data)
@@ -280,11 +277,11 @@ mutate.bomrang_tbl <- function(.data, ...) {
   .data
 }
 
-rename <- dplyr::rename
+#' @export
+dplyr::rename
 
 #' @inheritParams dplyr rename
 #' @export
-#' @noRd
 rename.bomrang_tbl <- function(.data, ...) {
   attribs <- attributes(.data)[.bomrang_attribs]
   .data <- NextMethod(.data)
@@ -292,11 +289,11 @@ rename.bomrang_tbl <- function(.data, ...) {
   .data
 }
 
-arrange <- dplyr::arrange
+#' @export
+dplyr::arrange
 
 #' @inheritParams dplyr arrange
 #' @export
-#' @noRd
 arrange.bomrang_tbl <- function(.data, ...) {
   attribs <- attributes(.data)[.bomrang_attribs]
   .data <- NextMethod(.data)
@@ -304,11 +301,11 @@ arrange.bomrang_tbl <- function(.data, ...) {
   .data
 }
 
-group_by <- dplyr::group_by
+#' @export
+dplyr::group_by
 
 #' @inheritParams dplyr group_by
 #' @export
-#' @noRd
 group_by.bomrang_tbl <- function(.data, ...) {
   attribs <- attributes(.data)[.bomrang_attribs]
   .data <- NextMethod(.data)
@@ -316,11 +313,11 @@ group_by.bomrang_tbl <- function(.data, ...) {
   .data
 }
 
-slice <- dplyr::slice
+#' @export
+dplyr::slice
 
 #' @inheritParams dplyr slice
 #' @export
-#' @noRd
 slice.bomrang_tbl <- function(.data, ...) {
   attribs <- attributes(.data)[.bomrang_attribs]
   .data <- NextMethod(.data)
