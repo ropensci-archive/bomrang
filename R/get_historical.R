@@ -1,4 +1,3 @@
-
 #' Obtain Historical BOM Data
 #'
 #' Retrieves daily observations for a given station.
@@ -134,43 +133,24 @@ get_historical <-
     zipurl <- .get_zip_url(stationid, obscode)
     dat <- .get_zip_and_load(zipurl)
     
-    names(dat) <- switch(type,
-                         min = c("Product_code",
-                                 "Station_number",
-                                 "Year",
-                                 "Month",
-                                 "Day",
-                                 "Min_temperature",
-                                 "Accum_days_min",
-                                 "Quality"),
-                         max = c("Product_code",
-                                 "Station_number",
-                                 "Year",
-                                 "Month",
-                                 "Day",
-                                 "Max_temperature",
-                                 "Accum_days_max",
-                                 "Quality"),
-                         rain = c("Product_code",
-                                  "Station_number",
-                                  "Year",
-                                  "Month",
-                                  "Day",
-                                  "Rainfall",
-                                  "Period",
-                                  "Quality"),
-                         solar = c("Product_code",
-                                   "Station_number",
-                                   "Year",
-                                   "Month",
-                                   "Day",
-                                   "Solar_exposure")
-    )
-    # dat ## unnecessary
-    # if (isTRUE(meta)) {
-    #   dat <- list(ncc_list, dat)
-    #   names(dat) <- c("meta", "historical_data")
-    # }
+    names(dat) <- c("Product_code",
+                    "Station_number",
+                    "Year",
+                    "Month",
+                    "Day",
+                    switch(type,
+                           min = c("Min_temperature",
+                                   "Accum_days_min",
+                                   "Quality"),
+                           max = c("Max_temperature",
+                                   "Accum_days_max",
+                                   "Quality"),
+                           rain = c("Rainfall",
+                                    "Period",
+                                    "Quality"),
+                           solar = c("Solar_exposure")
+                    ))
+
     if (isTRUE(meta)) {
     return(structure(dat, 
                      class = union("bomrang_tbl", class(dat)),
@@ -190,137 +170,3 @@ get_historical <-
     }
   }
 
-.bomrang_attribs <- c("class", "station", "type", "origin", 
-                      "location", "lat", "lon", "start", 
-                      "end", "years", "ncc_list", "vars", "indices")
-
-#' @export
-#' @noRd
-print.bomrang_tbl <- function(x, ...) {
-  .bomrang_header(x)
-  print(data.table::as.data.table(x), ...)
-}
-
-.bomrang_header <- function(x) {
-  
-  location <- attr(x, "location") %||% "UNKNOWN"
-  station <- attr(x, "station") %||% "UNKNOWN"
-  lat <- attr(x, "lat") %||% "UNKNOWN"
-  lon <- attr(x, "lon") %||% "UNKNOWN"
-  type <- tools::toTitleCase(attr(x, "type")) %||% "UNKNOWN"
-  origin <- tools::toTitleCase(attr(x, "origin")) %||% "UNKNOWN"
-  start <- attr(x, "start") %||% "UNKNOWN"
-  end <- attr(x, "end") %||% "UNKNOWN"
-  years <- attr(x, "years") %||% "UNKNOWN"
-  vars <- attr(x, "vars") %||% "UNKNOWN"
-  indices <- attr(x, "indices") %||% "UNKNOWN"
-  
-  .stylecat("  ---- Australian Bureau of Meteorology (BOM) Data Resource ----\n")
-  .stylecat("  (Original Request Parameters)\n")
-  .stylecat("  Station:\t\t", location, " [", station, "] \n")
-  .stylecat("  Location:\t\t", "lat: ", lat, ", lon: ", lon, "\n")
-  .stylecat("  Measurement / Origin:\t", type, " / ", origin, "\n")
-  .stylecat("  Timespan:\t\t", start, " -- ", end, " [", years, " years]", "\n")
-  ## dplyr groupings
-  if (!is.null(attr(x, "vars"))) {
-    .stylecat("  Groups:\t\t", vars, paste0(" [", length(indices), "]\n"))
-  }
-  .stylecat("  ", strrep("-", 63), "  \n")
-  
-}
-
-.stylecat <- function(...) {
-  cat(
-    crayon::cyan(
-      # crayon::italic(
-        paste0(...)
-      )
-    # )
-  )
-}
-
-## Preserve attributes through dplyr operations
-
-#' @export
-dplyr::filter
-
-#' @importFrom dplyr filter
-#' @export
-filter.bomrang_tbl <- function(.data, ...) {
-  attribs <- attributes(.data)[.bomrang_attribs]
-  .data <- NextMethod()
-  attributes(.data) <- utils::modifyList(attributes(.data), attribs)
-  .data
-}
-
-#' @export
-dplyr::select
-
-#' @importFrom dplyr select
-#' @export
-select.bomrang_tbl <- function(.data, ...) {
-  attribs <- attributes(.data)[.bomrang_attribs]
-  .data <- NextMethod(.data)
-  attributes(.data) <- utils::modifyList(attributes(.data), attribs)
-  .data
-}
-
-#' @export
-dplyr::mutate
-
-#' @inheritParams dplyr mutate
-#' @export
-mutate.bomrang_tbl <- function(.data, ...) {
-  attribs <- attributes(.data)[.bomrang_attribs]
-  .data <- NextMethod(.data)
-  attributes(.data) <- utils::modifyList(attributes(.data), attribs)
-  .data
-}
-
-#' @export
-dplyr::rename
-
-#' @inheritParams dplyr rename
-#' @export
-rename.bomrang_tbl <- function(.data, ...) {
-  attribs <- attributes(.data)[.bomrang_attribs]
-  .data <- NextMethod(.data)
-  attributes(.data) <- utils::modifyList(attributes(.data), attribs)
-  .data
-}
-
-#' @export
-dplyr::arrange
-
-#' @inheritParams dplyr arrange
-#' @export
-arrange.bomrang_tbl <- function(.data, ...) {
-  attribs <- attributes(.data)[.bomrang_attribs]
-  .data <- NextMethod(.data)
-  attributes(.data) <- utils::modifyList(attributes(.data), attribs)
-  .data
-}
-
-#' @export
-dplyr::group_by
-
-#' @inheritParams dplyr group_by
-#' @export
-group_by.bomrang_tbl <- function(.data, ...) {
-  attribs <- attributes(.data)[.bomrang_attribs]
-  .data <- NextMethod(.data)
-  attributes(.data) <- utils::modifyList(attributes(.data), attribs)
-  .data
-}
-
-#' @export
-dplyr::slice
-
-#' @inheritParams dplyr slice
-#' @export
-slice.bomrang_tbl <- function(.data, ...) {
-  attribs <- attributes(.data)[.bomrang_attribs]
-  .data <- NextMethod(.data)
-  attributes(.data) <- utils::modifyList(attributes(.data), attribs)
-  .data
-}
