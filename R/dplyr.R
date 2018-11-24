@@ -1,5 +1,10 @@
 ## Preserve attributes through dplyr operations
 
+## attributes set by bomrang which should be preserved
+.bomrang_attribs <- c("class", "station", "type", "origin", 
+                      "location", "lat", "lon", "start", 
+                      "end", "years", "ncc_list", "vars", "indices")
+
 #' @export
 dplyr::filter
 
