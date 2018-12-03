@@ -358,6 +358,15 @@
   dat
 }
 
+
+#' Download BOM XML Files and Load into Session
+#'
+#' @param xml_url URL of XML file to be downloaded/parsed/loaded.
+#'
+#' @return data loaded from the XML file
+#' @keywords internal
+#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
+#' @noRd
 .get_xml <- function(xml_url) {
   tryCatch({
     xml <- curl::curl(xml_url, open = "rb")
