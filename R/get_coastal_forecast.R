@@ -91,7 +91,7 @@ get_coastal_forecast <- function(state = "AUS") {
   return(out)
 }
 
-.parse_coastal_forecast <- function(xml_object_url) {
+.parse_coastal_forecast <- function(xml_url) {
   # CRAN note avoidance
   AAC_codes <- marine_AAC_codes <- attrs <- end_time_local <- # nocov start
     precipitation_range <- start_time_local <- values <- NULL # nocov end
@@ -165,9 +165,9 @@ get_coastal_forecast <- function(state = "AUS") {
     janitor::clean_names(., case = "snake")
 
   # add product ID field
-  tidy_df$product_id <- substr(basename(xml_object_url),
+  tidy_df$product_id <- substr(basename(xml_url),
                                1,
-                               nchar(basename(xml_object_url)) - 4)
+                               nchar(basename(xml_url)) - 4)
   
   # some fields only come out on special occasions, if absent, add as NA
   if (!"forecast_swell2" %in% colnames(tidy_df)) {
