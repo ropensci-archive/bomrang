@@ -200,12 +200,12 @@ get_current_weather <-
       station_nrst_latlon <-
         JSONurl_site_list %>%
         # Lat Lon are in JSON
-        .[which.min(haversine_distance(Lat, Lon, lat, lon))]
+        .[which.min(.haversine_distance(Lat, Lon, lat, lon))]
 
       if (emit_latlon_msg) {
         distance <-
           station_nrst_latlon %$%
-          haversine_distance(Lat, Lon, lat, lon) %>%
+          .haversine_distance(Lat, Lon, lat, lon) %>%
           signif(digits = 3)
 
         on.exit(
@@ -316,7 +316,7 @@ cook <- function(DT, as.DT, double_cols) {
   }
 
   for (j in which(DTnoms %chin% double_cols)) {
-    data.table::set(DT, j = j, value = force_double(DT[[j]]))
+    data.table::set(DT, j = j, value = .force_double(DT[[j]]))
   }
 
   if (!as.DT) {

@@ -63,7 +63,7 @@ get_coastal_forecast <- function(state = "AUS") {
   )
 
   if (the_state != "AUS") {
-    xmlforecast_url <-
+    xml_url <-
       dplyr::case_when(
         the_state == "ACT" |
           the_state == "CANBERRA" ~ paste0(ftp_base, AUS_XML[1]),
@@ -82,7 +82,7 @@ get_coastal_forecast <- function(state = "AUS") {
         the_state == "WA" |
           the_state == "WESTERN AUSTRALIA" ~ paste0(ftp_base, AUS_XML[7])
       )
-    out <- .parse_coastal_forecast(xmlforecast_url)
+    out <- .parse_coastal_forecast(xml_url)
   } else {
     file_list <- paste0(ftp_base, AUS_XML)
     out <- lapply(X = file_list, FUN = .parse_coastal_forecast)
@@ -91,29 +91,15 @@ get_coastal_forecast <- function(state = "AUS") {
   return(out)
 }
 
-.parse_coastal_forecast <- function(xmlforecast_url) {
+.parse_coastal_forecast <- function(xml_object_url) {
   # CRAN note avoidance
   AAC_codes <- marine_AAC_codes <- attrs <- end_time_local <- # nocov start
     precipitation_range <- start_time_local <- values <- NULL # nocov end
 
   # download the XML forecast
-  xmlforecast_file <- file.path(tempdir(), "xmlforecast")
+  xml_object <- .get_xml(xml_url)
   
-  tryCatch({
-    curl::curl_download(xmlforecast_url,
-                        destfile = xmlforecast_file,
-                        mode = "wb",
-                        quiet = TRUE
-    )
-    xmlforecast <- xml2::read_xml(xmlforecast_file)
-  },
-  error = function(x)
-    stop(
-      "\nThe server with the forecast is not responding. ",
-      "Please retry again later.\n"
-    ))
-  
-  areas <- xml2::xml_find_all(xmlforecast, ".//*[@type='coast']")
+  areas <- xml2::xml_find_all(xml_object, ".//*[@type='coast']")
   out <- suppressWarnings(lapply(X = areas, FUN = .parse_areas))
   out <- as.data.frame(do.call("rbind", out))
   
@@ -179,9 +165,9 @@ get_coastal_forecast <- function(state = "AUS") {
     janitor::clean_names(., case = "snake")
 
   # add product ID field
-  tidy_df$product_id <- substr(basename(xmlforecast_url),
+  tidy_df$product_id <- substr(basename(xml_object_url),
                                1,
-                               nchar(basename(xmlforecast_url)) - 4)
+                               nchar(basename(xml_object_url)) - 4)
   
   # some fields only come out on special occasions, if absent, add as NA
   if (!"forecast_swell2" %in% colnames(tidy_df)) {

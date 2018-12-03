@@ -54,16 +54,16 @@
 get_ag_bulletin <- function(state = "AUS") {
   # CRAN NOTE avoidance
   stations_site_list <- NULL # nocov
-
+  
   # Load AAC code/town name list to join with final output
   load(system.file("extdata", "stations_site_list.rda", # nocov
                    package = "bomrang")) # nocov
-
+  
   the_state <- .check_states(state) # see internal_functions.R
-
+  
   # ftp server
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
-
+  
   # create vector of XML files
   AUS_XML <- c(
     "IDN65176.xml", # NSW
@@ -74,9 +74,9 @@ get_ag_bulletin <- function(state = "AUS") {
     "IDV65176.xml", # VIC
     "IDW65176.xml"  # WA
   )
-
+  
   if (the_state != "AUS") {
-    xmlbulletin_url <-
+    xml_url <-
       dplyr::case_when(
         the_state == "ACT" |
           the_state == "CANBERRA" ~ paste0(ftp_base, AUS_XML[1]),
@@ -95,7 +95,7 @@ get_ag_bulletin <- function(state = "AUS") {
         the_state == "WA" |
           the_state == "WESTERN AUSTRALIA" ~ paste0(ftp_base, AUS_XML[7])
       )
-    out <- .parse_bulletin(xmlbulletin_url, stations_site_list)
+    out <- .parse_bulletin(xml_url, stations_site_list)
   } else {
     file_list <- paste0(ftp_base, AUS_XML)
     out <-
@@ -108,83 +108,68 @@ get_ag_bulletin <- function(state = "AUS") {
 }
 
 #' @noRd
-.parse_bulletin <- function(xmlbulletin_url, stations_site_list) {
-  # download the XML bulletin --------------------------------------------------
-
-  xmlbulletin_file <- file.path(tempdir(), "xmlbulletin")
+.parse_bulletin <- function(xml_url, stations_site_list) {
   
-  tryCatch({
-    curl::curl_download(xmlbulletin_url,
-                        destfile = xmlbulletin_file,
-                        mode = "wb",
-                        quiet = TRUE
-    )
-    xmlbulletin <- xml2::read_xml(xmlbulletin_file)
-  },
-  error = function(x)
-    stop(
-      "\nThe server with the bulletin files is not responding. ",
-      "Please retry again later.\n"
-    ))
-
-  obs <- xml2::xml_find_all(xmlbulletin, "//obs")
-
+  xml_object <- .get_xml(xml_url)
+  
+  obs <- xml2::xml_find_all(xml_object, "//obs")
+  
   # create the tidy dataframe --------------------------------------------------
   tidy_df <- lapply(X = obs, FUN = .get_obs)
   tidy_df <- do.call("rbind", tidy_df)
-  tidy_df$product_id <- substr(basename(xmlbulletin_url),
+  tidy_df$product_id <- substr(basename(xml_url),
                                1,
-                               nchar(basename(xmlbulletin_url)) - 4)
-
+                               nchar(basename(xml_url)) - 4)
+  
   tidy_df <- dplyr::left_join(tidy_df,
                               stations_site_list,
                               by = c("site" = "site"))
-
+  
   tidy_df$time.zone <- as.character(tidy_df$time.zone)
-
+  
   names(tidy_df)[c(1:3, 22)] <-
     c("obs_time_local", "obs_time_utc", "time_zone", "name")
-
+  
   refcols <- c(
-      "product_id",
-      "state",
-      "dist",
-      "name",
-      "wmo",
-      "site",
-      "station",
-      "obs_time_local",
-      "obs_time_utc",
-      "time_zone",
-      "lat",
-      "lon",
-      "elev",
-      "bar_ht",
-      "start",
-      "end",
-      "r",
-      "tn",
-      "tx",
-      "twd",
-      "ev",
-      "tg",
-      "sn",
-      "solr",
-      "t5",
-      "t10",
-      "t20",
-      "t50",
-      "t1m",
-      "wr"
-      )
-
+    "product_id",
+    "state",
+    "dist",
+    "name",
+    "wmo",
+    "site",
+    "station",
+    "obs_time_local",
+    "obs_time_utc",
+    "time_zone",
+    "lat",
+    "lon",
+    "elev",
+    "bar_ht",
+    "start",
+    "end",
+    "r",
+    "tn",
+    "tx",
+    "twd",
+    "ev",
+    "tg",
+    "sn",
+    "solr",
+    "t5",
+    "t10",
+    "t20",
+    "t50",
+    "t1m",
+    "wr"
+  )
+  
   tidy_df <- tidy_df[c(refcols, setdiff(names(tidy_df), refcols))]
-
+  
   # convert dates to POSIXct -------------------------------------------------
   tidy_df[, c("obs_time_local", "obs_time_utc")] <-
     lapply(tidy_df[, c("obs_time_local", "obs_time_utc")], function(x)
       as.POSIXct(x, origin = "1970-1-1", format = "%Y-%m-%d %H:%M:%OS"))
-
+  
   # return from main function
   return(tidy_df)
 }
@@ -192,16 +177,16 @@ get_ag_bulletin <- function(state = "AUS") {
 # get the data from observations -----------------------------------------------
 .get_obs <- function(x) {
   d <- xml2::xml_children(x)
-
+  
   # location/site information
   location <- unlist(t(as.data.frame(xml2::xml_attrs(x))))
-
+  
   # actual weather related data
   value <- unlist(as.character(xml2::xml_contents(d)))
   value[value == "Tce"] <- 0.01
   value <- as.numeric(value)
   attrs <- unlist(as.character(xml2::xml_attrs(d)))
-
+  
   # in some cases a station reports nothing
   if (length(value) == 0) {
     value <- NA
@@ -209,19 +194,19 @@ get_ag_bulletin <- function(state = "AUS") {
   if (length(attrs) == 0) {
     attrs <- NA
   }
-
+  
   # if there are no observations, keep a single row for the station ID
   if (length(value) > 1) {
     location <-
       trimws(location[rep(seq_len(nrow(location)), each = length(value)), ])
   }
-
+  
   # if there is only one observation this step means that a data frame is
   # created, otherwise from here the function breaks
   if (is.null(nrow(location))) {
     location <- data.frame(t(location))
   }
-
+  
   # put everything back together into a data frame ---------------------------
   row.names(location) <- NULL
   out <- data.frame(location, attrs, value)
@@ -230,12 +215,12 @@ get_ag_bulletin <- function(state = "AUS") {
   out$site <- as.character(out$site)
   out$station <- as.character(out$station)
   out$value <- as.numeric(as.character(out$value))
-
+  
   # convert dates to POSIXct -------------------------------------------------
   out[, c("obs.time.local", "obs.time.utc")] <-
     apply(out[, c("obs.time.local", "obs.time.utc")], 2, function(x)
       chartr("T", " ", x))
-
+  
   out[, "obs.time.local"] <- as.POSIXct(out[, "obs.time.local"],
                                         origin = "1970-1-1",
                                         format = "%Y%m%d %H%M",
@@ -244,12 +229,12 @@ get_ag_bulletin <- function(state = "AUS") {
                                       origin = "1970-1-1",
                                       format = "%Y%m%d %H%M",
                                       tz = "GMT")
-
+  
   # spread from long to wide
   out <- tidyr::spread(data = out,
                        key = attrs,
                        value = value)
-
+  
   # some stations don't report all values, insert/remove as necessary --------
   if ("<NA>" %in% colnames(out)) {
     out$`<NA>` <- NULL

@@ -4,21 +4,21 @@
   match(x, table, nomatch = 0L) == 0L
 }
 
-force_double <- function(v) {
+.force_double <- function(v) {
   suppressWarnings(as.double(v))
 }
 
 # Distance over a great circle. Reasonable approximation.
-haversine_distance <- function(lat1, lon1, lat2, lon2) {
+.haversine_distance <- function(lat1, lon1, lat2, lon2) {
   # to radians
   lat1 <- lat1 * pi / 180
   lat2 <- lat2 * pi / 180
   lon1 <- lon1 * pi / 180
   lon2 <- lon2 * pi / 180
-
+  
   delta_lat <- abs(lat1 - lat2)
   delta_lon <- abs(lon1 - lon2)
-
+  
   # radius of earth
   6371 * 2 * asin(sqrt(`+`(
     (sin(delta_lat / 2)) ^ 2,
@@ -67,7 +67,7 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
     "AUS",
     "Oz"
   )
-
+  
   if (state %in% states) {
     the_state <- toupper(state)
     return(the_state)
@@ -75,7 +75,7 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
     likely_states <- agrep(pattern = state,
                            x = states,
                            value = TRUE)
-
+    
     if (length(likely_states) == 1) {
       the_state <- toupper(likely_states)
       message(
@@ -94,7 +94,7 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
       )
     }
   }
-
+  
   if (length(likely_states) > 1) {
     message(
       "Multiple states match state.",
@@ -113,11 +113,11 @@ haversine_distance <- function(lat1, lon1, lat2, lon2) {
 #'
 #' Convert state to standard abbreviation
 #' @noRd
-convert_state <- function(state) {
+.convert_state <- function(state) {
   state <- gsub(" ", "", state)
   state <-
     substring(gsub("[[:punct:]]", "", tolower(state)), 1, 2)
-
+  
   state_code <- c(
     "NSW",
     "NSW",
@@ -159,10 +159,10 @@ convert_state <- function(state) {
     "nt"
   )
   state <- state_code[pmatch(state, state_names)]
-
+  
   if (any(is.na(state)))
     stop("Unable to determine state")
-
+  
   return(state)
 }
 
@@ -175,13 +175,12 @@ convert_state <- function(state) {
 #' @author Adam H Sparks, \email{adamhspark@@s@gmail.com}
 #' @noRd
 
-# get the data from areas --------------------------------------------------
 .parse_areas <- function(x) {
   aac <- as.character(xml2::xml_attr(x, "aac"))
-
+  
   # get xml children for the forecast (there are seven of these for each area)
   forecast_periods <- xml2::xml_children(x)
-
+  
   sub_out <-
     lapply(X = forecast_periods, FUN = .extract_values)
   sub_out <- do.call(rbind, sub_out)
@@ -202,11 +201,11 @@ convert_state <- function(state) {
   values <- xml2::xml_children(y)
   attrs <- unlist(as.character(xml2::xml_attrs(values)))
   values <- unlist(as.character(xml2::xml_contents(values)))
-
+  
   time_period <- unlist(t(as.data.frame(xml2::xml_attrs(y))))
   time_period <-
     time_period[rep(seq_len(nrow(time_period)), each = length(attrs)), ]
-
+  
   sub_out <- cbind(time_period, attrs, values)
   row.names(sub_out) <- NULL
   return(sub_out)
@@ -248,7 +247,7 @@ convert_state <- function(state) {
     ncc_obs_code <- substr(weather[i],
                            nchar(weather[i]) - 6,
                            nchar(weather[i]) - 4)
-
+    
     ncc <-
       readr::read_table(
         weather[i],
@@ -357,4 +356,17 @@ convert_state <- function(state) {
   message("Data saved as ", datfile)
   dat <- utils::read.csv(datfile, header = TRUE)
   dat
+}
+
+.get_xml <- function(xml_url) {
+  tryCatch({
+    xml <- curl::curl(xml_url, open = "rb")
+    on.exit(close(xml))
+    xml_object <- xml2::read_xml(xml)
+  },
+  error = function(x)
+    stop(
+      "\nThe server with the files is not responding. ",
+      "Please retry again later.\n"
+    ))
 }
