@@ -202,13 +202,34 @@ get_precis_forecast <- function(state = "AUS") {
     lapply(out[, seq_len(ncol(out))], as.character)
   
   # convert dates to POSIXct format
-  out[, c(3:4, 6:7)] <- lapply(out[, c(3:4, 6:7)],
-                               function(x)
-                                 as.POSIXct(x, origin = "1970-1-1",
-                                            format = "%Y-%m-%d %H:%M:%OS"))
+  out[, c("start_time_local",
+          "end_time_local",
+          "start_time_utc",
+          "end_time_utc")] <- lapply(out[, c("start_time_local",
+                                             "end_time_local",
+                                             "start_time_utc",
+                                             "end_time_utc")],
+                                     function(x)
+                                       as.POSIXct(x,
+                                                  origin = "1970-1-1",
+                                                  format = "%Y-%m-%d %H:%M:%OS")
+                                     )
   
   # convert numeric values to numeric
-  out[, c(8:11, 13)] <- lapply(out[, 8:11, 13], as.numeric)
+  out[, c(
+    "type_air_temperature_maximum_units_celsius",
+    "type_air_temperature_minimum_units_celsius",
+    "lower_precipitation_limit",
+    "upper_precipitation_limit",
+    "probability_of_precipitation"
+  )] <- lapply(out[, c(
+    "type_air_temperature_maximum_units_celsius",
+    "type_air_temperature_minimum_units_celsius",
+    "lower_precipitation_limit",
+    "upper_precipitation_limit",
+    "probability_of_precipitation"
+  )],
+  as.numeric)
   
   # Load AAC code/town name list to join with final output
   load(system.file("extdata", "AAC_codes.rda", package = "bomrang"))  # nocov
