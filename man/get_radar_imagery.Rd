@@ -15,7 +15,7 @@ file is saved. If not provided, the default value \code{NULL} is used which
 saves the file in a temp directory.}
 
 \item{download_only}{Logical. Whether the radar image is loaded into the
-environment as a \code{\link[raster]{raster}} layer, or just downloded.}
+environment as a \code{\link[raster]{raster}} layer, or just downloaded.}
 }
 \value{
 A raster layer based on the most recent `.gif' radar image snapshot published
