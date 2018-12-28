@@ -70,7 +70,7 @@ Meta
   [report any issues or bugs](https://github.com/ropensci/bomrang/issues).
 
 -   License:
-    - All code is licenced MIT
+    - All code is licensed MIT
 
     - All data is copyright Australia Bureau of Meteorology, BOM Copyright
     Notice <br /><http://reg.bom.gov.au/other/copyright.shtml>

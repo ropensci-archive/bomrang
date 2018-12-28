@@ -86,7 +86,7 @@ get_available_radar <- function(radar_id = "all") {
 #' saves the file in a temp directory.
 #' 
 #' @param download_only Logical. Whether the radar image is loaded into the
-#' environment as a \code{\link[raster]{raster}} layer, or just downloded.
+#' environment as a \code{\link[raster]{raster}} layer, or just downloaded.
 #'
 #' @details Valid \acronym{BOM} Radar Product IDs for radar imagery can be
 #' obtained from \code{\link{get_available_radar}}.

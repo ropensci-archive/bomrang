@@ -57,6 +57,7 @@ Imports:
     utils,
     xml2 (>= 1.1.1)
 Encoding: UTF-8
+Language: en_AU
 LazyData: true
 Suggests:
     ASGS.foyer,
