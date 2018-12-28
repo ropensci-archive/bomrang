@@ -15,6 +15,8 @@ newer implementation of the same protocols
 
 - Replaces `\dontrun{}` with `\donttest{}` for examples in documentation
 
+- Spellcheck package and correct spelling where necessary
+
 # bomrang 0.4.0
 
 ## Bug fixes
