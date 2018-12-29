@@ -16,7 +16,7 @@
 #' location.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' update_station_locations()
 #' }
 #' @return Updated internal databases of \acronym{BOM} station locations and 
