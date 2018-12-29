@@ -11,7 +11,7 @@
 #' purposes, users are discouraged from using this function.
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
 #' update_forecast_towns()
 #' }
 #' @return Updated database of \acronym{BOM} précis forecast towns
