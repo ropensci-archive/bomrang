@@ -27,7 +27,7 @@ database without validating the state values for stations by reported lon/lat
 location.
 }
 \examples{
-\donttest{
+\dontrun{
 update_station_locations()
 }
 }

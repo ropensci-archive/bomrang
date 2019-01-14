@@ -33,9 +33,14 @@ all files. For deleting many specific files, use\cr
 }
 
 \examples{
-\donttest{
+\dontrun{
 
 # list files in cache
+
+imagery <- get_satellite_imagery(product_id = "IDE00425",
+                                 scans = 1,
+                                 cache = TRUE)
+
 manage_cache$list()
 
 # delete certain database files
