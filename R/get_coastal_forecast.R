@@ -1,7 +1,8 @@
+
 #' Get BOM Coastal Waters Forecast
 #'
-#' Fetch the BOM daily Coastal Waters Forecast and return a tidy data frame of
-#' the forecast regions for a specified state or region.
+#' Fetch the \acronym{BOM} daily Coastal Waters Forecast and return a tidy data
+#' frame of the forecast regions for a specified state or region.
 #'
 #' @param state Australian state or territory as full name or postal code.
 #' Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
@@ -22,11 +23,11 @@
 #'  }
 #'
 #' @return
-#' Tidy \code{\link[base]{data.frame}} of a Australia BOM Coastal Waters
-#' Forecast.
+#' Tidy \code{\link[base]{data.frame}} of a Australia \acronym{BOM} Coastal
+#' Waters Forecast.
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' coastal_forecast <- get_coastal_forecast(state = "NSW")
 #'}
 #' @references
@@ -34,15 +35,16 @@
 #' Services \cr
 #' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 #'
-#' Location data and other metadata come from
-#' the BOM anonymous FTP server with spatial data \cr
-#' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/}, specifically the DBF
-#' file portion of a shapefile, \cr
+#' Location data and other metadata come from the \acronym{BOM} anonymous
+#' \acronym{FTP} server with spatial data \cr
+#' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/}, specifically the
+#' \acronym{DBF} file portion of a shapefile, \cr
 #' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00003.dbf}
 #'
 #' @author Dean Marchiori, \email{deanmarchiori@@gmail.com}
 #' @importFrom magrittr %>%
-#' @export
+#' @export get_coastal_forecast
+
 get_coastal_forecast <- function(state = "AUS") {
   the_state <- .check_states(state) # see internal_functions.R
 
@@ -61,7 +63,7 @@ get_coastal_forecast <- function(state = "AUS") {
   )
 
   if (the_state != "AUS") {
-    xmlforecast_url <-
+    xml_url <-
       dplyr::case_when(
         the_state == "ACT" |
           the_state == "CANBERRA" ~ paste0(ftp_base, AUS_XML[1]),
@@ -80,7 +82,7 @@ get_coastal_forecast <- function(state = "AUS") {
         the_state == "WA" |
           the_state == "WESTERN AUSTRALIA" ~ paste0(ftp_base, AUS_XML[7])
       )
-    out <- .parse_coastal_forecast(xmlforecast_url)
+    out <- .parse_coastal_forecast(xml_url)
   } else {
     file_list <- paste0(ftp_base, AUS_XML)
     out <- lapply(X = file_list, FUN = .parse_coastal_forecast)
@@ -89,27 +91,20 @@ get_coastal_forecast <- function(state = "AUS") {
   return(out)
 }
 
-.parse_coastal_forecast <- function(xmlforecast_url) {
+.parse_coastal_forecast <- function(xml_url) {
   # CRAN note avoidance
   AAC_codes <- marine_AAC_codes <- attrs <- end_time_local <- # nocov start
     precipitation_range <- start_time_local <- values <- NULL # nocov end
 
   # download the XML forecast
-  tryCatch({
-    xmlforecast <- xml2::read_xml(xmlforecast_url)
-  },
-  error = function(x)
-    stop(
-      "\nThe server with the forecast is not responding. ",
-      "Please retry again later.\n"
-    ))
-
-  areas <- xml2::xml_find_all(xmlforecast, ".//*[@type='coast']")
+  xml_object <- .get_xml(xml_url)
+  
+  areas <- xml2::xml_find_all(xml_object, ".//*[@type='coast']")
   out <- suppressWarnings(lapply(X = areas, FUN = .parse_areas))
   out <- as.data.frame(do.call("rbind", out))
-
+  
   out <- tidyr::spread(out, key = attrs, value = values)
-
+  
   out <- out %>%
     janitor::clean_names(., case = "snake") %>%
     janitor::remove_empty("cols")
@@ -170,20 +165,20 @@ get_coastal_forecast <- function(state = "AUS") {
     janitor::clean_names(., case = "snake")
 
   # add product ID field
-  tidy_df$product_id <- substr(basename(xmlforecast_url),
+  tidy_df$product_id <- substr(basename(xml_url),
                                1,
-                               nchar(basename(xmlforecast_url)) - 4)
+                               nchar(basename(xml_url)) - 4)
   
   # some fields only come out on special occasions, if absent, add as NA
-  if(!"forecast_swell2" %in% colnames(tidy_df)) {
+  if (!"forecast_swell2" %in% colnames(tidy_df)) {
     tidy_df$forecast_swell2 <- NA
   }
   
-  if(!"forecast_caution" %in% colnames(tidy_df)) {
+  if (!"forecast_caution" %in% colnames(tidy_df)) {
     tidy_df$forecast_caution <- NA
   }
   
-  if(!"marine_forecast" %in% colnames(tidy_df)) {
+  if (!"marine_forecast" %in% colnames(tidy_df)) {
     tidy_df$marine_forecast <- NA
   }
 

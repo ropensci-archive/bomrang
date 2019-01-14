@@ -1,6 +1,6 @@
 Package: bomrang
 Type: Package
-Title: Australian Government Bureau of Meteorology (BOM) Data from R
+Title: Australian Government Bureau of Meteorology ('BOM') Data Client
 Version: 0.4.0.9000
 Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     email = "adamhsparks@gmail.com",
@@ -26,12 +26,12 @@ Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     email = "brooke.anderson@colostate.edu",
     comment = c(ORCID = "0000-0002-5012-9035")))
 Description: Provides functions to interface with Australian Government Bureau
-    of Meteorology (BOM) data, fetching data and returning a tidy data frame of
-    précis forecasts, historical and current weather data from stations,
-    agriculture bulletin data, BOM 0900 or 1500 weather bulletins and
-    downloading and importing radar and satellite imagery files. Data (c)
+    of Meteorology ('BOM') data, fetching data and returning a tidy data frame
+    of précis forecasts, historical and current weather data from stations,
+    agriculture bulletin data, 'BOM' 0900 or 1500 weather bulletins and
+    downloading and importing radar and satellite imagery files.  Data (c)
     Australian Government Bureau of Meteorology Creative Commons (CC)
-    Attribution 3.0 licence or Public Access Licence (PAL) as appropriate. See
+    Attribution 3.0 licence or Public Access Licence (PAL) as appropriate.  See
     <http://www.bom.gov.au/other/copyright.shtml> for further details.
 URL: https://github.com/ropensci/bomrang, https://ropensci.github.io/bomrang/
 BugReports: https://github.com/ropensci/bomrang/issues
@@ -68,11 +68,11 @@ Suggests:
     ggthemes,
     grid,
     gridExtra,
+    pkgdown,
     maps,
     mapproj,
     rappdirs,
-    roxygen2 (>= 6.1.0),
-    crayon
+    roxygen2 (>= 6.1.0)
 RoxygenNote: 6.1.1
 NeedsCompilation: no
 ByteCompile: TRUE

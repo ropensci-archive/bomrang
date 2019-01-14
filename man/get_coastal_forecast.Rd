@@ -12,12 +12,12 @@ Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 "AUS" returning all state forecasts, see details for further information.}
 }
 \value{
-Tidy \code{\link[base]{data.frame}} of a Australia BOM Coastal Waters
-Forecast.
+Tidy \code{\link[base]{data.frame}} of a Australia \acronym{BOM} Coastal
+Waters Forecast.
 }
 \description{
-Fetch the BOM daily Coastal Waters Forecast and return a tidy data frame of
-the forecast regions for a specified state or region.
+Fetch the \acronym{BOM} daily Coastal Waters Forecast and return a tidy data
+frame of the forecast regions for a specified state or region.
 }
 \details{
 Allowed state and territory postal codes, only one state per request
@@ -35,7 +35,7 @@ or all using \code{AUS}.
  }
 }
 \examples{
-\dontrun{
+\donttest{
 coastal_forecast <- get_coastal_forecast(state = "NSW")
 }
 }
@@ -44,10 +44,10 @@ Forecast data come from Australian Bureau of Meteorology (BOM) Weather Data
 Services \cr
 \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 
-Location data and other metadata come from
-the BOM anonymous FTP server with spatial data \cr
-\url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/}, specifically the DBF
-file portion of a shapefile, \cr
+Location data and other metadata come from the \acronym{BOM} anonymous
+\acronym{FTP} server with spatial data \cr
+\url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/}, specifically the
+\acronym{DBF} file portion of a shapefile, \cr
 \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00003.dbf}
 }
 \author{

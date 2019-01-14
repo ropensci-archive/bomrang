@@ -7,15 +7,15 @@
 get_available_imagery(product_id = "all")
 }
 \arguments{
-\item{product_id}{Character.  BOM product ID of interest for which a list of
-available images will be returned.  Defaults to all images currently
-available.}
+\item{product_id}{Character.  \acronym{BOM} product ID of interest for which
+a list of available images will be returned.  Defaults to all images
+currently available.}
 }
 \value{
 A vector of all available files for the requested Product ID(s).
 }
 \description{
-Fetch a listing of BOM GeoTIFF satellite imagery from
+Fetch a listing of \acronym{BOM} GeoTIFF satellite imagery from
 \url{ftp://ftp.bom.gov.au/anon/gen/gms/} to determine which files are
 currently available for download.  Files are available at ten minute update
 frequency with a 24 hour delete time.  Useful to know the most recent files
@@ -23,7 +23,7 @@ available and then specify in the \code{\link{get_satellite_imagery}}
 function.
 }
 \details{
-Valid BOM satellite Product IDs for GeoTIFF files include:
+Valid \acronym{BOM} satellite Product IDs for GeoTIFF files include:
 \describe{
 \item{IDE00420}{AHI cloud cover only 2km FD GEOS GIS}
 \item{IDE00421}{AHI IR (Ch13) greyscale 2km FD GEOS GIS}
@@ -47,15 +47,15 @@ equirect. GIS}
 }
 }
 \examples{
-\dontrun{
-Check availability of AHI VIS (true colour) / IR (Ch13 greyscale) composite
-1km FD GEOS GIS images
+\donttest{
+# Check availability of AHI VIS (true colour) / IR (Ch13 greyscale) composite
+# 1km FD GEOS GIS images
 imagery <- get_available_imagery(product_id = "IDE00425")
 }
 
 }
 \references{
-Australian Bureau of Meteorology (BOM) High-definition satellite images
+Australian Bureau of Meteorology (BOM) high-definition satellite images
 \url{http://www.bom.gov.au/australia/satellite/index.shtml}
 }
 \author{

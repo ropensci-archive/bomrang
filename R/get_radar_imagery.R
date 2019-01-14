@@ -1,35 +1,36 @@
 
 #' Get a Listing of Available BOM Radar Imagery
 #'
-#' Fetch a listing of available BOM radar imagery from
+#' Fetch a listing of available \acronym{BOM} radar imagery from
 #' \url{ftp://ftp.bom.gov.au/anon/gen/radar/} to determine which files are
 #' currently available for download.  The files available are the most recent 
 #' radar imagery for each location, which are updated approximately every 6 to 
-#' 10 minutes by the BOM. 
+#' 10 minutes by the \acronym{BOM}.
 #'
-#' @param radar_id Character.  BOM radar ID of interest for which a list of
-#' available images will be returned.  Defaults to all images currently
+#' @param radar_id Character. \acronym{BOM} radar ID of interest for which a
+#' list of available images will be returned.  Defaults to all images currently
 #' available.
 #'
-#' @details Valid BOM radar ID for each location required.  
+#' @details Valid \acronym{BOM} radar ID for each location required.
 #'
 #' @return
 #' A data frame of all selected radar locations with location information and
 #' \var{product_ids}.
 #'
 #' @references
-#' Australian Bureau of Meteorology (BOM) radar images
+#' Australian Bureau of Meteorology (BOM) radar images\cr
 #' \url{http://www.bom.gov.au/australia/radar/}
 #'
 #' @examples
-#' \dontrun{
-#' Check availability radar imagey for Wollongong (radar_id = 3)
+#' \donttest{
+#' # Check availability radar imagey for Wollongong (radar_id = 3)
 #' imagery <- get_available_radar(radar_id = "3")
 #' }
 #'
 #' @author Dean Marchiori, \email{deanmarchiori@@gmail.com}
 #'
-#' @export
+#' @export get_available_radar
+
 get_available_radar <- function(radar_id = "all") {
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/radar/"
   radar_locations <- NULL #nocov
@@ -68,53 +69,54 @@ get_available_radar <- function(radar_id = "all") {
   return(dat)
 }
 
-#' Get BOM Radar Imagery
+#' Get \acronym{BOM} Radar Imagery
 #'
-#' Fetch BOM radar imagery from
-#' \url{ftp://ftp.bom.gov.au/anon/gen/radar/} and return a raster
-#' \code{\link[raster]{raster}} object. Files available are the most recent 
-#' radar snapshot which are updated approximately every 6 to 10 minutes. 
+#' Fetch \acronym{BOM} radar imagery from
+#' \url{ftp://ftp.bom.gov.au/anon/gen/radar/} and return a
+#' \code{\link[raster]{raster}} layer object.  Files available are the most
+#' recent radar snapshot which are updated approximately every 6 to 10 minutes. 
 #' Suggested to check file availability first by using
 #' \code{\link{get_available_radar}}.
 #'
-#' @param product_id Character.  BOM product ID to download and import as a 
-#' \code{\link[raster]{raster}} object. Value is required.  
+#' @param product_id Character.  \acronym{BOM} product ID to download and import
+#' as a  \code{\link[raster]{raster}} object. Value is required.
 #' 
 #' @param path Character. A character string with the name where the downloaded 
-#' file is saved. If not provided, the default value NULL is used which saves
-#' the file in a temp directory.  
+#' file is saved. If not provided, the default value \code{NULL} is used which
+#' saves the file in a temp directory.
 #' 
 #' @param download_only Logical. Whether the radar image is loaded into the
-#' environment as a \code{\link[raster]{raster}} layer, or just downloded.  
+#' environment as a \code{\link[raster]{raster}} layer, or just downloaded.
 #'
-#' @details Valid BOM Radar Product IDs for radar imagery can be obtained
-#' from \code{\link{get_available_radar}}.
+#' @details Valid \acronym{BOM} Radar Product IDs for radar imagery can be
+#' obtained from \code{\link{get_available_radar}}.
 #'
 #'@seealso
 #'\code{\link{get_available_radar}}
 #'
-#' @return
-#' A raster layer based on the most recent `.gif` radar image snapshot published
-#' by the BOM. If \code{download_only = TRUE} there will be a NULL return value
-#' with the download path printed in the console as a message.  
+#' @return 
+#' A raster layer based on the most recent `.gif' radar image snapshot published
+#' by the \acronym{BOM}. If \code{download_only = TRUE} there will be a `NULL`
+#' return value with the download path printed in the console as a message.
 #'
 #' @references
-#' Australian Bureau of Meteorology (BOM) radar images
+#' Australian Bureau of Meteorology (BOM) radar images\cr
 #' \url{http://www.bom.gov.au/australia/radar/}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Fetch most recent radar image for Wollongong 256km radar
-#' imagery <- get_radar_imagery(product_id = "IDR032")  
-#' raster::plot(imagery)  
+#' library(raster)
+#' imagery <- get_radar_imagery(product_id = "IDR032")
+#' plot(imagery)
 #' 
-#' # Save imagery to a local path  
-#' imagery <- get_radar_imagery(product_id = "IDR032", path = 'image.gif') 
-#'
+#' # Save imagery to a local path
+#' imagery <- get_radar_imagery(product_id = "IDR032", path = "image.gif") 
 #' }
 #' 
 #' @author Dean Marchiori, \email{deanmarchiori@@gmail.com}
-#' @export
+#' @export get_radar_imagery
+
 get_radar_imagery <- function(product_id, 
                               path = NULL, 
                               download_only = FALSE) {
@@ -131,15 +133,21 @@ get_radar_imagery <- function(product_id,
   if (is.null(path)) {
     path <- tempfile(fileext = ".gif", tmpdir = tempdir())
   }
-  
+  tryCatch({
   if (download_only == TRUE) {
-    download.file(url = fp, destfile = path, mode = "wb") 
-    message(paste("file downloaded to:", path))
+    curl::curl_download(url = fp, destfile = path, mode = "wb", quiet = TRUE) 
+    message("file downloaded to:", path)
   } else {
-    download.file(url = fp, destfile = path, mode = "wb") 
-    message(paste("file downloaded to:", path))
+    curl::curl_download(url = fp, destfile = path, mode = "wb", quiet = TRUE) 
+    message("file downloaded to:", path)
     y <- raster::raster(x = path)
     y[is.na(y)] <- 999
     return(y)
   }
+  },
+  error = function() {
+    y <- raster::raster("man/figures/image_error_message.gif")
+    return(y)
+  }
+  )
 }

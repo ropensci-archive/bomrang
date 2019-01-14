@@ -1,19 +1,20 @@
 
-#' Update bomrang Internal Database with Latest BOM Forecast Towns
+#' Update Internal Database with Latest BOM Forecast Towns
 #'
 #' @description
-#' Download the latest select forecast towns from the BOM server and update
-#' bomrang's internal database of précis forecast town names and
-#' AAC codes used by \code{\link{get_precis_forecast}}.  There is
-#' no need to use this unless you know that a forecast town exists in a
-#' more current version of the BOM précis forecast town name database that is
-#' not available in the database distributed with [bomrang].
+#' Download the latest select forecast towns from the \acronym{BOM} server and
+#' update internal database of précis forecast town names and \acronym{AAC}
+#' codes used by \code{\link{get_precis_forecast}}.  There is no need to use
+#' this unless you know that a forecast town exists in a more current version of
+#' the \acronym{BOM} précis forecast town name database that is not available in
+#' the database distributed with \pkg{bomrang}.  In fact, for reproducibility
+#' purposes, users are discouraged from using this function.
 #'
 #' @examples
 #' \dontrun{
 #' update_forecast_towns()
 #' }
-#' @return Updated database of BOM précis forecast towns
+#' @return Updated database of \acronym{BOM} précis forecast towns
 #'
 #' @references
 #' Data are sourced from: Australian Bureau of Meteorology (BOM) webpage,
@@ -21,8 +22,8 @@
 #' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
-#' @export
-#'
+#' @export update_forecast_towns
+
 update_forecast_towns <- function() {
   message(
     "This will overwrite the current internal database of forecast towns.\n",
@@ -49,7 +50,8 @@ update_forecast_towns <- function() {
   curl::curl_download(
     "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf",
     destfile = file.path(tempdir(), "AAC_codes.dbf"),
-    mode = "wb"
+    mode = "wb",
+    quiet = TRUE
   )
   
   # import BOM dbf file

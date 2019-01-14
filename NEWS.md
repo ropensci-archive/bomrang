@@ -1,5 +1,22 @@
 # bomrang 0.4.0.9000
 
+## Minor changes
+
+- Updates documentation formatting and corrects minor issues
+
+- Uses `curl` to download XML files before parsing them, rather than reading
+directly from the server. `curl` gives more flexibility in handling the
+server connections
+
+- Uses `curl::curl_download()` in place of `utils::download.file()` for a
+newer implementation of the same protocols
+
+- Correct formatting of DESCRIPTION file to conform with CRAN guidelines
+
+- Replaces `\dontrun{}` with `\donttest{}` for examples in documentation
+
+- Spellcheck package and correct spelling where necessary
+
 # bomrang 0.4.0
 
 ## Bug fixes
@@ -34,7 +51,7 @@ the `bomrang` project
 - Add maps of historical data completeness and availability to vignette,
 Appendix 7
 
-- Move copyright information from startup message into CITATION file
+- Move copyright information from start-up message into CITATION file
 
 --------------------------------------------------------------------------------
 
@@ -149,7 +166,7 @@ However, `bomrang` will use the corrected `state` column values.
 - Update code to be compliant with current and future versions of `janitor`
 
 - Vignettes no longer evaluate code on-the-fly that requires BOM servers to
-respond in response to CRAN rejecting `bomrang` for a failure of a vingette to
+respond in response to CRAN rejecting `bomrang` for a failure of a vignette to
 build due to this issue
 
 ## Bug fixes
@@ -195,13 +212,13 @@ removes _rlang_ usage from package.
 
 ## Deprecated functions
 
-- `bomrang_cache_list()`, now superceded by `manage_cache$list()`
+- `bomrang_cache_list()`, now superseded by `manage_cache$list()`
 
-- `bomrang_cache_details()`, now superceded by `manage_cache$details()`
+- `bomrang_cache_details()`, now superseded by `manage_cache$details()`
 
-- `bomrang_cache_delete()`, now superceded by `manage_cache$delete()`
+- `bomrang_cache_delete()`, now superseded by `manage_cache$delete()`
 
-- `bomrang_cache_delete_all()`, now superceded by `manage_cache$delete_all()`
+- `bomrang_cache_delete_all()`, now superseded by `manage_cache$delete_all()`
 
 --------------------------------------------------------------------------------
 
@@ -314,12 +331,12 @@ argument
 is displayed
 
 - the _bomrang_ vignette now contains instructions for use along with appendices
-that document the data fields and units, rather than separate vingettes
+that document the data fields and units, rather than separate vignettes
 
 - ramifications of updating station lists are now stated clearly in the vignette
 and help files for applicable functions
 
-- a map of BOM stations is included in an appendix of the _bomrang_ vingette
+- a map of BOM stations is included in an appendix of the _bomrang_ vignette
 
 - Lat/Lon values are specified to be in decimal degrees in
 `get_current_weather()` help and vignette
@@ -351,7 +368,7 @@ employed, which reduces the need for the `# CRAN NOTE avoidance`
 - The DESCRIPTION file now states minimum package versions for packages that are
 undergoing rapid development
 
-- Code has been refactored to be shorter, _e.g._, `xml_bulletin_url` in
+- Code has been re-factored to be shorter, _e.g._, `xml_bulletin_url` in
 `get_ag_bulletion()`
 
 - `.get_obs()` has been moved out of the `.parse_bulletin()` function for easier

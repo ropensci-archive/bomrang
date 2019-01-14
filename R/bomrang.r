@@ -1,3 +1,4 @@
+
 #' Australian Government Bureau of Meteorology (\acronym{BOM}) Data Client
 #'
 #' @name bomrang

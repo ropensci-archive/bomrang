@@ -3,8 +3,8 @@
 #'
 #' @param station_name The name of the weather station. Fuzzy string matching
 #' via \code{\link[base]{agrep}} is done.
-#' @param strict (logical) If \code{TRUE}, \code{station_name} must match the
-#' station name exactly, except that \code{station_name} need not be upper case.
+#' @param strict (logical) If \code{TRUE}, \var{station_name} must match the
+#' station name exactly, except that \var{station_name} need not be upper case.
 #' Note this may be different to \code{full_name} in the response. See
 #' \strong{Details}.
 #' @param latlon A length-2 numeric vector giving the decimal degree
@@ -12,14 +12,15 @@
 #' c(-34, 151)} for Sydney. When given instead of \code{station_name}, the
 #' nearest station (in this package) is used, with a message indicating the
 #' nearest such station. (See also \code{\link{sweep_for_stations}}.) Ignored if
-#' used in combination with \code{station_name}, with a warning.
+#' used in combination with \var{station_name}, with a warning.
 #' @param raw Logical. Do not convert the columns \code{data.table} to the
 #' appropriate classes. (\code{FALSE} by default.)
 #' @param emit_latlon_msg Logical. If \code{TRUE} (the default), and
 #' \code{latlon} is selected, a message is emitted before the table is returned
 #' indicating which station was actually used (i.e. which station was found to
 #' be nearest to the given coordinate).
-#' @param as.data.table Return result as a \code{\link[data.table]{data.table}}.
+#' @param as.data.table Logical. If \code{TRUE}, return result as a
+#' \code{\link[data.table]{data.table}}.
 #'
 #' @details
 #' Station names are not consistently named within the Bureau, so
@@ -40,7 +41,7 @@
 #' \pkg{bomrang} vignette, use \cr
 #' \code{vignette("bomrang", package = "bomrang")} to view.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #'   # warning
 #'   Melbourne_weather <- get_current_weather("Melbourne")
 #'
@@ -199,12 +200,12 @@ get_current_weather <-
       station_nrst_latlon <-
         JSONurl_site_list %>%
         # Lat Lon are in JSON
-        .[which.min(haversine_distance(Lat, Lon, lat, lon))]
+        .[which.min(.haversine_distance(Lat, Lon, lat, lon))]
 
       if (emit_latlon_msg) {
         distance <-
           station_nrst_latlon %$%
-          haversine_distance(Lat, Lon, lat, lon) %>%
+          .haversine_distance(Lat, Lon, lat, lon) %>%
           signif(digits = 3)
 
         on.exit(
@@ -315,7 +316,7 @@ cook <- function(DT, as.DT, double_cols) {
   }
 
   for (j in which(DTnoms %chin% double_cols)) {
-    data.table::set(DT, j = j, value = force_double(DT[[j]]))
+    data.table::set(DT, j = j, value = .force_double(DT[[j]]))
   }
 
   if (!as.DT) {

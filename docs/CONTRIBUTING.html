@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Manage Locally Cached BOM Files — manage_cache • bomrang</title>
+<title>CONTRIBUTING • bomrang</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -25,21 +25,18 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/sticky-kit/1.1.3/sticky-kit.min.js" integrity="sha256-c4Rlo1ZozqTPE2RLuvbusY3+SU1pQaJC0TjuhygMipw=" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
-<link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script>
+<link href="pkgdown.css" rel="stylesheet">
+<script src="pkgdown.js"></script>
 
 
 <!-- docsearch -->
-<script src="../docsearch.js"></script>
+<script src="docsearch.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/docsearch.js/2.6.1/docsearch.min.css" integrity="sha256-QOSRU/ra9ActyXkIBbiIB144aDBdtvXBcNc3OTNuX/Q=" crossorigin="anonymous" />
-<link href="../docsearch.css" rel="stylesheet">
+<link href="docsearch.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Manage Locally Cached BOM Files — manage_cache" />
-
-<meta property="og:description" content="Manage cached bomrang satellite imagery files with
-hoardr." />
+<meta property="og:title" content="CONTRIBUTING" />
 
 <meta property="og:image" content="https://ropensci.github.io/bomrang/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -59,7 +56,7 @@ hoardr." />
   </head>
 
   <body>
-    <div class="container template-reference-topic">
+    <div class="container template-title-body">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -71,7 +68,7 @@ hoardr." />
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">bomrang</a>
+        <a class="navbar-link" href="index.html">bomrang</a>
         <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
       </span>
     </div>
@@ -79,16 +76,16 @@ hoardr." />
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
+  <a href="index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="../articles/bomrang.html">Get started</a>
+  <a href="articles/bomrang.html">Get started</a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -98,12 +95,12 @@ hoardr." />
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/use_case.html">bomrang Use Case</a>
+      <a href="articles/use_case.html">bomrang Use Case</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">Changelog</a>
+  <a href="news/index.html">Changelog</a>
 </li>
       </ul>
       
@@ -130,72 +127,77 @@ hoardr." />
       </header>
 
 <div class="row">
-  <div class="col-md-9 contents">
+  <div class="contents col-md-9">
     <div class="page-header">
-    <h1>Manage Locally Cached BOM Files</h1>
-    <small class="dont-index">Source: <a href='https://github.com/ropensci/bomrang/blob/master/R/manage_cached_files.R'><code>R/manage_cached_files.R</code></a></small>
-    <div class="hidden name"><code>manage_cache.Rd</code></div>
+      <h1>CONTRIBUTING</h1>
     </div>
 
-    <div class="ref-description">
-    
-    <p>Manage cached <span class="pkg">bomrang</span> satellite imagery files with
-<span class="pkg">hoardr</span>.</p>
-    
-    </div>
+<div id="contributing" class="section level1">
 
-        
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>The default cache directory is<br />
-<code><a href='https://www.rdocumentation.org/packages/base/topics/file.path'>file.path(rappdirs::user_cache_dir(), "R/bomrang")</a></code>, but you can
-set your own path using <code>manage_cache$cache_path_set()</code></p>
-<p><code>manage_cache$cache_delete</code> only accepts one file name, while
-<code>manage_cache$cache_delete_all</code> does not accept any names, but deletes
-all files. For deleting many specific files, use<br />
-<code>manage_cache$cache_delete</code> in an <code><a href='https://www.rdocumentation.org/packages/base/topics/lapply'>lapply</a></code> type call.</p>
-    
-    <h2 class="hasAnchor" id="useful-user-functions"><a class="anchor" href="#useful-user-functions"></a>Useful user functions</h2>
-
-    
-    <ul>
-<li><p><code>manage_cache$cache_path_get()</code> - get cache path</p></li>
-<li><p><code>manage_cache$cache_path_set()</code> - set cache path</p></li>
-<li><p><code>manage_cache$list()</code> - returns a character vector of full
- path file names</p></li>
-<li><p><code>manage_cache$files()</code> - returns file objects with metadata</p></li>
-<li><p><code>manage_cache$details()</code> - returns files with details</p></li>
-<li><p><code>manage_cache$delete()</code> - delete specific files</p></li>
-<li><p><code>manage_cache$delete_all()</code> - delete all files, returns
- nothing</p></li>
+<div id="fixing-typos" class="section level3">
+<h3 class="hasAnchor">
+<a href="#fixing-typos" class="anchor"></a>Fixing typos</h3>
+<p>Small typos or grammatical errors in documentation may be edited directly using the GitHub web interface, so long as the changes are made in the <em>source</em> file.</p>
+<ul>
+<li>YES: you edit a roxygen comment in a <code>.R</code> file below <code>R/</code>.</li>
+<li>NO: you edit an <code>.Rd</code> file below <code>man/</code>.</li>
 </ul>
-    
-
-    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
-<span class='co'># list files in cache</span>
-<span class='no'>manage_cache</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>()</div><div class='output co'>#&gt; character(0)</div><div class='input'>
-<span class='co'># delete certain database files</span>
-<span class='no'>manage_cache</span>$<span class='fu'>delete</span>(<span class='st'>"file path"</span>)</div><div class='output co'>#&gt; <span class='error'>Error: These files don't exist or can't be found: </span>
-#&gt; <span class='error'>     /Users/adamsparks/Library/Caches/R/bomrang/file path</span></div><div class='input'><span class='no'>manage_cache</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>()</div><div class='output co'>#&gt; character(0)</div><div class='input'>
-<span class='co'># delete all files in cache</span>
-<span class='no'>manage_cache</span>$<span class='fu'>delete_all</span>()</div><div class='output co'>#&gt; <span class='message'>no files found</span></div><div class='input'><span class='no'>manage_cache</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>()</div><div class='output co'>#&gt; character(0)</div><div class='input'>
-<span class='co'># set a different cache path from the default</span>
-<span class='no'>manage_cache</span>$<span class='fu'>cache_path_set</span>(<span class='st'>"~/tmp"</span>)</div><div class='output co'>#&gt; [1] "/Users/adamsparks/Library/Caches/R/~/tmp"</div></pre>
-  </div>
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
-    <h2>Contents</h2>
-    <ul class="nav nav-pills nav-stacked">
-      
-      <li><a href="#details">Details</a></li>
-
-      <li><a href="#useful-user-functions">Useful user functions</a></li>
-      
-      <li><a href="#examples">Examples</a></li>
-    </ul>
-
-  </div>
 </div>
+<div id="prerequisites" class="section level3">
+<h3 class="hasAnchor">
+<a href="#prerequisites" class="anchor"></a>Prerequisites</h3>
+<p>Before you make a substantial pull request, you should always file an issue and make sure someone from the team agrees that it’s a problem. If you’ve found a bug, create an associated issue and illustrate the bug with a minimal <a href="https://www.tidyverse.org/help/#reprex">reprex</a>.</p>
+</div>
+<div id="pull-request-process" class="section level3">
+<h3 class="hasAnchor">
+<a href="#pull-request-process" class="anchor"></a>Pull request process</h3>
+<ul>
+<li>We recommend that you create a Git branch for each pull request (PR).<br>
+</li>
+<li>Look at the Travis and AppVeyor build status before and after making changes. The <code>README</code> should contain badges for any continuous integration services used by the package.<br>
+</li>
+<li>We recommend the tidyverse <a href="http://style.tidyverse.org">style guide</a>. You can use the <a href="https://CRAN.R-project.org/package=styler">styler</a> package to apply these styles, but please don’t restyle code that has nothing to do with your PR.<br>
+</li>
+<li>We use <a href="https://cran.r-project.org/package=roxygen2">roxygen2</a>.<br>
+</li>
+<li>We use <a href="https://cran.r-project.org/package=testthat">testthat</a>. Contributions with test cases included are easier to accept.<br>
+</li>
+<li>For user-facing changes, add a bullet to the top of <code>NEWS.md</code> below the current development version header describing the changes made followed by your GitHub username, and links to relevant issue(s)/PR(s).</li>
+</ul>
+</div>
+<div id="code-of-conduct" class="section level3">
+<h3 class="hasAnchor">
+<a href="#code-of-conduct" class="anchor"></a>Code of Conduct</h3>
+<p>Please note that the bomrang project is released with a <a href="CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project you agree to abide by its terms.</p>
+</div>
+<div id="see-ropensci-contributing-guide" class="section level3">
+<h3 class="hasAnchor">
+<a href="#see-ropensci-contributing-guide" class="anchor"></a>See rOpenSci <a href="https://ropensci.github.io/dev_guide/contributingguide.html">contributing guide</a>
+</h3>
+<p>for further details.</p>
+</div>
+<div id="discussion-forum" class="section level3">
+<h3 class="hasAnchor">
+<a href="#discussion-forum" class="anchor"></a>Discussion forum</h3>
+<p>Check out our <a href="https://discuss.ropensci.org">discussion forum</a> if you think your issue requires a longer form discussion.</p>
+</div>
+<div id="prefer-to-email" class="section level3">
+<h3 class="hasAnchor">
+<a href="#prefer-to-email" class="anchor"></a>Prefer to Email?</h3>
+<p>Email the person listed as maintainer in the <code>DESCRIPTION</code> file of this repo.</p>
+<p>Though note that private discussions over email don’t help others - of course email is totally warranted if it’s a sensitive problem of any kind.</p>
+</div>
+<div id="thanks-for-contributing" class="section level3">
+<h3 class="hasAnchor">
+<a href="#thanks-for-contributing" class="anchor"></a>Thanks for contributing!</h3>
+<p>This contributing guide is adapted from the tidyverse contributing guide available at <a href="https://raw.githubusercontent.com/r-lib/usethis/master/inst/templates/tidy-contributing.md" class="uri">https://raw.githubusercontent.com/r-lib/usethis/master/inst/templates/tidy-contributing.md</a></p>
+</div>
+</div>
+
+  </div>
+
+</div>
+
 
       <footer>
       <div class="copyright">

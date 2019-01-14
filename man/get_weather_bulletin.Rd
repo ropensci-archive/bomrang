@@ -21,8 +21,8 @@ For full details of fields and units returned see Appendix 4 in the
 to view.
 }
 \description{
-Fetch the daily BOM 0900 or 1500 weather bulletins and return a tidy data
-frame for a specified state or territory.
+Fetch the daily \acronym{BOM} 0900 or 1500 weather bulletins and return a
+tidy data frame for a specified state or territory.
 }
 \details{
 Allowed state and territory postal codes:
@@ -44,7 +44,7 @@ sometimes contain typographical errors which may lead to warnings about
 \code{"NAs introduced by coercion"}.
 }
 \examples{
-\dontrun{
+\donttest{
 qld_weather <- get_weather_bulletin (state = "QLD", morning = FALSE)
 }
 }

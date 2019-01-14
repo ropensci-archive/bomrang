@@ -1,4 +1,4 @@
-_bomrang_: Australian Government Bureau of Meteorology (BOM) Data from R <img align="right" src="man/figures/logo.png">
+_bomrang_: Australian Government Bureau of Meteorology (BOM) Data Client <img align="right" src="man/figures/logo.png">
 ================
 
 [![CircleCI](https://circleci.com/gh/ropensci/bomrang.svg?style=shield)](https://circleci.com/gh/ropensci/bomrang) [![Appveyor](https://ci.appveyor.com/api/projects/status/au6p6qy1ah2lrtl5/branch/master?svg=true)](https://ci.appveyor.com/project/adamhsparks/bomrang/branch/master) [![codecov](https://codecov.io/gh/ropensci/bomrang/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/bomrang) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.598301.svg)](https://doi.org/10.5281/zenodo.598301)
@@ -70,7 +70,7 @@ Meta
   [report any issues or bugs](https://github.com/ropensci/bomrang/issues).
 
 -   License:
-    - All code is licenced MIT
+    - All code is licensed MIT
 
     - All data is copyright Australia Bureau of Meteorology, BOM Copyright
     Notice <br /><http://reg.bom.gov.au/other/copyright.shtml>

@@ -1,57 +1,58 @@
 
 #' Get a Listing of Available BOM Satellite GeoTIFF Imagery
 #'
-#' Fetch a listing of BOM GeoTIFF satellite imagery from
+#' Fetch a listing of \acronym{BOM} GeoTIFF satellite imagery from
 #' \url{ftp://ftp.bom.gov.au/anon/gen/gms/} to determine which files are
 #' currently available for download.  Files are available at ten minute update
 #' frequency with a 24 hour delete time.  Useful to know the most recent files
 #' available and then specify in the \code{\link{get_satellite_imagery}}
 #' function.
 #'
-#' @param product_id Character.  BOM product ID of interest for which a list of
-#' available images will be returned.  Defaults to all images currently
-#' available.
+#' @param product_id Character.  \acronym{BOM} product ID of interest for which
+#' a list of available images will be returned.  Defaults to all images
+#' currently available.
 #'
-#' @details Valid BOM satellite Product IDs for GeoTIFF files include:
-#'\describe{
-#'\item{IDE00420}{AHI cloud cover only 2km FD GEOS GIS}
-#'\item{IDE00421}{AHI IR (Ch13) greyscale 2km FD GEOS GIS}
-#'\item{IDE00422}{AHI VIS (Ch3) greyscale 2km FD GEOS GIS}
-#'\item{IDE00423}{AHI IR (Ch13) Zehr 2km FD GEOS GIS}
-#'\item{IDE00425}{AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km FD
+#' @details Valid \acronym{BOM} satellite Product IDs for GeoTIFF files include:
+#' \describe{
+#' \item{IDE00420}{AHI cloud cover only 2km FD GEOS GIS}
+#' \item{IDE00421}{AHI IR (Ch13) greyscale 2km FD GEOS GIS}
+#' \item{IDE00422}{AHI VIS (Ch3) greyscale 2km FD GEOS GIS}
+#' \item{IDE00423}{AHI IR (Ch13) Zehr 2km FD GEOS GIS}
+#' \item{IDE00425}{AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km FD
 #' GEOS GIS}
-#'\item{IDE00426}{AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km FD
+#' \item{IDE00426}{AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km FD
 #' GEOS GIS}
-#'\item{IDE00427}{AHI WV (Ch8) 2km FD GEOS GIS}
-#'\item{IDE00430}{AHI cloud cover only 2km AUS equirect. GIS}
-#'\item{IDE00431}{AHI IR (Ch13) greyscale 2km AUS equirect. GIS}
-#'\item{IDE00432}{AHI VIS (Ch3) greyscale 2km AUS equirect. GIS}
-#'\item{IDE00433}{AHI IR (Ch13) Zehr 2km AUS equirect. GIS}
-#'\item{IDE00435}{AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km AUS
+#' \item{IDE00427}{AHI WV (Ch8) 2km FD GEOS GIS}
+#' \item{IDE00430}{AHI cloud cover only 2km AUS equirect. GIS}
+#' \item{IDE00431}{AHI IR (Ch13) greyscale 2km AUS equirect. GIS}
+#' \item{IDE00432}{AHI VIS (Ch3) greyscale 2km AUS equirect. GIS}
+#' \item{IDE00433}{AHI IR (Ch13) Zehr 2km AUS equirect. GIS}
+#' \item{IDE00435}{AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km AUS
 #' equirect. GIS}
-#'\item{IDE00436}{AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km AUS
+#' \item{IDE00436}{AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km AUS
 #' equirect. GIS}
-#'\item{IDE00437}{AHI WV (Ch8) 2km AUS equirect. GIS}
-#'\item{IDE00439}{AHI VIS (Ch3) greyscale 0.5km AUS equirect. GIS}
-#'}
+#' \item{IDE00437}{AHI WV (Ch8) 2km AUS equirect. GIS}
+#' \item{IDE00439}{AHI VIS (Ch3) greyscale 0.5km AUS equirect. GIS}
+#' }
 #'
 #' @return
 #' A vector of all available files for the requested Product ID(s).
 #'
 #' @references
-#' Australian Bureau of Meteorology (BOM) High-definition satellite images
+#' Australian Bureau of Meteorology (BOM) high-definition satellite images
 #' \url{http://www.bom.gov.au/australia/satellite/index.shtml}
 #'
 #' @examples
-#' \dontrun{
-#' Check availability of AHI VIS (true colour) / IR (Ch13 greyscale) composite
-#' 1km FD GEOS GIS images
+#' \donttest{
+#' # Check availability of AHI VIS (true colour) / IR (Ch13 greyscale) composite
+#' # 1km FD GEOS GIS images
 #' imagery <- get_available_imagery(product_id = "IDE00425")
 #' }
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
 #'
-#' @export
+#' @export get_available_imagery
+
 get_available_imagery <- function(product_id = "all") {
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/gms/"
   .check_IDs(product_id)
@@ -61,7 +62,7 @@ get_available_imagery <- function(product_id = "all") {
   print(tif_list)
 }
 
-#' Get BOM Satellite GeoTIFF Imagery
+#' Get \acronym{BOM} Satellite GeoTIFF Imagery
 #'
 #' Fetch BOM satellite GeoTIFF imagery from
 #' \url{ftp://ftp.bom.gov.au/anon/gen/gms/} and return a raster
@@ -69,9 +70,10 @@ get_available_imagery <- function(product_id = "all") {
 #' ten minute update frequency with a 24 hour delete time. Suggested to check
 #' file availability first by using \code{\link{get_available_imagery}}.
 #'
-#' @param product_id Character.  BOM product ID to download in GeoTIFF format
-#' and import as a \code{\link[raster]{stack}} object.  A vector of values from
-#' \code{\link{get_available_imagery}} may be used here.  Value is required.
+#' @param product_id Character.  \acronym{BOM} product ID to download in GeoTIFF
+#' format and import as a \code{\link[raster]{stack}} object.  A vector of
+#' values from \code{\link{get_available_imagery}} may be used here.  Value is
+#' required.
 #' @param scans Numeric.  Number of scans to download, starting with most recent
 #' and progressing backwards, \emph{e.g.}, 1 - the most recent single scan
 #' available , 6 - the most recent hour available, 12 - the most recent 2 hours
@@ -79,11 +81,12 @@ get_available_imagery <- function(product_id = "all") {
 #' Value is optional.
 #' @param cache Logical.  Store image files locally for later use?  If
 #' \code{FALSE}, the downloaded files are removed when R session is closed. To
-#' take advantage of cached files in future sessions, use \var{cache = TRUE}.
+#' take advantage of cached files in future sessions, use \code{cache = TRUE}.
 #' Defaults to \code{FALSE}.  Value is optional.
 #'
-#' @details Valid BOM satellite Product IDs include:
-#'\describe{
+#' @details Valid \acronym{BOM} satellite Product IDs for use with
+#' \var{product_id} include:
+#' \describe{
 #' \item{IDE00420}{AHI cloud cover only 2km FD GEOS GIS}
 #' \item{IDE00421}{AHI IR (Ch13) greyscale 2km FD GEOS GIS}
 #' \item{IDE00422}{AHI VIS (Ch3) greyscale 2km FD GEOS GIS}
@@ -103,26 +106,25 @@ get_available_imagery <- function(product_id = "all") {
 #'  equirect. GIS}
 #' \item{IDE00437}{AHI WV (Ch8) 2km AUS equirect. GIS}
 #' \item{IDE00439}{AHI VIS (Ch3) greyscale 0.5km AUS equirect. GIS}
-#'}
+#' }
 #'
 #' We cache using \pkg{hoardr}, find your cache folder by executing
 #' \code{manage_cache$cache_path_get}.
 #'
-#'
-#'@seealso
-#'\code{\link{get_available_imagery}}
-#'\code{\link{manage_cache}}
+#' @seealso
+#' \code{\link{get_available_imagery}}
+#' \code{\link{manage_cache}}
 #'
 #' @return
-#' A raster stack of GeoTIFF images with layers named by BOM Product ID,
-#' timestamp and band.
+#' A raster stack of GeoTIFF images with layers named by \acronym{BOM} Product
+#' ID, timestamp and band.
 #'
 #' @references
 #' Australian Bureau of Meteorology (BOM) high-definition satellite images \cr
 #' \url{http://www.bom.gov.au/australia/satellite/index.shtml}
 #'
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' # Fetch AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km FD
 #' # GEOS GIS raster stack for most recent single scan available
 #'
@@ -133,16 +135,15 @@ get_available_imagery <- function(product_id = "all") {
 #'
 #' avail <- get_available_imagery(product_id = "IDE00425")
 #' imagery <- get_satellite_imagery(product_id = avail, scans = 2)
-#'
 #' }
 
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
-#' @export
+#' @export get_satellite_imagery
+
 get_satellite_imagery <-
   function(product_id,
-           scans = 1,
-           cache = FALSE) {
-
+             scans = 1,
+             cache = FALSE) {
     if (length(unique(substr(product_id, 1, 8))) != 1) {
       stop("\nbomrang only supports working with one Product ID at a time\n")
     }
@@ -153,8 +154,10 @@ get_satellite_imagery <-
     cache_dir <- .set_cache(cache)
 
     # if we're feeding output from get_available_imagery(), use those values----
-    if (substr(product_id[1],
-               nchar(product_id[1]) - 3, nchar(product_id[1])) == ".tif") {
+    if (substr(
+      product_id[1],
+      nchar(product_id[1]) - 3, nchar(product_id[1])
+    ) == ".tif") {
       tif_files <- utils::tail(product_id, scans)
     } else {
       # otherwise check the user entered product_id values ---------------------
@@ -182,13 +185,23 @@ get_satellite_imagery <-
     tif_files <- paste0(ftp_base, tif_files)
 
     # download files from server -----------------------------------------------
-    Map(
-      function(urls, destination)
-        utils::download.file(urls, destination, mode = "wb"),
-      tif_files,
-      file.path(cache_dir, basename(tif_files))
+    tryCatch({
+      Map(
+        function(urls, destination)
+          curl::curl_download(urls,
+            destination,
+            mode = "wb",
+            quiet = TRUE
+          ),
+        tif_files,
+        file.path(cache_dir, basename(tif_files))
+      )
+    },
+    error = function() {
+      y <- raster::raster("man/figures/image_error_message.gif")
+      return(y)
+    }
     )
-
     # create raster stack object of the GeoTIFF files --------------------------
     files <-
       list.files(cache_dir, pattern = "\\.tif$", full.names = TRUE)
@@ -197,16 +210,17 @@ get_satellite_imagery <-
     if (all(substr(files, nchar(files) - 3, nchar(files)) == ".tif")) {
       read_tif <- raster::stack(files)
     } else {
-      stop(paste0("\nCannot create a raster stack object of ", files, ".\n",
-                  "\nPerhaps the file download corrupted?\n",
-                  "\nYou might also check your cache directory for the files.\n"
-                  ))
+      stop(paste0(
+        "\nCannot create a raster stack object of ", files, ".\n",
+        "\nPerhaps the file download corrupted?\n",
+        "\nYou might also check your cache directory for the files.\n"
+      ))
     }
     return(read_tif)
   }
 
 # Local internal functions -----------------------------------------------------
-#'@noRd
+#' @noRd
 .check_IDs <- function(product_id) {
   IDs <- c(
     "IDE00420",
@@ -240,18 +254,21 @@ get_satellite_imagery <-
   }
 }
 
-#'@noRd
+#' @noRd
 .ftp_images <- function(product_id, bom_server) {
   # setup internal variables ---------------------------------------------------
   list_files <- curl::new_handle()
   curl::handle_setopt(list_files,
-                      ftp_use_epsv = TRUE,
-                      dirlistonly = TRUE)
+    ftp_use_epsv = TRUE,
+    dirlistonly = TRUE
+  )
 
   # get file list from FTP server ----------------------------------------------
-  con <- curl::curl(url = bom_server,
-                    "r",
-                    handle = list_files)
+  con <- curl::curl(
+    url = bom_server,
+    "r",
+    handle = list_files
+  )
   tif_files <- readLines(con)
   close(con)
 
@@ -263,63 +280,93 @@ get_satellite_imagery <-
     tif_files <- switch(
       product_id,
       "IDE00420" = {
-               tif_files[grepl("IDE00420",
-                               tif_files)]
+        tif_files[grepl(
+          "IDE00420",
+          tif_files
+        )]
       },
       "IDE00421" = {
-               tif_files[grepl("IDE00421",
-                               tif_files)]
+        tif_files[grepl(
+          "IDE00421",
+          tif_files
+        )]
       },
       "IDE00422" = {
-               tif_files[grepl("IDE00422",
-                               tif_files)]
+        tif_files[grepl(
+          "IDE00422",
+          tif_files
+        )]
       },
       "IDE00423" = {
-               tif_files[grepl("IDE00423",
-                               tif_files)]
+        tif_files[grepl(
+          "IDE00423",
+          tif_files
+        )]
       },
       "IDE00425" = {
-               tif_files[grepl("IDE00425",
-                               tif_files)]
+        tif_files[grepl(
+          "IDE00425",
+          tif_files
+        )]
       },
       "IDE00426" = {
-               tif_files[grepl("IDE00426",
-                               tif_files)]
+        tif_files[grepl(
+          "IDE00426",
+          tif_files
+        )]
       },
       "IDE00427" = {
-               tif_files[grepl("IDE00427",
-                               tif_files)]
+        tif_files[grepl(
+          "IDE00427",
+          tif_files
+        )]
       },
       "IDE00430" = {
-               tif_files[grepl("IDE00430",
-                               tif_files)]
+        tif_files[grepl(
+          "IDE00430",
+          tif_files
+        )]
       },
       "IDE00431" = {
-               tif_files[grepl("IDE00431",
-                               tif_files)]
+        tif_files[grepl(
+          "IDE00431",
+          tif_files
+        )]
       },
       "IDE00432" = {
-               tif_files[grepl("IDE00432",
-                               tif_files)]
+        tif_files[grepl(
+          "IDE00432",
+          tif_files
+        )]
       },
       "IDE00433" = {
-               tif_files[grepl("IDE00433",
-                               tif_files)]
+        tif_files[grepl(
+          "IDE00433",
+          tif_files
+        )]
       },
       "IDE00435" = {
-               tif_files[grepl("IDE00435",
-                               tif_files)]
+        tif_files[grepl(
+          "IDE00435",
+          tif_files
+        )]
       },
       "IDE00436" = {
-               tif_files[grepl("IDE00436",
-                               tif_files)]
+        tif_files[grepl(
+          "IDE00436",
+          tif_files
+        )]
       },
       "IDE00437" = {
-               tif_files[grepl("IDE00437",
-                               tif_files)]
+        tif_files[grepl(
+          "IDE00437",
+          tif_files
+        )]
       },
-                 tif_files[grepl("IDE00439",
-                             tif_files)]
+      tif_files[grepl(
+        "IDE00439",
+        tif_files
+      )]
     )
     paste0(bom_server, tif_files)
   } else {
@@ -328,7 +375,7 @@ get_satellite_imagery <-
 
   # check if the Product ID requested provides any files on server -------------
   if (length(tif_files) == 0 |
-      tif_files[1] == "ftp://ftp.bom.gov.au/anon/gen/gms/") {
+    tif_files[1] == "ftp://ftp.bom.gov.au/anon/gen/gms/") {
     stop(paste0("\nSorry, no files are currently available for ", product_id))
   }
   return(tif_files)
