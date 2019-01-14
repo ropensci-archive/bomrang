@@ -4,17 +4,11 @@
 \name{reexports}
 \alias{reexports}
 \alias{filter}
-\alias{reexports}
 \alias{select}
-\alias{reexports}
 \alias{mutate}
-\alias{reexports}
 \alias{rename}
-\alias{reexports}
 \alias{arrange}
-\alias{reexports}
 \alias{group_by}
-\alias{reexports}
 \alias{slice}
 \title{Objects exported from other packages}
 \keyword{internal}

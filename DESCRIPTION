@@ -73,7 +73,7 @@ Suggests:
     rappdirs,
     roxygen2 (>= 6.1.0),
     crayon
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
 NeedsCompilation: no
 ByteCompile: TRUE
 VignetteBuilder: knitr
