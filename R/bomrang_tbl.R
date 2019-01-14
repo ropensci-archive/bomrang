@@ -15,7 +15,8 @@ print.bomrang_tbl <- function(x, ...) {
   origin   <- tools::toTitleCase(attr(x, "origin")) %||% "UNKNOWN"
   start    <- attr(x, "start") %||% "UNKNOWN"
   end      <- attr(x, "end") %||% "UNKNOWN"
-  years    <- attr(x, "years") %||% "UNKNOWN"
+  count    <- attr(x, "count") %||% "UNKNOWN"
+  units    <- attr(x, "units") %||% NULL
   vars     <- attr(x, "vars") %||% "UNKNOWN"
   indices  <- attr(x, "indices") %||% "UNKNOWN"
   
@@ -24,7 +25,7 @@ print.bomrang_tbl <- function(x, ...) {
   .stylecat("  Station:\t\t", location, " [", station, "] \n")
   .stylecat("  Location:\t\t", "lat: ", lat, ", lon: ", lon, "\n")
   .stylecat("  Measurement / Origin:\t", type, " / ", origin, "\n")
-  .stylecat("  Timespan:\t\t", start, " -- ", end, " [", years, " years]", "\n")
+  .stylecat("  Timespan:\t\t", start, " -- ", end, " [", count, " ", units, "]", "\n")
   ## dplyr groupings
   if (!is.null(attr(x, "vars"))) {
     .stylecat("  Groups:\t\t", vars, paste0(" [", length(indices), "]\n"))

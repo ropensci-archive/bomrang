@@ -166,7 +166,8 @@ get_historical <-
                      lon = ncc_list$lon,
                      start = ncc_list$start,
                      end = ncc_list$end,
-                     years = ncc_list$years,
+                     count = ncc_list$years,
+                     units = "years",
                      ncc_list = ncc_list
                      ))
   }

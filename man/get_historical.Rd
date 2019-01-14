@@ -5,7 +5,7 @@
 \title{Obtain Historical BOM Data}
 \usage{
 get_historical(stationid = NULL, latlon = NULL, type = c("rain",
-  "min", "max", "solar"), meta = TRUE)
+  "min", "max", "solar"))
 }
 \arguments{
 \item{stationid}{BOM station ID. See Details.}

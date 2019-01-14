@@ -184,6 +184,8 @@ get_current_weather <-
         JSONurl_site_list[name == the_station_name][["lat"]]
       full_lon <-
         JSONurl_site_list[name == the_station_name][["lon"]]
+      site_id <-
+        JSONurl_site_list[name == the_station_name][["site"]]
 
     } else {
       # We have established latlon is not NULL
@@ -227,6 +229,7 @@ get_current_weather <-
       json_url <- station_nrst_latlon[["url"]]
       full_lat <- station_nrst_latlon[["lat"]]
       full_lon <- station_nrst_latlon[["lon"]]
+      site_id <- station_nrst_latlon[["site"]]
 
     }
 
@@ -281,11 +284,26 @@ get_current_weather <-
       setnames(out, "name", "full_name")
     }
 
-    if (raw) {
-      return(out)
+    weather <- if (raw) {
+      out
     } else {
-      return(cook(out, as.DT = as.data.table, double_cols = double_cols))
+      cook(out, as.DT = as.data.table, double_cols = double_cols)
     }
+    
+    return(structure(weather, 
+                     class = union("bomrang_tbl", class(weather)),
+                     station = site_id,
+                     type = "weather",
+                     origin = "current",
+                     location = the_station_name,
+                     lat = full_lat,
+                     lon = full_lon,
+                     start = min(weather[["local_date_time_full"]]),
+                     end = max(weather[["local_date_time_full"]]),
+                     count = format(diff(range(x$local_date_time_full)), digits = 3),
+                     units = NULL,
+                     ncc_list = NULL
+    ))
   }
 
 # (i.e. not raw)
