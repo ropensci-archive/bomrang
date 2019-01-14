@@ -85,8 +85,7 @@
 get_historical <-
   function(stationid = NULL,
            latlon = NULL,
-           type = c("rain", "min", "max", "solar"),
-           meta = TRUE) {
+           type = c("rain", "min", "max", "solar")) {
     
     site <- ncc_obs_code <- NULL #nocov
     
@@ -157,7 +156,6 @@ get_historical <-
                            solar = c("Solar_exposure")
                     ))
 
-    if (isTRUE(meta)) {
     return(structure(dat, 
                      class = union("bomrang_tbl", class(dat)),
                      station = stationid,
@@ -171,8 +169,5 @@ get_historical <-
                      years = ncc_list$years,
                      ncc_list = ncc_list
                      ))
-    } else {
-      return(dat)
-    }
   }
 
