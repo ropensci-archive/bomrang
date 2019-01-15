@@ -1,5 +1,5 @@
 ---
-title: "Get BOM Précis Forecast Town Names"
+title: "Create BOM Précis Forecast Town Names Database"
 output: github_document
 ---
 
