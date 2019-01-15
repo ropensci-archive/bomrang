@@ -25,10 +25,9 @@ test_that("Query stationid = '023000',
   expect_equal(ADLhistrain$Station_number[1], 23000)
 })
 
-test_that("Query stationid = '023000',
-          meta == TRUE returns a bomrang_tbl", {
+test_that("Query stationid = '023000'", {
             skip_on_cran()
-            ADLhistmax <- get_historical("023000", type = "max", meta = TRUE)
+            ADLhistmax <- get_historical("023000", type = "max")
             expect_is(ADLhistmax, "bomrang_tbl")
             expect_equal(attr(ADLhistmax, "station"), "023000")
             expect_true(nrow(ADLhistmax) > 0)
