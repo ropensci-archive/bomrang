@@ -190,7 +190,304 @@ Services <br />
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>coastal_forecast</span> <span class='kw'>&lt;-</span> <span class='fu'>get_coastal_forecast</span>(<span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"NSW"</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>coastal_forecast</span> <span class='kw'>&lt;-</span> <span class='fu'>get_coastal_forecast</span>(<span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"NSW"</span>)
+<span class='no'>coastal_forecast</span></div><div class='output co'>#&gt;    index product_id    type state_code dist_name       pt_1_name
+#&gt; 1      0   IDN11001 Coastal        NSW      Eden Montague Island
+#&gt; 2      1   IDN11001 Coastal        NSW      Eden Montague Island
+#&gt; 3      2   IDN11001 Coastal        NSW      Eden Montague Island
+#&gt; 4      3   IDN11001 Coastal        NSW      Eden Montague Island
+#&gt; 5      0   IDN11001 Coastal        NSW  Batemans       Ulladulla
+#&gt; 6      1   IDN11001 Coastal        NSW  Batemans       Ulladulla
+#&gt; 7      2   IDN11001 Coastal        NSW  Batemans       Ulladulla
+#&gt; 8      3   IDN11001 Coastal        NSW  Batemans       Ulladulla
+#&gt; 9      0   IDN11001 Coastal        NSW Illawarra    Port Hacking
+#&gt; 10     1   IDN11001 Coastal        NSW Illawarra    Port Hacking
+#&gt; 11     2   IDN11001 Coastal        NSW Illawarra    Port Hacking
+#&gt; 12     3   IDN11001 Coastal        NSW Illawarra    Port Hacking
+#&gt; 13     0   IDN11001 Coastal        NSW    Sydney      Broken Bay
+#&gt; 14     1   IDN11001 Coastal        NSW    Sydney      Broken Bay
+#&gt; 15     2   IDN11001 Coastal        NSW    Sydney      Broken Bay
+#&gt; 16     3   IDN11001 Coastal        NSW    Sydney      Broken Bay
+#&gt; 17     0   IDN11001 Coastal        NSW    Hunter      Seal Rocks
+#&gt; 18     1   IDN11001 Coastal        NSW    Hunter      Seal Rocks
+#&gt; 19     2   IDN11001 Coastal        NSW    Hunter      Seal Rocks
+#&gt; 20     3   IDN11001 Coastal        NSW    Hunter      Seal Rocks
+#&gt; 21     0   IDN11001 Coastal        NSW Macquarie      Smoky Cape
+#&gt; 22     1   IDN11001 Coastal        NSW Macquarie      Smoky Cape
+#&gt; 23     2   IDN11001 Coastal        NSW Macquarie      Smoky Cape
+#&gt; 24     3   IDN11001 Coastal        NSW Macquarie      Smoky Cape
+#&gt; 25     0   IDN11001 Coastal        NSW     Coffs           Wooli
+#&gt; 26     1   IDN11001 Coastal        NSW     Coffs           Wooli
+#&gt; 27     2   IDN11001 Coastal        NSW     Coffs           Wooli
+#&gt; 28     3   IDN11001 Coastal        NSW     Coffs           Wooli
+#&gt; 29     0   IDN11001 Coastal        NSW     Byron    Point Danger
+#&gt; 30     1   IDN11001 Coastal        NSW     Byron    Point Danger
+#&gt; 31     2   IDN11001 Coastal        NSW     Byron    Point Danger
+#&gt; 32     3   IDN11001 Coastal        NSW     Byron    Point Danger
+#&gt;          pt_2_name       aac    start_time_local end_time_local utc_offset
+#&gt; 1      Gabo Island NSW_MW001 2019-02-14 17:00:00     2019-02-15      11:00
+#&gt; 2      Gabo Island NSW_MW001 2019-02-15 00:00:00     2019-02-16      11:00
+#&gt; 3      Gabo Island NSW_MW001 2019-02-16 00:00:00     2019-02-17      11:00
+#&gt; 4      Gabo Island NSW_MW001 2019-02-17 00:00:00     2019-02-18      11:00
+#&gt; 5  Montague Island NSW_MW002 2019-02-14 17:00:00     2019-02-15      11:00
+#&gt; 6  Montague Island NSW_MW002 2019-02-15 00:00:00     2019-02-16      11:00
+#&gt; 7  Montague Island NSW_MW002 2019-02-16 00:00:00     2019-02-17      11:00
+#&gt; 8  Montague Island NSW_MW002 2019-02-17 00:00:00     2019-02-18      11:00
+#&gt; 9        Ulladulla NSW_MW003 2019-02-14 17:00:00     2019-02-15      11:00
+#&gt; 10       Ulladulla NSW_MW003 2019-02-15 00:00:00     2019-02-16      11:00
+#&gt; 11       Ulladulla NSW_MW003 2019-02-16 00:00:00     2019-02-17      11:00
+#&gt; 12       Ulladulla NSW_MW003 2019-02-17 00:00:00     2019-02-18      11:00
+#&gt; 13    Port Hacking NSW_MW004 2019-02-14 17:00:00     2019-02-15      11:00
+#&gt; 14    Port Hacking NSW_MW004 2019-02-15 00:00:00     2019-02-16      11:00
+#&gt; 15    Port Hacking NSW_MW004 2019-02-16 00:00:00     2019-02-17      11:00
+#&gt; 16    Port Hacking NSW_MW004 2019-02-17 00:00:00     2019-02-18      11:00
+#&gt; 17      Broken Bay NSW_MW005 2019-02-14 17:00:00     2019-02-15      11:00
+#&gt; 18      Broken Bay NSW_MW005 2019-02-15 00:00:00     2019-02-16      11:00
+#&gt; 19      Broken Bay NSW_MW005 2019-02-16 00:00:00     2019-02-17      11:00
+#&gt; 20      Broken Bay NSW_MW005 2019-02-17 00:00:00     2019-02-18      11:00
+#&gt; 21      Seal Rocks NSW_MW006 2019-02-14 17:00:00     2019-02-15      11:00
+#&gt; 22      Seal Rocks NSW_MW006 2019-02-15 00:00:00     2019-02-16      11:00
+#&gt; 23      Seal Rocks NSW_MW006 2019-02-16 00:00:00     2019-02-17      11:00
+#&gt; 24      Seal Rocks NSW_MW006 2019-02-17 00:00:00     2019-02-18      11:00
+#&gt; 25      Smoky Cape NSW_MW007 2019-02-14 17:00:00     2019-02-15      11:00
+#&gt; 26      Smoky Cape NSW_MW007 2019-02-15 00:00:00     2019-02-16      11:00
+#&gt; 27      Smoky Cape NSW_MW007 2019-02-16 00:00:00     2019-02-17      11:00
+#&gt; 28      Smoky Cape NSW_MW007 2019-02-17 00:00:00     2019-02-18      11:00
+#&gt; 29           Wooli NSW_MW008 2019-02-14 17:00:00     2019-02-15      11:00
+#&gt; 30           Wooli NSW_MW008 2019-02-15 00:00:00     2019-02-16      11:00
+#&gt; 31           Wooli NSW_MW008 2019-02-16 00:00:00     2019-02-17      11:00
+#&gt; 32           Wooli NSW_MW008 2019-02-17 00:00:00     2019-02-18      11:00
+#&gt;         start_time_utc        end_time_utc
+#&gt; 1  2019-02-14 06:00:00 2019-02-14 13:00:00
+#&gt; 2  2019-02-14 13:00:00 2019-02-15 13:00:00
+#&gt; 3  2019-02-15 13:00:00 2019-02-16 13:00:00
+#&gt; 4  2019-02-16 13:00:00 2019-02-17 13:00:00
+#&gt; 5  2019-02-14 06:00:00 2019-02-14 13:00:00
+#&gt; 6  2019-02-14 13:00:00 2019-02-15 13:00:00
+#&gt; 7  2019-02-15 13:00:00 2019-02-16 13:00:00
+#&gt; 8  2019-02-16 13:00:00 2019-02-17 13:00:00
+#&gt; 9  2019-02-14 06:00:00 2019-02-14 13:00:00
+#&gt; 10 2019-02-14 13:00:00 2019-02-15 13:00:00
+#&gt; 11 2019-02-15 13:00:00 2019-02-16 13:00:00
+#&gt; 12 2019-02-16 13:00:00 2019-02-17 13:00:00
+#&gt; 13 2019-02-14 06:00:00 2019-02-14 13:00:00
+#&gt; 14 2019-02-14 13:00:00 2019-02-15 13:00:00
+#&gt; 15 2019-02-15 13:00:00 2019-02-16 13:00:00
+#&gt; 16 2019-02-16 13:00:00 2019-02-17 13:00:00
+#&gt; 17 2019-02-14 06:00:00 2019-02-14 13:00:00
+#&gt; 18 2019-02-14 13:00:00 2019-02-15 13:00:00
+#&gt; 19 2019-02-15 13:00:00 2019-02-16 13:00:00
+#&gt; 20 2019-02-16 13:00:00 2019-02-17 13:00:00
+#&gt; 21 2019-02-14 06:00:00 2019-02-14 13:00:00
+#&gt; 22 2019-02-14 13:00:00 2019-02-15 13:00:00
+#&gt; 23 2019-02-15 13:00:00 2019-02-16 13:00:00
+#&gt; 24 2019-02-16 13:00:00 2019-02-17 13:00:00
+#&gt; 25 2019-02-14 06:00:00 2019-02-14 13:00:00
+#&gt; 26 2019-02-14 13:00:00 2019-02-15 13:00:00
+#&gt; 27 2019-02-15 13:00:00 2019-02-16 13:00:00
+#&gt; 28 2019-02-16 13:00:00 2019-02-17 13:00:00
+#&gt; 29 2019-02-14 06:00:00 2019-02-14 13:00:00
+#&gt; 30 2019-02-14 13:00:00 2019-02-15 13:00:00
+#&gt; 31 2019-02-15 13:00:00 2019-02-16 13:00:00
+#&gt; 32 2019-02-16 13:00:00 2019-02-17 13:00:00
+#&gt;                                                                                                      forecast_seas
+#&gt; 1                                                                                                   Below 1 metre.
+#&gt; 2                                                                                                   Below 1 metre.
+#&gt; 3                                  Around 1 metre, increasing to 1 to 1.5 metres south of Merimbula around midday.
+#&gt; 4                                                                                                 1 to 1.5 metres.
+#&gt; 5                                                                                                   Below 1 metre.
+#&gt; 6                                                                                                   Below 1 metre.
+#&gt; 7  Below 1 metre, decreasing below 0.5 metres during the morning, then increasing to around 1 metre around midday.
+#&gt; 8                                  1 to 1.5 metres, increasing to 1.5 to 2 metres during the afternoon or evening.
+#&gt; 9                                                                                                  Around 1 metre.
+#&gt; 10                                                                                                  Below 1 metre.
+#&gt; 11                                                                                                  Below 1 metre.
+#&gt; 12                                 1 to 1.5 metres, increasing to 1.5 to 2 metres during the afternoon or evening.
+#&gt; 13                                                                                                  Below 1 metre.
+#&gt; 14                                                                                                  Below 1 metre.
+#&gt; 15                                                                                                  Below 1 metre.
+#&gt; 16                                     Below 1 metre, increasing to 1 to 2 metres during the afternoon or evening.
+#&gt; 17                                                                                                  Below 1 metre.
+#&gt; 18                                                                                                 Around 1 metre.
+#&gt; 19                                                                                                 Around 1 metre.
+#&gt; 20                                                Below 1 metre, increasing to 1 to 2 metres during the afternoon.
+#&gt; 21                                 Around 1 metre, increasing to 1 to 1.5 metres offshore north of Port Macquarie.
+#&gt; 22                Around 1 metre, increasing to 1 to 1.5 metres offshore north of Port Macquarie by early evening.
+#&gt; 23                                                                                                 Around 1 metre.
+#&gt; 24          Around 1 metre, increasing to 1 to 1.5 metres south of Port Macquarie during the afternoon or evening.
+#&gt; 25                                                                                                1.5 to 2 metres.
+#&gt; 26                                                                                                1 to 1.5 metres.
+#&gt; 27                                                      1 to 1.5 metres, decreasing to 1 metre during the morning.
+#&gt; 28                                                                                                 Around 1 metre.
+#&gt; 29                                                                                                2 to 2.5 metres.
+#&gt; 30                                                                                              1.5 to 2.5 metres.
+#&gt; 31                                              1.5 to 2 metres, decreasing to 1 to 1.5 metres during the morning.
+#&gt; 32                                                      1 to 1.5 metres, decreasing to 1 metre during the morning.
+#&gt;                                                                           forecast_weather
+#&gt; 1                                                                                   Clear.
+#&gt; 2                                                                           Partly cloudy.
+#&gt; 3                                                                           Partly cloudy.
+#&gt; 4                                                                                   Sunny.
+#&gt; 5                                                                            Mostly clear.
+#&gt; 6                                                                           Partly cloudy.
+#&gt; 7                                                                           Partly cloudy.
+#&gt; 8                                                                                   Sunny.
+#&gt; 9                                                                                   Clear.
+#&gt; 10                                                                          Partly cloudy.
+#&gt; 11                                                                          Partly cloudy.
+#&gt; 12                                                                           Mostly sunny.
+#&gt; 13                                                                                  Clear.
+#&gt; 14                                                                          Partly cloudy.
+#&gt; 15                                                                          Partly cloudy.
+#&gt; 16                                                                           Mostly sunny.
+#&gt; 17                                                                           Mostly clear.
+#&gt; 18                                                                          Partly cloudy.
+#&gt; 19                                                                          Partly cloudy.
+#&gt; 20                                                                         Cloud clearing.
+#&gt; 21                                                                          Partly cloudy.
+#&gt; 22                                                                                 Cloudy.
+#&gt; 23                                                                                 Cloudy.
+#&gt; 24                                                                          Partly cloudy.
+#&gt; 25                                                                          Partly cloudy.
+#&gt; 26                                                                                 Cloudy.
+#&gt; 27                                                                                 Cloudy.
+#&gt; 28                                                                          Partly cloudy.
+#&gt; 29 Cloudy. 50% chance of showers offshore north of Cape Byron, near zero chance elsewhere.
+#&gt; 30                                                                                 Cloudy.
+#&gt; 31                                                                                 Cloudy.
+#&gt; 32                                                                          Partly cloudy.
+#&gt;                                                                                                                                                        forecast_winds
+#&gt; 1                                                                                                                                            Variable about 10 knots.
+#&gt; 2                                                                                                                                            Variable about 10 knots.
+#&gt; 3                                                            East to northeasterly about 10 knots tending north to northeasterly 10 to 15 knots early in the morning.
+#&gt; 4                                                                                                                                           Northerly 15 to 20 knots.
+#&gt; 5                                                                              East to northeasterly 10 to 15 knots decreasing to below 10 knots in the late evening.
+#&gt; 6                                                                                                                                            Variable about 10 knots.
+#&gt; 7                                  Variable about 10 knots becoming northeasterly 10 to 15 knots in the middle of the day then tending northerly in the late evening.
+#&gt; 8                                                                                                                                           Northerly 15 to 25 knots.
+#&gt; 9  East to northeasterly 10 to 15 knots, reaching up to 20 knots south of Point Perpendicular in the evening. Winds decreasing to about 10 knots in the late evening.
+#&gt; 10                                                                                                                              East to northeasterly about 10 knots.
+#&gt; 11                                                                                East to northeasterly 10 to 15 knots tending north to northeasterly in the evening.
+#&gt; 12                                                                                                                             North to northeasterly 15 to 25 knots.
+#&gt; 13                                                                        Northeast to southeasterly about 10 knots increasing to 10 to 15 knots in the late evening.
+#&gt; 14                                                                                        Easterly about 10 knots increasing to 10 to 15 knots in the late afternoon.
+#&gt; 15                                                                                                                              East to northeasterly about 10 knots.
+#&gt; 16                                                                                 North to northeasterly about 10 knots increasing to 15 to 20 knots during the day.
+#&gt; 17                                                                                                                              East to southeasterly about 10 knots.
+#&gt; 18                                                                        East to southeasterly about 10 knots increasing to 10 to 15 knots in the middle of the day.
+#&gt; 19                                                                                         East to southeasterly 10 to 15 knots turning northeasterly in the evening.
+#&gt; 20                                                                                                                                      Northeasterly 15 to 20 knots.
+#&gt; 21                                                             Southeasterly 10 to 15 knots, reaching up to 20 knots offshore north of Port Macquarie in the evening.
+#&gt; 22                                                             Southeasterly 10 to 15 knots, reaching up to 20 knots offshore north of Port Macquarie in the evening.
+#&gt; 23                                                                                   Southeasterly 10 to 15 knots turning easterly in the late morning and afternoon.
+#&gt; 24          East to northeasterly 10 to 15 knots becoming variable about 10 knots during the morning then becoming northeasterly 15 to 20 knots during the afternoon.
+#&gt; 25                                                              Southeasterly 15 to 20 knots, reaching up to 25 knots offshore north of Coffs Harbour in the evening.
+#&gt; 26                                                                                                                                      Southeasterly 15 to 20 knots.
+#&gt; 27                                                                                                                                      Southeasterly 15 to 20 knots.
+#&gt; 28                                                              East to southeasterly 10 to 15 knots tending east to northeasterly below 10 knots during the evening.
+#&gt; 29                                                                               Southeasterly 20 to 25 knots, reaching up to 30 knots north of Yamba in the evening.
+#&gt; 30                                                  Southeasterly 15 to 20 knots, reaching up to 25 knots north of Yamba during the morning and again in the evening.
+#&gt; 31                                                                                                                                      Southeasterly 15 to 20 knots.
+#&gt; 32                                                                                                                                      Southeasterly 10 to 15 knots.
+#&gt;                                                                                                                     forecast_swell1
+#&gt; 1                                                                                                        Southerly 1 to 1.5 metres.
+#&gt; 2                                                       Southerly 1 to 1.5 metres, decreasing to around 1 metre during the morning.
+#&gt; 3                                                                                                          Southerly below 1 metre.
+#&gt; 4                  Southerly around 1 metre inshore, increasing to 1 to 1.5 metres offshore south of Green Cape during the morning.
+#&gt; 5                                                          Southerly below 1 metre inshore, increasing to 1 to 1.5 metres offshore.
+#&gt; 6                                                                                                         Southerly around 1 metre.
+#&gt; 7                                                                                                          Southerly below 1 metre.
+#&gt; 8                                                                                                         Southerly around 1 metre.
+#&gt; 9                                                         Southerly around 1 metre inshore, increasing to 1 to 1.5 metres offshore.
+#&gt; 10                                                                                                        Southerly around 1 metre.
+#&gt; 11                                                                                                          Easterly below 1 metre.
+#&gt; 12                                                                                                        Southerly around 1 metre.
+#&gt; 13                                                        Southerly around 1 metre inshore, increasing to 1 to 1.5 metres offshore.
+#&gt; 14                                                         Southerly below 1 metre inshore, increasing to 1 to 1.5 metres offshore.
+#&gt; 15                                                                                                        Southerly around 1 metre.
+#&gt; 16                                                                                                         Easterly around 1 metre.
+#&gt; 17                                     Southerly 1.5 metres inshore, increasing to 1.5 to 2 metres offshore north of Port Stephens.
+#&gt; 18                                                        Southerly around 1 metre inshore, increasing to 1 to 1.5 metres offshore.
+#&gt; 19               Easterly around 1 metre inshore, increasing to 1 to 1.5 metres offshore north of Port Stephens during the morning.
+#&gt; 20                                     Easterly around 1 metre inshore, increasing to 1 to 1.5 metres offshore north of Norah Head.
+#&gt; 21                                                       Southerly 1 to 1.5 metres inshore, increasing to 1.5 to 2 metres offshore.
+#&gt; 22                                                                                                       Southerly 1 to 1.5 metres.
+#&gt; 23                                                       Easterly around 1 metre, increasing to 1 to 1.5 metres during the morning.
+#&gt; 24                                                                                                             Easterly 1.5 metres.
+#&gt; 25                                                                                                            Southerly 1.5 metres.
+#&gt; 26                                                     Southerly 1.5 to 2 metres, decreasing to 1 to 1.5 metres during the morning.
+#&gt; 27                                     Easterly 1 to 1.5 metres inshore, increasing to 1.5 to 2 metres offshore during the morning.
+#&gt; 28                                                             Easterly 1.5 metres inshore, increasing to 1.5 to 2 metres offshore.
+#&gt; 29                                   Southerly 1 to 1.5 metres inshore, increasing to 1.5 to 2 metres offshore north of Cape Byron.
+#&gt; 30 Southerly 1 to 1.5 metres, decreasing to around 1 metre during the morning, then increasing to 1 to 1.5 metres by early evening.
+#&gt; 31                                                      Easterly 1 to 1.5 metres, increasing to 1.5 to 2 metres during the morning.
+#&gt; 32                                                                                                               Easterly 2 metres.
+#&gt;                                                                                forecast_swell2
+#&gt; 1                                                                                         &lt;NA&gt;
+#&gt; 2                                                                                         &lt;NA&gt;
+#&gt; 3                                                                                         &lt;NA&gt;
+#&gt; 4                                                                                         &lt;NA&gt;
+#&gt; 5                                                                                         &lt;NA&gt;
+#&gt; 6                                                                                         &lt;NA&gt;
+#&gt; 7                                                                                         &lt;NA&gt;
+#&gt; 8                                                                                         &lt;NA&gt;
+#&gt; 9                                                                                         &lt;NA&gt;
+#&gt; 10                                                                                        &lt;NA&gt;
+#&gt; 11                                                                                        &lt;NA&gt;
+#&gt; 12                                                                    Easterly around 1 metre.
+#&gt; 13                                                                                        &lt;NA&gt;
+#&gt; 14                                                                                        &lt;NA&gt;
+#&gt; 15                                                                    Easterly around 1 metre.
+#&gt; 16                                                                                        &lt;NA&gt;
+#&gt; 17                                                                                        &lt;NA&gt;
+#&gt; 18                                                                                        &lt;NA&gt;
+#&gt; 19                                                                   Southerly around 1 metre.
+#&gt; 20                                                                                        &lt;NA&gt;
+#&gt; 21                                                                                        &lt;NA&gt;
+#&gt; 22                                                                    Easterly around 1 metre.
+#&gt; 23                                                                   Southerly around 1 metre.
+#&gt; 24                                                                                        &lt;NA&gt;
+#&gt; 25                                                                   Easterly 1 to 1.5 metres.
+#&gt; 26 Easterly around 1 metre inshore, increasing to 1 to 1.5 metres offshore during the morning.
+#&gt; 27                                                                   Southerly around 1 metre.
+#&gt; 28                                                                                        &lt;NA&gt;
+#&gt; 29                                                                        Easterly 1.5 metres.
+#&gt; 30                    Easterly 1 to 1.5 metres, decreasing to around 1 metre by early evening.
+#&gt; 31                                                                   Southerly around 1 metre.
+#&gt; 32                                                                                        &lt;NA&gt;
+#&gt;    forecast_caution                                  marine_forecast
+#&gt; 1                NA                                             &lt;NA&gt;
+#&gt; 2                NA                                             &lt;NA&gt;
+#&gt; 3                NA                                             &lt;NA&gt;
+#&gt; 4                NA                                             &lt;NA&gt;
+#&gt; 5                NA                                             &lt;NA&gt;
+#&gt; 6                NA                                             &lt;NA&gt;
+#&gt; 7                NA                                             &lt;NA&gt;
+#&gt; 8                NA                                             &lt;NA&gt;
+#&gt; 9                NA                                             &lt;NA&gt;
+#&gt; 10               NA                                             &lt;NA&gt;
+#&gt; 11               NA                                             &lt;NA&gt;
+#&gt; 12               NA                                             &lt;NA&gt;
+#&gt; 13               NA                                             &lt;NA&gt;
+#&gt; 14               NA                                             &lt;NA&gt;
+#&gt; 15               NA                                             &lt;NA&gt;
+#&gt; 16               NA                                             &lt;NA&gt;
+#&gt; 17               NA                                             &lt;NA&gt;
+#&gt; 18               NA                                             &lt;NA&gt;
+#&gt; 19               NA                                             &lt;NA&gt;
+#&gt; 20               NA                                             &lt;NA&gt;
+#&gt; 21               NA                                             &lt;NA&gt;
+#&gt; 22               NA                                             &lt;NA&gt;
+#&gt; 23               NA                                             &lt;NA&gt;
+#&gt; 24               NA                                             &lt;NA&gt;
+#&gt; 25               NA                                             &lt;NA&gt;
+#&gt; 26               NA                                             &lt;NA&gt;
+#&gt; 27               NA                                             &lt;NA&gt;
+#&gt; 28               NA                                             &lt;NA&gt;
+#&gt; 29               NA Strong Wind Warning for Thursday for Byron Coast
+#&gt; 30               NA                                             &lt;NA&gt;
+#&gt; 31               NA                                             &lt;NA&gt;
+#&gt; 32               NA                                             &lt;NA&gt;</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

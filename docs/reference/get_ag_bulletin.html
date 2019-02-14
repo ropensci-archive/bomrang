@@ -193,7 +193,139 @@ Meteorology (<acronym>BOM</acronym>) webpage, Bureau of Meteorology Site Numbers
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>ag_bulletin</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ag_bulletin</span>(<span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"QLD"</span>)</div><div class='input'>
+    <pre class="examples"><div class='input'><span class='no'>ag_bulletin</span> <span class='kw'>&lt;-</span> <span class='fu'>get_ag_bulletin</span>(<span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"QLD"</span>)
+<span class='no'>ag_bulletin</span></div><div class='output co'>#&gt;    product_id state dist                             name   wmo  site
+#&gt; 1    IDQ60604   QLD   33             AYR DPI RESEARCH STN 95295 33002
+#&gt; 2    IDQ60604   QLD   38               BIRDSVILLE AIRPORT 95482 38026
+#&gt; 3    IDQ60604   QLD   38                   BOULIA AIRPORT 94333 38003
+#&gt; 4    IDQ60604   QLD   40                    BRISBANE AERO 94578 40842
+#&gt; 5    IDQ60604   QLD   39                   BUNDABERG AERO 94387 39128
+#&gt; 6    IDQ60604   QLD   31                      CAIRNS AERO 94287 31011
+#&gt; 7    IDQ60604   QLD   44                 CHARLEVILLE AERO 94510 44021
+#&gt; 8    IDQ60604   QLD   33         COLLINSVILLE POST OFFICE 94360 33013
+#&gt; 9    IDQ60604   QLD   41                    DALBY AIRPORT 94542 41522
+#&gt; 10   IDQ60604   QLD   35                  EMERALD AIRPORT 94363 35264
+#&gt; 11   IDQ60604   QLD   40  UNIVERSITY OF QUEENSLAND GATTON 94562 40082
+#&gt; 12   IDQ60604   QLD   30               GEORGETOWN AIRPORT 94274 30124
+#&gt; 13   IDQ60604   QLD   32                 INGHAM COMPOSITE 95291 32078
+#&gt; 14   IDQ60604   QLD   40 LOGAN CITY WATER TREATMENT PLANT 95581 40854
+#&gt; 15   IDQ60604   QLD   36                   LONGREACH AERO 94346 36031
+#&gt; 16   IDQ60604   QLD   33                       MACKAY M.O 94367 33119
+#&gt; 17   IDQ60604   QLD   31                  MAREEBA AIRPORT 95286 31210
+#&gt; 18   IDQ60604   QLD   43             MITCHELL POST OFFICE 94514 43020
+#&gt; 19   IDQ60604   QLD   29                   MOUNT ISA AERO 94332 29127
+#&gt; 20   IDQ60604   QLD   41                       OAKEY AERO 94552 41359
+#&gt; 21   IDQ60604   QLD   30             RICHMOND POST OFFICE 94340 30045
+#&gt; 22   IDQ60604   QLD   39                 ROCKHAMPTON AERO 94374 39083
+#&gt; 23   IDQ60604   QLD   43                     ROMA AIRPORT 94515 43091
+#&gt; 24   IDQ60604   QLD   32          SOUTH JOHNSTONE EXP STN 95292 32037
+#&gt; 25   IDQ60604   QLD   43                ST GEORGE AIRPORT 94517 43109
+#&gt; 26   IDQ60604   QLD   35                TAMBO POST OFFICE 94355 35069
+#&gt; 27   IDQ60604   QLD   39                 THANGOOL AIRPORT 94376 39089
+#&gt; 28   IDQ60604   QLD   45             THARGOMINDAH AIRPORT 95492 45025
+#&gt; 29   IDQ60604   QLD   32                  TOWNSVILLE AERO 94294 32040
+#&gt; 30   IDQ60604   QLD   31        WALKAMIN RESEARCH STATION 95284 31108
+#&gt; 31   IDQ60604   QLD   41                          WARWICK 94555 41525
+#&gt; 32   IDQ60604   QLD   27                       WEIPA AERO 94170 27045
+#&gt;                 station      obs_time_local        obs_time_utc time_zone
+#&gt; 1                   Ayr 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 2            Birdsville 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 3                Boulia 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 4      Brisbane Airport 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 5             Bundaberg 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 6                Cairns 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 7           Charleville 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 8          Collinsville 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 9                 Dalby 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 10              Emerald 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 11               Gatton 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 12   Georgetown Airport 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 13               Ingham 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 14           Logan City 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 15            Longreach 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 16               Mackay 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 17              Mareeba 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 18             Mitchell 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 19            Mount Isa 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 20                Oakey 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 21             Richmond 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 22          Rockhampton 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 23                 Roma 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 24      South Johnstone 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 25            St George 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 26                Tambo 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 27             Thangool 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 28 Thargomindah Airport 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 29           Townsville 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 30             Walkamin 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 31              Warwick 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt; 32                Weipa 2019-02-14 09:00:00 2019-02-13 23:00:00       EST
+#&gt;         lat      lon  elev bar_ht start  end    r   tn   tx  twd   ev   tg   sn
+#&gt; 1  -19.6169 147.3758  17.0     NA  1951 2018 0.00 22.5 39.0 10.4   NA   NA   NA
+#&gt; 2  -25.8975 139.3472  46.6   47.0  2000 2018 0.00 17.6 32.3 11.9   NA   NA   NA
+#&gt; 3  -22.9117 139.9039 161.8  158.3  1886 2018 0.00 21.0 36.7 11.1 22.8 20.4   NA
+#&gt; 4  -27.3917 153.1292   4.5    9.5  1992 2018 0.01 24.8 31.4  5.2  9.0 24.1 11.5
+#&gt; 5  -24.9069 152.3230  30.8   31.5  1942 2018 0.00 23.8 33.0  4.6   NA   NA   NA
+#&gt; 6  -16.8736 145.7458   2.2    8.3  1941 2018 0.00 22.7 37.0  7.3   NA   NA   NA
+#&gt; 7  -26.4139 146.2558 301.6  303.3  1942 2018 0.00 17.9 35.5 13.6   NA   NA   NA
+#&gt; 8  -20.5533 147.8464 196.0     NA  1939 2018 0.00 21.2 38.2  9.0  8.0   NA   NA
+#&gt; 9  -27.1605 151.2634 343.9  344.4  1992 2018 0.00 19.3 40.9  9.1   NA   NA   NA
+#&gt; 10 -23.5694 148.1756 189.4  190.1  1981 2018 0.00 27.6 43.1 14.9   NA   NA   NA
+#&gt; 11 -27.5436 152.3375  89.0     NA  1897 2018 0.00 25.0 42.9  8.0   NA   NA   NA
+#&gt; 12 -18.3039 143.5306 301.8  302.5  2004 2018 0.00 22.6 34.7  2.0   NA   NA   NA
+#&gt; 13 -18.6494 146.1769  11.8   12.5  1968 2018 0.01 22.0 38.6  7.5   NA   NA   NA
+#&gt; 14 -27.6839 153.1947  14.0     NA  1992 2018 0.80 24.7 35.6  4.8  8.8   NA   NA
+#&gt; 15 -23.4397 144.2828 192.2  192.5  1949 2018 0.00 21.8 38.6 12.6   NA   NA   NA
+#&gt; 16 -21.1172 149.2169  30.3   36.3  1959 2018 0.00 23.5 33.4  3.1   NA   NA   NA
+#&gt; 17 -17.0704 145.4293 471.9  473.1  2000 2018 0.00 20.0 34.2  5.2   NA   NA   NA
+#&gt; 18 -26.4888 147.9777 336.5  338.0  1884 2018 0.00 17.3 38.8 11.7   NA 13.7   NA
+#&gt; 19 -20.6778 139.4875 340.3  341.0  1966 2018 0.00 24.2 40.1 13.0   NA   NA   NA
+#&gt; 20 -27.4034 151.7413 405.7  407.1  1970 2018 0.00 19.0 40.0  7.4   NA   NA   NA
+#&gt; 21 -20.7289 143.1425 211.1  214.5  1889 2018 0.00 23.1 36.9  9.1 10.0   NA   NA
+#&gt; 22 -23.3753 150.4775  10.4   15.1  1939 2018 0.00 24.3 38.0  5.6   NA   NA   NA
+#&gt; 23 -26.5477 148.7710 307.4  307.8  1985 2018 0.00 15.8 41.4 13.9   NA   NA   NA
+#&gt; 24 -17.6053 145.9972  18.3   18.6  1920 2018 0.00 20.9 37.7  4.3   NA   NA   NA
+#&gt; 25 -28.0489 148.5942 198.5  199.1  1997 2018 0.00 15.3 33.5 12.4   NA   NA   NA
+#&gt; 26 -24.8819 146.2564 395.1  397.4  1877 2018 0.00 17.2 40.0 11.9 12.0 12.5   NA
+#&gt; 27 -24.4935 150.5709 193.1  193.8  1929 2018 0.00 22.3 41.6 13.4   NA   NA   NA
+#&gt; 28 -27.9867 143.8150 130.9  131.4  1999 2018 0.00 19.3 31.6 12.0   NA   NA   NA
+#&gt; 29 -19.2483 146.7661   4.3    9.1  1940 2018 0.00 24.3 36.1  9.2   NA   NA   NA
+#&gt; 30 -17.1347 145.4281 594.0     NA  1965 2018 0.00 19.5 33.6  5.0  8.0 21.0   NA
+#&gt; 31 -28.2061 152.1003 475.4  475.8  1994 2018 0.00 21.4 39.4  6.1   NA   NA   NA
+#&gt; 32 -12.6778 141.9208  18.0   18.6  1972 2018 0.00 26.5 31.7  3.4   NA   NA   NA
+#&gt;    solr   t5  t10  t20  t50  t1m  wr
+#&gt; 1  28.7 28.8 28.0 29.2 29.4 27.7  NA
+#&gt; 2  27.5   NA   NA   NA   NA   NA  NA
+#&gt; 3  28.8   NA   NA   NA   NA   NA  NA
+#&gt; 4  27.8 30.0 30.0 30.0 30.0 29.0 398
+#&gt; 5  25.6   NA   NA   NA   NA   NA  NA
+#&gt; 6  28.6   NA   NA   NA   NA   NA  NA
+#&gt; 7  25.1   NA   NA   NA   NA   NA  NA
+#&gt; 8  28.8   NA   NA   NA   NA   NA  NA
+#&gt; 9  23.2   NA   NA   NA   NA   NA  NA
+#&gt; 10 28.4 37.5 33.9 34.1 33.4   NA 283
+#&gt; 11 25.5 33.6 31.0 29.1 27.8 -7.5 205
+#&gt; 12 28.5   NA   NA   NA   NA   NA  NA
+#&gt; 13 28.8   NA   NA   NA   NA   NA  NA
+#&gt; 14 28.3   NA   NA   NA   NA   NA  NA
+#&gt; 15 28.9 27.7 28.0 29.7 30.5 30.5  NA
+#&gt; 16 28.7   NA   NA   NA   NA   NA  NA
+#&gt; 17 28.6 27.8   NA 27.9 29.1 27.7 109
+#&gt; 18 25.9   NA   NA   NA   NA   NA  NA
+#&gt; 19 27.5   NA   NA   NA   NA   NA  NA
+#&gt; 20 25.9   NA   NA   NA   NA   NA  NA
+#&gt; 21 28.1   NA   NA   NA   NA   NA  NA
+#&gt; 22 28.1   NA   NA   NA   NA   NA  NA
+#&gt; 23 26.3 32.6 26.5 28.3 26.9 26.0 344
+#&gt; 24 28.7 28.5 29.0 30.0 29.4   NA  NA
+#&gt; 25 26.3 31.8 29.5 31.2 34.4 34.9 302
+#&gt; 26 28.5   NA   NA   NA   NA   NA  NA
+#&gt; 27 26.6   NA   NA   NA   NA   NA  NA
+#&gt; 28 27.9   NA   NA   NA   NA   NA  NA
+#&gt; 29 28.8   NA   NA   NA   NA   NA  NA
+#&gt; 30 28.6   NA  0.0 27.0   NA   NA  23
+#&gt; 31 25.1 28.6 28.4 28.8 28.2 26.8 233
+#&gt; 32 27.3   NA   NA   NA   NA   NA  NA</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">

@@ -195,7 +195,279 @@ website. The 3pm bulletin for Queensland is, for example, <br />
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>qld_weather</span> <span class='kw'>&lt;-</span> <span class='fu'>get_weather_bulletin</span> (<span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"QLD"</span>, <span class='kw'>morning</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div></pre>
+    <pre class="examples"><div class='input'><span class='no'>qld_weather</span> <span class='kw'>&lt;-</span> <span class='fu'>get_weather_bulletin</span> (<span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"QLD"</span>, <span class='kw'>morning</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+<span class='no'>qld_weather</span></div><div class='output co'>#&gt;              stations cld8ths wind_dir wind_speed_kmh temp_c_dry temp_c_dew
+#&gt; 1          Coconut Is      NA      WNW             13         30         NA
+#&gt; 2             Coen Ap      NA      SSW             13         34         21
+#&gt; 3             Horn Is      NA      WNW             19         29         23
+#&gt; 4      Lockhart River       7        E             13         33         27
+#&gt; 5         Palmerville      NA      SSW             11         34         24
+#&gt; 6            Scherger       3        W             15         33         24
+#&gt; 7            Weipa Ap      NA        W             22         31         25
+#&gt; 8        Burketown AP       2      ENE             13         37         24
+#&gt; 9        Century Mine      NA        S              9         37         13
+#&gt; 10       Kowanyama AP       1        W             20         33         25
+#&gt; 11      Mornington Is      NA      NNW             19         33         27
+#&gt; 12       Normanton AP      NA        N             13         34         25
+#&gt; 13      Charters Twrs       0       SW              2         37         13
+#&gt; 14      Georgetown Ap      NA      WNW             13         34         23
+#&gt; 15       Hughenden Ap       3       SW             19         36         10
+#&gt; 16        Richmond Ap       3        S             19         35         11
+#&gt; 17      Blackwater Ap      NA      ENE             15         39          8
+#&gt; 18           Clermont      NA       SE             11         39         10
+#&gt; 19         Emerald Ap      NA       SW              9         39          7
+#&gt; 20         Lochington      NA      WSW              9         39          2
+#&gt; 21           Moranbah      NA      SSE             11         39         14
+#&gt; 22       Rolleston Ap      NA      ENE              9         39          0
+#&gt; 23         Springsure      NA                      NA         NA         NA
+#&gt; 24         Barcaldine       0     CALM             NA         37          0
+#&gt; 25        Blackall Ap      NA       SW             15         36         -5
+#&gt; 26           Isisford      NA                      NA         NA         NA
+#&gt; 27          Longreach      NA      SSW             19         36          7
+#&gt; 28              Tambo      NA                      NA         NA         NA
+#&gt; 29             Winton      NA       SW             17         35          7
+#&gt; 30          Camooweal      NA        S             19         35          9
+#&gt; 31       Carters Bore      NA        S             13         34          6
+#&gt; 32       Cloncurry AP       1       SW             13         35          7
+#&gt; 33     Julia Creek Ap       1      SSE             17         35         12
+#&gt; 34    Lake Julius AWS      NA      SSW              9         36          9
+#&gt; 35             Mt Isa      NA        S             15         35          8
+#&gt; 36      New May Downs      NA        S             13         35          6
+#&gt; 37    The Monument AP      NA      SSW             19         33          5
+#&gt; 38         Trepell AP      NA       SW             20         34          6
+#&gt; 39         Urandangie      NA      SSE             15         35          1
+#&gt; 40           Bedourie      NA                      NA         NA         NA
+#&gt; 41      Birdsville Ap      NA      SSE             22         31         -2
+#&gt; 42             Boulia       0      SSW             15         32          1
+#&gt; 43    Thargomindah Ap      NA      SSE             17         30         -4
+#&gt; 44   Windorah Airport      NA       SE             19         32         -3
+#&gt; 45             Bollon      NA                      NA         NA         NA
+#&gt; 46        Charleville      NA        S             22         33         -3
+#&gt; 47         Cunnamulla      NA                      NA         NA         NA
+#&gt; 48             Injune      NA                      NA         NA         NA
+#&gt; 49           Mitchell      NA                      NA         NA         NA
+#&gt; 50               Roma      NA       SE             11         34         -1
+#&gt; 51       St George Ap      NA      WNW              9         33        -10
+#&gt; 52              Surat      NA                      NA         NA         NA
+#&gt; 53              Dalby      NA      ENE             19         35         10
+#&gt; 54              Oakey      NA      ESE             35         32         15
+#&gt; 55         Stanthorpe      NA                      NA         NA         NA
+#&gt; 56        Applethorpe      NA        E             13         21         14
+#&gt; 57              Texas      NA                      NA         NA         NA
+#&gt; 58       Toowoomba Ap      NA        E             39         29         16
+#&gt; 59        Warwick AWS      NA       SE             28         26         15
+#&gt; 60          Cairns Ap      NA        N              9         37         21
+#&gt; 61  Cairns Racecourse      NA       NE              9         37         19
+#&gt; 62      Cape Flattery      NA        N             20         32         26
+#&gt; 63           Cardwell      NA                      NA         NA         NA
+#&gt; 64        Cooktown Ap       1       SE             11         37         17
+#&gt; 65     Arlington Reef      NA        N              6         NA         NA
+#&gt; 66          Innisfail      NA                      NA         NA         NA
+#&gt; 67          Low Isles      NA        N             15         34         27
+#&gt; 68            Lucinda      NA      ESE             11         35         22
+#&gt; 69         Mareeba Ap      NA        N              9         33         19
+#&gt; 70    South Johnstone      NA      ESE             11         38         17
+#&gt; 71          Willis Is       4        W             15         31         26
+#&gt; 72         Alva Beach      NA        E             24         31         24
+#&gt; 73            Ayr DPI      NA      ENE             19         33         21
+#&gt; 74       Bowen Ap AWS      NA        E             17         33         23
+#&gt; 75             Ingham      NA                      NA         NA         NA
+#&gt; 76         Townsville       8        S             15         39         13
+#&gt; 77           Woolshed      NA      SSW              7         35         16
+#&gt; 78        Hamilton Is      NA      ESE             22         30         25
+#&gt; 79             Mackay      NA      ESE             11         30         24
+#&gt; 80          Mackay Ap       1        E             19         30         24
+#&gt; 81  Mackay Racecourse      NA        E             15         31         24
+#&gt; 82    Middle Percy Is      NA      ESE             17         29         24
+#&gt; 83      Proserpine Ap      NA      ESE             20         31         25
+#&gt; 84          Gladstone      NA      ENE             24         32         23
+#&gt; 85       Gladstone Ap      NA      ENE             26         31         22
+#&gt; 86           Heron Is      NA        E             19         NA         NA
+#&gt; 87        Rockhampton      NA        E             19         35         22
+#&gt; 88          Rundle Is      NA        E             24         29         NA
+#&gt; 89        Samuel Hill       1        E             19         31         24
+#&gt; 90        St Lawrence      NA      NNE             17         33         23
+#&gt; 91           Thangool       8       SE              9         39          6
+#&gt; 92            Yeppoon      NA       NE             19         30         25
+#&gt; 93          Bundaberg       8      ESE             26         31         23
+#&gt; 94       Double Is Pt      NA        S             46         27         25
+#&gt; 95         Gayndah Ap      NA        E             15         37         16
+#&gt; 96             Gympie      NA       SE             17         31         22
+#&gt; 97         Hervey Bay       2       SE             22         31         22
+#&gt; 98     Jimna Forestry      NA                      NA         NA         NA
+#&gt; 99           Kingaroy       8        E             19         33         16
+#&gt; 100    Lady Elliot Is      NA      ESE             22         30         24
+#&gt; 101       Maryborough      NA      ESE             30         32         23
+#&gt; 102    Monto Township      NA                      NA         NA         NA
+#&gt; 103     Rainbow Beach      NA                      NA         NA         NA
+#&gt; 104        Sandy Cape      NA                      NA         NA         NA
+#&gt; 105 Seventeen Seventy      NA                      NA         NA         NA
+#&gt; 106       Tin Can Bay      NA       SE             19         29         23
+#&gt; 107       Toolara AWS      NA                      NA         NA         NA
+#&gt; 108          Amberley       8       SE             28         31         19
+#&gt; 109       Archerfield       8      SSE             33         29         19
+#&gt; 110    Beaudesert AWS      NA      SSW             22         27         18
+#&gt; 111        Beerburrum      NA        S             13         27         20
+#&gt; 112       Brisbane Ap       8       SE             26         28         20
+#&gt; 113          Brisbane      NA       SE             17         28         20
+#&gt; 114      Canungra Def      NA        S              9         26         19
+#&gt; 115      Cape Moreton      NA      SSE             65         25         25
+#&gt; 116       Coolangatta       8        S             32         25         20
+#&gt; 117    G Coast Seaway      NA        S             50         26         23
+#&gt; 118         Gatton UQ      NA       SE             32         32         18
+#&gt; 119     Greenbank Def      NA      SSE             13         29         20
+#&gt; 120        Logan City       8        S             13         28         20
+#&gt; 121            Maleny      NA                      NA         NA         NA
+#&gt; 122           Nambour      NA        S              7         28         22
+#&gt; 123     Point Lookout      NA                      NA         NA         NA
+#&gt; 124         Redcliffe      NA      SSE             54         27         20
+#&gt; 125           Redland      NA      SSE             24         27         20
+#&gt; 126 Sunshine Coast Ap       8      SSE             35         29         23
+#&gt; 127          Tewantin      NA      SSE             22         29         23
+#&gt; 128            Sydney      NA                      NA         25         11
+#&gt; 129       Canberra Ap      NA        N             13         26          4
+#&gt; 130         Melbourne      NA      SSW             11         22          9
+#&gt; 131            Hobart      NA      NNW             26         19         10
+#&gt; 132          Adelaide      NA      WSW             13         23          9
+#&gt; 133          Perth Ap      NA        W             24         30         11
+#&gt; 134            Darwin       2       NW             24         33         25
+#&gt; 135     Alice Springs      NA        E             19         30         -1
+#&gt;     temp_c_max temp_c_min temp_c_gr barhpa rain_mm        weather seastate
+#&gt; 1           31         NA        NA   1008      NA                        
+#&gt; 2           35         NA        NA   1007     0.2                        
+#&gt; 3           30         NA        NA   1009      NA                        
+#&gt; 4           35         NA        NA   1007      NA                        
+#&gt; 5           35         NA        NA   1006      NA                        
+#&gt; 6           34         NA        NA   1008      NA                        
+#&gt; 7           32         NA        NA   1008      NA                        
+#&gt; 8           38         NA        NA   1006      NA                        
+#&gt; 9           38         NA        NA   1008      NA                        
+#&gt; 10          34         NA        NA   1008      NA                        
+#&gt; 11          33         NA        NA   1008      NA                        
+#&gt; 12          35         NA        NA   1008      NA                        
+#&gt; 13          38         NA        NA   1006      NA           Dust         
+#&gt; 14          34         NA        NA   1007      NA                        
+#&gt; 15          36         NA        NA   1007      NA                        
+#&gt; 16          36         NA        NA   1008      NA                        
+#&gt; 17          40         NA        NA   1006      NA                        
+#&gt; 18          41         NA        NA   1005      NA                        
+#&gt; 19          40         NA        NA   1006      NA                        
+#&gt; 20          40         NA        NA   1006      NA                        
+#&gt; 21          40         NA        NA   1006      NA                        
+#&gt; 22          39         NA        NA   1007      NA                        
+#&gt; 23          NA         NA        NA     NA      NA                        
+#&gt; 24          38         NA        NA     NA      NA                        
+#&gt; 25          37         NA        NA   1008      NA                        
+#&gt; 26          NA         NA        NA     NA      NA                        
+#&gt; 27          36         NA        NA   1008      NA                        
+#&gt; 28          NA         NA        NA     NA      NA                        
+#&gt; 29          35         NA        NA   1008      NA                        
+#&gt; 30          36         NA        NA   1009      NA                        
+#&gt; 31          34         NA        NA     NA      NA                        
+#&gt; 32          36         NA        NA   1008      NA                        
+#&gt; 33          36         NA        NA   1008      NA                        
+#&gt; 34          36         NA        NA     NA      NA                        
+#&gt; 35          35         NA        NA   1009      NA                        
+#&gt; 36          35         NA        NA     NA      NA                        
+#&gt; 37          33         NA        NA   1010      NA                        
+#&gt; 38          34         NA        NA   1009      NA                        
+#&gt; 39          35         NA        NA   1010      NA                        
+#&gt; 40          NA         NA        NA     NA      NA                        
+#&gt; 41          32         NA        NA   1013      NA                        
+#&gt; 42          33         NA        NA   1011      NA                        
+#&gt; 43          31         NA        NA   1013      NA                        
+#&gt; 44          33         NA        NA   1011      NA                        
+#&gt; 45          NA         NA        NA     NA      NA                        
+#&gt; 46          34         NA        NA   1010      NA                        
+#&gt; 47          NA         NA        NA     NA      NA                        
+#&gt; 48          NA         NA        NA     NA      NA                        
+#&gt; 49          NA         NA        NA     NA      NA                        
+#&gt; 50          35         NA        NA   1010      NA                        
+#&gt; 51          33         NA        NA   1011      NA                        
+#&gt; 52          NA         NA        NA     NA      NA                        
+#&gt; 53          36         NA        NA   1008      NA                        
+#&gt; 54          34         NA        NA   1010      NA                        
+#&gt; 55          NA         NA        NA     NA      NA                        
+#&gt; 56          23         NA        NA   1014      NA                        
+#&gt; 57          NA         NA        NA     NA      NA                        
+#&gt; 58          30         NA        NA   1011      NA                        
+#&gt; 59          28         NA        NA   1012      NA                        
+#&gt; 60          NA         NA        NA   1006      NA                        
+#&gt; 61          39         NA        NA     NA      NA                        
+#&gt; 62          34         NA        NA   1006      NA                        
+#&gt; 63          NA         NA        NA     NA      NA                        
+#&gt; 64          38         NA        NA   1005      NA                        
+#&gt; 65          NA         NA        NA   1006      NA                        
+#&gt; 66          NA         NA        NA     NA      NA                        
+#&gt; 67          37         NA        NA   1006      NA                        
+#&gt; 68          37         NA        NA   1005      NA                        
+#&gt; 69          35         NA        NA   1006      NA                        
+#&gt; 70          38         NA        NA   1006      NA                        
+#&gt; 71          31         NA        NA   1006      NA                SL LS NW
+#&gt; 72          36         NA        NA   1006      NA                        
+#&gt; 73          38         NA        NA     NA      NA                        
+#&gt; 74          33         NA        NA   1006      NA                        
+#&gt; 75          NA         NA        NA     NA      NA                        
+#&gt; 76          39         NA        NA   1005      NA                        
+#&gt; 77          NA         NA        NA   1006      NA                        
+#&gt; 78          30         NA        NA   1007      NA                        
+#&gt; 79          31         NA        NA   1007      NA                        
+#&gt; 80          31         NA        NA   1008      NA                        
+#&gt; 81          32         NA        NA     NA      NA                        
+#&gt; 82          30         NA        NA   1008      NA                        
+#&gt; 83          32         NA        NA   1007      NA                        
+#&gt; 84          35         NA        NA   1008      NA                        
+#&gt; 85          33         NA        NA   1008      NA                        
+#&gt; 86          NA         NA        NA     NA      NA                        
+#&gt; 87          36         NA        NA   1007      NA                        
+#&gt; 88          31         NA        NA   1008      NA                        
+#&gt; 89          34         NA        NA   1008      NA                        
+#&gt; 90          34         NA        NA   1007      NA                        
+#&gt; 91          40         NA        NA   1006      NA                        
+#&gt; 92          30         NA        NA   1008      NA                        
+#&gt; 93          33         NA        NA   1009      NA                        
+#&gt; 94          27         NA        NA   1010     0.4                        
+#&gt; 95          37         NA        NA   1008      NA                        
+#&gt; 96          33         NA        NA   1010      NA                        
+#&gt; 97          34         NA        NA   1010      NA                        
+#&gt; 98          NA         NA        NA     NA      NA                        
+#&gt; 99          NA         NA        NA   1010      NA                        
+#&gt; 100         32         NA        NA   1010      NA                        
+#&gt; 101         34         NA        NA   1010      NA                        
+#&gt; 102         NA         NA        NA     NA      NA                        
+#&gt; 103         NA         NA        NA     NA      NA                        
+#&gt; 104         NA         NA        NA     NA      NA                        
+#&gt; 105         NA         NA        NA     NA      NA                        
+#&gt; 106         31         NA        NA     NA      NA                        
+#&gt; 107         NA         NA        NA     NA      NA                        
+#&gt; 108         33         NA        NA   1012      NA                        
+#&gt; 109         33         NA        NA   1013      NA                        
+#&gt; 110         31         NA        NA   1014      NA                        
+#&gt; 111         31         NA        NA     NA      NA                        
+#&gt; 112         31         NA        NA   1013      NA           Haze         
+#&gt; 113         32         NA        NA   1013      NA                        
+#&gt; 114         27         NA        NA     NA      NA                        
+#&gt; 115         27         NA        NA   1011     0.6 Recent precip.         
+#&gt; 116         26         NA        NA   1014     1.0                        
+#&gt; 117         28         NA        NA   1014      NA                        
+#&gt; 118         34         NA        NA     NA      NA                        
+#&gt; 119         31         NA        NA     NA      NA                        
+#&gt; 120         29         NA        NA     NA      NA                        
+#&gt; 121         NA         NA        NA     NA      NA                        
+#&gt; 122         30         NA        NA   1012      NA                        
+#&gt; 123         NA         NA        NA     NA      NA                        
+#&gt; 124         31         NA        NA   1012      NA                        
+#&gt; 125         30         NA        NA     NA      NA                        
+#&gt; 126         31         NA        NA   1012      NA                        
+#&gt; 127         31         NA        NA   1012      NA                        
+#&gt; 128         NA         NA        NA   1018      NA                        
+#&gt; 129         NA         NA        NA   1016      NA                        
+#&gt; 130         NA         NA        NA   1020      NA                        
+#&gt; 131         NA         NA        NA   1011      NA                        
+#&gt; 132         NA         NA        NA   1021      NA                        
+#&gt; 133         NA         NA        NA   1012      NA                        
+#&gt; 134         33         NA        NA   1008      NA                        
+#&gt; 135         31         NA        NA   1012      NA                        </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

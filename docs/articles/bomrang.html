@@ -302,38 +302,38 @@
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># Show only the first ten stations in the list</span></a>
 <a class="sourceLine" id="cb9-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(<span class="kw"><a href="../reference/sweep_for_stations.html">sweep_for_stations</a></span>(<span class="dt">latlon =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="fl">35.3</span>, <span class="fl">149.2</span>)), <span class="dv">10</span>)</a></code></pre></div>
 <pre><code>##      site dist                              name start  end      lat
-## 1  070351   70                  CANBERRA AIRPORT  2008 2018 -35.3088
-## 2  070339   70 TUGGERANONG (ISABELLA PLAINS) AWS  1996 2018 -35.4184
-## 3  070349   70                  MOUNT GININI AWS  2004 2018 -35.5293
-## 4  070341   70 CAPTAINS FLAT (COWANGERONG RADAR)  2002 2018 -35.6614
-## 5  069132   69          BRAIDWOOD RACECOURSE AWS  1985 2018 -35.4253
-## 6  070358   70         YASS (RURAL FIRE SERVICE)  2011 2018 -34.8225
-## 7  073007   73                    BURRINJUCK DAM  1908 2018 -34.9997
-## 8  070330   70              GOULBURN AIRPORT AWS  1988 2018 -34.8085
-## 9  070263   70                     GOULBURN TAFE  1971 2018 -34.7495
-## 10 069128   69                       NERRIGA AWS  2013 2018 -35.1103
+## 1  069132   69          BRAIDWOOD RACECOURSE AWS  1985 2018 -35.4253
+## 2  070358   70         YASS (RURAL FIRE SERVICE)  2011 2018 -34.8225
+## 3  073007   73                    BURRINJUCK DAM  1908 2018 -34.9997
+## 4  070330   70              GOULBURN AIRPORT AWS  1988 2018 -34.8085
+## 5  070263   70                     GOULBURN TAFE  1971 2018 -34.7495
+## 6  069128   69                       NERRIGA AWS  2013 2018 -35.1103
+## 7  069134   69 BATEMANS BAY (CATALINA COUNTRY CL  1991 2018 -35.7234
+## 8  072161   72              CABRAMURRA SMHEA AWS  1996 2018 -35.9371
+## 9  073141   73              GUNDAGAI (NANGUS RD)  1995 2018 -35.0640
+## 10 070278   70             COOMA VISITORS CENTRE  1973 2018 -36.2318
 ##         lon state  elev bar_ht   wmo state_code
-## 1  149.2004   ACT 577.1  577.6 94926       &lt;NA&gt;
-## 2  149.0937   ACT 586.7  587.5 94925       &lt;NA&gt;
-## 3  148.7721   ACT 760.0     NA 95925       &lt;NA&gt;
-## 4  149.5122   NSW 358.0     NA 99089          N
-## 5  149.7835   NSW 665.2  666.0 94927          N
-## 6  148.9080   NSW 498.0     NA 95723          N
-## 7  148.5984   NSW 390.0     NA 94909          N
-## 8  149.7311   NSW 640.0  640.8 95716          N
-## 9  149.7034   NSW 670.0     NA 94716          N
-## 10 150.0826   NSW 622.0  625.6 94943          N
-##                                                         url   distance
-## 1  http://www.bom.gov.au/fwo/IDNA60801/IDNA60801.94926.json  0.9791884
-## 2  http://www.bom.gov.au/fwo/IDNA60801/IDNA60801.94925.json 16.3172787
-## 3  http://www.bom.gov.au/fwo/IDNA60801/IDNA60801.95925.json 46.4084466
-## 4    http://www.bom.gov.au/fwo/IDN60801/IDN60801.99089.json 49.1327086
-## 5    http://www.bom.gov.au/fwo/IDN60801/IDN60801.94927.json 54.7153470
-## 6    http://www.bom.gov.au/fwo/IDN60801/IDN60801.95723.json 59.3756657
-## 7    http://www.bom.gov.au/fwo/IDN60801/IDN60801.94909.json 64.0835316
-## 8    http://www.bom.gov.au/fwo/IDN60801/IDN60801.95716.json 72.9652110
-## 9    http://www.bom.gov.au/fwo/IDN60801/IDN60801.94716.json 76.4731323
-## 10   http://www.bom.gov.au/fwo/IDN60801/IDN60801.94943.json 82.9176026</code></pre>
+## 1  149.7835   NSW 665.2  666.0 94927          N
+## 2  148.9080   NSW 498.0     NA 95723          N
+## 3  148.5984   NSW 390.0     NA 94909          N
+## 4  149.7311   NSW 640.0  640.8 95716          N
+## 5  149.7034   NSW 670.0     NA 94716          N
+## 6  150.0826   NSW 622.0  625.6 94943          N
+## 7  150.1872   NSW  11.0     NA 94941          N
+## 8  148.3779   NSW 482.4     NA 95916          N
+## 9  148.0986   NSW 225.0     NA 94890          N
+## 10 149.1243   NSW 778.0     NA 94923          N
+##                                                       url  distance
+## 1  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94927.json  54.71535
+## 2  http://www.bom.gov.au/fwo/IDN60801/IDN60801.95723.json  59.37567
+## 3  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94909.json  64.08353
+## 4  http://www.bom.gov.au/fwo/IDN60801/IDN60801.95716.json  72.96521
+## 5  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94716.json  76.47313
+## 6  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94943.json  82.91760
+## 7  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94941.json 100.99732
+## 8  http://www.bom.gov.au/fwo/IDN60801/IDN60801.95916.json 102.66734
+## 9  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94890.json 103.48001
+## 10 http://www.bom.gov.au/fwo/IDN60801/IDN60801.94923.json 103.83629</code></pre>
 </div>
 </div>
 <div id="using-the-update-functions" class="section level2">
@@ -710,7 +710,7 @@ Satellite
 <code>product_id</code> the BOM product_id associated with each radar imagery file. These can be obtained from the <code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> function. This value must be specified and the function will accept only one at a time.</li>
 </ul>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_radar_imagery.html">get_radar_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDR032"</span>)</a></code></pre></div>
-<pre><code>## file downloaded to: /var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//Rtmpl4wvGN/fileb3e865d591b7.gif</code></pre>
+<pre><code>## file downloaded to:/var/folders/47/rh3mqv4j3w31bch7f_tcj3jr0000gn/T//RtmpD1PeT7/file43e2478b4463.gif</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># create a blank raster plot and add the radar layer</span></a>
 <a class="sourceLine" id="cb20-2" title="2">r &lt;-</a>
 <a class="sourceLine" id="cb20-3" title="3"><span class="st">  </span>raster<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/raster">raster</a></span>(</a>
@@ -2313,16 +2313,16 @@ Additional marine forecast warning information (not always provided)
 <a class="sourceLine" id="cb28-4" title="4"></a>
 <a class="sourceLine" id="cb28-5" title="5">ncc &lt;-<span class="st"> </span></a>
 <a class="sourceLine" id="cb28-6" title="6"><span class="st">  </span>ncc <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">ncc_obs_code =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/replace">replace</a></span>(ncc_obs_code,</a>
+<a class="sourceLine" id="cb28-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">ncc_obs_code =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/replace">replace</a></span>(ncc_obs_code,</a>
 <a class="sourceLine" id="cb28-8" title="8">                                       ncc_obs_code <span class="op">==</span><span class="st"> </span><span class="dv">136</span>,</a>
 <a class="sourceLine" id="cb28-9" title="9">                                       <span class="st">"rain"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb28-10" title="10"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">ncc_obs_code =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/replace">replace</a></span>(ncc_obs_code,</a>
+<a class="sourceLine" id="cb28-10" title="10"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">ncc_obs_code =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/replace">replace</a></span>(ncc_obs_code,</a>
 <a class="sourceLine" id="cb28-11" title="11">                                       ncc_obs_code <span class="op">==</span><span class="st"> </span><span class="dv">123</span>,</a>
 <a class="sourceLine" id="cb28-12" title="12">                                       <span class="st">"tmin"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-13" title="13"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">ncc_obs_code =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/replace">replace</a></span>(ncc_obs_code,</a>
+<a class="sourceLine" id="cb28-13" title="13"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">ncc_obs_code =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/replace">replace</a></span>(ncc_obs_code,</a>
 <a class="sourceLine" id="cb28-14" title="14">                                       ncc_obs_code <span class="op">==</span><span class="st"> </span><span class="dv">122</span>,</a>
 <a class="sourceLine" id="cb28-15" title="15">                                       <span class="st">"tmax"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb28-16" title="16"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">ncc_obs_code =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/replace">replace</a></span>(ncc_obs_code,</a>
+<a class="sourceLine" id="cb28-16" title="16"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">ncc_obs_code =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/replace">replace</a></span>(ncc_obs_code,</a>
 <a class="sourceLine" id="cb28-17" title="17">                                       ncc_obs_code <span class="op">==</span><span class="st"> </span><span class="dv">193</span>,</a>
 <a class="sourceLine" id="cb28-18" title="18">                                       <span class="st">"solar"</span>))</a></code></pre></div>
 <div id="completeness-of-historical-data-for-stations" class="section level3">
