@@ -54,22 +54,24 @@
     "TAS",
     "VIC",
     "WA",
-    "Canberra",
-    "New South Wales",
-    "Northern Territory",
-    "Queensland",
-    "South Australia",
-    "Tasmania",
-    "Victoria",
-    "Western Australia",
-    "Australia",
+    "CANBERRA",
+    "NEW SOUTH WALES",
+    "NORTHERN TERRITORY",
+    "QUEENSLAND",
+    "SOUTH AUSTRALIA",
+    "TASMANIA",
+    "VICTORIA",
+    "WESTERN AUSTRALIA",
+    "AUSTRALIA",
     "AU",
     "AUS",
-    "Oz"
+    "OZ"
   )
   
+  state <- toupper(state)
+  
   if (state %in% states) {
-    the_state <- toupper(state)
+    the_state <- state
     return(the_state)
   } else {
     likely_states <- agrep(pattern = state,
@@ -89,7 +91,7 @@
       return(the_state)
     } else if (length(likely_states) == 0) {
       stop(
-        "\nA state or territory matching what you entered was not found.",
+        "\nA state or territory matching what you entered was not found. ",
         "Please check and try again.\n"
       )
     }
