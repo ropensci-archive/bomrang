@@ -40,6 +40,7 @@ or all using \code{AUS}.
 \donttest{
 # get the short forecast for Queensland
 BOM_forecast <- get_precis_forecast(state = "QLD")
+BOM_forecast
 }
 }
 \references{
