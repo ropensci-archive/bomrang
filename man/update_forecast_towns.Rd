@@ -19,7 +19,7 @@ the database distributed with \pkg{bomrang}.  In fact, for reproducibility
 purposes, users are discouraged from using this function.
 }
 \examples{
-\donttest{
+\dontrun{
 update_forecast_towns()
 }
 }

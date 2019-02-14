@@ -30,6 +30,7 @@
 #' @examples
 #' \donttest{
 #' ag_bulletin <- get_ag_bulletin(state = "QLD")
+#' ag_bulletin
 #' }
 #'
 #' @references

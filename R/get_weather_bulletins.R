@@ -36,6 +36,7 @@
 #' @examples
 #' \donttest{
 #' qld_weather <- get_weather_bulletin (state = "QLD", morning = FALSE)
+#' qld_weather
 #'}
 #' @references
 #' Daily observation data come from Australian Bureau of Meteorology (BOM)

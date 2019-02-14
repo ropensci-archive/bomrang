@@ -29,6 +29,7 @@
 #' @examples
 #' \donttest{
 #' coastal_forecast <- get_coastal_forecast(state = "NSW")
+#' coastal_forecast
 #'}
 #' @references
 #' Forecast data come from Australian Bureau of Meteorology (BOM) Weather Data
