@@ -12,10 +12,10 @@ Provides functions to interface with Australian Government Bureau of Meteorology
 current weather data from stations, ag information bulletins, historical weather
 data and downloading and importing radar or satellite imagery.
 
-Credit for the name, *bomrang*, goes to [Di Cook](https://dicook.github.io), who
+Credit for the name, *bomrang*, goes to [Di Cook](http://dicook.org/), who
 suggested it while attending the rOpenSci AUUnconf in Brisbane, 2016, upon
 seeing the
-[vignette](https://github.com/saundersk1/auunconf16/blob/master/Vignette_BOM.pdf)
+[vignette](https://github.com/katerobsau/auunconf16/blob/master/Vignette_BoM.pdf)
 that we had assembled during the Unconf.
 
 Quick Start
