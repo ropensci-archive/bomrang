@@ -18,7 +18,7 @@ test_that("Error handling", {
 
 test_that("Query 'Melbourne Airport' returns data frame w/ correct station", {
   YMML <- get_current_weather("Melbourne Airport", raw = TRUE)
-  expect_is(YMML, "data.frame")
+  expect_is(YMML, "bomrang_tbl")
   expect_equal(YMML$full_name[1], "Melbourne Airport")
 })
 

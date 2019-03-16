@@ -1,5 +1,5 @@
 ---
-title: "Get BOM Radar Locations"
+title: "Create BOM Radar Location Database"
 output: github_document
 ---
 

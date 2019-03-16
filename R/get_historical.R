@@ -1,4 +1,3 @@
-
 #' Obtain Historical BOM Data
 #'
 #' Retrieves daily observations for a given station.
@@ -9,13 +8,9 @@
 #' @param type Measurement type, either daily "rain", "min" (temp), "max"
 #'   (temp), or "solar" (exposure). Partial matching is performed. If not
 #'   specified returns the first matching type in the order listed.
-#' @param meta Logical switch to include metadata information on the station and
-#'   data from BOM. If set to TRUE a list is returned with a
-
-#'   
-#' @return By default a complete \code{\link[base]{data.frame}} of historical
-#'   observations for the chosen station, with some subset of the following
-#'   columns
+#' @return A \code{bomrang_tbl} object (extension of a 
+#'   \code{\link[base]{data.frame}}) of historical observations for the chosen 
+#'   station/product type, with some subset of the following columns
 #'
 #'   \tabular{rl}{
 #'   **Product_code**:\tab BOM internal code.\cr
@@ -34,10 +29,9 @@
 #'               \tab routine quality control process are marked accordingly.
 #'   }
 #'   
-#'   If \var{meta} is set \code{TRUE}, then a list is returned with an
-#'   additional \code{\link[base]{data.frame}} with the following columns
-#'   giving information on the station and data.
-#'   
+#'   The following attributes are set on the data, and these are 
+#'   used to generate the heaader
+#'      
 #'   \tabular{rl}{
 #'   **site**:\tab BOM station ID.\cr
 #'   **name**:\tab BOM station name.\cr
@@ -51,6 +45,7 @@
 #'   **type**:\tab Measurement types available for the station.\cr
 #'   }
 #'
+#' @section Caution:
 #'   Temperature data prior to 1910 should be used with extreme caution as many
 #'   stations, prior to that date, were exposed in non-standard shelters, some
 #'   of which give readings which are several degrees warmer or cooler than
@@ -67,6 +62,16 @@
 #'   In some cases data is available back to the 1800s, so tens of thousands of
 #'   daily records will be returned. Other stations will be newer and will
 #'   return fewer observations.
+#'   
+#' @section \code{dplyr} Compatibility: The \code{bomrang_tbl} class is
+#'   compatible with \code{\link[dplyr]{dplyr}} as long as the \code{bomrang}
+#'   package is on the search path. Common functions
+#'   (\code{\link[dplyr]{filter}}, \code{\link[dplyr]{select}},
+#'   \code{\link[dplyr]{arrange}}, \code{\link[dplyr]{mutate}},
+#'   \code{\link[dplyr]{rename}}, \code{\link[dplyr]{arrange}},
+#'   \code{\link[dplyr]{slice}}, \code{\link[dplyr]{group_by}}) are provided
+#'   which mask the dplyr versions (but use those internally, maintaining
+#'   attributes).
 #'
 #' @export
 #' @author Jonathan Carroll, \email{rpkg@@jcarroll.com.au}
@@ -80,8 +85,7 @@
 get_historical <-
   function(stationid = NULL,
            latlon = NULL,
-           type = c("rain", "min", "max", "solar"),
-           meta = FALSE) {
+           type = c("rain", "min", "max", "solar")) {
     
     site <- ncc_obs_code <- NULL #nocov
     
@@ -134,43 +138,37 @@ get_historical <-
     zipurl <- .get_zip_url(stationid, obscode)
     dat <- .get_zip_and_load(zipurl)
     
-    names(dat) <- switch(type,
-                         min = c("Product_code",
-                                 "Station_number",
-                                 "Year",
-                                 "Month",
-                                 "Day",
-                                 "Min_temperature",
-                                 "Accum_days_min",
-                                 "Quality"),
-                         max = c("Product_code",
-                                 "Station_number",
-                                 "Year",
-                                 "Month",
-                                 "Day",
-                                 "Max_temperature",
-                                 "Accum_days_max",
-                                 "Quality"),
-                         rain = c("Product_code",
-                                  "Station_number",
-                                  "Year",
-                                  "Month",
-                                  "Day",
-                                  "Rainfall",
-                                  "Period",
-                                  "Quality"),
-                         solar = c("Product_code",
-                                   "Station_number",
-                                   "Year",
-                                   "Month",
-                                   "Day",
-                                   "Solar_exposure")
-    )
-    dat
-    if (isTRUE(meta)) {
-      dat <- list(ncc_list, dat)
-      names(dat) <- c("meta", "historical_data")
-    }
-    return(dat)
+    names(dat) <- c("Product_code",
+                    "Station_number",
+                    "Year",
+                    "Month",
+                    "Day",
+                    switch(type,
+                           min = c("Min_temperature",
+                                   "Accum_days_min",
+                                   "Quality"),
+                           max = c("Max_temperature",
+                                   "Accum_days_max",
+                                   "Quality"),
+                           rain = c("Rainfall",
+                                    "Period",
+                                    "Quality"),
+                           solar = c("Solar_exposure")
+                    ))
+
+    return(structure(dat, 
+                     class = union("bomrang_tbl", class(dat)),
+                     station = stationid,
+                     type = type,
+                     origin = "historical",
+                     location = ncc_list$name,
+                     lat = ncc_list$lat,
+                     lon = ncc_list$lon,
+                     start = ncc_list$start,
+                     end = ncc_list$end,
+                     count = ncc_list$years,
+                     units = "years",
+                     ncc_list = ncc_list
+                     ))
   }
 

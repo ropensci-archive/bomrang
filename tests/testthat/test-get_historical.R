@@ -15,33 +15,35 @@ test_that("Error handling", {
 })
 
 test_that("Query stationid = '023000',
-          type = 'rain' returns data.frame w/ correct station and some data", {
+          type = 'rain' returns bomrang_tbl w/ correct station and some data", {
   skip_on_cran()
   ADLhistrain <- get_historical("023000", type = "rain")
-  expect_is(ADLhistrain, "data.frame")
+  expect_is(ADLhistrain, "bomrang_tbl")
   expect_true(nrow(ADLhistrain) > 0)
+  expect_equal(ncol(ADLhistrain), 8)
   expect_equal(ADLhistrain$Product_code[1], factor("IDCJAC0009"))
   expect_equal(ADLhistrain$Station_number[1], 23000)
 })
 
-test_that("Query stationid = '023000',
-          meta == TRUE returns a list with metadata and weather data", {
+test_that("Query stationid = '023000'", {
             skip_on_cran()
-            ADLhistmax <- get_historical("023000", type = "max", meta = TRUE)
-            expect_is(ADLhistmax, "list")
-            expect_equal(length(ADLhistmax), 2)
-            expect_equal(names(ADLhistmax), c("meta", "historical_data"))
-            expect_equal(nrow(ADLhistmax[[1]]), 1)
+            ADLhistmax <- get_historical("023000", type = "max")
+            expect_is(ADLhistmax, "bomrang_tbl")
+            expect_equal(attr(ADLhistmax, "station"), "023000")
+            expect_true(nrow(ADLhistmax) > 0)
+            expect_equal(ncol(ADLhistmax), 8)
           })
 
 test_that("Query latlon = c(-34.9285, 138.6007),
-          type = 'rain' returns data.frame w/ correct station and some data", {
+          type = 'rain' returns bomrang_tbl w/ correct station and some data", {
   skip_on_cran()
   ADLhistrain <- get_historical(latlon = c(-34.9285, 138.6007), type = "rain")
-  expect_is(ADLhistrain, "data.frame")
+  expect_is(ADLhistrain, "bomrang_tbl")
   expect_true(nrow(ADLhistrain) > 0)
+  expect_equal(ncol(ADLhistrain), 8)
   expect_equal(ADLhistrain$Product_code[1], factor("IDCJAC0009"))
   expect_equal(ADLhistrain$Station_number[1], 23000)
+  expect_equal(attr(ADLhistrain, "station"), "023000")
 })
 
 test_that("Zip file URL is correctly obtained", {
