@@ -64,9 +64,7 @@
 #' @author Hugh Parsonage, \email{hugh.parsonage@@gmail.com}
 #' @importFrom magrittr use_series
 #' @importFrom magrittr %$%
-#' @importFrom data.table :=
-#' @importFrom data.table %chin%
-#' @importFrom data.table setnames
+#' @import data.table
 #' @export get_current_weather
 
 get_current_weather <-
