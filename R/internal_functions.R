@@ -45,6 +45,7 @@
 # Check states for précis and ag bulletin, use fuzzy matching
 
 .check_states <- function(state) {
+  state <- toupper(state)
   states <- c(
     "ACT",
     "NSW",
