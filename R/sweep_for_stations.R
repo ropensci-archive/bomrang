@@ -6,7 +6,7 @@
 #' @return A data frame of all weather stations (in this package) sorted
 #' by distance from \var{latlon}, ascending.
 #' @author Hugh Parsonage, \email{hugh.parsonage@@gmail.com}
-#' @import data.table
+#' @importFrom data.table copy setorderv
 #' @export sweep_for_stations
 
 sweep_for_stations <- function(latlon = c(-35.3, 149.2)) {
