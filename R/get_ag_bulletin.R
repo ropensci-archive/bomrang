@@ -157,24 +157,6 @@ get_ag_bulletin <- function(state = "AUS") {
     out[, eval(missing) := NA]
   }
   
-  # set col classes ------------------------------------------------------------
-  # factor
-  out[, c(4:5) := lapply(.SD, function(x)
-    as.factor(x)),
-    .SDcols = c(4:5)]
-  
-  # dates
-  out[, c(1:2) := lapply(.SD, function(x)
-    as.POSIXct(x,
-               origin = "1970-1-1",
-               format = "%Y-%m-%d %H:%M:%OS")),
-    .SDcols = c(1:2)]
-  
-  # numeric
-  out[, c(11:15) := lapply(.SD, function(x)
-    as.numeric(x)),
-    .SDcols = c(11:15)]
-  
   # merge with AAC codes -------------------------------------------------------
   # load AAC code/town name list to join with final output
   load(system.file("extdata", "stations_site_list.rda", # nocov
@@ -218,6 +200,26 @@ get_ag_bulletin <- function(state = "AUS") {
     "t1m",
     "wr"
   )
+  
+  # set col classes ------------------------------------------------------------
+  # factor
+  out[, c(1:3, 11:12) := lapply(.SD, function(x)
+    as.factor(x)),
+    .SDcols = c(1:3, 11:12)]
+  
+  # dates
+  out[, obs_time_local := gsub("T", " ", obs_time_local)]
+  out[, obs_time_utc := gsub("T", " ", obs_time_utc)]
+  out[, c(13:14) := lapply(.SD, function(x)
+    as.POSIXct(x,
+               origin = "1970-1-1",
+               format = "%Y%m%d %H%M")),
+    .SDcols = c(13:14)]
+  
+  # numeric
+  out[, c(4:7, 9:10, 17:30) := lapply(.SD, function(x)
+    as.numeric(x)),
+    .SDcols = c(4:7, 9:10, 17:30)]
   
   data.table::setcolorder(out, refcols)
   
