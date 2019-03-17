@@ -101,8 +101,7 @@ get_ag_bulletin <- function(state = "AUS") {
     file_list <- paste0(ftp_base, AUS_XML)
     out <-
       lapply(X = file_list,
-             FUN = .parse_bulletin,
-             stations_site_list)
+             FUN = .parse_bulletin)
     out <- as.data.frame(data.table::rbindlist(out))
   }
   return(out)
@@ -128,13 +127,13 @@ get_ag_bulletin <- function(state = "AUS") {
   
   out <- data.table::data.table(
     obs_time_local = xml2::xml_find_first(observations, ".//ancestor::obs") %>%
-      xml_attr("obs-time-local"),
+      xml2::xml_attr("obs-time-local"),
     obs_time_utc = xml2::xml_find_first(observations, ".//ancestor::obs") %>%
-      xml_attr("obs-time-utc"),
+      xml2::xml_attr("obs-time-utc"),
     time_zone = xml2::xml_find_first(observations, ".//ancestor::obs") %>%
-      xml_attr("time-zone"),
+      xml2::xml_attr("time-zone"),
     site =  xml2::xml_find_first(observations, ".//ancestor::obs") %>%
-      xml_attr("site"),
+      xml2:: xml_attr("site"),
     station = xml2::xml_find_first(observations, ".//ancestor::obs") %>%
       xml2::xml_attr("station"),
     observation = observations %>% xml2::xml_attr("t"),
