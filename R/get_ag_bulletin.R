@@ -154,7 +154,7 @@ get_ag_bulletin <- function(state = "AUS") {
   missing <-
     setdiff(unlist(definition_attrs), names(out[, -c(1:5)]))
   if (length(missing) != 0) {
-    out[missing] <- NA
+    out[, eval(missing) := NA]
   }
   
   # set col classes ------------------------------------------------------------
