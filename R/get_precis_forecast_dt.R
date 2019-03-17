@@ -46,8 +46,8 @@
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com} and Keith Pembleton,
 #' \email{keith.pembleton@@usq.edu.au}
-#' @import data.table
-#' @export get_precis_forecast
+#' @importFrom data.table ":="
+#' @export get_precis_forecast_dt
 
 get_precis_forecast_dt <- function(state = "AUS") {
   the_state <- .check_states(state) # see internal_functions.R
@@ -103,9 +103,10 @@ get_precis_forecast_dt <- function(state = "AUS") {
 
 .parse_forecast <- function(xml_url) {
   # CRAN note avoidance
-  AAC_codes <-
-    attrs <- end_time_local <- precipitation_range <- # nocov start
-    start_time_local <- values <- NULL # nocov end
+  AAC_codes <- # nocov start
+    attrs <- end_time_local <- precipitation_range <- 
+    start_time_local <- values <-  .SD <- .N <- .I <- .GRP <- .BY <- .EACHI <- 
+    NULL # nocov end
   
   xml_object <- .get_xml(xml_url)
   
