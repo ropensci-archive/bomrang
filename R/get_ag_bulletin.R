@@ -53,9 +53,7 @@
 #' @export get_ag_bulletin
 
 get_ag_bulletin <- function(state = "AUS") {
-  # CRAN NOTE avoidance
-  stations_site_list <- NULL # nocov
-  
+
   the_state <- .check_states(state) # see internal_functions.R
   
   # ftp server
@@ -112,6 +110,9 @@ get_ag_bulletin <- function(state = "AUS") {
 
 #' @noRd
 .parse_bulletin <- function(xml_url) {
+  # CRAN NOTE avoidance
+  stations_site_list <- NULL # nocov
+  
   # see internal functions for .get_xml() shared function
   xml_object <- .get_xml(xml_url)
   
@@ -135,7 +136,7 @@ get_ag_bulletin <- function(state = "AUS") {
     site =  xml2::xml_find_first(observations, ".//ancestor::obs") %>%
       xml_attr("site"),
     station = xml2::xml_find_first(observations, ".//ancestor::obs") %>%
-      xml_attr("station"),
+      xml2::xml_attr("station"),
     observation = observations %>% xml2::xml_attr("t"),
     values = observations %>% xml2::xml_text("t"),
     product_id = substr(basename(xml_url),
