@@ -106,6 +106,8 @@ get_precis_forecast_dt <- function(state = "AUS") {
   AAC_codes <- # nocov start
     attrs <- end_time_local <- precipitation_range <- 
     start_time_local <- values <-  .SD <- .N <- .I <- .GRP <- .BY <- .EACHI <- 
+    state <- product_id <- probability_of_precipitation <- start_time_utc <- 
+    end_time_utc <- upper_precipitation_limit <- lower_precipitation_limit <- 
     NULL # nocov end
   
   xml_object <- .get_xml(xml_url)
