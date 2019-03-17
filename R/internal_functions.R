@@ -4,6 +4,9 @@
   match(x, table, nomatch = 0L) == 0L
 }
 
+# suppress messages for these special chars used in data.table
+.SD <- .N <- .I <- .GRP <- .BY <- .EACHI <- NULL
+
 .force_double <- function(v) {
   suppressWarnings(as.double(v))
 }
@@ -46,6 +49,7 @@
 
 .check_states <- function(state) {
   state <- toupper(state)
+  
   states <- c(
     "ACT",
     "NSW",
@@ -68,8 +72,6 @@
     "AUS",
     "OZ"
   )
-  
-  state <- toupper(state)
   
   if (state %in% states) {
     the_state <- state
@@ -336,4 +338,5 @@
       "\nThe server with the files is not responding. ",
       "Please retry again later.\n"
     ))
+  return(xml_object)
 }
