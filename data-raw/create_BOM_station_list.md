@@ -325,6 +325,9 @@ stations_site_list <-
 stations_site_list$site <-
   gsub("^0{1,2}", "", stations_site_list$site)
 
+data.table::setDT(stations_site_list)
+data.table::setkey(stations_site_list, "site")
+
 save(stations_site_list,
      file = "../inst/extdata/current_stations_site_list.rda",
      compress = "bzip2")
@@ -342,7 +345,7 @@ save(stations_site_list,
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2019-03-18                  
+    ##  date     2019-03-19                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version date       lib source        
