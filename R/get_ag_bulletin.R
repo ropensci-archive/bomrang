@@ -157,17 +157,17 @@ get_ag_bulletin <- function(state = "AUS") {
     out[, eval(missing) := NA]
   }
   
+  # remove leading 0 to merge with stations_site_list
+  out[, site := gsub("^0{1,2}", "", out$site)]
+  
   # merge with AAC codes -------------------------------------------------------
   # load AAC code/town name list to join with final output
   load(system.file("extdata", "stations_site_list.rda", # nocov
                    package = "bomrang")) # nocov
-  
-  data.table::setDT(stations_site_list)
-  data.table::setkey(stations_site_list, "site")
   data.table::setkey(out, "site")
-  
   out <- stations_site_list[out, on = "site"]
   
+  # tidy up the cols -----------------------------------------------------------
   refcols <- c(
     "product_id",
     "state",
@@ -201,7 +201,7 @@ get_ag_bulletin <- function(state = "AUS") {
     "wr"
   )
   
-  # set col classes ------------------------------------------------------------
+  # set col classes
   # factor
   out[, c(1:3, 11:12) := lapply(.SD, function(x)
     as.factor(x)),
