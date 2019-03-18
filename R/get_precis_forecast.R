@@ -197,27 +197,6 @@ get_precis_forecast <- function(state = "AUS") {
     out[, upper_precipitation_limit := NA]
   }
   
-  # set col classes ------------------------------------------------------------
-  # factors
-  out[, c(1, 6) := lapply(.SD, function(x)
-    as.factor(x)),
-    .SDcols = c(1, 6)]
-  
-  # numeric
-  out[, c(3:5, 11:12, 14, 18:19) := lapply(.SD, function(x)
-    as.numeric(x)),
-    .SDcols = c(3:5, 11:12, 14, 18:19)]
-  
-  # dates
-  out[, c(7:10) := lapply(.SD, function(x)
-    as.POSIXct(x,
-               origin = "1970-1-1",
-               format = "%Y-%m-%d %H:%M:%OS")),
-    .SDcols = c(7:10)]
-  
-  # character
-  out[, precis := as.character(precis)]
-  
   refcols <- c(
     "index",
     "product_id",
@@ -240,6 +219,29 @@ get_precis_forecast <- function(state = "AUS") {
     "probability_of_precipitation"
   )
   data.table::setcolorder(out, refcols)
+  # set col classes ------------------------------------------------------------
+  # factors
+  out[, c(1, 11) := lapply(.SD, function(x)
+    as.factor(x)),
+    .SDcols = c(1, 11)]
+  
+  # numeric
+  out[, c(6:8, 14:17, 19) := lapply(.SD, function(x)
+    as.numeric(x)),
+    .SDcols = c(6:8, 14:17, 19)]
+  
+  # dates
+  out[, c(9:10, 12:13) := lapply(.SD, function(x)
+    as.POSIXct(x,
+               origin = "1970-1-1",
+               format = "%Y-%m-%d %H:%M:%OS")),
+    .SDcols = c(9:10, 12:13)]
+  
+  # character
+  out[, c(2:5, 18) := lapply(.SD, function(x)
+    as.character(x)),
+    .SDcols = c(2:5, 18)]
+  
   return(out)
 }
 
