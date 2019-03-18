@@ -48,7 +48,6 @@ Imports:
     hoardr,
     janitor (>= 1.0.0),
     jsonlite (>= 1.5),
-    lest,
     lubridate,
     magrittr (>= 1.5),
     raster,

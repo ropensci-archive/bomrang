@@ -23,16 +23,15 @@
 #'  }
 #'
 #' @return
-#' Tidy \code{\link[base]{data.frame}} of a Australia \acronym{BOM} précis seven
-#' day forecasts for select towns.  For full details of fields and units
-#' returned see Appendix 2 in the \pkg{bomrang} vignette, use \cr
+#' Tidy \code{\link[data.table]{data.table}} of a Australia \acronym{BOM} précis
+#' seven day forecasts for BOM selected towns.  For full details of fields and
+#' units returned see Appendix 2 in the \pkg{bomrang} vignette, use \cr
 #' \code{vignette("bomrang", package = "bomrang")} to view.
 #'
 #' @examples
 #' \donttest{
 #' # get the short forecast for Queensland
 #' BOM_forecast <- get_precis_forecast(state = "QLD")
-#' BOM_forecast
 #'}
 #' @references
 #' Forecast data come from Australian Bureau of Meteorology (BOM) Weather Data
@@ -47,8 +46,8 @@
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com} and Keith Pembleton,
 #' \email{keith.pembleton@@usq.edu.au}
-#' @importFrom magrittr %>%
-#' @export get_precis_forecast
+#' @importFrom data.table ":="
+#' @export get_precis_forecast_dt
 
 get_precis_forecast <- function(state = "AUS") {
   the_state <- .check_states(state) # see internal_functions.R
@@ -93,192 +92,130 @@ get_precis_forecast <- function(state = "AUS") {
         the_state == "WA" |
           the_state == "WESTERN AUSTRALIA" ~ paste0(ftp_base, AUS_XML[7])
       )
-    out <- .parse_forecast(xml_url)
+    forecast_out <- .parse_forecast(xml_url)
   } else {
     file_list <- paste0(ftp_base, AUS_XML)
-    out <- lapply(X = file_list, FUN = .parse_forecast)
-    out <- as.data.frame(data.table::rbindlist(out))
+    forecast_out <- lapply(X = file_list, FUN = .parse_forecast)
+    forecast_out <- data.table::rbindlist(forecast_out)
   }
-  return(out)
+  return(forecast_out)
 }
 
 .parse_forecast <- function(xml_url) {
   # CRAN note avoidance
-  AAC_codes <- attrs <- end_time_local <- precipitation_range <- # nocov start
-    start_time_local <- values <- NULL # nocov end
+  AAC_codes <- # nocov start
+    attrs <- end_time_local <- precipitation_range <- 
+    start_time_local <- values <-  .SD <- .N <- .I <- .GRP <- .BY <- .EACHI <- 
+    state <- product_id <- probability_of_precipitation <- start_time_utc <- 
+    end_time_utc <- upper_precipitation_limit <- lower_precipitation_limit <- 
+    NULL # nocov end
   
   xml_object <- .get_xml(xml_url)
   
   areas <-
     xml2::xml_find_all(xml_object, ".//*[@type='location']")
-  xml2::xml_find_all(areas, ".//*[@type='forecast_icon_code']") %>%
-    xml2::xml_remove()
+  xml2::xml_remove(xml2::xml_find_all(areas,
+                                      ".//*[@type='forecast_icon_code']"))
   
   out <- lapply(X = areas, FUN = .parse_areas)
-  out <- as.data.frame(do.call("rbind", out))
+  out <- data.table::setDT(as.data.frame(do.call("rbind", out)))
+  names(out) <- gsub("-", "_", names(out))
   
-  # This is the actual returned value for the main function. The functions
-  # below chunk the xml into locations and then days, this assembles into
-  # the final data frame
+  out <- data.table::dcast(
+    out,
+    aac + index + start_time_local + end_time_local + start_time_utc +
+      end_time_utc  ~ attrs,
+    value.var = "values"
+  )
   
-  out <- tidyr::spread(out, key = attrs, value = values)
+  data.table::setnames(out,
+           c(1, 7:8),
+           c(
+             "AAC",
+             "maximum_temperature",
+             "minimum_temperature"
+           ))
   
-  # tidy up names
-  names(out) <- gsub("c\\(", "", names(out))
-  names(out) <- gsub("\\)", "", names(out))
-  
-  out <- out %>%
-    janitor::clean_names() %>%
-    janitor::remove_empty("cols")
-  
-  out <-
-    out %>%
-    tidyr::separate(end_time_local,
-                    into = c("end_time_local", "UTC_offset"),
-                    sep = "\\+") %>%
-    tidyr::separate(
-      start_time_local,
-      into = c("start_time_local", "UTC_offset_drop"),
-      sep = "\\+"
-    )
-  
-  # drop the "UTC_offset_drop" column
-  out <- out[!names(out) %in% "UTC_offset_drop"]
-  
-  out$probability_of_precipitation <-
-    gsub("%", "", paste(out$probability_of_precipitation))
-  
-  # remove the "T" from the date/time columns
+  out[, c("end_time_local",
+          "UTC_offset") := data.table::tstrsplit(end_time_local,
+                                                 "+",
+                                                 fixed = TRUE)]
   out[, c("start_time_local",
-          "end_time_local",
-          "start_time_utc",
-          "end_time_utc")] <-
-    apply(out[, c("start_time_local",
-                  "end_time_local",
-                  "start_time_utc",
-                  "end_time_utc")], 2, function(x)
-                    chartr("T", " ", x))
+          "UTC_offset_drop") := data.table::tstrsplit(start_time_local,
+                                                      "+",
+                                                      fixed = TRUE)]
+  out[, "UTC_offset_drop" := NULL]
   
-  # remove the "Z" from start_time_utc
-  out[, c("start_time_utc",
-          "end_time_utc")] <-
-    apply(out[, c("start_time_utc",
-                  "end_time_utc")], 2, function(x)
-                    chartr("Z", " ", x))
+  # merge with aac codes for location information ------------------------------
+  load(system.file("extdata", "AAC_codes.rda", package = "bomrang"))  # nocov
+  data.table::setDT(AAC_codes)
+  data.table::setkey(AAC_codes, "AAC")
+  data.table::setkey(out, "AAC")
   
+  out <- AAC_codes[out, on = "AAC"]
+  
+  # set names to match précis forecast -----------------------------------------
+  data.table::setnames(out,
+                       c(1:5),
+                       c("aac", "town", "lon", "lat", "elev"))
+  
+  # add state field
+  out[, state := gsub("_.*", "", out$aac)]
+  
+  # add product ID field
+  out[, product_id := substr(basename(xml_url),
+                             1,
+                             nchar(basename(xml_url)) - 4)]
+  
+  # remove unnecessary text from cols ------------------------------------------
+  out[, probability_of_precipitation := gsub("%",
+                                             "",
+                                             probability_of_precipitation)]
+  out[, start_time_local := gsub("T", " ", start_time_local)]
+  out[, end_time_local := gsub("T", " ", end_time_local)]
+  out[, start_time_utc := gsub("T", " ", start_time_utc)]
+  out[, end_time_utc := gsub("T", " ", end_time_utc)]
+  
+  # set col classes ------------------------------------------------------------
+  # factors
+  out[, c(1:3, 16:18) := lapply(.SD, function(x)
+    as.factor(x)),
+    .SDcols = c(1:3, 16:18)]
+  
+  # numeric
+  out[, c(11:15) := lapply(.SD, function(x)
+    as.numeric(x)),
+    .SDcols = c(11:15)]
+  
+  # convert dates to POSIXct format
+  out[, c(7:10) := lapply(.SD, function(x)
+    as.POSIXct(x,
+               origin = "1970-1-1",
+               format = "%Y-%m-%d %H:%M:%OS")),
+    .SDcols = c(7:10)]
+  
+  # handle precipitation ranges where they may or may not be present -----------
   if ("precipitation_range" %in% colnames(out))
   {
-    out[, "precipitation_range"] <-
-      as.character(out[, "precipitation_range"])
     # format any values that are only zero to make next step easier
     out$precipitation_range[which(out$precipitation_range == "0 mm")] <-
       "0 mm to 0 mm"
     
     # separate the precipitation column into two, upper/lower limit ------------
-    out <-
-      out %>%
-      tidyr::separate(
-        precipitation_range,
-        into = c(
-          "lower_precipitation_limit",
-          "upper_precipitation_limit"
-        ),
-        sep = "to",
-        fill = "left"
-      )
+    out[, c("lower_precipitation_limit",
+            "upper_precipitation_limit") := data.table::tstrsplit(precipitation_range, 
+                                                                  "to",
+                                                                  fixed = TRUE)]
+    
+    out[, upper_precipitation_limit := gsub("mm", "", upper_precipitation_limit)]
+    out[, precipitation_range := NULL]
+    
   } else {
     # if the columns don't exist insert as NA
-    out$lower_precipitation_limit <- NA
-    out$upper_precipitation_limit <- NA
-    out <- out[, c(1:9, 13, 12, 10, 11)]
+    out[, lower_precipitation_limit := NA]
+    out[, upper_precipitation_limit := NA]
   }
   
-  # remove unnecessary text (mm in prcp cols) ----------------------------------
-  out <- as.data.frame(lapply(out, function(x) {
-    gsub(" mm", "", x)
-  }))
-  
-  # convert factors to character for left merge, otherwise funny stuff happens
-  out[, seq_len(ncol(out))] <-
-    lapply(out[, seq_len(ncol(out))], as.character)
-  
-  # convert dates to POSIXct format
-  out[, c("start_time_local",
-          "end_time_local",
-          "start_time_utc",
-          "end_time_utc")] <- lapply(out[, c("start_time_local",
-                                             "end_time_local",
-                                             "start_time_utc",
-                                             "end_time_utc")],
-                                     function(x)
-                                       as.POSIXct(x,
-                                                  origin = "1970-1-1",
-                                                  format = "%Y-%m-%d %H:%M:%OS")
-                                     )
-  
-  # convert numeric values to numeric
-  out[, c(
-    "type_air_temperature_maximum_units_celsius",
-    "type_air_temperature_minimum_units_celsius",
-    "lower_precipitation_limit",
-    "upper_precipitation_limit",
-    "probability_of_precipitation"
-  )] <- lapply(out[, c(
-    "type_air_temperature_maximum_units_celsius",
-    "type_air_temperature_minimum_units_celsius",
-    "lower_precipitation_limit",
-    "upper_precipitation_limit",
-    "probability_of_precipitation"
-  )],
-  as.numeric)
-  
-  # Load AAC code/town name list to join with final output
-  load(system.file("extdata", "AAC_codes.rda", package = "bomrang"))  # nocov
-  
-  # return final forecast object -----------------------------------------------
-  # merge with aac codes for location information
-  tidy_df <-
-    dplyr::left_join(out,
-                     AAC_codes, by = c("aac" = "AAC"))
-  
-  # set names to match précis forecast
-  names(tidy_df)[15:17] <- c("lon", "lat", "elev")
-  
-  # add state field
-  tidy_df$state <- gsub("_.*", "", tidy_df$aac)
-  
-  # add product ID field
-  tidy_df$product_id <- substr(basename(xml_url),
-                               1,
-                               nchar(basename(xml_url)) - 4)
-  
-  if (getRversion() < "3.5.0") {
-    data.table::setnames(
-      tidy_df,
-      old = c(
-        "PT_NAME",
-        "air_temperature_maximum_celsius",
-        "air_temperature_minimum_celsius"
-      ),
-      new = c("town",
-              "maximum_temperature",
-              "minimum_temperature")
-    )
-  } else {
-    data.table::setnames(
-      tidy_df,
-      old = c(
-        "PT_NAME",
-        "type_air_temperature_maximum_units_celsius",
-        "type_air_temperature_minimum_units_celsius"
-      ),
-      new = c("town",
-              "maximum_temperature",
-              "minimum_temperature")
-    )
-  }
-  
-  # reorder columns
   refcols <- c(
     "index",
     "product_id",
@@ -300,10 +237,52 @@ get_precis_forecast <- function(state = "AUS") {
     "precis",
     "probability_of_precipitation"
   )
-  tidy_df <- tidy_df[c(refcols, setdiff(names(tidy_df), refcols))]
+  data.table::setcolorder(out, refcols)
+  return(out)
+}
+
+# internal functions for get_precise_forecast ----------------------------------
+#' Parse areas for précis forecasts
+#'
+#' @param x a précis forecast object
+#'
+#' @return a data.frame of forecast areas and aac codes
+#' @keywords internal
+#' @author Adam H Sparks, \email{adamhspark@@s@gmail.com}
+#' @noRd
+
+.parse_areas <- function(x) {
+  aac <- as.character(xml2::xml_attr(x, "aac"))
   
-  # set factors
-  tidy_df[, c(1, 11)] <- lapply(tidy_df[, c(1, 11)], as.factor)
+  # get xml children for the forecast (there are seven of these for each area)
+  forecast_periods <- xml2::xml_children(x)
   
-  return(tidy_df)
+  sub_out <-
+    lapply(X = forecast_periods, FUN = .extract_values)
+  sub_out <- do.call(rbind, sub_out)
+  sub_out <- cbind(aac, sub_out)
+  return(sub_out)
+}
+
+#' extract the values of the forecast items
+#'
+#' @param y précis forecast values
+#'
+#' @return a data.frame of forecast values
+#' @keywords internal
+#' @author Adam H Sparks, \email{adamhsparks@gmail.com}
+#' @noRd
+
+.extract_values <- function(y) {
+  values <- xml2::xml_children(y)
+  attrs <- unlist(as.character(xml2::xml_attrs(values)))
+  values <- unlist(as.character(xml2::xml_contents(values)))
+  
+  time_period <- unlist(t(as.data.frame(xml2::xml_attrs(y))))
+  time_period <-
+    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)), ]
+  
+  sub_out <- cbind(time_period, attrs, values)
+  row.names(sub_out) <- NULL
+  return(sub_out)
 }
