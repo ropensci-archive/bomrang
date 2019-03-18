@@ -176,30 +176,11 @@ get_precis_forecast <- function(state = "AUS") {
   out[, start_time_utc := gsub("T", " ", start_time_utc)]
   out[, end_time_utc := gsub("T", " ", end_time_utc)]
   
-  # set col classes ------------------------------------------------------------
-  # factors
-  out[, c(1:3, 16:18) := lapply(.SD, function(x)
-    as.factor(x)),
-    .SDcols = c(1:3, 16:18)]
-  
-  # numeric
-  out[, c(11:15) := lapply(.SD, function(x)
-    as.numeric(x)),
-    .SDcols = c(11:15)]
-  
-  # convert dates to POSIXct format
-  out[, c(7:10) := lapply(.SD, function(x)
-    as.POSIXct(x,
-               origin = "1970-1-1",
-               format = "%Y-%m-%d %H:%M:%OS")),
-    .SDcols = c(7:10)]
-  
   # handle precipitation ranges where they may or may not be present -----------
   if ("precipitation_range" %in% colnames(out))
   {
     # format any values that are only zero to make next step easier
-    out$precipitation_range[which(out$precipitation_range == "0 mm")] <-
-      "0 mm to 0 mm"
+    out[precipitation_range == "0 mm", precipitation_range := "0 to 0 mm"]
     
     # separate the precipitation column into two, upper/lower limit ------------
     out[, c("lower_precipitation_limit",
@@ -215,6 +196,27 @@ get_precis_forecast <- function(state = "AUS") {
     out[, lower_precipitation_limit := NA]
     out[, upper_precipitation_limit := NA]
   }
+  
+  # set col classes ------------------------------------------------------------
+  # factors
+  out[, c(1, 6) := lapply(.SD, function(x)
+    as.factor(x)),
+    .SDcols = c(1, 6)]
+  
+  # numeric
+  out[, c(3:5, 11:12, 14, 18:19) := lapply(.SD, function(x)
+    as.numeric(x)),
+    .SDcols = c(3:5, 11:12, 14, 18:19)]
+  
+  # dates
+  out[, c(7:10) := lapply(.SD, function(x)
+    as.POSIXct(x,
+               origin = "1970-1-1",
+               format = "%Y-%m-%d %H:%M:%OS")),
+    .SDcols = c(7:10)]
+  
+  # character
+  out[, precis := as.character(precis)]
   
   refcols <- c(
     "index",
