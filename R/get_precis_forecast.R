@@ -118,7 +118,7 @@ get_precis_forecast <- function(state = "AUS") {
                                       ".//*[@type='forecast_icon_code']"))
   
   out <- lapply(X = areas, FUN = .parse_areas)
-  out <- data.table::setDT(as.data.frame(do.call("rbind", out)))
+  out <- data.table::rbindlist(out)
   names(out) <- gsub("-", "_", names(out))
   
   out <- data.table::dcast(

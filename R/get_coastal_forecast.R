@@ -87,7 +87,7 @@ get_coastal_forecast <- function(state = "AUS") {
   } else {
     file_list <- paste0(ftp_base, AUS_XML)
     out <- lapply(X = file_list, FUN = .parse_coastal_forecast)
-    out <- data.table::setDT(as.data.frame(do.call("rbind", out)))
+    out <- data.table::rbindlist(out)
   }
   return(out)
 }
@@ -103,7 +103,7 @@ get_coastal_forecast <- function(state = "AUS") {
   
   areas <- xml2::xml_find_all(xml_object, ".//*[@type='coast']")
   out <- suppressWarnings(lapply(X = areas, FUN = .parse_areas))
-  out <- data.table::setDT(as.data.frame(do.call("rbind", out)))
+  out <- data.table::rbindlist(out)
   names(out) <- gsub("-", "_", names(out))
   
   out <- data.table::dcast(
