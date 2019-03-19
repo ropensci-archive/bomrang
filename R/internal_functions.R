@@ -395,6 +395,7 @@
 #' @noRd
 
 .split_time_cols <- function(x) {
+  start_time_local <- end_time_local <- NULL
   x[, c("start_time_local",
         "UTC_offset_drop") := data.table::tstrsplit(start_time_local,
                                                     "+",
