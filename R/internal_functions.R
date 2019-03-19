@@ -349,7 +349,7 @@
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
 #' @noRd
 
-.parse_areas <- function(x) {
+.parse_xml <- function(x) {
   
   # get the actual forecast objects
   fp <- xml2::xml_find_all(xml_object, ".//forecast-period")
@@ -376,7 +376,7 @@
     #find the attr value from all child nodes
     names <- node %>% 
       xml2::xml_children() %>% 
-      xml2::xml_attr("Type")
+      xml2::xml_attr("type")
     #create columns names based on either node name or attr value
     names <- ifelse(is.na(names), childnodes, names)
     
