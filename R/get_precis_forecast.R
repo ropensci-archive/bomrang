@@ -129,36 +129,20 @@ get_precis_forecast <- function(state = "AUS") {
   )
   
   data.table::setnames(out,
-           c(1, 7:8),
+           c(7:8),
            c(
-             "AAC",
              "maximum_temperature",
              "minimum_temperature"
            ))
   
-  out[, c("end_time_local",
-          "UTC_offset") := data.table::tstrsplit(end_time_local,
-                                                 "+",
-                                                 fixed = TRUE)]
-  out[, c("start_time_local",
-          "UTC_offset_drop") := data.table::tstrsplit(start_time_local,
-                                                      "+",
-                                                      fixed = TRUE)]
-  out[, "UTC_offset_drop" := NULL]
+  # clean up and split out time cols into offset and remove extra chars
+  .split_time_cols(x = out)
   
   # merge with aac codes for location information ------------------------------
   load(system.file("extdata", "AAC_codes.rda", package = "bomrang"))  # nocov
-  data.table::setDT(AAC_codes)
-  data.table::setkey(AAC_codes, "AAC")
-  data.table::setkey(out, "AAC")
-  
-  out <- AAC_codes[out, on = "AAC"]
-  
-  # set names to match précis forecast -----------------------------------------
-  data.table::setnames(out,
-                       c(1:5),
-                       c("aac", "town", "lon", "lat", "elev"))
-  
+  data.table::setkey(out, "aac")
+  out <- AAC_codes[out, on = "aac"]
+
   # add state field
   out[, state := gsub("_.*", "", out$aac)]
   
@@ -171,10 +155,6 @@ get_precis_forecast <- function(state = "AUS") {
   out[, probability_of_precipitation := gsub("%",
                                              "",
                                              probability_of_precipitation)]
-  out[, start_time_local := gsub("T", " ", start_time_local)]
-  out[, end_time_local := gsub("T", " ", end_time_local)]
-  out[, start_time_utc := gsub("T", " ", start_time_utc)]
-  out[, end_time_utc := gsub("T", " ", end_time_utc)]
   
   # handle precipitation ranges where they may or may not be present -----------
   if ("precipitation_range" %in% colnames(out))
@@ -208,7 +188,7 @@ get_precis_forecast <- function(state = "AUS") {
     "elev",
     "start_time_local",
     "end_time_local",
-    "UTC_offset",
+    "utc_offset",
     "start_time_utc",
     "end_time_utc",
     "minimum_temperature",
@@ -243,50 +223,4 @@ get_precis_forecast <- function(state = "AUS") {
     .SDcols = c(2:5, 18)]
   
   return(out)
-}
-
-# internal functions for get_precise_forecast ----------------------------------
-#' Parse areas for précis forecasts
-#'
-#' @param x a précis forecast object
-#'
-#' @return a data.frame of forecast areas and aac codes
-#' @keywords internal
-#' @author Adam H Sparks, \email{adamhspark@@s@gmail.com}
-#' @noRd
-
-.parse_areas <- function(x) {
-  aac <- as.character(xml2::xml_attr(x, "aac"))
-  
-  # get xml children for the forecast (there are seven of these for each area)
-  forecast_periods <- xml2::xml_children(x)
-  
-  sub_out <-
-    lapply(X = forecast_periods, FUN = .extract_values)
-  sub_out <- do.call(rbind, sub_out)
-  sub_out <- cbind(aac, sub_out)
-  return(sub_out)
-}
-
-#' extract the values of the forecast items
-#'
-#' @param y précis forecast values
-#'
-#' @return a data.frame of forecast values
-#' @keywords internal
-#' @author Adam H Sparks, \email{adamhsparks@gmail.com}
-#' @noRd
-
-.extract_values <- function(y) {
-  values <- xml2::xml_children(y)
-  attrs <- unlist(as.character(xml2::xml_attrs(values)))
-  values <- unlist(as.character(xml2::xml_contents(values)))
-  
-  time_period <- unlist(t(as.data.frame(xml2::xml_attrs(y))))
-  time_period <-
-    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)), ]
-  
-  sub_out <- cbind(time_period, attrs, values)
-  row.names(sub_out) <- NULL
-  return(sub_out)
 }
