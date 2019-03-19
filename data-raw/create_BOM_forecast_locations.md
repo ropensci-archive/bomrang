@@ -30,6 +30,7 @@ file portion of a shapefile,
   AAC_codes <- AAC_codes[, c(2:3, 7:9)]
   
   data.table::setDT(AAC_codes)
+  data.table::setkey(AAC_codes, "aac")
 ```
 
 Save the stations to disk for use in the R package.
