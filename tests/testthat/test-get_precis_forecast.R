@@ -19,7 +19,7 @@ test_that("get_precis_forecast returns 19 columns and min < max", {
       "elev",
       "start_time_local",
       "end_time_local",
-      "UTC_offset",
+      "utc_offset",
       "start_time_utc",
       "end_time_utc",
       "minimum_temperature",
@@ -41,7 +41,7 @@ test_that("get_precis_forecast returns 19 columns and min < max", {
   expect_is(bom_forecast$elev, "numeric")
   expect_is(bom_forecast$start_time_local, "POSIXct")
   expect_is(bom_forecast$end_time_local, "POSIXct")
-  expect_is(bom_forecast$UTC_offset, "factor")
+  expect_is(bom_forecast$utc_offset, "factor")
   expect_is(bom_forecast$start_time_utc, "POSIXct")
   expect_is(bom_forecast$end_time_local, "POSIXct")
   expect_is(bom_forecast$minimum_temperature, "numeric")
