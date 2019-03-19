@@ -29,10 +29,16 @@ portion of a shapefile,
   marine_AAC_codes <-
     foreign::read.dbf(paste0(tempdir(), "marine_AAC_codes.dbf"), as.is = TRUE)
   
+  # convert names to lower case for consistency with bomrang output
+  names(marine_AAC_codes) <- tolower(names(marine_AAC_codes))
+  
+  # reorder columns
   marine_AAC_codes <- marine_AAC_codes[, c(1,3,4,5,6,7)]
+  
+  data.table::setDT(marine_AAC_codes)
 ```
 
-Save the marine zones to disk for use in the R package.
+Save the marine zones to disk for use in bomrang.
 
 ```{r create_data}
  if (!dir.exists("../inst/extdata")) {

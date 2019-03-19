@@ -27,7 +27,14 @@ specifically the DBF file portion of a shapefile,
 
   AAC_codes <-
     foreign::read.dbf(paste0(tempdir(), "AAC_codes.dbf"), as.is = TRUE)
+  
+  # convert names to lower case for consistency with bomrang output
+  names(AAC_codes) <- tolower(names(AAC_codes))
+  
+  # reorder columns
   AAC_codes <- AAC_codes[, c(2:3, 7:9)]
+  
+  data.table::setDT(AAC_codes)
 ```
 
 Save the stations to disk for use in the R package.

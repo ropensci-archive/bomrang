@@ -23,10 +23,16 @@ file portion of a shapefile,
   marine_AAC_codes <-
     foreign::read.dbf(paste0(tempdir(), "marine_AAC_codes.dbf"), as.is = TRUE)
   
+  # convert names to lower case for consistency with bomrang output
+  names(marine_AAC_codes) <- tolower(names(marine_AAC_codes))
+  
+  # reorder columns
   marine_AAC_codes <- marine_AAC_codes[, c(1,3,4,5,6,7)]
+  
+  data.table::setDT(marine_AAC_codes)
 ```
 
-Save the marine zones to disk for use in the R package.
+Save the marine zones to disk for use in bomrang.
 
 ``` r
  if (!dir.exists("../inst/extdata")) {
@@ -53,7 +59,7 @@ sessioninfo::session_info()
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2019-03-18                  
+    ##  date     2019-03-19                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version date       lib source        
@@ -61,6 +67,7 @@ sessioninfo::session_info()
     ##  cli           1.0.1   2018-09-25 [1] CRAN (R 3.5.3)
     ##  crayon        1.3.4   2017-09-16 [1] CRAN (R 3.5.3)
     ##  curl          3.3     2019-01-10 [1] CRAN (R 3.5.3)
+    ##  data.table    1.12.0  2019-01-13 [1] CRAN (R 3.5.3)
     ##  digest        0.6.18  2018-10-10 [1] CRAN (R 3.5.3)
     ##  evaluate      0.13    2019-02-12 [1] CRAN (R 3.5.3)
     ##  foreign       0.8-71  2018-07-20 [3] CRAN (R 3.5.3)
@@ -76,6 +83,6 @@ sessioninfo::session_info()
     ##  xfun          0.5     2019-02-20 [1] CRAN (R 3.5.3)
     ##  yaml          2.2.0   2018-07-25 [1] CRAN (R 3.5.3)
     ## 
-    ## [1] /Users/adamsparks/Library/R/3.x/library
+    ## [1] /Users/U8004755/Library/R/3.x/library
     ## [2] /usr/local/lib/R/3.5/site-library
     ## [3] /usr/local/Cellar/r/3.5.3/lib/R/library
