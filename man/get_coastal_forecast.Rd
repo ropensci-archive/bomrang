@@ -12,8 +12,8 @@ Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 "AUS" returning all state forecasts, see details for further information.}
 }
 \value{
-Tidy \code{\link[base]{data.frame}} of a Australia \acronym{BOM} Coastal
-Waters Forecast.
+Tidy \code{\link[data.table]{data.table}} of a Australia \acronym{BOM}
+Coastal Waters Forecast.
 }
 \description{
 Fetch the \acronym{BOM} daily Coastal Waters Forecast and return a tidy data
