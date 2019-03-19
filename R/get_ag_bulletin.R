@@ -110,7 +110,7 @@ get_ag_bulletin <- function(state = "AUS") {
 #' @noRd
 .parse_bulletin <- function(xml_url) {
   # CRAN NOTE avoidance
-  stations_site_list <- NULL # nocov
+  stations_site_list <- site <- obs_time_local <- obs_time_utc <-  NULL # nocov
   
   # see internal functions for .get_xml() shared function
   xml_object <- .get_xml(xml_url)
@@ -164,6 +164,8 @@ get_ag_bulletin <- function(state = "AUS") {
   # load AAC code/town name list to join with final output
   load(system.file("extdata", "stations_site_list.rda", # nocov
                    package = "bomrang")) # nocov
+  data.table::setDT(stations_site_list)
+  data.table::setkey(stations_site_list, "site")
   data.table::setkey(out, "site")
   out <- stations_site_list[out, on = "site"]
   
