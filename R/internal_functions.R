@@ -342,20 +342,11 @@
 
 #' extract the values of the forecast items
 #'
-#' @param y précis forecast values
+#' @param y précis forecast xml_object
 #'
-#' @return a data.frame of forecast values
+#' @return a data.table of the forecast fore cleaning and returning to user
 #' @keywords internal
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
-#' @noRd
-
-#' Parse areas for précis or coastal forecasts
-#'
-#' @param x a précis forecast XML object
-#'
-#' @return a data.table of forecast areas and aac codes
-#' @keywords internal
-#' @author Adam H Sparks, \email{adamhspark@@s@gmail.com}
 #' @noRd
 
 .parse_areas <- function(x) {
@@ -364,56 +355,44 @@
   fp <- xml2::xml_find_all(xml_object, ".//forecast-period")
   
   locations_index <- data.table::data.table(
+    # find all the aacs
     aac = xml2::xml_parent(fp) %>% 
       xml2::xml_find_first(".//parent::area") %>% 
       xml2::xml_attr("aac"),
+    # find the names of towns
     town = xml2::xml_parent(fp) %>% 
       xml2::xml_find_first(".//parent::area") %>% 
       xml2::xml_attr("description"),
+    # find corecast period index
     index = xml2::xml_parent(fp) %>%
       xml2::xml_find_first(".//parent::forecast-period") %>% 
       xml2::xml_attr("index"))
-  # https://stackoverflow.com/questions/55014515/r-xml-combining-parent-and-child-nodesw-same-name-into-data-frame
-  dfs <- lapply(fp, function(node) {
-    # find names of all children nodes
-    childnodes <- node %>% xml_children() %>% xml_name()
-    # find the attr value from all child nodes
-    names <- node %>% xml_children() %>% xml_attr("type")
-    # create columns names based on either node name or attr value
+  
+  vals <- lapply(fp, function(node) {
+    #find names of all children nodes
+    childnodes <- node %>%
+      xml2::xml_children() %>% 
+      xml2::xml_name()
+    #find the attr value from all child nodes
+    names <- node %>% 
+      xml2::xml_children() %>% 
+      xml2::xml_attr("Type")
+    #create columns names based on either node name or attr value
     names <- ifelse(is.na(names), childnodes, names)
     
-    # find all values
-    values <- node %>% xml_children() %>% xml_text()
+    #find all values
+    values <- node %>% 
+      xml2::xml_children() %>%
+      xml2::xml_text()
     
-    # create data frame and properly label the columns
+    #create data frame and properly label the columns
     df <- data.frame(t(values), stringsAsFactors = FALSE)
     names(df) <- names
     df
   })
  
-  answer <- data.table::rbindlist(dfs, fill = TRUE)
-  
-  out <- cbind(locations_index, answer)
-  
-  sub_out <-
-    lapply(X = forecast_periods, FUN = .extract_values)
-  sub_out <- do.call(rbind, sub_out)
-  sub_out <- cbind(aac, sub_out)
-  return(sub_out)
-}
-
-.extract_values <- function(y) {
-  values <- xml2::xml_children(y)
-  attrs <- unlist(as.character(xml2::xml_attrs(values)))
-  values <- unlist(as.character(xml2::xml_contents(values)))
-  
-  time_period <- unlist(t(as.data.frame(xml2::xml_attrs(y))))
-  time_period <-
-    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)), ]
-  
-  sub_out <- cbind(time_period, attrs, values)
-  row.names(sub_out) <- NULL
-  return(sub_out)
+  answer <- data.table::rbindlist(vals, fill = TRUE)
+  sub_out <- cbind(locations_index, answer)
 }
 
 #' splits time cols and removes extra chars for forecast XML objects
