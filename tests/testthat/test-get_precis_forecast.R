@@ -57,49 +57,49 @@ test_that("get_precis_forecast returns 19 columns and min < max", {
 # Test that get_precis_forecast returns the requested state forecast ------------------
 test_that("get_precis_forecast returns the forecast for ACT/NSW", {
   skip_on_cran()
-  bom_forecast <- as.data.frame(get_precis_forecast(state = "ACT"))
+  bom_forecast <- get_precis_forecast(state = "ACT")
   expect_equal(bom_forecast[["state"]][1], "NSW")
 })
 
 test_that("get_precis_forecast returns the forecast for ACT/NSW", {
   skip_on_cran()
-  bom_forecast <- as.data.frame(get_precis_forecast(state = "NSW"))
+  bom_forecast <- get_precis_forecast(state = "NSW")
   expect_equal(bom_forecast[["state"]][1], "NSW")
 })
 
 test_that("get_precis_forecast returns the forecast for NT", {
   skip_on_cran()
-  bom_forecast <- as.data.frame(get_precis_forecast(state = "NT"))
+  bom_forecast <- get_precis_forecast(state = "NT")
   expect_equal(bom_forecast[["state"]][1], "NT")
 })
 
 test_that("get_precis_forecast returns the forecast for SA", {
   skip_on_cran()
-  bom_forecast <- as.data.frame(get_precis_forecast(state = "SA"))
+  bom_forecast <- get_precis_forecast(state = "SA")
   expect_equal(bom_forecast[["state"]][1], "SA")
 })
 
 test_that("get_precis_forecast returns the forecast for TAS", {
   skip_on_cran()
-  bom_forecast <- as.data.frame(get_precis_forecast(state = "TAS"))
+  bom_forecast <- get_precis_forecast(state = "TAS")
   expect_equal(bom_forecast[["state"]][1], "TAS")
 })
 
 test_that("get_precis_forecast returns the forecast for VIC", {
   skip_on_cran()
-  bom_forecast <- as.data.frame(get_precis_forecast(state = "VIC"))
+  bom_forecast <- get_precis_forecast(state = "VIC")
   expect_equal(bom_forecast[["state"]][1], "VIC")
 })
 
 test_that("get_precis_forecast returns the forecast for WA", {
   skip_on_cran()
-  bom_forecast <- as.data.frame(get_precis_forecast(state = "WA"))
+  bom_forecast <- get_precis_forecast(state = "WA")
   expect_equal(bom_forecast[["state"]][1], "WA")
 })
 
 test_that("get_precis_forecast returns the forecast for AUS", {
   skip_on_cran()
-  bom_forecast <- as.data.frame(get_precis_forecast(state = "AUS"))
+  bom_forecast <- get_precis_forecast(state = "AUS")
   expect_equal(unique(bom_forecast[["state"]]),
                c("NSW", "NT", "QLD", "SA", "TAS", "VIC", "WA"))
 })
