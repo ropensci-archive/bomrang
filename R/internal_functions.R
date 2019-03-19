@@ -318,7 +318,6 @@
   dat
 }
 
-
 #' Download BOM XML Files and Load into Session
 #'
 #' @param xml_url URL of XML file to be downloaded/parsed/loaded.
@@ -339,4 +338,89 @@
       "Please retry again later.\n"
     ))
   return(xml_object)
+}
+
+#' extract the values of the forecast items
+#'
+#' @param y précis forecast values
+#'
+#' @return a data.frame of forecast values
+#' @keywords internal
+#' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
+#' @noRd
+
+#' Parse areas for précis or coastal forecasts
+#'
+#' @param x a précis forecast XML object
+#'
+#' @return a data.table of forecast areas and aac codes
+#' @keywords internal
+#' @author Adam H Sparks, \email{adamhspark@@s@gmail.com}
+#' @noRd
+
+.parse_areas <- function(x) {
+  aac <- as.character(xml2::xml_attr(x, "aac"))
+  
+  # get xml children for the forecast (there are seven of these for each area)
+  forecast_periods <- xml2::xml_children(x)
+  
+  sub_out <-
+    lapply(X = forecast_periods, FUN = .extract_values)
+  sub_out <- do.call(rbind, sub_out)
+  sub_out <- cbind(aac, sub_out)
+  return(sub_out)
+}
+
+.extract_values <- function(y) {
+  values <- xml2::xml_children(y)
+  attrs <- unlist(as.character(xml2::xml_attrs(values)))
+  values <- unlist(as.character(xml2::xml_contents(values)))
+  
+  time_period <- unlist(t(as.data.frame(xml2::xml_attrs(y))))
+  time_period <-
+    time_period[rep(seq_len(nrow(time_period)), each = length(attrs)), ]
+  
+  sub_out <- cbind(time_period, attrs, values)
+  row.names(sub_out) <- NULL
+  return(sub_out)
+}
+
+#' splits time cols and removes extra chars for forecast XML objects
+#'
+#' @param x an object containing a BOM forecast object parsed from XML
+#'
+#' @return cleaned data.table cols of date and time
+#' @keywords internal
+#' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
+#' @noRd
+
+.split_time_cols <- function(x) {
+  x[, c("start_time_local",
+        "UTC_offset_drop") := data.table::tstrsplit(start_time_local,
+                                                    "+",
+                                                    fixed = TRUE)]
+  
+    x[, c("end_time_local",
+          "utc_offset") := data.table::tstrsplit(end_time_local,
+                                                 "+",
+                                                 fixed = TRUE)]
+
+  x[, "UTC_offset_drop" := NULL]
+
+  # remove the "T" from time cols
+  x[, c("start_time_local",
+         "end_time_local",
+         "start_time_utc",
+         "end_time_utc") := lapply(.SD, gsub,pattern = "T",
+                                                    replacement = " "),
+    .SDcols = c("start_time_local",
+                "end_time_local",
+                "start_time_utc",
+                "end_time_utc")]
+
+  # remove the "Z" from UTC cols
+  x[, c("start_time_utc", "end_time_utc") := lapply(.SD, gsub,pattern = "Z",
+                                                    replacement = ""),
+    .SDcols = c("start_time_utc", "end_time_utc")]
+  return(x)
 }
