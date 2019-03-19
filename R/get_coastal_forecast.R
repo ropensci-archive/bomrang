@@ -23,8 +23,8 @@
 #'  }
 #'
 #' @return
-#' Tidy \code{\link[base]{data.frame}} of a Australia \acronym{BOM} Coastal
-#' Waters Forecast.
+#' Tidy \code{\link[data.table]{data.table}} of a Australia \acronym{BOM}
+#' Coastal Waters Forecast.
 #'
 #' @examples
 #' \donttest{
@@ -87,7 +87,7 @@ get_coastal_forecast <- function(state = "AUS") {
   } else {
     file_list <- paste0(ftp_base, AUS_XML)
     out <- lapply(X = file_list, FUN = .parse_coastal_forecast)
-    out <- as.data.frame(data.table::rbindlist(out, fill = TRUE))
+    out <- data.table::setDT(as.data.frame(do.call("rbind", out)))
   }
   return(out)
 }
@@ -102,85 +102,42 @@ get_coastal_forecast <- function(state = "AUS") {
   
   areas <- xml2::xml_find_all(xml_object, ".//*[@type='coast']")
   out <- suppressWarnings(lapply(X = areas, FUN = .parse_areas))
-  out <- as.data.frame(do.call("rbind", out))
+  out <- data.table::setDT(as.data.frame(do.call("rbind", out)))
+  names(out) <- gsub("-", "_", names(out))
   
-  out <- tidyr::spread(out, key = attrs, value = values)
+  out <- data.table::dcast(
+    out,
+    aac + index + start_time_local + end_time_local + start_time_utc +
+      end_time_utc  ~ attrs,
+    value.var = "values"
+  )
+
+  # clean up and split out time cols into offset and remove extra chars
+  .split_time_cols(x = out)
+
+  # merge with aac codes for location information ------------------------------
+  load(system.file("extdata", "marine_AAC_codes.rda", package = "bomrang"))  # nocov
+  data.table::setkey(out, "aac")
+  out <- marine_AAC_codes[out, on = "aac"]
   
-  out <- out %>%
-    janitor::clean_names(., case = "snake") %>%
-    janitor::remove_empty("cols")
-
-  out <- out %>%
-    tidyr::separate(
-      end_time_local,
-      into = c("end_time_local", "UTC_offset"),
-      sep = "\\+") %>%
-    tidyr::separate(
-      start_time_local,
-      into = c("start_time_local", "UTC_offset_drop"),
-      sep = "\\+")
-  
-  # drop the "UTC_offset_drop" column
-  out <- out[!names(out) %in% "UTC_offset_drop"]
-
-  # remove the "T" from the date/time columns
-  out[, c("start_time_local",
-          "end_time_local",
-          "start_time_utc",
-          "end_time_utc")] <-
-    apply(out[, c("start_time_local",
-                  "end_time_local",
-                  "start_time_utc",
-                  "end_time_utc")], 2, function(x)
-                    chartr("T", " ", x))
-
-  # remove the "Z" from start_time_utc
-  out[, c("start_time_utc",
-          "end_time_utc")] <-
-    apply(out[, c("start_time_utc",
-                  "end_time_utc")], 2, function(x)
-                    chartr("Z", " ", x))
-
-  # convert factors to character for left merge, otherwise funny stuff happens
-  out[, seq_len(ncol(out))] <-
-    lapply(out[, seq_len(ncol(out))], as.character)
-
-  # convert dates to POSIXct format
-  out[, c(3:4, 6:7)] <- lapply(out[, c(3:4, 6:7)],
-                               function(x)
-                                 as.POSIXct(x, origin = "1970-1-1",
-                                            format = "%Y-%m-%d %H:%M:%OS"))
-
-  # convert numeric values to numeric
-  out[, 2] <- as.numeric(out[,2])
-
-  # Load AAC code/town name list to join with final output
-  load(system.file("extdata", "marine_AAC_codes.rda", package = "bomrang")) # nocov
-
   # return final forecast object -----------------------------------------------
-  
-  # merge with aac codes for location information
-  tidy_df <-
-    dplyr::left_join(out,
-                     marine_AAC_codes, by = c("aac" = "AAC")) %>% 
-    janitor::clean_names(., case = "snake")
-
+ 
   # add product ID field
-  tidy_df$product_id <- substr(basename(xml_url),
-                               1,
-                               nchar(basename(xml_url)) - 4)
+  out[, product_id := substr(basename(xml_url),
+                             1,
+                             nchar(basename(xml_url)) - 4)]
   
   # some fields only come out on special occasions, if absent, add as NA
-  if (!"forecast_swell2" %in% colnames(tidy_df)) {
-    tidy_df$forecast_swell2 <- NA
+  if (!"forecast_swell2" %in% colnames(out)) {
+    out[, forecast_swell2 := NA]
   }
   
-  if (!"forecast_caution" %in% colnames(tidy_df)) {
-    tidy_df$forecast_caution <- NA
+  if (!"forecast_caution" %in% colnames(out)) {
+    out[, forecast_caution := NA]
   }
   
-  if (!"marine_forecast" %in% colnames(tidy_df)) {
-    tidy_df$marine_forecast <- NA
+  if (!"marine_forecast" %in% colnames(out)) {
+    out[, marine_forecast := NA]
   }
 
   # reorder columns
@@ -206,10 +163,26 @@ get_coastal_forecast <- function(state = "AUS") {
     "forecast_caution",
     "marine_forecast"
   )
+
+  data.table::setcolorder(out, refcols)
   
-  # create factors
-  tidy_df$index <- as.factor(tidy_df$index)
+  # set col classes ------------------------------------------------------------
+  # factors
+  out[, c(1, 11) := lapply(.SD, function(x)
+    as.factor(x)),
+    .SDcols = c(1, 11)]
+
+  # dates
+  out[, c(9:10, 12:13) := lapply(.SD, function(x)
+    as.POSIXct(x,
+               origin = "1970-1-1",
+               format = "%Y-%m-%d %H:%M:%OS")),
+    .SDcols = c(9:10, 12:13)]
   
-  tidy_df <- tidy_df[c(refcols, setdiff(names(tidy_df), refcols))]
-  return(tidy_df)
+  # character
+  out[, c(6:8, 14:20) := lapply(.SD, function(x)
+    as.character(x)),
+    .SDcols = c(6:8, 14:20)]
+  
+  return(out)
 }
