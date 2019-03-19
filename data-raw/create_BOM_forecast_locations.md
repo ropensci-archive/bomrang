@@ -29,6 +29,9 @@ file portion of a shapefile,
   # reorder columns
   AAC_codes <- AAC_codes[, c(2:3, 7:9)]
   
+  # set name
+  data.table::setnames(AAC_codes, c(2, 5), c("town", "elev"))
+  
   data.table::setDT(AAC_codes)
   data.table::setkey(AAC_codes, "aac")
 ```
