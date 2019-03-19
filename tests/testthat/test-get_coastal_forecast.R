@@ -17,7 +17,7 @@ test_that("get_coastal_forecast returns at most 19 columns", {
   expect_is(bom_forecast$aac, "character")
   expect_is(bom_forecast$start_time_local, "POSIXct")
   expect_is(bom_forecast$end_time_local, "POSIXct")
-  expect_is(bom_forecast$utc_offset, "character")
+  expect_is(bom_forecast$utc_offset, "factor")
   expect_is(bom_forecast$start_time_utc, "POSIXct")
   expect_is(bom_forecast$end_time_utc, "POSIXct")
   expect_is(bom_forecast$forecast_seas, "character")
