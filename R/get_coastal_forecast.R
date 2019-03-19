@@ -95,7 +95,9 @@ get_coastal_forecast <- function(state = "AUS") {
 .parse_coastal_forecast <- function(xml_url) {
   # CRAN note avoidance
   AAC_codes <- marine_AAC_codes <- attrs <- end_time_local <- # nocov start
-    precipitation_range <- start_time_local <- values <- NULL # nocov end
+    precipitation_range <- start_time_local <- values <- product_id <- 
+    forecast_swell2 <- forecast_caution <- marine_forecast <- 
+    start_time_local <- end_time_local <- NULL # nocov end
 
   # download the XML forecast
   xml_object <- .get_xml(xml_url)
