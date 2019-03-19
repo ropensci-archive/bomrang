@@ -359,10 +359,41 @@
 #' @noRd
 
 .parse_areas <- function(x) {
-  aac <- as.character(xml2::xml_attr(x, "aac"))
   
-  # get xml children for the forecast (there are seven of these for each area)
-  forecast_periods <- xml2::xml_children(x)
+  # get the actual forecast objects
+  fp <- xml2::xml_find_all(xml_object, ".//forecast-period")
+  
+  locations_index <- data.table::data.table(
+    aac = xml2::xml_parent(fp) %>% 
+      xml2::xml_find_first(".//parent::area") %>% 
+      xml2::xml_attr("aac"),
+    town = xml2::xml_parent(fp) %>% 
+      xml2::xml_find_first(".//parent::area") %>% 
+      xml2::xml_attr("description"),
+    index = xml2::xml_parent(fp) %>%
+      xml2::xml_find_first(".//parent::forecast-period") %>% 
+      xml2::xml_attr("index"))
+  # https://stackoverflow.com/questions/55014515/r-xml-combining-parent-and-child-nodesw-same-name-into-data-frame
+  dfs <- lapply(fp, function(node) {
+    # find names of all children nodes
+    childnodes <- node %>% xml_children() %>% xml_name()
+    # find the attr value from all child nodes
+    names <- node %>% xml_children() %>% xml_attr("type")
+    # create columns names based on either node name or attr value
+    names <- ifelse(is.na(names), childnodes, names)
+    
+    # find all values
+    values <- node %>% xml_children() %>% xml_text()
+    
+    # create data frame and properly label the columns
+    df <- data.frame(t(values), stringsAsFactors = FALSE)
+    names(df) <- names
+    df
+  })
+ 
+  answer <- data.table::rbindlist(dfs, fill = TRUE)
+  
+  out <- cbind(locations_index, answer)
   
   sub_out <-
     lapply(X = forecast_periods, FUN = .extract_values)

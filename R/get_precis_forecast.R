@@ -112,11 +112,6 @@ get_precis_forecast <- function(state = "AUS") {
   
   xml_object <- .get_xml(xml_url)
   
-  areas <-
-    xml2::xml_find_all(xml_object, ".//*[@type='location']")
-  xml2::xml_remove(xml2::xml_find_all(areas,
-                                      ".//*[@type='forecast_icon_code']"))
-  
   out <- lapply(X = areas, FUN = .parse_areas)
   out <- data.table::rbindlist(out)
   names(out) <- gsub("-", "_", names(out))
