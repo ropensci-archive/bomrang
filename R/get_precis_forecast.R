@@ -112,7 +112,7 @@ get_precis_forecast <- function(state = "AUS") {
   
   xml_object <- .get_xml(xml_url)
   
-  out <- lapply(X = areas, FUN = .parse_areas)
+  out <- lapply(X = xml_object, FUN = .parse_areas)
   out <- data.table::rbindlist(out)
   names(out) <- gsub("-", "_", names(out))
   
