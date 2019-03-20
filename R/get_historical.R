@@ -1,3 +1,4 @@
+
 #' Obtain Historical BOM Data
 #'
 #' Retrieves daily observations for a given station.
@@ -8,8 +9,8 @@
 #' @param type Measurement type, either daily "rain", "min" (temp), "max"
 #'   (temp), or "solar" (exposure). Partial matching is performed. If not
 #'   specified returns the first matching type in the order listed.
-#' @return A \code{bomrang_tbl} object (extension of a 
-#'   \code{\link[base]{data.frame}}) of historical observations for the chosen 
+#' @return A \code{bomrang_tbl} object (extension of a
+#'   \code{\link[base]{data.frame}}) of historical observations for the chosen
 #'   station/product type, with some subset of the following columns
 #'
 #'   \tabular{rl}{
@@ -28,10 +29,10 @@
 #'   **Quality**:\tab Y, N, or missing. Data which have not yet completed the\cr
 #'               \tab routine quality control process are marked accordingly.
 #'   }
-#'   
-#'   The following attributes are set on the data, and these are 
+#'
+#'   The following attributes are set on the data, and these are
 #'   used to generate the heaader
-#'      
+#'
 #'   \tabular{rl}{
 #'   **site**:\tab BOM station ID.\cr
 #'   **name**:\tab BOM station name.\cr
@@ -62,7 +63,7 @@
 #'   In some cases data is available back to the 1800s, so tens of thousands of
 #'   daily records will be returned. Other stations will be newer and will
 #'   return fewer observations.
-#'   
+#'
 #' @section \code{dplyr} Compatibility: The \code{bomrang_tbl} class is
 #'   compatible with \code{\link[dplyr]{dplyr}} as long as the \code{bomrang}
 #'   package is on the search path. Common functions
@@ -73,7 +74,7 @@
 #'   which mask the dplyr versions (but use those internally, maintaining
 #'   attributes).
 #'
-#' @export
+#' @export get_historical
 #' @author Jonathan Carroll, \email{rpkg@@jcarroll.com.au}
 #'
 #' @examples
@@ -82,11 +83,11 @@
 #' get_historical(latlon = c(-35.2809, 149.1300),
 #'                type = "min") ## 3,500+ daily records
 #' }
+
 get_historical <-
   function(stationid = NULL,
            latlon = NULL,
            type = c("rain", "min", "max", "solar")) {
-    
     site <- ncc_obs_code <- NULL #nocov
     
     if (is.null(stationid) & is.null(latlon))
@@ -113,8 +114,10 @@ get_historical <-
     ## ensure station is known
     ncc_list <- .get_ncc()
     
-    if (suppressWarnings(all(is.na(as.numeric(stationid)) |
-              as.numeric(stationid) %notin% ncc_list$site)))
+    if (suppressWarnings(all(
+      is.na(as.numeric(stationid)) |
+      as.numeric(stationid) %notin% ncc_list$site
+    )))
       stop("\nStation not recognised.\n",
            call. = FALSE)
     
@@ -127,13 +130,17 @@ get_historical <-
       solar = 193
     )
     
-    ncc_list <- dplyr::filter(ncc_list, c(site == as.numeric(stationid) &
-                                            ncc_obs_code == obscode))
+    ncc_list <-
+      dplyr::filter(ncc_list, c(site == as.numeric(stationid) &
+                                  ncc_obs_code == obscode))
     
     if (obscode %notin% ncc_list$ncc_obs_code)
       stop(call. = FALSE,
-           "\n`type` ", type, " is not available for `stationid` ",
-           stationid, "\n")
+           "\n`type` ",
+           type,
+           " is not available for `stationid` ",
+           stationid,
+           "\n")
     
     zipurl <- .get_zip_url(stationid, obscode)
     dat <- .get_zip_and_load(zipurl)
@@ -143,32 +150,183 @@ get_historical <-
                     "Year",
                     "Month",
                     "Day",
-                    switch(type,
-                           min = c("Min_temperature",
-                                   "Accum_days_min",
-                                   "Quality"),
-                           max = c("Max_temperature",
-                                   "Accum_days_max",
-                                   "Quality"),
-                           rain = c("Rainfall",
-                                    "Period",
-                                    "Quality"),
-                           solar = c("Solar_exposure")
+                    switch(
+                      type,
+                      min = c("Min_temperature",
+                              "Accum_days_min",
+                              "Quality"),
+                      max = c("Max_temperature",
+                              "Accum_days_max",
+                              "Quality"),
+                      rain = c("Rainfall",
+                               "Period",
+                               "Quality"),
+                      solar = c("Solar_exposure")
                     ))
-
-    return(structure(dat, 
-                     class = union("bomrang_tbl", class(dat)),
-                     station = stationid,
-                     type = type,
-                     origin = "historical",
-                     location = ncc_list$name,
-                     lat = ncc_list$lat,
-                     lon = ncc_list$lon,
-                     start = ncc_list$start,
-                     end = ncc_list$end,
-                     count = ncc_list$years,
-                     units = "years",
-                     ncc_list = ncc_list
-                     ))
+    
+    return(
+      structure(
+        dat,
+        class = union("bomrang_tbl", class(dat)),
+        station = stationid,
+        type = type,
+        origin = "historical",
+        location = ncc_list$name,
+        lat = ncc_list$lat,
+        lon = ncc_list$lon,
+        start = ncc_list$start,
+        end = ncc_list$end,
+        count = ncc_list$years,
+        units = "years",
+        ncc_list = ncc_list
+      )
+    )
   }
 
+#' Get latest historical station metadata
+#'
+#' Fetches BOM metadata for checking historical record availability. Also can be
+#' used to return the metadata if user desires.
+#'
+#' @md
+#'
+#' @return A data frame of metadata for BOM historical records
+#' @keywords internal
+#' @author Jonathan Carroll, \email{rpkg@@jcarroll.com.au}
+#' @noRd
+
+.get_ncc <- function() {
+  # CRAN NOTE avoidance
+  site <- name <- lat <- lon <- start_month <- #nocov start
+    start_year <-
+    end_month <- end_year <- years <- percent <- AWS <-
+    start <- end <- ncc_obs_code <- site <- NULL #nocov end
+  
+  base_url <- "http://www.bom.gov.au/climate/data/lists_by_element/"
+  
+  rain <- paste0(base_url, "alphaAUS_136.txt")
+  tmax <- paste0(base_url, "alphaAUS_122.txt")
+  tmin <- paste0(base_url, "alphaAUS_123.txt")
+  solar <- paste0(base_url, "alphaAUS_193.txt")
+  
+  weather <- c(rain, tmax, tmin, solar)
+  names(weather) <- c("rain", "tmax", "tmin", "solar")
+  
+  ncc_codes <- vector(mode = "list", length = length(weather))
+  names(ncc_codes) <- names(weather)
+  
+  for (i in seq_along(weather)) {
+    ncc_obs_code <- substr(weather[i],
+                           nchar(weather[i]) - 6,
+                           nchar(weather[i]) - 4)
+    
+    ncc <-
+      readr::read_table(
+        weather[i],
+        skip = 4,
+        col_names = c(
+          "site",
+          "name",
+          "lat",
+          "lon",
+          "start_month",
+          "start_year",
+          "end_month",
+          "end_year",
+          "years",
+          "percent",
+          "AWS"
+        ),
+        col_types = c(
+          site = readr::col_integer(),
+          name = readr::col_character(),
+          lat = readr::col_double(),
+          lon = readr::col_double(),
+          start_month = readr::col_character(),
+          start_year = readr::col_character(),
+          end_month = readr::col_character(),
+          end_year = readr::col_character(),
+          years = readr::col_double(),
+          percent = readr::col_integer(),
+          AWS = readr::col_character()
+        ),
+        na = ""
+      )
+    
+    # trim the end of the rows off that have extra info that's not in columns
+    nrows <- nrow(ncc) - 7
+    ncc <- ncc[1:nrows,]
+    
+    # unite month and year, convert to a date and add ncc_obs_code
+    ncc <-
+      ncc %>%
+      tidyr::unite(start, start_month, start_year, sep = "-") %>%
+      tidyr::unite(end, end_month, end_year, sep = "-") %>%
+      dplyr::mutate(start = lubridate::dmy(paste0("01-", start))) %>%
+      dplyr::mutate(end = lubridate::dmy(paste0("01-", end))) %>%
+      dplyr::mutate(ncc_obs_code = ncc_obs_code)
+    
+    ncc_codes[[i]] <- ncc
+  }
+  dplyr::bind_rows(ncc_codes)
+}
+
+#' Identify URL of historical observations resources
+#'
+#' BOM data is available via URL endpoints but the arguments are not (well)
+#' documented. This function first obtains an auxilliary data file for the given
+#' station/measurement type which contains the remaining value `p_c`. It then
+#' constructs the approriate resource URL.
+#'
+#' @md
+#' @param site site ID.
+#' @param code measurement type. See internals of [get_historical].
+#' @importFrom httr GET content
+#'
+#' @return URL of the historical observation resource
+#' @keywords internal
+#' @author Jonathan Carroll, \email{rpkg@@jcarroll.com.au}
+#' @noRd
+
+.get_zip_url <- function(site, code = 122) {
+  url1 <-
+    paste0(
+      "http://www.bom.gov.au/jsp/ncc/cdio/weatherData/av?p_stn_num=",
+      site,
+      "&p_display_type=availableYears&p_nccObsCode=",
+      code
+    )
+  raw <- httr::content(httr::GET(url1), "text")
+  if (grepl("BUREAU FOOTER", raw))
+    stop("Error in retrieving resource identifiers.")
+  pc <- sub("^.*:", "", raw)
+  url2 <-
+    paste0(
+      "http://www.bom.gov.au/jsp/ncc/cdio/weatherData/av?p_display_type=dailyZippedDataFile&p_stn_num=",
+      site,
+      "&p_c=",
+      pc,
+      "&p_nccObsCode=",
+      code
+    )
+  url2
+}
+
+#' Download a BOM Data .zip File and Load into Session
+#'
+#' @param url URL of zip file to be downloaded/extracted/loaded.
+#'
+#' @return data loaded from the zip file
+#' @keywords internal
+#' @author Jonathan Carroll, \email{rpkg@@jcarroll.com.au}
+#' @noRd
+.get_zip_and_load <- function(url) {
+  tmp <- tempfile(fileext = ".zip")
+  curl::curl_download(url, tmp, mode = "wb", quiet = TRUE)
+  zipped <- utils::unzip(tmp, exdir = dirname(tmp))
+  unlink(tmp)
+  datfile <- grep("Data.csv", zipped, value = TRUE)
+  message("Data saved as ", datfile)
+  dat <- utils::read.csv(datfile, header = TRUE)
+  dat
+}
