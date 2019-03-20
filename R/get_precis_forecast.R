@@ -98,6 +98,7 @@ get_precis_forecast <- function(state = "AUS") {
     forecast_out <- lapply(X = file_list, FUN = .parse_forecast)
     forecast_out <- data.table::rbindlist(forecast_out, fill = TRUE)
   }
+  
   return(forecast_out)
 }
 
