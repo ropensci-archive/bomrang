@@ -145,23 +145,23 @@ get_historical <-
     zipurl <- .get_zip_url(stationid, obscode)
     dat <- .get_zip_and_load(zipurl)
     
-    names(dat) <- c("Product_code",
-                    "Station_number",
-                    "Year",
-                    "Month",
-                    "Day",
+    names(dat) <- c("product_code",
+                    "station_number",
+                    "year",
+                    "month",
+                    "day",
                     switch(
                       type,
-                      min = c("Min_temperature",
-                              "Accum_days_min",
-                              "Quality"),
-                      max = c("Max_temperature",
-                              "Accum_days_max",
-                              "Quality"),
-                      rain = c("Rainfall",
-                               "Period",
-                               "Quality"),
-                      solar = c("Solar_exposure")
+                      min = c("min_temperature",
+                              "accum_days_min",
+                              "quality"),
+                      max = c("max_temperature",
+                              "accum_days_max",
+                              "quality"),
+                      rain = c("rainfall",
+                               "period",
+                               "quality"),
+                      solar = c("solar_exposure")
                     ))
     
     return(
