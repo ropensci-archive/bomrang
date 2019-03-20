@@ -573,8 +573,7 @@ For example:
 adlmax <- get_historical(stationid = "023000", type = "max")
 adlmax
 
-
-filter(adlmax, Month == 10)
+filter(adlmax, month == 10)
 ```
 
 The `magrittr` pipe has also been re-exported, so that too can be used 
@@ -582,8 +581,8 @@ to chain together operations
 
 ```{r}
 adlmax %>% 
-  select(Station_number, Year:Day, Max_temperature) %>% 
-  filter(Month == 10)
+  select(station_number, year:day, max_temperature) %>% 
+  filter(month == 10)
 ```
 
 
@@ -1018,7 +1017,7 @@ automated weather stations.
 	   invading it
 	19 Cirrocumulus alone or Cirrocumulus predominant
 	
-## Appendix 2 - Output from `get_précis_forecast`
+## Appendix 2 - Output from `get_precis_forecast`
 
 The function, `get_precis_forecast()`, will return a tidy data frame of the
 agriculture bulletin with the following fields:
