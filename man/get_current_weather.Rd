@@ -2,9 +2,13 @@
 % Please edit documentation in R/get_current_weather.R
 \name{get_current_weather}
 \alias{get_current_weather}
+\alias{get_current}
 \title{Get Current Weather Observations of a BOM Station}
 \usage{
 get_current_weather(station_name, strict = FALSE, latlon = NULL,
+  emit_latlon_msg = TRUE)
+
+get_current(station_name, strict = FALSE, latlon = NULL,
   emit_latlon_msg = TRUE)
 }
 \arguments{
