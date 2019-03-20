@@ -340,61 +340,6 @@
   return(xml_object)
 }
 
-#' extract the values of the forecast items
-#'
-#' @param y précis forecast xml_object
-#'
-#' @return a data.table of the forecast fore cleaning and returning to user
-#' @keywords internal
-#' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
-#' @noRd
-
-.parse_xml <- function(x) {
-  
-  # get the actual forecast objects
-  fp <- xml2::xml_find_all(xml_object, ".//forecast-period")
-  
-  locations_index <- data.table::data.table(
-    # find all the aacs
-    aac = xml2::xml_parent(fp) %>% 
-      xml2::xml_find_first(".//parent::area") %>% 
-      xml2::xml_attr("aac"),
-    # find the names of towns
-    town = xml2::xml_parent(fp) %>% 
-      xml2::xml_find_first(".//parent::area") %>% 
-      xml2::xml_attr("description"),
-    # find corecast period index
-    index = xml2::xml_parent(fp) %>%
-      xml2::xml_find_first(".//parent::forecast-period") %>% 
-      xml2::xml_attr("index"))
-  
-  vals <- lapply(fp, function(node) {
-    #find names of all children nodes
-    childnodes <- node %>%
-      xml2::xml_children() %>% 
-      xml2::xml_name()
-    #find the attr value from all child nodes
-    names <- node %>% 
-      xml2::xml_children() %>% 
-      xml2::xml_attr("type")
-    #create columns names based on either node name or attr value
-    names <- ifelse(is.na(names), childnodes, names)
-    
-    #find all values
-    values <- node %>% 
-      xml2::xml_children() %>%
-      xml2::xml_text()
-    
-    #create data frame and properly label the columns
-    df <- data.frame(t(values), stringsAsFactors = FALSE)
-    names(df) <- names
-    df
-  })
- 
-  answer <- data.table::rbindlist(vals, fill = TRUE)
-  sub_out <- cbind(locations_index, answer)
-}
-
 #' splits time cols and removes extra chars for forecast XML objects
 #'
 #' @param x an object containing a BOM forecast object parsed from XML
