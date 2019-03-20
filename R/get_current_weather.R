@@ -1,5 +1,4 @@
 
-
 #' Get Current Weather Observations of a BOM Station
 #'
 #' @param station_name The name of the weather station. Fuzzy string matching
@@ -295,5 +294,23 @@ get_current_weather <-
       data.table::set(out, j = j, value = .force_double(out[[j]]))
     }
     
-    return(out)
+    station_meta <- subset(JSONurl_site_list, url %in% json_url)
+    
+    return(
+      structure(
+        out,
+        class = union("bomrang_tbl", class(out)),
+        station = station_meta$site,
+        type = "All",
+        origin = "Current",
+        location = station_meta$name,
+        lat = station_meta$lat,
+        lon = station_meta$lon,
+        start = station_meta$start,
+        end = station_meta$end,
+        count = station_meta$end - station_meta$start,
+        units = "years",
+        ncc_list = station_meta
+      )
+    )
   }
