@@ -18,8 +18,8 @@ A data frame of all selected radar locations with location information and
 \description{
 Fetch a listing of available \acronym{BOM} radar imagery from
 \url{ftp://ftp.bom.gov.au/anon/gen/radar/} to determine which files are
-currently available for download.  The files available are the most recent 
-radar imagery for each location, which are updated approximately every 6 to 
+currently available for download.  The files available are the most recent
+radar imagery for each location, which are updated approximately every 6 to
 10 minutes by the \acronym{BOM}.
 }
 \details{

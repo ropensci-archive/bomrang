@@ -138,9 +138,11 @@ get_available_imagery <- function(product_id = "all") {
 #' }
 
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
+#' @rdname get_satellite_imagery
+#' @export get_satellite
 #' @export get_satellite_imagery
 
-get_satellite_imagery <-
+get_satellite <- get_satellite_imagery <-
   function(product_id,
              scans = 1,
              cache = FALSE) {
