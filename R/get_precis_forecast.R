@@ -101,6 +101,15 @@ get_precis_forecast <- function(state = "AUS") {
   return(forecast_out)
 }
 
+#' extract the values of the precis forecast items
+#'
+#' @param y précis forecast xml_object
+#'
+#' @return a data.table of the forecast fore cleaning and returning to user
+#' @keywords internal
+#' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
+#' @noRd
+
 .parse_forecast <- function(xml_url) {
   # CRAN note avoidance
   AAC_codes <- # nocov start
@@ -222,6 +231,8 @@ get_precis_forecast <- function(state = "AUS") {
 #' @noRd
 
 .parse_precis_xml <- function(xml_object) {
+  forecast_icon_code <- NULL
+  
   # get the actual forecast objects
   fp <- xml2::xml_find_all(xml_object, ".//forecast-period")
   

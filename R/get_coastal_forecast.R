@@ -96,7 +96,8 @@ get_coastal_forecast <- function(state = "AUS") {
   # CRAN note avoidance
   AAC_codes <- marine_AAC_codes <- attrs <- end_time_local <- # nocov start
     precipitation_range <- start_time_local <- values <- product_id <- 
-    forecast_swell2 <- forecast_caution <- marine_forecast <- NULL # nocov end
+    forecast_swell2 <- forecast_caution <- marine_forecast <- 
+    state_code <- tropical_system_location <- forecast_waves <- NULL # nocov end
 
   # download the XML forecast
   xml_object <- .get_xml(xml_url)
@@ -201,6 +202,10 @@ get_coastal_forecast <- function(state = "AUS") {
 
 .parse_coastal_xml <- function(xml_object) {
 
+ tropical_system_location <- forecast_waves <- synoptic_situation <-  # nocov start
+   preamble <- warning_summary_footer <- product_footer <- 
+   postamble <- NULL  # nocov end
+    
   # get the actual forecast objects
   meta <- xml2::xml_find_all(xml_object, ".//text")
   fp <- xml2::xml_find_all(xml_object, ".//forecast-period")
