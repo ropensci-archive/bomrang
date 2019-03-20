@@ -96,7 +96,7 @@ get_precis_forecast <- function(state = "AUS") {
   } else {
     file_list <- paste0(ftp_base, AUS_XML)
     forecast_out <- lapply(X = file_list, FUN = .parse_forecast)
-    forecast_out <- data.table::rbindlist(forecast_out)
+    forecast_out <- data.table::rbindlist(forecast_out, fill = TRUE)
   }
   return(forecast_out)
 }
@@ -117,7 +117,8 @@ get_precis_forecast <- function(state = "AUS") {
   out <- .parse_precis_xml(xml_object)
 
   data.table::setnames(out,
-                      c(8, 12),
+                      c("air_temperature_maximum",
+                        "air_temperature_minimum"),
                       c("maximum_temperature",
                           "minimum_temperature"))
   
