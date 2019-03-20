@@ -21,8 +21,8 @@ test_that("Query stationid = '023000',
   expect_is(ADLhistrain, "bomrang_tbl")
   expect_true(nrow(ADLhistrain) > 0)
   expect_equal(ncol(ADLhistrain), 8)
-  expect_equal(ADLhistrain$Product_code[1], factor("IDCJAC0009"))
-  expect_equal(ADLhistrain$Station_number[1], 23000)
+  expect_equal(ADLhistrain$product_code[1], factor("IDCJAC0009"))
+  expect_equal(ADLhistrain$station_number[1], 23000)
 })
 
 test_that("Query stationid = '023000'", {
@@ -41,8 +41,8 @@ test_that("Query latlon = c(-34.9285, 138.6007),
   expect_is(ADLhistrain, "bomrang_tbl")
   expect_true(nrow(ADLhistrain) > 0)
   expect_equal(ncol(ADLhistrain), 8)
-  expect_equal(ADLhistrain$Product_code[1], factor("IDCJAC0009"))
-  expect_equal(ADLhistrain$Station_number[1], 23000)
+  expect_equal(ADLhistrain$product_code[1], factor("IDCJAC0009"))
+  expect_equal(ADLhistrain$station_number[1], 23000)
   expect_equal(attr(ADLhistrain, "station"), "023000")
 })
 
