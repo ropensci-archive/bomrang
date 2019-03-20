@@ -1,4 +1,5 @@
 
+
 #' Get BOM Coastal Waters Forecast
 #'
 #' Fetch the \acronym{BOM} daily Coastal Waters Forecast and return a tidy data
@@ -48,21 +49,27 @@
 
 get_coastal_forecast <- function(state = "AUS") {
   the_state <- .check_states(state) # see internal_functions.R
-
+  
   # ftp server
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
-
+  
   # create vector of XML files
   AUS_XML <- c(
-    "IDN11001.xml", # NSW
-    "IDD11030.xml", # NT
-    "IDQ11290.xml", # QLD
-    "IDS11072.xml", # SA
-    "IDT12329.xml", # TAS
-    "IDV10200.xml", # VIC
+    "IDN11001.xml",
+    # NSW
+    "IDD11030.xml",
+    # NT
+    "IDQ11290.xml",
+    # QLD
+    "IDS11072.xml",
+    # SA
+    "IDT12329.xml",
+    # TAS
+    "IDV10200.xml",
+    # VIC
     "IDW11160.xml"  # WA
   )
-
+  
   if (the_state != "AUS") {
     xml_url <-
       dplyr::case_when(
@@ -94,18 +101,21 @@ get_coastal_forecast <- function(state = "AUS") {
 
 .parse_coastal_forecast <- function(xml_url) {
   # CRAN note avoidance
-  AAC_codes <- marine_AAC_codes <- attrs <- end_time_local <- # nocov start
-    precipitation_range <- start_time_local <- values <- product_id <- 
-    forecast_swell2 <- forecast_caution <- marine_forecast <- 
-    state_code <- tropical_system_location <- forecast_waves <- NULL # nocov end
-
+  AAC_codes <-
+    marine_AAC_codes <- attrs <- end_time_local <- # nocov start
+    precipitation_range <-
+    start_time_local <- values <- product_id <-
+    forecast_swell2 <- forecast_caution <- marine_forecast <-
+    state_code <-
+    tropical_system_location <- forecast_waves <- NULL # nocov end
+  
   # download the XML forecast
   xml_object <- .get_xml(xml_url)
   out <- .parse_coastal_xml(xml_object)
   
   # clean up and split out time cols into offset and remove extra chars
   .split_time_cols(x = out)
-
+  
   # merge with aac codes for location information ------------------------------
   load(system.file("extdata", "marine_AAC_codes.rda", package = "bomrang"))  # nocov
   data.table::setkey(out, "aac")
@@ -115,7 +125,7 @@ get_coastal_forecast <- function(state = "AUS") {
   out[, state_code := gsub("_.*", "", out$aac)]
   
   # return final forecast object -----------------------------------------------
- 
+  
   # add product ID field
   out[, product_id := substr(basename(xml_url),
                              1,
@@ -133,7 +143,7 @@ get_coastal_forecast <- function(state = "AUS") {
   if (!"marine_forecast" %in% colnames(out)) {
     out[, marine_forecast := NA]
   }
-
+  
   if (!"tropical_system_location" %in% colnames(out)) {
     out[, tropical_system_location := NA]
   }
@@ -167,7 +177,7 @@ get_coastal_forecast <- function(state = "AUS") {
     "tropical_system_location",
     "forecast_waves"
   )
-
+  
   data.table::setcolorder(out, refcols)
   
   # set col classes ------------------------------------------------------------
@@ -175,13 +185,19 @@ get_coastal_forecast <- function(state = "AUS") {
   out[, c(1, 11) := lapply(.SD, function(x)
     as.factor(x)),
     .SDcols = c(1, 11)]
-
-  # dates
-  out[, c(9:10, 12:13) := lapply(.SD, function(x)
+  
+  out[, c(9:10) := lapply(.SD, function(x)
     as.POSIXct(x,
                origin = "1970-1-1",
                format = "%Y-%m-%d %H:%M:%OS")),
-    .SDcols = c(9:10, 12:13)]
+    .SDcols = c(9:10)]
+  
+  out[, c(12:13) := lapply(.SD, function(x)
+    as.POSIXct(x,
+               origin = "1970-1-1",
+               format = "%Y-%m-%d %H:%M:%OS",
+               tz = "GMT")),
+    .SDcols = c(12:13)]
   
   # character
   out[, c(6:8, 14:20) := lapply(.SD, function(x)
@@ -201,55 +217,56 @@ get_coastal_forecast <- function(state = "AUS") {
 #' @noRd
 
 .parse_coastal_xml <- function(xml_object) {
-
- tropical_system_location <- forecast_waves <- synoptic_situation <-  # nocov start
-   preamble <- warning_summary_footer <- product_footer <- 
-   postamble <- NULL  # nocov end
-    
+  tropical_system_location <-
+    forecast_waves <- synoptic_situation <-  # nocov start
+    preamble <- warning_summary_footer <- product_footer <-
+    postamble <- NULL  # nocov end
+  
   # get the actual forecast objects
   meta <- xml2::xml_find_all(xml_object, ".//text")
   fp <- xml2::xml_find_all(xml_object, ".//forecast-period")
   
   locations_index <- data.table::data.table(
     # find all the aacs
-    aac = xml2::xml_parent(meta) %>% 
-      xml2::xml_find_first(".//parent::area") %>% 
+    aac = xml2::xml_parent(meta) %>%
+      xml2::xml_find_first(".//parent::area") %>%
       xml2::xml_attr("aac"),
     # find the names of towns
-    dist_name = xml2::xml_parent(meta) %>% 
-      xml2::xml_find_first(".//parent::area") %>% 
+    dist_name = xml2::xml_parent(meta) %>%
+      xml2::xml_find_first(".//parent::area") %>%
       xml2::xml_attr("description"),
     # find corecast period index
-    index = xml2::xml_parent(meta) %>% 
-      xml2::xml_find_first(".//parent::forecast-period") %>% 
+    index = xml2::xml_parent(meta) %>%
+      xml2::xml_find_first(".//parent::forecast-period") %>%
       xml2::xml_attr("index"),
-    start_time_local = xml2::xml_parent(meta) %>% 
-      xml2::xml_find_first(".//parent::forecast-period") %>% 
+    start_time_local = xml2::xml_parent(meta) %>%
+      xml2::xml_find_first(".//parent::forecast-period") %>%
       xml2::xml_attr("start-time-local"),
-    end_time_local = xml2::xml_parent(meta) %>% 
-      xml2::xml_find_first(".//parent::forecast-period") %>% 
+    end_time_local = xml2::xml_parent(meta) %>%
+      xml2::xml_find_first(".//parent::forecast-period") %>%
       xml2::xml_attr("start-time-local"),
-    start_time_utc = xml2::xml_parent(meta) %>% 
-      xml2::xml_find_first(".//parent::forecast-period") %>% 
+    start_time_utc = xml2::xml_parent(meta) %>%
+      xml2::xml_find_first(".//parent::forecast-period") %>%
       xml2::xml_attr("start-time-local"),
-    end_time_utc = xml2::xml_parent(meta) %>% 
-      xml2::xml_find_first(".//parent::forecast-period") %>% 
-      xml2::xml_attr("start-time-local"))
+    end_time_utc = xml2::xml_parent(meta) %>%
+      xml2::xml_find_first(".//parent::forecast-period") %>%
+      xml2::xml_attr("start-time-local")
+  )
   
   vals <- lapply(fp, function(node) {
     # find names of all children nodes
     childnodes <- node %>%
-      xml2::xml_children() %>% 
+      xml2::xml_children() %>%
       xml2::xml_name()
     # find the attr value from all child nodes
-    names <- node %>% 
-      xml2::xml_children() %>% 
+    names <- node %>%
+      xml2::xml_children() %>%
       xml2::xml_attr("type")
     # create columns names based on either node name or attr value
     names <- ifelse(is.na(names), childnodes, names)
     
     # find all values
-    values <- node %>% 
+    values <- node %>%
       xml2::xml_children() %>%
       xml2::xml_text()
     

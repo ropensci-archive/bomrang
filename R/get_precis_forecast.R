@@ -207,11 +207,18 @@ get_precis_forecast <- function(state = "AUS") {
    .SDcols = c(6:8, 14:17, 19)]
   
   # dates
-  out[, c(9:10, 12:13) := lapply(.SD, function(x)
+  out[, c(9:10) := lapply(.SD, function(x)
    as.POSIXct(x,
               origin = "1970-1-1",
               format = "%Y-%m-%d %H:%M:%OS")),
-   .SDcols = c(9:10, 12:13)]
+   .SDcols = c(9:10)]
+  
+  out[, c(12:13) := lapply(.SD, function(x)
+    as.POSIXct(x,
+               origin = "1970-1-1",
+               format = "%Y-%m-%d %H:%M:%OS",
+               tz = "GMT")),
+    .SDcols = c(12:13)]
   
   # character
   out[, c(2:5, 18) := lapply(.SD, function(x)
