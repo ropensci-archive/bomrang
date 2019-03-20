@@ -6,7 +6,6 @@ print.bomrang_tbl <- function(x, ...) {
 }
 
 .bomrang_header <- function(x) {
-  
   location <- attr(x, "location") %||% "UNKNOWN"
   station  <- attr(x, "station") %||% "UNKNOWN"
   lat      <- attr(x, "lat") %||% "UNKNOWN"
@@ -25,7 +24,16 @@ print.bomrang_tbl <- function(x, ...) {
   .stylecat("  Station:\t\t", location, " [", station, "] \n")
   .stylecat("  Location:\t\t", "lat: ", lat, ", lon: ", lon, "\n")
   .stylecat("  Measurement / Origin:\t", type, " / ", origin, "\n")
-  .stylecat("  Timespan:\t\t", start, " -- ", end, " [", count, " ", units, "]", "\n")
+  .stylecat("  Timespan:\t\t",
+            start,
+            " -- ",
+            end,
+            " [",
+            count,
+            " ",
+            units,
+            "]",
+            "\n")
   ## dplyr groupings
   if (!is.null(attr(x, "vars"))) {
     .stylecat("  Groups:\t\t", vars, paste0(" [", length(indices), "]\n"))
@@ -35,12 +43,9 @@ print.bomrang_tbl <- function(x, ...) {
 }
 
 .stylecat <- function(...) {
-  cat(
-    crayon::cyan(
-      # crayon::italic(
-      paste0(...)
-    )
+  cat(crayon::cyan(
+    # crayon::italic(
+    paste0(...))
     # )
-  )
+    )
 }
-
