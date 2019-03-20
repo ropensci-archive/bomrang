@@ -1,3 +1,4 @@
+
 #' Get BOM 0900 or 1500 Weather Bulletin
 #'
 #' Fetch the daily \acronym{BOM} 0900 or 1500 weather bulletins and return a
@@ -126,11 +127,11 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
     dplyr::mutate_at(.funs = as.numeric,
                      .vars = vars)
 
-  names(out) <- sub ("current_details_", "", names(out))
-  names(out) <- sub ("x24_hour_details_", "", names(out))
-  names(out) <- sub ("x6_hour_details_", "", names(out))
+  names(out) <- sub("current_details_", "", names(out))
+  names(out) <- sub("x24_hour_details_", "", names(out))
+  names(out) <- sub("x6_hour_details_", "", names(out))
 
-  return(out)
+  return(data.table::setDT(out))
 }
 
 #' tidy_bulletin_header
@@ -215,4 +216,3 @@ pad_white <- function(x) {
   x[nzchar(x)] <- paste0(" ", x[nzchar(x)])
   return(x)
 }
-
