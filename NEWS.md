@@ -1,5 +1,17 @@
 # bomrang 0.4.0.9000
 
+## Bug fixes
+
+- Update functionality of `get_precis_forecast()` and `get_coastal_forecast()`
+to work with latest BOM XML files
+
+## Major changes
+
+- New print method for `get_historical()` and `get_current
+
+- Add new alias for `get_current_weather()`, `get_current()` to mirror
+`get_historic()` (and save typing)
+
 ## Minor changes
 
 - Updates documentation formatting and corrects minor issues
