@@ -74,7 +74,6 @@
 #'   which mask the dplyr versions (but use those internally, maintaining
 #'   attributes).
 #'
-#' @export get_historical
 #' @author Jonathan Carroll, \email{rpkg@@jcarroll.com.au}
 #'
 #' @examples
@@ -83,8 +82,11 @@
 #' get_historical(latlon = c(-35.2809, 149.1300),
 #'                type = "min") ## 3,500+ daily records
 #' }
+#' @rdname get_historical
+#' @export get_historical
+#' @export get_historical_weather
 
-get_historical <-
+get_historical_weather <- get_historical <-
   function(stationid = NULL,
            latlon = NULL,
            type = c("rain", "min", "max", "solar")) {
