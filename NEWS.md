@@ -2,8 +2,8 @@
 
 ## Bug fixes
 
-- Update functionality of `get_precis_forecast()` and `get_coastal_forecast()`
-to work with latest BOM XML files
+- Update functionality of `get_precis_forecast()`, `get_coastal_forecast()` and
+`get_ag_bulletin()` to work with latest BOM XML files
 
 ## Major changes
 
