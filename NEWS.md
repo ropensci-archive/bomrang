@@ -21,6 +21,12 @@ thanks to @jonocarroll for this huge effort
 with an error message to try again 
 [![](man/figures/image_error_message.gif)](man/figures/image_error_message.gif)
 
+- `get_current_weather()` no longer has `raw` or `as.data.table` parameters, all
+data are returned with columns in proper class as with all other _bomrang_
+functions and the returned data.frame is a `bomrang_tbl` object. The `raw`
+parameter was set to `FALSE` by default, so the effect should be minimal for
+most end users.
+
 ## Minor changes
 
 - Updates documentation formatting and corrects minor issues including

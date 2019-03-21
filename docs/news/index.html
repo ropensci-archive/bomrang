@@ -152,6 +152,7 @@
 <li><p>Add new aliases for <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, <code>get_current()</code> and <code><a href="../reference/get_historical.html">get_historical()</a></code>, <code>get_historical_weather()</code> for consistency</p></li>
 <li><p>Add new aliases for <code><a href="../reference/get_radar_imagery.html">get_radar_imagery()</a></code>, <code>get_radar()</code> and <code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code>, <code>get_satellite()</code> to save typing</p></li>
 <li><p>If images fail to download for any functions, a default image is returned with an error message to try again <a href="man/figures/image_error_message.gif"><img src="man/figures/image_error_message.gif"></a></p></li>
+<li><p><code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> no longer has <code>raw</code> or <code>as.data.table</code> parameters, all data are returned with columns in proper class as with all other <em>bomrang</em> functions and the returned data.frame is a <code>bomrang_tbl</code> object. The <code>raw</code> parameter was set to <code>FALSE</code> by default, so the effect should be minimal for most end users.</p></li>
 </ul>
 </div>
 <div id="minor-changes" class="section level2">
