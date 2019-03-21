@@ -148,20 +148,21 @@
 <h2 class="hasAnchor">
 <a href="#major-changes" class="anchor"></a>Major changes</h2>
 <ul>
-<li><p>New print method for <code>get_historical()</code> and `get_current</p></li>
-<li><p>Add new alias for <code>get_current_weather()</code>, <code><a href="../reference/get_current_weather.html">get_current()</a></code> to mirror <code>get_historic()</code> (and save typing)</p></li>
+<li><p>New print method for <code><a href="../reference/get_historical.html">get_historical()</a></code> and <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> using <code>bomrang_tbl</code> class and re-exporting <em>dplyr</em> methods to handle the new class, thanks to <a href='https://github.com/jonocarroll'>@jonocarroll</a> for this huge effort</p></li>
+<li><p>Add new aliases for <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, <code>get_current()</code> and <code><a href="../reference/get_historical.html">get_historical()</a></code>, <code>get_historical_weather()</code> for consistency</p></li>
+<li><p>Add new aliases for <code><a href="../reference/get_radar_imagery.html">get_radar_imagery()</a></code>, <code>get_radar()</code> and <code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code>, <code>get_satellite()</code> to save typing</p></li>
+<li><p>If images fail to download for any functions, a default image is returned with an error message to try again <a href="man/figures/image_error_message.gif"><img src="man/figures/image_error_message.gif"></a></p></li>
 </ul>
 </div>
 <div id="minor-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h2>
 <ul>
-<li><p>Updates documentation formatting and corrects minor issues</p></li>
+<li><p>Updates documentation formatting and corrects minor issues including spellchecking package and correcting spelling where necessary</p></li>
 <li><p>Uses <code>curl</code> to download XML files before parsing them, rather than reading directly from the server. <code>curl</code> gives more flexibility in handling the server connections</p></li>
 <li><p>Uses <code><a href="https://www.rdocumentation.org/packages/curl/topics/curl_download">curl::curl_download()</a></code> in place of <code><a href="https://www.rdocumentation.org/packages/utils/topics/download.file">utils::download.file()</a></code> for a newer implementation of the same protocols</p></li>
 <li><p>Correct formatting of DESCRIPTION file to conform with CRAN guidelines</p></li>
 <li><p>Replaces <code>\dontrun{}</code> with <code>\donttest{}</code> for examples in documentation</p></li>
-<li><p>Spellcheck package and correct spelling where necessary</p></li>
 </ul>
 </div>
 </div>
@@ -173,7 +174,7 @@
 <h2 class="hasAnchor">
 <a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h2>
 <ul>
-<li><p><code>get_historical()</code> now fetches data for any station with historical data available corrected an issue where previously it only fetched data for stations that currently reported</p></li>
+<li><p><code><a href="../reference/get_historical.html">get_historical()</a></code> now fetches data for any station with historical data available corrected an issue where previously it only fetched data for stations that currently reported</p></li>
 <li><p>Enforce standardised output for <code><a href="../reference/get_coastal_forecast.html">get_coastal_forecast()</a></code>. In some cases BOM does not report all fields available, <em>bomrang</em> will always report these with <code>NA</code> if empty</p></li>
 </ul>
 </div>
@@ -181,7 +182,7 @@
 <h2 class="hasAnchor">
 <a href="#minor-changes-1" class="anchor"></a>Minor changes</h2>
 <ul>
-<li><p>Add new functionality to interact with and download radar imagery from BOM, <code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> and <code>get_radar_imagery()</code></p></li>
+<li><p>Add new functionality to interact with and download radar imagery from BOM, <code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> and <code><a href="../reference/get_radar_imagery.html">get_radar_imagery()</a></code></p></li>
 <li><p>When using <code><a href="../reference/update_station_locations.html">update_station_locations()</a></code> or <code><a href="../reference/update_forecast_towns.html">update_forecast_towns()</a></code> the user is now prompted with a message about reproducibility before proceeding</p></li>
 <li><p>Update code of conduct statement in README to reflect that it only applies to the <code>bomrang</code> project</p></li>
 <li><p>Update authors’ list in vignette to include Dean Marchiori</p></li>
@@ -210,7 +211,7 @@
 <a href="#minor-changes-2" class="anchor"></a>Minor changes</h2>
 <ul>
 <li><p>Add spaces between sentences in some error messages when interacting with the BOM servers</p></li>
-<li><p>Enhance testing for <code>get_historical()</code></p></li>
+<li><p>Enhance testing for <code><a href="../reference/get_historical.html">get_historical()</a></code></p></li>
 <li><p>Handle checking multiple imagery files gracefully without returning warning message if more than one file is to be loaded in current session</p></li>
 <li><p>Update citations for package to reflect current package and paper citation</p></li>
 </ul>
@@ -224,7 +225,7 @@
 <div id="bug-fixes-2" class="section level2">
 <h2 class="hasAnchor">
 <a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h2>
-<p>Fix corrupted zip file download issue for <code>get_historical()</code> on Windows</p>
+<p>Fix corrupted zip file download issue for <code><a href="../reference/get_historical.html">get_historical()</a></code> on Windows</p>
 </div>
 <div id="minor-changes-3" class="section level2">
 <h2 class="hasAnchor">
@@ -268,7 +269,7 @@
 <a href="#new-features" class="anchor"></a>New features</h2>
 <ul>
 <li>
-<code>get_historical()</code> retrieves historical daily rainfall, min/max temperatures, or solar exposure. (<a href='https://github.com/jonocarroll'>@jonocarroll</a>)</li>
+<code><a href="../reference/get_historical.html">get_historical()</a></code> retrieves historical daily rainfall, min/max temperatures, or solar exposure. (<a href='https://github.com/jonocarroll'>@jonocarroll</a>)</li>
 </ul>
 </div>
 <div id="minor-changes-5" class="section level2">
@@ -445,7 +446,7 @@
 <h2 class="hasAnchor">
 <a href="#minor-changes-12" class="anchor"></a>Minor changes</h2>
 <ul>
-<li><p>Document <code>get_current_weather()</code> functionality in Appendix 4 of <em>bomrang</em> vignette, thanks <a href='https://github.com/mpadge'>@mpadge</a></p></li>
+<li><p>Document <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> functionality in Appendix 4 of <em>bomrang</em> vignette, thanks <a href='https://github.com/mpadge'>@mpadge</a></p></li>
 <li><p>Spell checking</p></li>
 <li><p>Ready for submission to JOSS</p></li>
 <li><p>Update codemeta json file</p></li>
@@ -483,9 +484,9 @@
 <h2 class="hasAnchor">
 <a href="#bug-fixes-10" class="anchor"></a>Bug Fixes</h2>
 <ul>
-<li><p>Recommended <code>station_name</code> values are separated by spaces in <code>get_current_weather()</code></p></li>
+<li><p>Recommended <code>station_name</code> values are separated by spaces in <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code></p></li>
 <li><p>Station names and location names are more consistent in the supplied data and returned data frames.</p></li>
-<li><p>Lat/Lon values for <code>get_current_weather()</code> results are now reported using the values from the internal database, which has a higher degree of accuracy. The json file values are rounded while the values from the stations list has four decimal places</p></li>
+<li><p>Lat/Lon values for <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> results are now reported using the values from the internal database, which has a higher degree of accuracy. The json file values are rounded while the values from the stations list has four decimal places</p></li>
 </ul>
 </div>
 <div id="major-changes-6" class="section level2">
@@ -510,7 +511,7 @@
 <li><p>the <em>bomrang</em> vignette now contains instructions for use along with appendices that document the data fields and units, rather than separate vignettes</p></li>
 <li><p>ramifications of updating station lists are now stated clearly in the vignette and help files for applicable functions</p></li>
 <li><p>a map of BOM stations is included in an appendix of the <em>bomrang</em> vignette</p></li>
-<li><p>Lat/Lon values are specified to be in decimal degrees in <code>get_current_weather()</code> help and vignette</p></li>
+<li><p>Lat/Lon values are specified to be in decimal degrees in <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> help and vignette</p></li>
 <li><p>Databases station locations and other metadata are internal an not exposed to the user</p></li>
 <li><p>Use <code><a href="https://www.rdocumentation.org/packages/base/topics/file.path">file.path()</a></code> in place of <code><a href="https://www.rdocumentation.org/packages/base/topics/paste">paste0()</a></code></p></li>
 <li>
@@ -623,7 +624,7 @@
 <h2 class="hasAnchor">
 <a href="#minor-changes-15" class="anchor"></a>Minor changes</h2>
 <ul>
-<li>Add vignette describing the data returned from <code>get_current_weather()</code>
+<li>Add vignette describing the data returned from <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>
 </li>
 </ul>
 <hr>
@@ -637,7 +638,7 @@
 <h2 class="hasAnchor">
 <a href="#major-changes-11" class="anchor"></a>Major changes</h2>
 <ul>
-<li><p>Include internal databases of station locations and metadata for <code>get_current_weather()</code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> both derived from the same BOM station master list</p></li>
+<li><p>Include internal databases of station locations and metadata for <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> both derived from the same BOM station master list</p></li>
 <li><p>The new database includes a more complete list of JSON URLs and ag bulletin station locations</p></li>
 <li><p>Generation of the JSON URL list is much faster, now can be updated by the user in a few seconds as desired using the new <code><a href="../reference/update_station_locations.html">update_station_locations()</a></code> function</p></li>
 </ul>
@@ -674,8 +675,8 @@
 <a href="#major-changes-12" class="anchor"></a>Major changes</h2>
 <ul>
 <li><p>Hugh Parsonage has joined as a contributor</p></li>
-<li><p>Added a new function <code>get_current_weather()</code> to retrieve weather data from specified BOM weather stations</p></li>
-<li><p>Added a new function <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> to find stations used in <code>get_current_weather()</code> function, based on distance from a specified latitude and longitude</p></li>
+<li><p>Added a new function <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> to retrieve weather data from specified BOM weather stations</p></li>
+<li><p>Added a new function <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> to find stations used in <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> function, based on distance from a specified latitude and longitude</p></li>
 <li>
 <p>Renamed existing functions for more clarity.</p>
 <ul>

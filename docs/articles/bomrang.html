@@ -112,13 +112,13 @@
 <h2 class="hasAnchor">
 <a href="#using-bomrang" class="anchor"></a>Using <em>bomrang</em>
 </h2>
-<p>Several functions are provided by <em>bomrang</em> to retrieve Australian Bureau of Meteorology (BOM) data. A family of functions retrieve weather data and return tidy data frames; <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code>get_current_weather()</code>, which fetches the current weather from a given station; <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin; <code><a href="../reference/get_weather_bulletin.html">get_weather_bulletin()</a></code> which fetches the 0900 and 1500 weather bulletins; <code><a href="../reference/get_coastal_forecast.html">get_coastal_forecast()</a></code> which fetches coastal waters forecasts for each state and <code>get_historical()</code> which fetches historical daily temperature min/max, rainfall, or solar exposure data. A second family of functions retrieve information pertaining to satellite and radar imagery, <code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> and the imagery itself, <code>get_satellite_imagery()</code> for satellite, and <code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> and <code>get_radar_imagery()</code> for radar images. The last group functions provides internal functionality for <em>bomrang</em> itself; <code><a href="../reference/update_forecast_towns.html">update_forecast_towns()</a></code>, which updates an internal database of forecast locations distributed with the package, <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> which returns the nearest weather stations to a point in Australia and, <code><a href="../reference/manage_cache.html">manage_cache()</a></code> that provides facilities for managing cached satellite imagery.</p>
+<p>Several functions are provided by <em>bomrang</em> to retrieve Australian Bureau of Meteorology (BOM) data. A family of functions retrieve weather data and return tidy data frames; <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, which retrieves the précis (short) forecast; <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, which fetches the current weather from a given station; <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>, which retrieves the agriculture bulletin; <code><a href="../reference/get_weather_bulletin.html">get_weather_bulletin()</a></code> which fetches the 0900 and 1500 weather bulletins; <code><a href="../reference/get_coastal_forecast.html">get_coastal_forecast()</a></code> which fetches coastal waters forecasts for each state and <code><a href="../reference/get_historical.html">get_historical()</a></code> which fetches historical daily temperature min/max, rainfall, or solar exposure data. A second family of functions retrieve information pertaining to satellite and radar imagery, <code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> and the imagery itself, <code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> for satellite, and <code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> and <code><a href="../reference/get_radar_imagery.html">get_radar_imagery()</a></code> for radar images. The last group functions provides internal functionality for <em>bomrang</em> itself; <code><a href="../reference/update_forecast_towns.html">update_forecast_towns()</a></code>, which updates an internal database of forecast locations distributed with the package, <code><a href="../reference/sweep_for_stations.html">sweep_for_stations()</a></code> which returns the nearest weather stations to a point in Australia and, <code><a href="../reference/manage_cache.html">manage_cache()</a></code> that provides facilities for managing cached satellite imagery.</p>
 </div>
 <div id="using-get_current_weather" class="section level2">
 <h2 class="hasAnchor">
 <a href="#using-get_current_weather" class="anchor"></a>Using <code>get_current_weather</code>
 </h2>
-<p><code>get_current_weather()</code> takes one of two arguments: <code>station_name</code> and <code>latlon</code>, returning the current weather observations (and the observations of the last 72 hours) for the given location.</p>
+<p><code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> takes one of two arguments: <code>station_name</code> and <code>latlon</code>, returning the current weather observations (and the observations of the last 72 hours) for the given location.</p>
 <p>If <code>station_name</code> is used, the weather observations for the last 72 hours are returned for that station. If the string provided is ambiguous, the function returns an observation for one of the possible stations and emits a warning to offer unambiguous station names.</p>
 <p>If <code>latlon</code> is used, the observations returned are from the station nearest to that latitude-longitude coordinate. <code>latlon</code> values are entered as decimal degrees, <em>e.g.</em> -34, 151 for Sydney. The function also emits a message, to tell the user which station was used.</p>
 <div id="results" class="section level3">
@@ -130,7 +130,7 @@
 <h3 class="hasAnchor">
 <a href="#example" class="anchor"></a>Example</h3>
 <p>Following is an example fetching the current weather for Melbourne.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">Melbourne_weather &lt;-<span class="st"> </span><span class="kw">get_current_weather</span>(<span class="st">"Melbourne (Olympic Park)"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">Melbourne_weather &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_current_weather.html">get_current_weather</a></span>(<span class="st">"Melbourne (Olympic Park)"</span>)</a></code></pre></div>
 </div>
 </div>
 <div id="using-get_precis_forecast" class="section level2">
@@ -249,7 +249,7 @@
 <h2 class="hasAnchor">
 <a href="#using-get_historical" class="anchor"></a>Using <code>get_historical</code>
 </h2>
-<p><code>get_historical()</code> takes either of two arguments: <code>stationid</code> and <code>latlon</code>, as well as a type of observation (<code>"rain"</code>, <code>"min"</code> (temperature), <code>"max"</code> (temperature), or <code>"solar"</code>), returning the historical daily weather observations of that type for the given location. An optional fourth argument, <code>meta</code> returns a <code><a href="https://www.rdocumentation.org/packages/base/topics/list">list()</a></code> object of two data frames when set to <code>TRUE</code>. The first table, <code>"meta"</code>, will include metadata on the station and data. The second table, <code>"historical_data"</code>, will be as discussed in <em>Results</em> below.</p>
+<p><code><a href="../reference/get_historical.html">get_historical()</a></code> takes either of two arguments: <code>stationid</code> and <code>latlon</code>, as well as a type of observation (<code>"rain"</code>, <code>"min"</code> (temperature), <code>"max"</code> (temperature), or <code>"solar"</code>), returning the historical daily weather observations of that type for the given location. An optional fourth argument, <code>meta</code> returns a <code><a href="https://www.rdocumentation.org/packages/base/topics/list">list()</a></code> object of two data frames when set to <code>TRUE</code>. The first table, <code>"meta"</code>, will include metadata on the station and data. The second table, <code>"historical_data"</code>, will be as discussed in <em>Results</em> below.</p>
 <p>If <code>latlon</code> is used, the observations returned are from the station nearest to that latitude-longitude coordinate. <code>latlon</code> values are entered as decimal degrees, <em>e.g.</em> -34, 151 for Sydney. The function also emits a message, to tell the user which station was used.</p>
 <div id="results-5" class="section level3">
 <h3 class="hasAnchor">
@@ -273,10 +273,10 @@
 <h3 class="hasAnchor">
 <a href="#example-5" class="anchor"></a>Example</h3>
 <p>Following is an example fetching the historical daily temperature minimum observations for the station closest to 35.2809°S, 149.1300°E (Canberra).</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">Canberra_mintemps &lt;-<span class="st"> </span><span class="kw">get_historical</span>(<span class="dt">latlon =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="fl">35.2809</span>, <span class="fl">149.1300</span>),</a>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">Canberra_mintemps &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_historical.html">get_historical</a></span>(<span class="dt">latlon =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="fl">35.2809</span>, <span class="fl">149.1300</span>),</a>
 <a class="sourceLine" id="cb7-2" title="2">                                    <span class="dt">type =</span> <span class="st">"min"</span>)</a></code></pre></div>
 <p>If you want to see the data associated with the station, use <code>meta = TRUE</code> and <code>get_historica()</code> will return a list with a data frame containing information about the station’s data as well as the historical data in a second data frame object.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">Canberra_mintemps &lt;-<span class="st"> </span><span class="kw">get_historical</span>(<span class="dt">latlon =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="fl">35.2809</span>, <span class="fl">149.1300</span>),</a>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">Canberra_mintemps &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_historical.html">get_historical</a></span>(<span class="dt">latlon =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="fl">35.2809</span>, <span class="fl">149.1300</span>),</a>
 <a class="sourceLine" id="cb8-2" title="2">                                    <span class="dt">type =</span> <span class="st">"min"</span>,</a>
 <a class="sourceLine" id="cb8-3" title="3">                                    <span class="dt">meta =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 </div>
@@ -359,7 +359,7 @@
 <h3 class="hasAnchor">
 <a href="#using-update_station_locations" class="anchor"></a>Using <code>update_station_locations</code>
 </h3>
-<p><code><a href="../reference/update_station_locations.html">update_station_locations()</a></code> downloads the latest station locations and metadata and updates bomrang’s internal databases that support the use of <code>get_current_weather()</code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>. There is no need to use this unless you know that a station exists in BOM’s database that is not available in the databases distributed with <em>bomrang</em></p>
+<p><code><a href="../reference/update_station_locations.html">update_station_locations()</a></code> downloads the latest station locations and metadata and updates bomrang’s internal databases that support the use of <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code>. There is no need to use this unless you know that a station exists in BOM’s database that is not available in the databases distributed with <em>bomrang</em></p>
 </div>
 <div id="example-8" class="section level3">
 <h3 class="hasAnchor">
@@ -608,27 +608,27 @@ Satellite
 <h3 class="hasAnchor">
 <a href="#using-get_available_imagery" class="anchor"></a>Using <code>get_available_imagery</code>
 </h3>
-<p><code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> only takes one argument, <code>product_id</code>, a BOM identifier for the imagery that you wish to check for available imagery. Using this function will fetch a listing of BOM GeoTIFF satellite imagery from <a href="ftp://ftp.bom.gov.au/anon/gen/gms/">ftp://ftp.bom.gov.au/anon/gen/gms/</a> to display which files are currently available for download. These files are available at ten minute update frequency with a 24 hour delete time. This function can be used see the most recent files available and then specify in the <code>get_satellite_imagery()</code> function. If no valid Product ID is supplied, defaults to all GeoTIFF images currently available.</p>
+<p><code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> only takes one argument, <code>product_id</code>, a BOM identifier for the imagery that you wish to check for available imagery. Using this function will fetch a listing of BOM GeoTIFF satellite imagery from <a href="ftp://ftp.bom.gov.au/anon/gen/gms/">ftp://ftp.bom.gov.au/anon/gen/gms/</a> to display which files are currently available for download. These files are available at ten minute update frequency with a 24 hour delete time. This function can be used see the most recent files available and then specify in the <code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> function. If no valid Product ID is supplied, defaults to all GeoTIFF images currently available.</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">avail &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_available_imagery.html">get_available_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDE00425"</span>)</a></code></pre></div>
 </div>
 <div id="using-get_satellite_imagery" class="section level3">
 <h3 class="hasAnchor">
 <a href="#using-get_satellite_imagery" class="anchor"></a>Using <code>get_satellite_imagery</code>
 </h3>
-<p><code>get_satellite_imagery()</code> fetches BOM satellite GeoTIFF imagery, returning a raster stack object and takes three arguments. Files are available at ten minute update frequency with a 24 hour delete time. It is suggested to check file availability first by using <code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code>. The arguments are:</p>
+<p><code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code> fetches BOM satellite GeoTIFF imagery, returning a raster stack object and takes three arguments. Files are available at ten minute update frequency with a 24 hour delete time. It is suggested to check file availability first by using <code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code>. The arguments are:</p>
 <ul>
 <li><p><code>product_id</code>, a character value of the BOM product ID to download. Alternatively, a vector of values from <code><a href="../reference/get_available_imagery.html">get_available_imagery()</a></code> may be used here. This argument is mandatory.</p></li>
 <li><p><code>scans</code> a numeric value for the number of scans to download, starting with the most recent and progressing backwards, <em>e.g.</em>, <code>1</code> - the most recent single scan available , <code>6</code> - the most recent hour available, <code>12</code> - the most recent 2 hours available, etc. Negating will return the oldest files first. Defaults to 1. This argument is optional.</p></li>
 <li><p><code>cache</code> a logical value that indicates whether or not to store image files locally for later use? If <code>FALSE</code>, the downloaded files are removed when R session is closed. To take advantage of cached files in future sessions, set <code>TRUE</code>. Defaults to <code>FALSE</code>. This argument is optional. Cached files may be managed with the <code><a href="../reference/manage_cache.html">manage_cache()</a></code> function.</p></li>
 </ul>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="co"># Specify product ID and scans</span></a>
-<a class="sourceLine" id="cb15-2" title="2">i &lt;-<span class="st"> </span><span class="kw">get_satellite_imagery</span>(<span class="dt">product_id =</span> <span class="st">"IDE00425"</span>, <span class="dt">scans =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb15-2" title="2">i &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_satellite_imagery.html">get_satellite_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDE00425"</span>, <span class="dt">scans =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb15-3" title="3"></a>
 <a class="sourceLine" id="cb15-4" title="4"><span class="co"># Same, but use "avail" from prior to specify images for download</span></a>
-<a class="sourceLine" id="cb15-5" title="5">i &lt;-<span class="st"> </span><span class="kw">get_satellite_imagery</span>(<span class="dt">product_id =</span> avail, <span class="dt">scans =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb15-5" title="5">i &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_satellite_imagery.html">get_satellite_imagery</a></span>(<span class="dt">product_id =</span> avail, <span class="dt">scans =</span> <span class="dv">1</span>)</a>
 <a class="sourceLine" id="cb15-6" title="6"></a>
 <a class="sourceLine" id="cb15-7" title="7"><span class="co"># Cache image for later use</span></a>
-<a class="sourceLine" id="cb15-8" title="8">i &lt;-<span class="st"> </span><span class="kw">get_satellite_imagery</span>(<span class="dt">product_id =</span> avail, <span class="dt">scans =</span> <span class="dv">1</span>, <span class="dt">cache =</span> <span class="ot">TRUE</span>)</a>
+<a class="sourceLine" id="cb15-8" title="8">i &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_satellite_imagery.html">get_satellite_imagery</a></span>(<span class="dt">product_id =</span> avail, <span class="dt">scans =</span> <span class="dv">1</span>, <span class="dt">cache =</span> <span class="ot">TRUE</span>)</a>
 <a class="sourceLine" id="cb15-9" title="9"></a>
 <a class="sourceLine" id="cb15-10" title="10"><span class="co"># load the raster library to work with the GeoTIFF files</span></a>
 <a class="sourceLine" id="cb15-11" title="11"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(raster)</a>
@@ -671,7 +671,7 @@ Satellite
 <h3 class="hasAnchor">
 <a href="#using-get_available_radar" class="anchor"></a>Using <code>get_available_radar</code>
 </h3>
-<p><code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> fetches the available radar imagery from the BOM ftp and returns a data frame for reference. This data frame contains the product_id which is required when using the <code>get_radar_imagery()</code> function. The files available are the latest <code>.gif</code> files of BOM radar imagery which are typically updated each 6-10 minutes. Only the most recent image is retrieved for each radar location. There are usually several radar ranges available for each radar location, such as 512km, 256km, 128km and possibly 64km. The arguments are:</p>
+<p><code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> fetches the available radar imagery from the BOM ftp and returns a data frame for reference. This data frame contains the product_id which is required when using the <code><a href="../reference/get_radar_imagery.html">get_radar_imagery()</a></code> function. The files available are the latest <code>.gif</code> files of BOM radar imagery which are typically updated each 6-10 minutes. Only the most recent image is retrieved for each radar location. There are usually several radar ranges available for each radar location, such as 512km, 256km, 128km and possibly 64km. The arguments are:</p>
 <ul>
 <li>
 <code>radar_id</code> which is the BOM radar ID number. This defaults to ‘all’ which will return a data frame of all radar ID’s in Australia.</li>
@@ -704,13 +704,13 @@ Satellite
 <h3 class="hasAnchor">
 <a href="#using-get_radar_imagery" class="anchor"></a>Using <code>get_radar_imagery</code>
 </h3>
-<p><code>get_radar_imagery()</code> fetches the latest BOM radar imagery for a given product ID. The files available are the latest <code>.gif</code> files of BOM radar imagery which are typically updated each 6-10 minutes. Only the most recent image is retrieved for each radar location. There are usually several radar ranges available for each radar location, such as 512km, 256km, 128km and possibly 64km. The only argument is:</p>
+<p><code><a href="../reference/get_radar_imagery.html">get_radar_imagery()</a></code> fetches the latest BOM radar imagery for a given product ID. The files available are the latest <code>.gif</code> files of BOM radar imagery which are typically updated each 6-10 minutes. Only the most recent image is retrieved for each radar location. There are usually several radar ranges available for each radar location, such as 512km, 256km, 128km and possibly 64km. The only argument is:</p>
 <ul>
 <li>
 <code>product_id</code> the BOM product_id associated with each radar imagery file. These can be obtained from the <code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> function. This value must be specified and the function will accept only one at a time.</li>
 </ul>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">x &lt;-<span class="st"> </span><span class="kw">get_radar_imagery</span>(<span class="dt">product_id =</span> <span class="st">"IDR032"</span>)</a></code></pre></div>
-<pre><code>## file downloaded to:/var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//Rtmpctc2N5/filea2514223d5ab.gif</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_radar_imagery.html">get_radar_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDR032"</span>)</a></code></pre></div>
+<pre><code>## file downloaded to:/var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//RtmpNleffu/filee6f72686b2ec.gif</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># create a blank raster plot and add the radar layer</span></a>
 <a class="sourceLine" id="cb20-2" title="2">r &lt;-</a>
 <a class="sourceLine" id="cb20-3" title="3"><span class="st">  </span>raster<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/raster">raster</a></span>(</a>
@@ -732,8 +732,8 @@ Satellite
 <a href="#dplyr-compatibility" class="anchor"></a><code>dplyr</code> compatibility</h1>
 <p>Some returned objects have been classed as <code>bomrang_tbl</code> which allow dispatch for dplyr methods, e.g. <code>mutate</code>, <code>filter</code>, <code>select</code>, <code>arrange</code>, <code>slice</code>, <code>rename</code>, and <code>group_by</code> while preserving the header information.</p>
 <p>For example:</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">adlmax &lt;-<span class="st"> </span><span class="kw">get_historical</span>(<span class="dt">stationid =</span> <span class="st">"023000"</span>, <span class="dt">type =</span> <span class="st">"max"</span>)</a></code></pre></div>
-<pre><code>## Data saved as /var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//Rtmpctc2N5/IDCJAC0010_023000_1800_Data.csv</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">adlmax &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_historical.html">get_historical</a></span>(<span class="dt">stationid =</span> <span class="st">"023000"</span>, <span class="dt">type =</span> <span class="st">"max"</span>)</a></code></pre></div>
+<pre><code>## Data saved as /var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//RtmpNleffu/IDCJAC0010_023000_1800_Data.csv</code></pre>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">adlmax</a></code></pre></div>
 <pre><code>##   ---- Australian Bureau of Meteorology (BOM) Data Resource ----
 ##   (Original Request Parameters)
@@ -749,11 +749,11 @@ Satellite
 ##     4:   IDCJAC0010          23000 1887     1   4              NA
 ##     5:   IDCJAC0010          23000 1887     1   5              NA
 ##    ---                                                           
-## 48286:   IDCJAC0010          23000 2019     3  15            27.1
 ## 48287:   IDCJAC0010          23000 2019     3  16            28.4
 ## 48288:   IDCJAC0010          23000 2019     3  17            31.3
 ## 48289:   IDCJAC0010          23000 2019     3  18            30.5
 ## 48290:   IDCJAC0010          23000 2019     3  19            28.6
+## 48291:   IDCJAC0010          23000 2019     3  20            27.1
 ##        accum_days_max quality
 ##     1:             NA        
 ##     2:             NA        
@@ -761,11 +761,11 @@ Satellite
 ##     4:             NA        
 ##     5:             NA        
 ##    ---                       
-## 48286:              1       N
 ## 48287:              1       N
 ## 48288:              1       N
 ## 48289:              1       N
-## 48290:              1       N</code></pre>
+## 48290:              1       N
+## 48291:              1       N</code></pre>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(adlmax, month <span class="op">==</span><span class="st"> </span><span class="dv">10</span>)</a></code></pre></div>
 <pre><code>##   ---- Australian Bureau of Meteorology (BOM) Data Resource ----
 ##   (Original Request Parameters)
@@ -834,7 +834,7 @@ Satellite
 <h2 class="hasAnchor">
 <a href="#appendix-1---output-from-get_current_weather" class="anchor"></a>Appendix 1 - Output from <code>get_current_weather</code>
 </h2>
-<p>The function <code>get_current_weather()</code> will return a data frame that will contain some or all of the following fields.</p>
+<p>The function <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> will return a data frame that will contain some or all of the following fields.</p>
 <div id="fields-and-descriptions" class="section level3">
 <h3 class="hasAnchor">
 <a href="#fields-and-descriptions" class="anchor"></a>Fields and descriptions</h3>

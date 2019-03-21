@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get Current Weather Observations of a BOM Station — get_current • bomrang</title>
+<title>Get Current Weather Observations of a BOM Station — get_current_weather • bomrang</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -36,7 +36,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js" integrity="sha256-4HLtjeVgH0eIB3aZ9mLYF6E8oU5chNdjU6p6rrXpl9U=" crossorigin="anonymous"></script>
 
 
-<meta property="og:title" content="Get Current Weather Observations of a BOM Station — get_current" />
+<meta property="og:title" content="Get Current Weather Observations of a BOM Station — get_current_weather" />
 
 <meta property="og:description" content="Get Current Weather Observations of a BOM Station" />
 
@@ -142,7 +142,7 @@
     
     </div>
 
-    <pre class="usage"><span class='fu'>get_current</span>(<span class='no'>station_name</span>, <span class='kw'>strict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>latlon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+    <pre class="usage"><span class='fu'>get_current_weather</span>(<span class='no'>station_name</span>, <span class='kw'>strict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>latlon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>emit_latlon_msg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
@@ -227,77 +227,77 @@ Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers: <br />
 #&gt;   Timespan:		2012 -- 2019 [7 years]
 #&gt;   ---------------------------------------------------------------  
 #&gt; </span><span>     sort_order   wmo  full_name history_product local_date_time
-#&gt;   1:          0 95761 Holsworthy        IDN60801      21/07:30am
-#&gt;   2:          1 95761 Holsworthy        IDN60801      21/07:00am
-#&gt;   3:          2 95761 Holsworthy        IDN60801      21/06:30am
-#&gt;   4:          3 95761 Holsworthy        IDN60801      21/06:00am
-#&gt;   5:          4 95761 Holsworthy        IDN60801      21/05:30am
+#&gt;   1:          0 95761 Holsworthy        IDN60801      21/04:00pm
+#&gt;   2:          1 95761 Holsworthy        IDN60801      21/03:30pm
+#&gt;   3:          2 95761 Holsworthy        IDN60801      21/03:00pm
+#&gt;   4:          3 95761 Holsworthy        IDN60801      21/02:30pm
+#&gt;   5:          4 95761 Holsworthy        IDN60801      21/02:00pm
 #&gt;  ---                                                            
-#&gt; 146:        145 95761 Holsworthy        IDN60801      18/10:00am
-#&gt; 147:        146 95761 Holsworthy        IDN60801      18/09:30am
-#&gt; 148:        147 95761 Holsworthy        IDN60801      18/09:00am
-#&gt; 149:        148 95761 Holsworthy        IDN60801      18/08:30am
-#&gt; 150:        149 95761 Holsworthy        IDN60801      18/08:00am
+#&gt; 144:        143 95761 Holsworthy        IDN60801      18/06:30pm
+#&gt; 145:        144 95761 Holsworthy        IDN60801      18/06:00pm
+#&gt; 146:        145 95761 Holsworthy        IDN60801      18/05:30pm
+#&gt; 147:        146 95761 Holsworthy        IDN60801      18/05:00pm
+#&gt; 148:        147 95761 Holsworthy        IDN60801      18/04:30pm
 #&gt;      local_date_time_full        aifstime_utc      lat      lon apparent_t
-#&gt;   1:  2019-03-21 07:30:00 2019-03-20 20:30:00 -33.9925 150.9489       19.6
-#&gt;   2:  2019-03-21 07:00:00 2019-03-20 20:00:00 -33.9925 150.9489       19.3
-#&gt;   3:  2019-03-21 06:30:00 2019-03-20 19:30:00 -33.9925 150.9489       19.0
-#&gt;   4:  2019-03-21 06:00:00 2019-03-20 19:00:00 -33.9925 150.9489       18.6
-#&gt;   5:  2019-03-21 05:30:00 2019-03-20 18:30:00 -33.9925 150.9489       18.4
+#&gt;   1:  2019-03-21 16:00:00 2019-03-21 05:00:00 -33.9925 150.9489       25.3
+#&gt;   2:  2019-03-21 15:30:00 2019-03-21 04:30:00 -33.9925 150.9489       24.7
+#&gt;   3:  2019-03-21 15:00:00 2019-03-21 04:00:00 -33.9925 150.9489       25.8
+#&gt;   4:  2019-03-21 14:30:00 2019-03-21 03:30:00 -33.9925 150.9489       25.5
+#&gt;   5:  2019-03-21 14:00:00 2019-03-21 03:00:00 -33.9925 150.9489       24.7
 #&gt;  ---                                                                      
-#&gt; 146:  2019-03-18 10:00:00 2019-03-17 23:00:00 -33.9925 150.9489       19.0
-#&gt; 147:  2019-03-18 09:30:00 2019-03-17 22:30:00 -33.9925 150.9489       19.5
-#&gt; 148:  2019-03-18 09:00:00 2019-03-17 22:00:00 -33.9925 150.9489       20.1
-#&gt; 149:  2019-03-18 08:30:00 2019-03-17 21:30:00 -33.9925 150.9489       19.7
-#&gt; 150:  2019-03-18 08:00:00 2019-03-17 21:00:00 -33.9925 150.9489       19.0
+#&gt; 144:  2019-03-18 18:30:00 2019-03-18 07:30:00 -33.9925 150.9489       20.8
+#&gt; 145:  2019-03-18 18:00:00 2019-03-18 07:00:00 -33.9925 150.9489       21.1
+#&gt; 146:  2019-03-18 17:30:00 2019-03-18 06:30:00 -33.9925 150.9489       21.5
+#&gt; 147:  2019-03-18 17:00:00 2019-03-18 06:00:00 -33.9925 150.9489       20.5
+#&gt; 148:  2019-03-18 16:30:00 2019-03-18 05:30:00 -33.9925 150.9489       20.3
 #&gt;              cloud cloud_base_m cloud_oktas cloud_type cloud_type_id delta_t
-#&gt;   1: Partly cloudy          690           3          -            NA     1.2
-#&gt;   2: Partly cloudy          990           5          -            NA     0.9
-#&gt;   3: Partly cloudy          990           3          -            NA     0.8
-#&gt;   4:        Cloudy         1000           8          -            NA     0.7
-#&gt;   5:        Cloudy         1230           8          -            NA     0.6
+#&gt;   1: Partly cloudy         1860           3          -            NA     4.7
+#&gt;   2: Partly cloudy         1800           5          -            NA     5.4
+#&gt;   3: Partly cloudy          600           3          -            NA     5.1
+#&gt;   4:             -           NA          NA          -            NA     5.3
+#&gt;   5: Partly cloudy          870           3          -            NA     5.3
 #&gt;  ---                                                                        
-#&gt; 146: Partly cloudy          690           5          -            NA     1.3
-#&gt; 147:        Cloudy         1080           8          -            NA     1.6
-#&gt; 148:        Cloudy          600           8          -            NA     0.8
-#&gt; 149: Partly cloudy          660           3          -            NA     0.7
-#&gt; 150: Partly cloudy          600           5          -            NA     0.6
+#&gt; 144:        Cloudy         1350           8          -            NA     1.2
+#&gt; 145:        Cloudy          600           8          -            NA     1.4
+#&gt; 146: Partly cloudy         1230           3          -            NA     1.1
+#&gt; 147: Partly cloudy          480           3          -            NA     1.0
+#&gt; 148: Partly cloudy          420           3          -            NA     0.8
 #&gt;      gust_kmh gust_kt air_temp dewpt  press press_msl press_qnh press_tend
-#&gt;   1:       13       7     18.9  17.0 1015.4    1015.4    1015.7          -
-#&gt;   2:       13       7     18.6  17.1 1015.0    1015.0    1015.3          -
-#&gt;   3:       13       7     18.3  17.0 1014.8    1014.8    1015.1          -
-#&gt;   4:       11       6     18.0  16.9 1014.6    1014.6    1014.9          -
-#&gt;   5:       13       7     17.8  16.8 1014.4    1014.4    1014.7          -
+#&gt;   1:       32      17     26.0  18.7 1014.9    1014.9    1015.2          -
+#&gt;   2:       30      16     26.2  17.6 1015.0    1015.0    1015.3          -
+#&gt;   3:       26      14     26.2  18.1 1015.1    1015.1    1015.4          -
+#&gt;   4:       28      15     26.3  17.9 1015.2    1015.2    1015.5          -
+#&gt;   5:       32      17     26.2  17.8 1015.3    1015.3    1015.6          -
 #&gt;  ---                                                                      
-#&gt; 146:       13       7     18.6  16.4 1012.1    1012.1    1012.3          -
-#&gt; 147:       15       8     19.3  16.7 1011.7    1011.7    1011.9          -
-#&gt; 148:        9       5     18.8  17.5 1011.5    1011.5    1011.7          -
-#&gt; 149:       11       6     18.5  17.3 1011.3    1011.3    1011.5          -
-#&gt; 150:        9       5     17.8  16.8 1011.3    1011.3    1011.5          -
+#&gt; 144:       11       6     19.4  17.4 1011.3    1011.3    1011.5          -
+#&gt; 145:       11       6     19.8  17.6 1010.9    1010.9    1011.1          -
+#&gt; 146:        7       4     19.8  18.1 1010.9    1010.9    1011.1          -
+#&gt; 147:       15       8     19.5  17.8 1010.6    1010.6    1010.8          -
+#&gt; 148:       13       7     19.2  17.9 1010.7    1010.7    1010.9          -
 #&gt;      rain_trace rel_hum sea_state swell_dir_worded swell_height swell_period
-#&gt;   1:        0.2      NA         -                -           NA           NA
-#&gt;   2:        0.2      NA         -                -           NA           NA
-#&gt;   3:        0.2      NA         -                -           NA           NA
-#&gt;   4:        0.2      NA         -                -           NA           NA
-#&gt;   5:        0.2      NA         -                -           NA           NA
+#&gt;   1:        0.4      NA         -                -           NA           NA
+#&gt;   2:        0.4      NA         -                -           NA           NA
+#&gt;   3:        0.4      NA         -                -           NA           NA
+#&gt;   4:        0.4      NA         -                -           NA           NA
+#&gt;   5:        0.4      NA         -                -           NA           NA
 #&gt;  ---                                                                        
-#&gt; 146:        0.2      NA         -                -           NA           NA
-#&gt; 147:        0.0      NA         -                -           NA           NA
-#&gt; 148:       37.4      NA         -                -           NA           NA
-#&gt; 149:       37.4      NA         -                -           NA           NA
-#&gt; 150:       37.4      NA         -                -           NA           NA
+#&gt; 144:        1.2      NA         -                -           NA           NA
+#&gt; 145:        1.2      NA         -                -           NA           NA
+#&gt; 146:        1.2      NA         -                -           NA           NA
+#&gt; 147:        1.2      NA         -                -           NA           NA
+#&gt; 148:        1.2      NA         -                -           NA           NA
 #&gt;      vis_km weather wind_dir wind_spd_kmh wind_spd_kt
-#&gt;   1:     10       -      WSW            9           5
-#&gt;   2:     10       -      WSW            9           5
-#&gt;   3:     10       -       SW            9           5
-#&gt;   4:     10       -      WSW            9           5
-#&gt;   5:     10       -      WSW            9           5
+#&gt;   1:     10       -       SE           20          11
+#&gt;   2:     10       -       SE           22          12
+#&gt;   3:     10       -       SE           17           9
+#&gt;   4:     10       -       SE           19          10
+#&gt;   5:     10       -       SE           22          12
 #&gt;  ---                                                 
-#&gt; 146:      5       -      NNW            9           5
-#&gt; 147:     10       -      NNE           11           6
-#&gt; 148:     10       -       NE            7           4
-#&gt; 149:     10       -      NNE            7           4
-#&gt; 150:     10       -      NNW            6           3</div></span></pre>
+#&gt; 144:     10       -      SSW            6           3
+#&gt; 145:     10       -      SSW            7           4
+#&gt; 146:     10       -      SSE            6           3
+#&gt; 147:     10       -      ESE            9           5
+#&gt; 148:     10       -      ESE            9           5</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

@@ -38,7 +38,7 @@
 
 <meta property="og:title" content="Get a Listing of Available BOM Satellite GeoTIFF Imagery — get_available_imagery" />
 
-<meta property="og:description" content="Fetch a listing of BOM GeoTIFF satellite imagery from
+<meta property="og:description" content="Fetch a listing of BOM 'GeoTIFF' satellite imagery from
 ftp://ftp.bom.gov.au/anon/gen/gms/ to determine which files are
 currently available for download.  Files are available at ten minute update
 frequency with a 24 hour delete time.  Useful to know the most recent files
@@ -143,11 +143,11 @@ function." />
 
     <div class="ref-description">
     
-    <p>Fetch a listing of <acronym>BOM</acronym> GeoTIFF satellite imagery from
+    <p>Fetch a listing of <acronym>BOM</acronym> 'GeoTIFF' satellite imagery from
 <a href='ftp://ftp.bom.gov.au/anon/gen/gms/'>ftp://ftp.bom.gov.au/anon/gen/gms/</a> to determine which files are
 currently available for download.  Files are available at ten minute update
 frequency with a 24 hour delete time.  Useful to know the most recent files
-available and then specify in the <code>get_satellite_imagery</code>
+available and then specify in the <code><a href='get_satellite_imagery.html'>get_satellite_imagery</a></code>
 function.</p>
     
     </div>
@@ -171,7 +171,8 @@ currently available.</p></td>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
-    <p>Valid <acronym>BOM</acronym> satellite Product IDs for GeoTIFF files include:</p><dl class='dl-horizontal'>
+    <p>Valid <acronym>BOM</acronym> satellite Product IDs for 'GeoTIFF' files
+ include:</p><dl class='dl-horizontal'>
 <dt>IDE00420</dt><dd><p>AHI cloud cover only 2km FD GEOS GIS</p></dd>
 <dt>IDE00421</dt><dd><p>AHI IR (Ch13) greyscale 2km FD GEOS GIS</p></dd>
 <dt>IDE00422</dt><dd><p>AHI VIS (Ch3) greyscale 2km FD GEOS GIS</p></dd>
@@ -203,79 +204,80 @@ equirect. GIS</p></dd>
     <pre class="examples"><div class='input'><span class='co'># Check availability of AHI VIS (true colour) / IR (Ch13 greyscale) composite</span>
 <span class='co'># 1km FD GEOS GIS images</span>
 <span class='no'>imagery</span> <span class='kw'>&lt;-</span> <span class='fu'>get_available_imagery</span>(<span class='kw'>product_id</span> <span class='kw'>=</span> <span class='st'>"IDE00425"</span>)</div><div class='output co'>#&gt; <span class='message'></span>
-#&gt; <span class='message'>The following files are currently available for download:</span></div><div class='output co'>#&gt;   [1] "IDE00425.201903192010.tif" "IDE00425.201903192020.tif"
-#&gt;   [3] "IDE00425.201903192030.tif" "IDE00425.201903192040.tif"
-#&gt;   [5] "IDE00425.201903192050.tif" "IDE00425.201903192100.tif"
-#&gt;   [7] "IDE00425.201903192110.tif" "IDE00425.201903192120.tif"
-#&gt;   [9] "IDE00425.201903192130.tif" "IDE00425.201903192140.tif"
-#&gt;  [11] "IDE00425.201903192150.tif" "IDE00425.201903192200.tif"
-#&gt;  [13] "IDE00425.201903192210.tif" "IDE00425.201903192220.tif"
-#&gt;  [15] "IDE00425.201903192230.tif" "IDE00425.201903192240.tif"
-#&gt;  [17] "IDE00425.201903192250.tif" "IDE00425.201903192300.tif"
-#&gt;  [19] "IDE00425.201903192310.tif" "IDE00425.201903192320.tif"
-#&gt;  [21] "IDE00425.201903192330.tif" "IDE00425.201903192340.tif"
-#&gt;  [23] "IDE00425.201903192350.tif" "IDE00425.201903200000.tif"
-#&gt;  [25] "IDE00425.201903200010.tif" "IDE00425.201903200020.tif"
-#&gt;  [27] "IDE00425.201903200030.tif" "IDE00425.201903200040.tif"
-#&gt;  [29] "IDE00425.201903200050.tif" "IDE00425.201903200100.tif"
-#&gt;  [31] "IDE00425.201903200110.tif" "IDE00425.201903200120.tif"
-#&gt;  [33] "IDE00425.201903200130.tif" "IDE00425.201903200140.tif"
-#&gt;  [35] "IDE00425.201903200150.tif" "IDE00425.201903200200.tif"
-#&gt;  [37] "IDE00425.201903200210.tif" "IDE00425.201903200220.tif"
-#&gt;  [39] "IDE00425.201903200230.tif" "IDE00425.201903200250.tif"
-#&gt;  [41] "IDE00425.201903200300.tif" "IDE00425.201903200310.tif"
-#&gt;  [43] "IDE00425.201903200320.tif" "IDE00425.201903200330.tif"
-#&gt;  [45] "IDE00425.201903200340.tif" "IDE00425.201903200350.tif"
-#&gt;  [47] "IDE00425.201903200400.tif" "IDE00425.201903200410.tif"
-#&gt;  [49] "IDE00425.201903200420.tif" "IDE00425.201903200430.tif"
-#&gt;  [51] "IDE00425.201903200440.tif" "IDE00425.201903200450.tif"
-#&gt;  [53] "IDE00425.201903200500.tif" "IDE00425.201903200510.tif"
-#&gt;  [55] "IDE00425.201903200520.tif" "IDE00425.201903200530.tif"
-#&gt;  [57] "IDE00425.201903200540.tif" "IDE00425.201903200550.tif"
-#&gt;  [59] "IDE00425.201903200600.tif" "IDE00425.201903200610.tif"
-#&gt;  [61] "IDE00425.201903200620.tif" "IDE00425.201903200630.tif"
-#&gt;  [63] "IDE00425.201903200640.tif" "IDE00425.201903200650.tif"
-#&gt;  [65] "IDE00425.201903200700.tif" "IDE00425.201903200710.tif"
-#&gt;  [67] "IDE00425.201903200720.tif" "IDE00425.201903200730.tif"
-#&gt;  [69] "IDE00425.201903200740.tif" "IDE00425.201903200750.tif"
-#&gt;  [71] "IDE00425.201903200800.tif" "IDE00425.201903200810.tif"
-#&gt;  [73] "IDE00425.201903200820.tif" "IDE00425.201903200830.tif"
-#&gt;  [75] "IDE00425.201903200840.tif" "IDE00425.201903200850.tif"
-#&gt;  [77] "IDE00425.201903200900.tif" "IDE00425.201903200910.tif"
-#&gt;  [79] "IDE00425.201903200920.tif" "IDE00425.201903200930.tif"
-#&gt;  [81] "IDE00425.201903200940.tif" "IDE00425.201903200950.tif"
-#&gt;  [83] "IDE00425.201903201000.tif" "IDE00425.201903201010.tif"
-#&gt;  [85] "IDE00425.201903201020.tif" "IDE00425.201903201030.tif"
-#&gt;  [87] "IDE00425.201903201040.tif" "IDE00425.201903201050.tif"
-#&gt;  [89] "IDE00425.201903201100.tif" "IDE00425.201903201110.tif"
-#&gt;  [91] "IDE00425.201903201120.tif" "IDE00425.201903201130.tif"
-#&gt;  [93] "IDE00425.201903201140.tif" "IDE00425.201903201150.tif"
-#&gt;  [95] "IDE00425.201903201200.tif" "IDE00425.201903201210.tif"
-#&gt;  [97] "IDE00425.201903201220.tif" "IDE00425.201903201230.tif"
-#&gt;  [99] "IDE00425.201903201240.tif" "IDE00425.201903201250.tif"
-#&gt; [101] "IDE00425.201903201300.tif" "IDE00425.201903201310.tif"
-#&gt; [103] "IDE00425.201903201320.tif" "IDE00425.201903201330.tif"
-#&gt; [105] "IDE00425.201903201340.tif" "IDE00425.201903201350.tif"
-#&gt; [107] "IDE00425.201903201400.tif" "IDE00425.201903201410.tif"
-#&gt; [109] "IDE00425.201903201420.tif" "IDE00425.201903201430.tif"
-#&gt; [111] "IDE00425.201903201450.tif" "IDE00425.201903201500.tif"
-#&gt; [113] "IDE00425.201903201510.tif" "IDE00425.201903201520.tif"
-#&gt; [115] "IDE00425.201903201530.tif" "IDE00425.201903201540.tif"
-#&gt; [117] "IDE00425.201903201550.tif" "IDE00425.201903201600.tif"
-#&gt; [119] "IDE00425.201903201610.tif" "IDE00425.201903201620.tif"
-#&gt; [121] "IDE00425.201903201630.tif" "IDE00425.201903201640.tif"
-#&gt; [123] "IDE00425.201903201650.tif" "IDE00425.201903201700.tif"
-#&gt; [125] "IDE00425.201903201710.tif" "IDE00425.201903201720.tif"
-#&gt; [127] "IDE00425.201903201730.tif" "IDE00425.201903201740.tif"
-#&gt; [129] "IDE00425.201903201750.tif" "IDE00425.201903201800.tif"
-#&gt; [131] "IDE00425.201903201810.tif" "IDE00425.201903201820.tif"
-#&gt; [133] "IDE00425.201903201830.tif" "IDE00425.201903201840.tif"
-#&gt; [135] "IDE00425.201903201850.tif" "IDE00425.201903201900.tif"
-#&gt; [137] "IDE00425.201903201910.tif" "IDE00425.201903201920.tif"
-#&gt; [139] "IDE00425.201903201930.tif" "IDE00425.201903201940.tif"
-#&gt; [141] "IDE00425.201903201950.tif" "IDE00425.201903202000.tif"
-#&gt; [143] "IDE00425.201903202010.tif" "IDE00425.201903202020.tif"
-#&gt; [145] "IDE00425.201903202030.tif" "IDE00425.201903202040.tif"</div><div class='input'>
+#&gt; <span class='message'>The following files are currently available for download:</span></div><div class='output co'>#&gt;   [1] "IDE00425.201903200410.tif" "IDE00425.201903200420.tif"
+#&gt;   [3] "IDE00425.201903200430.tif" "IDE00425.201903200440.tif"
+#&gt;   [5] "IDE00425.201903200450.tif" "IDE00425.201903200500.tif"
+#&gt;   [7] "IDE00425.201903200510.tif" "IDE00425.201903200520.tif"
+#&gt;   [9] "IDE00425.201903200530.tif" "IDE00425.201903200540.tif"
+#&gt;  [11] "IDE00425.201903200550.tif" "IDE00425.201903200600.tif"
+#&gt;  [13] "IDE00425.201903200610.tif" "IDE00425.201903200620.tif"
+#&gt;  [15] "IDE00425.201903200630.tif" "IDE00425.201903200640.tif"
+#&gt;  [17] "IDE00425.201903200650.tif" "IDE00425.201903200700.tif"
+#&gt;  [19] "IDE00425.201903200710.tif" "IDE00425.201903200720.tif"
+#&gt;  [21] "IDE00425.201903200730.tif" "IDE00425.201903200740.tif"
+#&gt;  [23] "IDE00425.201903200750.tif" "IDE00425.201903200800.tif"
+#&gt;  [25] "IDE00425.201903200810.tif" "IDE00425.201903200820.tif"
+#&gt;  [27] "IDE00425.201903200830.tif" "IDE00425.201903200840.tif"
+#&gt;  [29] "IDE00425.201903200850.tif" "IDE00425.201903200900.tif"
+#&gt;  [31] "IDE00425.201903200910.tif" "IDE00425.201903200920.tif"
+#&gt;  [33] "IDE00425.201903200930.tif" "IDE00425.201903200940.tif"
+#&gt;  [35] "IDE00425.201903200950.tif" "IDE00425.201903201000.tif"
+#&gt;  [37] "IDE00425.201903201010.tif" "IDE00425.201903201020.tif"
+#&gt;  [39] "IDE00425.201903201030.tif" "IDE00425.201903201040.tif"
+#&gt;  [41] "IDE00425.201903201050.tif" "IDE00425.201903201100.tif"
+#&gt;  [43] "IDE00425.201903201110.tif" "IDE00425.201903201120.tif"
+#&gt;  [45] "IDE00425.201903201130.tif" "IDE00425.201903201140.tif"
+#&gt;  [47] "IDE00425.201903201150.tif" "IDE00425.201903201200.tif"
+#&gt;  [49] "IDE00425.201903201210.tif" "IDE00425.201903201220.tif"
+#&gt;  [51] "IDE00425.201903201230.tif" "IDE00425.201903201240.tif"
+#&gt;  [53] "IDE00425.201903201250.tif" "IDE00425.201903201300.tif"
+#&gt;  [55] "IDE00425.201903201310.tif" "IDE00425.201903201320.tif"
+#&gt;  [57] "IDE00425.201903201330.tif" "IDE00425.201903201340.tif"
+#&gt;  [59] "IDE00425.201903201350.tif" "IDE00425.201903201400.tif"
+#&gt;  [61] "IDE00425.201903201410.tif" "IDE00425.201903201420.tif"
+#&gt;  [63] "IDE00425.201903201430.tif" "IDE00425.201903201450.tif"
+#&gt;  [65] "IDE00425.201903201500.tif" "IDE00425.201903201510.tif"
+#&gt;  [67] "IDE00425.201903201520.tif" "IDE00425.201903201530.tif"
+#&gt;  [69] "IDE00425.201903201540.tif" "IDE00425.201903201550.tif"
+#&gt;  [71] "IDE00425.201903201600.tif" "IDE00425.201903201610.tif"
+#&gt;  [73] "IDE00425.201903201620.tif" "IDE00425.201903201630.tif"
+#&gt;  [75] "IDE00425.201903201640.tif" "IDE00425.201903201650.tif"
+#&gt;  [77] "IDE00425.201903201700.tif" "IDE00425.201903201710.tif"
+#&gt;  [79] "IDE00425.201903201720.tif" "IDE00425.201903201730.tif"
+#&gt;  [81] "IDE00425.201903201740.tif" "IDE00425.201903201750.tif"
+#&gt;  [83] "IDE00425.201903201800.tif" "IDE00425.201903201810.tif"
+#&gt;  [85] "IDE00425.201903201820.tif" "IDE00425.201903201830.tif"
+#&gt;  [87] "IDE00425.201903201840.tif" "IDE00425.201903201850.tif"
+#&gt;  [89] "IDE00425.201903201900.tif" "IDE00425.201903201910.tif"
+#&gt;  [91] "IDE00425.201903201920.tif" "IDE00425.201903201930.tif"
+#&gt;  [93] "IDE00425.201903201940.tif" "IDE00425.201903201950.tif"
+#&gt;  [95] "IDE00425.201903202000.tif" "IDE00425.201903202010.tif"
+#&gt;  [97] "IDE00425.201903202020.tif" "IDE00425.201903202030.tif"
+#&gt;  [99] "IDE00425.201903202040.tif" "IDE00425.201903202050.tif"
+#&gt; [101] "IDE00425.201903202100.tif" "IDE00425.201903202110.tif"
+#&gt; [103] "IDE00425.201903202120.tif" "IDE00425.201903202130.tif"
+#&gt; [105] "IDE00425.201903202140.tif" "IDE00425.201903202150.tif"
+#&gt; [107] "IDE00425.201903202200.tif" "IDE00425.201903202210.tif"
+#&gt; [109] "IDE00425.201903202220.tif" "IDE00425.201903202230.tif"
+#&gt; [111] "IDE00425.201903202240.tif" "IDE00425.201903202250.tif"
+#&gt; [113] "IDE00425.201903202300.tif" "IDE00425.201903202310.tif"
+#&gt; [115] "IDE00425.201903202320.tif" "IDE00425.201903202330.tif"
+#&gt; [117] "IDE00425.201903202340.tif" "IDE00425.201903202350.tif"
+#&gt; [119] "IDE00425.201903210000.tif" "IDE00425.201903210010.tif"
+#&gt; [121] "IDE00425.201903210020.tif" "IDE00425.201903210030.tif"
+#&gt; [123] "IDE00425.201903210040.tif" "IDE00425.201903210050.tif"
+#&gt; [125] "IDE00425.201903210100.tif" "IDE00425.201903210110.tif"
+#&gt; [127] "IDE00425.201903210120.tif" "IDE00425.201903210130.tif"
+#&gt; [129] "IDE00425.201903210140.tif" "IDE00425.201903210150.tif"
+#&gt; [131] "IDE00425.201903210200.tif" "IDE00425.201903210210.tif"
+#&gt; [133] "IDE00425.201903210220.tif" "IDE00425.201903210230.tif"
+#&gt; [135] "IDE00425.201903210250.tif" "IDE00425.201903210300.tif"
+#&gt; [137] "IDE00425.201903210310.tif" "IDE00425.201903210320.tif"
+#&gt; [139] "IDE00425.201903210330.tif" "IDE00425.201903210340.tif"
+#&gt; [141] "IDE00425.201903210350.tif" "IDE00425.201903210400.tif"
+#&gt; [143] "IDE00425.201903210410.tif" "IDE00425.201903210420.tif"
+#&gt; [145] "IDE00425.201903210430.tif" "IDE00425.201903210440.tif"
+#&gt; [147] "IDE00425.201903210450.tif" "IDE00425.201903210500.tif"</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
