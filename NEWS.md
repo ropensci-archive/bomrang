@@ -7,14 +7,24 @@ to work with latest BOM XML files
 
 ## Major changes
 
-- New print method for `get_historical()` and `get_current
+- New print method for `get_historical()` and `get_current_weather()` using
+`bomrang_tbl` class and re-exporting _dplyr_ methods to handle the new class,
+thanks to @jonocarroll for this huge effort
 
-- Add new alias for `get_current_weather()`, `get_current()` to mirror
-`get_historic()` (and save typing)
+- Add new aliases for `get_current_weather()`, `get_current()` and
+`get_historical()`, `get_historical_weather()` for consistency
+
+- Add new aliases for `get_radar_imagery()`, `get_radar()` and
+`get_satellite_imagery()`, `get_satellite()` to save typing
+
+- If images fail to download for any functions, a default image is returned
+with an error message to try again 
+[![](man/figures/image_error_message.gif)](man/figures/image_error_message.gif)
 
 ## Minor changes
 
-- Updates documentation formatting and corrects minor issues
+- Updates documentation formatting and corrects minor issues including
+spellchecking package and correcting spelling where necessary
 
 - Uses `curl` to download XML files before parsing them, rather than reading
 directly from the server. `curl` gives more flexibility in handling the
@@ -26,8 +36,6 @@ newer implementation of the same protocols
 - Correct formatting of DESCRIPTION file to conform with CRAN guidelines
 
 - Replaces `\dontrun{}` with `\donttest{}` for examples in documentation
-
-- Spellcheck package and correct spelling where necessary
 
 # bomrang 0.4.0
 
