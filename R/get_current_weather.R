@@ -31,7 +31,6 @@
 #' \code{vignette("Current Weather Fields", package = "bomrang")}\cr
 #' for a complete list of fields and units.
 #'
-#' @return
 #' @return A \code{bomrang_tbl} object (extension of a 
 #' \code{\link[base]{data.frame}})  of requested BOM station's current and prior
 #'  72hr data.  For full details of fields and units returned, see Appendix 1
