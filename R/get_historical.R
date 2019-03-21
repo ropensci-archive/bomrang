@@ -31,7 +31,7 @@
 #'   }
 #'
 #'   The following attributes are set on the data, and these are
-#'   used to generate the heaader
+#'   used to generate the header
 #'
 #'   \tabular{rl}{
 #'   **site**:\tab BOM station ID.\cr

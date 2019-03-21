@@ -39,7 +39,7 @@ station/product type, with some subset of the following columns
 }
 
 The following attributes are set on the data, and these are
-used to generate the heaader
+used to generate the header
 
 \tabular{rl}{
 \strong{site}:\tab BOM station ID.\cr
