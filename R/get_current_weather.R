@@ -64,10 +64,10 @@
 #' @importFrom data.table %chin%
 #' @importFrom data.table setnames
 #' @rdname get_current_weather
+#' @rdname get_current
 #' @export get_current_weather
-#' @export get_current
 
-get_current <- get_current_weather <-
+get_current_weather <- get_current <-
   function(station_name,
            strict = FALSE,
            latlon = NULL,

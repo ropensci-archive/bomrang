@@ -1,7 +1,7 @@
 
 #' Get a Listing of Available BOM Satellite GeoTIFF Imagery
 #'
-#' Fetch a listing of \acronym{BOM} GeoTIFF satellite imagery from
+#' Fetch a listing of \acronym{BOM} 'GeoTIFF' satellite imagery from
 #' \url{ftp://ftp.bom.gov.au/anon/gen/gms/} to determine which files are
 #' currently available for download.  Files are available at ten minute update
 #' frequency with a 24 hour delete time.  Useful to know the most recent files
@@ -12,7 +12,8 @@
 #' a list of available images will be returned.  Defaults to all images
 #' currently available.
 #'
-#' @details Valid \acronym{BOM} satellite Product IDs for GeoTIFF files include:
+#' @details Valid \acronym{BOM} satellite Product IDs for 'GeoTIFF' files
+#'  include:
 #' \describe{
 #' \item{IDE00420}{AHI cloud cover only 2km FD GEOS GIS}
 #' \item{IDE00421}{AHI IR (Ch13) greyscale 2km FD GEOS GIS}
@@ -50,7 +51,6 @@
 #' }
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
-#'
 #' @export get_available_imagery
 
 get_available_imagery <- function(product_id = "all") {
@@ -64,16 +64,16 @@ get_available_imagery <- function(product_id = "all") {
 
 #' Get \acronym{BOM} Satellite GeoTIFF Imagery
 #'
-#' Fetch BOM satellite GeoTIFF imagery from
+#' Fetch  \acronym{BOM} satellite GeoTIFF imagery from
 #' \url{ftp://ftp.bom.gov.au/anon/gen/gms/} and return a raster
-#' \code{\link[raster]{stack}} object of GeoTIFF files. Files are available at
+#' \code{\link[raster]{stack}} object of 'GeoTIFF' files. Files are available at
 #' ten minute update frequency with a 24 hour delete time. Suggested to check
 #' file availability first by using \code{\link{get_available_imagery}}.
 #'
-#' @param product_id Character.  \acronym{BOM} product ID to download in GeoTIFF
-#' format and import as a \code{\link[raster]{stack}} object.  A vector of
-#' values from \code{\link{get_available_imagery}} may be used here.  Value is
-#' required.
+#' @param product_id Character.  \acronym{BOM} product ID to download in
+#' 'GeoTIFF' format and import as a \code{\link[raster]{stack}} object.  A
+#' vector of values from \code{\link{get_available_imagery}} may be used here.
+#' Value is required.
 #' @param scans Numeric.  Number of scans to download, starting with most recent
 #' and progressing backwards, \emph{e.g.}, 1 - the most recent single scan
 #' available , 6 - the most recent hour available, 12 - the most recent 2 hours
@@ -139,10 +139,10 @@ get_available_imagery <- function(product_id = "all") {
 
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
 #' @rdname get_satellite_imagery
-#' @export get_satellite
+#' @rdname get_satellite
 #' @export get_satellite_imagery
 
-get_satellite <- get_satellite_imagery <-
+get_satellite_imagery <- get_satellite <- 
   function(product_id,
              scans = 1,
              cache = FALSE) {

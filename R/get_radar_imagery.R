@@ -1,5 +1,4 @@
 
-
 #' Get a Listing of Available BOM Radar Imagery
 #'
 #' Fetch a listing of available \acronym{BOM} radar imagery from
@@ -117,10 +116,10 @@ get_available_radar <- function(radar_id = "all") {
 #'
 #' @author Dean Marchiori, \email{deanmarchiori@@gmail.com}
 #' @rdname get_radar_imagery
-#' @export get_radar
+#' @rdname get_radar
 #' @export get_radar_imagery
 
-get_radar <- get_radar_imagery <-
+get_radar_imagery <- get_radar <- 
   function(product_id,
            path = NULL,
            download_only = FALSE) {

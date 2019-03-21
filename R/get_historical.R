@@ -83,10 +83,10 @@
 #'                type = "min") ## 3,500+ daily records
 #' }
 #' @rdname get_historical
+#' @rdname get_historical_weather
 #' @export get_historical
-#' @export get_historical_weather
 
-get_historical_weather <- get_historical <-
+get_historical <- get_historical_weather <- 
   function(stationid = NULL,
            latlon = NULL,
            type = c("rain", "min", "max", "solar")) {
