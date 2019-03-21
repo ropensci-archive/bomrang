@@ -106,7 +106,7 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p><em>bomrang</em> provides functions for interacting with <a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services</a> forecasts. BOM serves several types of data data as XML, JSON and SHTML files. This package fetches these files, parses them and return a tidy data frame. Satellite and radar imagery files are also made available to the public via anonymous ftp. <em>bomrang</em> provides functionality to query, fetch and create <code><a href="https://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code> objects of the GeoTIFF imagery.</p>
+<p><em>bomrang</em> provides functions for interacting with <a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services</a> forecasts. BOM serves several types of data data as XML, JSON and SHTML files. This package fetches these files, parses them and return a tidy data frame. Satellite and radar imagery files are also made available to the public via anonymous FTP. <em>bomrang</em> provides functionality to query, fetch and create <code><a href="https://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code> objects of the GeoTIFF imagery.</p>
 </div>
 <div id="using-bomrang" class="section level2">
 <h2 class="hasAnchor">
@@ -671,7 +671,7 @@ Satellite
 <h3 class="hasAnchor">
 <a href="#using-get_available_radar" class="anchor"></a>Using <code>get_available_radar</code>
 </h3>
-<p><code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> fetches the available radar imagery from the BOM ftp and returns a data frame for reference. This data frame contains the product_id which is required when using the <code><a href="../reference/get_radar_imagery.html">get_radar_imagery()</a></code> function. The files available are the latest <code>.gif</code> files of BOM radar imagery which are typically updated each 6-10 minutes. Only the most recent image is retrieved for each radar location. There are usually several radar ranges available for each radar location, such as 512km, 256km, 128km and possibly 64km. The arguments are:</p>
+<p><code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> fetches the available radar imagery from the BOM FTP and returns a data frame for reference. This data frame contains the product_id which is required when using the <code><a href="../reference/get_radar_imagery.html">get_radar_imagery()</a></code> function. The files available are the latest <code>.gif</code> files of BOM radar imagery which are typically updated each 6-10 minutes. Only the most recent image is retrieved for each radar location. There are usually several radar ranges available for each radar location, such as 512km, 256km, 128km and possibly 64km. The arguments are:</p>
 <ul>
 <li>
 <code>radar_id</code> which is the BOM radar ID number. This defaults to ‘all’ which will return a data frame of all radar ID’s in Australia.</li>
@@ -710,7 +710,7 @@ Satellite
 <code>product_id</code> the BOM product_id associated with each radar imagery file. These can be obtained from the <code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> function. This value must be specified and the function will accept only one at a time.</li>
 </ul>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_radar_imagery.html">get_radar_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDR032"</span>)</a></code></pre></div>
-<pre><code>## file downloaded to:/var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//RtmpczbAIj/file106de6aaa9dc8.gif</code></pre>
+<pre><code>## file downloaded to:/var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//Rtmp8wrQzC/file117fb14301d0a.gif</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># create a blank raster plot and add the radar layer</span></a>
 <a class="sourceLine" id="cb20-2" title="2">r &lt;-</a>
 <a class="sourceLine" id="cb20-3" title="3"><span class="st">  </span>raster<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/raster">raster</a></span>(</a>
@@ -733,7 +733,7 @@ Satellite
 <p>Some returned objects have been classed as <code>bomrang_tbl</code> which allow dispatch for dplyr methods, e.g. <code>mutate</code>, <code>filter</code>, <code>select</code>, <code>arrange</code>, <code>slice</code>, <code>rename</code>, and <code>group_by</code> while preserving the header information.</p>
 <p>For example:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">adlmax &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_historical.html">get_historical</a></span>(<span class="dt">stationid =</span> <span class="st">"023000"</span>, <span class="dt">type =</span> <span class="st">"max"</span>)</a></code></pre></div>
-<pre><code>## Data saved as /var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//RtmpczbAIj/IDCJAC0010_023000_1800_Data.csv</code></pre>
+<pre><code>## Data saved as /var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//Rtmp8wrQzC/IDCJAC0010_023000_1800_Data.csv</code></pre>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">adlmax</a></code></pre></div>
 <pre><code>##   ---- Australian Bureau of Meteorology (BOM) Data Resource ----
 ##   (Original Request Parameters)
