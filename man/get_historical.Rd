@@ -8,7 +8,7 @@ get_historical(stationid = NULL, latlon = NULL, type = c("rain",
   "min", "max", "solar"))
 }
 \arguments{
-\item{stationid}{BOM station ID. See Details.}
+\item{stationid}{\acronym{BOM} station 'ID'. See Details.}
 
 \item{latlon}{Length-2 numeric vector of Latitude/Longitude. See Details.}
 

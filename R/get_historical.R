@@ -4,7 +4,7 @@
 #' Retrieves daily observations for a given station.
 #'
 #' @md
-#' @param stationid BOM station ID. See Details.
+#' @param stationid \acronym{BOM} station 'ID'. See Details.
 #' @param latlon Length-2 numeric vector of Latitude/Longitude. See Details.
 #' @param type Measurement type, either daily "rain", "min" (temp), "max"
 #'   (temp), or "solar" (exposure). Partial matching is performed. If not

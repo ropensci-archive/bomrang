@@ -180,9 +180,10 @@ be nearest to the given coordinate).</p></td>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Tidy data frame of requested BOM station's current and prior 72hr data.  For
-full details of fields and units returned, see Appendix 1 in the
-<span class="pkg">bomrang</span> vignette, use <br />
+    <p>A <code>bomrang_tbl</code> object (extension of a 
+<code><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></code>)  of requested BOM station's current and prior
+ 72hr data.  For full details of fields and units returned, see Appendix 1
+ in the <span class="pkg">bomrang</span> vignette, use <br />
 <code><a href='../articles/bomrang.html'>vignette("bomrang", package = "bomrang")</a></code> to view.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -227,53 +228,53 @@ Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers: <br />
 #&gt;   Timespan:		2012 -- 2019 [7 years]
 #&gt;   ---------------------------------------------------------------  
 #&gt; </span><span>     sort_order   wmo  full_name history_product local_date_time
-#&gt;   1:          0 95761 Holsworthy        IDN60801      21/07:00pm
-#&gt;   2:          1 95761 Holsworthy        IDN60801      21/06:30pm
-#&gt;   3:          2 95761 Holsworthy        IDN60801      21/06:00pm
-#&gt;   4:          3 95761 Holsworthy        IDN60801      21/05:30pm
-#&gt;   5:          4 95761 Holsworthy        IDN60801      21/05:00pm
+#&gt;   1:          0 95761 Holsworthy        IDN60801      21/07:30pm
+#&gt;   2:          1 95761 Holsworthy        IDN60801      21/07:00pm
+#&gt;   3:          2 95761 Holsworthy        IDN60801      21/06:30pm
+#&gt;   4:          3 95761 Holsworthy        IDN60801      21/06:00pm
+#&gt;   5:          4 95761 Holsworthy        IDN60801      21/05:30pm
 #&gt;  ---                                                            
-#&gt; 143:        142 95761 Holsworthy        IDN60801      18/09:00pm
-#&gt; 144:        143 95761 Holsworthy        IDN60801      18/08:30pm
-#&gt; 145:        144 95761 Holsworthy        IDN60801      18/08:00pm
-#&gt; 146:        145 95761 Holsworthy        IDN60801      18/07:30pm
-#&gt; 147:        146 95761 Holsworthy        IDN60801      18/07:28pm
+#&gt; 142:        141 95761 Holsworthy        IDN60801      18/10:00pm
+#&gt; 143:        142 95761 Holsworthy        IDN60801      18/09:30pm
+#&gt; 144:        143 95761 Holsworthy        IDN60801      18/09:00pm
+#&gt; 145:        144 95761 Holsworthy        IDN60801      18/08:30pm
+#&gt; 146:        145 95761 Holsworthy        IDN60801      18/08:00pm
 #&gt;      local_date_time_full        aifstime_utc      lat      lon apparent_t
-#&gt;   1:  2019-03-21 19:00:00 2019-03-21 08:00:00 -33.9925 150.9489       23.3
-#&gt;   2:  2019-03-21 18:30:00 2019-03-21 07:30:00 -33.9925 150.9489       23.6
-#&gt;   3:  2019-03-21 18:00:00 2019-03-21 07:00:00 -33.9925 150.9489       22.5
-#&gt;   4:  2019-03-21 17:30:00 2019-03-21 06:30:00 -33.9925 150.9489       22.4
-#&gt;   5:  2019-03-21 17:00:00 2019-03-21 06:00:00 -33.9925 150.9489       23.9
+#&gt;   1:  2019-03-21 19:30:00 2019-03-21 08:30:00 -33.9925 150.9489       22.8
+#&gt;   2:  2019-03-21 19:00:00 2019-03-21 08:00:00 -33.9925 150.9489       23.3
+#&gt;   3:  2019-03-21 18:30:00 2019-03-21 07:30:00 -33.9925 150.9489       23.6
+#&gt;   4:  2019-03-21 18:00:00 2019-03-21 07:00:00 -33.9925 150.9489       22.5
+#&gt;   5:  2019-03-21 17:30:00 2019-03-21 06:30:00 -33.9925 150.9489       22.4
 #&gt;  ---                                                                      
-#&gt; 143:  2019-03-18 21:00:00 2019-03-18 10:00:00 -33.9925 150.9489       19.9
-#&gt; 144:  2019-03-18 20:30:00 2019-03-18 09:30:00 -33.9925 150.9489       20.2
-#&gt; 145:  2019-03-18 20:00:00 2019-03-18 09:00:00 -33.9925 150.9489       20.3
-#&gt; 146:  2019-03-18 19:30:00 2019-03-18 08:30:00 -33.9925 150.9489       20.2
-#&gt; 147:  2019-03-18 19:28:00 2019-03-18 08:28:00 -33.9925 150.9489       20.2
+#&gt; 142:  2019-03-18 22:00:00 2019-03-18 11:00:00 -33.9925 150.9489       19.9
+#&gt; 143:  2019-03-18 21:30:00 2019-03-18 10:30:00 -33.9925 150.9489       20.0
+#&gt; 144:  2019-03-18 21:00:00 2019-03-18 10:00:00 -33.9925 150.9489       19.9
+#&gt; 145:  2019-03-18 20:30:00 2019-03-18 09:30:00 -33.9925 150.9489       20.2
+#&gt; 146:  2019-03-18 20:00:00 2019-03-18 09:00:00 -33.9925 150.9489       20.3
 #&gt;              cloud cloud_base_m cloud_oktas cloud_type cloud_type_id delta_t
-#&gt;   1: Partly cloudy         1620           3          -            NA     2.8
-#&gt;   2: Partly cloudy          750           3          -            NA     3.2
-#&gt;   3:  Mostly clear         1500           2          -            NA     3.6
-#&gt;   4:             -           NA          NA          -            NA     4.1
-#&gt;   5: Partly cloudy          810           3          -            NA     4.4
+#&gt;   1: Partly cloudy          810           3          -            NA     2.5
+#&gt;   2: Partly cloudy         1620           3          -            NA     2.8
+#&gt;   3: Partly cloudy          750           3          -            NA     3.2
+#&gt;   4:  Mostly clear         1500           2          -            NA     3.6
+#&gt;   5:             -           NA          NA          -            NA     4.1
 #&gt;  ---                                                                        
-#&gt; 143:        Cloudy          600           8          -            NA     0.3
-#&gt; 144: Partly cloudy          930           3          -            NA     0.4
-#&gt; 145: Partly cloudy         1020           5          -            NA     0.5
-#&gt; 146: Partly cloudy          810           3          -            NA     0.6
-#&gt; 147: Partly cloudy          810           3          -            NA     0.6
+#&gt; 142:        Cloudy         2100           8          -            NA     0.3
+#&gt; 143: Partly cloudy          930           3          -            NA     0.3
+#&gt; 144:        Cloudy          600           8          -            NA     0.3
+#&gt; 145: Partly cloudy          930           3          -            NA     0.4
+#&gt; 146: Partly cloudy         1020           5          -            NA     0.5
 #&gt;      gust_kmh gust_kt air_temp dewpt  press press_msl press_qnh press_tend
-#&gt;   1:       19      10     22.8  18.3 1016.1    1016.1    1016.4          -
-#&gt;   2:       28      15     23.5  18.4 1015.8    1015.8    1016.1          -
-#&gt;   3:       28      15     23.6  17.8 1015.4    1015.4    1015.7          -
-#&gt;   4:       33      18     23.8  17.1 1015.1    1015.1    1015.4          -
-#&gt;   5:       32      17     25.2  18.2 1015.0    1015.0    1015.3          -
+#&gt;   1:       20      11     22.3  18.3 1016.0    1016.0    1016.3          -
+#&gt;   2:       19      10     22.8  18.3 1016.1    1016.1    1016.4          -
+#&gt;   3:       28      15     23.5  18.4 1015.8    1015.8    1016.1          -
+#&gt;   4:       28      15     23.6  17.8 1015.4    1015.4    1015.7          -
+#&gt;   5:       33      18     23.8  17.1 1015.1    1015.1    1015.4          -
 #&gt;  ---                                                                      
-#&gt; 143:       11       6     18.7  18.2 1012.6    1012.6    1012.8          -
-#&gt; 144:        9       5     18.7  18.0 1012.3    1012.3    1012.5          -
-#&gt; 145:        9       5     18.8  18.0 1011.9    1011.9    1012.1          -
-#&gt; 146:        9       5     18.8  17.8 1011.6    1011.6    1011.8          -
-#&gt; 147:        9       5     18.8  17.8 1011.6    1011.6    1011.8          -
+#&gt; 142:       13       7     18.7  18.2 1012.8    1012.8    1013.0          -
+#&gt; 143:       11       6     18.8  18.3 1012.7    1012.7    1012.9          -
+#&gt; 144:       11       6     18.7  18.2 1012.6    1012.6    1012.8          -
+#&gt; 145:        9       5     18.7  18.0 1012.3    1012.3    1012.5          -
+#&gt; 146:        9       5     18.8  18.0 1011.9    1011.9    1012.1          -
 #&gt;      rain_trace rel_hum sea_state swell_dir_worded swell_height swell_period
 #&gt;   1:        0.4      NA         -                -           NA           NA
 #&gt;   2:        0.4      NA         -                -           NA           NA
@@ -281,23 +282,23 @@ Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers: <br />
 #&gt;   4:        0.4      NA         -                -           NA           NA
 #&gt;   5:        0.4      NA         -                -           NA           NA
 #&gt;  ---                                                                        
-#&gt; 143:        2.4      NA         -                -           NA           NA
+#&gt; 142:        2.6      NA         -                -           NA           NA
+#&gt; 143:        2.6      NA         -                -           NA           NA
 #&gt; 144:        2.4      NA         -                -           NA           NA
-#&gt; 145:        2.2      NA         -                -           NA           NA
+#&gt; 145:        2.4      NA         -                -           NA           NA
 #&gt; 146:        2.2      NA         -                -           NA           NA
-#&gt; 147:        2.2      NA         -                -           NA           NA
 #&gt;      vis_km weather wind_dir wind_spd_kmh wind_spd_kt
 #&gt;   1:     10       -       SE           13           7
-#&gt;   2:     10       -       SE           15           8
-#&gt;   3:     10       -      SSE           20          11
-#&gt;   4:     10       -       SE           20          11
-#&gt;   5:     10       -       SE           22          12
+#&gt;   2:     10       -       SE           13           7
+#&gt;   3:     10       -       SE           15           8
+#&gt;   4:     10       -      SSE           20          11
+#&gt;   5:     10       -       SE           20          11
 #&gt;  ---                                                 
-#&gt; 143:      7 Showers       SW            9           5
-#&gt; 144:     10       -       SW            7           4
-#&gt; 145:     10       -      WSW            7           4
-#&gt; 146:     10       -      SSW            7           4
-#&gt; 147:     10       -      SSW            7           4</div></span></pre>
+#&gt; 142:     10       -      WSW            9           5
+#&gt; 143:     10       -       SW            9           5
+#&gt; 144:      7 Showers       SW            9           5
+#&gt; 145:     10       -       SW            7           4
+#&gt; 146:     10       -      WSW            7           4</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
