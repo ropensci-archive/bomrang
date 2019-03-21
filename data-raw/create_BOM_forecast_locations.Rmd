@@ -1,5 +1,5 @@
 ---
-title: "Get BOM Précis Forecast Town Names"
+title: "Create BOM Précis Forecast Town Names Database"
 output: github_document
 ---
 
@@ -11,7 +11,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 BOM maintains a shapefile of forecast town names and their geographic locations.
 For ease, we'll just use the .dbf file part of the shapefile to extract AAC
-codes that can be used to add lat/lon values to the forecast `data.frame` that 
+codes that can be used to add lat/lon values to the forecast `data.table` that 
 `get_precis_forecast()` returns. The file is available from BOM's anonymous
 FTP server with spatial data <ftp://ftp.bom.gov.au/anon/home/adfd/spatial/>,
 specifically the DBF file portion of a shapefile, 
@@ -27,7 +27,18 @@ specifically the DBF file portion of a shapefile,
 
   AAC_codes <-
     foreign::read.dbf(paste0(tempdir(), "AAC_codes.dbf"), as.is = TRUE)
+  
+  # convert names to lower case for consistency with bomrang output
+  names(AAC_codes) <- tolower(names(AAC_codes))
+  
+  # reorder columns
   AAC_codes <- AAC_codes[, c(2:3, 7:9)]
+  
+  # set name
+  data.table::setnames(AAC_codes, c(2, 5), c("town", "elev"))
+  
+  data.table::setDT(AAC_codes)
+  data.table::setkey(AAC_codes, "aac")
 ```
 
 Save the stations to disk for use in the R package.

@@ -69,7 +69,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bomrang</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -133,20 +133,37 @@
       <small>Source: <a href='https://github.com/ropensci/bomrang/blob/master/NEWS.md'><code>NEWS.md</code></a></small>
     </div>
 
-    <div id="bomrang-0409000" class="section level1">
+    <div id="bomrang-050" class="section level1">
 <h1 class="page-header">
-<a href="#bomrang-0409000" class="anchor"></a>bomrang 0.4.0.9000<small> Unreleased </small>
+<a href="#bomrang-050" class="anchor"></a>bomrang 0.5.0<small> 2019-03-21 </small>
 </h1>
+<div id="bug-fixes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<ul>
+<li>Update functionality of <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, <code><a href="../reference/get_coastal_forecast.html">get_coastal_forecast()</a></code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> to work with latest BOM XML files</li>
+</ul>
+</div>
+<div id="major-changes" class="section level2">
+<h2 class="hasAnchor">
+<a href="#major-changes" class="anchor"></a>Major changes</h2>
+<ul>
+<li><p>New print method for <code><a href="../reference/get_historical.html">get_historical()</a></code> and <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> using <code>bomrang_tbl</code> class and re-exporting <em>dplyr</em> methods to handle the new class, thanks to <a href='https://github.com/jonocarroll'>@jonocarroll</a> for this huge effort</p></li>
+<li><p>Add new aliases for <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code>, <code>get_current()</code> and <code><a href="../reference/get_historical.html">get_historical()</a></code>, <code>get_historical_weather()</code> for consistency</p></li>
+<li><p>Add new aliases for <code><a href="../reference/get_radar_imagery.html">get_radar_imagery()</a></code>, <code>get_radar()</code> and <code><a href="../reference/get_satellite_imagery.html">get_satellite_imagery()</a></code>, <code>get_satellite()</code> to save typing</p></li>
+<li><p>If images fail to download for any functions, a default image is returned with an error message to try again <a href="man/figures/image_error_message.gif"><img src="man/figures/image_error_message.gif"></a></p></li>
+<li><p><code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> no longer has <code>raw</code> or <code>as.data.table</code> parameters, all data are returned with columns in proper class as with all other <em>bomrang</em> functions and the returned data.frame is a <code>bomrang_tbl</code> object. The <code>raw</code> parameter was set to <code>FALSE</code> by default, so the effect should be minimal for most end users.</p></li>
+</ul>
+</div>
 <div id="minor-changes" class="section level2">
 <h2 class="hasAnchor">
 <a href="#minor-changes" class="anchor"></a>Minor changes</h2>
 <ul>
-<li><p>Updates documentation formatting and corrects minor issues</p></li>
+<li><p>Updates documentation formatting and corrects minor issues including spellchecking package and correcting spelling where necessary</p></li>
 <li><p>Uses <code>curl</code> to download XML files before parsing them, rather than reading directly from the server. <code>curl</code> gives more flexibility in handling the server connections</p></li>
 <li><p>Uses <code><a href="https://www.rdocumentation.org/packages/curl/topics/curl_download">curl::curl_download()</a></code> in place of <code><a href="https://www.rdocumentation.org/packages/utils/topics/download.file">utils::download.file()</a></code> for a newer implementation of the same protocols</p></li>
 <li><p>Correct formatting of DESCRIPTION file to conform with CRAN guidelines</p></li>
 <li><p>Replaces <code>\dontrun{}</code> with <code>\donttest{}</code> for examples in documentation</p></li>
-<li><p>Spellcheck package and correct spelling where necessary</p></li>
 </ul>
 </div>
 </div>
@@ -154,9 +171,9 @@
 <h1 class="page-header">
 <a href="#bomrang-040" class="anchor"></a>bomrang 0.4.0<small> 2018-09-12 </small>
 </h1>
-<div id="bug-fixes" class="section level2">
+<div id="bug-fixes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li><p><code><a href="../reference/get_historical.html">get_historical()</a></code> now fetches data for any station with historical data available corrected an issue where previously it only fetched data for stations that currently reported</p></li>
 <li><p>Enforce standardised output for <code><a href="../reference/get_coastal_forecast.html">get_coastal_forecast()</a></code>. In some cases BOM does not report all fields available, <em>bomrang</em> will always report these with <code>NA</code> if empty</p></li>
@@ -183,9 +200,9 @@
 <h1 class="page-header">
 <a href="#bomrang-030" class="anchor"></a>bomrang 0.3.0<small> 2018-08-15 </small>
 </h1>
-<div id="major-changes" class="section level2">
+<div id="major-changes-1" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-1" class="anchor"></a>Major changes</h2>
 <ul>
 <li>Add new function <code><a href="../reference/get_coastal_forecast.html">get_coastal_forecast()</a></code>, which fetches the BOM coastal waters forecast</li>
 </ul>
@@ -206,9 +223,9 @@
 <h1 class="page-header">
 <a href="#bomrang-022" class="anchor"></a>bomrang 0.2.2<small> 2018-07-19 </small>
 </h1>
-<div id="bug-fixes-1" class="section level2">
+<div id="bug-fixes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-1" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h2>
 <p>Fix corrupted zip file download issue for <code><a href="../reference/get_historical.html">get_historical()</a></code> on Windows</p>
 </div>
 <div id="minor-changes-3" class="section level2">
@@ -234,9 +251,9 @@
 <li><p>Remove deprecated functions</p></li>
 </ul>
 </div>
-<div id="bug-fixes-2" class="section level2">
+<div id="bug-fixes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-2" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-3" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li><p>Correct field names in <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code> where <code>maximum_temperature</code> and <code>minimum_temperature</code> were reversed</p></li>
 <li><p>Move rappdirs to Suggests to fix NOTEs on <a href="https://cran.rstudio.com/web/checks/check_results_bomrang.html" class="uri">https://cran.rstudio.com/web/checks/check_results_bomrang.html</a></p></li>
@@ -264,9 +281,9 @@
 <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code> handles states/territories with no/missing precipitation data gracefully</li>
 </ul>
 </div>
-<div id="bug-fixes-3" class="section level2">
+<div id="bug-fixes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-3" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-4" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Add <code>rappdirs</code> to Imports section of DESCRIPTION file to fix missing import</li>
 </ul>
@@ -299,9 +316,9 @@
 </li>
 </ul>
 </div>
-<div id="bug-fixes-4" class="section level2">
+<div id="bug-fixes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-4" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-5" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Correct issues with updating internal databases</li>
 </ul>
@@ -321,9 +338,9 @@
 <li><p>Vignettes no longer evaluate code on-the-fly that requires BOM servers to respond in response to CRAN rejecting <code>bomrang</code> for a failure of a vignette to build due to this issue</p></li>
 </ul>
 </div>
-<div id="bug-fixes-5" class="section level2">
+<div id="bug-fixes-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-5" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-6" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li><p>Correct issue with converting the timzeone in ag bulletin to character where the conversion resulted in a vector of numerals, not the expected string of characters, e.g. “EST”</p></li>
 <li><p>Remove redundant functionality in <code><a href="../reference/update_station_locations.html">update_station_locations()</a></code> where data were fetched using <code><a href="https://www.rdocumentation.org/packages/base/topics/conditions">tryCatch()</a></code> and then again without</p></li>
@@ -350,9 +367,9 @@
 <h1 class="page-header">
 <a href="#bomrang-010" class="anchor"></a>bomrang 0.1.0<small> 2017-12-04 </small>
 </h1>
-<div id="major-changes-1" class="section level2">
+<div id="major-changes-2" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-1" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-2" class="anchor"></a>Major changes</h2>
 <ul>
 <li>Use <em>hoardr</em> to manage file caching</li>
 </ul>
@@ -365,9 +382,9 @@
 <li><p>Update internal databases of metadata for station locations and URLs</p></li>
 </ul>
 </div>
-<div id="bug-fixes-6" class="section level2">
+<div id="bug-fixes-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-6" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-7" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Fix issues with <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> where they failed to work properly. This fix lessens internal dependencies on <em>dplyr</em> and removes <em>rlang</em> usage from package.</li>
 </ul>
@@ -388,9 +405,9 @@
 <h1 class="page-header">
 <a href="#bomrang-008" class="anchor"></a>bomrang 0.0.8<small> 2017-10-27 </small>
 </h1>
-<div id="major-changes-2" class="section level2">
+<div id="major-changes-3" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-2" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-3" class="anchor"></a>Major changes</h2>
 <ul>
 <li>Antarctic stations reporting with a valid .json file are now included in internal database</li>
 </ul>
@@ -406,9 +423,9 @@
 <li><p>Update internal stations list with latest data from BOM</p></li>
 </ul>
 </div>
-<div id="bug-fixes-7" class="section level2">
+<div id="bug-fixes-8" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-7" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-8" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Fix issue where updating internal stations would fail</li>
 </ul>
@@ -419,9 +436,9 @@
 <h1 class="page-header">
 <a href="#bomrang-007" class="anchor"></a>bomrang 0.0.7<small> 2017-09-23 </small>
 </h1>
-<div id="major-changes-3" class="section level2">
+<div id="major-changes-4" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-3" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-4" class="anchor"></a>Major changes</h2>
 <ul>
 <li>Handle typos in the weather bulletins</li>
 </ul>
@@ -443,17 +460,17 @@
 <h1 class="page-header">
 <a href="#bomrang-006" class="anchor"></a>bomrang 0.0.6<small> Unreleased </small>
 </h1>
-<div id="bug-fixes-8" class="section level2">
+<div id="bug-fixes-9" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-8" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-9" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li><p>Fix typo in <code>check_states()</code></p></li>
 <li><p>Replace <code><a href="https://www.rdocumentation.org/packages/base/topics/warning">warning()</a></code> with <code><a href="https://www.rdocumentation.org/packages/base/topics/message">message()</a></code> in <code>get_states()</code></p></li>
 </ul>
 </div>
-<div id="major-changes-4" class="section level2">
+<div id="major-changes-5" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-4" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-5" class="anchor"></a>Major changes</h2>
 <ul>
 <li>Fetch BOM 0900 and 1500 weather bulletins from SHTML sources and create a tidy data frame of the data</li>
 </ul>
@@ -464,18 +481,18 @@
 <h1 class="page-header">
 <a href="#bomrang-005" class="anchor"></a>bomrang 0.0.5<small> Unreleased </small>
 </h1>
-<div id="bug-fixes-9" class="section level2">
+<div id="bug-fixes-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-9" class="anchor"></a>Bug Fixes</h2>
+<a href="#bug-fixes-10" class="anchor"></a>Bug Fixes</h2>
 <ul>
 <li><p>Recommended <code>station_name</code> values are separated by spaces in <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code></p></li>
 <li><p>Station names and location names are more consistent in the supplied data and returned data frames.</p></li>
 <li><p>Lat/Lon values for <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> results are now reported using the values from the internal database, which has a higher degree of accuracy. The json file values are rounded while the values from the stations list has four decimal places</p></li>
 </ul>
 </div>
-<div id="major-changes-5" class="section level2">
+<div id="major-changes-6" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-5" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-6" class="anchor"></a>Major changes</h2>
 <ul>
 <li><p>Fetch BOM satellite images available through public FTP</p></li>
 <li><p>New use-case vignette, using <em>bomrang</em> for the <em>WINS</em> project</p></li>
@@ -522,9 +539,9 @@
 <h1 class="page-header">
 <a href="#bomrang-004-1" class="anchor"></a>bomrang 0.0.4-1<small> Unreleased </small>
 </h1>
-<div id="major-changes-6" class="section level2">
+<div id="major-changes-7" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-6" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-7" class="anchor"></a>Major changes</h2>
 <ul>
 <li>Update internal functionality for <em>dplyr</em> 0.7.0</li>
 </ul>
@@ -535,9 +552,9 @@
 <h1 class="page-header">
 <a href="#bomrang-004" class="anchor"></a>bomrang 0.0.4<small> Unreleased </small>
 </h1>
-<div id="major-changes-7" class="section level2">
+<div id="major-changes-8" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-7" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-8" class="anchor"></a>Major changes</h2>
 <ul>
 <li>Use <em>jsonlite</em> library rather than <em>rjson</em>
 </li>
@@ -549,9 +566,9 @@
 <h1 class="page-header">
 <a href="#bomrang-003-5" class="anchor"></a>bomrang 0.0.3-5<small> Unreleased </small>
 </h1>
-<div id="major-changes-8" class="section level2">
+<div id="major-changes-9" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-8" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-9" class="anchor"></a>Major changes</h2>
 <ul>
 <li><p>Wrap examples for <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code> in a \dontrun{} tag due to CRAN NOTE taking too long to run</p></li>
 <li><p>Use proper GitHub URL in DESCRIPTION file</p></li>
@@ -563,9 +580,9 @@
 <h1 class="page-header">
 <a href="#bomrang-003-4" class="anchor"></a>bomrang 0.0.3-4<small> Unreleased </small>
 </h1>
-<div id="major-changes-9" class="section level2">
+<div id="major-changes-10" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-9" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-10" class="anchor"></a>Major changes</h2>
 <ul>
 <li><p>Run examples for all <code>get_*</code> functions in package</p></li>
 <li><p><code>update_precis_locations()</code> is now <code><a href="../reference/update_forecast_towns.html">update_forecast_towns()</a></code></p></li>
@@ -618,9 +635,9 @@
 <h1 class="page-header">
 <a href="#bomrang-003" class="anchor"></a>bomrang 0.0.3<small> Unreleased </small>
 </h1>
-<div id="major-changes-10" class="section level2">
+<div id="major-changes-11" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-10" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-11" class="anchor"></a>Major changes</h2>
 <ul>
 <li><p>Include internal databases of station locations and metadata for <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> and <code><a href="../reference/get_ag_bulletin.html">get_ag_bulletin()</a></code> both derived from the same BOM station master list</p></li>
 <li><p>The new database includes a more complete list of JSON URLs and ag bulletin station locations</p></li>
@@ -654,9 +671,9 @@
 <h1 class="page-header">
 <a href="#bomrang-002" class="anchor"></a>bomrang 0.0.2<small> Unreleased </small>
 </h1>
-<div id="major-changes-11" class="section level2">
+<div id="major-changes-12" class="section level2">
 <h2 class="hasAnchor">
-<a href="#major-changes-11" class="anchor"></a>Major changes</h2>
+<a href="#major-changes-12" class="anchor"></a>Major changes</h2>
 <ul>
 <li><p>Hugh Parsonage has joined as a contributor</p></li>
 <li><p>Added a new function <code><a href="../reference/get_current_weather.html">get_current_weather()</a></code> to retrieve weather data from specified BOM weather stations</p></li>
@@ -683,9 +700,9 @@
 <li><p>Enhanced documentation</p></li>
 </ul>
 </div>
-<div id="bug-fixes-10" class="section level2">
+<div id="bug-fixes-11" class="section level2">
 <h2 class="hasAnchor">
-<a href="#bug-fixes-10" class="anchor"></a>Bug fixes</h2>
+<a href="#bug-fixes-11" class="anchor"></a>Bug fixes</h2>
 <ul>
 <li>Correct output for ag bulletin where the observation site is listed but has no values. The site will be listed with location data and <code>NA</code> for all meteorological values</li>
 </ul>
@@ -707,7 +724,7 @@
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#bomrang-0409000">0.4.0.9000</a></li>
+        <li><a href="#bomrang-050">0.5.0</a></li>
         <li><a href="#bomrang-040">0.4.0</a></li>
         <li><a href="#bomrang-030">0.3.0</a></li>
         <li><a href="#bomrang-022">0.2.2</a></li>

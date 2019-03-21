@@ -17,11 +17,11 @@ library(bomrang)
 ## Introduction
 
 _bomrang_ provides functions for interacting with 
-[Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BOM
-serves several types of data data as XML, JSON and SHTML files. This
-package fetches these files, parses them and return a tidy data frame. Satellite and radar imagery files are also made available to the public via anonymous ftp. _bomrang_
-provides functionality to query, fetch and create `raster::stack()` objects of
-the GeoTIFF imagery.
+[Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BOM serves several types of data data as XML, JSON and SHTML files.
+This package fetches these files, parses them and return a tidy data frame.
+Satellite and radar imagery files are also made available to the public via
+anonymous FTP. _bomrang_ provides functionality to query, fetch and create 
+`raster::stack()` objects of the GeoTIFF imagery.
 
 ## Using _bomrang_
 
@@ -34,14 +34,14 @@ bulletin; `get_weather_bulletin()` which fetches the 0900 and 1500 weather
 bulletins; `get_coastal_forecast()` which fetches coastal waters forecasts for
 each state and `get_historical()` which fetches historical daily temperature
 min/max, rainfall, or solar exposure data. A second family of functions retrieve 
-information pertaining to satellite and radar imagery, `get_available_imagery()` and the
-imagery itself, `get_satellite_imagery()` for satellite, and `get_available_radar()` 
-and `get_radar_imagery()`  for radar images. The last group functions provides
-internal functionality for _bomrang_ itself; `update_forecast_towns()`, which
-updates an internal database of forecast locations distributed with the package, 
-`sweep_for_stations()` which returns the nearest weather stations to a point in
-Australia and, `manage_cache()` that provides facilities for managing
-cached satellite imagery.
+information pertaining to satellite and radar imagery, `get_available_imagery()`
+and the imagery itself, `get_satellite_imagery()` for satellite, and
+`get_available_radar()` and `get_radar_imagery()`  for radar images. The last
+group functions provides internal functionality for _bomrang_ itself;
+`update_forecast_towns()`, which updates an internal database of forecast
+locations distributed with the package, `sweep_for_stations()` which returns the
+nearest weather stations to a point in Australia and, `manage_cache()` that
+provides facilities for managing cached satellite imagery.
 
 ## Using `get_current_weather`
 
@@ -515,7 +515,7 @@ stations.
 
 ### Using `get_available_radar`
 
-`get_available_radar()` fetches the available radar imagery from the BOM ftp and
+`get_available_radar()` fetches the available radar imagery from the BOM FTP and
 returns a data frame for reference. This data frame contains the product_id 
 which is required when using the `get_radar_imagery()` function. The files
 available are the latest `.gif` files of BOM radar imagery which are typically
@@ -560,6 +560,31 @@ r <-
   raster::plot(r)
   raster::plot(x, add = TRUE)
 ```
+
+# `dplyr` compatibility
+
+Some returned objects have been classed as `bomrang_tbl` which allow dispatch for 
+dplyr methods, e.g. `mutate`, `filter`, `select`, `arrange`, `slice`, `rename`, and 
+`group_by` while preserving the header information.
+
+For example:
+
+```{r}
+adlmax <- get_historical(stationid = "023000", type = "max")
+adlmax
+
+filter(adlmax, month == 10)
+```
+
+The `magrittr` pipe has also been re-exported, so that too can be used 
+to chain together operations
+
+```{r}
+adlmax %>% 
+  select(station_number, year:day, max_temperature) %>% 
+  filter(month == 10)
+```
+
 
 ## References
 
@@ -992,7 +1017,7 @@ automated weather stations.
 	   invading it
 	19 Cirrocumulus alone or Cirrocumulus predominant
 	
-## Appendix 2 - Output from `get_précis_forecast`
+## Appendix 2 - Output from `get_precis_forecast`
 
 The function, `get_precis_forecast()`, will return a tidy data frame of the
 agriculture bulletin with the following fields:

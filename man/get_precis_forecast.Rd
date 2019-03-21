@@ -12,9 +12,9 @@ Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 "AUS" returning all state bulletins, see details for further information.}
 }
 \value{
-Tidy \code{\link[base]{data.frame}} of a Australia \acronym{BOM} précis seven
-day forecasts for select towns.  For full details of fields and units
-returned see Appendix 2 in the \pkg{bomrang} vignette, use \cr
+Tidy \code{\link[data.table]{data.table}} of a Australia \acronym{BOM} précis
+seven day forecasts for BOM selected towns.  For full details of fields and
+units returned see Appendix 2 in the \pkg{bomrang} vignette, use \cr
 \code{vignette("bomrang", package = "bomrang")} to view.
 }
 \description{
@@ -40,7 +40,6 @@ or all using \code{AUS}.
 \donttest{
 # get the short forecast for Queensland
 BOM_forecast <- get_precis_forecast(state = "QLD")
-BOM_forecast
 }
 }
 \references{

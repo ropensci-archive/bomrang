@@ -13,14 +13,10 @@
 #' nearest station (in this package) is used, with a message indicating the
 #' nearest such station. (See also \code{\link{sweep_for_stations}}.) Ignored if
 #' used in combination with \var{station_name}, with a warning.
-#' @param raw Logical. Do not convert the columns \code{data.table} to the
-#' appropriate classes. (\code{FALSE} by default.)
 #' @param emit_latlon_msg Logical. If \code{TRUE} (the default), and
 #' \code{latlon} is selected, a message is emitted before the table is returned
 #' indicating which station was actually used (i.e. which station was found to
 #' be nearest to the given coordinate).
-#' @param as.data.table Logical. If \code{TRUE}, return result as a
-#' \code{\link[data.table]{data.table}}.
 #'
 #' @details
 #' Station names are not consistently named within the Bureau, so
@@ -35,10 +31,10 @@
 #' \code{vignette("Current Weather Fields", package = "bomrang")}\cr
 #' for a complete list of fields and units.
 #'
-#' @return
-#' Tidy data frame of requested BOM station's current and prior 72hr data.  For
-#' full details of fields and units returned, see Appendix 1 in the
-#' \pkg{bomrang} vignette, use \cr
+#' @return A \code{bomrang_tbl} object (extension of a 
+#' \code{\link[base]{data.frame}})  of requested BOM station's current and prior
+#'  72hr data.  For full details of fields and units returned, see Appendix 1
+#'  in the \pkg{bomrang} vignette, use \cr
 #' \code{vignette("bomrang", package = "bomrang")} to view.
 #' @examples
 #' \donttest{
@@ -67,26 +63,26 @@
 #' @importFrom data.table :=
 #' @importFrom data.table %chin%
 #' @importFrom data.table setnames
+#' @rdname get_current_weather
+#' @rdname get_current
 #' @export get_current_weather
 
-get_current_weather <-
+get_current_weather <- get_current <-
   function(station_name,
            strict = FALSE,
            latlon = NULL,
-           raw = FALSE,
-           emit_latlon_msg = TRUE,
-           as.data.table = FALSE) {
+           emit_latlon_msg = TRUE) {
     # CRAN NOTE avoidance
     JSONurl_site_list <- end <- name <- NULL # nocov
-
+    
     # Load JSON URL list
     load(system.file("extdata", "JSONurl_site_list.rda",  # nocov start
                      package = "bomrang"))  # nocov end
-
+    
     if (missing(station_name) && is.null(latlon)) {
       stop("One of 'station_name' or 'latlon' must be provided.")
     }
-
+    
     if (!missing(station_name)) {
       if (!is.null(latlon)) {
         latlon <- NULL
@@ -94,9 +90,9 @@ get_current_weather <-
       }
       stopifnot(is.character(station_name),
                 length(station_name) == 1)
-
+      
       station_name <- toupper(station_name)
-
+      
       # If there's an exact match, use it; else, attempt partial match.
       if (station_name %in% JSONurl_site_list[["name"]]) {
         the_station_name <- station_name
@@ -117,11 +113,11 @@ get_current_weather <-
             )
           ) %>%
           unique
-
+        
         if (length(likely_stations) == 0) {
           stop("No station found.")
         }
-
+        
         the_station_name <- likely_stations[1]
         if (length(likely_stations) > 1) {
           # Likely common use case
@@ -136,7 +132,7 @@ get_current_weather <-
             )
             the_station_name <- "SYDNEY (OBSERVATORY HILL)"
           }
-
+          
           # If not strict, warn; otherwise, later code will error on its own.
           if (!strict) {
             warning(
@@ -153,7 +149,7 @@ get_current_weather <-
             )
           }
         }
-
+        
         if (strict) {
           if (length(likely_stations) == 1) {
             stop(
@@ -174,40 +170,40 @@ get_current_weather <-
                      collapse = "\n")
             )
           }
-
+          
         }
       }
-
+      
       json_url <-
         JSONurl_site_list[name == the_station_name][["url"]]
       full_lat <-
         JSONurl_site_list[name == the_station_name][["lat"]]
       full_lon <-
         JSONurl_site_list[name == the_station_name][["lon"]]
-
+      
     } else {
       # We have established latlon is not NULL
       if (length(latlon) != 2 || !is.numeric(latlon)) {
         stop("latlon must be a length-2 numeric vector.")
       }
-
+      
       Lat <- latlon[1]
       Lon <- latlon[2]
-
+      
       # CRAN NOTE avoidance: names of JSONurl_site_list
       lat <- lon <- NULL # nocov
-
+      
       station_nrst_latlon <-
         JSONurl_site_list %>%
         # Lat Lon are in JSON
         .[which.min(.haversine_distance(Lat, Lon, lat, lon))]
-
+      
       if (emit_latlon_msg) {
         distance <-
           station_nrst_latlon %$%
           .haversine_distance(Lat, Lon, lat, lon) %>%
           signif(digits = 3)
-
+        
         on.exit(
           message(
             "Using station_name = '",
@@ -223,35 +219,70 @@ get_current_weather <-
           )
         )
       }
-
+      
       json_url <- station_nrst_latlon[["url"]]
       full_lat <- station_nrst_latlon[["lat"]]
       full_lon <- station_nrst_latlon[["lon"]]
-
+      
     }
-
+    
     tryCatch({
       observations.json <-
         jsonlite::fromJSON(txt = json_url)
     },
     error = function(e) {
       e$message <-
-        paste("\nA station was matched. ",
-              "However, a corresponding JSON file was not found at",
-              "bom.gov.au.\n")
+        paste(
+          "\nA station was matched. ",
+          "However, a corresponding JSON file was not found at",
+          "bom.gov.au.\n"
+        )
       # Otherwise refers to open.connection
       e$call <- NULL
       stop(e)
     })
-
-      if ("observations" %notin% names(observations.json) ||
-          "data" %notin% names(observations.json$observations)) {
-        stop(
-          "\nA station was matched ",
-          "However, the JSON returned by bom.gov.au was not in expected form.\n"
-        )
-      }
-
+    
+    if ("observations" %notin% names(observations.json) ||
+        "data" %notin% names(observations.json$observations)) {
+      stop(
+        "\nA station was matched ",
+        "However, the JSON returned by bom.gov.au was not in expected form.\n"
+      )
+    }
+    
+    out <-
+      observations.json %>%
+      use_series("observations") %>%
+      use_series("data")
+    
+    data.table::setDT(out)
+    # replaced rounded values from .json with full values from internal db
+    data.table::set(out, j = "lat", value = full_lat)
+    data.table::set(out, j = "lon", value = full_lon)
+    
+    # BOM raw JSON uses `name`, which is ambiguous (see #27)
+    if ("name" %in% names(out)) {
+      setnames(out, "name", "full_name")
+    }
+    
+    # CRAN NOTE avoidance
+    out[, "local_date_time_full" := lapply(.SD, function(x)
+      as.POSIXct(x,
+                 origin = "1970-1-1",
+                 format = "%Y%m%d%H%M%OS")),
+      .SDcols = "local_date_time_full"]
+    
+    out[, "aifstime_utc" := lapply(.SD, function(x)
+      as.POSIXct(
+        x,
+        origin = "1970-1-1",
+        format = "%Y%m%d%H%M%OS",
+        tz = "GMT"
+      )),
+      .SDcols = "aifstime_utc"]
+    
+    out[, "rel_hum" := suppressWarnings(as.integer("rel_hum"))]
+    
     # Columns which are meant to be numeric
     double_cols <-
       c("lat",
@@ -260,68 +291,28 @@ get_current_weather <-
         "cloud_base_m",
         "cloud_oktas",
         "rain_trace")
-    out <-
-      observations.json %>%
-      use_series("observations") %>%
-      use_series("data")
-
-    if (as.data.table) {
-      data.table::setDT(out)
-      # replaced rounded values from .json with full values from internal db
-      data.table::set(out, j = "lat", value = full_lat)
-      data.table::set(out, j = "lon", value = full_lon)
-    } else {
-      # replaced rounded values from .json with full values from internal db
-      out[["lat"]] <- full_lat
-      out[["lon"]] <- full_lon
+    
+    for (j in which(names(out) %chin% double_cols)) {
+      data.table::set(out, j = j, value = .force_double(out[[j]]))
     }
-
-    # BOM raw JSON uses `name`, which is ambiguous (see #27)
-    if ("name" %in% names(out)) {
-      setnames(out, "name", "full_name")
-    }
-
-    if (raw) {
-      return(out)
-    } else {
-      return(cook(out, as.DT = as.data.table, double_cols = double_cols))
-    }
+    
+    station_meta <- subset(JSONurl_site_list, url %in% json_url)
+    
+    return(
+      structure(
+        out,
+        class = union("bomrang_tbl", class(out)),
+        station = station_meta$site,
+        type = "All",
+        origin = "Current",
+        location = station_meta$name,
+        lat = station_meta$lat,
+        lon = station_meta$lon,
+        start = station_meta$start,
+        end = station_meta$end,
+        count = station_meta$end - station_meta$start,
+        units = "years",
+        ncc_list = station_meta
+      )
+    )
   }
-
-# (i.e. not raw)
-cook <- function(DT, as.DT, double_cols) {
-  if (!data.table::is.data.table(DT)) {
-    data.table::setDT(DT)
-  }
-
-  DTnoms <- names(DT)
-
-  # CRAN NOTE avoidance
-  local_date_time_full <- NULL # nocov
-  if ("local_date_time_full" %chin% DTnoms) {
-    DT[, local_date_time_full := as.POSIXct(
-      local_date_time_full,
-      origin = "1970-1-1",
-      format = "%Y%m%d%H%M%OS",
-      tz = ""
-    )]
-  }
-
-  aifstime_utc <- NULL
-  if ("aifstime_utc" %chin% DTnoms) {
-    DT[, aifstime_utc := as.POSIXct(aifstime_utc,
-                                    origin = "1970-1-1",
-                                    format = "%Y%m%d%H%M%OS",
-                                    tz = "GMT")]
-  }
-
-  for (j in which(DTnoms %chin% double_cols)) {
-    data.table::set(DT, j = j, value = .force_double(DT[[j]]))
-  }
-
-  if (!as.DT) {
-    DT <- as.data.frame(DT)
-  }
-
-  DT[]
-}

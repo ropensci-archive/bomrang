@@ -1,7 +1,7 @@
 Package: bomrang
 Type: Package
 Title: Australian Government Bureau of Meteorology ('BOM') Data Client
-Version: 0.4.0.9000
+Version: 0.5.0
 Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     email = "adamhsparks@gmail.com",
     comment = c(ORCID = "0000-0002-0061-8359")),
@@ -27,7 +27,7 @@ Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     comment = c(ORCID = "0000-0002-5012-9035")))
 Description: Provides functions to interface with Australian Government Bureau
     of Meteorology ('BOM') data, fetching data and returning a tidy data frame
-    of précis forecasts, historical and current weather data from stations,
+    of precis forecasts, historical and current weather data from stations,
     agriculture bulletin data, 'BOM' 0900 or 1500 weather bulletins and
     downloading and importing radar and satellite imagery files.  Data (c)
     Australian Government Bureau of Meteorology Creative Commons (CC)
@@ -40,6 +40,7 @@ Depends:
     R (>= 3.2.0)
 Imports:
     curl (>= 2.8.1),
+    crayon,
     data.table (>= 1.10.4),
     dplyr (>= 0.7.0),
     foreign,
@@ -57,7 +58,6 @@ Imports:
     utils,
     xml2 (>= 1.1.1)
 Encoding: UTF-8
-Language: en_AU
 LazyData: true
 Suggests:
     ASGS.foyer,

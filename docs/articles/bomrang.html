@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bomrang</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -106,7 +106,7 @@
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p><em>bomrang</em> provides functions for interacting with <a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services</a> forecasts. BOM serves several types of data data as XML, JSON and SHTML files. This package fetches these files, parses them and return a tidy data frame. Satellite and radar imagery files are also made available to the public via anonymous ftp. <em>bomrang</em> provides functionality to query, fetch and create <code><a href="https://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code> objects of the GeoTIFF imagery.</p>
+<p><em>bomrang</em> provides functions for interacting with <a href="http://www.bom.gov.au/catalogue/data-feeds.shtml">Australian Bureau of Meteorology (BOM) Weather Data Services</a> forecasts. BOM serves several types of data data as XML, JSON and SHTML files. This package fetches these files, parses them and return a tidy data frame. Satellite and radar imagery files are also made available to the public via anonymous FTP. <em>bomrang</em> provides functionality to query, fetch and create <code><a href="https://www.rdocumentation.org/packages/raster/topics/stack">raster::stack()</a></code> objects of the GeoTIFF imagery.</p>
 </div>
 <div id="using-bomrang" class="section level2">
 <h2 class="hasAnchor">
@@ -671,7 +671,7 @@ Satellite
 <h3 class="hasAnchor">
 <a href="#using-get_available_radar" class="anchor"></a>Using <code>get_available_radar</code>
 </h3>
-<p><code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> fetches the available radar imagery from the BOM ftp and returns a data frame for reference. This data frame contains the product_id which is required when using the <code><a href="../reference/get_radar_imagery.html">get_radar_imagery()</a></code> function. The files available are the latest <code>.gif</code> files of BOM radar imagery which are typically updated each 6-10 minutes. Only the most recent image is retrieved for each radar location. There are usually several radar ranges available for each radar location, such as 512km, 256km, 128km and possibly 64km. The arguments are:</p>
+<p><code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> fetches the available radar imagery from the BOM FTP and returns a data frame for reference. This data frame contains the product_id which is required when using the <code><a href="../reference/get_radar_imagery.html">get_radar_imagery()</a></code> function. The files available are the latest <code>.gif</code> files of BOM radar imagery which are typically updated each 6-10 minutes. Only the most recent image is retrieved for each radar location. There are usually several radar ranges available for each radar location, such as 512km, 256km, 128km and possibly 64km. The arguments are:</p>
 <ul>
 <li>
 <code>radar_id</code> which is the BOM radar ID number. This defaults to ‘all’ which will return a data frame of all radar ID’s in Australia.</li>
@@ -710,7 +710,7 @@ Satellite
 <code>product_id</code> the BOM product_id associated with each radar imagery file. These can be obtained from the <code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> function. This value must be specified and the function will accept only one at a time.</li>
 </ul>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_radar_imagery.html">get_radar_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDR032"</span>)</a></code></pre></div>
-<pre><code>## file downloaded to:/var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//RtmpMk9oBU/filec8a348ea27b6.gif</code></pre>
+<pre><code>## file downloaded to:/var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//RtmpqT40WF/fileca5772a2f6bf.gif</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># create a blank raster plot and add the radar layer</span></a>
 <a class="sourceLine" id="cb20-2" title="2">r &lt;-</a>
 <a class="sourceLine" id="cb20-3" title="3"><span class="st">  </span>raster<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/raster">raster</a></span>(</a>
@@ -727,6 +727,100 @@ Satellite
 <p><img src="bomrang_files/figure-html/unnamed-chunk-2-1.png" width="768"></p>
 </div>
 </div>
+<div id="dplyr-compatibility" class="section level1">
+<h1 class="hasAnchor">
+<a href="#dplyr-compatibility" class="anchor"></a><code>dplyr</code> compatibility</h1>
+<p>Some returned objects have been classed as <code>bomrang_tbl</code> which allow dispatch for dplyr methods, e.g. <code>mutate</code>, <code>filter</code>, <code>select</code>, <code>arrange</code>, <code>slice</code>, <code>rename</code>, and <code>group_by</code> while preserving the header information.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">adlmax &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_historical.html">get_historical</a></span>(<span class="dt">stationid =</span> <span class="st">"023000"</span>, <span class="dt">type =</span> <span class="st">"max"</span>)</a></code></pre></div>
+<pre><code>## Data saved as /var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//RtmpqT40WF/IDCJAC0010_023000_1800_Data.csv</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">adlmax</a></code></pre></div>
+<pre><code>##   ---- Australian Bureau of Meteorology (BOM) Data Resource ----
+##   (Original Request Parameters)
+##   Station:       ADELAIDE (WEST TERRACE / NGAYIRDAPIRA) [023000] 
+##   Location:      lat: -34.9257, lon: 138.5832
+##   Measurement / Origin:  Max / Historical
+##   Timespan:      1887-01-01 -- 2019-03-01 [94 years]
+##   ---------------------------------------------------------------  
+##        product_code station_number year month day max_temperature
+##     1:   IDCJAC0010          23000 1887     1   1              NA
+##     2:   IDCJAC0010          23000 1887     1   2              NA
+##     3:   IDCJAC0010          23000 1887     1   3              NA
+##     4:   IDCJAC0010          23000 1887     1   4              NA
+##     5:   IDCJAC0010          23000 1887     1   5              NA
+##    ---                                                           
+## 48287:   IDCJAC0010          23000 2019     3  16            28.4
+## 48288:   IDCJAC0010          23000 2019     3  17            31.3
+## 48289:   IDCJAC0010          23000 2019     3  18            30.5
+## 48290:   IDCJAC0010          23000 2019     3  19            28.6
+## 48291:   IDCJAC0010          23000 2019     3  20            27.1
+##        accum_days_max quality
+##     1:             NA        
+##     2:             NA        
+##     3:             NA        
+##     4:             NA        
+##     5:             NA        
+##    ---                       
+## 48287:              1       N
+## 48288:              1       N
+## 48289:              1       N
+## 48290:              1       N
+## 48291:              1       N</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(adlmax, month <span class="op">==</span><span class="st"> </span><span class="dv">10</span>)</a></code></pre></div>
+<pre><code>##   ---- Australian Bureau of Meteorology (BOM) Data Resource ----
+##   (Original Request Parameters)
+##   Station:       ADELAIDE (WEST TERRACE / NGAYIRDAPIRA) [023000] 
+##   Location:      lat: -34.9257, lon: 138.5832
+##   Measurement / Origin:  Max / Historical
+##   Timespan:      1887-01-01 -- 2019-03-01 [94 years]
+##   ---------------------------------------------------------------  
+##       product_code station_number year month day max_temperature
+##    1:   IDCJAC0010          23000 1887    10   1            17.6
+##    2:   IDCJAC0010          23000 1887    10   2            14.6
+##    3:   IDCJAC0010          23000 1887    10   3            16.7
+##    4:   IDCJAC0010          23000 1887    10   4            18.0
+##    5:   IDCJAC0010          23000 1887    10   5            15.1
+##   ---                                                           
+## 4088:   IDCJAC0010          23000 2018    10  27            25.7
+## 4089:   IDCJAC0010          23000 2018    10  28            21.8
+## 4090:   IDCJAC0010          23000 2018    10  29            22.4
+## 4091:   IDCJAC0010          23000 2018    10  30            27.9
+## 4092:   IDCJAC0010          23000 2018    10  31            35.1
+##       accum_days_max quality
+##    1:              1       Y
+##    2:              1       Y
+##    3:              1       Y
+##    4:              1       Y
+##    5:              1       Y
+##   ---                       
+## 4088:              1       N
+## 4089:              1       N
+## 4090:              1       N
+## 4091:              1       N
+## 4092:              1       N</code></pre>
+<p>The <code>magrittr</code> pipe has also been re-exported, so that too can be used to chain together operations</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1">adlmax <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb27-2" title="2"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(station_number, year<span class="op">:</span>day, max_temperature) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb27-3" title="3"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(month <span class="op">==</span><span class="st"> </span><span class="dv">10</span>)</a></code></pre></div>
+<pre><code>##   ---- Australian Bureau of Meteorology (BOM) Data Resource ----
+##   (Original Request Parameters)
+##   Station:       ADELAIDE (WEST TERRACE / NGAYIRDAPIRA) [023000] 
+##   Location:      lat: -34.9257, lon: 138.5832
+##   Measurement / Origin:  Max / Historical
+##   Timespan:      1887-01-01 -- 2019-03-01 [94 years]
+##   ---------------------------------------------------------------  
+##       station_number year month day max_temperature
+##    1:          23000 1887    10   1            17.6
+##    2:          23000 1887    10   2            14.6
+##    3:          23000 1887    10   3            16.7
+##    4:          23000 1887    10   4            18.0
+##    5:          23000 1887    10   5            15.1
+##   ---                                              
+## 4088:          23000 2018    10  27            25.7
+## 4089:          23000 2018    10  28            21.8
+## 4090:          23000 2018    10  29            22.4
+## 4091:          23000 2018    10  30            27.9
+## 4092:          23000 2018    10  31            35.1</code></pre>
 <div id="references" class="section level2">
 <h2 class="hasAnchor">
 <a href="#references" class="anchor"></a>References</h2>
@@ -1510,7 +1604,7 @@ wmo international BUFR code table 0 20 012, CREX code table B 20 012
 </div>
 <div id="appendix-2---output-from-get_precis_forecast" class="section level2">
 <h2 class="hasAnchor">
-<a href="#appendix-2---output-from-get_precis_forecast" class="anchor"></a>Appendix 2 - Output from <code>get_précis_forecast</code>
+<a href="#appendix-2---output-from-get_precis_forecast" class="anchor"></a>Appendix 2 - Output from <code>get_precis_forecast</code>
 </h2>
 <p>The function, <code><a href="../reference/get_precis_forecast.html">get_precis_forecast()</a></code>, will return a tidy data frame of the agriculture bulletin with the following fields:</p>
 <table class="table">
@@ -2258,132 +2352,133 @@ Additional marine forecast warning information (not always provided)
 <div id="appendix-6---map-of-station-locations" class="section level2">
 <h2 class="hasAnchor">
 <a href="#appendix-6---map-of-station-locations" class="anchor"></a>Appendix 6 - Map of station locations</h2>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" title="1"><span class="cf">if</span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ns-load">requireNamespace</a></span>(<span class="st">"ggplot2"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
-<a class="sourceLine" id="cb27-2" title="2"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ns-load">requireNamespace</a></span>(<span class="st">"ggthemes"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
-<a class="sourceLine" id="cb27-3" title="3"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ns-load">requireNamespace</a></span>(<span class="st">"maps"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
-<a class="sourceLine" id="cb27-4" title="4"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ns-load">requireNamespace</a></span>(<span class="st">"mapproj"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
-<a class="sourceLine" id="cb27-5" title="5"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ns-load">requireNamespace</a></span>(<span class="st">"gridExtra"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
-<a class="sourceLine" id="cb27-6" title="6"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ns-load">requireNamespace</a></span>(<span class="st">"grid"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)) {</a>
-<a class="sourceLine" id="cb27-7" title="7">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb27-8" title="8">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(mapproj)</a>
-<a class="sourceLine" id="cb27-9" title="9">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggthemes)</a>
-<a class="sourceLine" id="cb27-10" title="10">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(maps)</a>
-<a class="sourceLine" id="cb27-11" title="11">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(data.table)</a>
-<a class="sourceLine" id="cb27-12" title="12">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(grid)</a>
-<a class="sourceLine" id="cb27-13" title="13">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(gridExtra)</a>
-<a class="sourceLine" id="cb27-14" title="14">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/load">load</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"stations_site_list.rda"</span>, <span class="dt">package =</span> <span class="st">"bomrang"</span>))</a>
-<a class="sourceLine" id="cb27-15" title="15">  <span class="kw"><a href="https://www.rdocumentation.org/packages/data.table/topics/setDT">setDT</a></span>(stations_site_list)</a>
-<a class="sourceLine" id="cb27-16" title="16">  </a>
-<a class="sourceLine" id="cb27-17" title="17">  Aust_stations &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb27-18" title="18"><span class="st">    </span>stations_site_list[(<span class="op">!</span>(state <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"ANT"</span>, <span class="st">"null"</span>))) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl</a></span>(<span class="st">"VANUATU|HONIARA"</span>, name)]</a>
-<a class="sourceLine" id="cb27-19" title="19">  </a>
-<a class="sourceLine" id="cb27-20" title="20">  Aust_map &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/map_data">map_data</a></span>(<span class="st">"world"</span>, <span class="dt">region =</span> <span class="st">"Australia"</span>)</a>
-<a class="sourceLine" id="cb27-21" title="21">  </a>
-<a class="sourceLine" id="cb27-22" title="22">  BOM_stations &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(Aust_stations, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb27-23" title="23"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_polygon">geom_polygon</a></span>(<span class="dt">data =</span> Aust_map, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </a>
-<a class="sourceLine" id="cb27-24" title="24">                 <span class="dt">color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/gray">grey</a></span>(<span class="fl">0.7</span>),</a>
-<a class="sourceLine" id="cb27-25" title="25">                 <span class="dt">fill =</span> <span class="ot">NA</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb27-26" title="26"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="dt">color =</span> <span class="st">"red"</span>,</a>
-<a class="sourceLine" id="cb27-27" title="27">               <span class="dt">size =</span> <span class="fl">0.05</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb27-28" title="28"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/coord_map">coord_map</a></span>(<span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="dv">45</span>, <span class="dv">-5</span>),</a>
-<a class="sourceLine" id="cb27-29" title="29">              <span class="dt">xlim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">96</span>, <span class="dv">167</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb27-30" title="30"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_map">theme_map</a></span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb27-31" title="31"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">title =</span> <span class="st">"BOM Station Locations"</span>,</a>
-<a class="sourceLine" id="cb27-32" title="32">         <span class="dt">subtitle =</span> <span class="st">"Australia, outlying islands and buoys (excl. Antarctic stations)"</span>,</a>
-<a class="sourceLine" id="cb27-33" title="33">         <span class="dt">caption =</span> <span class="st">"Data: Australia Bureau of Meteorology (BOM)</span><span class="ch">\n</span></a>
-<a class="sourceLine" id="cb27-34" title="34"><span class="st">         and NaturalEarthdata, http://naturalearthdata.com"</span>)</a>
-<a class="sourceLine" id="cb27-35" title="35">  </a>
-<a class="sourceLine" id="cb27-36" title="36">  <span class="co"># Using the gridExtra and grid packages add a neatline to the map</span></a>
-<a class="sourceLine" id="cb27-37" title="37">  <span class="kw"><a href="https://www.rdocumentation.org/packages/gridExtra/topics/arrangeGrob">grid.arrange</a></span>(BOM_stations, <span class="dt">ncol =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb27-38" title="38">  <span class="kw"><a href="https://www.rdocumentation.org/packages/grid/topics/grid.rect">grid.rect</a></span>(<span class="dt">width =</span> <span class="fl">0.98</span>, </a>
-<a class="sourceLine" id="cb27-39" title="39">            <span class="dt">height =</span> <span class="fl">0.98</span>, </a>
-<a class="sourceLine" id="cb27-40" title="40">            <span class="dt">gp =</span> grid<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/grid/topics/gpar">gpar</a></span>(<span class="dt">lwd =</span> <span class="fl">0.25</span>, </a>
-<a class="sourceLine" id="cb27-41" title="41">                            <span class="dt">col =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb27-42" title="42">                            <span class="dt">fill =</span> <span class="ot">NA</span>))</a>
-<a class="sourceLine" id="cb27-43" title="43">}</a></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="cf">if</span> (<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ns-load">requireNamespace</a></span>(<span class="st">"ggplot2"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
+<a class="sourceLine" id="cb35-2" title="2"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ns-load">requireNamespace</a></span>(<span class="st">"ggthemes"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
+<a class="sourceLine" id="cb35-3" title="3"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ns-load">requireNamespace</a></span>(<span class="st">"maps"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
+<a class="sourceLine" id="cb35-4" title="4"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ns-load">requireNamespace</a></span>(<span class="st">"mapproj"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
+<a class="sourceLine" id="cb35-5" title="5"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ns-load">requireNamespace</a></span>(<span class="st">"gridExtra"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>) <span class="op">&amp;&amp;</span></a>
+<a class="sourceLine" id="cb35-6" title="6"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/ns-load">requireNamespace</a></span>(<span class="st">"grid"</span>, <span class="dt">quietly =</span> <span class="ot">TRUE</span>)) {</a>
+<a class="sourceLine" id="cb35-7" title="7">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb35-8" title="8">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(mapproj)</a>
+<a class="sourceLine" id="cb35-9" title="9">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(ggthemes)</a>
+<a class="sourceLine" id="cb35-10" title="10">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(maps)</a>
+<a class="sourceLine" id="cb35-11" title="11">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(data.table)</a>
+<a class="sourceLine" id="cb35-12" title="12">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(grid)</a>
+<a class="sourceLine" id="cb35-13" title="13">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(gridExtra)</a>
+<a class="sourceLine" id="cb35-14" title="14">  <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/load">load</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/system.file">system.file</a></span>(<span class="st">"extdata"</span>, <span class="st">"stations_site_list.rda"</span>, <span class="dt">package =</span> <span class="st">"bomrang"</span>))</a>
+<a class="sourceLine" id="cb35-15" title="15">  <span class="kw"><a href="https://www.rdocumentation.org/packages/data.table/topics/setDT">setDT</a></span>(stations_site_list)</a>
+<a class="sourceLine" id="cb35-16" title="16">  </a>
+<a class="sourceLine" id="cb35-17" title="17">  Aust_stations &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb35-18" title="18"><span class="st">    </span>stations_site_list[(<span class="op">!</span>(state <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"ANT"</span>, <span class="st">"null"</span>))) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl</a></span>(<span class="st">"VANUATU|HONIARA"</span>, name)]</a>
+<a class="sourceLine" id="cb35-19" title="19">  </a>
+<a class="sourceLine" id="cb35-20" title="20">  Aust_map &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/map_data">map_data</a></span>(<span class="st">"world"</span>, <span class="dt">region =</span> <span class="st">"Australia"</span>)</a>
+<a class="sourceLine" id="cb35-21" title="21">  </a>
+<a class="sourceLine" id="cb35-22" title="22">  BOM_stations &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(Aust_stations, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb35-23" title="23"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_polygon">geom_polygon</a></span>(<span class="dt">data =</span> Aust_map, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </a>
+<a class="sourceLine" id="cb35-24" title="24">                 <span class="dt">color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/gray">grey</a></span>(<span class="fl">0.7</span>),</a>
+<a class="sourceLine" id="cb35-25" title="25">                 <span class="dt">fill =</span> <span class="ot">NA</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb35-26" title="26"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="dt">color =</span> <span class="st">"red"</span>,</a>
+<a class="sourceLine" id="cb35-27" title="27">               <span class="dt">size =</span> <span class="fl">0.05</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb35-28" title="28"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/coord_map">coord_map</a></span>(<span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="dv">45</span>, <span class="dv">-5</span>),</a>
+<a class="sourceLine" id="cb35-29" title="29">              <span class="dt">xlim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">96</span>, <span class="dv">167</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb35-30" title="30"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_map">theme_map</a></span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb35-31" title="31"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">title =</span> <span class="st">"BOM Station Locations"</span>,</a>
+<a class="sourceLine" id="cb35-32" title="32">         <span class="dt">subtitle =</span> <span class="st">"Australia, outlying islands and buoys (excl. Antarctic stations)"</span>,</a>
+<a class="sourceLine" id="cb35-33" title="33">         <span class="dt">caption =</span> <span class="st">"Data: Australia Bureau of Meteorology (BOM)</span><span class="ch">\n</span></a>
+<a class="sourceLine" id="cb35-34" title="34"><span class="st">         and NaturalEarthdata, http://naturalearthdata.com"</span>)</a>
+<a class="sourceLine" id="cb35-35" title="35">  </a>
+<a class="sourceLine" id="cb35-36" title="36">  <span class="co"># Using the gridExtra and grid packages add a neatline to the map</span></a>
+<a class="sourceLine" id="cb35-37" title="37">  <span class="kw"><a href="https://www.rdocumentation.org/packages/gridExtra/topics/arrangeGrob">grid.arrange</a></span>(BOM_stations, <span class="dt">ncol =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb35-38" title="38">  <span class="kw"><a href="https://www.rdocumentation.org/packages/grid/topics/grid.rect">grid.rect</a></span>(<span class="dt">width =</span> <span class="fl">0.98</span>, </a>
+<a class="sourceLine" id="cb35-39" title="39">            <span class="dt">height =</span> <span class="fl">0.98</span>, </a>
+<a class="sourceLine" id="cb35-40" title="40">            <span class="dt">gp =</span> grid<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/grid/topics/gpar">gpar</a></span>(<span class="dt">lwd =</span> <span class="fl">0.25</span>, </a>
+<a class="sourceLine" id="cb35-41" title="41">                            <span class="dt">col =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb35-42" title="42">                            <span class="dt">fill =</span> <span class="ot">NA</span>))</a>
+<a class="sourceLine" id="cb35-43" title="43">}</a></code></pre></div>
 <p><img src="bomrang_files/figure-html/station-locations-map-1.png" width="672"></p>
 </div>
 <div id="appendix-7---maps-of-historical-data-availability" class="section level2">
 <h2 class="hasAnchor">
 <a href="#appendix-7---maps-of-historical-data-availability" class="anchor"></a>Appendix 7 - Maps of historical data availability</h2>
 <p>Note that these maps are current as of <code><a href="https://www.rdocumentation.org/packages/base/topics/Sys.time">Sys.Date()</a></code> and may have changed.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(magrittr)</a>
-<a class="sourceLine" id="cb28-2" title="2"></a>
-<a class="sourceLine" id="cb28-3" title="3">ncc &lt;-<span class="st"> </span>bomrang<span class="op">:::</span><span class="kw">.get_ncc</span>()</a>
-<a class="sourceLine" id="cb28-4" title="4"></a>
-<a class="sourceLine" id="cb28-5" title="5">ncc &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb28-6" title="6"><span class="st">  </span>ncc <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">ncc_obs_code =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/replace">replace</a></span>(ncc_obs_code,</a>
-<a class="sourceLine" id="cb28-8" title="8">                                       ncc_obs_code <span class="op">==</span><span class="st"> </span><span class="dv">136</span>,</a>
-<a class="sourceLine" id="cb28-9" title="9">                                       <span class="st">"rain"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb28-10" title="10"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">ncc_obs_code =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/replace">replace</a></span>(ncc_obs_code,</a>
-<a class="sourceLine" id="cb28-11" title="11">                                       ncc_obs_code <span class="op">==</span><span class="st"> </span><span class="dv">123</span>,</a>
-<a class="sourceLine" id="cb28-12" title="12">                                       <span class="st">"tmin"</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-13" title="13"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">ncc_obs_code =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/replace">replace</a></span>(ncc_obs_code,</a>
-<a class="sourceLine" id="cb28-14" title="14">                                       ncc_obs_code <span class="op">==</span><span class="st"> </span><span class="dv">122</span>,</a>
-<a class="sourceLine" id="cb28-15" title="15">                                       <span class="st">"tmax"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb28-16" title="16"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">ncc_obs_code =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/replace">replace</a></span>(ncc_obs_code,</a>
-<a class="sourceLine" id="cb28-17" title="17">                                       ncc_obs_code <span class="op">==</span><span class="st"> </span><span class="dv">193</span>,</a>
-<a class="sourceLine" id="cb28-18" title="18">                                       <span class="st">"solar"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(magrittr)</a>
+<a class="sourceLine" id="cb36-2" title="2"></a>
+<a class="sourceLine" id="cb36-3" title="3">ncc &lt;-<span class="st"> </span>bomrang<span class="op">:::</span><span class="kw">.get_ncc</span>()</a>
+<a class="sourceLine" id="cb36-4" title="4"></a>
+<a class="sourceLine" id="cb36-5" title="5">ncc &lt;-<span class="st"> </span></a>
+<a class="sourceLine" id="cb36-6" title="6"><span class="st">  </span>ncc <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb36-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">ncc_obs_code =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/replace">replace</a></span>(ncc_obs_code,</a>
+<a class="sourceLine" id="cb36-8" title="8">                                       ncc_obs_code <span class="op">==</span><span class="st"> </span><span class="dv">136</span>,</a>
+<a class="sourceLine" id="cb36-9" title="9">                                       <span class="st">"rain"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb36-10" title="10"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">ncc_obs_code =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/replace">replace</a></span>(ncc_obs_code,</a>
+<a class="sourceLine" id="cb36-11" title="11">                                       ncc_obs_code <span class="op">==</span><span class="st"> </span><span class="dv">123</span>,</a>
+<a class="sourceLine" id="cb36-12" title="12">                                       <span class="st">"tmin"</span>)) <span class="op">%&gt;%</span></a>
+<a class="sourceLine" id="cb36-13" title="13"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">ncc_obs_code =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/replace">replace</a></span>(ncc_obs_code,</a>
+<a class="sourceLine" id="cb36-14" title="14">                                       ncc_obs_code <span class="op">==</span><span class="st"> </span><span class="dv">122</span>,</a>
+<a class="sourceLine" id="cb36-15" title="15">                                       <span class="st">"tmax"</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb36-16" title="16"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">ncc_obs_code =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/replace">replace</a></span>(ncc_obs_code,</a>
+<a class="sourceLine" id="cb36-17" title="17">                                       ncc_obs_code <span class="op">==</span><span class="st"> </span><span class="dv">193</span>,</a>
+<a class="sourceLine" id="cb36-18" title="18">                                       <span class="st">"solar"</span>))</a></code></pre></div>
 <div id="completeness-of-historical-data-for-stations" class="section level3">
 <h3 class="hasAnchor">
 <a href="#completeness-of-historical-data-for-stations" class="anchor"></a>Completeness of historical data for stations</h3>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">perc_complete &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(ncc, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb29-2" title="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_polygon">geom_polygon</a></span>(<span class="dt">data =</span> Aust_map, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </a>
-<a class="sourceLine" id="cb29-3" title="3">               <span class="dt">color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/gray">grey</a></span>(<span class="fl">0.7</span>),</a>
-<a class="sourceLine" id="cb29-4" title="4">               <span class="dt">fill =</span> <span class="ot">NA</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb29-5" title="5"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">color =</span> percent),</a>
-<a class="sourceLine" id="cb29-6" title="6">             <span class="dt">alpha =</span> <span class="fl">0.5</span>,</a>
-<a class="sourceLine" id="cb29-7" title="7">             <span class="dt">size =</span> <span class="fl">0.05</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb29-8" title="8"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/scale_viridis">scale_colour_viridis_c</a></span>(<span class="dt">direction =</span> <span class="dv">-1</span>,</a>
-<a class="sourceLine" id="cb29-9" title="9">                         <span class="dt">option =</span> <span class="st">"A"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb29-10" title="10"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/coord_map">coord_map</a></span>(<span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="dv">45</span>, <span class="dv">-5</span>),</a>
-<a class="sourceLine" id="cb29-11" title="11">            <span class="dt">xlim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">96</span>, <span class="dv">167</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb29-12" title="12"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_map">theme_map</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb29-13" title="13"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap">facet_wrap</a></span>(. <span class="op">~</span><span class="st"> </span>ncc_obs_code) <span class="op">+</span></a>
-<a class="sourceLine" id="cb29-14" title="14"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">title =</span> <span class="st">"BOM Historical Station Data Completeness"</span>,</a>
-<a class="sourceLine" id="cb29-15" title="15">       <span class="dt">subtitle =</span> <span class="st">"Australia, outlying islands and buoys (excl. Antarctic stations)"</span>,</a>
-<a class="sourceLine" id="cb29-16" title="16">       <span class="dt">caption =</span> <span class="st">"Data: Australia Bureau of Meteorology (BOM)</span><span class="ch">\n</span></a>
-<a class="sourceLine" id="cb29-17" title="17"><span class="st">     and NaturalEarthdata, http://naturalearthdata.com"</span>)</a>
-<a class="sourceLine" id="cb29-18" title="18"></a>
-<a class="sourceLine" id="cb29-19" title="19"><span class="co"># Using the gridExtra and grid packages add a neatline to the map</span></a>
-<a class="sourceLine" id="cb29-20" title="20"><span class="kw"><a href="https://www.rdocumentation.org/packages/gridExtra/topics/arrangeGrob">grid.arrange</a></span>(perc_complete, <span class="dt">ncol =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb29-21" title="21"><span class="kw"><a href="https://www.rdocumentation.org/packages/grid/topics/grid.rect">grid.rect</a></span>(<span class="dt">width =</span> <span class="fl">0.98</span>, </a>
-<a class="sourceLine" id="cb29-22" title="22">          <span class="dt">height =</span> <span class="fl">0.98</span>, </a>
-<a class="sourceLine" id="cb29-23" title="23">          <span class="dt">gp =</span> grid<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/grid/topics/gpar">gpar</a></span>(<span class="dt">lwd =</span> <span class="fl">0.25</span>, </a>
-<a class="sourceLine" id="cb29-24" title="24">                          <span class="dt">col =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb29-25" title="25">                          <span class="dt">fill =</span> <span class="ot">NA</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1">perc_complete &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(ncc, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb37-2" title="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_polygon">geom_polygon</a></span>(<span class="dt">data =</span> Aust_map, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </a>
+<a class="sourceLine" id="cb37-3" title="3">               <span class="dt">color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/gray">grey</a></span>(<span class="fl">0.7</span>),</a>
+<a class="sourceLine" id="cb37-4" title="4">               <span class="dt">fill =</span> <span class="ot">NA</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb37-5" title="5"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">color =</span> percent),</a>
+<a class="sourceLine" id="cb37-6" title="6">             <span class="dt">alpha =</span> <span class="fl">0.5</span>,</a>
+<a class="sourceLine" id="cb37-7" title="7">             <span class="dt">size =</span> <span class="fl">0.05</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb37-8" title="8"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/scale_viridis">scale_colour_viridis_c</a></span>(<span class="dt">direction =</span> <span class="dv">-1</span>,</a>
+<a class="sourceLine" id="cb37-9" title="9">                         <span class="dt">option =</span> <span class="st">"A"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb37-10" title="10"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/coord_map">coord_map</a></span>(<span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="dv">45</span>, <span class="dv">-5</span>),</a>
+<a class="sourceLine" id="cb37-11" title="11">            <span class="dt">xlim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">96</span>, <span class="dv">167</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb37-12" title="12"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_map">theme_map</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb37-13" title="13"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap">facet_wrap</a></span>(. <span class="op">~</span><span class="st"> </span>ncc_obs_code) <span class="op">+</span></a>
+<a class="sourceLine" id="cb37-14" title="14"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">title =</span> <span class="st">"BOM Historical Station Data Completeness"</span>,</a>
+<a class="sourceLine" id="cb37-15" title="15">       <span class="dt">subtitle =</span> <span class="st">"Australia, outlying islands and buoys (excl. Antarctic stations)"</span>,</a>
+<a class="sourceLine" id="cb37-16" title="16">       <span class="dt">caption =</span> <span class="st">"Data: Australia Bureau of Meteorology (BOM)</span><span class="ch">\n</span></a>
+<a class="sourceLine" id="cb37-17" title="17"><span class="st">     and NaturalEarthdata, http://naturalearthdata.com"</span>)</a>
+<a class="sourceLine" id="cb37-18" title="18"></a>
+<a class="sourceLine" id="cb37-19" title="19"><span class="co"># Using the gridExtra and grid packages add a neatline to the map</span></a>
+<a class="sourceLine" id="cb37-20" title="20"><span class="kw"><a href="https://www.rdocumentation.org/packages/gridExtra/topics/arrangeGrob">grid.arrange</a></span>(perc_complete, <span class="dt">ncol =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb37-21" title="21"><span class="kw"><a href="https://www.rdocumentation.org/packages/grid/topics/grid.rect">grid.rect</a></span>(<span class="dt">width =</span> <span class="fl">0.98</span>, </a>
+<a class="sourceLine" id="cb37-22" title="22">          <span class="dt">height =</span> <span class="fl">0.98</span>, </a>
+<a class="sourceLine" id="cb37-23" title="23">          <span class="dt">gp =</span> grid<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/grid/topics/gpar">gpar</a></span>(<span class="dt">lwd =</span> <span class="fl">0.25</span>, </a>
+<a class="sourceLine" id="cb37-24" title="24">                          <span class="dt">col =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb37-25" title="25">                          <span class="dt">fill =</span> <span class="ot">NA</span>))</a></code></pre></div>
 <p><img src="bomrang_files/figure-html/completeness_map,%20-1.png" width="672"></p>
 </div>
 <div id="historical-data-years-available-for-stations" class="section level3">
 <h3 class="hasAnchor">
 <a href="#historical-data-years-available-for-stations" class="anchor"></a>Historical data years available for stations</h3>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">years_available &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(ncc, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb30-2" title="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_polygon">geom_polygon</a></span>(<span class="dt">data =</span> Aust_map, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </a>
-<a class="sourceLine" id="cb30-3" title="3">               <span class="dt">color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/gray">grey</a></span>(<span class="fl">0.7</span>),</a>
-<a class="sourceLine" id="cb30-4" title="4">               <span class="dt">fill =</span> <span class="ot">NA</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb30-5" title="5"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">color =</span> years),</a>
-<a class="sourceLine" id="cb30-6" title="6">             <span class="dt">alpha =</span> <span class="fl">0.5</span>,</a>
-<a class="sourceLine" id="cb30-7" title="7">             <span class="dt">size =</span> <span class="fl">0.05</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb30-8" title="8"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/scale_viridis">scale_colour_viridis_c</a></span>(<span class="dt">direction =</span> <span class="dv">-1</span>,</a>
-<a class="sourceLine" id="cb30-9" title="9">                         <span class="dt">option =</span> <span class="st">"A"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb30-10" title="10"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/coord_map">coord_map</a></span>(<span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="dv">45</span>, <span class="dv">-5</span>),</a>
-<a class="sourceLine" id="cb30-11" title="11">            <span class="dt">xlim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">96</span>, <span class="dv">167</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb30-12" title="12"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_map">theme_map</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb30-13" title="13"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap">facet_wrap</a></span>(. <span class="op">~</span><span class="st"> </span>ncc_obs_code) <span class="op">+</span></a>
-<a class="sourceLine" id="cb30-14" title="14"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">title =</span> <span class="st">"BOM Historical Station Data Years Available"</span>,</a>
-<a class="sourceLine" id="cb30-15" title="15">       <span class="dt">subtitle =</span> <span class="st">"Australia, outlying islands and buoys (excl. Antarctic stations)"</span>,</a>
-<a class="sourceLine" id="cb30-16" title="16">       <span class="dt">caption =</span> <span class="st">"Data: Australia Bureau of Meteorology (BOM)</span><span class="ch">\n</span></a>
-<a class="sourceLine" id="cb30-17" title="17"><span class="st">     and NaturalEarthdata, http://naturalearthdata.com"</span>)</a>
-<a class="sourceLine" id="cb30-18" title="18"></a>
-<a class="sourceLine" id="cb30-19" title="19"><span class="co"># Using the gridExtra and grid packages add a neatline to the map</span></a>
-<a class="sourceLine" id="cb30-20" title="20"><span class="kw"><a href="https://www.rdocumentation.org/packages/gridExtra/topics/arrangeGrob">grid.arrange</a></span>(years_available, <span class="dt">ncol =</span> <span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb30-21" title="21"><span class="kw"><a href="https://www.rdocumentation.org/packages/grid/topics/grid.rect">grid.rect</a></span>(<span class="dt">width =</span> <span class="fl">0.98</span>, </a>
-<a class="sourceLine" id="cb30-22" title="22">          <span class="dt">height =</span> <span class="fl">0.98</span>, </a>
-<a class="sourceLine" id="cb30-23" title="23">          <span class="dt">gp =</span> grid<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/grid/topics/gpar">gpar</a></span>(<span class="dt">lwd =</span> <span class="fl">0.25</span>, </a>
-<a class="sourceLine" id="cb30-24" title="24">                          <span class="dt">col =</span> <span class="st">"black"</span>,</a>
-<a class="sourceLine" id="cb30-25" title="25">                          <span class="dt">fill =</span> <span class="ot">NA</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1">years_available &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(ncc, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb38-2" title="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_polygon">geom_polygon</a></span>(<span class="dt">data =</span> Aust_map, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </a>
+<a class="sourceLine" id="cb38-3" title="3">               <span class="dt">color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/gray">grey</a></span>(<span class="fl">0.7</span>),</a>
+<a class="sourceLine" id="cb38-4" title="4">               <span class="dt">fill =</span> <span class="ot">NA</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb38-5" title="5"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">color =</span> years),</a>
+<a class="sourceLine" id="cb38-6" title="6">             <span class="dt">alpha =</span> <span class="fl">0.5</span>,</a>
+<a class="sourceLine" id="cb38-7" title="7">             <span class="dt">size =</span> <span class="fl">0.05</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb38-8" title="8"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/scale_viridis">scale_colour_viridis_c</a></span>(<span class="dt">direction =</span> <span class="dv">-1</span>,</a>
+<a class="sourceLine" id="cb38-9" title="9">                         <span class="dt">option =</span> <span class="st">"A"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb38-10" title="10"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/coord_map">coord_map</a></span>(<span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="dv">45</span>, <span class="dv">-5</span>),</a>
+<a class="sourceLine" id="cb38-11" title="11">            <span class="dt">xlim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">96</span>, <span class="dv">167</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb38-12" title="12"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_map">theme_map</a></span>() <span class="op">+</span></a>
+<a class="sourceLine" id="cb38-13" title="13"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap">facet_wrap</a></span>(. <span class="op">~</span><span class="st"> </span>ncc_obs_code) <span class="op">+</span></a>
+<a class="sourceLine" id="cb38-14" title="14"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">title =</span> <span class="st">"BOM Historical Station Data Years Available"</span>,</a>
+<a class="sourceLine" id="cb38-15" title="15">       <span class="dt">subtitle =</span> <span class="st">"Australia, outlying islands and buoys (excl. Antarctic stations)"</span>,</a>
+<a class="sourceLine" id="cb38-16" title="16">       <span class="dt">caption =</span> <span class="st">"Data: Australia Bureau of Meteorology (BOM)</span><span class="ch">\n</span></a>
+<a class="sourceLine" id="cb38-17" title="17"><span class="st">     and NaturalEarthdata, http://naturalearthdata.com"</span>)</a>
+<a class="sourceLine" id="cb38-18" title="18"></a>
+<a class="sourceLine" id="cb38-19" title="19"><span class="co"># Using the gridExtra and grid packages add a neatline to the map</span></a>
+<a class="sourceLine" id="cb38-20" title="20"><span class="kw"><a href="https://www.rdocumentation.org/packages/gridExtra/topics/arrangeGrob">grid.arrange</a></span>(years_available, <span class="dt">ncol =</span> <span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb38-21" title="21"><span class="kw"><a href="https://www.rdocumentation.org/packages/grid/topics/grid.rect">grid.rect</a></span>(<span class="dt">width =</span> <span class="fl">0.98</span>, </a>
+<a class="sourceLine" id="cb38-22" title="22">          <span class="dt">height =</span> <span class="fl">0.98</span>, </a>
+<a class="sourceLine" id="cb38-23" title="23">          <span class="dt">gp =</span> grid<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/grid/topics/gpar">gpar</a></span>(<span class="dt">lwd =</span> <span class="fl">0.25</span>, </a>
+<a class="sourceLine" id="cb38-24" title="24">                          <span class="dt">col =</span> <span class="st">"black"</span>,</a>
+<a class="sourceLine" id="cb38-25" title="25">                          <span class="dt">fill =</span> <span class="ot">NA</span>))</a></code></pre></div>
 <p><img src="bomrang_files/figure-html/years_available-1.png" width="672"></p>
+</div>
 </div>
 </div>
   </div>
@@ -2406,14 +2501,18 @@ Additional marine forecast warning information (not always provided)
       <li><a href="#using-bomrang-to-retrieve-satellite-imagery">Using <em>bomrang</em> to retrieve satellite imagery</a></li>
       <li><a href="#using-caching-for-satellite-imagery">Using caching for satellite imagery</a></li>
       <li><a href="#using-bomrang-to-retrieve-radar-imagery">Using <em>bomrang</em> to retrieve radar imagery</a></li>
-      <li><a href="#references">References</a></li>
+      <li>
+<a href="#dplyr-compatibility"><code>dplyr</code> compatibility</a><ul class="nav nav-pills nav-stacked">
+<li><a href="#references">References</a></li>
       <li><a href="#appendix-1---output-from-get_current_weather">Appendix 1 - Output from <code>get_current_weather</code></a></li>
-      <li><a href="#appendix-2---output-from-get_precis_forecast">Appendix 2 - Output from <code>get_précis_forecast</code></a></li>
+      <li><a href="#appendix-2---output-from-get_precis_forecast">Appendix 2 - Output from <code>get_precis_forecast</code></a></li>
       <li><a href="#appendix-3---output-from-get_ag_bulletin">Appendix 3 - Output from <code>get_ag_bulletin</code></a></li>
       <li><a href="#appendix-4---output-from-get_weather_bulletin">Appendix 4 - Output from <code>get_weather_bulletin</code></a></li>
       <li><a href="#appendix-5---output-from-get_coastal_forecast">Appendix 5 - Output from <code>get_coastal_forecast</code></a></li>
       <li><a href="#appendix-6---map-of-station-locations">Appendix 6 - Map of station locations</a></li>
       <li><a href="#appendix-7---maps-of-historical-data-availability">Appendix 7 - Maps of historical data availability</a></li>
+      </ul>
+</li>
       </ul>
 </div>
       </div>

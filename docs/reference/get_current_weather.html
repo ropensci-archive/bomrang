@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bomrang</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -143,7 +143,7 @@
     </div>
 
     <pre class="usage"><span class='fu'>get_current_weather</span>(<span class='no'>station_name</span>, <span class='kw'>strict</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>latlon</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>raw</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>emit_latlon_msg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>as.data.table</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
+  <span class='kw'>emit_latlon_msg</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -170,29 +170,20 @@ nearest such station. (See also <code><a href='sweep_for_stations.html'>sweep_fo
 used in combination with <var>station_name</var>, with a warning.</p></td>
     </tr>
     <tr>
-      <th>raw</th>
-      <td><p>Logical. Do not convert the columns <code>data.table</code> to the
-appropriate classes. (<code>FALSE</code> by default.)</p></td>
-    </tr>
-    <tr>
       <th>emit_latlon_msg</th>
       <td><p>Logical. If <code>TRUE</code> (the default), and
 <code>latlon</code> is selected, a message is emitted before the table is returned
 indicating which station was actually used (i.e. which station was found to
 be nearest to the given coordinate).</p></td>
     </tr>
-    <tr>
-      <th>as.data.table</th>
-      <td><p>Logical. If <code>TRUE</code>, return result as a
-<code><a href='https://www.rdocumentation.org/packages/data.table/topics/data.table'>data.table</a></code>.</p></td>
-    </tr>
     </table>
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Tidy data frame of requested BOM station's current and prior 72hr data.  For
-full details of fields and units returned, see Appendix 1 in the
-<span class="pkg">bomrang</span> vignette, use <br />
+    <p>A <code>bomrang_tbl</code> object (extension of a 
+<code><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></code>)  of requested BOM station's current and prior
+ 72hr data.  For full details of fields and units returned, see Appendix 1
+ in the <span class="pkg">bomrang</span> vignette, use <br />
 <code><a href='../articles/bomrang.html'>vignette("bomrang", package = "bomrang")</a></code> to view.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
@@ -229,888 +220,85 @@ Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers: <br />
   <span class='no'>Melbourne_weather</span> <span class='kw'>&lt;-</span> <span class='fu'>get_current_weather</span>(<span class='st'>"Melbourne (Olympic Park)"</span>)
 
   <span class='co'># Get weather by latitude and longitude:</span>
-  <span class='fu'>get_current_weather</span>(<span class='kw'>latlon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(-<span class='fl'>34</span>, <span class='fl'>151</span>))</div><div class='output co'>#&gt; <span class='message'>Using station_name = 'HOLSWORTHY AERODROME AWS', at latitude = -33.9925, longitude = 150.9489 (4.78 km away).</span></div><div class='output co'>#&gt;     sort_order   wmo  full_name history_product local_date_time
-#&gt; 1            0 95761 Holsworthy        IDN60801      22/06:30am
-#&gt; 2            1 95761 Holsworthy        IDN60801      22/06:00am
-#&gt; 3            2 95761 Holsworthy        IDN60801      22/05:30am
-#&gt; 4            3 95761 Holsworthy        IDN60801      22/05:00am
-#&gt; 5            4 95761 Holsworthy        IDN60801      22/04:30am
-#&gt; 6            5 95761 Holsworthy        IDN60801      22/04:00am
-#&gt; 7            6 95761 Holsworthy        IDN60801      22/03:30am
-#&gt; 8            7 95761 Holsworthy        IDN60801      22/03:00am
-#&gt; 9            8 95761 Holsworthy        IDN60801      22/02:30am
-#&gt; 10           9 95761 Holsworthy        IDN60801      22/02:00am
-#&gt; 11          10 95761 Holsworthy        IDN60801      22/01:30am
-#&gt; 12          11 95761 Holsworthy        IDN60801      22/01:00am
-#&gt; 13          12 95761 Holsworthy        IDN60801      22/12:30am
-#&gt; 14          13 95761 Holsworthy        IDN60801      22/12:00am
-#&gt; 15          14 95761 Holsworthy        IDN60801      21/11:30pm
-#&gt; 16          15 95761 Holsworthy        IDN60801      21/11:00pm
-#&gt; 17          16 95761 Holsworthy        IDN60801      21/10:30pm
-#&gt; 18          17 95761 Holsworthy        IDN60801      21/10:00pm
-#&gt; 19          18 95761 Holsworthy        IDN60801      21/09:30pm
-#&gt; 20          19 95761 Holsworthy        IDN60801      21/09:00pm
-#&gt; 21          20 95761 Holsworthy        IDN60801      21/08:30pm
-#&gt; 22          21 95761 Holsworthy        IDN60801      21/08:00pm
-#&gt; 23          22 95761 Holsworthy        IDN60801      21/07:30pm
-#&gt; 24          23 95761 Holsworthy        IDN60801      21/07:00pm
-#&gt; 25          24 95761 Holsworthy        IDN60801      21/06:30pm
-#&gt; 26          25 95761 Holsworthy        IDN60801      21/06:00pm
-#&gt; 27          26 95761 Holsworthy        IDN60801      21/05:30pm
-#&gt; 28          27 95761 Holsworthy        IDN60801      21/05:00pm
-#&gt; 29          28 95761 Holsworthy        IDN60801      21/04:30pm
-#&gt; 30          29 95761 Holsworthy        IDN60801      21/04:00pm
-#&gt; 31          30 95761 Holsworthy        IDN60801      21/03:30pm
-#&gt; 32          31 95761 Holsworthy        IDN60801      21/03:00pm
-#&gt; 33          32 95761 Holsworthy        IDN60801      21/02:30pm
-#&gt; 34          33 95761 Holsworthy        IDN60801      21/02:00pm
-#&gt; 35          34 95761 Holsworthy        IDN60801      21/01:30pm
-#&gt; 36          35 95761 Holsworthy        IDN60801      21/01:00pm
-#&gt; 37          36 95761 Holsworthy        IDN60801      21/12:30pm
-#&gt; 38          37 95761 Holsworthy        IDN60801      21/12:00pm
-#&gt; 39          38 95761 Holsworthy        IDN60801      21/11:30am
-#&gt; 40          39 95761 Holsworthy        IDN60801      21/11:00am
-#&gt; 41          40 95761 Holsworthy        IDN60801      21/10:30am
-#&gt; 42          41 95761 Holsworthy        IDN60801      21/10:03am
-#&gt; 43          42 95761 Holsworthy        IDN60801      21/10:00am
-#&gt; 44          43 95761 Holsworthy        IDN60801      21/09:44am
-#&gt; 45          44 95761 Holsworthy        IDN60801      21/09:30am
-#&gt; 46          45 95761 Holsworthy        IDN60801      21/09:00am
-#&gt; 47          46 95761 Holsworthy        IDN60801      21/08:30am
-#&gt; 48          47 95761 Holsworthy        IDN60801      21/08:00am
-#&gt; 49          48 95761 Holsworthy        IDN60801      21/07:30am
-#&gt; 50          49 95761 Holsworthy        IDN60801      21/07:00am
-#&gt; 51          50 95761 Holsworthy        IDN60801      21/06:30am
-#&gt; 52          51 95761 Holsworthy        IDN60801      21/06:00am
-#&gt; 53          52 95761 Holsworthy        IDN60801      21/05:30am
-#&gt; 54          53 95761 Holsworthy        IDN60801      21/05:00am
-#&gt; 55          54 95761 Holsworthy        IDN60801      21/04:30am
-#&gt; 56          55 95761 Holsworthy        IDN60801      21/04:00am
-#&gt; 57          56 95761 Holsworthy        IDN60801      21/03:30am
-#&gt; 58          57 95761 Holsworthy        IDN60801      21/03:00am
-#&gt; 59          58 95761 Holsworthy        IDN60801      21/02:30am
-#&gt; 60          59 95761 Holsworthy        IDN60801      21/02:00am
-#&gt; 61          60 95761 Holsworthy        IDN60801      21/01:30am
-#&gt; 62          61 95761 Holsworthy        IDN60801      21/01:00am
-#&gt; 63          62 95761 Holsworthy        IDN60801      21/12:30am
-#&gt; 64          63 95761 Holsworthy        IDN60801      21/12:00am
-#&gt; 65          64 95761 Holsworthy        IDN60801      20/11:30pm
-#&gt; 66          65 95761 Holsworthy        IDN60801      20/11:00pm
-#&gt; 67          66 95761 Holsworthy        IDN60801      20/10:30pm
-#&gt; 68          67 95761 Holsworthy        IDN60801      20/10:00pm
-#&gt; 69          68 95761 Holsworthy        IDN60801      20/09:30pm
-#&gt; 70          69 95761 Holsworthy        IDN60801      20/09:00pm
-#&gt; 71          70 95761 Holsworthy        IDN60801      20/08:30pm
-#&gt; 72          71 95761 Holsworthy        IDN60801      20/08:00pm
-#&gt; 73          72 95761 Holsworthy        IDN60801      20/07:30pm
-#&gt; 74          73 95761 Holsworthy        IDN60801      20/07:00pm
-#&gt; 75          74 95761 Holsworthy        IDN60801      20/06:30pm
-#&gt; 76          75 95761 Holsworthy        IDN60801      20/06:00pm
-#&gt; 77          76 95761 Holsworthy        IDN60801      20/05:30pm
-#&gt; 78          77 95761 Holsworthy        IDN60801      20/05:00pm
-#&gt; 79          78 95761 Holsworthy        IDN60801      20/04:30pm
-#&gt; 80          79 95761 Holsworthy        IDN60801      20/04:00pm
-#&gt; 81          80 95761 Holsworthy        IDN60801      20/03:30pm
-#&gt; 82          81 95761 Holsworthy        IDN60801      20/03:00pm
-#&gt; 83          82 95761 Holsworthy        IDN60801      20/02:30pm
-#&gt; 84          83 95761 Holsworthy        IDN60801      20/02:00pm
-#&gt; 85          84 95761 Holsworthy        IDN60801      20/01:30pm
-#&gt; 86          85 95761 Holsworthy        IDN60801      20/01:00pm
-#&gt; 87          86 95761 Holsworthy        IDN60801      20/12:30pm
-#&gt; 88          87 95761 Holsworthy        IDN60801      20/12:00pm
-#&gt; 89          88 95761 Holsworthy        IDN60801      20/11:30am
-#&gt; 90          89 95761 Holsworthy        IDN60801      20/11:00am
-#&gt; 91          90 95761 Holsworthy        IDN60801      20/10:30am
-#&gt; 92          91 95761 Holsworthy        IDN60801      20/10:00am
-#&gt; 93          92 95761 Holsworthy        IDN60801      20/09:30am
-#&gt; 94          93 95761 Holsworthy        IDN60801      20/09:00am
-#&gt; 95          94 95761 Holsworthy        IDN60801      20/08:30am
-#&gt; 96          95 95761 Holsworthy        IDN60801      20/08:00am
-#&gt; 97          96 95761 Holsworthy        IDN60801      20/07:30am
-#&gt; 98          97 95761 Holsworthy        IDN60801      20/07:00am
-#&gt; 99          98 95761 Holsworthy        IDN60801      20/06:30am
-#&gt; 100         99 95761 Holsworthy        IDN60801      20/06:00am
-#&gt; 101        100 95761 Holsworthy        IDN60801      20/05:30am
-#&gt; 102        101 95761 Holsworthy        IDN60801      20/05:00am
-#&gt; 103        102 95761 Holsworthy        IDN60801      20/04:30am
-#&gt; 104        103 95761 Holsworthy        IDN60801      20/04:00am
-#&gt; 105        104 95761 Holsworthy        IDN60801      20/03:30am
-#&gt; 106        105 95761 Holsworthy        IDN60801      20/03:00am
-#&gt; 107        106 95761 Holsworthy        IDN60801      20/02:30am
-#&gt; 108        107 95761 Holsworthy        IDN60801      20/02:00am
-#&gt; 109        108 95761 Holsworthy        IDN60801      20/01:30am
-#&gt; 110        109 95761 Holsworthy        IDN60801      20/01:00am
-#&gt; 111        110 95761 Holsworthy        IDN60801      20/12:30am
-#&gt; 112        111 95761 Holsworthy        IDN60801      20/12:00am
-#&gt; 113        112 95761 Holsworthy        IDN60801      19/11:30pm
-#&gt; 114        113 95761 Holsworthy        IDN60801      19/11:00pm
-#&gt; 115        114 95761 Holsworthy        IDN60801      19/10:30pm
-#&gt; 116        115 95761 Holsworthy        IDN60801      19/10:00pm
-#&gt; 117        116 95761 Holsworthy        IDN60801      19/09:30pm
-#&gt; 118        117 95761 Holsworthy        IDN60801      19/09:00pm
-#&gt; 119        118 95761 Holsworthy        IDN60801      19/08:30pm
-#&gt; 120        119 95761 Holsworthy        IDN60801      19/08:00pm
-#&gt; 121        120 95761 Holsworthy        IDN60801      19/07:30pm
-#&gt; 122        121 95761 Holsworthy        IDN60801      19/07:00pm
-#&gt; 123        122 95761 Holsworthy        IDN60801      19/06:30pm
-#&gt; 124        123 95761 Holsworthy        IDN60801      19/06:00pm
-#&gt; 125        124 95761 Holsworthy        IDN60801      19/05:30pm
-#&gt; 126        125 95761 Holsworthy        IDN60801      19/05:00pm
-#&gt; 127        126 95761 Holsworthy        IDN60801      19/04:30pm
-#&gt; 128        127 95761 Holsworthy        IDN60801      19/04:00pm
-#&gt; 129        128 95761 Holsworthy        IDN60801      19/03:30pm
-#&gt; 130        129 95761 Holsworthy        IDN60801      19/03:00pm
-#&gt; 131        130 95761 Holsworthy        IDN60801      19/02:30pm
-#&gt; 132        131 95761 Holsworthy        IDN60801      19/02:00pm
-#&gt; 133        132 95761 Holsworthy        IDN60801      19/01:30pm
-#&gt; 134        133 95761 Holsworthy        IDN60801      19/01:00pm
-#&gt; 135        134 95761 Holsworthy        IDN60801      19/12:30pm
-#&gt; 136        135 95761 Holsworthy        IDN60801      19/12:00pm
-#&gt; 137        136 95761 Holsworthy        IDN60801      19/11:30am
-#&gt; 138        137 95761 Holsworthy        IDN60801      19/11:00am
-#&gt; 139        138 95761 Holsworthy        IDN60801      19/10:30am
-#&gt; 140        139 95761 Holsworthy        IDN60801      19/10:00am
-#&gt; 141        140 95761 Holsworthy        IDN60801      19/09:30am
-#&gt; 142        141 95761 Holsworthy        IDN60801      19/09:00am
-#&gt; 143        142 95761 Holsworthy        IDN60801      19/08:30am
-#&gt; 144        143 95761 Holsworthy        IDN60801      19/08:00am
-#&gt; 145        144 95761 Holsworthy        IDN60801      19/07:30am
-#&gt; 146        145 95761 Holsworthy        IDN60801      19/07:00am
-#&gt;     local_date_time_full        aifstime_utc      lat      lon apparent_t
-#&gt; 1    2019-03-22 06:30:00 2019-03-21 19:30:00 -33.9925 150.9489       17.9
-#&gt; 2    2019-03-22 06:00:00 2019-03-21 19:00:00 -33.9925 150.9489       18.2
-#&gt; 3    2019-03-22 05:30:00 2019-03-21 18:30:00 -33.9925 150.9489       18.3
-#&gt; 4    2019-03-22 05:00:00 2019-03-21 18:00:00 -33.9925 150.9489       18.0
-#&gt; 5    2019-03-22 04:30:00 2019-03-21 17:30:00 -33.9925 150.9489       18.6
-#&gt; 6    2019-03-22 04:00:00 2019-03-21 17:00:00 -33.9925 150.9489       18.3
-#&gt; 7    2019-03-22 03:30:00 2019-03-21 16:30:00 -33.9925 150.9489       18.8
-#&gt; 8    2019-03-22 03:00:00 2019-03-21 16:00:00 -33.9925 150.9489       19.1
-#&gt; 9    2019-03-22 02:30:00 2019-03-21 15:30:00 -33.9925 150.9489       19.3
-#&gt; 10   2019-03-22 02:00:00 2019-03-21 15:00:00 -33.9925 150.9489       18.9
-#&gt; 11   2019-03-22 01:30:00 2019-03-21 14:30:00 -33.9925 150.9489       18.7
-#&gt; 12   2019-03-22 01:00:00 2019-03-21 14:00:00 -33.9925 150.9489       18.7
-#&gt; 13   2019-03-22 00:30:00 2019-03-21 13:30:00 -33.9925 150.9489       20.2
-#&gt; 14   2019-03-22 00:00:00 2019-03-21 13:00:00 -33.9925 150.9489       19.7
-#&gt; 15   2019-03-21 23:30:00 2019-03-21 12:30:00 -33.9925 150.9489       20.5
-#&gt; 16   2019-03-21 23:00:00 2019-03-21 12:00:00 -33.9925 150.9489       20.7
-#&gt; 17   2019-03-21 22:30:00 2019-03-21 11:30:00 -33.9925 150.9489       20.8
-#&gt; 18   2019-03-21 22:00:00 2019-03-21 11:00:00 -33.9925 150.9489       21.4
-#&gt; 19   2019-03-21 21:30:00 2019-03-21 10:30:00 -33.9925 150.9489       21.3
-#&gt; 20   2019-03-21 21:00:00 2019-03-21 10:00:00 -33.9925 150.9489       21.8
-#&gt; 21   2019-03-21 20:30:00 2019-03-21 09:30:00 -33.9925 150.9489       22.5
-#&gt; 22   2019-03-21 20:00:00 2019-03-21 09:00:00 -33.9925 150.9489       23.2
-#&gt; 23   2019-03-21 19:30:00 2019-03-21 08:30:00 -33.9925 150.9489       22.8
-#&gt; 24   2019-03-21 19:00:00 2019-03-21 08:00:00 -33.9925 150.9489       23.3
-#&gt; 25   2019-03-21 18:30:00 2019-03-21 07:30:00 -33.9925 150.9489       23.6
-#&gt; 26   2019-03-21 18:00:00 2019-03-21 07:00:00 -33.9925 150.9489       22.5
-#&gt; 27   2019-03-21 17:30:00 2019-03-21 06:30:00 -33.9925 150.9489       22.4
-#&gt; 28   2019-03-21 17:00:00 2019-03-21 06:00:00 -33.9925 150.9489       23.9
-#&gt; 29   2019-03-21 16:30:00 2019-03-21 05:30:00 -33.9925 150.9489       24.5
-#&gt; 30   2019-03-21 16:00:00 2019-03-21 05:00:00 -33.9925 150.9489       25.3
-#&gt; 31   2019-03-21 15:30:00 2019-03-21 04:30:00 -33.9925 150.9489       24.7
-#&gt; 32   2019-03-21 15:00:00 2019-03-21 04:00:00 -33.9925 150.9489       25.8
-#&gt; 33   2019-03-21 14:30:00 2019-03-21 03:30:00 -33.9925 150.9489       25.5
-#&gt; 34   2019-03-21 14:00:00 2019-03-21 03:00:00 -33.9925 150.9489       24.7
-#&gt; 35   2019-03-21 13:30:00 2019-03-21 02:30:00 -33.9925 150.9489       24.9
-#&gt; 36   2019-03-21 13:00:00 2019-03-21 02:00:00 -33.9925 150.9489       24.8
-#&gt; 37   2019-03-21 12:30:00 2019-03-21 01:30:00 -33.9925 150.9489       25.5
-#&gt; 38   2019-03-21 12:00:00 2019-03-21 01:00:00 -33.9925 150.9489       23.9
-#&gt; 39   2019-03-21 11:30:00 2019-03-21 00:30:00 -33.9925 150.9489       23.8
-#&gt; 40   2019-03-21 11:00:00 2019-03-21 00:00:00 -33.9925 150.9489       24.5
-#&gt; 41   2019-03-21 10:30:00 2019-03-20 23:30:00 -33.9925 150.9489       24.5
-#&gt; 42   2019-03-21 10:03:00 2019-03-20 23:03:00 -33.9925 150.9489       22.8
-#&gt; 43   2019-03-21 10:00:00 2019-03-20 23:00:00 -33.9925 150.9489       22.7
-#&gt; 44   2019-03-21 09:44:00 2019-03-20 22:44:00 -33.9925 150.9489       22.3
-#&gt; 45   2019-03-21 09:30:00 2019-03-20 22:30:00 -33.9925 150.9489       21.7
-#&gt; 46   2019-03-21 09:00:00 2019-03-20 22:00:00 -33.9925 150.9489       20.8
-#&gt; 47   2019-03-21 08:30:00 2019-03-20 21:30:00 -33.9925 150.9489       20.2
-#&gt; 48   2019-03-21 08:00:00 2019-03-20 21:00:00 -33.9925 150.9489       20.0
-#&gt; 49   2019-03-21 07:30:00 2019-03-20 20:30:00 -33.9925 150.9489       19.6
-#&gt; 50   2019-03-21 07:00:00 2019-03-20 20:00:00 -33.9925 150.9489       19.3
-#&gt; 51   2019-03-21 06:30:00 2019-03-20 19:30:00 -33.9925 150.9489       19.0
-#&gt; 52   2019-03-21 06:00:00 2019-03-20 19:00:00 -33.9925 150.9489       18.6
-#&gt; 53   2019-03-21 05:30:00 2019-03-20 18:30:00 -33.9925 150.9489       18.4
-#&gt; 54   2019-03-21 05:00:00 2019-03-20 18:00:00 -33.9925 150.9489       18.2
-#&gt; 55   2019-03-21 04:30:00 2019-03-20 17:30:00 -33.9925 150.9489       18.1
-#&gt; 56   2019-03-21 04:00:00 2019-03-20 17:00:00 -33.9925 150.9489       18.3
-#&gt; 57   2019-03-21 03:30:00 2019-03-20 16:30:00 -33.9925 150.9489       18.8
-#&gt; 58   2019-03-21 03:00:00 2019-03-20 16:00:00 -33.9925 150.9489       19.0
-#&gt; 59   2019-03-21 02:30:00 2019-03-20 15:30:00 -33.9925 150.9489       19.3
-#&gt; 60   2019-03-21 02:00:00 2019-03-20 15:00:00 -33.9925 150.9489       19.7
-#&gt; 61   2019-03-21 01:30:00 2019-03-20 14:30:00 -33.9925 150.9489       19.6
-#&gt; 62   2019-03-21 01:00:00 2019-03-20 14:00:00 -33.9925 150.9489       20.1
-#&gt; 63   2019-03-21 00:30:00 2019-03-20 13:30:00 -33.9925 150.9489       19.7
-#&gt; 64   2019-03-21 00:00:00 2019-03-20 13:00:00 -33.9925 150.9489       20.3
-#&gt; 65   2019-03-20 23:30:00 2019-03-20 12:30:00 -33.9925 150.9489       20.5
-#&gt; 66   2019-03-20 23:00:00 2019-03-20 12:00:00 -33.9925 150.9489       21.1
-#&gt; 67   2019-03-20 22:30:00 2019-03-20 11:30:00 -33.9925 150.9489       21.6
-#&gt; 68   2019-03-20 22:00:00 2019-03-20 11:00:00 -33.9925 150.9489       21.6
-#&gt; 69   2019-03-20 21:30:00 2019-03-20 10:30:00 -33.9925 150.9489       22.3
-#&gt; 70   2019-03-20 21:00:00 2019-03-20 10:00:00 -33.9925 150.9489       23.2
-#&gt; 71   2019-03-20 20:30:00 2019-03-20 09:30:00 -33.9925 150.9489       23.2
-#&gt; 72   2019-03-20 20:00:00 2019-03-20 09:00:00 -33.9925 150.9489       23.6
-#&gt; 73   2019-03-20 19:30:00 2019-03-20 08:30:00 -33.9925 150.9489       24.0
-#&gt; 74   2019-03-20 19:00:00 2019-03-20 08:00:00 -33.9925 150.9489       23.4
-#&gt; 75   2019-03-20 18:30:00 2019-03-20 07:30:00 -33.9925 150.9489       23.6
-#&gt; 76   2019-03-20 18:00:00 2019-03-20 07:00:00 -33.9925 150.9489       22.8
-#&gt; 77   2019-03-20 17:30:00 2019-03-20 06:30:00 -33.9925 150.9489       22.9
-#&gt; 78   2019-03-20 17:00:00 2019-03-20 06:00:00 -33.9925 150.9489       24.2
-#&gt; 79   2019-03-20 16:30:00 2019-03-20 05:30:00 -33.9925 150.9489       23.2
-#&gt; 80   2019-03-20 16:00:00 2019-03-20 05:00:00 -33.9925 150.9489       23.8
-#&gt; 81   2019-03-20 15:30:00 2019-03-20 04:30:00 -33.9925 150.9489       24.4
-#&gt; 82   2019-03-20 15:00:00 2019-03-20 04:00:00 -33.9925 150.9489       25.1
-#&gt; 83   2019-03-20 14:30:00 2019-03-20 03:30:00 -33.9925 150.9489       24.0
-#&gt; 84   2019-03-20 14:00:00 2019-03-20 03:00:00 -33.9925 150.9489       25.2
-#&gt; 85   2019-03-20 13:30:00 2019-03-20 02:30:00 -33.9925 150.9489       24.2
-#&gt; 86   2019-03-20 13:00:00 2019-03-20 02:00:00 -33.9925 150.9489       26.3
-#&gt; 87   2019-03-20 12:30:00 2019-03-20 01:30:00 -33.9925 150.9489       25.7
-#&gt; 88   2019-03-20 12:00:00 2019-03-20 01:00:00 -33.9925 150.9489       25.3
-#&gt; 89   2019-03-20 11:30:00 2019-03-20 00:30:00 -33.9925 150.9489       24.4
-#&gt; 90   2019-03-20 11:00:00 2019-03-20 00:00:00 -33.9925 150.9489       25.1
-#&gt; 91   2019-03-20 10:30:00 2019-03-19 23:30:00 -33.9925 150.9489       24.8
-#&gt; 92   2019-03-20 10:00:00 2019-03-19 23:00:00 -33.9925 150.9489       24.3
-#&gt; 93   2019-03-20 09:30:00 2019-03-19 22:30:00 -33.9925 150.9489       22.8
-#&gt; 94   2019-03-20 09:00:00 2019-03-19 22:00:00 -33.9925 150.9489       21.4
-#&gt; 95   2019-03-20 08:30:00 2019-03-19 21:30:00 -33.9925 150.9489       19.3
-#&gt; 96   2019-03-20 08:00:00 2019-03-19 21:00:00 -33.9925 150.9489       18.2
-#&gt; 97   2019-03-20 07:30:00 2019-03-19 20:30:00 -33.9925 150.9489       18.7
-#&gt; 98   2019-03-20 07:00:00 2019-03-19 20:00:00 -33.9925 150.9489       18.5
-#&gt; 99   2019-03-20 06:30:00 2019-03-19 19:30:00 -33.9925 150.9489       18.9
-#&gt; 100  2019-03-20 06:00:00 2019-03-19 19:00:00 -33.9925 150.9489       19.6
-#&gt; 101  2019-03-20 05:30:00 2019-03-19 18:30:00 -33.9925 150.9489       19.6
-#&gt; 102  2019-03-20 05:00:00 2019-03-19 18:00:00 -33.9925 150.9489       20.4
-#&gt; 103  2019-03-20 04:30:00 2019-03-19 17:30:00 -33.9925 150.9489       20.5
-#&gt; 104  2019-03-20 04:00:00 2019-03-19 17:00:00 -33.9925 150.9489       19.9
-#&gt; 105  2019-03-20 03:30:00 2019-03-19 16:30:00 -33.9925 150.9489       20.6
-#&gt; 106  2019-03-20 03:00:00 2019-03-19 16:00:00 -33.9925 150.9489       20.1
-#&gt; 107  2019-03-20 02:30:00 2019-03-19 15:30:00 -33.9925 150.9489       19.7
-#&gt; 108  2019-03-20 02:00:00 2019-03-19 15:00:00 -33.9925 150.9489       19.8
-#&gt; 109  2019-03-20 01:30:00 2019-03-19 14:30:00 -33.9925 150.9489       19.8
-#&gt; 110  2019-03-20 01:00:00 2019-03-19 14:00:00 -33.9925 150.9489       20.1
-#&gt; 111  2019-03-20 00:30:00 2019-03-19 13:30:00 -33.9925 150.9489       20.2
-#&gt; 112  2019-03-20 00:00:00 2019-03-19 13:00:00 -33.9925 150.9489       20.6
-#&gt; 113  2019-03-19 23:30:00 2019-03-19 12:30:00 -33.9925 150.9489       20.6
-#&gt; 114  2019-03-19 23:00:00 2019-03-19 12:00:00 -33.9925 150.9489       20.8
-#&gt; 115  2019-03-19 22:30:00 2019-03-19 11:30:00 -33.9925 150.9489       20.7
-#&gt; 116  2019-03-19 22:00:00 2019-03-19 11:00:00 -33.9925 150.9489       21.0
-#&gt; 117  2019-03-19 21:30:00 2019-03-19 10:30:00 -33.9925 150.9489       21.3
-#&gt; 118  2019-03-19 21:00:00 2019-03-19 10:00:00 -33.9925 150.9489       21.4
-#&gt; 119  2019-03-19 20:30:00 2019-03-19 09:30:00 -33.9925 150.9489       21.6
-#&gt; 120  2019-03-19 20:00:00 2019-03-19 09:00:00 -33.9925 150.9489       22.4
-#&gt; 121  2019-03-19 19:30:00 2019-03-19 08:30:00 -33.9925 150.9489       21.8
-#&gt; 122  2019-03-19 19:00:00 2019-03-19 08:00:00 -33.9925 150.9489       22.9
-#&gt; 123  2019-03-19 18:30:00 2019-03-19 07:30:00 -33.9925 150.9489       23.9
-#&gt; 124  2019-03-19 18:00:00 2019-03-19 07:00:00 -33.9925 150.9489       23.1
-#&gt; 125  2019-03-19 17:30:00 2019-03-19 06:30:00 -33.9925 150.9489       23.3
-#&gt; 126  2019-03-19 17:00:00 2019-03-19 06:00:00 -33.9925 150.9489       23.0
-#&gt; 127  2019-03-19 16:30:00 2019-03-19 05:30:00 -33.9925 150.9489       23.5
-#&gt; 128  2019-03-19 16:00:00 2019-03-19 05:00:00 -33.9925 150.9489       23.2
-#&gt; 129  2019-03-19 15:30:00 2019-03-19 04:30:00 -33.9925 150.9489       23.1
-#&gt; 130  2019-03-19 15:00:00 2019-03-19 04:00:00 -33.9925 150.9489       23.1
-#&gt; 131  2019-03-19 14:30:00 2019-03-19 03:30:00 -33.9925 150.9489       23.8
-#&gt; 132  2019-03-19 14:00:00 2019-03-19 03:00:00 -33.9925 150.9489       23.7
-#&gt; 133  2019-03-19 13:30:00 2019-03-19 02:30:00 -33.9925 150.9489       24.0
-#&gt; 134  2019-03-19 13:00:00 2019-03-19 02:00:00 -33.9925 150.9489       24.9
-#&gt; 135  2019-03-19 12:30:00 2019-03-19 01:30:00 -33.9925 150.9489       23.2
-#&gt; 136  2019-03-19 12:00:00 2019-03-19 01:00:00 -33.9925 150.9489       23.8
-#&gt; 137  2019-03-19 11:30:00 2019-03-19 00:30:00 -33.9925 150.9489       23.5
-#&gt; 138  2019-03-19 11:00:00 2019-03-19 00:00:00 -33.9925 150.9489       24.6
-#&gt; 139  2019-03-19 10:30:00 2019-03-18 23:30:00 -33.9925 150.9489       23.4
-#&gt; 140  2019-03-19 10:00:00 2019-03-18 23:00:00 -33.9925 150.9489       23.1
-#&gt; 141  2019-03-19 09:30:00 2019-03-18 22:30:00 -33.9925 150.9489       22.0
-#&gt; 142  2019-03-19 09:00:00 2019-03-18 22:00:00 -33.9925 150.9489       21.8
-#&gt; 143  2019-03-19 08:30:00 2019-03-18 21:30:00 -33.9925 150.9489       19.7
-#&gt; 144  2019-03-19 08:00:00 2019-03-18 21:00:00 -33.9925 150.9489       20.1
-#&gt; 145  2019-03-19 07:30:00 2019-03-18 20:30:00 -33.9925 150.9489       19.0
-#&gt; 146  2019-03-19 07:00:00 2019-03-18 20:00:00 -33.9925 150.9489       17.4
-#&gt;             cloud cloud_base_m cloud_oktas cloud_type cloud_type_id delta_t
-#&gt; 1               -           NA          NA          -            NA     0.4
-#&gt; 2               -           NA          NA          -            NA     0.5
-#&gt; 3               -           NA          NA          -            NA     0.4
-#&gt; 4               -           NA          NA          -            NA     0.4
-#&gt; 5               -           NA          NA          -            NA     0.4
-#&gt; 6               -           NA          NA          -            NA     0.5
-#&gt; 7               -           NA          NA          -            NA     0.4
-#&gt; 8               -           NA          NA          -            NA     0.5
-#&gt; 9          Cloudy         1230           8          -            NA     0.5
-#&gt; 10              -           NA          NA          -            NA     0.4
-#&gt; 11              -           NA          NA          -            NA     0.4
-#&gt; 12              -           NA          NA          -            NA     0.6
-#&gt; 13              -           NA          NA          -            NA     0.5
-#&gt; 14              -           NA          NA          -            NA     0.7
-#&gt; 15              -           NA          NA          -            NA     0.8
-#&gt; 16              -           NA          NA          -            NA     0.9
-#&gt; 17              -           NA          NA          -            NA     1.2
-#&gt; 18              -           NA          NA          -            NA     1.4
-#&gt; 19              -           NA          NA          -            NA     1.3
-#&gt; 20              -           NA          NA          -            NA     1.4
-#&gt; 21              -           NA          NA          -            NA     1.7
-#&gt; 22              -           NA          NA          -            NA     2.2
-#&gt; 23  Partly cloudy          810           3          -            NA     2.5
-#&gt; 24  Partly cloudy         1620           3          -            NA     2.8
-#&gt; 25  Partly cloudy          750           3          -            NA     3.2
-#&gt; 26   Mostly clear         1500           2          -            NA     3.6
-#&gt; 27              -           NA          NA          -            NA     4.1
-#&gt; 28  Partly cloudy          810           3          -            NA     4.4
-#&gt; 29  Partly cloudy          810           3          -            NA     4.6
-#&gt; 30  Partly cloudy         1860           3          -            NA     4.7
-#&gt; 31  Partly cloudy         1800           5          -            NA     5.4
-#&gt; 32  Partly cloudy          600           3          -            NA     5.1
-#&gt; 33              -           NA          NA          -            NA     5.3
-#&gt; 34  Partly cloudy          870           3          -            NA     5.3
-#&gt; 35  Partly cloudy          930           3          -            NA     5.1
-#&gt; 36  Partly cloudy          930           3          -            NA     4.8
-#&gt; 37  Partly cloudy         1080           3          -            NA     4.8
-#&gt; 38  Partly cloudy          600           5          -            NA     4.0
-#&gt; 39  Partly cloudy          690           5          -            NA     3.2
-#&gt; 40  Partly cloudy          510           3          -            NA     3.3
-#&gt; 41  Partly cloudy          510           5          -            NA     1.5
-#&gt; 42  Partly cloudy         1080           3          -            NA     0.8
-#&gt; 43  Partly cloudy          480           3          -            NA     0.8
-#&gt; 44  Partly cloudy          480           3          -            NA     1.1
-#&gt; 45  Partly cloudy          510           3          -            NA     1.2
-#&gt; 46         Cloudy         1000           8          -            NA     1.4
-#&gt; 47  Partly cloudy          690           3          -            NA     1.2
-#&gt; 48  Partly cloudy          720           3          -            NA     1.2
-#&gt; 49  Partly cloudy          690           3          -            NA     1.2
-#&gt; 50  Partly cloudy          990           5          -            NA     0.9
-#&gt; 51  Partly cloudy          990           3          -            NA     0.8
-#&gt; 52         Cloudy         1000           8          -            NA     0.7
-#&gt; 53         Cloudy         1230           8          -            NA     0.6
-#&gt; 54         Cloudy         1230           8          -            NA     0.5
-#&gt; 55  Partly cloudy         1230           5          -            NA     0.5
-#&gt; 56  Partly cloudy         1230           3          -            NA     0.5
-#&gt; 57  Partly cloudy         1230           3          -            NA     0.5
-#&gt; 58  Partly cloudy         1000           3          -            NA     0.6
-#&gt; 59  Partly cloudy         1290           5          -            NA     0.5
-#&gt; 60  Partly cloudy         1230           3          -            NA     0.5
-#&gt; 61  Partly cloudy         1080           3          -            NA     0.5
-#&gt; 62  Partly cloudy         1080           5          -            NA     0.6
-#&gt; 63  Partly cloudy          960           3          -            NA     0.6
-#&gt; 64              -           NA          NA          -            NA     0.6
-#&gt; 65              -           NA          NA          -            NA     0.8
-#&gt; 66  Partly cloudy         1020           3          -            NA     0.9
-#&gt; 67  Partly cloudy          960           5          -            NA     0.9
-#&gt; 68  Partly cloudy          840           5          -            NA     0.8
-#&gt; 69  Partly cloudy          570           3          -            NA     0.9
-#&gt; 70  Partly cloudy         2500           3          -            NA     1.5
-#&gt; 71  Partly cloudy         2790           3          -            NA     1.8
-#&gt; 72  Partly cloudy         3300           5          -            NA     2.0
-#&gt; 73  Partly cloudy         1890           3          -            NA     2.3
-#&gt; 74         Cloudy         3300           8          -            NA     2.5
-#&gt; 75  Partly cloudy         3300           3          -            NA     2.8
-#&gt; 76   Mostly clear         1000           1          -            NA     3.5
-#&gt; 77  Partly cloudy         1410           3          -            NA     4.1
-#&gt; 78              -           NA          NA          -            NA     4.3
-#&gt; 79              -           NA          NA          -            NA     4.3
-#&gt; 80  Partly cloudy          720           3          -            NA     4.2
-#&gt; 81              -           NA          NA          -            NA     4.2
-#&gt; 82   Mostly clear         1500           2          -            NA     4.2
-#&gt; 83  Partly cloudy          960           3          -            NA     4.4
-#&gt; 84  Partly cloudy          960           5          -            NA     3.6
-#&gt; 85  Partly cloudy          960           5          -            NA     4.3
-#&gt; 86  Partly cloudy          900           3          -            NA     4.3
-#&gt; 87  Partly cloudy          900           3          -            NA     4.0
-#&gt; 88  Partly cloudy          600           3          -            NA     4.6
-#&gt; 89  Partly cloudy          810           3          -            NA     3.6
-#&gt; 90  Partly cloudy          750           5          -            NA     2.9
-#&gt; 91  Partly cloudy          600           5          -            NA     3.0
-#&gt; 92  Partly cloudy          600           3          -            NA     2.8
-#&gt; 93              -           NA          NA          -            NA     2.4
-#&gt; 94              -           NA          NA          -            NA     1.4
-#&gt; 95  Partly cloudy         1620           3          -            NA     0.8
-#&gt; 96              -           NA          NA          -            NA     0.5
-#&gt; 97              -           NA          NA          -            NA     0.5
-#&gt; 98  Partly cloudy         1770           3          -            NA     0.6
-#&gt; 99  Partly cloudy         1590           5          -            NA     0.5
-#&gt; 100 Partly cloudy         1000           5          -            NA     0.5
-#&gt; 101 Partly cloudy         1920           5          -            NA     0.5
-#&gt; 102 Partly cloudy         1470           3          -            NA     0.5
-#&gt; 103 Partly cloudy         1230           3          -            NA     0.4
-#&gt; 104        Cloudy         1170           8          -            NA     0.3
-#&gt; 105 Partly cloudy         1020           3          -            NA     0.3
-#&gt; 106 Mostly cloudy         1000           7          -            NA     0.3
-#&gt; 107             -           NA          NA          -            NA     0.4
-#&gt; 108             -           NA          NA          -            NA     0.5
-#&gt; 109 Partly cloudy         1920           3          -            NA     0.5
-#&gt; 110 Partly cloudy         1290           3          -            NA     0.4
-#&gt; 111 Partly cloudy         1350           3          -            NA     0.4
-#&gt; 112  Mostly clear         2500           1          -            NA     0.5
-#&gt; 113 Partly cloudy         1380           3          -            NA     0.7
-#&gt; 114 Partly cloudy         1080           3          -            NA     0.6
-#&gt; 115 Partly cloudy         1140           3          -            NA     0.7
-#&gt; 116             -           NA          NA          -            NA     0.6
-#&gt; 117 Partly cloudy         1860           3          -            NA     0.8
-#&gt; 118             -           NA          NA          -            NA     1.2
-#&gt; 119 Partly cloudy         1860           3          -            NA     2.0
-#&gt; 120 Partly cloudy         1740           3          -            NA     2.2
-#&gt; 121 Partly cloudy         1740           3          -            NA     2.2
-#&gt; 122 Partly cloudy          630           3          -            NA     2.5
-#&gt; 123 Partly cloudy          630           3          -            NA     2.8
-#&gt; 124        Cloudy          600           8          -            NA     3.1
-#&gt; 125 Partly cloudy          960           3          -            NA     4.3
-#&gt; 126 Partly cloudy          960           3          -            NA     4.6
-#&gt; 127 Partly cloudy          900           3          -            NA     4.6
-#&gt; 128 Partly cloudy          900           3          -            NA     4.4
-#&gt; 129 Partly cloudy          840           3          -            NA     4.6
-#&gt; 130        Cloudy          600           8          -            NA     4.3
-#&gt; 131 Partly cloudy          930           3          -            NA     5.1
-#&gt; 132 Partly cloudy         1110           3          -            NA     5.1
-#&gt; 133 Partly cloudy          990           3          -            NA     5.2
-#&gt; 134 Partly cloudy          930           3          -            NA     4.9
-#&gt; 135 Partly cloudy          930           3          -            NA     4.7
-#&gt; 136        Cloudy          600           8          -            NA     3.9
-#&gt; 137 Partly cloudy         1140           3          -            NA     3.1
-#&gt; 138 Partly cloudy          660           3          -            NA     2.9
-#&gt; 139 Partly cloudy          990           3          -            NA     2.7
-#&gt; 140 Partly cloudy         1140           3          -            NA     1.0
-#&gt; 141 Partly cloudy          900           3          -            NA     0.8
-#&gt; 142        Cloudy          600           8          -            NA     0.5
-#&gt; 143 Partly cloudy          840           3          -            NA     0.3
-#&gt; 144 Partly cloudy          720           5          -            NA     0.3
-#&gt; 145 Partly cloudy          990           5          -            NA     0.3
-#&gt; 146 Partly cloudy         1020           3          -            NA     0.3
-#&gt;     gust_kmh gust_kt air_temp dewpt  press press_msl press_qnh press_tend
-#&gt; 1         13       7     17.3  16.7 1017.2    1017.2    1017.5          -
-#&gt; 2         13       7     17.6  16.8 1016.8    1016.8    1017.1          -
-#&gt; 3         15       8     17.9  17.3 1016.7    1016.7    1017.0          -
-#&gt; 4         13       7     17.7  17.1 1016.8    1016.8    1017.1          -
-#&gt; 5         11       6     17.8  17.2 1016.6    1016.6    1016.9          -
-#&gt; 6         11       6     17.7  16.9 1016.5    1016.5    1016.8          -
-#&gt; 7         11       6     18.0  17.4 1016.4    1016.4    1016.7          -
-#&gt; 8          9       5     18.0  17.2 1016.5    1016.5    1016.8          -
-#&gt; 9         13       7     18.4  17.6 1016.6    1016.6    1016.9          -
-#&gt; 10        15       8     18.3  17.7 1016.9    1016.9    1017.2          -
-#&gt; 11        13       7     17.9  17.3 1017.1    1017.1    1017.4          -
-#&gt; 12         9       5     18.0  17.0 1017.1    1017.1    1017.4          -
-#&gt; 13        13       7     19.0  18.2 1017.4    1017.4    1017.7          -
-#&gt; 14        11       6     18.5  17.3 1017.6    1017.6    1017.9          -
-#&gt; 15         9       5     19.1  17.8 1017.9    1017.9    1018.2          -
-#&gt; 16         9       5     19.3  17.8 1017.8    1017.8    1018.1          -
-#&gt; 17        11       6     19.5  17.6 1017.7    1017.7    1018.0          -
-#&gt; 18        11       6     20.3  18.1 1017.7    1017.7    1018.0          -
-#&gt; 19        17       9     20.2  18.1 1017.6    1017.6    1017.9          -
-#&gt; 20        13       7     20.3  18.1 1017.4    1017.4    1017.7          -
-#&gt; 21         7       4     20.8  18.0 1017.2    1017.2    1017.5          -
-#&gt; 22         9       5     21.7  18.1 1016.5    1016.5    1016.8          -
-#&gt; 23        20      11     22.3  18.3 1016.0    1016.0    1016.3          -
-#&gt; 24        19      10     22.8  18.3 1016.1    1016.1    1016.4          -
-#&gt; 25        28      15     23.5  18.4 1015.8    1015.8    1016.1          -
-#&gt; 26        28      15     23.6  17.8 1015.4    1015.4    1015.7          -
-#&gt; 27        33      18     23.8  17.1 1015.1    1015.1    1015.4          -
-#&gt; 28        32      17     25.2  18.2 1015.0    1015.0    1015.3          -
-#&gt; 29        30      16     25.7  18.4 1015.0    1015.0    1015.3          -
-#&gt; 30        32      17     26.0  18.7 1014.9    1014.9    1015.2          -
-#&gt; 31        30      16     26.2  17.6 1015.0    1015.0    1015.3          -
-#&gt; 32        26      14     26.2  18.1 1015.1    1015.1    1015.4          -
-#&gt; 33        28      15     26.3  17.9 1015.2    1015.2    1015.5          -
-#&gt; 34        32      17     26.2  17.8 1015.3    1015.3    1015.6          -
-#&gt; 35        28      15     26.2  18.1 1015.7    1015.7    1016.0          -
-#&gt; 36        22      12     25.3  17.7 1016.1    1016.1    1016.4          -
-#&gt; 37        28      15     26.1  18.5 1016.3    1016.3    1016.6          -
-#&gt; 38        24      13     24.3  18.0 1016.6    1016.6    1016.9          -
-#&gt; 39        22      12     23.6  18.5 1016.6    1016.6    1016.9          -
-#&gt; 40        22      12     24.4  19.2 1016.6    1016.6    1016.9          -
-#&gt; 41        17       9     22.7  20.4 1016.9    1016.9    1017.2          -
-#&gt; 42         9       5     20.7  19.4 1016.9    1016.9    1017.2          -
-#&gt; 43         7       4     20.6  19.3 1016.8    1016.8    1017.1          -
-#&gt; 44         9       5     20.5  18.8 1016.9    1016.9    1017.2          -
-#&gt; 45        13       7     20.4  18.5 1016.7    1016.7    1017.0          -
-#&gt; 46        19      10     20.4  18.2 1016.2    1016.2    1016.5          -
-#&gt; 47        17       9     19.6  17.6 1015.8    1015.8    1016.1          -
-#&gt; 48        11       6     19.2  17.2 1015.8    1015.8    1016.1          -
-#&gt; 49        13       7     18.9  17.0 1015.4    1015.4    1015.7          -
-#&gt; 50        13       7     18.6  17.1 1015.0    1015.0    1015.3          -
-#&gt; 51        13       7     18.3  17.0 1014.8    1014.8    1015.1          -
-#&gt; 52        11       6     18.0  16.9 1014.6    1014.6    1014.9          -
-#&gt; 53        13       7     17.8  16.8 1014.4    1014.4    1014.7          -
-#&gt; 54        11       6     17.6  16.8 1014.2    1014.2    1014.5          -
-#&gt; 55        11       6     17.5  16.7 1014.0    1014.0    1014.2          -
-#&gt; 56        11       6     17.7  16.9 1013.9    1013.9    1014.1          -
-#&gt; 57        11       6     18.0  17.2 1014.0    1014.0    1014.2          -
-#&gt; 58        11       6     18.2  17.2 1014.2    1014.2    1014.5          -
-#&gt; 59        11       6     18.4  17.6 1014.4    1014.4    1014.7          -
-#&gt; 60         9       5     18.4  17.6 1014.6    1014.6    1014.9          -
-#&gt; 61        13       7     18.6  17.8 1014.8    1014.8    1015.1          -
-#&gt; 62        11       6     19.0  18.0 1015.2    1015.2    1015.5          -
-#&gt; 63        11       6     18.7  17.7 1015.3    1015.3    1015.6          -
-#&gt; 64         9       5     18.9  17.9 1015.3    1015.3    1015.6          -
-#&gt; 65         9       5     19.1  17.8 1015.3    1015.3    1015.6          -
-#&gt; 66         9       5     19.6  18.1 1015.3    1015.3    1015.6          -
-#&gt; 67         9       5     19.9  18.4 1015.3    1015.3    1015.6          -
-#&gt; 68         9       5     19.9  18.6 1015.3    1015.3    1015.6          -
-#&gt; 69        11       6     20.4  18.9 1015.1    1015.1    1015.4          -
-#&gt; 70         7       4     20.9  18.5 1015.1    1015.1    1015.4          -
-#&gt; 71        15       8     21.7  18.9 1014.8    1014.8    1015.1          -
-#&gt; 72        11       6     22.1  18.9 1014.4    1014.4    1014.7          -
-#&gt; 73         9       5     22.1  18.5 1014.0    1014.0    1014.2          -
-#&gt; 74        15       8     22.5  18.5 1013.8    1013.8    1014.0          -
-#&gt; 75        13       7     22.7  18.3 1013.7    1013.7    1013.9          -
-#&gt; 76        20      11     23.3  17.7 1013.4    1013.4    1013.6          -
-#&gt; 77        26      14     24.1  17.6 1013.2    1013.2    1013.4          -
-#&gt; 78        26      14     25.1  18.3 1012.8    1012.8    1013.0          -
-#&gt; 79        30      16     24.9  18.1 1012.8    1012.8    1013.0          -
-#&gt; 80        30      16     25.0  18.4 1012.9    1012.9    1013.1          -
-#&gt; 81        26      14     25.0  18.4 1013.1    1013.1    1013.3          -
-#&gt; 82        28      15     25.5  18.9 1013.0    1013.0    1013.2          -
-#&gt; 83        24      13     24.6  17.6 1013.1    1013.1    1013.3          -
-#&gt; 84        17       9     24.2  18.6 1013.4    1013.4    1013.6          -
-#&gt; 85        26      14     24.7  17.9 1013.5    1013.5    1013.7          -
-#&gt; 86        17       9     25.1  18.3 1013.8    1013.8    1014.0          -
-#&gt; 87        17       9     24.5  18.2 1014.1    1014.1    1014.4          -
-#&gt; 88        20      11     25.3  18.0 1014.3    1014.3    1014.6          -
-#&gt; 89        24      13     23.7  17.9 1014.5    1014.5    1014.8          -
-#&gt; 90         9       5     23.3  18.8 1014.7    1014.7    1015.0          -
-#&gt; 91        13       7     23.1  18.4 1014.9    1014.9    1015.2          -
-#&gt; 92        15       8     23.0  18.5 1014.7    1014.7    1015.0          -
-#&gt; 93        15       8     22.0  18.2 1014.6    1014.6    1014.9          -
-#&gt; 94        15       8     20.5  18.3 1014.4    1014.4    1014.7          -
-#&gt; 95        13       7     18.8  17.5 1014.2    1014.2    1014.5          -
-#&gt; 96        11       6     17.6  16.8 1014.1    1014.1    1014.4          -
-#&gt; 97        11       6     17.7  16.9 1013.8    1013.8    1014.0          -
-#&gt; 98        11       6     17.9  16.9 1013.5    1013.5    1013.7          -
-#&gt; 99        11       6     18.1  17.3 1013.2    1013.2    1013.4          -
-#&gt; 100       11       6     18.3  17.5 1012.9    1012.9    1013.1          -
-#&gt; 101       11       6     18.6  17.8 1012.7    1012.7    1012.9          -
-#&gt; 102        9       5     18.9  18.1 1012.7    1012.7    1012.9          -
-#&gt; 103        9       5     18.9  18.2 1012.9    1012.9    1013.1          -
-#&gt; 104       11       6     18.7  18.2 1012.8    1012.8    1013.0          -
-#&gt; 105        7       4     18.5  18.0 1012.9    1012.9    1013.1          -
-#&gt; 106        9       5     18.6  18.1 1013.1    1013.1    1013.3          -
-#&gt; 107        9       5     18.3  17.7 1013.3    1013.3    1013.5          -
-#&gt; 108       13       7     18.7  17.9 1013.5    1013.5    1013.7          -
-#&gt; 109       13       7     19.0  18.2 1013.5    1013.5    1013.7          -
-#&gt; 110       11       6     18.9  18.2 1013.7    1013.7    1013.9          -
-#&gt; 111       11       6     19.0  18.3 1014.0    1014.0    1014.2          -
-#&gt; 112        9       5     18.9  18.1 1014.1    1014.1    1014.4          -
-#&gt; 113       11       6     19.4  18.2 1014.3    1014.3    1014.6          -
-#&gt; 114       11       6     19.5  18.5 1014.5    1014.5    1014.8          -
-#&gt; 115       11       6     19.5  18.3 1014.5    1014.5    1014.8          -
-#&gt; 116       19      10     19.6  18.6 1014.2    1014.2    1014.5          -
-#&gt; 117       11       6     19.9  18.6 1014.2    1014.2    1014.5          -
-#&gt; 118       17       9     20.2  18.3 1014.0    1014.0    1014.2          -
-#&gt; 119       19      10     21.0  17.8 1013.6    1013.6    1013.8          -
-#&gt; 120        9       5     21.1  17.5 1013.1    1013.1    1013.3          -
-#&gt; 121       17       9     21.5  17.9 1013.0    1013.0    1013.2          -
-#&gt; 122       13       7     22.1  18.1 1012.7    1012.7    1012.9          -
-#&gt; 123       11       6     22.7  18.3 1012.5    1012.5    1012.7          -
-#&gt; 124       17       9     22.8  17.9 1012.3    1012.3    1012.5          -
-#&gt; 125       26      14     24.1  17.1 1012.1    1012.1    1012.3          -
-#&gt; 126       22      12     24.0  16.5 1011.8    1011.8    1012.0          -
-#&gt; 127       26      14     24.4  16.9 1011.7    1011.7    1011.9          -
-#&gt; 128       26      14     24.3  17.3 1011.8    1011.8    1012.0          -
-#&gt; 129       28      15     24.4  16.9 1011.7    1011.7    1011.9          -
-#&gt; 130       28      15     24.2  17.2 1012.0    1012.0    1012.2          -
-#&gt; 131       30      16     25.2  16.9 1012.0    1012.0    1012.2          -
-#&gt; 132       28      15     25.0  16.7 1012.1    1012.1    1012.3          -
-#&gt; 133       28      15     25.4  17.1 1012.3    1012.3    1012.5          -
-#&gt; 134       28      15     25.7  17.9 1012.5    1012.5    1012.7          -
-#&gt; 135       30      16     24.6  17.1 1012.7    1012.7    1012.9          -
-#&gt; 136       28      15     24.0  17.7 1013.0    1013.0    1013.2          -
-#&gt; 137       20      11     23.1  18.2 1013.3    1013.3    1013.5          -
-#&gt; 138       24      13     24.0  19.5 1013.3    1013.3    1013.5          -
-#&gt; 139       20      11     22.8  18.6 1013.3    1013.3    1013.5          -
-#&gt; 140       11       6     21.2  19.7 1013.2    1013.2    1013.4          -
-#&gt; 141       13       7     20.4  19.2 1013.1    1013.1    1013.3          -
-#&gt; 142       13       7     20.1  19.3 1012.6    1012.6    1012.8          -
-#&gt; 143       11       6     18.6  18.1 1012.7    1012.7    1012.9          -
-#&gt; 144        7       4     18.2  17.7 1012.5    1012.5    1012.7          -
-#&gt; 145       13       7     18.1  17.6 1012.1    1012.1    1012.3          -
-#&gt; 146       17       9     17.5  17.0 1011.8    1011.8    1012.0          -
-#&gt;     rain_trace rel_hum sea_state swell_dir_worded swell_height swell_period
-#&gt; 1          0.6      96         -                -           NA           NA
-#&gt; 2          0.6      95         -                -           NA           NA
-#&gt; 3          0.6      96         -                -           NA           NA
-#&gt; 4          0.6      96         -                -           NA           NA
-#&gt; 5          0.6      96         -                -           NA           NA
-#&gt; 6          0.6      95         -                -           NA           NA
-#&gt; 7          0.6      96         -                -           NA           NA
-#&gt; 8          0.6      95         -                -           NA           NA
-#&gt; 9          0.6      95         -                -           NA           NA
-#&gt; 10         0.6      96         -                -           NA           NA
-#&gt; 11         0.6      96         -                -           NA           NA
-#&gt; 12         0.4      94         -                -           NA           NA
-#&gt; 13         0.4      95         -                -           NA           NA
-#&gt; 14         0.4      93         -                -           NA           NA
-#&gt; 15         0.4      92         -                -           NA           NA
-#&gt; 16         0.4      91         -                -           NA           NA
-#&gt; 17         0.4      89         -                -           NA           NA
-#&gt; 18         0.4      87         -                -           NA           NA
-#&gt; 19         0.4      88         -                -           NA           NA
-#&gt; 20         0.4      87         -                -           NA           NA
-#&gt; 21         0.4      84         -                -           NA           NA
-#&gt; 22         0.4      80         -                -           NA           NA
-#&gt; 23         0.4      78         -                -           NA           NA
-#&gt; 24         0.4      76         -                -           NA           NA
-#&gt; 25         0.4      73         -                -           NA           NA
-#&gt; 26         0.4      70         -                -           NA           NA
-#&gt; 27         0.4      66         -                -           NA           NA
-#&gt; 28         0.4      65         -                -           NA           NA
-#&gt; 29         0.4      64         -                -           NA           NA
-#&gt; 30         0.4      64         -                -           NA           NA
-#&gt; 31         0.4      59         -                -           NA           NA
-#&gt; 32         0.4      61         -                -           NA           NA
-#&gt; 33         0.4      60         -                -           NA           NA
-#&gt; 34         0.4      60         -                -           NA           NA
-#&gt; 35         0.4      61         -                -           NA           NA
-#&gt; 36         0.4      62         -                -           NA           NA
-#&gt; 37         0.4      63         -                -           NA           NA
-#&gt; 38         0.4      68         -                -           NA           NA
-#&gt; 39         0.4      73         -                -           NA           NA
-#&gt; 40         0.4      73         -                -           NA           NA
-#&gt; 41         0.4      87         -                -           NA           NA
-#&gt; 42         0.4      92         -                -           NA           NA
-#&gt; 43         0.4      92         -                -           NA           NA
-#&gt; 44         0.2      90         -                -           NA           NA
-#&gt; 45         0.0      89         -                -           NA           NA
-#&gt; 46         0.2      87         -                -           NA           NA
-#&gt; 47         0.2      88         -                -           NA           NA
-#&gt; 48         0.2      88         -                -           NA           NA
-#&gt; 49         0.2      89         -                -           NA           NA
-#&gt; 50         0.2      91         -                -           NA           NA
-#&gt; 51         0.2      92         -                -           NA           NA
-#&gt; 52         0.2      93         -                -           NA           NA
-#&gt; 53         0.2      94         -                -           NA           NA
-#&gt; 54         0.2      95         -                -           NA           NA
-#&gt; 55         0.2      95         -                -           NA           NA
-#&gt; 56         0.2      95         -                -           NA           NA
-#&gt; 57         0.2      95         -                -           NA           NA
-#&gt; 58         0.2      94         -                -           NA           NA
-#&gt; 59         0.2      95         -                -           NA           NA
-#&gt; 60         0.2      95         -                -           NA           NA
-#&gt; 61         0.2      95         -                -           NA           NA
-#&gt; 62         0.2      94         -                -           NA           NA
-#&gt; 63         0.2      94         -                -           NA           NA
-#&gt; 64         0.2      94         -                -           NA           NA
-#&gt; 65         0.2      92         -                -           NA           NA
-#&gt; 66         0.2      91         -                -           NA           NA
-#&gt; 67         0.2      91         -                -           NA           NA
-#&gt; 68         0.2      92         -                -           NA           NA
-#&gt; 69         0.2      91         -                -           NA           NA
-#&gt; 70         0.2      86         -                -           NA           NA
-#&gt; 71         0.2      84         -                -           NA           NA
-#&gt; 72         0.2      82         -                -           NA           NA
-#&gt; 73         0.2      80         -                -           NA           NA
-#&gt; 74         0.2      78         -                -           NA           NA
-#&gt; 75         0.2      76         -                -           NA           NA
-#&gt; 76         0.2      71         -                -           NA           NA
-#&gt; 77         0.2      67         -                -           NA           NA
-#&gt; 78         0.2      66         -                -           NA           NA
-#&gt; 79         0.2      66         -                -           NA           NA
-#&gt; 80         0.2      66         -                -           NA           NA
-#&gt; 81         0.2      66         -                -           NA           NA
-#&gt; 82         0.2      67         -                -           NA           NA
-#&gt; 83         0.2      65         -                -           NA           NA
-#&gt; 84         0.2      71         -                -           NA           NA
-#&gt; 85         0.2      66         -                -           NA           NA
-#&gt; 86         0.2      66         -                -           NA           NA
-#&gt; 87         0.2      68         -                -           NA           NA
-#&gt; 88         0.2      64         -                -           NA           NA
-#&gt; 89         0.2      70         -                -           NA           NA
-#&gt; 90         0.0      76         -                -           NA           NA
-#&gt; 91         0.0      75         -                -           NA           NA
-#&gt; 92         0.0      76         -                -           NA           NA
-#&gt; 93         0.0      79         -                -           NA           NA
-#&gt; 94         0.2      87         -                -           NA           NA
-#&gt; 95         0.2      92         -                -           NA           NA
-#&gt; 96         0.0      95         -                -           NA           NA
-#&gt; 97         0.0      95         -                -           NA           NA
-#&gt; 98         0.0      94         -                -           NA           NA
-#&gt; 99         0.0      95         -                -           NA           NA
-#&gt; 100        0.0      95         -                -           NA           NA
-#&gt; 101        0.0      95         -                -           NA           NA
-#&gt; 102        0.0      95         -                -           NA           NA
-#&gt; 103        0.0      96         -                -           NA           NA
-#&gt; 104        0.0      97         -                -           NA           NA
-#&gt; 105        0.0      97         -                -           NA           NA
-#&gt; 106        0.0      97         -                -           NA           NA
-#&gt; 107        0.0      96         -                -           NA           NA
-#&gt; 108        0.0      95         -                -           NA           NA
-#&gt; 109        0.0      95         -                -           NA           NA
-#&gt; 110        0.0      96         -                -           NA           NA
-#&gt; 111        0.0      96         -                -           NA           NA
-#&gt; 112        0.0      95         -                -           NA           NA
-#&gt; 113        0.0      93         -                -           NA           NA
-#&gt; 114        0.0      94         -                -           NA           NA
-#&gt; 115        0.0      93         -                -           NA           NA
-#&gt; 116        0.0      94         -                -           NA           NA
-#&gt; 117        0.0      92         -                -           NA           NA
-#&gt; 118        0.0      89         -                -           NA           NA
-#&gt; 119        0.0      82         -                -           NA           NA
-#&gt; 120        0.0      80         -                -           NA           NA
-#&gt; 121        0.0      80         -                -           NA           NA
-#&gt; 122        0.0      78         -                -           NA           NA
-#&gt; 123        0.0      76         -                -           NA           NA
-#&gt; 124        0.0      74         -                -           NA           NA
-#&gt; 125        0.0      65         -                -           NA           NA
-#&gt; 126        0.0      63         -                -           NA           NA
-#&gt; 127        0.0      63         -                -           NA           NA
-#&gt; 128        0.0      65         -                -           NA           NA
-#&gt; 129        0.0      63         -                -           NA           NA
-#&gt; 130        0.0      65         -                -           NA           NA
-#&gt; 131        0.0      60         -                -           NA           NA
-#&gt; 132        0.0      60         -                -           NA           NA
-#&gt; 133        0.0      60         -                -           NA           NA
-#&gt; 134        0.0      62         -                -           NA           NA
-#&gt; 135        0.0      63         -                -           NA           NA
-#&gt; 136        0.0      68         -                -           NA           NA
-#&gt; 137        0.0      74         -                -           NA           NA
-#&gt; 138        0.0      76         -                -           NA           NA
-#&gt; 139        0.0      77         -                -           NA           NA
-#&gt; 140        0.0      91         -                -           NA           NA
-#&gt; 141        0.0      93         -                -           NA           NA
-#&gt; 142        3.2      95         -                -           NA           NA
-#&gt; 143        3.0      97         -                -           NA           NA
-#&gt; 144        3.0      97         -                -           NA           NA
-#&gt; 145        3.0      97         -                -           NA           NA
-#&gt; 146        3.0      97         -                -           NA           NA
-#&gt;     vis_km        weather wind_dir wind_spd_kmh wind_spd_kt
-#&gt; 1       10              -      WSW            9           5
-#&gt; 2       10              -       SW            9           5
-#&gt; 3       10              -       SW           11           6
-#&gt; 4       10              -      WSW           11           6
-#&gt; 5       10              -       SW            9           5
-#&gt; 6       10              -       SW            9           5
-#&gt; 7       10              -       SW            9           5
-#&gt; 8       10              -       SW            7           4
-#&gt; 9       10              -       SW            9           5
-#&gt; 10      10              -       SW           11           6
-#&gt; 11      10              -      WSW            9           5
-#&gt; 12      10              -       SW            9           5
-#&gt; 13      10              -      SSW            9           5
-#&gt; 14      10              -      SSW            7           4
-#&gt; 15      10              -      SSW            7           4
-#&gt; 16      10              -      SSW            7           4
-#&gt; 17      10              -       SW            7           4
-#&gt; 18      10              -      SSW            9           5
-#&gt; 19      10              -       SW            9           5
-#&gt; 20      10              -       SW            7           4
-#&gt; 21      10              -       SW            6           3
-#&gt; 22      10              -      SSE            7           4
-#&gt; 23      10              -       SE           13           7
-#&gt; 24      10              -       SE           13           7
-#&gt; 25      10              -       SE           15           8
-#&gt; 26      10              -      SSE           20          11
-#&gt; 27      10              -       SE           20          11
-#&gt; 28      10              -       SE           22          12
-#&gt; 29      10              -       SE           22          12
-#&gt; 30      10              -       SE           20          11
-#&gt; 31      10              -       SE           22          12
-#&gt; 32      10              -       SE           17           9
-#&gt; 33      10              -       SE           19          10
-#&gt; 34      10              -       SE           22          12
-#&gt; 35      10              -       SE           22          12
-#&gt; 36      10              -      SSE           17           9
-#&gt; 37      10              -       SE           19          10
-#&gt; 38      10              -      SSE           17           9
-#&gt; 39      10              -        S           15           8
-#&gt; 40      10              -      SSE           17           9
-#&gt; 41      10              -      SSW           11           6
-#&gt; 42      10              -      WSW            7           4
-#&gt; 43      10              -      WSW            7           4
-#&gt; 44       5              -       SW            7           4
-#&gt; 45      10              -       SW            9           5
-#&gt; 46      10              -       SW           13           7
-#&gt; 47      10              -      WSW           11           6
-#&gt; 48      10              -      WSW            9           5
-#&gt; 49      10              -      WSW            9           5
-#&gt; 50      10              -      WSW            9           5
-#&gt; 51      10              -       SW            9           5
-#&gt; 52      10              -      WSW            9           5
-#&gt; 53      10              -      WSW            9           5
-#&gt; 54      10              -      WSW            9           5
-#&gt; 55      10              -      WSW            9           5
-#&gt; 56      10              -      WSW            9           5
-#&gt; 57      10              -      WSW            9           5
-#&gt; 58      10              -       SW            9           5
-#&gt; 59      10              -      WSW            9           5
-#&gt; 60      10              -      WSW            7           4
-#&gt; 61      10              -       SW            9           5
-#&gt; 62      10              -       SW            9           5
-#&gt; 63      10              -       SW            9           5
-#&gt; 64      10              -      SSW            7           4
-#&gt; 65      10              -       SW            7           4
-#&gt; 66      10              -       SW            7           4
-#&gt; 67      10              -      SSW            7           4
-#&gt; 68      10              -       SW            7           4
-#&gt; 69      10              -       SW            7           4
-#&gt; 70      10              -      SSE            4           2
-#&gt; 71      10              -      SSE            9           5
-#&gt; 72      10              -      SSE            9           5
-#&gt; 73      10              -      SSE            6           3
-#&gt; 74      10              -      SSE           11           6
-#&gt; 75      10              -      SSE           11           6
-#&gt; 76      10              -       SE           17           9
-#&gt; 77      10              -       SE           20          11
-#&gt; 78      10              -      SSE           20          11
-#&gt; 79      10              -      SSE           24          13
-#&gt; 80      10              -      SSE           22          12
-#&gt; 81      10              -       SE           19          10
-#&gt; 82      10              -       SE           19          10
-#&gt; 83      10              -      SSE           17           9
-#&gt; 84      10              -       SW           11           6
-#&gt; 85      10              -       SE           17           9
-#&gt; 86      10              -      SSE            9           5
-#&gt; 87      10              -        S            9           5
-#&gt; 88      10           Rain      SSE           15           8
-#&gt; 89      10              -        S           11           6
-#&gt; 90      10              -      WSW            7           4
-#&gt; 91      10              -       SW            7           4
-#&gt; 92      10              -      WSW            9           5
-#&gt; 93      10              -       SW           11           6
-#&gt; 94      10 Recent precip.      WSW           11           6
-#&gt; 95      10              -      WSW           11           6
-#&gt; 96      10              -      WSW            9           5
-#&gt; 97      10              -      WSW            7           4
-#&gt; 98      10              -       SW            9           5
-#&gt; 99      10              -      WSW            9           5
-#&gt; 100     10              -       SW            7           4
-#&gt; 101     10              -       SW            9           5
-#&gt; 102     10              -      SSW            7           4
-#&gt; 103     10              -      SSE            7           4
-#&gt; 104     10              -      WSW            9           5
-#&gt; 105     10              -       SW            4           2
-#&gt; 106     10              -       SW            7           4
-#&gt; 107     10              -      WSW            7           4
-#&gt; 108     10              -       SW            9           5
-#&gt; 109     10              -       SW           11           6
-#&gt; 110     10              -       SW            9           5
-#&gt; 111     10              -      WSW            9           5
-#&gt; 112     10              -      WSW            6           3
-#&gt; 113     10              -       SW            9           5
-#&gt; 114     10              -       SW            9           5
-#&gt; 115     10              -       SW            9           5
-#&gt; 116     10              -       SW            9           5
-#&gt; 117     10              -       SW            9           5
-#&gt; 118     10              -      SSW            9           5
-#&gt; 119     10              -      SSW           11           6
-#&gt; 120     10              -        S            7           4
-#&gt; 121     10              -      SSE           13           7
-#&gt; 122     10              -      SSE           11           6
-#&gt; 123     10              -      SSE            9           5
-#&gt; 124     10              -      SSE           13           7
-#&gt; 125     10              -       SE           17           9
-#&gt; 126     10              -       SE           17           9
-#&gt; 127     10              -      SSE           17           9
-#&gt; 128     10              -       SE           19          10
-#&gt; 129     10              -      ESE           19          10
-#&gt; 130     10              -       SE           19          10
-#&gt; 131     10              -      SSE           20          11
-#&gt; 132     10              -       SE           19          10
-#&gt; 133     10              -       SE           20          11
-#&gt; 134     10              -       SE           19          10
-#&gt; 135     10              -       SE           20          11
-#&gt; 136     10              -        S           15           8
-#&gt; 137     10              -      SSE           13           7
-#&gt; 138     10              -      SSE           15           8
-#&gt; 139     10              -        S           13           7
-#&gt; 140     10              -      WSW            9           5
-#&gt; 141     10              -      WSW            9           5
-#&gt; 142     10        Showers      SSW            9           5
-#&gt; 143     10              -      WSW            9           5
-#&gt; 144     10              -       SW            4           2
-#&gt; 145     10              -       SW            9           5
-#&gt; 146     10              -       SW           13           7</div></pre>
+  <span class='fu'>get_current_weather</span>(<span class='kw'>latlon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(-<span class='fl'>34</span>, <span class='fl'>151</span>))</div><div class='output co'>#&gt; <span class='message'>Using station_name = 'HOLSWORTHY AERODROME AWS', at latitude = -33.9925, longitude = 150.9489 (4.78 km away).</span></div><div class='output co'>#&gt; <span style='color: #00BBBB;'>  ---- Australian Bureau of Meteorology (BOM) Data Resource ----
+#&gt;   (Original Request Parameters)
+#&gt;   Station:		HOLSWORTHY AERODROME AWS [066161] 
+#&gt;   Location:		lat: -33.9925, lon: 150.9489
+#&gt;   Measurement / Origin:	All / Current
+#&gt;   Timespan:		2012 -- 2019 [7 years]
+#&gt;   ---------------------------------------------------------------  
+#&gt; </span><span>     sort_order   wmo  full_name history_product local_date_time
+#&gt;   1:          0 95761 Holsworthy        IDN60801      22/07:00am
+#&gt;   2:          1 95761 Holsworthy        IDN60801      22/06:30am
+#&gt;   3:          2 95761 Holsworthy        IDN60801      22/06:00am
+#&gt;   4:          3 95761 Holsworthy        IDN60801      22/05:30am
+#&gt;   5:          4 95761 Holsworthy        IDN60801      22/05:00am
+#&gt;  ---                                                            
+#&gt; 142:        141 95761 Holsworthy        IDN60801      19/09:30am
+#&gt; 143:        142 95761 Holsworthy        IDN60801      19/09:00am
+#&gt; 144:        143 95761 Holsworthy        IDN60801      19/08:30am
+#&gt; 145:        144 95761 Holsworthy        IDN60801      19/08:00am
+#&gt; 146:        145 95761 Holsworthy        IDN60801      19/07:30am
+#&gt;      local_date_time_full        aifstime_utc      lat      lon apparent_t
+#&gt;   1:  2019-03-22 07:00:00 2019-03-21 20:00:00 -33.9925 150.9489       18.0
+#&gt;   2:  2019-03-22 06:30:00 2019-03-21 19:30:00 -33.9925 150.9489       17.9
+#&gt;   3:  2019-03-22 06:00:00 2019-03-21 19:00:00 -33.9925 150.9489       18.2
+#&gt;   4:  2019-03-22 05:30:00 2019-03-21 18:30:00 -33.9925 150.9489       18.3
+#&gt;   5:  2019-03-22 05:00:00 2019-03-21 18:00:00 -33.9925 150.9489       18.0
+#&gt;  ---                                                                      
+#&gt; 142:  2019-03-19 09:30:00 2019-03-18 22:30:00 -33.9925 150.9489       22.0
+#&gt; 143:  2019-03-19 09:00:00 2019-03-18 22:00:00 -33.9925 150.9489       21.8
+#&gt; 144:  2019-03-19 08:30:00 2019-03-18 21:30:00 -33.9925 150.9489       19.7
+#&gt; 145:  2019-03-19 08:00:00 2019-03-18 21:00:00 -33.9925 150.9489       20.1
+#&gt; 146:  2019-03-19 07:30:00 2019-03-18 20:30:00 -33.9925 150.9489       19.0
+#&gt;              cloud cloud_base_m cloud_oktas cloud_type cloud_type_id delta_t
+#&gt;   1:         Clear           NA           0          -            NA     0.4
+#&gt;   2:             -           NA          NA          -            NA     0.4
+#&gt;   3:             -           NA          NA          -            NA     0.5
+#&gt;   4:             -           NA          NA          -            NA     0.4
+#&gt;   5:             -           NA          NA          -            NA     0.4
+#&gt;  ---                                                                        
+#&gt; 142: Partly cloudy          900           3          -            NA     0.8
+#&gt; 143:        Cloudy          600           8          -            NA     0.5
+#&gt; 144: Partly cloudy          840           3          -            NA     0.3
+#&gt; 145: Partly cloudy          720           5          -            NA     0.3
+#&gt; 146: Partly cloudy          990           5          -            NA     0.3
+#&gt;      gust_kmh gust_kt air_temp dewpt  press press_msl press_qnh press_tend
+#&gt;   1:       11       6     17.1  16.5 1017.3    1017.3    1017.6          -
+#&gt;   2:       13       7     17.3  16.7 1017.2    1017.2    1017.5          -
+#&gt;   3:       13       7     17.6  16.8 1016.8    1016.8    1017.1          -
+#&gt;   4:       15       8     17.9  17.3 1016.7    1016.7    1017.0          -
+#&gt;   5:       13       7     17.7  17.1 1016.8    1016.8    1017.1          -
+#&gt;  ---                                                                      
+#&gt; 142:       13       7     20.4  19.2 1013.1    1013.1    1013.3          -
+#&gt; 143:       13       7     20.1  19.3 1012.6    1012.6    1012.8          -
+#&gt; 144:       11       6     18.6  18.1 1012.7    1012.7    1012.9          -
+#&gt; 145:        7       4     18.2  17.7 1012.5    1012.5    1012.7          -
+#&gt; 146:       13       7     18.1  17.6 1012.1    1012.1    1012.3          -
+#&gt;      rain_trace rel_hum sea_state swell_dir_worded swell_height swell_period
+#&gt;   1:        0.6      NA         -                -           NA           NA
+#&gt;   2:        0.6      NA         -                -           NA           NA
+#&gt;   3:        0.6      NA         -                -           NA           NA
+#&gt;   4:        0.6      NA         -                -           NA           NA
+#&gt;   5:        0.6      NA         -                -           NA           NA
+#&gt;  ---                                                                        
+#&gt; 142:        0.0      NA         -                -           NA           NA
+#&gt; 143:        3.2      NA         -                -           NA           NA
+#&gt; 144:        3.0      NA         -                -           NA           NA
+#&gt; 145:        3.0      NA         -                -           NA           NA
+#&gt; 146:        3.0      NA         -                -           NA           NA
+#&gt;      vis_km weather wind_dir wind_spd_kmh wind_spd_kt
+#&gt;   1:     10       -       SW            7           4
+#&gt;   2:     10       -      WSW            9           5
+#&gt;   3:     10       -       SW            9           5
+#&gt;   4:     10       -       SW           11           6
+#&gt;   5:     10       -      WSW           11           6
+#&gt;  ---                                                 
+#&gt; 142:     10       -      WSW            9           5
+#&gt; 143:     10 Showers      SSW            9           5
+#&gt; 144:     10       -      WSW            9           5
+#&gt; 145:     10       -       SW            4           2
+#&gt; 146:     10       -       SW            9           5</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

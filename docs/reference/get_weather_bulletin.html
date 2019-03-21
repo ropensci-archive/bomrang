@@ -72,7 +72,7 @@ tidy data frame for a specified state or territory." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bomrang</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -196,278 +196,30 @@ website. The 3pm bulletin for Queensland is, for example, <br />
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>qld_weather</span> <span class='kw'>&lt;-</span> <span class='fu'>get_weather_bulletin</span> (<span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"QLD"</span>, <span class='kw'>morning</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='no'>qld_weather</span></div><div class='output co'>#&gt;              stations cld8ths wind_dir wind_speed_kmh temp_c_dry temp_c_dew
-#&gt; 1          Coconut Is      NA      NNW             26         31         NA
-#&gt; 2             Coen Ap      NA       NE             26         25         25
-#&gt; 3             Horn Is       7       NW             33         29         25
-#&gt; 4      Lockhart River       8        N             20         26         25
-#&gt; 5         Palmerville      NA        E              9         23         23
-#&gt; 6            Scherger       8        N             20         25         24
-#&gt; 7            Weipa Ap       7      NNW             32         25         24
-#&gt; 8        Burketown AP      NA       NE             32         35         21
-#&gt; 9        Century Mine      NA      ESE             17         37         14
-#&gt; 10       Kowanyama AP       8      ESE             30         26         23
-#&gt; 11      Mornington Is       7        E             30         31         23
-#&gt; 12       Normanton AP       8      ENE             17         31         21
-#&gt; 13      Charters Twrs       8      NNE              6         28         21
-#&gt; 14      Georgetown Ap       6      ENE             22         29         20
-#&gt; 15       Hughenden Ap       4        E             17         35         15
-#&gt; 16        Richmond Ap      NA       SE             20         36         17
-#&gt; 17      Blackwater Ap      NA        N             15         33         17
-#&gt; 18           Clermont      NA      NNE              7         33         15
-#&gt; 19         Emerald Ap       2      ENE             17         33         17
-#&gt; 20         Lochington      NA      ENE              9         33         15
-#&gt; 21           Moranbah       1      ENE             13         33         17
-#&gt; 22       Rolleston Ap      NA      NNE             11         34         16
-#&gt; 23         Springsure      NA                      NA         NA         NA
-#&gt; 24         Barcaldine       5       SE             24         35         17
-#&gt; 25        Blackall Ap      NA       NE              6         37         12
-#&gt; 26           Isisford      NA                      NA         NA         NA
-#&gt; 27          Longreach       1      ESE             13         36         17
-#&gt; 28              Tambo      NA                      NA         NA         NA
-#&gt; 29             Winton      NA        E             11         37         17
-#&gt; 30          Camooweal      NA       SE             22         38         13
-#&gt; 31       Carters Bore      NA        E             15         37         13
-#&gt; 32       Cloncurry AP      NA        E             19         37         14
-#&gt; 33     Julia Creek Ap      NA        E             19         37         14
-#&gt; 34    Lake Julius AWS      NA      ESE             11         36         15
-#&gt; 35             Mt Isa       2       SE             17         36         14
-#&gt; 36      New May Downs      NA      ESE             15         36         15
-#&gt; 37    The Monument AP       1        E              9         37         14
-#&gt; 38         Trepell AP      NA        E             11         37         15
-#&gt; 39         Urandangie      NA      SSW              6         39         12
-#&gt; 40           Bedourie      NA                      NA         NA         NA
-#&gt; 41      Birdsville Ap      NA        S             19         39          2
-#&gt; 42             Boulia       6      SSE              9         38         13
-#&gt; 43    Thargomindah Ap       1        E             13         38          3
-#&gt; 44   Windorah Airport       3      ENE             13         37         12
-#&gt; 45             Bollon      NA                      NA         NA         NA
-#&gt; 46        Charleville      NA        E             13         36          4
-#&gt; 47         Cunnamulla      NA                      NA         NA         NA
-#&gt; 48             Injune      NA                      NA         NA         NA
-#&gt; 49           Mitchell      NA                      NA         NA         NA
-#&gt; 50               Roma      NA        S              9         35          5
-#&gt; 51       St George Ap      NA       NE              7         36          6
-#&gt; 52              Surat      NA                      NA         NA         NA
-#&gt; 53              Dalby      NA        W             11         33          7
-#&gt; 54              Oakey       1      ENE             15         31         14
-#&gt; 55         Stanthorpe      NA                      NA         27         15
-#&gt; 56        Applethorpe      NA        E              7         27         14
-#&gt; 57              Texas      NA                      NA         NA         NA
-#&gt; 58       Toowoomba Ap      NA        E              9         27         15
-#&gt; 59        Warwick AWS      NA      SSE             11         30         16
-#&gt; 60          Cairns Ap       8        S             19         23         21
-#&gt; 61  Cairns Racecourse       7        S             13         23         22
-#&gt; 62      Cape Flattery      NA        E             19         27         25
-#&gt; 63           Cardwell      NA                      NA         NA         NA
-#&gt; 64        Cooktown Ap       8      ESE             24         26         25
-#&gt; 65     Arlington Reef      NA        S             20         NA         NA
-#&gt; 66          Innisfail      NA                      NA         NA         NA
-#&gt; 67          Low Isles      NA      ESE             33         24         24
-#&gt; 68            Lucinda      NA       NE             20         25         21
-#&gt; 69         Mareeba Ap      NA       SE             11         22         21
-#&gt; 70    South Johnstone      NA      ENE             13         22         21
-#&gt; 71          Willis Is       7       NE             13         29         25
-#&gt; 72         Alva Beach      NA        E             17         25         23
-#&gt; 73            Ayr DPI      NA      ENE             11         24         21
-#&gt; 74       Bowen Ap AWS      NA      NNE             20         25         23
-#&gt; 75             Ingham      NA                      NA         NA         NA
-#&gt; 76         Townsville       8      WSW             11         24         23
-#&gt; 77           Woolshed      NA        N              6         22         21
-#&gt; 78        Hamilton Is       1      ESE             26         28         24
-#&gt; 79             Mackay      NA        E             13         28         23
-#&gt; 80          Mackay Ap      NA        E             17         28         23
-#&gt; 81  Mackay Racecourse      NA        E             13         29         23
-#&gt; 82    Middle Percy Is      NA      ESE             13         27         22
-#&gt; 83      Proserpine Ap       1      ESE             19         29         24
-#&gt; 84          Gladstone      NA       NE             13         29         23
-#&gt; 85       Gladstone Ap       4      ENE             17         29         22
-#&gt; 86           Heron Is      NA      ENE             11         NA         NA
-#&gt; 87        Rockhampton       1       NE             17         32         21
-#&gt; 88          Rundle Is      NA                      NA         NA         NA
-#&gt; 89        Samuel Hill      NA        E             17         31         22
-#&gt; 90        St Lawrence      NA      NNE             19         31         22
-#&gt; 91           Thangool      NA      WNW              9         34         15
-#&gt; 92            Yeppoon      NA       NE             19         29         24
-#&gt; 93          Bundaberg       1        N             19         31         21
-#&gt; 94       Double Is Pt      NA        N              7         31         24
-#&gt; 95         Gayndah Ap      NA       NE              7         34         16
-#&gt; 96             Gympie      NA      NNW              6         33         19
-#&gt; 97         Hervey Bay      NA        N             17         29         21
-#&gt; 98     Jimna Forestry      NA                      NA         NA         NA
-#&gt; 99           Kingaroy      NA        E              7         30         15
-#&gt; 100    Lady Elliot Is      NA       NE              9         30         22
-#&gt; 101       Maryborough       2      NNE             11         31         21
-#&gt; 102    Monto Township      NA                      NA         NA         NA
-#&gt; 103     Rainbow Beach      NA                      NA         NA         NA
-#&gt; 104        Sandy Cape      NA                      NA         NA         NA
-#&gt; 105 Seventeen Seventy      NA                      NA         NA         NA
-#&gt; 106       Tin Can Bay      NA      ENE             11         30         23
-#&gt; 107       Toolara AWS      NA                      NA         NA         NA
-#&gt; 108          Amberley      NA       NE             17         33         18
-#&gt; 109       Archerfield       3        E             22         29         20
-#&gt; 110    Beaudesert AWS      NA      NNE              6         31         19
-#&gt; 111        Beerburrum      NA      ENE              9         31         20
-#&gt; 112       Brisbane Ap       3        E             22         29         22
-#&gt; 113          Brisbane      NA      ENE             13         30         22
-#&gt; 114      Canungra Def      NA      ENE              9         28         22
-#&gt; 115      Cape Moreton      NA        E             17         28         22
-#&gt; 116       Coolangatta       8      ESE             26         27         21
-#&gt; 117    G Coast Seaway      NA      ESE             28         28         25
-#&gt; 118         Gatton UQ      NA      NNE             13         32         17
-#&gt; 119     Greenbank Def      NA        E             11         30         22
-#&gt; 120        Logan City       3      ESE             19         29         22
-#&gt; 121            Maleny      NA                      NA         NA         NA
-#&gt; 122           Nambour      NA      ESE              6         28         21
-#&gt; 123     Point Lookout      NA                      NA         NA         NA
-#&gt; 124         Redcliffe      NA        E             24         28         21
-#&gt; 125           Redland      NA      ESE             13         28         22
-#&gt; 126 Sunshine Coast Ap      NA       NE             17         27         21
-#&gt; 127          Tewantin      NA      NNE             15         28         23
-#&gt; 128            Sydney      NA                      NA         25         18
-#&gt; 129       Canberra Ap      NA      ENE             13         26         13
-#&gt; 130         Melbourne      NA        S              9         24         17
-#&gt; 131            Hobart      NA       SE             17         17         14
-#&gt; 132          Adelaide      NA       SE              9         27         11
-#&gt; 133          Perth Ap      NA      WSW             24         30         18
-#&gt; 134            Darwin       7        W             26         33         24
-#&gt; 135     Alice Springs      NA        E             24         37          3
-#&gt;     temp_c_max temp_c_min temp_c_gr barhpa rain_mm         weather seastate
-#&gt; 1           32         NA        NA   1003      NA                         
-#&gt; 2           27         NA        NA   1000     6.0  Recent precip.         
-#&gt; 3           29         NA        NA   1003     1.0                         
-#&gt; 4           28         NA        NA   1001     6.0                         
-#&gt; 5           24         NA        NA   1006    20.0            Rain         
-#&gt; 6           27         NA        NA    996    23.0            Rain         
-#&gt; 7           27         NA        NA    995      NA            Rain         
-#&gt; 8           36         NA        NA   1005      NA                         
-#&gt; 9           39         NA        NA   1005      NA                         
-#&gt; 10          27         NA        NA   1002     2.0                         
-#&gt; 11          33         NA        NA   1005      NA                         
-#&gt; 12          34         NA        NA   1006      NA                         
-#&gt; 13          32         NA        NA   1009     0.1                         
-#&gt; 14          30         NA        NA   1007      NA                         
-#&gt; 15          36         NA        NA   1006      NA                         
-#&gt; 16          37         NA        NA   1006      NA                         
-#&gt; 17          34         NA        NA   1010      NA                         
-#&gt; 18          34         NA        NA   1009      NA                         
-#&gt; 19          35         NA        NA   1009      NA                         
-#&gt; 20          35         NA        NA   1009      NA                         
-#&gt; 21          34         NA        NA   1009      NA                         
-#&gt; 22          35         NA        NA   1009      NA                         
-#&gt; 23          NA         NA        NA     NA      NA                         
-#&gt; 24          35         NA        NA     NA      NA                         
-#&gt; 25          37         NA        NA   1008      NA                         
-#&gt; 26          NA         NA        NA     NA      NA                         
-#&gt; 27          37         NA        NA   1007      NA                         
-#&gt; 28          NA         NA        NA     NA      NA                         
-#&gt; 29          37         NA        NA   1007      NA                         
-#&gt; 30          40         NA        NA   1004      NA                         
-#&gt; 31          38         NA        NA     NA      NA                         
-#&gt; 32          38         NA        NA   1006      NA                         
-#&gt; 33          38         NA        NA   1006      NA                         
-#&gt; 34          37         NA        NA     NA      NA                         
-#&gt; 35          38         NA        NA   1005      NA                         
-#&gt; 36          37         NA        NA     NA      NA                         
-#&gt; 37          38         NA        NA   1006      NA                         
-#&gt; 38          37         NA        NA   1006      NA                         
-#&gt; 39          NA         NA        NA   1005      NA                         
-#&gt; 40          NA         NA        NA     NA      NA                         
-#&gt; 41          41         NA        NA   1007      NA                         
-#&gt; 42          40         NA        NA   1005      NA                         
-#&gt; 43          39         NA        NA   1008      NA                         
-#&gt; 44          38         NA        NA   1008      NA                         
-#&gt; 45          NA         NA        NA     NA      NA                         
-#&gt; 46          37         NA        NA   1009      NA                         
-#&gt; 47          NA         NA        NA     NA      NA                         
-#&gt; 48          NA         NA        NA     NA      NA                         
-#&gt; 49          NA         NA        NA     NA      NA                         
-#&gt; 50          37         NA        NA   1009      NA                         
-#&gt; 51          36         NA        NA   1009      NA                         
-#&gt; 52          NA         NA        NA     NA      NA                         
-#&gt; 53          34         NA        NA   1010      NA                         
-#&gt; 54          33         NA        NA   1010      NA                         
-#&gt; 55          NA         NA        NA     NA     0.2                         
-#&gt; 56          29         NA        NA   1012      NA                         
-#&gt; 57          NA         NA        NA     NA      NA                         
-#&gt; 58          29         NA        NA   1012    26.0                         
-#&gt; 59          31         NA        NA   1011      NA                         
-#&gt; 60          27         NA        NA   1009    10.0            Rain         
-#&gt; 61          25         NA        NA     NA    10.0            Rain         
-#&gt; 62          29         NA        NA   1006     0.8  Recent precip.         
-#&gt; 63          NA         NA        NA     NA      NA                         
-#&gt; 64          27         NA        NA   1006    26.0  Recent precip.         
-#&gt; 65          NA         NA        NA   1009      NA                         
-#&gt; 66          NA         NA        NA     NA      NA                         
-#&gt; 67          27         NA        NA   1009    63.0            Rain         
-#&gt; 68          27         NA        NA   1010    11.0  Recent precip.         
-#&gt; 69          23         NA        NA   1009     6.0                         
-#&gt; 70          25         NA        NA   1011    34.0                         
-#&gt; 71          30         NA        NA   1008      NA Distant precip. SL LS NW
-#&gt; 72          30         NA        NA   1011     2.0            Rain         
-#&gt; 73          31         NA        NA     NA     3.0                         
-#&gt; 74          33         NA        NA   1011     1.0            Rain         
-#&gt; 75          NA         NA        NA     NA      NA                         
-#&gt; 76          30         NA        NA   1010    13.0            Rain         
-#&gt; 77          26         NA        NA   1010    21.0  Recent precip.         
-#&gt; 78          30         NA        NA   1010      NA                         
-#&gt; 79          29         NA        NA   1011      NA                         
-#&gt; 80          30         NA        NA   1011      NA                         
-#&gt; 81          30         NA        NA     NA      NA                         
-#&gt; 82          29         NA        NA   1012      NA                         
-#&gt; 83          31         NA        NA   1010      NA                         
-#&gt; 84          33         NA        NA   1011      NA                         
-#&gt; 85          31         NA        NA   1011      NA                         
-#&gt; 86          NA         NA        NA     NA      NA                         
-#&gt; 87          35         NA        NA   1010     0.2                         
-#&gt; 88          NA         NA        NA     NA      NA                         
-#&gt; 89          32         NA        NA   1011      NA                         
-#&gt; 90          32         NA        NA   1010      NA                         
-#&gt; 91          35         NA        NA   1010      NA                         
-#&gt; 92          30         NA        NA   1011      NA                         
-#&gt; 93          32         NA        NA   1011     1.0                         
-#&gt; 94          32         NA        NA   1011      NA                         
-#&gt; 95          NA         NA        NA   1010      NA                         
-#&gt; 96          NA         NA        NA   1010      NA                         
-#&gt; 97          NA         NA        NA   1012      NA                         
-#&gt; 98          NA         NA        NA     NA      NA                         
-#&gt; 99          NA         NA        NA   1011      NA                         
-#&gt; 100         31         NA        NA   1012      NA                         
-#&gt; 101         32         NA        NA   1011      NA                         
-#&gt; 102         NA         NA        NA     NA      NA                         
-#&gt; 103         NA         NA        NA     NA      NA                         
-#&gt; 104         NA         NA        NA     NA      NA                         
-#&gt; 105         NA         NA        NA     NA      NA                         
-#&gt; 106         31         NA        NA     NA     0.2                         
-#&gt; 107         NA         NA        NA     NA      NA                         
-#&gt; 108         33         NA        NA   1010      NA                         
-#&gt; 109         33         NA        NA   1012      NA                         
-#&gt; 110         32         NA        NA   1011      NA                         
-#&gt; 111         32         NA        NA     NA      NA                         
-#&gt; 112         30         NA        NA   1012      NA                         
-#&gt; 113         32         NA        NA   1012      NA                         
-#&gt; 114         31         NA        NA     NA      NA                         
-#&gt; 115         30         NA        NA   1012      NA                         
-#&gt; 116         30         NA        NA   1013      NA                         
-#&gt; 117         29         NA        NA   1012      NA                         
-#&gt; 118         34         NA        NA     NA      NA                         
-#&gt; 119         33         NA        NA     NA      NA                         
-#&gt; 120         31         NA        NA     NA      NA                         
-#&gt; 121         NA         NA        NA     NA      NA                         
-#&gt; 122         31         NA        NA   1012      NA                         
-#&gt; 123         NA         NA        NA     NA      NA                         
-#&gt; 124         30         NA        NA   1012      NA                         
-#&gt; 125         29         NA        NA     NA      NA                         
-#&gt; 126         30         NA        NA   1012      NA                         
-#&gt; 127         30         NA        NA   1012      NA                         
-#&gt; 128         NA         NA        NA   1015      NA                         
-#&gt; 129         NA         NA        NA   1014      NA                         
-#&gt; 130         NA         NA        NA   1015      NA                         
-#&gt; 131         NA         NA        NA   1020      NA                         
-#&gt; 132         NA         NA        NA   1014      NA                         
-#&gt; 133         NA         NA        NA   1009      NA                         
-#&gt; 134         35         NA        NA   1005      NA                         
-#&gt; 135         38         NA        NA   1008      NA                         </div></pre>
+<span class='no'>qld_weather</span></div><div class='output co'>#&gt;            stations cld8ths wind_dir wind_speed_kmh temp_c_dry temp_c_dew
+#&gt;   1:     Coconut Is      NA      NNW             26         31         NA
+#&gt;   2:        Coen Ap      NA       NE             26         25         25
+#&gt;   3:        Horn Is       7       NW             33         29         25
+#&gt;   4: Lockhart River       8        N             20         26         25
+#&gt;   5:    Palmerville      NA        E              9         23         23
+#&gt;  ---                                                                     
+#&gt; 131:         Hobart      NA       SE             17         17         14
+#&gt; 132:       Adelaide      NA       SE              9         27         11
+#&gt; 133:       Perth Ap      NA      WSW             24         30         18
+#&gt; 134:         Darwin       7        W             26         33         24
+#&gt; 135:  Alice Springs      NA        E             24         37          3
+#&gt;      temp_c_max temp_c_min temp_c_gr barhpa rain_mm        weather seastate
+#&gt;   1:         32         NA        NA   1003      NA                        
+#&gt;   2:         27         NA        NA   1000       6 Recent precip.         
+#&gt;   3:         29         NA        NA   1003       1                        
+#&gt;   4:         28         NA        NA   1001       6                        
+#&gt;   5:         24         NA        NA   1006      20           Rain         
+#&gt;  ---                                                                       
+#&gt; 131:         NA         NA        NA   1020      NA                        
+#&gt; 132:         NA         NA        NA   1014      NA                        
+#&gt; 133:         NA         NA        NA   1009      NA                        
+#&gt; 134:         35         NA        NA   1005      NA                        
+#&gt; 135:         38         NA        NA   1008      NA                        </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>

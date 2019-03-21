@@ -5,7 +5,7 @@
 \title{Get Current Weather Observations of a BOM Station}
 \usage{
 get_current_weather(station_name, strict = FALSE, latlon = NULL,
-  raw = FALSE, emit_latlon_msg = TRUE, as.data.table = FALSE)
+  emit_latlon_msg = TRUE)
 }
 \arguments{
 \item{station_name}{The name of the weather station. Fuzzy string matching
@@ -23,21 +23,16 @@ nearest station (in this package) is used, with a message indicating the
 nearest such station. (See also \code{\link{sweep_for_stations}}.) Ignored if
 used in combination with \var{station_name}, with a warning.}
 
-\item{raw}{Logical. Do not convert the columns \code{data.table} to the
-appropriate classes. (\code{FALSE} by default.)}
-
 \item{emit_latlon_msg}{Logical. If \code{TRUE} (the default), and
 \code{latlon} is selected, a message is emitted before the table is returned
 indicating which station was actually used (i.e. which station was found to
 be nearest to the given coordinate).}
-
-\item{as.data.table}{Logical. If \code{TRUE}, return result as a
-\code{\link[data.table]{data.table}}.}
 }
 \value{
-Tidy data frame of requested BOM station's current and prior 72hr data.  For
-full details of fields and units returned, see Appendix 1 in the
-\pkg{bomrang} vignette, use \cr
+A \code{bomrang_tbl} object (extension of a 
+\code{\link[base]{data.frame}})  of requested BOM station's current and prior
+ 72hr data.  For full details of fields and units returned, see Appendix 1
+ in the \pkg{bomrang} vignette, use \cr
 \code{vignette("bomrang", package = "bomrang")} to view.
 }
 \description{

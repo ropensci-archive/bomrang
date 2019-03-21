@@ -1,4 +1,5 @@
 
+
 #' Get BOM Coastal Waters Forecast
 #'
 #' Fetch the \acronym{BOM} daily Coastal Waters Forecast and return a tidy data
@@ -23,8 +24,8 @@
 #'  }
 #'
 #' @return
-#' Tidy \code{\link[base]{data.frame}} of a Australia \acronym{BOM} Coastal
-#' Waters Forecast.
+#' Tidy \code{\link[data.table]{data.table}} of a Australia \acronym{BOM}
+#' Coastal Waters Forecast.
 #'
 #' @examples
 #' \donttest{
@@ -48,21 +49,27 @@
 
 get_coastal_forecast <- function(state = "AUS") {
   the_state <- .check_states(state) # see internal_functions.R
-
+  
   # ftp server
   ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
-
+  
   # create vector of XML files
   AUS_XML <- c(
-    "IDN11001.xml", # NSW
-    "IDD11030.xml", # NT
-    "IDQ11290.xml", # QLD
-    "IDS11072.xml", # SA
-    "IDT12329.xml", # TAS
-    "IDV10200.xml", # VIC
+    "IDN11001.xml",
+    # NSW
+    "IDD11030.xml",
+    # NT
+    "IDQ11290.xml",
+    # QLD
+    "IDS11072.xml",
+    # SA
+    "IDT12329.xml",
+    # TAS
+    "IDV10200.xml",
+    # VIC
     "IDW11160.xml"  # WA
   )
-
+  
   if (the_state != "AUS") {
     xml_url <-
       dplyr::case_when(
@@ -87,102 +94,64 @@ get_coastal_forecast <- function(state = "AUS") {
   } else {
     file_list <- paste0(ftp_base, AUS_XML)
     out <- lapply(X = file_list, FUN = .parse_coastal_forecast)
-    out <- as.data.frame(data.table::rbindlist(out, fill = TRUE))
+    out <- data.table::rbindlist(out, fill = TRUE)
   }
   return(out)
 }
 
 .parse_coastal_forecast <- function(xml_url) {
   # CRAN note avoidance
-  AAC_codes <- marine_AAC_codes <- attrs <- end_time_local <- # nocov start
-    precipitation_range <- start_time_local <- values <- NULL # nocov end
-
+  AAC_codes <-
+    marine_AAC_codes <- attrs <- end_time_local <- # nocov start
+    precipitation_range <-
+    start_time_local <- values <- product_id <-
+    forecast_swell2 <- forecast_caution <- marine_forecast <-
+    state_code <-
+    tropical_system_location <- forecast_waves <- NULL # nocov end
+  
   # download the XML forecast
   xml_object <- .get_xml(xml_url)
+  out <- .parse_coastal_xml(xml_object)
   
-  areas <- xml2::xml_find_all(xml_object, ".//*[@type='coast']")
-  out <- suppressWarnings(lapply(X = areas, FUN = .parse_areas))
-  out <- as.data.frame(do.call("rbind", out))
+  # clean up and split out time cols into offset and remove extra chars
+  .split_time_cols(x = out)
   
-  out <- tidyr::spread(out, key = attrs, value = values)
+  # merge with aac codes for location information ------------------------------
+  load(system.file("extdata", "marine_AAC_codes.rda", package = "bomrang"))  # nocov
+  data.table::setkey(out, "aac")
+  out <- marine_AAC_codes[out, on = c("aac", "dist_name")]
   
-  out <- out %>%
-    janitor::clean_names(., case = "snake") %>%
-    janitor::remove_empty("cols")
-
-  out <- out %>%
-    tidyr::separate(
-      end_time_local,
-      into = c("end_time_local", "UTC_offset"),
-      sep = "\\+") %>%
-    tidyr::separate(
-      start_time_local,
-      into = c("start_time_local", "UTC_offset_drop"),
-      sep = "\\+")
+  # add state field
+  out[, state_code := gsub("_.*", "", out$aac)]
   
-  # drop the "UTC_offset_drop" column
-  out <- out[!names(out) %in% "UTC_offset_drop"]
-
-  # remove the "T" from the date/time columns
-  out[, c("start_time_local",
-          "end_time_local",
-          "start_time_utc",
-          "end_time_utc")] <-
-    apply(out[, c("start_time_local",
-                  "end_time_local",
-                  "start_time_utc",
-                  "end_time_utc")], 2, function(x)
-                    chartr("T", " ", x))
-
-  # remove the "Z" from start_time_utc
-  out[, c("start_time_utc",
-          "end_time_utc")] <-
-    apply(out[, c("start_time_utc",
-                  "end_time_utc")], 2, function(x)
-                    chartr("Z", " ", x))
-
-  # convert factors to character for left merge, otherwise funny stuff happens
-  out[, seq_len(ncol(out))] <-
-    lapply(out[, seq_len(ncol(out))], as.character)
-
-  # convert dates to POSIXct format
-  out[, c(3:4, 6:7)] <- lapply(out[, c(3:4, 6:7)],
-                               function(x)
-                                 as.POSIXct(x, origin = "1970-1-1",
-                                            format = "%Y-%m-%d %H:%M:%OS"))
-
-  # convert numeric values to numeric
-  out[, 2] <- as.numeric(out[,2])
-
-  # Load AAC code/town name list to join with final output
-  load(system.file("extdata", "marine_AAC_codes.rda", package = "bomrang")) # nocov
-
   # return final forecast object -----------------------------------------------
   
-  # merge with aac codes for location information
-  tidy_df <-
-    dplyr::left_join(out,
-                     marine_AAC_codes, by = c("aac" = "AAC")) %>% 
-    janitor::clean_names(., case = "snake")
-
   # add product ID field
-  tidy_df$product_id <- substr(basename(xml_url),
-                               1,
-                               nchar(basename(xml_url)) - 4)
+  out[, product_id := substr(basename(xml_url),
+                             1,
+                             nchar(basename(xml_url)) - 4)]
   
   # some fields only come out on special occasions, if absent, add as NA
-  if (!"forecast_swell2" %in% colnames(tidy_df)) {
-    tidy_df$forecast_swell2 <- NA
+  if (!"forecast_swell2" %in% colnames(out)) {
+    out[, forecast_swell2 := NA]
   }
   
-  if (!"forecast_caution" %in% colnames(tidy_df)) {
-    tidy_df$forecast_caution <- NA
+  if (!"forecast_caution" %in% colnames(out)) {
+    out[, forecast_caution := NA]
   }
   
-  if (!"marine_forecast" %in% colnames(tidy_df)) {
-    tidy_df$marine_forecast <- NA
+  if (!"marine_forecast" %in% colnames(out)) {
+    out[, marine_forecast := NA]
   }
-
+  
+  if (!"tropical_system_location" %in% colnames(out)) {
+    out[, tropical_system_location := NA]
+  }
+  
+  if (!"forecast_waves" %in% colnames(out)) {
+    out[, forecast_waves := NA]
+  }
+  
   # reorder columns
   refcols <- c(
     "index",
@@ -204,12 +173,131 @@ get_coastal_forecast <- function(state = "AUS") {
     "forecast_swell1",
     "forecast_swell2",
     "forecast_caution",
-    "marine_forecast"
+    "marine_forecast",
+    "tropical_system_location",
+    "forecast_waves"
   )
   
-  # create factors
-  tidy_df$index <- as.factor(tidy_df$index)
+  data.table::setcolorder(out, refcols)
   
-  tidy_df <- tidy_df[c(refcols, setdiff(names(tidy_df), refcols))]
-  return(tidy_df)
+  # set col classes ------------------------------------------------------------
+  # factors
+  out[, c(1, 11) := lapply(.SD, function(x)
+    as.factor(x)),
+    .SDcols = c(1, 11)]
+  
+  out[, c(9:10) := lapply(.SD, function(x)
+    as.POSIXct(x,
+               origin = "1970-1-1",
+               format = "%Y-%m-%d %H:%M:%OS")),
+    .SDcols = c(9:10)]
+  
+  out[, c(12:13) := lapply(.SD, function(x)
+    as.POSIXct(x,
+               origin = "1970-1-1",
+               format = "%Y-%m-%d %H:%M:%OS",
+               tz = "GMT")),
+    .SDcols = c(12:13)]
+  
+  # character
+  out[, c(6:8, 14:20) := lapply(.SD, function(x)
+    as.character(x)),
+    .SDcols = c(6:8, 14:20)]
+  
+  return(out)
+}
+
+#' extract the values of a coastal forecast item
+#'
+#' @param xml_object coastal forecast xml_object
+#'
+#' @return a data.table of the forecast for further refining
+#' @keywords internal
+#' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
+#' @noRd
+
+.parse_coastal_xml <- function(xml_object) {
+  tropical_system_location <-
+    forecast_waves <- synoptic_situation <-  # nocov start
+    preamble <- warning_summary_footer <- product_footer <-
+    postamble <- NULL  # nocov end
+  
+  # get the actual forecast objects
+  meta <- xml2::xml_find_all(xml_object, ".//text")
+  fp <- xml2::xml_find_all(xml_object, ".//forecast-period")
+  
+  locations_index <- data.table::data.table(
+    # find all the aacs
+    aac = xml2::xml_parent(meta) %>%
+      xml2::xml_find_first(".//parent::area") %>%
+      xml2::xml_attr("aac"),
+    # find the names of towns
+    dist_name = xml2::xml_parent(meta) %>%
+      xml2::xml_find_first(".//parent::area") %>%
+      xml2::xml_attr("description"),
+    # find corecast period index
+    index = xml2::xml_parent(meta) %>%
+      xml2::xml_find_first(".//parent::forecast-period") %>%
+      xml2::xml_attr("index"),
+    start_time_local = xml2::xml_parent(meta) %>%
+      xml2::xml_find_first(".//parent::forecast-period") %>%
+      xml2::xml_attr("start-time-local"),
+    end_time_local = xml2::xml_parent(meta) %>%
+      xml2::xml_find_first(".//parent::forecast-period") %>%
+      xml2::xml_attr("start-time-local"),
+    start_time_utc = xml2::xml_parent(meta) %>%
+      xml2::xml_find_first(".//parent::forecast-period") %>%
+      xml2::xml_attr("start-time-local"),
+    end_time_utc = xml2::xml_parent(meta) %>%
+      xml2::xml_find_first(".//parent::forecast-period") %>%
+      xml2::xml_attr("start-time-local")
+  )
+  
+  vals <- lapply(fp, function(node) {
+    # find names of all children nodes
+    childnodes <- node %>%
+      xml2::xml_children() %>%
+      xml2::xml_name()
+    # find the attr value from all child nodes
+    names <- node %>%
+      xml2::xml_children() %>%
+      xml2::xml_attr("type")
+    # create columns names based on either node name or attr value
+    names <- ifelse(is.na(names), childnodes, names)
+    
+    # find all values
+    values <- node %>%
+      xml2::xml_children() %>%
+      xml2::xml_text()
+    
+    # create data frame and properly label the columns
+    df <- data.frame(t(values), stringsAsFactors = FALSE)
+    names(df) <- names
+    df
+  })
+  
+  vals <- data.table::rbindlist(vals, fill = TRUE)
+  sub_out <- cbind(locations_index, vals)
+  
+  if ("synoptic_situation" %in% names(sub_out)) {
+    sub_out[, synoptic_situation := NULL]
+  }
+  
+  if ("preamble" %in% names(sub_out)) {
+    sub_out[, preamble := NULL]
+  }
+  
+  if ("warning_summary_footer" %in% names(sub_out)) {
+    sub_out[, warning_summary_footer := NULL]
+  }
+  
+  if ("product_footer" %in% names(sub_out)) {
+    sub_out[, product_footer := NULL]
+  }
+  
+  if ("postamble" %in% names(sub_out)) {
+    sub_out[, postamble := NULL]
+  }
+  
+  return(sub_out)
 }

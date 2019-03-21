@@ -7,10 +7,10 @@
 get_satellite_imagery(product_id, scans = 1, cache = FALSE)
 }
 \arguments{
-\item{product_id}{Character.  \acronym{BOM} product ID to download in GeoTIFF
-format and import as a \code{\link[raster]{stack}} object.  A vector of
-values from \code{\link{get_available_imagery}} may be used here.  Value is
-required.}
+\item{product_id}{Character.  \acronym{BOM} product ID to download in
+'GeoTIFF' format and import as a \code{\link[raster]{stack}} object.  A
+vector of values from \code{\link{get_available_imagery}} may be used here.
+Value is required.}
 
 \item{scans}{Numeric.  Number of scans to download, starting with most recent
 and progressing backwards, \emph{e.g.}, 1 - the most recent single scan
@@ -28,9 +28,9 @@ A raster stack of GeoTIFF images with layers named by \acronym{BOM} Product
 ID, timestamp and band.
 }
 \description{
-Fetch BOM satellite GeoTIFF imagery from
+Fetch  \acronym{BOM} satellite GeoTIFF imagery from
 \url{ftp://ftp.bom.gov.au/anon/gen/gms/} and return a raster
-\code{\link[raster]{stack}} object of GeoTIFF files. Files are available at
+\code{\link[raster]{stack}} object of 'GeoTIFF' files. Files are available at
 ten minute update frequency with a 24 hour delete time. Suggested to check
 file availability first by using \code{\link{get_available_imagery}}.
 }

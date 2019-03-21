@@ -72,7 +72,7 @@ frame of the forecast regions for a specified state or region." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bomrang</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -159,8 +159,8 @@ Fuzzy string matching via <code><a href='https://www.rdocumentation.org/packages
     
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>Tidy <code><a href='https://www.rdocumentation.org/packages/base/topics/data.frame'>data.frame</a></code> of a Australia <acronym>BOM</acronym> Coastal
-Waters Forecast.</p>
+    <p>Tidy <code><a href='https://www.rdocumentation.org/packages/data.table/topics/data.table'>data.table</a></code> of a Australia <acronym>BOM</acronym>
+Coastal Waters Forecast.</p>
     
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
@@ -191,181 +191,249 @@ Services <br />
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'><span class='no'>coastal_forecast</span> <span class='kw'>&lt;-</span> <span class='fu'>get_coastal_forecast</span>(<span class='kw'>state</span> <span class='kw'>=</span> <span class='st'>"NSW"</span>)
-<span class='no'>coastal_forecast</span></div><div class='output co'>#&gt;    index product_id    type state_code dist_name       pt_1_name
-#&gt; 1      0   IDN11001 Coastal        NSW      Eden Montague Island
-#&gt; 2      1   IDN11001 Coastal        NSW      Eden Montague Island
-#&gt; 3      2   IDN11001 Coastal        NSW      Eden Montague Island
-#&gt; 4      0   IDN11001 Coastal        NSW  Batemans       Ulladulla
-#&gt; 5      1   IDN11001 Coastal        NSW  Batemans       Ulladulla
-#&gt; 6      2   IDN11001 Coastal        NSW  Batemans       Ulladulla
-#&gt; 7      0   IDN11001 Coastal        NSW Illawarra    Port Hacking
-#&gt; 8      1   IDN11001 Coastal        NSW Illawarra    Port Hacking
-#&gt; 9      2   IDN11001 Coastal        NSW Illawarra    Port Hacking
-#&gt; 10     0   IDN11001 Coastal        NSW    Sydney      Broken Bay
-#&gt; 11     1   IDN11001 Coastal        NSW    Sydney      Broken Bay
-#&gt; 12     2   IDN11001 Coastal        NSW    Sydney      Broken Bay
-#&gt; 13     0   IDN11001 Coastal        NSW    Hunter      Seal Rocks
-#&gt; 14     1   IDN11001 Coastal        NSW    Hunter      Seal Rocks
-#&gt; 15     2   IDN11001 Coastal        NSW    Hunter      Seal Rocks
-#&gt; 16     0   IDN11001 Coastal        NSW Macquarie      Smoky Cape
-#&gt; 17     1   IDN11001 Coastal        NSW Macquarie      Smoky Cape
-#&gt; 18     2   IDN11001 Coastal        NSW Macquarie      Smoky Cape
-#&gt; 19     0   IDN11001 Coastal        NSW     Coffs           Wooli
-#&gt; 20     1   IDN11001 Coastal        NSW     Coffs           Wooli
-#&gt; 21     2   IDN11001 Coastal        NSW     Coffs           Wooli
-#&gt; 22     0   IDN11001 Coastal        NSW     Byron    Point Danger
-#&gt; 23     1   IDN11001 Coastal        NSW     Byron    Point Danger
-#&gt; 24     2   IDN11001 Coastal        NSW     Byron    Point Danger
-#&gt;          pt_2_name       aac    start_time_local end_time_local utc_offset
-#&gt; 1      Gabo Island NSW_MW001 2019-03-22 05:00:00     2019-03-23      11:00
-#&gt; 2      Gabo Island NSW_MW001 2019-03-23 00:00:00     2019-03-24      11:00
-#&gt; 3      Gabo Island NSW_MW001 2019-03-24 00:00:00     2019-03-25      11:00
-#&gt; 4  Montague Island NSW_MW002 2019-03-22 05:00:00     2019-03-23      11:00
-#&gt; 5  Montague Island NSW_MW002 2019-03-23 00:00:00     2019-03-24      11:00
-#&gt; 6  Montague Island NSW_MW002 2019-03-24 00:00:00     2019-03-25      11:00
-#&gt; 7        Ulladulla NSW_MW003 2019-03-22 05:00:00     2019-03-23      11:00
-#&gt; 8        Ulladulla NSW_MW003 2019-03-23 00:00:00     2019-03-24      11:00
-#&gt; 9        Ulladulla NSW_MW003 2019-03-24 00:00:00     2019-03-25      11:00
-#&gt; 10    Port Hacking NSW_MW004 2019-03-22 05:00:00     2019-03-23      11:00
-#&gt; 11    Port Hacking NSW_MW004 2019-03-23 00:00:00     2019-03-24      11:00
-#&gt; 12    Port Hacking NSW_MW004 2019-03-24 00:00:00     2019-03-25      11:00
-#&gt; 13      Broken Bay NSW_MW005 2019-03-22 05:00:00     2019-03-23      11:00
-#&gt; 14      Broken Bay NSW_MW005 2019-03-23 00:00:00     2019-03-24      11:00
-#&gt; 15      Broken Bay NSW_MW005 2019-03-24 00:00:00     2019-03-25      11:00
-#&gt; 16      Seal Rocks NSW_MW006 2019-03-22 05:00:00     2019-03-23      11:00
-#&gt; 17      Seal Rocks NSW_MW006 2019-03-23 00:00:00     2019-03-24      11:00
-#&gt; 18      Seal Rocks NSW_MW006 2019-03-24 00:00:00     2019-03-25      11:00
-#&gt; 19      Smoky Cape NSW_MW007 2019-03-22 05:00:00     2019-03-23      11:00
-#&gt; 20      Smoky Cape NSW_MW007 2019-03-23 00:00:00     2019-03-24      11:00
-#&gt; 21      Smoky Cape NSW_MW007 2019-03-24 00:00:00     2019-03-25      11:00
-#&gt; 22           Wooli NSW_MW008 2019-03-22 05:00:00     2019-03-23      11:00
-#&gt; 23           Wooli NSW_MW008 2019-03-23 00:00:00     2019-03-24      11:00
-#&gt; 24           Wooli NSW_MW008 2019-03-24 00:00:00     2019-03-25      11:00
-#&gt;         start_time_utc        end_time_utc
-#&gt; 1  2019-03-21 18:00:00 2019-03-22 13:00:00
-#&gt; 2  2019-03-22 13:00:00 2019-03-23 13:00:00
-#&gt; 3  2019-03-23 13:00:00 2019-03-24 13:00:00
-#&gt; 4  2019-03-21 18:00:00 2019-03-22 13:00:00
-#&gt; 5  2019-03-22 13:00:00 2019-03-23 13:00:00
-#&gt; 6  2019-03-23 13:00:00 2019-03-24 13:00:00
-#&gt; 7  2019-03-21 18:00:00 2019-03-22 13:00:00
-#&gt; 8  2019-03-22 13:00:00 2019-03-23 13:00:00
-#&gt; 9  2019-03-23 13:00:00 2019-03-24 13:00:00
-#&gt; 10 2019-03-21 18:00:00 2019-03-22 13:00:00
-#&gt; 11 2019-03-22 13:00:00 2019-03-23 13:00:00
-#&gt; 12 2019-03-23 13:00:00 2019-03-24 13:00:00
-#&gt; 13 2019-03-21 18:00:00 2019-03-22 13:00:00
-#&gt; 14 2019-03-22 13:00:00 2019-03-23 13:00:00
-#&gt; 15 2019-03-23 13:00:00 2019-03-24 13:00:00
-#&gt; 16 2019-03-21 18:00:00 2019-03-22 13:00:00
-#&gt; 17 2019-03-22 13:00:00 2019-03-23 13:00:00
-#&gt; 18 2019-03-23 13:00:00 2019-03-24 13:00:00
-#&gt; 19 2019-03-21 18:00:00 2019-03-22 13:00:00
-#&gt; 20 2019-03-22 13:00:00 2019-03-23 13:00:00
-#&gt; 21 2019-03-23 13:00:00 2019-03-24 13:00:00
-#&gt; 22 2019-03-21 18:00:00 2019-03-22 13:00:00
-#&gt; 23 2019-03-22 13:00:00 2019-03-23 13:00:00
-#&gt; 24 2019-03-23 13:00:00 2019-03-24 13:00:00
-#&gt;                                                                 forecast_seas
-#&gt; 1                                                              Below 1 metre.
-#&gt; 2            Below 1 metre, increasing to 1 to 1.5 metres during the morning.
-#&gt; 3                                                              1 to 2 metres.
-#&gt; 4                                                              Below 1 metre.
-#&gt; 5            Below 1 metre, increasing to 1 to 1.5 metres during the morning.
-#&gt; 6  1 to 1.5 metres, decreasing below 1 metre during the afternoon or evening.
-#&gt; 7                                                              Below 1 metre.
-#&gt; 8                 Below 1 metre, increasing to 1 to 1.5 metres around midday.
-#&gt; 9                  1 to 1.5 metres, decreasing to 1 metre during the morning.
-#&gt; 10                                                          Below 0.5 metres.
-#&gt; 11         Below 0.5 metres, increasing to around 1 metre during the morning.
-#&gt; 12                 1 to 1.5 metres, decreasing to 1 metre during the morning.
-#&gt; 13                                                          Below 0.5 metres.
-#&gt; 14         Below 0.5 metres, increasing to around 1 metre during the morning.
-#&gt; 15              1 to 1.5 metres, decreasing below 1 metre during the morning.
-#&gt; 16                                                             Below 1 metre.
-#&gt; 17                                                             Below 1 metre.
-#&gt; 18              1 to 1.5 metres, decreasing below 1 metre during the morning.
-#&gt; 19                                                             Below 1 metre.
-#&gt; 20         Below 0.5 metres, increasing to around 1 metre during the morning.
-#&gt; 21                                                           1 to 1.5 metres.
-#&gt; 22                                                          Below 0.5 metres.
-#&gt; 23              Below 0.5 metres, increasing to around 1 metre around midday.
-#&gt; 24                                                           1 to 1.5 metres.
-#&gt;                                                                                               forecast_weather
-#&gt; 1                         Partly cloudy. The chance of a thunderstorm during this afternoon and early evening.
-#&gt; 2                                    Partly cloudy. The chance of a thunderstorm in the morning and afternoon.
-#&gt; 3                                                                                               Partly cloudy.
-#&gt; 4                                                  Partly cloudy. The chance of a thunderstorm this afternoon.
-#&gt; 5                              Partly cloudy. The chance of a thunderstorm in the afternoon and early evening.
-#&gt; 6                                                                                               Partly cloudy.
-#&gt; 7                                                  Partly cloudy. The chance of a thunderstorm this afternoon.
-#&gt; 8                                    Partly cloudy. The chance of a thunderstorm in the afternoon and evening.
-#&gt; 9                                                                                               Partly cloudy.
-#&gt; 10                                                 Partly cloudy. The chance of a thunderstorm this afternoon.
-#&gt; 11                                   Partly cloudy. The chance of a thunderstorm in the afternoon and evening.
-#&gt; 12                                                                                              Partly cloudy.
-#&gt; 13                                                 Partly cloudy. The chance of a thunderstorm this afternoon.
-#&gt; 14                           Mostly sunny day. The chance of a thunderstorm in the late afternoon and evening.
-#&gt; 15                                                                                              Partly cloudy.
-#&gt; 16 Partly cloudy. 50% chance of showers. The chance of a thunderstorm during this afternoon and early evening.
-#&gt; 17                                                                 Mostly sunny. The chance of a thunderstorm.
-#&gt; 18                                                                                               Mostly sunny.
-#&gt; 19 Partly cloudy. 50% chance of showers. The chance of a thunderstorm during this afternoon and early evening.
-#&gt; 20                                   Partly cloudy. The chance of a thunderstorm in the morning and afternoon.
-#&gt; 21                                                                                               Mostly sunny.
-#&gt; 22                              Partly cloudy. The chance of a thunderstorm during this afternoon and evening.
-#&gt; 23                                   Partly cloudy. The chance of a thunderstorm in the morning and afternoon.
-#&gt; 24                                                                                               Mostly sunny.
-#&gt;                                                                                                                                                           forecast_winds
-#&gt; 1                                                                                                                                               Variable about 10 knots.
-#&gt; 2                                                                                     East to northeasterly below 10 knots tending northerly 15 to 20 knots before dawn.
-#&gt; 3        North to northwesterly 15 to 20 knots shifting southerly 10 to 15 knots in the morning, then turning northeasterly 15 to 20 knots in the afternoon and evening.
-#&gt; 4                                                                                                                                               Variable about 10 knots.
-#&gt; 5                                                                                                  Northerly about 10 knots increasing to 15 to 20 knots in the morning.
-#&gt; 6       North to northwesterly 15 to 20 knots turning south to southeasterly during the morning then tending north to northeasterly 10 to 15 knots during the afternoon.
-#&gt; 7                                                                                   South to southwesterly about 10 knots becoming east to southeasterly in the evening.
-#&gt; 8                                                                                              Variable about 10 knots becoming northerly 15 to 20 knots in the morning.
-#&gt; 9                                                               North to northwesterly 15 to 20 knots shifting south to southeasterly 10 to 15 knots during the morning.
-#&gt; 10                                                                                  South to southeasterly below 10 knots becoming east to northeasterly in the evening.
-#&gt; 11                   North to northeasterly about 10 knots increasing to 10 to 15 knots in the middle of the day. Winds reaching up to 20 knots offshore in the evening.
-#&gt; 12                              North to northwesterly 10 to 15 knots shifting south to southeasterly during the day, then tending east to northeasterly in the evening.
-#&gt; 13                                                                             South to southeasterly below 10 knots becoming east to northeasterly in the late evening.
-#&gt; 14 North to northeasterly below 10 knots increasing to 10 to 15 knots in the morning. Winds reaching up to 20 knots offshore south of Port Stephens in the late evening.
-#&gt; 15                      North to northwesterly 10 to 15 knots turning south to southeasterly during the afternoon then tending east to northeasterly during the evening.
-#&gt; 16                                                                                  South to southwesterly about 10 knots becoming east to southeasterly in the evening.
-#&gt; 17            Variable below 10 knots becoming northerly 10 to 15 knots in the morning. Winds reaching up to 20 knots offshore north of Crowdy Head in the late evening.
-#&gt; 18                                                                            North to northwesterly 15 to 20 knots tending northerly 10 to 15 knots during the evening.
-#&gt; 19                                                                        South to southwesterly below 10 knots becoming east to southeasterly in the middle of the day.
-#&gt; 20                           Variable below 10 knots becoming northerly 10 to 15 knots early in the morning. Winds reaching up to 20 knots offshore in the late evening.
-#&gt; 21                                                                                                                                             Northerly 15 to 20 knots.
-#&gt; 22                                                                                               South to southeasterly below 10 knots becoming easterly in the evening.
-#&gt; 23                                                                                             Variable below 10 knots becoming northerly 10 to 15 knots in the morning.
-#&gt; 24                                                                                                                                North to northwesterly 15 to 20 knots.
-#&gt;             forecast_swell1 forecast_swell2 forecast_caution marine_forecast
-#&gt; 1  Easterly around 1 metre.              NA               NA              NA
-#&gt; 2  Easterly around 1 metre.              NA               NA              NA
-#&gt; 3  Easterly around 1 metre.              NA               NA              NA
-#&gt; 4  Easterly around 1 metre.              NA               NA              NA
-#&gt; 5  Easterly around 1 metre.              NA               NA              NA
-#&gt; 6  Easterly around 1 metre.              NA               NA              NA
-#&gt; 7  Easterly around 1 metre.              NA               NA              NA
-#&gt; 8  Easterly around 1 metre.              NA               NA              NA
-#&gt; 9  Easterly around 1 metre.              NA               NA              NA
-#&gt; 10 Easterly around 1 metre.              NA               NA              NA
-#&gt; 11 Easterly around 1 metre.              NA               NA              NA
-#&gt; 12 Easterly around 1 metre.              NA               NA              NA
-#&gt; 13 Easterly around 1 metre.              NA               NA              NA
-#&gt; 14 Easterly around 1 metre.              NA               NA              NA
-#&gt; 15 Easterly around 1 metre.              NA               NA              NA
-#&gt; 16 Easterly around 1 metre.              NA               NA              NA
-#&gt; 17 Easterly around 1 metre.              NA               NA              NA
-#&gt; 18 Easterly around 1 metre.              NA               NA              NA
-#&gt; 19 Easterly around 1 metre.              NA               NA              NA
-#&gt; 20 Easterly around 1 metre.              NA               NA              NA
-#&gt; 21 Easterly around 1 metre.              NA               NA              NA
-#&gt; 22 Easterly around 1 metre.              NA               NA              NA
-#&gt; 23 Easterly around 1 metre.              NA               NA              NA
-#&gt; 24 Easterly around 1 metre.              NA               NA              NA</div></pre>
+<span class='no'>coastal_forecast</span></div><div class='output co'>#&gt;     index product_id type state_code
+#&gt;  1:  &lt;NA&gt;   IDN11001 &lt;NA&gt;        NSW
+#&gt;  2:     0   IDN11001 &lt;NA&gt;        NSW
+#&gt;  3:     1   IDN11001 &lt;NA&gt;        NSW
+#&gt;  4:     2   IDN11001 &lt;NA&gt;        NSW
+#&gt;  5:     0   IDN11001 &lt;NA&gt;        NSW
+#&gt;  6:     1   IDN11001 &lt;NA&gt;        NSW
+#&gt;  7:     2   IDN11001 &lt;NA&gt;        NSW
+#&gt;  8:     0   IDN11001 &lt;NA&gt;        NSW
+#&gt;  9:     1   IDN11001 &lt;NA&gt;        NSW
+#&gt; 10:     2   IDN11001 &lt;NA&gt;        NSW
+#&gt; 11:     0   IDN11001 &lt;NA&gt;        NSW
+#&gt; 12:     1   IDN11001 &lt;NA&gt;        NSW
+#&gt; 13:     2   IDN11001 &lt;NA&gt;        NSW
+#&gt; 14:     0   IDN11001 &lt;NA&gt;        NSW
+#&gt; 15:     1   IDN11001 &lt;NA&gt;        NSW
+#&gt; 16:     2   IDN11001 &lt;NA&gt;        NSW
+#&gt; 17:     0   IDN11001 &lt;NA&gt;        NSW
+#&gt; 18:     1   IDN11001 &lt;NA&gt;        NSW
+#&gt; 19:     2   IDN11001 &lt;NA&gt;        NSW
+#&gt; 20:     0   IDN11001 &lt;NA&gt;        NSW
+#&gt; 21:     1   IDN11001 &lt;NA&gt;        NSW
+#&gt; 22:     2   IDN11001 &lt;NA&gt;        NSW
+#&gt; 23:     0   IDN11001 &lt;NA&gt;        NSW
+#&gt; 24:     1   IDN11001 &lt;NA&gt;        NSW
+#&gt; 25:     2   IDN11001 &lt;NA&gt;        NSW
+#&gt;     index product_id type state_code
+#&gt;                                        dist_name pt_1_name pt_2_name       aac
+#&gt;  1:                              New South Wales      &lt;NA&gt;      &lt;NA&gt; NSW_FA001
+#&gt;  2:   Eden Coast: Montague Island to Gabo Island      &lt;NA&gt;      &lt;NA&gt; NSW_MW001
+#&gt;  3:   Eden Coast: Montague Island to Gabo Island      &lt;NA&gt;      &lt;NA&gt; NSW_MW001
+#&gt;  4:   Eden Coast: Montague Island to Gabo Island      &lt;NA&gt;      &lt;NA&gt; NSW_MW001
+#&gt;  5: Batemans Coast: Ulladulla to Montague Island      &lt;NA&gt;      &lt;NA&gt; NSW_MW002
+#&gt;  6: Batemans Coast: Ulladulla to Montague Island      &lt;NA&gt;      &lt;NA&gt; NSW_MW002
+#&gt;  7: Batemans Coast: Ulladulla to Montague Island      &lt;NA&gt;      &lt;NA&gt; NSW_MW002
+#&gt;  8:   Illawarra Coast: Port Hacking to Ulladulla      &lt;NA&gt;      &lt;NA&gt; NSW_MW003
+#&gt;  9:   Illawarra Coast: Port Hacking to Ulladulla      &lt;NA&gt;      &lt;NA&gt; NSW_MW003
+#&gt; 10:   Illawarra Coast: Port Hacking to Ulladulla      &lt;NA&gt;      &lt;NA&gt; NSW_MW003
+#&gt; 11:     Sydney Coast: Broken Bay to Port Hacking      &lt;NA&gt;      &lt;NA&gt; NSW_MW004
+#&gt; 12:     Sydney Coast: Broken Bay to Port Hacking      &lt;NA&gt;      &lt;NA&gt; NSW_MW004
+#&gt; 13:     Sydney Coast: Broken Bay to Port Hacking      &lt;NA&gt;      &lt;NA&gt; NSW_MW004
+#&gt; 14:       Hunter Coast: Seal Rocks to Broken Bay      &lt;NA&gt;      &lt;NA&gt; NSW_MW005
+#&gt; 15:       Hunter Coast: Seal Rocks to Broken Bay      &lt;NA&gt;      &lt;NA&gt; NSW_MW005
+#&gt; 16:       Hunter Coast: Seal Rocks to Broken Bay      &lt;NA&gt;      &lt;NA&gt; NSW_MW005
+#&gt; 17:    Macquarie Coast: Smoky Cape to Seal Rocks      &lt;NA&gt;      &lt;NA&gt; NSW_MW006
+#&gt; 18:    Macquarie Coast: Smoky Cape to Seal Rocks      &lt;NA&gt;      &lt;NA&gt; NSW_MW006
+#&gt; 19:    Macquarie Coast: Smoky Cape to Seal Rocks      &lt;NA&gt;      &lt;NA&gt; NSW_MW006
+#&gt; 20:             Coffs Coast: Wooli to Smoky Cape      &lt;NA&gt;      &lt;NA&gt; NSW_MW007
+#&gt; 21:             Coffs Coast: Wooli to Smoky Cape      &lt;NA&gt;      &lt;NA&gt; NSW_MW007
+#&gt; 22:             Coffs Coast: Wooli to Smoky Cape      &lt;NA&gt;      &lt;NA&gt; NSW_MW007
+#&gt; 23:           Byron Coast: Point Danger to Wooli      &lt;NA&gt;      &lt;NA&gt; NSW_MW008
+#&gt; 24:           Byron Coast: Point Danger to Wooli      &lt;NA&gt;      &lt;NA&gt; NSW_MW008
+#&gt; 25:           Byron Coast: Point Danger to Wooli      &lt;NA&gt;      &lt;NA&gt; NSW_MW008
+#&gt;                                        dist_name pt_1_name pt_2_name       aac
+#&gt;        start_time_local      end_time_local utc_offset      start_time_utc
+#&gt;  1: 2019-03-22 04:10:04 2019-03-22 04:10:04      11:00 2019-03-22 04:10:04
+#&gt;  2: 2019-03-22 05:00:00 2019-03-22 05:00:00      11:00 2019-03-22 05:00:00
+#&gt;  3: 2019-03-23 00:00:00 2019-03-23 00:00:00      11:00 2019-03-23 00:00:00
+#&gt;  4: 2019-03-24 00:00:00 2019-03-24 00:00:00      11:00 2019-03-24 00:00:00
+#&gt;  5: 2019-03-22 05:00:00 2019-03-22 05:00:00      11:00 2019-03-22 05:00:00
+#&gt;  6: 2019-03-23 00:00:00 2019-03-23 00:00:00      11:00 2019-03-23 00:00:00
+#&gt;  7: 2019-03-24 00:00:00 2019-03-24 00:00:00      11:00 2019-03-24 00:00:00
+#&gt;  8: 2019-03-22 05:00:00 2019-03-22 05:00:00      11:00 2019-03-22 05:00:00
+#&gt;  9: 2019-03-23 00:00:00 2019-03-23 00:00:00      11:00 2019-03-23 00:00:00
+#&gt; 10: 2019-03-24 00:00:00 2019-03-24 00:00:00      11:00 2019-03-24 00:00:00
+#&gt; 11: 2019-03-22 05:00:00 2019-03-22 05:00:00      11:00 2019-03-22 05:00:00
+#&gt; 12: 2019-03-23 00:00:00 2019-03-23 00:00:00      11:00 2019-03-23 00:00:00
+#&gt; 13: 2019-03-24 00:00:00 2019-03-24 00:00:00      11:00 2019-03-24 00:00:00
+#&gt; 14: 2019-03-22 05:00:00 2019-03-22 05:00:00      11:00 2019-03-22 05:00:00
+#&gt; 15: 2019-03-23 00:00:00 2019-03-23 00:00:00      11:00 2019-03-23 00:00:00
+#&gt; 16: 2019-03-24 00:00:00 2019-03-24 00:00:00      11:00 2019-03-24 00:00:00
+#&gt; 17: 2019-03-22 05:00:00 2019-03-22 05:00:00      11:00 2019-03-22 05:00:00
+#&gt; 18: 2019-03-23 00:00:00 2019-03-23 00:00:00      11:00 2019-03-23 00:00:00
+#&gt; 19: 2019-03-24 00:00:00 2019-03-24 00:00:00      11:00 2019-03-24 00:00:00
+#&gt; 20: 2019-03-22 05:00:00 2019-03-22 05:00:00      11:00 2019-03-22 05:00:00
+#&gt; 21: 2019-03-23 00:00:00 2019-03-23 00:00:00      11:00 2019-03-23 00:00:00
+#&gt; 22: 2019-03-24 00:00:00 2019-03-24 00:00:00      11:00 2019-03-24 00:00:00
+#&gt; 23: 2019-03-22 05:00:00 2019-03-22 05:00:00      11:00 2019-03-22 05:00:00
+#&gt; 24: 2019-03-23 00:00:00 2019-03-23 00:00:00      11:00 2019-03-23 00:00:00
+#&gt; 25: 2019-03-24 00:00:00 2019-03-24 00:00:00      11:00 2019-03-24 00:00:00
+#&gt;        start_time_local      end_time_local utc_offset      start_time_utc
+#&gt;            end_time_utc
+#&gt;  1: 2019-03-22 04:10:04
+#&gt;  2: 2019-03-22 05:00:00
+#&gt;  3: 2019-03-23 00:00:00
+#&gt;  4: 2019-03-24 00:00:00
+#&gt;  5: 2019-03-22 05:00:00
+#&gt;  6: 2019-03-23 00:00:00
+#&gt;  7: 2019-03-24 00:00:00
+#&gt;  8: 2019-03-22 05:00:00
+#&gt;  9: 2019-03-23 00:00:00
+#&gt; 10: 2019-03-24 00:00:00
+#&gt; 11: 2019-03-22 05:00:00
+#&gt; 12: 2019-03-23 00:00:00
+#&gt; 13: 2019-03-24 00:00:00
+#&gt; 14: 2019-03-22 05:00:00
+#&gt; 15: 2019-03-23 00:00:00
+#&gt; 16: 2019-03-24 00:00:00
+#&gt; 17: 2019-03-22 05:00:00
+#&gt; 18: 2019-03-23 00:00:00
+#&gt; 19: 2019-03-24 00:00:00
+#&gt; 20: 2019-03-22 05:00:00
+#&gt; 21: 2019-03-23 00:00:00
+#&gt; 22: 2019-03-24 00:00:00
+#&gt; 23: 2019-03-22 05:00:00
+#&gt; 24: 2019-03-23 00:00:00
+#&gt; 25: 2019-03-24 00:00:00
+#&gt;            end_time_utc
+#&gt;                                                                  forecast_seas
+#&gt;  1:                                                                       &lt;NA&gt;
+#&gt;  2:                                                             Below 1 metre.
+#&gt;  3:           Below 1 metre, increasing to 1 to 1.5 metres during the morning.
+#&gt;  4:                                                             1 to 2 metres.
+#&gt;  5:                                                             Below 1 metre.
+#&gt;  6:           Below 1 metre, increasing to 1 to 1.5 metres during the morning.
+#&gt;  7: 1 to 1.5 metres, decreasing below 1 metre during the afternoon or evening.
+#&gt;  8:                                                             Below 1 metre.
+#&gt;  9:                Below 1 metre, increasing to 1 to 1.5 metres around midday.
+#&gt; 10:                 1 to 1.5 metres, decreasing to 1 metre during the morning.
+#&gt; 11:                                                          Below 0.5 metres.
+#&gt; 12:         Below 0.5 metres, increasing to around 1 metre during the morning.
+#&gt; 13:                 1 to 1.5 metres, decreasing to 1 metre during the morning.
+#&gt; 14:                                                          Below 0.5 metres.
+#&gt; 15:         Below 0.5 metres, increasing to around 1 metre during the morning.
+#&gt; 16:              1 to 1.5 metres, decreasing below 1 metre during the morning.
+#&gt; 17:                                                             Below 1 metre.
+#&gt; 18:                                                             Below 1 metre.
+#&gt; 19:              1 to 1.5 metres, decreasing below 1 metre during the morning.
+#&gt; 20:                                                             Below 1 metre.
+#&gt; 21:         Below 0.5 metres, increasing to around 1 metre during the morning.
+#&gt; 22:                                                           1 to 1.5 metres.
+#&gt; 23:                                                          Below 0.5 metres.
+#&gt; 24:              Below 0.5 metres, increasing to around 1 metre around midday.
+#&gt; 25:                                                           1 to 1.5 metres.
+#&gt;                                                                  forecast_seas
+#&gt;                                                                                                forecast_weather
+#&gt;  1:                                                                                                        &lt;NA&gt;
+#&gt;  2:                        Partly cloudy. The chance of a thunderstorm during this afternoon and early evening.
+#&gt;  3:                                   Partly cloudy. The chance of a thunderstorm in the morning and afternoon.
+#&gt;  4:                                                                                              Partly cloudy.
+#&gt;  5:                                                 Partly cloudy. The chance of a thunderstorm this afternoon.
+#&gt;  6:                             Partly cloudy. The chance of a thunderstorm in the afternoon and early evening.
+#&gt;  7:                                                                                              Partly cloudy.
+#&gt;  8:                                                 Partly cloudy. The chance of a thunderstorm this afternoon.
+#&gt;  9:                                   Partly cloudy. The chance of a thunderstorm in the afternoon and evening.
+#&gt; 10:                                                                                              Partly cloudy.
+#&gt; 11:                                                 Partly cloudy. The chance of a thunderstorm this afternoon.
+#&gt; 12:                                   Partly cloudy. The chance of a thunderstorm in the afternoon and evening.
+#&gt; 13:                                                                                              Partly cloudy.
+#&gt; 14:                                                 Partly cloudy. The chance of a thunderstorm this afternoon.
+#&gt; 15:                           Mostly sunny day. The chance of a thunderstorm in the late afternoon and evening.
+#&gt; 16:                                                                                              Partly cloudy.
+#&gt; 17: Partly cloudy. 50% chance of showers. The chance of a thunderstorm during this afternoon and early evening.
+#&gt; 18:                                                                 Mostly sunny. The chance of a thunderstorm.
+#&gt; 19:                                                                                               Mostly sunny.
+#&gt; 20: Partly cloudy. 50% chance of showers. The chance of a thunderstorm during this afternoon and early evening.
+#&gt; 21:                                   Partly cloudy. The chance of a thunderstorm in the morning and afternoon.
+#&gt; 22:                                                                                               Mostly sunny.
+#&gt; 23:                              Partly cloudy. The chance of a thunderstorm during this afternoon and evening.
+#&gt; 24:                                   Partly cloudy. The chance of a thunderstorm in the morning and afternoon.
+#&gt; 25:                                                                                               Mostly sunny.
+#&gt;                                                                                                forecast_weather
+#&gt;                                                                                                                                                            forecast_winds
+#&gt;  1:                                                                                                                                                                  &lt;NA&gt;
+#&gt;  2:                                                                                                                                              Variable about 10 knots.
+#&gt;  3:                                                                                    East to northeasterly below 10 knots tending northerly 15 to 20 knots before dawn.
+#&gt;  4:       North to northwesterly 15 to 20 knots shifting southerly 10 to 15 knots in the morning, then turning northeasterly 15 to 20 knots in the afternoon and evening.
+#&gt;  5:                                                                                                                                              Variable about 10 knots.
+#&gt;  6:                                                                                                 Northerly about 10 knots increasing to 15 to 20 knots in the morning.
+#&gt;  7:      North to northwesterly 15 to 20 knots turning south to southeasterly during the morning then tending north to northeasterly 10 to 15 knots during the afternoon.
+#&gt;  8:                                                                                  South to southwesterly about 10 knots becoming east to southeasterly in the evening.
+#&gt;  9:                                                                                             Variable about 10 knots becoming northerly 15 to 20 knots in the morning.
+#&gt; 10:                                                              North to northwesterly 15 to 20 knots shifting south to southeasterly 10 to 15 knots during the morning.
+#&gt; 11:                                                                                  South to southeasterly below 10 knots becoming east to northeasterly in the evening.
+#&gt; 12:                   North to northeasterly about 10 knots increasing to 10 to 15 knots in the middle of the day. Winds reaching up to 20 knots offshore in the evening.
+#&gt; 13:                              North to northwesterly 10 to 15 knots shifting south to southeasterly during the day, then tending east to northeasterly in the evening.
+#&gt; 14:                                                                             South to southeasterly below 10 knots becoming east to northeasterly in the late evening.
+#&gt; 15: North to northeasterly below 10 knots increasing to 10 to 15 knots in the morning. Winds reaching up to 20 knots offshore south of Port Stephens in the late evening.
+#&gt; 16:                      North to northwesterly 10 to 15 knots turning south to southeasterly during the afternoon then tending east to northeasterly during the evening.
+#&gt; 17:                                                                                  South to southwesterly about 10 knots becoming east to southeasterly in the evening.
+#&gt; 18:            Variable below 10 knots becoming northerly 10 to 15 knots in the morning. Winds reaching up to 20 knots offshore north of Crowdy Head in the late evening.
+#&gt; 19:                                                                            North to northwesterly 15 to 20 knots tending northerly 10 to 15 knots during the evening.
+#&gt; 20:                                                                        South to southwesterly below 10 knots becoming east to southeasterly in the middle of the day.
+#&gt; 21:                           Variable below 10 knots becoming northerly 10 to 15 knots early in the morning. Winds reaching up to 20 knots offshore in the late evening.
+#&gt; 22:                                                                                                                                             Northerly 15 to 20 knots.
+#&gt; 23:                                                                                               South to southeasterly below 10 knots becoming easterly in the evening.
+#&gt; 24:                                                                                             Variable below 10 knots becoming northerly 10 to 15 knots in the morning.
+#&gt; 25:                                                                                                                                North to northwesterly 15 to 20 knots.
+#&gt;                                                                                                                                                            forecast_winds
+#&gt;              forecast_swell1 forecast_swell2 forecast_caution marine_forecast
+#&gt;  1:                     &lt;NA&gt;            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt;  2: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt;  3: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt;  4: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt;  5: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt;  6: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt;  7: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt;  8: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt;  9: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt; 10: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt; 11: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt; 12: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt; 13: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt; 14: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt; 15: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt; 16: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt; 17: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt; 18: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt; 19: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt; 20: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt; 21: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt; 22: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt; 23: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt; 24: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt; 25: Easterly around 1 metre.            &lt;NA&gt;             &lt;NA&gt;            &lt;NA&gt;
+#&gt;              forecast_swell1 forecast_swell2 forecast_caution marine_forecast
+#&gt;     tropical_system_location forecast_waves
+#&gt;  1:                       NA             NA
+#&gt;  2:                       NA             NA
+#&gt;  3:                       NA             NA
+#&gt;  4:                       NA             NA
+#&gt;  5:                       NA             NA
+#&gt;  6:                       NA             NA
+#&gt;  7:                       NA             NA
+#&gt;  8:                       NA             NA
+#&gt;  9:                       NA             NA
+#&gt; 10:                       NA             NA
+#&gt; 11:                       NA             NA
+#&gt; 12:                       NA             NA
+#&gt; 13:                       NA             NA
+#&gt; 14:                       NA             NA
+#&gt; 15:                       NA             NA
+#&gt; 16:                       NA             NA
+#&gt; 17:                       NA             NA
+#&gt; 18:                       NA             NA
+#&gt; 19:                       NA             NA
+#&gt; 20:                       NA             NA
+#&gt; 21:                       NA             NA
+#&gt; 22:                       NA             NA
+#&gt; 23:                       NA             NA
+#&gt; 24:                       NA             NA
+#&gt; 25:                       NA             NA
+#&gt;     tropical_system_location forecast_waves</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
