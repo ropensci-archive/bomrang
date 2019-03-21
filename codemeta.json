@@ -5,19 +5,19 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "bomrang",
-  "description": "Provides functions to interface with Australian Government Bureau\n    of Meteorology (BOM) data, fetching data and returning a tidy data frame of\n    précis forecasts, historical and current weather data from stations,\n    agriculture bulletin data, BOM 0900 or 1500 weather bulletins and\n    downloading and importing radar and satellite imagery files. Data (c)\n    Australian Government Bureau of Meteorology Creative Commons (CC)\n    Attribution 3.0 licence or Public Access Licence (PAL) as appropriate. See\n    <http://www.bom.gov.au/other/copyright.shtml> for further details.",
-  "name": "bomrang: Australian Government Bureau of Meteorology (BOM) Data from R",
+  "description": "Provides functions to interface with Australian Government Bureau\n    of Meteorology ('BOM') data, fetching data and returning a tidy data frame\n    of precis forecasts, historical and current weather data from stations,\n    agriculture bulletin data, 'BOM' 0900 or 1500 weather bulletins and\n    downloading and importing radar and satellite imagery files.  Data (c)\n    Australian Government Bureau of Meteorology Creative Commons (CC)\n    Attribution 3.0 licence or Public Access Licence (PAL) as appropriate.  See\n    <http://www.bom.gov.au/other/copyright.shtml> for further details.",
+  "name": "bomrang: Australian Government Bureau of Meteorology ('BOM') Data Client",
   "codeRepository": "https://github.com/ropensci/bomrang",
   "issueTracker": "https://github.com/ropensci/bomrang/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.4.0.9000",
+  "version": "0.5.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.1",
+    "version": "3.5.3",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.1 (2018-07-02)",
+  "runtimePlatform": "R version 3.5.3 (2019-03-11)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -180,6 +180,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "pkgdown",
+      "name": "pkgdown",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=pkgdown"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "maps",
       "name": "maps",
       "provider": {
@@ -247,6 +259,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=curl"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "crayon",
+      "name": "crayon",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=crayon"
     },
     {
       "@type": "SoftwareApplication",
@@ -446,7 +470,7 @@
   "contIntegration": "https://travis-ci.org/ropensci/bomrang",
   "releaseNotes": "https://github.com/ropensci/bomrang/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/bomrang/blob/master/README.md",
-  "fileSize": "945.283KB",
+  "fileSize": "831.857KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -547,5 +571,7 @@
     "url": "https://github.com/ropensci/onboarding/issues/121",
     "provider": "http://ropensci.org"
   },
-  "developmentStatus": "http://www.repostatus.org/#active"
+  "developmentStatus": "http://www.repostatus.org/#active",
+  "copyrightHolder": {},
+  "funder": {}
 }
