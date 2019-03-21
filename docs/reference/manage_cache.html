@@ -72,7 +72,7 @@ hoardr." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bomrang</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.4.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
       </span>
     </div>
 
@@ -172,24 +172,26 @@ all files. For deleting many specific files, use<br />
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'>
+    <pre class="examples"><span class='co'># NOT RUN {</span>
 <span class='co'># list files in cache</span>
 
 <span class='no'>imagery</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='get_satellite_imagery.html'>get_satellite_imagery</a></span>(<span class='kw'>product_id</span> <span class='kw'>=</span> <span class='st'>"IDE00425"</span>,
                                  <span class='kw'>scans</span> <span class='kw'>=</span> <span class='fl'>1</span>,
                                  <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
-<span class='no'>manage_cache</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>()</div><div class='output co'>#&gt; [1] "/Users/adamsparks/Library/Caches/R/bomrang/IDE00425.201903210440.tif"
-#&gt; [2] "/Users/adamsparks/Library/Caches/R/bomrang/IDE00425.201903210810.tif"</div><div class='input'>
+<span class='no'>manage_cache</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>()
+
 <span class='co'># delete certain database files</span>
-<span class='no'>manage_cache</span>$<span class='fu'>delete</span>(<span class='st'>"file path"</span>)</div><div class='output co'>#&gt; <span class='error'>Error: These files don't exist or can't be found: </span>
-#&gt; <span class='error'>     /Users/adamsparks/Library/Caches/R/bomrang/file path</span></div><div class='input'><span class='no'>manage_cache</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>()</div><div class='output co'>#&gt; [1] "/Users/adamsparks/Library/Caches/R/bomrang/IDE00425.201903210440.tif"
-#&gt; [2] "/Users/adamsparks/Library/Caches/R/bomrang/IDE00425.201903210810.tif"</div><div class='input'>
+<span class='no'>manage_cache</span>$<span class='fu'>delete</span>(<span class='st'>"file path"</span>)
+<span class='no'>manage_cache</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>()
+
 <span class='co'># delete all files in cache</span>
 <span class='no'>manage_cache</span>$<span class='fu'>delete_all</span>()
-<span class='no'>manage_cache</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>()</div><div class='output co'>#&gt; character(0)</div><div class='input'>
+<span class='no'>manage_cache</span>$<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/list'>list</a></span>()
+
 <span class='co'># set a different cache path from the default</span>
-<span class='no'>manage_cache</span>$<span class='fu'>cache_path_set</span>(<span class='st'>"~/tmp"</span>)</div><div class='output co'>#&gt; [1] "/Users/adamsparks/Library/Caches/R/~/tmp"</div></pre>
+<span class='no'>manage_cache</span>$<span class='fu'>cache_path_set</span>(<span class='st'>"~/tmp"</span>)
+<span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
