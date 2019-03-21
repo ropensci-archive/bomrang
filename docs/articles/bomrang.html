@@ -302,38 +302,38 @@
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># Show only the first ten stations in the list</span></a>
 <a class="sourceLine" id="cb9-2" title="2"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(<span class="kw"><a href="../reference/sweep_for_stations.html">sweep_for_stations</a></span>(<span class="dt">latlon =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="fl">35.3</span>, <span class="fl">149.2</span>)), <span class="dv">10</span>)</a></code></pre></div>
 <pre><code>##      site dist                              name start  end      lat
-## 1  069132   69          BRAIDWOOD RACECOURSE AWS  1985 2018 -35.4253
-## 2  070358   70         YASS (RURAL FIRE SERVICE)  2011 2018 -34.8225
-## 3  073007   73                    BURRINJUCK DAM  1908 2018 -34.9997
-## 4  070330   70              GOULBURN AIRPORT AWS  1988 2018 -34.8085
-## 5  070263   70                     GOULBURN TAFE  1971 2018 -34.7495
-## 6  069128   69                       NERRIGA AWS  2013 2018 -35.1103
-## 7  069134   69 BATEMANS BAY (CATALINA COUNTRY CL  1991 2018 -35.7234
-## 8  072161   72              CABRAMURRA SMHEA AWS  1996 2018 -35.9371
-## 9  073141   73              GUNDAGAI (NANGUS RD)  1995 2018 -35.0640
-## 10 070278   70             COOMA VISITORS CENTRE  1973 2018 -36.2318
+## 1  070351   70                  CANBERRA AIRPORT  2008 2019 -35.3088
+## 2  070339   70 TUGGERANONG (ISABELLA PLAINS) AWS  1996 2019 -35.4184
+## 3  070349   70                  MOUNT GININI AWS  2004 2019 -35.5293
+## 4  070341   70 CAPTAINS FLAT (COWANGERONG RADAR)  2002 2019 -35.6614
+## 5  069132   69          BRAIDWOOD RACECOURSE AWS  1985 2019 -35.4253
+## 6  070358   70         YASS (RURAL FIRE SERVICE)  2011 2019 -34.8225
+## 7  073007   73                    BURRINJUCK DAM  1908 2019 -34.9997
+## 8  070330   70              GOULBURN AIRPORT AWS  1988 2019 -34.8085
+## 9  070263   70                     GOULBURN TAFE  1971 2019 -34.7495
+## 10 069128   69                       NERRIGA AWS  2013 2019 -35.1103
 ##         lon state  elev bar_ht   wmo state_code
-## 1  149.7835   NSW 665.2  666.0 94927          N
-## 2  148.9080   NSW 498.0     NA 95723          N
-## 3  148.5984   NSW 390.0     NA 94909          N
-## 4  149.7311   NSW 640.0  640.8 95716          N
-## 5  149.7034   NSW 670.0     NA 94716          N
-## 6  150.0826   NSW 622.0  625.6 94943          N
-## 7  150.1872   NSW  11.0     NA 94941          N
-## 8  148.3779   NSW 482.4     NA 95916          N
-## 9  148.0986   NSW 225.0     NA 94890          N
-## 10 149.1243   NSW 778.0     NA 94923          N
-##                                                       url  distance
-## 1  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94927.json  54.71535
-## 2  http://www.bom.gov.au/fwo/IDN60801/IDN60801.95723.json  59.37567
-## 3  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94909.json  64.08353
-## 4  http://www.bom.gov.au/fwo/IDN60801/IDN60801.95716.json  72.96521
-## 5  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94716.json  76.47313
-## 6  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94943.json  82.91760
-## 7  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94941.json 100.99732
-## 8  http://www.bom.gov.au/fwo/IDN60801/IDN60801.95916.json 102.66734
-## 9  http://www.bom.gov.au/fwo/IDN60801/IDN60801.94890.json 103.48001
-## 10 http://www.bom.gov.au/fwo/IDN60801/IDN60801.94923.json 103.83629</code></pre>
+## 1  149.2004   ACT 577.1  577.6 94926       &lt;NA&gt;
+## 2  149.0937   ACT 586.7  587.5 94925       &lt;NA&gt;
+## 3  148.7721   ACT 760.0     NA 95925       &lt;NA&gt;
+## 4  149.5122   NSW 358.0     NA 99089          N
+## 5  149.7835   NSW 665.2  666.0 94927          N
+## 6  148.9080   NSW 498.0     NA 95723          N
+## 7  148.5984   NSW 390.0     NA 94909          N
+## 8  149.7311   NSW 640.0  640.8 95716          N
+## 9  149.7034   NSW 670.0     NA 94716          N
+## 10 150.0826   NSW 622.0  625.6 94943          N
+##                                                         url   distance
+## 1  http://www.bom.gov.au/fwo/IDNA60801/IDNA60801.94926.json  0.9791884
+## 2  http://www.bom.gov.au/fwo/IDNA60801/IDNA60801.94925.json 16.3172787
+## 3  http://www.bom.gov.au/fwo/IDNA60801/IDNA60801.95925.json 46.4084466
+## 4    http://www.bom.gov.au/fwo/IDN60801/IDN60801.99089.json 49.1327086
+## 5    http://www.bom.gov.au/fwo/IDN60801/IDN60801.94927.json 54.7153470
+## 6    http://www.bom.gov.au/fwo/IDN60801/IDN60801.95723.json 59.3756657
+## 7    http://www.bom.gov.au/fwo/IDN60801/IDN60801.94909.json 64.0835316
+## 8    http://www.bom.gov.au/fwo/IDN60801/IDN60801.95716.json 72.9652110
+## 9    http://www.bom.gov.au/fwo/IDN60801/IDN60801.94716.json 76.4731323
+## 10   http://www.bom.gov.au/fwo/IDN60801/IDN60801.94943.json 82.9176026</code></pre>
 </div>
 </div>
 <div id="using-the-update-functions" class="section level2">
@@ -710,7 +710,7 @@ Satellite
 <code>product_id</code> the BOM product_id associated with each radar imagery file. These can be obtained from the <code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> function. This value must be specified and the function will accept only one at a time.</li>
 </ul>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_radar_imagery.html">get_radar_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDR032"</span>)</a></code></pre></div>
-<pre><code>## file downloaded to:/var/folders/47/rh3mqv4j3w31bch7f_tcj3jr0000gn/T//RtmpD1PeT7/file43e2478b4463.gif</code></pre>
+<pre><code>## file downloaded to:/var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//RtmpMk9oBU/filec8a348ea27b6.gif</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># create a blank raster plot and add the radar layer</span></a>
 <a class="sourceLine" id="cb20-2" title="2">r &lt;-</a>
 <a class="sourceLine" id="cb20-3" title="3"><span class="st">  </span>raster<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/raster">raster</a></span>(</a>
@@ -2277,18 +2277,18 @@ Additional marine forecast warning information (not always provided)
 <a class="sourceLine" id="cb27-17" title="17">  Aust_stations &lt;-<span class="st"> </span></a>
 <a class="sourceLine" id="cb27-18" title="18"><span class="st">    </span>stations_site_list[(<span class="op">!</span>(state <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"ANT"</span>, <span class="st">"null"</span>))) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">grepl</a></span>(<span class="st">"VANUATU|HONIARA"</span>, name)]</a>
 <a class="sourceLine" id="cb27-19" title="19">  </a>
-<a class="sourceLine" id="cb27-20" title="20">  Aust_map &lt;-<span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/map_data.html">map_data</a></span>(<span class="st">"world"</span>, <span class="dt">region =</span> <span class="st">"Australia"</span>)</a>
+<a class="sourceLine" id="cb27-20" title="20">  Aust_map &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/map_data">map_data</a></span>(<span class="st">"world"</span>, <span class="dt">region =</span> <span class="st">"Australia"</span>)</a>
 <a class="sourceLine" id="cb27-21" title="21">  </a>
-<a class="sourceLine" id="cb27-22" title="22">  BOM_stations &lt;-<span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(Aust_stations, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb27-23" title="23"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html">geom_polygon</a></span>(<span class="dt">data =</span> Aust_map, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </a>
+<a class="sourceLine" id="cb27-22" title="22">  BOM_stations &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(Aust_stations, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb27-23" title="23"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_polygon">geom_polygon</a></span>(<span class="dt">data =</span> Aust_map, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </a>
 <a class="sourceLine" id="cb27-24" title="24">                 <span class="dt">color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/gray">grey</a></span>(<span class="fl">0.7</span>),</a>
 <a class="sourceLine" id="cb27-25" title="25">                 <span class="dt">fill =</span> <span class="ot">NA</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb27-26" title="26"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="dt">color =</span> <span class="st">"red"</span>,</a>
+<a class="sourceLine" id="cb27-26" title="26"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="dt">color =</span> <span class="st">"red"</span>,</a>
 <a class="sourceLine" id="cb27-27" title="27">               <span class="dt">size =</span> <span class="fl">0.05</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb27-28" title="28"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/coord_map.html">coord_map</a></span>(<span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="dv">45</span>, <span class="dv">-5</span>),</a>
+<a class="sourceLine" id="cb27-28" title="28"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/coord_map">coord_map</a></span>(<span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="dv">45</span>, <span class="dv">-5</span>),</a>
 <a class="sourceLine" id="cb27-29" title="29">              <span class="dt">xlim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">96</span>, <span class="dv">167</span>)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb27-30" title="30"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_map">theme_map</a></span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb27-31" title="31"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">title =</span> <span class="st">"BOM Station Locations"</span>,</a>
+<a class="sourceLine" id="cb27-31" title="31"><span class="st">    </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">title =</span> <span class="st">"BOM Station Locations"</span>,</a>
 <a class="sourceLine" id="cb27-32" title="32">         <span class="dt">subtitle =</span> <span class="st">"Australia, outlying islands and buoys (excl. Antarctic stations)"</span>,</a>
 <a class="sourceLine" id="cb27-33" title="33">         <span class="dt">caption =</span> <span class="st">"Data: Australia Bureau of Meteorology (BOM)</span><span class="ch">\n</span></a>
 <a class="sourceLine" id="cb27-34" title="34"><span class="st">         and NaturalEarthdata, http://naturalearthdata.com"</span>)</a>
@@ -2328,20 +2328,20 @@ Additional marine forecast warning information (not always provided)
 <div id="completeness-of-historical-data-for-stations" class="section level3">
 <h3 class="hasAnchor">
 <a href="#completeness-of-historical-data-for-stations" class="anchor"></a>Completeness of historical data for stations</h3>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">perc_complete &lt;-<span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(ncc, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb29-2" title="2"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html">geom_polygon</a></span>(<span class="dt">data =</span> Aust_map, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </a>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1">perc_complete &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(ncc, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb29-2" title="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_polygon">geom_polygon</a></span>(<span class="dt">data =</span> Aust_map, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </a>
 <a class="sourceLine" id="cb29-3" title="3">               <span class="dt">color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/gray">grey</a></span>(<span class="fl">0.7</span>),</a>
 <a class="sourceLine" id="cb29-4" title="4">               <span class="dt">fill =</span> <span class="ot">NA</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb29-5" title="5"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">color =</span> percent),</a>
+<a class="sourceLine" id="cb29-5" title="5"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">color =</span> percent),</a>
 <a class="sourceLine" id="cb29-6" title="6">             <span class="dt">alpha =</span> <span class="fl">0.5</span>,</a>
 <a class="sourceLine" id="cb29-7" title="7">             <span class="dt">size =</span> <span class="fl">0.05</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb29-8" title="8"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_colour_viridis_c</a></span>(<span class="dt">direction =</span> <span class="dv">-1</span>,</a>
+<a class="sourceLine" id="cb29-8" title="8"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/scale_viridis">scale_colour_viridis_c</a></span>(<span class="dt">direction =</span> <span class="dv">-1</span>,</a>
 <a class="sourceLine" id="cb29-9" title="9">                         <span class="dt">option =</span> <span class="st">"A"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb29-10" title="10"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/coord_map.html">coord_map</a></span>(<span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="dv">45</span>, <span class="dv">-5</span>),</a>
+<a class="sourceLine" id="cb29-10" title="10"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/coord_map">coord_map</a></span>(<span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="dv">45</span>, <span class="dv">-5</span>),</a>
 <a class="sourceLine" id="cb29-11" title="11">            <span class="dt">xlim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">96</span>, <span class="dv">167</span>)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb29-12" title="12"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_map">theme_map</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb29-13" title="13"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(. <span class="op">~</span><span class="st"> </span>ncc_obs_code) <span class="op">+</span></a>
-<a class="sourceLine" id="cb29-14" title="14"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">title =</span> <span class="st">"BOM Historical Station Data Completeness"</span>,</a>
+<a class="sourceLine" id="cb29-13" title="13"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap">facet_wrap</a></span>(. <span class="op">~</span><span class="st"> </span>ncc_obs_code) <span class="op">+</span></a>
+<a class="sourceLine" id="cb29-14" title="14"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">title =</span> <span class="st">"BOM Historical Station Data Completeness"</span>,</a>
 <a class="sourceLine" id="cb29-15" title="15">       <span class="dt">subtitle =</span> <span class="st">"Australia, outlying islands and buoys (excl. Antarctic stations)"</span>,</a>
 <a class="sourceLine" id="cb29-16" title="16">       <span class="dt">caption =</span> <span class="st">"Data: Australia Bureau of Meteorology (BOM)</span><span class="ch">\n</span></a>
 <a class="sourceLine" id="cb29-17" title="17"><span class="st">     and NaturalEarthdata, http://naturalearthdata.com"</span>)</a>
@@ -2358,20 +2358,20 @@ Additional marine forecast warning information (not always provided)
 <div id="historical-data-years-available-for-stations" class="section level3">
 <h3 class="hasAnchor">
 <a href="#historical-data-years-available-for-stations" class="anchor"></a>Historical data years available for stations</h3>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">years_available &lt;-<span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(ncc, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb30-2" title="2"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_polygon.html">geom_polygon</a></span>(<span class="dt">data =</span> Aust_map, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </a>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1">years_available &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(ncc, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> lon, <span class="dt">y =</span> lat)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb30-2" title="2"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_polygon">geom_polygon</a></span>(<span class="dt">data =</span> Aust_map, <span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </a>
 <a class="sourceLine" id="cb30-3" title="3">               <span class="dt">color =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/grDevices/topics/gray">grey</a></span>(<span class="fl">0.7</span>),</a>
 <a class="sourceLine" id="cb30-4" title="4">               <span class="dt">fill =</span> <span class="ot">NA</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb30-5" title="5"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html">geom_point</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">color =</span> years),</a>
+<a class="sourceLine" id="cb30-5" title="5"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/geom_point">geom_point</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">color =</span> years),</a>
 <a class="sourceLine" id="cb30-6" title="6">             <span class="dt">alpha =</span> <span class="fl">0.5</span>,</a>
 <a class="sourceLine" id="cb30-7" title="7">             <span class="dt">size =</span> <span class="fl">0.05</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb30-8" title="8"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_viridis.html">scale_colour_viridis_c</a></span>(<span class="dt">direction =</span> <span class="dv">-1</span>,</a>
+<a class="sourceLine" id="cb30-8" title="8"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/scale_viridis">scale_colour_viridis_c</a></span>(<span class="dt">direction =</span> <span class="dv">-1</span>,</a>
 <a class="sourceLine" id="cb30-9" title="9">                         <span class="dt">option =</span> <span class="st">"A"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb30-10" title="10"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/coord_map.html">coord_map</a></span>(<span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="dv">45</span>, <span class="dv">-5</span>),</a>
+<a class="sourceLine" id="cb30-10" title="10"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/coord_map">coord_map</a></span>(<span class="dt">ylim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="op">-</span><span class="dv">45</span>, <span class="dv">-5</span>),</a>
 <a class="sourceLine" id="cb30-11" title="11">            <span class="dt">xlim =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">96</span>, <span class="dv">167</span>)) <span class="op">+</span></a>
 <a class="sourceLine" id="cb30-12" title="12"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggthemes/topics/theme_map">theme_map</a></span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb30-13" title="13"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span>(. <span class="op">~</span><span class="st"> </span>ncc_obs_code) <span class="op">+</span></a>
-<a class="sourceLine" id="cb30-14" title="14"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">title =</span> <span class="st">"BOM Historical Station Data Years Available"</span>,</a>
+<a class="sourceLine" id="cb30-13" title="13"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/facet_wrap">facet_wrap</a></span>(. <span class="op">~</span><span class="st"> </span>ncc_obs_code) <span class="op">+</span></a>
+<a class="sourceLine" id="cb30-14" title="14"><span class="st">  </span><span class="kw"><a href="https://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">title =</span> <span class="st">"BOM Historical Station Data Years Available"</span>,</a>
 <a class="sourceLine" id="cb30-15" title="15">       <span class="dt">subtitle =</span> <span class="st">"Australia, outlying islands and buoys (excl. Antarctic stations)"</span>,</a>
 <a class="sourceLine" id="cb30-16" title="16">       <span class="dt">caption =</span> <span class="st">"Data: Australia Bureau of Meteorology (BOM)</span><span class="ch">\n</span></a>
 <a class="sourceLine" id="cb30-17" title="17"><span class="st">     and NaturalEarthdata, http://naturalearthdata.com"</span>)</a>
