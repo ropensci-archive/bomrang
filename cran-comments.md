@@ -1,13 +1,13 @@
 
 ## Test environments
 
-- local macOS install R version 3.5.1 (2018-07-02)
+- local macOS install R version 3.5.3 (2019-03-11)
 
-- local Ubuntu 18.04 R version 3.5.1 (2018-07-02)
+- Circle-CI debian:9 R version 3.5.3 (2019-03-11)
 
-- win-builder R Under development (unstable) (2018-09-10 r75281)
+- win-builder R Under development (unstable) (2019-03-19 r76252)
 
-- win-builder R version 3.5.1 (2018-04-23)
+- win-builder R version 3.5.3 (2019-03-11)
 
 ## R CMD check results
 
@@ -18,37 +18,45 @@ makes minor changes to documentation
 
 ## Bug fixes
 
-- `get_historical()` now fetches data for any station with historical data
-available corrected an issue where previously it only fetched data for stations
-that currently reported
+- Update functionality of `get_precis_forecast()` and `get_coastal_forecast()`
+to work with latest BOM XML files
 
-- Enforce standardised output for `get_coastal_forecast()`. In some cases BOM
-does not report all fields available, _bomrang_ will always report these with
-`NA` if empty
+## Major changes
+
+- New print method for `get_historical()` and `get_current_weather()` using
+`bomrang_tbl` class and re-exporting _dplyr_ methods to handle the new class
+
+- Add new aliases for `get_current_weather()`, `get_current()` and
+`get_historical()`, `get_historical_weather()` for consistency
+
+- Add new aliases for `get_radar_imagery()`, `get_radar()` and
+`get_satellite_imagery()`, `get_satellite()` to save typing
+
+- If images fail to download for any functions, a default image is returned
+with an error message to try again 
+[![](man/figures/image_error_message.gif)](man/figures/image_error_message.gif)
+
+- `get_current_weather()` no longer has `raw` or `as.data.table` parameters, all
+data are returned with columns in proper class as with all other _bomrang_
+functions and the returned data.frame is a `bomrang_tbl` object. The `raw`
+parameter was set to `FALSE` by default, so the effect should be minimal for
+most end users.
 
 ## Minor changes
 
-- Add new functionality to interact with and download radar imagery from BOM,
-`get_available_radar()` and `get_radar_imagery()`
+- Updates documentation formatting and corrects minor issues including
+spellchecking package and correcting spelling where necessary
 
-- When using `update_station_locations()` or `update_forecast_towns()` the user
-is now prompted with a message about reproducibility before proceeding
+- Uses `curl` to download XML files before parsing them, rather than reading
+directly from the server. `curl` gives more flexibility in handling the
+server connections
 
-- Update code of conduct statement in README to reflect that it only applies to
-the `bomrang` project
+- Uses `curl::curl_download()` in place of `utils::download.file()` for a
+newer implementation of the same protocols
 
-- Update authors' list in vignette to include Dean Marchiori
+- Correct formatting of DESCRIPTION file to conform with CRAN guidelines
 
-- Add links to on-line versions of vignettes from README
-
-- Standardise use of vocabulary in README
-
-- Reorder vignette to have output from functions before maps
-
-- Add maps of historical data completeness and availability to vignette,
-Appendix 7
-
-- Move copyright information from startup message into CITATION file
+- Replaces `\dontrun{}` with `\donttest{}` for examples in documentation
 
 ## Reverse dependencies
 
