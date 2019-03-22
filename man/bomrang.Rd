@@ -10,7 +10,7 @@
 
 Provides functions to interface with Australian Government Bureau
     of Meteorology ('BOM') data, fetching data and returning a tidy data frame
-    of précis forecasts, historical and current weather data from stations,
+    of precis forecasts, historical and current weather data from stations,
     agriculture bulletin data, 'BOM' 0900 or 1500 weather bulletins and
     downloading and importing radar and satellite imagery files.  Data (c)
     Australian Government Bureau of Meteorology Creative Commons (CC)
