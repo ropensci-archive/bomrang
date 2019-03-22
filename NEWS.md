@@ -1,5 +1,14 @@
 # bomrang 0.5.0.9000
 
+## Bug fixes
+
+- Fix a bug with links to documentation from `get_historical()` and `%>%`
+
+## Minor changes
+
+- Use `xml2::download_xml()` in place of `curl::curl()` to download the XML
+files, this means the minimum version of `xml2` is now 1.2.0 for bomrang
+
 # bomrang 0.5.0
 
 ## Bug fixes
