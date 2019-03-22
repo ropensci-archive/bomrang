@@ -71,7 +71,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">bomrang</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.5.0.9000</span>
       </span>
     </div>
 
@@ -248,8 +248,8 @@ return fewer observations.</p>
     <h2 class="hasAnchor" id="dplyr-compatibility"><a class="anchor" href="#dplyr-compatibility"></a><code>dplyr</code> Compatibility</h2>
 
     <p>The <code>bomrang_tbl</code> class is
-compatible with <code><a href='https://dplyr.tidyverse.org/reference/dplyr-package.html'>dplyr</a></code> as long as the <code>bomrang</code>
-package is on the search path. Common functions
+compatible with <code><a href='https://dplyr.tidyverse.org/reference/dplyr-package.html'>dplyr</a></code> as long as the
+<code>bomrang</code> package is on the search path. Common functions
 (<code><a href='https://dplyr.tidyverse.org/reference/filter.html'>filter</a></code>, <code><a href='https://dplyr.tidyverse.org/reference/select.html'>select</a></code>,
 <code><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></code>, <code><a href='https://dplyr.tidyverse.org/reference/mutate.html'>mutate</a></code>,
 <code><a href='https://dplyr.tidyverse.org/reference/select.html'>rename</a></code>, <code><a href='https://dplyr.tidyverse.org/reference/arrange.html'>arrange</a></code>,
@@ -259,7 +259,7 @@ attributes).</p>
     
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>get_historical</span>(<span class='kw'>stationid</span> <span class='kw'>=</span> <span class='st'>"023000"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"max"</span>) <span class='co'>## ~48,000+ daily records</span></div><div class='output co'>#&gt; <span class='message'>Data saved as /var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//Rtmp28dYpR/IDCJAC0010_023000_1800_Data.csv</span></div><div class='output co'>#&gt; <span style='color: #00BBBB;'>  ---- Australian Bureau of Meteorology (BOM) Data Resource ----
+    <pre class="examples"><div class='input'><span class='fu'>get_historical</span>(<span class='kw'>stationid</span> <span class='kw'>=</span> <span class='st'>"023000"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"max"</span>) <span class='co'>## ~48,000+ daily records</span></div><div class='output co'>#&gt; <span class='message'>Data saved as /var/folders/47/rh3mqv4j3w31bch7f_tcj3jr0000gn/T//Rtmp18mLyy/IDCJAC0010_023000_1800_Data.csv</span></div><div class='output co'>#&gt; <span style='color: #00BBBB;'>  ---- Australian Bureau of Meteorology (BOM) Data Resource ----
 #&gt;   (Original Request Parameters)
 #&gt;   Station:		ADELAIDE (WEST TERRACE / NGAYIRDAPIRA) [023000] 
 #&gt;   Location:		lat: -34.9257, lon: 138.5832
@@ -273,11 +273,11 @@ attributes).</p>
 #&gt;     4:   IDCJAC0010          23000 1887     1   4              NA
 #&gt;     5:   IDCJAC0010          23000 1887     1   5              NA
 #&gt;    ---                                                           
-#&gt; 48287:   IDCJAC0010          23000 2019     3  16            28.4
 #&gt; 48288:   IDCJAC0010          23000 2019     3  17            31.3
 #&gt; 48289:   IDCJAC0010          23000 2019     3  18            30.5
 #&gt; 48290:   IDCJAC0010          23000 2019     3  19            28.6
 #&gt; 48291:   IDCJAC0010          23000 2019     3  20            27.1
+#&gt; 48292:   IDCJAC0010          23000 2019     3  21            28.8
 #&gt;        accum_days_max quality
 #&gt;     1:             NA        
 #&gt;     2:             NA        
@@ -285,12 +285,12 @@ attributes).</p>
 #&gt;     4:             NA        
 #&gt;     5:             NA        
 #&gt;    ---                       
-#&gt; 48287:              1       N
 #&gt; 48288:              1       N
 #&gt; 48289:              1       N
 #&gt; 48290:              1       N
-#&gt; 48291:              1       N</div><div class='input'><span class='fu'>get_historical</span>(<span class='kw'>latlon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(-<span class='fl'>35.2809</span>, <span class='fl'>149.1300</span>),
-               <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"min"</span>) <span class='co'>## 3,500+ daily records</span></div><div class='output co'>#&gt; <span class='message'>Closest station: 070351 (CANBERRA AIRPORT)</span></div><div class='output co'>#&gt; <span class='message'>Data saved as /var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//Rtmp28dYpR/IDCJAC0011_070351_1800_Data.csv</span></div><div class='output co'>#&gt; </span><span style='color: #00BBBB;'>  ---- Australian Bureau of Meteorology (BOM) Data Resource ----
+#&gt; 48291:              1       N
+#&gt; 48292:              1       N</div><div class='input'><span class='fu'>get_historical</span>(<span class='kw'>latlon</span> <span class='kw'>=</span> <span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(-<span class='fl'>35.2809</span>, <span class='fl'>149.1300</span>),
+               <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"min"</span>) <span class='co'>## 3,500+ daily records</span></div><div class='output co'>#&gt; <span class='message'>Closest station: 070351 (CANBERRA AIRPORT)</span></div><div class='output co'>#&gt; <span class='message'>Data saved as /var/folders/47/rh3mqv4j3w31bch7f_tcj3jr0000gn/T//Rtmp18mLyy/IDCJAC0011_070351_1800_Data.csv</span></div><div class='output co'>#&gt; </span><span style='color: #00BBBB;'>  ---- Australian Bureau of Meteorology (BOM) Data Resource ----
 #&gt;   (Original Request Parameters)
 #&gt;   Station:		CANBERRA AIRPORT [070351] 
 #&gt;   Location:		lat: -35.3088, lon: 149.2004
@@ -304,11 +304,11 @@ attributes).</p>
 #&gt;    4:   IDCJAC0011          70351 2008     1   4              NA             NA
 #&gt;    5:   IDCJAC0011          70351 2008     1   5              NA             NA
 #&gt;   ---                                                                          
-#&gt; 4094:   IDCJAC0011          70351 2019     3  17            14.6              1
 #&gt; 4095:   IDCJAC0011          70351 2019     3  18            12.7              1
 #&gt; 4096:   IDCJAC0011          70351 2019     3  19            15.7              1
 #&gt; 4097:   IDCJAC0011          70351 2019     3  20            12.2              1
 #&gt; 4098:   IDCJAC0011          70351 2019     3  21            14.7              1
+#&gt; 4099:   IDCJAC0011          70351 2019     3  22            16.7              1
 #&gt;       quality
 #&gt;    1:        
 #&gt;    2:        
@@ -316,11 +316,11 @@ attributes).</p>
 #&gt;    4:        
 #&gt;    5:        
 #&gt;   ---        
-#&gt; 4094:       N
 #&gt; 4095:       N
 #&gt; 4096:       N
 #&gt; 4097:       N
-#&gt; 4098:       N</div></span></pre>
+#&gt; 4098:       N
+#&gt; 4099:       N</div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
