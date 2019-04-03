@@ -710,7 +710,7 @@ Satellite
 <code>product_id</code> the BOM product_id associated with each radar imagery file. These can be obtained from the <code><a href="../reference/get_available_radar.html">get_available_radar()</a></code> function. This value must be specified and the function will accept only one at a time.</li>
 </ul>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1">x &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_radar_imagery.html">get_radar_imagery</a></span>(<span class="dt">product_id =</span> <span class="st">"IDR032"</span>)</a></code></pre></div>
-<pre><code>## file downloaded to:/var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//RtmpqT40WF/fileca5772a2f6bf.gif</code></pre>
+<pre><code>## file downloaded to:/var/folders/47/rh3mqv4j3w31bch7f_tcj3jr0000gn/T//RtmpNh4I4a/file11e466cbdeedf.gif</code></pre>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># create a blank raster plot and add the radar layer</span></a>
 <a class="sourceLine" id="cb20-2" title="2">r &lt;-</a>
 <a class="sourceLine" id="cb20-3" title="3"><span class="st">  </span>raster<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/raster/topics/raster">raster</a></span>(</a>
@@ -733,14 +733,14 @@ Satellite
 <p>Some returned objects have been classed as <code>bomrang_tbl</code> which allow dispatch for dplyr methods, e.g. <code>mutate</code>, <code>filter</code>, <code>select</code>, <code>arrange</code>, <code>slice</code>, <code>rename</code>, and <code>group_by</code> while preserving the header information.</p>
 <p>For example:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1">adlmax &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_historical.html">get_historical</a></span>(<span class="dt">stationid =</span> <span class="st">"023000"</span>, <span class="dt">type =</span> <span class="st">"max"</span>)</a></code></pre></div>
-<pre><code>## Data saved as /var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//RtmpqT40WF/IDCJAC0010_023000_1800_Data.csv</code></pre>
+<pre><code>## Data saved as /var/folders/47/rh3mqv4j3w31bch7f_tcj3jr0000gn/T//RtmpNh4I4a/IDCJAC0010_023000_1800_Data.csv</code></pre>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">adlmax</a></code></pre></div>
 <pre><code>##   ---- Australian Bureau of Meteorology (BOM) Data Resource ----
 ##   (Original Request Parameters)
 ##   Station:       ADELAIDE (WEST TERRACE / NGAYIRDAPIRA) [023000] 
 ##   Location:      lat: -34.9257, lon: 138.5832
 ##   Measurement / Origin:  Max / Historical
-##   Timespan:      1887-01-01 -- 2019-03-01 [94 years]
+##   Timespan:      1887-01-01 -- 2019-04-01 [94.1 years]
 ##   ---------------------------------------------------------------  
 ##        product_code station_number year month day max_temperature
 ##     1:   IDCJAC0010          23000 1887     1   1              NA
@@ -749,11 +749,11 @@ Satellite
 ##     4:   IDCJAC0010          23000 1887     1   4              NA
 ##     5:   IDCJAC0010          23000 1887     1   5              NA
 ##    ---                                                           
-## 48287:   IDCJAC0010          23000 2019     3  16            28.4
-## 48288:   IDCJAC0010          23000 2019     3  17            31.3
-## 48289:   IDCJAC0010          23000 2019     3  18            30.5
-## 48290:   IDCJAC0010          23000 2019     3  19            28.6
-## 48291:   IDCJAC0010          23000 2019     3  20            27.1
+## 48300:   IDCJAC0010          23000 2019     3  29            20.6
+## 48301:   IDCJAC0010          23000 2019     3  30            18.4
+## 48302:   IDCJAC0010          23000 2019     3  31            20.5
+## 48303:   IDCJAC0010          23000 2019     4   1            21.2
+## 48304:   IDCJAC0010          23000 2019     4   2            27.6
 ##        accum_days_max quality
 ##     1:             NA        
 ##     2:             NA        
@@ -761,18 +761,18 @@ Satellite
 ##     4:             NA        
 ##     5:             NA        
 ##    ---                       
-## 48287:              1       N
-## 48288:              1       N
-## 48289:              1       N
-## 48290:              1       N
-## 48291:              1       N</code></pre>
+## 48300:              1       N
+## 48301:              1       N
+## 48302:              1       N
+## 48303:              1       N
+## 48304:              1       N</code></pre>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(adlmax, month <span class="op">==</span><span class="st"> </span><span class="dv">10</span>)</a></code></pre></div>
 <pre><code>##   ---- Australian Bureau of Meteorology (BOM) Data Resource ----
 ##   (Original Request Parameters)
 ##   Station:       ADELAIDE (WEST TERRACE / NGAYIRDAPIRA) [023000] 
 ##   Location:      lat: -34.9257, lon: 138.5832
 ##   Measurement / Origin:  Max / Historical
-##   Timespan:      1887-01-01 -- 2019-03-01 [94 years]
+##   Timespan:      1887-01-01 -- 2019-04-01 [94.1 years]
 ##   ---------------------------------------------------------------  
 ##       product_code station_number year month day max_temperature
 ##    1:   IDCJAC0010          23000 1887    10   1            17.6
@@ -807,7 +807,7 @@ Satellite
 ##   Station:       ADELAIDE (WEST TERRACE / NGAYIRDAPIRA) [023000] 
 ##   Location:      lat: -34.9257, lon: 138.5832
 ##   Measurement / Origin:  Max / Historical
-##   Timespan:      1887-01-01 -- 2019-03-01 [94 years]
+##   Timespan:      1887-01-01 -- 2019-04-01 [94.1 years]
 ##   ---------------------------------------------------------------  
 ##       station_number year month day max_temperature
 ##    1:          23000 1887    10   1            17.6
