@@ -1,4 +1,4 @@
-version: 2.1
+version: 2
 jobs:
   build:
     working_directory: ~/main
@@ -38,5 +38,4 @@ jobs:
           path: /root/main/artifacts/
           destination: artifacts
 
-orbs:
-          codecov: codecov/codecov@1.0.4
+
