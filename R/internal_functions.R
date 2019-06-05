@@ -180,7 +180,7 @@
 #' @noRd
 .get_xml <- function(xml_url) {
   tryCatch({
-    xml_object <- xml2::download_xml(xml_url)
+    xml_object <- xml2::read_xml(x = xml_url)
   },
   error = function(x)
     stop(
