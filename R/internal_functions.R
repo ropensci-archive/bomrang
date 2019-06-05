@@ -170,7 +170,7 @@
   return(state)
 }
 
-#' Download BOM XML Files and Load into Session
+#' Import BOM XML Files from Server Into R Session
 #'
 #' @param xml_url URL of XML file to be downloaded/parsed/loaded.
 #'
