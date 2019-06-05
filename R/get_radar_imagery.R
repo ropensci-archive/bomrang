@@ -164,3 +164,9 @@ get_radar_imagery <- get_radar <-
       return(y)
     })
   }
+
+
+# Export raster plot functionality to plot radar imagery
+#' @importFrom raster plot
+#' @export
+raster::plot
