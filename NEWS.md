@@ -6,8 +6,7 @@
 
 ## Minor changes
 
-- Use `xml2::download_xml()` in place of `curl::curl()` to download the XML
-files, this means the minimum version of `xml2` is now 1.2.0 for bomrang
+- Plot radar images natively
 
 # bomrang 0.5.0
 
