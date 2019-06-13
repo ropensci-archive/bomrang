@@ -178,7 +178,20 @@
 #' @keywords internal
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #' @noRd
-.get_xml <- function(xml_url) {
+.get_xml <- function(xml_url, LOC = FALSE) {
+  if(is.TRUE(LOC)){
+    tryCatch({
+      xml <- xml_url
+      xml_object <- xml2::read_xml(xml)
+    },
+    error = function(x)
+      stop(
+        "\nThe file location could not be found. ",
+        "Please check the filepath.\n"
+      ))
+  }
+  
+  if(!is.TRUE(LOC)){
   tryCatch({
     xml <- curl::curl(xml_url, open = "rb")
     on.exit(close(xml))
@@ -189,8 +202,9 @@
       "\nThe server with the files is not responding. ",
       "Please retry again later.\n"
     ))
+  }
   return(xml_object)
-}
+  }
 
 #' splits time cols and removes extra chars for forecast XML objects
 #'
