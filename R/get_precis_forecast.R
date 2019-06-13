@@ -7,6 +7,12 @@
 #' @param state Australian state or territory as full name or postal code.
 #' Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 #' "AUS" returning all state bulletins, see details for further information.
+#' 
+#' @param Local TRUE or FALSE option to inform function to obtain \acronym{BOM} daily précis 
+#' forecast xml files from a local disk.
+#' 
+#' @param filepath the file path location of the BOM xml files to import. 'Local = TRUE' should 
+#' be set to use this parameter.
 #'
 #' @details Allowed state and territory postal codes, only one state per request
 #' or all using \code{AUS}.
