@@ -127,7 +127,7 @@ get_precis_forecast <- function(state = "AUS", Local = FALSE, filepath = ".") {
     NULL # nocov end
   
   if(!isTRUE(Local)){xml_object <- .get_xml(xml_url)}
-  if(!isTRUE(Local)){xml_object <- .get_xml(xml_url,LOC = Local)}
+  if(isTRUE(Local)){xml_object <- .get_xml(xml_url,LOC = TRUE)}
   out <- .parse_precis_xml(xml_object)
 
   data.table::setnames(out,

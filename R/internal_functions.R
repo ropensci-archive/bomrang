@@ -205,7 +205,8 @@
     ))
     return(xml_object)
     }
-    }
+  
+  }
 
 #' splits time cols and removes extra chars for forecast XML objects
 #'
