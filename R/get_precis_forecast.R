@@ -54,7 +54,7 @@ get_precis_forecast <- function(state = "AUS", Local = FALSE, filepath = ".") {
   
   # source from ftp server or Local disk
   if(!isTRUE(Local)){base_location <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"}
-  if(isTRUE(Local)){base_location <- location}
+  if(isTRUE(Local)){base_location <- filepath}
   
   # create vector of XML files
   AUS_XML <- c(
