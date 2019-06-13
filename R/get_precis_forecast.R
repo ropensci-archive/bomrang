@@ -114,7 +114,7 @@ get_precis_forecast <- function(state = "AUS", Local = FALSE, filepath = ".") {
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
 #' @noRd
 
-.parse_forecast <- function(xml_url) {
+.parse_forecast <- function(xml_url, Local = FALSE) {
   # CRAN note avoidance
   AAC_codes <- # nocov start
     attrs <- end_time_local <- precipitation_range <-
@@ -126,7 +126,8 @@ get_precis_forecast <- function(state = "AUS", Local = FALSE, filepath = ".") {
     upper_precipitation_limit <- lower_precipitation_limit <-
     NULL # nocov end
   
-  xml_object <- .get_xml(xml_url)
+  if(!is.TRUE(Local)){xml_object <- .get_xml(xml_url)}
+  if(!is.TRUE(Local)){xml_object <- .get_xml(xml_url,LOC = Local)}
   out <- .parse_precis_xml(xml_object)
 
   data.table::setnames(out,
