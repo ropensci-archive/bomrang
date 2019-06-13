@@ -53,8 +53,8 @@ get_precis_forecast <- function(state = "AUS", Local = FALSE, filepath = ".") {
   the_state <- .check_states(state) # see internal_functions.R
   
   # source from ftp server or Local disk
-  if(!is.TRUE(Local)){base_location <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"}
-  if(is.TRUE(Local)){base_location <- location}
+  if(!isTRUE(Local)){base_location <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"}
+  if(isTRUE(Local)){base_location <- location}
   
   # create vector of XML files
   AUS_XML <- c(
@@ -93,12 +93,12 @@ get_precis_forecast <- function(state = "AUS", Local = FALSE, filepath = ".") {
         the_state == "WA" |
           the_state == "WESTERN AUSTRALIA" ~ paste0(base_location, AUS_XML[7])
       )
-    if(is.TRUE(Local)){forecast_out <- .parse_forecast(xml_url, Local = TRUE)}
-    if(!is.TRUE(Local)){forecast_out <- .parse_forecast(xml_url)}
+    if(isTRUE(Local)){forecast_out <- .parse_forecast(xml_url, Local = TRUE)}
+    if(!isTRUE(Local)){forecast_out <- .parse_forecast(xml_url)}
   } else {
     file_list <- paste0(base_location, AUS_XML)
-    if(is.TRUE(Local)){forecast_out <- lapply(X = file_list, FUN = .parse_forecast, Local = TRUE)}
-    if(!is.TRUE(Local)){forecast_out <- lapply(X = file_list, FUN = .parse_forecast)}
+    if(isTRUE(Local)){forecast_out <- lapply(X = file_list, FUN = .parse_forecast, Local = TRUE)}
+    if(!isTRUE(Local)){forecast_out <- lapply(X = file_list, FUN = .parse_forecast)}
     forecast_out <- data.table::rbindlist(forecast_out, fill = TRUE)
   }
   
@@ -126,8 +126,8 @@ get_precis_forecast <- function(state = "AUS", Local = FALSE, filepath = ".") {
     upper_precipitation_limit <- lower_precipitation_limit <-
     NULL # nocov end
   
-  if(!is.TRUE(Local)){xml_object <- .get_xml(xml_url)}
-  if(!is.TRUE(Local)){xml_object <- .get_xml(xml_url,LOC = Local)}
+  if(!isTRUE(Local)){xml_object <- .get_xml(xml_url)}
+  if(!isTRUE(Local)){xml_object <- .get_xml(xml_url,LOC = Local)}
   out <- .parse_precis_xml(xml_object)
 
   data.table::setnames(out,

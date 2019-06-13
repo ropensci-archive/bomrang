@@ -179,7 +179,7 @@
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #' @noRd
 .get_xml <- function(xml_url, LOC = FALSE) {
-  if(is.TRUE(LOC)){
+  if(isTRUE(LOC)){
     tryCatch({
       xml <- xml_url
       xml_object <- xml2::read_xml(xml)
@@ -191,7 +191,7 @@
       ))
   }
   
-  if(!is.TRUE(LOC)){
+  if(!isTRUE(LOC)){
   tryCatch({
     xml <- curl::curl(xml_url, open = "rb")
     on.exit(close(xml))
