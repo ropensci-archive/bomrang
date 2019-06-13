@@ -189,7 +189,8 @@
         "\nThe file location could not be found. ",
         "Please check the filepath.\n"
       ))
-  }
+    return(xml_object)
+    }
   
   if(!isTRUE(LOC)){
   tryCatch({
@@ -202,9 +203,9 @@
       "\nThe server with the files is not responding. ",
       "Please retry again later.\n"
     ))
-  }
-  return(xml_object)
-  }
+    return(xml_object)
+    }
+    }
 
 #' splits time cols and removes extra chars for forecast XML objects
 #'
