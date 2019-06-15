@@ -470,7 +470,7 @@
   "contIntegration": "https://travis-ci.org/ropensci/bomrang",
   "releaseNotes": "https://github.com/ropensci/bomrang/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/bomrang/blob/master/README.md",
-  "fileSize": "831.832KB",
+  "fileSize": "831.805KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -564,7 +564,8 @@
   ],
   "relatedLink": [
     "https://ropensci.github.io/bomrang/",
-    "https://CRAN.R-project.org/package=bomrang"
+    "https://CRAN.R-project.org/package=bomrang",
+    "https://docs.ropensci.org/bomrang/"
   ],
   "review": {
     "@type": "Review",
