@@ -564,8 +564,8 @@ r <-
 # `dplyr` compatibility
 
 Some returned objects have been classed as `bomrang_tbl` which allow dispatch for 
-dplyr methods, e.g. `mutate`, `filter`, `select`, `arrange`, `slice`, `rename`, and 
-`group_by` while preserving the header information.
+dplyr methods, _e.g._ `mutate`, `filter`, `select`, `arrange`, `slice`,
+`rename`, and `group_by` while preserving the header information.
 
 For example:
 
