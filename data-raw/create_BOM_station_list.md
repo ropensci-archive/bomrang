@@ -237,6 +237,7 @@ bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <- "S"
 stations_site_list <-
   bom_stations_raw %>%
   dplyr::select(site:wmo, state, state_code) %>%
+  tidyr::drop_na(wmo) %>% 
   dplyr::mutate(
   url = dplyr::case_when(
     .$state == "NSW" |
@@ -245,8 +246,7 @@ stations_site_list <-
       .$state == "SA" |
       .$state == "TAS" |
       .$state == "VIC" |
-      .$state == "WA" &
-      !is.na(.$wmo) ~
+      .$state == "WA" ~
       paste0(
         "http://www.bom.gov.au/fwo/ID",
         .$state_code,
@@ -259,7 +259,7 @@ stations_site_list <-
         .$wmo,
         ".json"
       ),
-    .$state == "ACT" & !is.na(.$wmo) ~
+    .$state == "ACT" ~
       paste0(
         "http://www.bom.gov.au/fwo/IDN",
         "60903",
@@ -270,7 +270,7 @@ stations_site_list <-
         .$wmo,
         ".json"
       ),
-    .$state == "ANT" & !is.na(.$wmo) ~
+    .$state == "ANT" ~
       paste0(
         "http://www.bom.gov.au/fwo/ID",
         .$state_code,
@@ -399,6 +399,7 @@ save(stations_site_list,
     ##  stringi       1.4.3   2019-03-12 [1] CRAN (R 3.6.0)
     ##  stringr       1.4.0   2019-02-10 [1] CRAN (R 3.6.0)
     ##  tibble        2.1.3   2019-06-06 [1] CRAN (R 3.6.0)
+    ##  tidyr         0.8.3   2019-03-01 [1] CRAN (R 3.6.0)
     ##  tidyselect    0.2.5   2018-10-11 [1] CRAN (R 3.6.0)
     ##  utf8          1.1.4   2018-05-24 [1] CRAN (R 3.6.0)
     ##  vctrs         0.1.0   2018-11-29 [1] CRAN (R 3.6.0)
