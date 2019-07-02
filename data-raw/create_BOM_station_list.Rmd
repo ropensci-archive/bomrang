@@ -44,14 +44,13 @@ Refer to these BOM pages for more reference:
 
 - 60701 - coastal observations (duplicated in 60801)
 
-- 60801 - all weather observations (we will use this)
+- 60801 - State weather observations excluding Canberra
 
-- 60803 - Antarctica weather observations (and use this, this distinguishes
-          Tas from Antarctica)
+- 60803 - Antarctica weather observations
 
 - 60901 - capital city weather observations (duplicated in 60801)
 
-- 60903 - Canberra area weather observations (duplicated in 60801)
+- 60903 - Canberra area weather observations
 
 ## Get station metadata
 
@@ -208,35 +207,53 @@ stations_site_list <-
   bom_stations_raw %>%
   dplyr::select(site:wmo, state, state_code) %>%
   dplyr::mutate(
-    url = dplyr::case_when(
-      .$state != "ANT" & !is.na(.$wmo) ~
-        paste0(
-          "http://www.bom.gov.au/fwo/ID",
-          .$state_code,
-          "60801",
-          "/",
-          "ID",
-          .$state_code,
-          "60801",
-          ".",
-          .$wmo,
-          ".json"
-        ),
-      .$state == "ANT" & !is.na(.$wmo) ~
-        paste0(
-          "http://www.bom.gov.au/fwo/ID",
-          .$state_code,
-          "60803",
-          "/",
-          "ID",
-          .$state_code,
-          "60803",
-          ".",
-          .$wmo,
-          ".json"
-        )
-    )
+  url = dplyr::case_when(
+    .$state == "NSW" |
+      .$state == "NT" |
+      .$state == "QLD" |
+      .$state == "SA" |
+      .$state == "TAS" |
+      .$state == "VIC" |
+      .$state == "WA" &
+      !is.na(.$wmo) ~
+      paste0(
+        "http://www.bom.gov.au/fwo/ID",
+        .$state_code,
+        "60801",
+        "/",
+        "ID",
+        .$state_code,
+        "60801",
+        ".",
+        .$wmo,
+        ".json"
+      ),
+    .$state == "ACT" & !is.na(.$wmo) ~
+      paste0(
+        "http://www.bom.gov.au/fwo/IDN",
+        "60903",
+        "/",
+        "IDN",
+        "60903",
+        ".",
+        .$wmo,
+        ".json"
+      ),
+    .$state == "ANT" & !is.na(.$wmo) ~
+      paste0(
+        "http://www.bom.gov.au/fwo/ID",
+        .$state_code,
+        "60803",
+        "/",
+        "ID",
+        .$state_code,
+        "60803",
+        ".",
+        .$wmo,
+        ".json"
+      )
   )
+)
 ```
 
 ## Save data
