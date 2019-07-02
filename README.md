@@ -13,10 +13,7 @@ current weather data from stations, ag information bulletins, historical weather
 data and downloading and importing radar or satellite imagery.
 
 Credit for the name, *bomrang*, goes to [Di Cook](http://dicook.org/), who
-suggested it while attending the rOpenSci AUUnconf in Brisbane, 2016, upon
-seeing the
-[vignette](https://github.com/katerobsau/auunconf16/blob/master/Vignette_BoM.pdf)
-that we had assembled during the Unconf.
+suggested it while attending the rOpenSci AUUnconf in Brisbane, 2016.
 
 Quick Start
 -----------
@@ -60,8 +57,8 @@ and radar imagery,
   - `get_available_radar()`; and 
   - the radar imagery itself, `get_radar_imagery()`.
   
-[Vignettes are provided illustrating examples](https://ropensci.github.io/bomrang/articles/bomrang.html)
-of all functions and a [use case](https://ropensci.github.io/bomrang/articles/use_case.html).
+[Vignettes are provided illustrating examples](https://docs.ropensci.org/bomrang/articles/bomrang.html)
+of all functions and a [use case](https://docs.ropensci.org/bomrang/articles/use_case.html).
 
 Meta
 ----
