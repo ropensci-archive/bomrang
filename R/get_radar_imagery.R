@@ -1,6 +1,4 @@
 
-
-
 #' Get a Listing of Available BOM Radar Imagery
 #'
 #' Fetch a listing of available \acronym{BOM} radar imagery from
