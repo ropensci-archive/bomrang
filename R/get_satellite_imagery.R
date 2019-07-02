@@ -199,9 +199,12 @@ get_satellite_imagery <- get_satellite <-
         file.path(cache_dir, basename(tif_files))
       )
     },
-    error = function() {
-      y <- raster::raster("man/figures/image_error_message.gif")
-      return(y)
+    error = function(cond) {
+      return(raster::raster(
+        system.file("error_images",
+                    "image_error_message.png",
+                    package = "bomrang")
+      ))
     }
     )
     # create raster stack object of the GeoTIFF files --------------------------
