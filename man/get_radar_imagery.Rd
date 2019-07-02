@@ -7,7 +7,7 @@
 get_radar_imagery(product_id, path = NULL, download_only = FALSE)
 }
 \arguments{
-\item{product_id}{Character.  \acronym{BOM} product ID to download and import
+\item{product_id}{Character. \acronym{BOM} product ID to download and import
 as a  \code{\link[raster]{raster}} object. Value is required.}
 
 \item{path}{Character. A character string with the name where the downloaded
