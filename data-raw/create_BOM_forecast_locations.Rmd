@@ -49,7 +49,7 @@ Save the stations to disk for use in the R package.
     }
 
   save(AAC_codes, file = "../inst/extdata/AAC_codes.rda",
-     compress = "bzip2")
+     compress = "bzip2", version = 2)
 ```
 
 ## Session Info

@@ -320,7 +320,8 @@ if (!dir.exists("../inst/extdata")) {
 # Save database
 save(JSONurl_site_list,
      file = "../inst/extdata/JSONurl_site_list.rda",
-     compress = "bzip2")
+     compress = "bzip2",
+     version = 2)
 ```
 
 ### Save station location data for `get_ag_bulletin()`
@@ -347,7 +348,8 @@ data.table::setkey(stations_site_list, "site")
 
 save(stations_site_list,
      file = "../inst/extdata/current_stations_site_list.rda",
-     compress = "bzip2")
+     compress = "bzip2",
+     version = 2)
 ```
 
 ## Session Info
