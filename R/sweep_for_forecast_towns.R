@@ -15,7 +15,7 @@ sweep_for_forecast_towns <- function(latlon = c(-35.3, 149.2)) {
   Lon <- latlon[2]
 
   # CRAN NOTE avoidance:
-  JSONurl_site_list <- lat <- lon <- NULL # nocov
+  AAC_codes <- lat <- lon <- NULL # nocov
 
   # Load JSON URL list
   load(system.file("extdata",
