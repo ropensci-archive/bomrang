@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropensci/bomrang",
   "issueTracker": "https://github.com/ropensci/bomrang/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.5.0.9000",
+  "version": "0.6.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -38,6 +38,13 @@
       "familyName": "Carroll",
       "email": "rpkg@jcarroll.com.au",
       "@id": "https://orcid.org/0000-0002-1404-5264"
+    },
+    {
+      "@type": "Person",
+      "givenName": "James",
+      "familyName": "Goldie",
+      "email": "me@rensa.co",
+      "@id": "https://orcid.org/0000-0002-5024-6207"
     },
     {
       "@type": "Person",
@@ -470,7 +477,7 @@
   "contIntegration": "https://travis-ci.org/ropensci/bomrang",
   "releaseNotes": "https://github.com/ropensci/bomrang/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/bomrang/blob/master/README.md",
-  "fileSize": "827.369KB",
+  "fileSize": "827.637KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
