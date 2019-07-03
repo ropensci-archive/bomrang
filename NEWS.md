@@ -3,8 +3,9 @@
 ## Bug fixes
 
 - Fix a bug with links to documentation from `get_historical()` and `%>%`
+- Add `sweep_for_forecast_towns()`, which works analogously to `sweep_for_stations()`
 
-- Update station location databases to use updated(?) BOM URLs
+- Update station location databases to use updated BOM URLs
 
 - Update file and error handling for image downloads when downloads fail
 
