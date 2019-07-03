@@ -40,7 +40,7 @@ if (!dir.exists("../inst/extdata")) {
 }
 
 save(radar_locations, file = "../inst/extdata/radar_locations.rda",
-     compress = "bzip2")
+     compress = "bzip2", version = 2)
 ```
 
 ## Session Info

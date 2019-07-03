@@ -78,7 +78,7 @@ get_available_radar <- function(radar_id = "all") {
 #' Suggested to check file availability first by using
 #' \code{\link{get_available_radar}}.
 #'
-#' @param product_id Character.  \acronym{BOM} product ID to download and import
+#' @param product_id Character. \acronym{BOM} product ID to download and import
 #' as a  \code{\link[raster]{raster}} object. Value is required.
 #'
 #' @param path Character. A character string with the name where the downloaded
@@ -119,7 +119,7 @@ get_available_radar <- function(radar_id = "all") {
 #' @rdname get_radar
 #' @export get_radar_imagery
 
-get_radar_imagery <- get_radar <- 
+get_radar_imagery <- get_radar <-
   function(product_id,
            path = NULL,
            download_only = FALSE) {
@@ -159,8 +159,16 @@ get_radar_imagery <- get_radar <-
         return(y)
       }
     },
-    error = function() {
-      y <- raster::raster("man/figures/image_error_message.gif")
-      return(y)
+    error = function(cond) {
+      return(raster::raster(
+        system.file("error_images",
+                    "image_error_message.png",
+                    package = "bomrang")
+      ))
     })
   }
+
+# Export raster plot functionality to plot radar imagery
+#' @importFrom raster plot
+#' @export
+raster::plot
