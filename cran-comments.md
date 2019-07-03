@@ -34,7 +34,8 @@ makes minor changes to documentation
 
 - Plots radar images natively using re-exported `raster::plot()`
 
-- Adds `sweep_for_forecast_towns()`, which works analogously to `sweep_for_stations()`
+- Adds `sweep_for_forecast_towns()`, which works analogously to
+`sweep_for_stations()`
 
 ## Reverse dependencies
 
