@@ -5,7 +5,8 @@
 #' (approximately).
 #' @return A data frame of all forecast towns (in this package) sorted
 #' by distance from \var{latlon}, ascending.
-#' @author Hugh Parsonage, \email{hugh.parsonage@@gmail.com}
+#' @author Hugh Parsonage, \email{hugh.parsonage@@gmail.com} and
+#'  James Goldie, \email{me@@rensa.co}
 #' @importFrom data.table copy setorderv
 #' @export sweep_for_forecast_towns
 
