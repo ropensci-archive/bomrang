@@ -1,23 +1,24 @@
-# bomrang 0.5.0.9000
+# bomrang 0.6.0
 
 ## Bug fixes
 
-- Fix a bug with links to documentation from `get_historical()` and `%>%`
-- Add `sweep_for_forecast_towns()`, which works analogously to `sweep_for_stations()`
+- Fixes a bug with links to documentation from `get_historical()` and `%>%`
 
-- Update station location databases to use updated BOM URLs
+- Updates station location databases to use updated BOM URLs
 
-- Update file and error handling for image downloads when downloads fail
+- Updates file and error handling for image downloads when downloads fail
 
-- Ensure that .Rds/.Rda files are saved using version 2, for R from 1.4.0 to
+- Ensures that .Rds/.Rda files are saved using version 2, for R from 1.4.0 to
 3.5.0 such that users using older versions of R do not have to upgrade to use
 `bomrang`
 
-- Fix bug that prevents end-user from self-updating internal databases
+- Fixes bug that prevents end-user from self-updating internal databases
 
 ## Minor changes
 
-- Plot radar images natively using re-exported `raster::plot()`
+- Plots radar images natively using re-exported `raster::plot()`
+
+- Adds `sweep_for_forecast_towns()`, which works analogously to `sweep_for_stations()`
 
 # bomrang 0.5.0
 

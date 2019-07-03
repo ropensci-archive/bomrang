@@ -18,13 +18,23 @@ makes minor changes to documentation
 
 ## Bug fixes
 
+- Fixes a bug with links to documentation from `get_historical()` and `%>%`
 
-## Major changes
+- Updates station location databases to use updated BOM URLs
 
+- Updates file and error handling for image downloads when downloads fail
 
+- Ensures that .Rds/.Rda files are saved using version 2, for R from 1.4.0 to
+3.5.0 such that users using older versions of R do not have to upgrade to use
+`bomrang`
+
+- Fixes bug that prevents end-user from self-updating internal databases
 
 ## Minor changes
 
+- Plots radar images natively using re-exported `raster::plot()`
+
+- Adds `sweep_for_forecast_towns()`, which works analogously to `sweep_for_stations()`
 
 ## Reverse dependencies
 
