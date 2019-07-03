@@ -1,13 +1,16 @@
 Package: bomrang
 Type: Package
 Title: Australian Government Bureau of Meteorology ('BOM') Data Client
-Version: 0.5.0.9000
+Version: 0.6.0
 Authors@R: c(person("Adam", "Sparks", role = c("aut", "cre"),
     email = "adamhsparks@gmail.com",
     comment = c(ORCID = "0000-0002-0061-8359")),
     person("Jonathan", "Carroll", 
     email = "rpkg@jcarroll.com.au", role = "aut", 
     comment = c(ORCID = "0000-0002-1404-5264")),
+    person("James", "Goldie",
+    comment = c(ORCID = "0000-0002-5024-6207")),
+    email = "me@rensa.co", role = "aut"),
     person("Dean", "Marchiori",
     email = "deanmarchiori@gmail.com", role = "aut"),
     person("Mark", "Padgham", role = c("aut", "rev"),
