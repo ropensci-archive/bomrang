@@ -75,8 +75,8 @@ Meta
 - To cite *bomrang*, please use the output from `citation("bomrang")`
 
 - Please note that the *bomrang* project is released with a
-[Contributor Code of Conduct](CONDUCT.md). By participating in the *bomrang*
-project you agree to abide by its terms.
+[Contributor Code of Conduct](https://github.com/ropensci/bomrang/blob/master/CONDUCT.md).
+By participating in the *bomrang* project you agree to abide by its terms.
 
 References
 ----------

@@ -1,13 +1,13 @@
 
 ## Test environments
 
-- local macOS install R version 3.6.0
+- local macOS install R version 3.6.0 (2019-04-26)
 
-- Circle-CI debian:9 R version 3.6.0 (2019-03-11)
+- Circle-CI debian:9 R version 3.6.0 (2019-04-26)
 
-- win-builder R Under development (unstable) 
+- win-builder R Under development (unstable) (2019-06-27 r76748)
 
-- win-builder R version 3.6.0 (2019-03-11)
+- win-builder R version 3.6.0 (2019-04-26)
 
 ## R CMD check results
 
