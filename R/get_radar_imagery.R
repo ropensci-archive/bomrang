@@ -159,7 +159,7 @@ get_radar_imagery <- get_radar <-
         return(y)
       }
     },
-    error = function(cond) {
+    error = function() {
       return(raster::raster(
         system.file("error_images",
                     "image_error_message.png",

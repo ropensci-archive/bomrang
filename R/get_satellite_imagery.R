@@ -199,7 +199,7 @@ get_satellite_imagery <- get_satellite <-
         file.path(cache_dir, basename(tif_files))
       )
     },
-    error = function(cond) {
+    error = function() {
       return(raster::raster(
         system.file("error_images",
                     "image_error_message.png",
