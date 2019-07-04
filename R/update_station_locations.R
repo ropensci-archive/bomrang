@@ -257,6 +257,6 @@ update_station_locations <- function() {
   
   fname <-
     system.file("extdata", "stations_site_list.rda", package = "bomrang")
-  save(stations_site_list, file = fname, compress = "bzip2", version = 2)
+  save(stations_site_list, file = fname, compress = "bzip2")
 }
 

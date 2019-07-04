@@ -63,5 +63,5 @@ update_forecast_towns <- function() {
   message("\nOverwriting existing database of forecast towns and AAC codes.\n")
   fname <-
     system.file("extdata", "AAC_codes.rda", package = "bomrang")
-  save(AAC_codes, file = fname, compress = "bzip2", version = 2)
+  save(AAC_codes, file = fname, compress = "bzip2")
 }
