@@ -52,7 +52,6 @@ test_that("get_precis_forecast returns 19 columns and min < max", {
   expect_is(bom_forecast$probability_of_precipitation, "numeric")
   expect_lt(mean(bom_forecast$minimum_temperature, na.rm = TRUE),
             mean(bom_forecast$maximum_temperature, na.rm = TRUE))
-  expect_equal(bom_forecast$index[1:8], as.factor(0:7))
 })
 
 # Test that get_precis_forecast returns the requested state forecast ------------------
