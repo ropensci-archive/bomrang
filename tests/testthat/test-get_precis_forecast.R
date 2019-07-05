@@ -1,6 +1,6 @@
 context("get_precis_forecast")
 
-# Test that get_precis_forecast returns a data frame with 19 colums -------------------
+# Test that get_precis_forecast returns a data frame with 19 colums ------------
 test_that("get_precis_forecast returns 19 columns and min < max", {
   skip_on_cran()
   bom_forecast <- get_precis_forecast(state = "QLD")
@@ -54,7 +54,7 @@ test_that("get_precis_forecast returns 19 columns and min < max", {
             mean(bom_forecast$maximum_temperature, na.rm = TRUE))
 })
 
-# Test that get_precis_forecast returns the requested state forecast ------------------
+# Test that get_precis_forecast returns the requested state forecast -----------
 test_that("get_precis_forecast returns the forecast for ACT/NSW", {
   skip_on_cran()
   bom_forecast <- get_precis_forecast(state = "ACT")
