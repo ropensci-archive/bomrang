@@ -136,35 +136,56 @@ get_historical <- get_historical_weather <-
       dplyr::filter(ncc_list, c(site == as.numeric(stationid) &
                                   ncc_obs_code == obscode))
     
-    if (obscode %notin% ncc_list$ncc_obs_code)
-      stop(call. = FALSE,
-           "\n`type` ",
-           type,
-           " is not available for `stationid` ",
-           stationid,
-           "\n")
-    
-    zipurl <- .get_zip_url(stationid, obscode)
-    dat <- .get_zip_and_load(zipurl)
-    
-    names(dat) <- c("product_code",
-                    "station_number",
-                    "year",
-                    "month",
-                    "day",
-                    switch(
-                      type,
-                      min = c("min_temperature",
-                              "accum_days_min",
-                              "quality"),
-                      max = c("max_temperature",
-                              "accum_days_max",
-                              "quality"),
-                      rain = c("rainfall",
-                               "period",
-                               "quality"),
-                      solar = c("solar_exposure")
-                    ))
+    if (obscode %notin% ncc_list$ncc_obs_code){
+      message(
+        "\n`type` ",
+        type,
+        " is not available for `stationid` ",
+        stationid,
+        "\n")
+      dat <- data.frame(product_code = NA,
+                        station_number = NA,
+                        year = NA,
+                        month = NA,
+                        day = NA,
+                        switch(
+                          type,
+                          min = data.frame(min_temperature = NA,
+                                           accum_days_min = NA,
+                                           quality = NA),
+                          max = data.frame(max_temperature = NA,
+                                           accum_days_max = NA,
+                                           quality = NA),
+                          rain = data.frame(rainfall = NA,
+                                            period = NA,
+                                            quality = NA),
+                          solar = data.frame(solar_exposure = NA)
+                          
+                        ))
+    }else{
+      
+      zipurl <- .get_zip_url(stationid, obscode)
+      dat <- .get_zip_and_load(zipurl)
+      
+      names(dat) <- c("product_code",
+                      "station_number",
+                      "year",
+                      "month",
+                      "day",
+                      switch(
+                        type,
+                        min = c("min_temperature",
+                                "accum_days_min",
+                                "quality"),
+                        max = c("max_temperature",
+                                "accum_days_max",
+                                "quality"),
+                        rain = c("rainfall",
+                                 "period",
+                                 "quality"),
+                        solar = c("solar_exposure")
+                      ))
+    }
     
     return(
       structure(
