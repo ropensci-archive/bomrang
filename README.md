@@ -18,6 +18,14 @@ seeing the
 [vignette](https://github.com/katerobsau/auunconf16/blob/master/Vignette_BoM.pdf)
 that we had assembled during the Unconf.
 
+
+Objectives to fix and merge with opensci/bomrang  
+-----------
+  - Add local file imports for get_forecast()
+  - Add distance parameter to sweep_for_station()
+  - get_historical() Allow import of data from stations which don't have certain data by adding NAs
+
+
 Quick Start
 -----------
 
