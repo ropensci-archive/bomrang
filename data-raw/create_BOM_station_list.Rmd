@@ -122,7 +122,8 @@ bom_stations_raw$end[is.na(bom_stations_raw$end)] <- format(Sys.Date(), "%Y")
 # keep only currently reporting stations
 bom_stations_raw <- 
   bom_stations_raw[bom_stations_raw$end == format(Sys.Date(), "%Y"), ] %>% 
-  dplyr::mutate(end = as.integer(end))
+  dplyr::mutate(start = as.integer(start),
+                end = as.integer(end))
 
 str(bom_stations_raw)
 

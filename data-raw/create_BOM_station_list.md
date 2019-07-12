@@ -117,16 +117,17 @@ bom_stations_raw$end[is.na(bom_stations_raw$end)] <- format(Sys.Date(), "%Y")
 # keep only currently reporting stations
 bom_stations_raw <- 
   bom_stations_raw[bom_stations_raw$end == format(Sys.Date(), "%Y"), ] %>% 
-  dplyr::mutate(end = as.integer(end))
+  dplyr::mutate(start = as.integer(start),
+                end = as.integer(end))
 
 str(bom_stations_raw)
 ```
 
-    ## Classes 'tbl_df', 'tbl' and 'data.frame':    7163 obs. of  11 variables:
+    ## Classes 'tbl_df', 'tbl' and 'data.frame':    7166 obs. of  11 variables:
     ##  $ site  : chr  "001006" "001007" "001010" "001013" ...
     ##  $ dist  : chr  "01" "01" "01" "01" ...
     ##  $ name  : chr  "WYNDHAM AERO" "TROUGHTON ISLAND" "THEDA" "WYNDHAM" ...
-    ##  $ start : num  1951 1956 1965 1968 1998 ...
+    ##  $ start : int  1951 1956 1965 1968 1998 1973 1997 1944 1967 1986 ...
     ##  $ end   : int  2019 2019 2019 2019 2019 2019 2019 2019 2019 2019 ...
     ##  $ lat   : num  -15.5 -13.8 -14.8 -15.5 -15.9 ...
     ##  $ lon   : num  128 126 126 128 128 ...
@@ -139,9 +140,9 @@ str(bom_stations_raw)
 bom_stations_raw
 ```
 
-    ## # A tibble: 7,163 x 11
+    ## # A tibble: 7,166 x 11
     ##    site   dist  name       start   end   lat   lon state  elev bar_ht   wmo
-    ##    <chr>  <chr> <chr>      <dbl> <int> <dbl> <dbl> <chr> <dbl>  <dbl> <dbl>
+    ##    <chr>  <chr> <chr>      <int> <int> <dbl> <dbl> <chr> <dbl>  <dbl> <dbl>
     ##  1 001006 01    WYNDHAM A…  1951  2019 -15.5  128. WA      3.8    4.3 95214
     ##  2 001007 01    TROUGHTON…  1956  2019 -13.8  126. WA      6      8   94102
     ##  3 001010 01    THEDA       1965  2019 -14.8  126. WA    210     NA      NA
@@ -152,7 +153,7 @@ bom_stations_raw
     ##  8 001020 01    TRUSCOTT    1944  2019 -14.1  126. WA     51     52.5 95101
     ##  9 001023 01    EL QUESTRO  1967  2019 -16.0  128. WA     90     NA      NA
     ## 10 001024 01    ELLENBRAE   1986  2019 -16.0  127. WA    300     NA      NA
-    ## # … with 7,153 more rows
+    ## # … with 7,156 more rows
 
 ## Check station locations
 
@@ -356,7 +357,7 @@ save(stations_site_list,
 
     ## ─ Session info ──────────────────────────────────────────────────────────
     ##  setting  value                       
-    ##  version  R version 3.6.0 (2019-04-26)
+    ##  version  R version 3.6.1 (2019-07-05)
     ##  os       macOS Mojave 10.14.5        
     ##  system   x86_64, darwin15.6.0        
     ##  ui       X11                         
@@ -364,7 +365,7 @@ save(stations_site_list,
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2019-07-02                  
+    ##  date     2019-07-12                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version date       lib source        
@@ -375,16 +376,16 @@ save(stations_site_list,
     ##  crayon        1.3.4   2017-09-16 [1] CRAN (R 3.6.0)
     ##  curl          3.3     2019-01-10 [1] CRAN (R 3.6.0)
     ##  data.table  * 1.12.2  2019-04-07 [1] CRAN (R 3.6.0)
-    ##  digest        0.6.19  2019-05-20 [1] CRAN (R 3.6.0)
-    ##  dplyr         0.8.2   2019-06-29 [1] CRAN (R 3.6.0)
+    ##  digest        0.6.20  2019-07-04 [1] CRAN (R 3.6.0)
+    ##  dplyr         0.8.3   2019-07-04 [1] CRAN (R 3.6.0)
     ##  evaluate      0.14    2019-05-28 [1] CRAN (R 3.6.0)
     ##  fansi         0.4.0   2018-10-05 [1] CRAN (R 3.6.0)
     ##  glue          1.3.1   2019-03-12 [1] CRAN (R 3.6.0)
-    ##  hms           0.4.2   2018-03-10 [1] CRAN (R 3.6.0)
+    ##  hms           0.5.0   2019-07-09 [1] CRAN (R 3.6.0)
     ##  htmltools     0.3.6   2017-04-28 [1] CRAN (R 3.6.0)
     ##  httr          1.4.0   2018-12-11 [1] CRAN (R 3.6.0)
     ##  knitr         1.23    2019-05-18 [1] CRAN (R 3.6.0)
-    ##  lattice       0.20-38 2018-11-04 [2] CRAN (R 3.6.0)
+    ##  lattice       0.20-38 2018-11-04 [2] CRAN (R 3.6.1)
     ##  magrittr    * 1.5     2014-11-22 [1] CRAN (R 3.6.0)
     ##  pillar        1.4.2   2019-06-29 [1] CRAN (R 3.6.0)
     ##  pkgconfig     2.0.2   2018-08-16 [1] CRAN (R 3.6.0)
@@ -402,7 +403,7 @@ save(stations_site_list,
     ##  tidyr         0.8.3   2019-03-01 [1] CRAN (R 3.6.0)
     ##  tidyselect    0.2.5   2018-10-11 [1] CRAN (R 3.6.0)
     ##  utf8          1.1.4   2018-05-24 [1] CRAN (R 3.6.0)
-    ##  vctrs         0.1.0   2018-11-29 [1] CRAN (R 3.6.0)
+    ##  vctrs         0.2.0   2019-07-05 [1] CRAN (R 3.6.0)
     ##  withr         2.1.2   2018-03-15 [1] CRAN (R 3.6.0)
     ##  xfun          0.8     2019-06-25 [1] CRAN (R 3.6.0)
     ##  yaml          2.2.0   2018-07-25 [1] CRAN (R 3.6.0)
