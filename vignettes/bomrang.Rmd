@@ -325,7 +325,7 @@ The fields in the data frame are:
 
 Following is an example sweeping for stations starting with Canberra.
 
-```{r sweep_stations, eval=TRUE}
+```{r sweep_stations, eval=FALSE}
 # Show only the first ten stations in the list
 head(sweep_for_stations(latlon = c(-35.3, 149.2)), 10)
 ```
@@ -354,8 +354,7 @@ The fields in the data frame are:
 
 Following is an example sweeping for forecast towns starting with Canberra.
 
-```{r sweep_forecast, eval=TRUE}
-warning("Everything works up to here")
+```{r sweep_forecast, eval=FALSE}
 # Show only the first ten towns in the list
 head(sweep_for_forecast_towns(latlon = c(-35.3, 149.2)), 10)
 ```
