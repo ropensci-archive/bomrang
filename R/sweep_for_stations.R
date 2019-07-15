@@ -3,7 +3,7 @@
 #'
 #' @param latlon A length-2 numeric vector. By default, Canberra
 #' (approximately).
-#' @return A data frame of all weather stations (in this package) sorted
+#' @return A `data.table` of all weather stations (in this package) sorted
 #' by distance from \var{latlon}, ascending.
 #' @author Hugh Parsonage, \email{hugh.parsonage@@gmail.com}
 #' @importFrom data.table copy setorderv
@@ -26,7 +26,6 @@ sweep_for_stations <- function(latlon = c(-35.3, 149.2)) {
     # Lat Lon are in JSON
     .[, "distance" := .haversine_distance(Lat, Lon, lat, lon)] %>%
     setorderv("distance") %>%
-    .[] %>%
-    as.data.frame
+    .[]
 }
 
