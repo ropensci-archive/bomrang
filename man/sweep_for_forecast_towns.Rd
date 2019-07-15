@@ -11,7 +11,7 @@ sweep_for_forecast_towns(latlon = c(-35.3, 149.2))
 (approximately).}
 }
 \value{
-A data frame of all forecast towns (in this package) sorted
+A `data.table`` of all forecast towns (in this package) sorted
 by distance from \var{latlon}, ascending.
 }
 \description{
