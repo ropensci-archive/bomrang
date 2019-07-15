@@ -337,7 +337,7 @@ for use in `bomrang`.
 stations_site_list <-
   stations_site_list %>%
   dplyr::select(-state_code, -url) %>% 
-  dplyr::filter(end == 2018) %>% 
+  dplyr::filter(end == lubridate::year(Sys.Date())) %>% 
   dplyr::mutate(end = as.integer(end))
 
 stations_site_list$site <-
@@ -385,6 +385,7 @@ save(stations_site_list,
     ##  httr          1.4.0   2018-12-11 [1] CRAN (R 3.6.0)
     ##  knitr         1.23    2019-05-18 [1] CRAN (R 3.6.0)
     ##  lattice       0.20-38 2018-11-04 [2] CRAN (R 3.6.1)
+    ##  lubridate     1.7.4   2018-04-11 [1] CRAN (R 3.6.0)
     ##  magrittr    * 1.5     2014-11-22 [1] CRAN (R 3.6.0)
     ##  pillar        1.4.2   2019-06-29 [1] CRAN (R 3.6.0)
     ##  pkgconfig     2.0.2   2018-08-16 [1] CRAN (R 3.6.0)

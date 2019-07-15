@@ -305,7 +305,7 @@ information. Lastly, create the database for use in `bomrang`.
 stations_site_list <-
   stations_site_list %>%
   dplyr::select(-state_code, -url) %>% 
-  dplyr::filter(end == 2018) %>% 
+  dplyr::filter(end == lubridate::year(Sys.Date())) %>% 
   dplyr::mutate(end = as.integer(end))
 
 stations_site_list$site <-
