@@ -18,38 +18,38 @@ specifically the DBF file portion of a shapefile,
 <ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf>
 
 ```{r get_forecast_towns}
-  curl::curl_download(
-    "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf",
-    destfile = paste0(tempdir(), "AAC_codes.dbf"),
-    mode = "wb",
-    quiet = TRUE
-  )
+curl::curl_download(
+  "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf",
+  destfile = paste0(tempdir(), "AAC_codes.dbf"),
+  mode = "wb",
+  quiet = TRUE
+)
 
-  AAC_codes <-
-    foreign::read.dbf(paste0(tempdir(), "AAC_codes.dbf"), as.is = TRUE)
-  
-  # convert names to lower case for consistency with bomrang output
-  names(AAC_codes) <- tolower(names(AAC_codes))
-  
-  # reorder columns
-  AAC_codes <- AAC_codes[, c(2:3, 7:9)]
-  
-  # set name
-  data.table::setnames(AAC_codes, c(2, 5), c("town", "elev"))
-  
-  data.table::setDT(AAC_codes)
-  data.table::setkey(AAC_codes, "aac")
+AAC_codes <-
+  foreign::read.dbf(paste0(tempdir(), "AAC_codes.dbf"), as.is = TRUE)
+
+# convert names to lower case for consistency with bomrang output
+names(AAC_codes) <- tolower(names(AAC_codes))
+
+# reorder columns
+AAC_codes <- AAC_codes[, c(2:3, 7:9)]
+
+data.table::setDT(AAC_codes)
+data.table::setnames(AAC_codes, c(2, 5), c("town", "elev"))
+data.table::setkey(AAC_codes, "aac")
 ```
 
 Save the stations to disk for use in the R package.
 
 ```{r create_data}
- if (!dir.exists("../inst/extdata")) {
-      dir.create("../inst/extdata", recursive = TRUE)
-    }
+if (!dir.exists("../inst/extdata")) {
+  dir.create("../inst/extdata", recursive = TRUE)
+}
 
-  save(AAC_codes, file = "../inst/extdata/AAC_codes.rda",
-     compress = "bzip2", version = 2)
+save(AAC_codes,
+     file = "../inst/extdata/AAC_codes.rda",
+     compress = "bzip2",
+     version = 2)
 ```
 
 ## Session Info
