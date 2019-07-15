@@ -123,7 +123,7 @@ bom_stations_raw <-
 str(bom_stations_raw)
 ```
 
-    ## Classes 'tbl_df', 'tbl' and 'data.frame':    7166 obs. of  11 variables:
+    ## Classes 'tbl_df', 'tbl' and 'data.frame':    7161 obs. of  11 variables:
     ##  $ site  : chr  "001006" "001007" "001010" "001013" ...
     ##  $ dist  : chr  "01" "01" "01" "01" ...
     ##  $ name  : chr  "WYNDHAM AERO" "TROUGHTON ISLAND" "THEDA" "WYNDHAM" ...
@@ -140,7 +140,7 @@ str(bom_stations_raw)
 bom_stations_raw
 ```
 
-    ## # A tibble: 7,166 x 11
+    ## # A tibble: 7,161 x 11
     ##    site   dist  name       start   end   lat   lon state  elev bar_ht   wmo
     ##    <chr>  <chr> <chr>      <int> <int> <dbl> <dbl> <chr> <dbl>  <dbl> <dbl>
     ##  1 001006 01    WYNDHAM A…  1951  2019 -15.5  128. WA      3.8    4.3 95214
@@ -153,7 +153,7 @@ bom_stations_raw
     ##  8 001020 01    TRUSCOTT    1944  2019 -14.1  126. WA     51     52.5 95101
     ##  9 001023 01    EL QUESTRO  1967  2019 -16.0  128. WA     90     NA      NA
     ## 10 001024 01    ELLENBRAE   1986  2019 -16.0  127. WA    300     NA      NA
-    ## # … with 7,156 more rows
+    ## # … with 7,151 more rows
 
 ## Check station locations
 
@@ -338,8 +338,7 @@ stations_site_list <-
   stations_site_list %>%
   dplyr::select(-state_code, -url) %>% 
   dplyr::filter(end == 2018) %>% 
-  dplyr::mutate(end = as.integer(end)) %>% 
-  as.data.frame()
+  dplyr::mutate(end = as.integer(end))
 
 stations_site_list$site <-
   gsub("^0{1,2}", "", stations_site_list$site)
@@ -365,7 +364,7 @@ save(stations_site_list,
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2019-07-12                  
+    ##  date     2019-07-15                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version date       lib source        
@@ -394,7 +393,7 @@ save(stations_site_list,
     ##  Rcpp          1.0.1   2019-03-17 [1] CRAN (R 3.6.0)
     ##  readr         1.3.1   2018-12-21 [1] CRAN (R 3.6.0)
     ##  rlang         0.4.0   2019-06-25 [1] CRAN (R 3.6.0)
-    ##  rmarkdown     1.13    2019-05-22 [1] CRAN (R 3.6.0)
+    ##  rmarkdown     1.14    2019-07-12 [1] CRAN (R 3.6.0)
     ##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.6.0)
     ##  sp          * 1.3-1   2018-06-05 [1] CRAN (R 3.6.0)
     ##  stringi       1.4.3   2019-03-12 [1] CRAN (R 3.6.0)
