@@ -7,7 +7,7 @@
 update_station_locations()
 }
 \value{
-Updated internal databases of \acronym{BOM} station locations and 
+Updated internal databases of \acronym{BOM} station locations and
 \acronym{JSON} \acronym{URL}s
 }
 \description{

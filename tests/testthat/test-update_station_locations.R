@@ -7,8 +7,8 @@ test_that("update_station_locations() stops if 'no'", {
   
   f <- file()
   options(bomrang.connection = f)
-  ans <- "no"
-  write(ans, f)
+  answer <- "no"
+  write(answer, f)
   expect_error(update_station_locations())
   options(bomrang.connection = stdin())
   close(f)

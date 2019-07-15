@@ -19,7 +19,7 @@
 #' \dontrun{
 #' update_station_locations()
 #' }
-#' @return Updated internal databases of \acronym{BOM} station locations and 
+#' @return Updated internal databases of \acronym{BOM} station locations and
 #' \acronym{JSON} \acronym{URL}s
 #'
 #' @references
@@ -31,34 +31,36 @@
 #' @export update_station_locations
 
 update_station_locations <- function() {
-
   message(
     "This will overwrite the current internal databases of BOM stations.\n",
     "If reproducibility is necessary, you may not wish to proceed.\n",
-    "Do you understand and wish to proceed (Y/n)?\n")
+    "Do you understand and wish to proceed (Y/n)?\n"
+  )
   
   answer <-
     readLines(con = getOption("bomrang.connection"), n = 1)
   
   answer <- toupper(answer)
   
-  if (answer != "Y" & answer != "YES") {
+  if (answer %notin% c("Y", "YES")) {
     stop("Station databases were not updated.",
          call. = FALSE)
   }
   
   message("Updating internal station databases.\n")
   
-    # CRAN NOTE avoidance
-  name <- site <- state_code <- wmo <- state <- lon <- lat <- # nocov start
-    actual_state <- state_from_latlon <- end <- NULL # nocov end
+  # CRAN NOTE avoidance
+  site <- state_code <- wmo <- state <- lon <- lat <- # nocov start
+  actual_state <- state_from_latlon <- start <- end <- NULL # nocov end
   
   tryCatch({
-    curl::curl_download(url =
-                          "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
-                        destfile = file.path(tempdir(), "stations.zip"),
-                        mode = "wb",
-                        quiet = TRUE)
+    curl::curl_download(
+      url =
+        "ftp://ftp.bom.gov.au/anon2/home/ncc/metadata/sitelists/stations.zip",
+      destfile = file.path(tempdir(), "stations.zip"),
+      mode = "wb",
+      quiet = TRUE
+    )
   },
   error = function(x)
     stop(
@@ -66,7 +68,6 @@ update_station_locations <- function() {
       "Please retry again later.\n",
       call. = FALSE
     ))
-  
   
   bom_stations_raw <-
     readr::read_table(
@@ -108,11 +109,11 @@ update_station_locations <- function() {
   
   # trim the end of the rows off that have extra info that's not in columns
   nrows <- nrow(bom_stations_raw) - 7
-  bom_stations_raw <- bom_stations_raw[1:nrows, ]
+  bom_stations_raw <- bom_stations_raw[1:nrows,]
   
   # add current year to stations that are still active
-  bom_stations_raw <- 
-    bom_stations_raw[bom_stations_raw$end == format(Sys.Date(), "%Y"), ] %>% 
+  bom_stations_raw <-
+    bom_stations_raw[bom_stations_raw$end == format(Sys.Date(), "%Y"),] %>%
     dplyr::mutate(start = as.integer(start),
                   end = as.integer(end))
   
@@ -175,7 +176,7 @@ update_station_locations <- function() {
   stations_site_list <-
     bom_stations_raw %>%
     dplyr::select(site:wmo, state, state_code) %>%
-    tidyr::drop_na(wmo) %>% 
+    tidyr::drop_na(wmo) %>%
     dplyr::mutate(
       url = dplyr::case_when(
         .$state == "NSW" |
@@ -229,7 +230,7 @@ update_station_locations <- function() {
   # MARSHALL ISLANDS NTC AWS, remove these from the list
   
   JSONurl_site_list <-
-    stations_site_list[!is.na(stations_site_list$url),]
+    stations_site_list[!is.na(stations_site_list$url), ]
   
   JSONurl_site_list <-
     JSONurl_site_list %>%
@@ -240,13 +241,18 @@ update_station_locations <- function() {
   
   # Remove new NA values from invalid URLs and convert to data.table
   JSONurl_site_list <-
-    data.table::data.table(JSONurl_site_list[!is.na(JSONurl_site_list$url),])
+    data.table::data.table(JSONurl_site_list[!is.na(JSONurl_site_list$url), ])
   
   message("Overwriting existing databases")
   
   fname <- system.file("extdata", "JSONurl_site_list.rda",
                        package = "bomrang")
-  save(JSONurl_site_list, file = fname, compress = "bzip2", version = 2)
+  save(
+    JSONurl_site_list,
+    file = fname,
+    compress = "bzip2",
+    version = 2
+  )
   
   stations_site_list <-
     stations_site_list %>%
@@ -261,4 +267,3 @@ update_station_locations <- function() {
     system.file("extdata", "stations_site_list.rda", package = "bomrang")
   save(stations_site_list, file = fname, compress = "bzip2")
 }
-

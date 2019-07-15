@@ -28,14 +28,15 @@ update_forecast_towns <- function() {
   message(
     "This will overwrite the current internal database of forecast towns.\n",
     "If reproducibility is necessary, you may not wish to proceed.\n",
-    "Do you understand and wish to proceed (Y/n)?\n")
+    "Do you understand and wish to proceed (Y/n)?\n"
+  )
   
   answer <-
     readLines(con = getOption("bomrang.connection"), n = 1)
   
   answer <- toupper(answer)
   
-  if (answer != "Y" & answer != "YES") {
+  if (answer %notin% c("Y", "YES")) {
     stop("Forecast towns were not updated.",
          call. = FALSE)
   }
