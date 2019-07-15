@@ -22,9 +22,15 @@ curl::curl_download(
 radar_locations <-
   foreign::read.dbf(paste0(tempdir(), "radar_locations.dbf"), as.is = TRUE)
 
-radar_locations$LocationID <- ifelse(test = nchar(radar_locations$LocationID) == 1, 
-                                     yes = paste0("0", radar_locations$LocationID), 
-                                     no = radar_locations$LocationID)
+radar_locations$LocationID <-
+  ifelse(
+    test = nchar(radar_locations$LocationID) == 1,
+    yes = paste0("0", radar_locations$LocationID),
+    no = radar_locations$LocationID
+  )
+
+data.table::setDT(radar_locations)
+data.table::setkey(radar_locations, "Name")
 ```
 
 Save the radar locations to disk for use in the R package.
@@ -34,8 +40,13 @@ if (!dir.exists("../inst/extdata")) {
   dir.create("../inst/extdata", recursive = TRUE)
 }
 
-save(radar_locations, file = "../inst/extdata/radar_locations.rda",
-     compress = "bzip2", version = 2)
+save(
+  radar_locations,
+  file = "../inst/extdata/radar_locations.rda",
+  compress = "bzip2",
+  version = 2
+  
+)
 ```
 
 ## Session Info
@@ -46,7 +57,7 @@ sessioninfo::session_info()
 
     ## ─ Session info ──────────────────────────────────────────────────────────
     ##  setting  value                       
-    ##  version  R version 3.6.0 (2019-04-26)
+    ##  version  R version 3.6.1 (2019-07-05)
     ##  os       macOS Mojave 10.14.5        
     ##  system   x86_64, darwin15.6.0        
     ##  ui       X11                         
@@ -54,7 +65,7 @@ sessioninfo::session_info()
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2019-07-02                  
+    ##  date     2019-07-15                  
     ## 
     ## ─ Packages ──────────────────────────────────────────────────────────────
     ##  package     * version date       lib source        
@@ -62,14 +73,15 @@ sessioninfo::session_info()
     ##  cli           1.1.0   2019-03-19 [1] CRAN (R 3.6.0)
     ##  crayon        1.3.4   2017-09-16 [1] CRAN (R 3.6.0)
     ##  curl          3.3     2019-01-10 [1] CRAN (R 3.6.0)
-    ##  digest        0.6.19  2019-05-20 [1] CRAN (R 3.6.0)
+    ##  data.table    1.12.2  2019-04-07 [1] CRAN (R 3.6.0)
+    ##  digest        0.6.20  2019-07-04 [1] CRAN (R 3.6.0)
     ##  evaluate      0.14    2019-05-28 [1] CRAN (R 3.6.0)
-    ##  foreign       0.8-71  2018-07-20 [2] CRAN (R 3.6.0)
+    ##  foreign       0.8-71  2018-07-20 [2] CRAN (R 3.6.1)
     ##  htmltools     0.3.6   2017-04-28 [1] CRAN (R 3.6.0)
     ##  knitr         1.23    2019-05-18 [1] CRAN (R 3.6.0)
     ##  magrittr      1.5     2014-11-22 [1] CRAN (R 3.6.0)
     ##  Rcpp          1.0.1   2019-03-17 [1] CRAN (R 3.6.0)
-    ##  rmarkdown     1.13    2019-05-22 [1] CRAN (R 3.6.0)
+    ##  rmarkdown     1.14    2019-07-12 [1] CRAN (R 3.6.0)
     ##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.6.0)
     ##  stringi       1.4.3   2019-03-12 [1] CRAN (R 3.6.0)
     ##  stringr       1.4.0   2019-02-10 [1] CRAN (R 3.6.0)

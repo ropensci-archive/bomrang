@@ -27,9 +27,15 @@ curl::curl_download(
 radar_locations <-
   foreign::read.dbf(paste0(tempdir(), "radar_locations.dbf"), as.is = TRUE)
 
-radar_locations$LocationID <- ifelse(test = nchar(radar_locations$LocationID) == 1, 
-                                     yes = paste0("0", radar_locations$LocationID), 
-                                     no = radar_locations$LocationID)
+radar_locations$LocationID <-
+  ifelse(
+    test = nchar(radar_locations$LocationID) == 1,
+    yes = paste0("0", radar_locations$LocationID),
+    no = radar_locations$LocationID
+  )
+
+data.table::setDT(radar_locations)
+data.table::setkey(radar_locations, "Name")
 ```
 
 Save the radar locations to disk for use in the R package.
@@ -39,8 +45,13 @@ if (!dir.exists("../inst/extdata")) {
   dir.create("../inst/extdata", recursive = TRUE)
 }
 
-save(radar_locations, file = "../inst/extdata/radar_locations.rda",
-     compress = "bzip2", version = 2)
+save(
+  radar_locations,
+  file = "../inst/extdata/radar_locations.rda",
+  compress = "bzip2",
+  version = 2
+  
+)
 ```
 
 ## Session Info
