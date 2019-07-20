@@ -26,3 +26,4 @@ stub <- function(){
   rgdal::readGDAL()
 } 
 # nocov end
+
