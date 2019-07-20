@@ -1,5 +1,4 @@
 
-
 #' Get BOM Coastal Waters Forecast
 #'
 #' Fetch the \acronym{BOM} daily Coastal Waters Forecast and return a tidy data
