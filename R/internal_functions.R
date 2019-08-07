@@ -179,20 +179,8 @@
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #' @noRd
 .get_xml <- function(xml_url, LOC = FALSE) {
-  if(isTRUE(LOC)){
-    tryCatch({
-      xml <- xml_url
-      xml_object <- xml2::read_xml(xml)
-    },
-    error = function(x)
-      stop(
-        "\nThe file location could not be found. ",
-        "Please check the filepath.\n"
-      ))
-    return(xml_object)
-    }
-  
-  if(!isTRUE(LOC)){
+    if(!isTRUE(LOC)){
+    # Read xml file into xml_object from the BOM ftp site
   tryCatch({
     xml <- curl::curl(xml_url, open = "rb")
     on.exit(close(xml))
@@ -206,6 +194,19 @@
     return(xml_object)
     }
   
+  if(isTRUE(LOC)){
+    # Read xml file into xml_object from the local filepath
+    tryCatch({
+      xml <- xml_url
+      xml_object <- xml2::read_xml(xml)
+    },
+    error = function(x)
+      stop(
+        "\nThe file location could not be found. ",
+        "Please check the filepath.\n"
+      ))
+    return(xml_object)
+  }
   }
 
 #' splits time cols and removes extra chars for forecast XML objects
