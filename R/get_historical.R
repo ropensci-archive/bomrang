@@ -124,7 +124,7 @@ get_historical <- get_historical_weather <-
     
     if (suppressWarnings(all(
       is.na(as.numeric(stationid)) |
-      !(as.numeric(stationid) %in% ncc_list$site)
+      (as.numeric(stationid) %notin% ncc_list$site)
     )))
       stop("\nStation not recognised.\n",
            call. = FALSE)
@@ -142,7 +142,7 @@ get_historical <- get_historical_weather <-
       dplyr::filter(ncc_list, c(site == as.numeric(stationid) &
                                   ncc_obs_code == obscode))
     
-    if (!(obscode %in% ncc_list$ncc_obs_code)){ # note use of ! to give %notin%
+    if (obscode %notin% ncc_list$ncc_obs_code){ 
       message(
         "\n`type` ",
         type,
