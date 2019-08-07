@@ -142,7 +142,7 @@ get_historical <- get_historical_weather <-
       dplyr::filter(ncc_list, c(site == as.numeric(stationid) &
                                   ncc_obs_code == obscode))
     
-    if (!(obscode %in% ncc_list$ncc_obs_code)){
+    if (!(obscode %in% ncc_list$ncc_obs_code)){ # note use of ! to give %notin%
       message(
         "\n`type` ",
         type,
@@ -168,6 +168,7 @@ get_historical <- get_historical_weather <-
                           solar = data.frame(solar_exposure = NA)
                           
                         ))
+      # returns an empty data.frame and gives a warning if there is no data for the requested station
     }else{
       
       zipurl <- .get_zip_url(stationid, obscode)
