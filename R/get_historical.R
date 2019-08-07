@@ -81,6 +81,12 @@
 #' get_historical(stationid = "023000", type = "max") ## ~48,000+ daily records
 #' get_historical(latlon = c(-35.2809, 149.1300),
 #'                type = "min") ## 3,500+ daily records
+#' 
+#' stations <- sweep_for_stations(latlon = c(-35.2809, 149.1300)) 
+#' stations <- subset(stations, distance <= 300)
+#' station_data <- lapply(stations$site, 
+#'                        get_historical,
+#'                        type = "min") ## historical weather for all stations within 300km radius
 #' }
 #' @rdname get_historical
 #' @rdname get_historical_weather
