@@ -15,8 +15,6 @@ data and downloading and importing radar or satellite imagery.
 Credit for the name, *bomrang*, goes to [Di Cook](http://dicook.org/), who
 suggested it while attending the rOpenSci AUUnconf in Brisbane, 2016.
 
-
-
 Quick Start
 -----------
 
