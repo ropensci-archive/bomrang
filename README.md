@@ -16,12 +16,6 @@ Credit for the name, *bomrang*, goes to [Di Cook](http://dicook.org/), who
 suggested it while attending the rOpenSci AUUnconf in Brisbane, 2016.
 
 
-Objectives to fix and merge with opensci/bomrang  
------------
-  - Add local file imports for get_forecast()
-  - Add distance parameter to sweep_for_station()
-  - get_historical() Allow import of data from stations which don't have certain data by adding NAs
-
 
 Quick Start
 -----------
