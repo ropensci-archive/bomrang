@@ -170,7 +170,7 @@
   return(state)
 }
 
-#' Download BOM XML Files and Load into Session
+#' Import BOM XML Files from Server Into R Session
 #'
 #' @param xml_url URL of XML file to be downloaded/parsed/loaded.
 #'
@@ -182,9 +182,7 @@
     if(!isTRUE(LOC)){
     # Read xml file into xml_object from the BOM ftp site
   tryCatch({
-    xml <- curl::curl(xml_url, open = "rb")
-    on.exit(close(xml))
-    xml_object <- xml2::read_xml(xml)
+    xml_object <- xml2::read_xml(x = xml_url)
   },
   error = function(x)
     stop(

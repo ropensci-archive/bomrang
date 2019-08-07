@@ -31,7 +31,7 @@ update_forecast_towns <- function() {
     "Do you understand and wish to proceed (Y/n)?\n")
   
   answer <-
-    readLines(con = getOption("bomrang_connection"), n = 1)
+    readLines(con = getOption("bomrang.connection"), n = 1)
   
   answer <- toupper(answer)
   

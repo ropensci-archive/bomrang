@@ -20,11 +20,11 @@ test_that("get_available_radar functions properly", {
   expect_gt(nrow(xx), 0)
   expect_equal(xx, get_available_radar(radar_id = "all"))
   
-  xxx <- get_available_radar(radar_id = "1")
+  xxx <- get_available_radar(radar_id = "3")
   expect_is(xxx, "data.frame")
   expect_gt(nrow(xxx), 0)
   expect_lt(nrow(xxx), 5)
-  expect_equal(unique(xxx$Radar_id) , 1)
+  expect_equal(unique(xxx$Radar_id) , 3)
 })
 
 

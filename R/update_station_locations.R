@@ -38,7 +38,7 @@ update_station_locations <- function() {
     "Do you understand and wish to proceed (Y/n)?\n")
   
   answer <-
-    readLines(con = getOption("bomrang_connection"), n = 1)
+    readLines(con = getOption("bomrang.connection"), n = 1)
   
   answer <- toupper(answer)
   
@@ -173,9 +173,16 @@ update_station_locations <- function() {
   stations_site_list <-
     bom_stations_raw %>%
     dplyr::select(site:wmo, state, state_code) %>%
+    tidyr::drop_na(wmo) %>% 
     dplyr::mutate(
       url = dplyr::case_when(
-        .$state != "ANT" & !is.na(.$wmo) ~
+        .$state == "NSW" |
+          .$state == "NT" |
+          .$state == "QLD" |
+          .$state == "SA" |
+          .$state == "TAS" |
+          .$state == "VIC" |
+          .$state == "WA" ~
           paste0(
             "http://www.bom.gov.au/fwo/ID",
             .$state_code,
@@ -188,7 +195,18 @@ update_station_locations <- function() {
             .$wmo,
             ".json"
           ),
-        .$state == "ANT" & !is.na(.$wmo) ~
+        .$state == "ACT" ~
+          paste0(
+            "http://www.bom.gov.au/fwo/IDN",
+            "60903",
+            "/",
+            "IDN",
+            "60903",
+            ".",
+            .$wmo,
+            ".json"
+          ),
+        .$state == "ANT" ~
           paste0(
             "http://www.bom.gov.au/fwo/ID",
             .$state_code,
@@ -226,7 +244,7 @@ update_station_locations <- function() {
   
   fname <- system.file("extdata", "JSONurl_site_list.rda",
                        package = "bomrang")
-  save(JSONurl_site_list, file = fname, compress = "bzip2")
+  save(JSONurl_site_list, file = fname, compress = "bzip2", version = 2)
   
   stations_site_list <-
     stations_site_list %>%

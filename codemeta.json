@@ -10,14 +10,14 @@
   "codeRepository": "https://github.com/ropensci/bomrang",
   "issueTracker": "https://github.com/ropensci/bomrang/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.5.3",
+    "version": "3.6.0",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.5.3 (2019-03-11)",
+  "runtimePlatform": "R version 3.6.0 (2019-04-26)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -38,6 +38,13 @@
       "familyName": "Carroll",
       "email": "rpkg@jcarroll.com.au",
       "@id": "https://orcid.org/0000-0002-1404-5264"
+    },
+    {
+      "@type": "Person",
+      "givenName": "James",
+      "familyName": "Goldie",
+      "email": "me@rensa.co",
+      "@id": "https://orcid.org/0000-0002-5024-6207"
     },
     {
       "@type": "Person",
@@ -177,18 +184,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=gridExtra"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "pkgdown",
-      "name": "pkgdown",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=pkgdown"
     },
     {
       "@type": "SoftwareApplication",
@@ -470,7 +465,7 @@
   "contIntegration": "https://travis-ci.org/ropensci/bomrang",
   "releaseNotes": "https://github.com/ropensci/bomrang/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/bomrang/blob/master/README.md",
-  "fileSize": "831.857KB",
+  "fileSize": "827.665KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
@@ -564,7 +559,8 @@
   ],
   "relatedLink": [
     "https://ropensci.github.io/bomrang/",
-    "https://CRAN.R-project.org/package=bomrang"
+    "https://CRAN.R-project.org/package=bomrang",
+    "https://docs.ropensci.org/bomrang/"
   ],
   "review": {
     "@type": "Review",

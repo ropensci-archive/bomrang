@@ -21,7 +21,7 @@ Provides functions to interface with Australian Government Bureau
 \strong{Useful links:}
 \itemize{
 \item{Development repository: \url{https://github.com/ropensci/bomrang}}
-\item{Static documentation: \url{https://ropensci.github.io/bomrang/}}
+\item{Static documentation: \url{https://docs.ropensci.org/bomrang/}}
 \item{Report bugs: \url{https://github.com/ropensci/bomrang/issues}}
 }
 }

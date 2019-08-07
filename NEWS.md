@@ -1,3 +1,26 @@
+# bomrang 0.6.0
+
+## Bug fixes
+
+- Fixes a bug with links to documentation from `get_historical()` and `%>%`
+
+- Updates station location databases to use updated BOM URLs
+
+- Updates file and error handling for image downloads when downloads fail
+
+- Ensures that .Rds/.Rda files are saved using version 2, for R from 1.4.0 to
+3.5.0 such that users using older versions of R do not have to upgrade to use
+`bomrang`
+
+- Fixes bug that prevents end-user from self-updating internal databases
+
+## Minor changes
+
+- Plots radar images natively using re-exported `raster::plot()`
+
+- Adds `sweep_for_forecast_towns()`, which works analogously to
+`sweep_for_stations()`
+
 # bomrang 0.5.0
 
 ## Bug fixes
@@ -19,7 +42,7 @@ thanks to @jonocarroll for this huge effort
 
 - If images fail to download for any functions, a default image is returned
 with an error message to try again 
-[![](man/figures/image_error_message.gif)](man/figures/image_error_message.gif)
+[![](inst/error_images/image_error_message.png)](inst/error_images/image_error_message.png)
 
 - `get_current_weather()` no longer has `raw` or `as.data.table` parameters, all
 data are returned with columns in proper class as with all other _bomrang_
