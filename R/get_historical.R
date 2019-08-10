@@ -82,11 +82,6 @@
 #' get_historical(latlon = c(-35.2809, 149.1300),
 #'                type = "min") ## 3,500+ daily records
 #' 
-#' stations <- sweep_for_stations(latlon = c(-35.2809, 149.1300)) 
-#' stations <- subset(stations, distance <= 300)
-#' station_data <- lapply(stations$site, 
-#'                        get_historical,
-#'                        type = "min") ## historical weather for all stations within 300km radius
 #' }
 #' @rdname get_historical
 #' @rdname get_historical_weather
@@ -95,6 +90,7 @@
 get_historical <- get_historical_weather <- 
   function(stationid = NULL,
            latlon = NULL,
+           radius = NULL,
            type = c("rain", "min", "max", "solar")) {
     site <- ncc_obs_code <- NULL #nocov
     
@@ -109,13 +105,24 @@ get_historical <- get_historical_weather <-
       if (!identical(length(latlon), 2L) || !is.numeric(latlon))
         stop("latlon must be a 2-element numeric vector.",
              call. = FALSE)
-      stationdetails <-
+      if(is.null(radius)){
+        stationdetails <-
         sweep_for_stations(latlon = latlon)[1, , drop = TRUE]
       message("Closest station: ",
               stationdetails$site,
               " (",
               stationdetails$name,
-              ")")
+              ")")}
+      if(is.numeric(radius)){
+        stationdetails <-
+          subset(sweep_for_stations(latlon = latlon), distance <= radius)[, , drop = TRUE]
+        message("Closest station: ",
+                stationdetails$site[1],
+                " (",
+                stationdetails$name[1],
+                ")")
+      }else{stop("Radius distance (km) from latlong must be numeric")}
+      
       stationid <- stationdetails$site
     }
     
@@ -138,19 +145,31 @@ get_historical <- get_historical_weather <-
       solar = 193
     )
     
-    ncc_list <-
-      dplyr::filter(ncc_list, c(site == as.numeric(stationid) &
-                                  ncc_obs_code == obscode))
+    # ncc_list <-
+    #   dplyr::filter(ncc_list, c(site == as.numeric(stationid) &
+    #                               ncc_obs_code == obscode))  # this fails when stationid is vector
     
-    if (obscode %notin% ncc_list$ncc_obs_code){ 
+    ncc_list <-
+    ncc_list[ncc_list$site %in% as.numeric(stationid),]
+    &
+              ncc_list$ncc_obs_code %in% obscode,]
+    
+##    if() for each stationid `type` of weather is not available ... message( stationid "has no recorded" type "data")
+    
+    
+    lapply(stationid,
+           FUN = function(stationX){
+     ncc_station <- ncc_list[ncc_list$site == stationX,]        
+             
+    if(obscode %notin% ncc_station$ncc_obs_code){ 
       message(
         "\n`type` ",
-        type,
+        obscode,
         " is not available for `stationid` ",
-        stationid,
+        stationX,
         "\n")
       dat <- data.frame(product_code = NA,
-                        station_number = NA,
+                        station_number = stationX,
                         year = NA,
                         month = NA,
                         day = NA,
@@ -171,7 +190,7 @@ get_historical <- get_historical_weather <-
       # returns an empty data.frame and gives a warning if there is no data for the requested station
     }else{
       
-      zipurl <- .get_zip_url(stationid, obscode)
+      zipurl <- .get_zip_url(stationX, obscode)
       dat <- .get_zip_and_load(zipurl)
       
       names(dat) <- c("product_code",
@@ -198,7 +217,7 @@ get_historical <- get_historical_weather <-
       structure(
         dat,
         class = union("bomrang_tbl", class(dat)),
-        station = stationid,
+        station = stationX,
         type = type,
         origin = "historical",
         location = ncc_list$name,
@@ -210,7 +229,8 @@ get_historical <- get_historical_weather <-
         units = "years",
         ncc_list = ncc_list
       )
-    )
+    )},
+    obscode = obscode, ncc_list = ncc_list)
   }
 
 #' Get latest historical station metadata
