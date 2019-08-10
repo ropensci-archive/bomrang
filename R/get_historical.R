@@ -136,7 +136,7 @@ get_historical <- get_historical_weather <-
       stop("\nStation not recognised.\n",
            call. = FALSE)
     
-    type <- match.arg(type)
+ #   type <- match.arg(type)  # what does this line do?
     obscode <- switch(
       type,
       rain = 136,
@@ -149,27 +149,28 @@ get_historical <- get_historical_weather <-
     #   dplyr::filter(ncc_list, c(site == as.numeric(stationid) &
     #                               ncc_obs_code == obscode))  # this fails when stationid is vector
     
-    ncc_list <-
-    ncc_list[ncc_list$site %in% as.numeric(stationid),]
-    &
-              ncc_list$ncc_obs_code %in% obscode,]
-    
+    # ncc_list <-
+    # ncc_list[ncc_list$site %in% as.numeric(stationid),]
+    # &
+    #           ncc_list$ncc_obs_code %in% obscode,]
+    # 
 ##    if() for each stationid `type` of weather is not available ... message( stationid "has no recorded" type "data")
     
     
-    lapply(stationid,
+    dat2 <- 
+      lapply(stationid, 
            FUN = function(stationX){
      ncc_station <- ncc_list[ncc_list$site == stationX,]        
              
     if(obscode %notin% ncc_station$ncc_obs_code){ 
       message(
         "\n`type` ",
-        obscode,
+        type,
         " is not available for `stationid` ",
-        stationX,
-        "\n")
+        as.character(stationX), " ",
+        ncc_station$name[1])
       dat <- data.frame(product_code = NA,
-                        station_number = stationX,
+                        station_number = as.integer(stationX),
                         year = NA,
                         month = NA,
                         day = NA,
@@ -217,7 +218,7 @@ get_historical <- get_historical_weather <-
       structure(
         dat,
         class = union("bomrang_tbl", class(dat)),
-        station = stationX,
+        station_number = stationX,
         type = type,
         origin = "historical",
         location = ncc_list$name,
@@ -229,9 +230,12 @@ get_historical <- get_historical_weather <-
         units = "years",
         ncc_list = ncc_list
       )
-    )},
-    obscode = obscode, ncc_list = ncc_list)
-  }
+    )})
+  
+     return(
+       dplyr::bind_rows(dat2)
+     )
+    }
 
 #' Get latest historical station metadata
 #'
