@@ -135,7 +135,7 @@ get_historical <- get_historical_weather <-
                 " (",
                 stationdetails$name[1],
                 ")")
-      }else{stop("Radius distance (km) from latlong must be numeric")}}as
+      }else{stop("Radius distance (km) from latlong must be numeric")}}
       stationid <- stationdetails$site
     }
     
