@@ -125,6 +125,17 @@ get_historical <- get_historical_weather <-
       
       stationid <- stationdetails$site
     }
+    if(!is.null(stationid) & !is.null(radius)){
+      ncc_list <- .get_ncc()
+      
+      if (suppressWarnings(all(
+        is.na(as.numeric(stationid)) |
+        (as.numeric(stationid) %notin% ncc_list$site)
+      )))
+        stop("\nStation not recognised.\n",
+             call. = FALSE)
+      latlon <- as.vector(unlist(dplyr::slice(ncc_list[ncc_list$site == as.numeric(stationid[1]),c("lat","lon")],1)))
+    }
     
     ## ensure station is known
     ncc_list <- .get_ncc()
@@ -160,15 +171,15 @@ get_historical <- get_historical_weather <-
     dat2 <- 
       lapply(stationid, 
            FUN = function(stationX){
-     ncc_station <- ncc_list[ncc_list$site == stationX,]        
+     ncc_station <- ncc_list[ncc_list$site == as.numeric(stationX),]        
              
     if(obscode %notin% ncc_station$ncc_obs_code){ 
       message(
         "\n`type` ",
         type,
         " is not available for `stationid` ",
-        as.character(stationX), " ",
-        ncc_station$name[1])
+        as.character(stationX)
+        )
       dat <- data.frame(product_code = NA,
                         station_number = as.integer(stationX),
                         year = NA,
@@ -221,14 +232,14 @@ get_historical <- get_historical_weather <-
         station_number = stationX,
         type = type,
         origin = "historical",
-        location = ncc_list$name,
-        lat = ncc_list$lat,
-        lon = ncc_list$lon,
-        start = ncc_list$start,
-        end = ncc_list$end,
-        count = ncc_list$years,
+        location = ncc_station$name,
+        lat = ncc_station$lat,
+        lon = ncc_station$lon,
+        start = ncc_station$start,
+        end = ncc_station$end,
+        count = ncc_station$years,
         units = "years",
-        ncc_list = ncc_list
+        ncc_list = ncc_station
       )
     )})
   
