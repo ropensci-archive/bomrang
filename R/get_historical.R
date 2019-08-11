@@ -101,6 +101,20 @@ get_historical <- get_historical_weather <-
       warning("Only one of stationid or latlon may be provided. ",
               "Using stationid.")
     }
+    if(!is.null(stationid) & !is.null(radius)){
+      ncc_list <- .get_ncc()
+      
+      if (suppressWarnings(all(
+        is.na(as.numeric(stationid)) |
+        (as.numeric(stationid) %notin% ncc_list$site)
+      ))){
+        stop("\nStation not recognised.\n",
+             call. = FALSE)}
+      latlon <- as.vector(unlist(dplyr::slice(ncc_list[ncc_list$site == as.numeric(stationid[1]),c("lat","lon")],1)))
+      stationdetails <- subset(sweep_for_stations(latlon = latlon), distance <= radius)[, , drop = TRUE]
+      stationid <- stationdetails$site
+    }
+    
     if (is.null(stationid)) {
       if (!identical(length(latlon), 2L) || !is.numeric(latlon))
         stop("latlon must be a 2-element numeric vector.",
@@ -122,23 +136,11 @@ get_historical <- get_historical_weather <-
                 stationdetails$name[1],
                 ")")
       }else{stop("Radius distance (km) from latlong must be numeric")}
-      
-      
-    }
-    if(!is.null(stationid) & !is.null(radius)){
-      ncc_list <- .get_ncc()
-      
-      if (suppressWarnings(all(
-        is.na(as.numeric(stationid)) |
-        (as.numeric(stationid) %notin% ncc_list$site)
-      ))){
-        stop("\nStation not recognised.\n",
-             call. = FALSE)}
-      latlon <- as.vector(unlist(dplyr::slice(ncc_list[ncc_list$site == as.numeric(stationid[1]),c("lat","lon")],1)))
-      stationdetails <- subset(sweep_for_stations(latlon = latlon), distance <= radius)[, , drop = TRUE]
+      stationid <- stationdetails$site
     }
     
-    stationid <- stationdetails$site
+    
+    
     
     ## ensure station is known
     ncc_list <- .get_ncc()
