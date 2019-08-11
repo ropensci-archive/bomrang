@@ -126,7 +126,7 @@ get_historical <- get_historical_weather <-
               stationdetails$site,
               " (",
               stationdetails$name,
-              ")")}
+              ")")}else{
       if(is.numeric(radius)){
         stationdetails <-
           subset(sweep_for_stations(latlon = latlon), distance <= radius)[, , drop = TRUE]
@@ -135,7 +135,7 @@ get_historical <- get_historical_weather <-
                 " (",
                 stationdetails$name[1],
                 ")")
-      }else{stop("Radius distance (km) from latlong must be numeric")}
+      }else{stop("Radius distance (km) from latlong must be numeric")}}as
       stationid <- stationdetails$site
     }
     
