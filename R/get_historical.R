@@ -135,6 +135,7 @@ get_historical <- get_historical_weather <-
         stop("\nStation not recognised.\n",
              call. = FALSE)
       latlon <- as.vector(unlist(dplyr::slice(ncc_list[ncc_list$site == as.numeric(stationid[1]),c("lat","lon")],1)))
+      stationid <- subset(sweep_for_stations(latlon = latlon), distance <= radius)[,site, drop = TRUE]
     }
     
     ## ensure station is known
