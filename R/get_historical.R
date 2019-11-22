@@ -83,7 +83,6 @@
 #'                type = "min") ## 3,500+ daily records
 #' }
 #' @rdname get_historical
-#' @rdname get_historical_weather
 #' @export get_historical
 
 get_historical <- get_historical_weather <- 

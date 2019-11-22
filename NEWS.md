@@ -1,5 +1,21 @@
 # bomrang (development version)
 
+## Bug fixes
+
+* resolves the `group_by` issues of
+[#105](https://github.com/ropensci/bomrang/issues/105) reported by
+[Blundys](https://github.com/Blundys)
+
+## Minor changes
+
+* Changes `get_precis_forecast()` to allow it to import forecast from xml files
+stored on the local machine, thanks to @PaulMelloy for the new functionality
+
+* Changes `get_historical()` so it will allow batch downloads using `lapply()`,
+now a `warning()` and returning `data.frame()` with NA values is returned
+rather than stopping the process, thanks to @PaulMelloy for the new
+functionality
+
 # bomrang 0.6.0
 
 ## Bug fixes

@@ -6,7 +6,7 @@
 \alias{bomrang-package}
 \title{Australian Government Bureau of Meteorology (\acronym{BOM}) Data Client}
 \description{
-\if{html}{\figure{logo.png}{options: align='right'}}
+\if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
 Provides functions to interface with Australian Government Bureau
     of Meteorology ('BOM') data, fetching data and returning a tidy data frame

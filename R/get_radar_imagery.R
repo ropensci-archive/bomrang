@@ -116,7 +116,6 @@ get_available_radar <- function(radar_id = "all") {
 #'
 #' @author Dean Marchiori, \email{deanmarchiori@@gmail.com}
 #' @rdname get_radar_imagery
-#' @rdname get_radar
 #' @export get_radar_imagery
 
 get_radar_imagery <- get_radar <-

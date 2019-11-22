@@ -4,8 +4,12 @@
 \alias{get_current_weather}
 \title{Get Current Weather Observations of a BOM Station}
 \usage{
-get_current_weather(station_name, strict = FALSE, latlon = NULL,
-  emit_latlon_msg = TRUE)
+get_current_weather(
+  station_name,
+  strict = FALSE,
+  latlon = NULL,
+  emit_latlon_msg = TRUE
+)
 }
 \arguments{
 \item{station_name}{The name of the weather station. Fuzzy string matching
