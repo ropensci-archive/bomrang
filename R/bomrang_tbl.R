@@ -38,6 +38,11 @@ print.bomrang_tbl <- function(x, ...) {
   if (!is.null(attr(x, "vars"))) {
     .stylecat("  Groups:\t\t", vars, paste0(" [", length(indices), "]\n"))
   }
+  if (!is.null(attr(x, "groups"))) {
+    vars <- setdiff(names(attr(x, "groups")), ".rows")
+    indices <- nrow(attr(x, "groups"))
+    .stylecat("  Groups:\t\t", vars, paste0(" [", indices, "]\n"))
+  }
   .stylecat("  ", strrep("-", 63), "  \n")
   
 }

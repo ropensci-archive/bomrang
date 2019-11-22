@@ -3,7 +3,8 @@
 ## attributes set by bomrang which should be preserved
 .bomrang_attribs <- c("class", "station", "type", "origin", 
                       "location", "lat", "lon", "start", 
-                      "end", "years", "ncc_list", "vars", "indices")
+                      "end", "count", "units", "years", 
+                      "ncc_list", "vars", "indices", "groups")
 
 #' @export
 dplyr::filter
@@ -71,9 +72,10 @@ dplyr::group_by
 #' @inheritParams dplyr group_by
 #' @export
 group_by.bomrang_tbl <- function(.data, ...) {
-  attribs <- attributes(.data)[.bomrang_attribs]
+  attribs <- attributes(.data)[setdiff(.bomrang_attribs, "class")]
   .data <- NextMethod(.data)
   attributes(.data) <- utils::modifyList(attributes(.data), attribs)
+  attr(.data, "class") <- union(c("bomrang_tbl", "data.table", "grouped_df"), attr(.data, "class"))
   .data
 }
 
