@@ -15,3 +15,5 @@
 ^paper$
 ^codemeta\.json$
 ^\.circleci$
+^doc$
+^Meta$
