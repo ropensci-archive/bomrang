@@ -16,6 +16,9 @@ now a `warning()` and returning `data.frame()` with NA values is returned
 rather than stopping the process, thanks to @PaulMelloy for the new
 functionality
 
+* Prebuild main vignette with examples depending on Internet connection, which
+allows for example output to be displayed for more functions
+
 # bomrang 0.6.0
 
 ## Bug fixes
