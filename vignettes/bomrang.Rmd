@@ -905,7 +905,7 @@ be specified and the function will accept only one at a time.
 ```r
 library(raster)
 x <- get_radar_imagery(product_id = "IDR032")
-#> file downloaded to:/var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//Rtmpal3xcm/file7ea9d080610.gif
+#> file downloaded to:/var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//Rtmpal3xcm/file7ea95166074.gif
 
 # create a blank raster plot and add the radar layer
 r <-
@@ -1011,7 +1011,25 @@ to chain together operations
 adlmax %>% 
   select(station_number, year:day, max_temperature) %>% 
   filter(month == 10)
-#> Error in (function (classes, fdef, mtable) : unable to find an inherited method for function 'select' for signature '"bomrang_tbl"'
+#>   ---- Australian Bureau of Meteorology (BOM) Data Resource ----
+#>   (Original Request Parameters)
+#>   Station:		ADELAIDE (WEST TERRACE / NGAYIRDAPIRA) [023000] 
+#>   Location:		lat: -34.9257, lon: 138.5832
+#>   Measurement / Origin:	Max / Historical
+#>   Timespan:		1887-01-01 -- 2019-11-01 [94.7 years]
+#>   ---------------------------------------------------------------  
+#>       station_number year month day max_temperature
+#>    1:          23000 1887    10   1            17.6
+#>    2:          23000 1887    10   2            14.6
+#>    3:          23000 1887    10   3            16.7
+#>    4:          23000 1887    10   4            18.0
+#>    5:          23000 1887    10   5            15.1
+#>   ---                                              
+#> 4119:          23000 2019    10  27            19.5
+#> 4120:          23000 2019    10  28            25.4
+#> 4121:          23000 2019    10  29            32.7
+#> 4122:          23000 2019    10  30            35.5
+#> 4123:          23000 2019    10  31            37.2
 ```
 
 
@@ -1711,7 +1729,7 @@ grid.rect(width = 0.98,
                           fill = NA))
 ```
 
-<img src="completeness_map, -1.png" title="plot of chunk completeness_map, " alt="plot of chunk completeness_map, " style="display: block; margin: auto;" />
+<img src="completeness_map-1.png" title="plot of chunk completeness_map" alt="plot of chunk completeness_map" style="display: block; margin: auto;" />
 
 ### Historical data years available for stations
 
