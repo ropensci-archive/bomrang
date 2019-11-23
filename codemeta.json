@@ -54,6 +54,13 @@
     },
     {
       "@type": "Person",
+      "givenName": "Paul",
+      "familyName": "Melloy",
+      "email": "paul@melloy.com.au",
+      "@id": "https://orcid.org/0000-0003-4253-7167"
+    },
+    {
+      "@type": "Person",
       "givenName": "Mark",
       "familyName": "Padgham",
       "email": "mark.padgham@email.com",
@@ -465,7 +472,6 @@
   "contIntegration": "https://travis-ci.org/ropensci/bomrang",
   "releaseNotes": "https://github.com/ropensci/bomrang/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/bomrang/blob/master/README.md",
-  "fileSize": "854.1KB",
   "citation": [
     {
       "@type": "ScholarlyArticle",
