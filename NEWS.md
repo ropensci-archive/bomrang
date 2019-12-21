@@ -6,6 +6,9 @@
 [#105](https://github.com/ropensci/bomrang/issues/105) reported by
 [Blundys](https://github.com/Blundys)
 
+* Adds `skip_on_cran()` to some tests causing failures in CRAN checks that
+should not have been tested on CRAN
+
 ## Minor changes
 
 * Changes `get_precis_forecast()` to allow it to import forecast from xml files
