@@ -1,6 +1,7 @@
 context("Current weather")
 
 test_that("Error handling", {
+  skip_on_cran()
   expect_error(get_current_weather(), regexp = "station_name.*latlon")
   expect_error(get_current_weather("sodiuhfosdhfoisdh"),
                regexp = "No station found")
@@ -13,17 +14,20 @@ test_that("Error handling", {
   expect_error(get_current_weather(latlon = c("-33", "151")),
                regexp = "[Nn]umeric")
   expect_error(get_current_weather("DOME A"),
-              regexp = "A station was matched.*not found at bom.gov.au.")
+               regexp = "A station was matched.*not found at bom.gov.au.")
 })
 
-test_that("Query 'Melbourne Airport' returns data frame w/ correct station", {
-  YMML <- get_current_weather("Melbourne Airport")
-  expect_is(YMML, "bomrang_tbl")
-  expect_equal(YMML$full_name[1], "Melbourne Airport")
-})
+test_that("Query 'Melbourne Airport' returns data frame w/ correct station",
+          {
+            get_current_weather("Sydney")
+            YMML <- get_current_weather("Melbourne Airport")
+            expect_is(YMML, "bomrang_tbl")
+            expect_equal(YMML$full_name[1], "Melbourne Airport")
+          })
 
 
 test_that("Query of 'Sydney' defaults to Observatory Hill", {
+  get_current_weather("Sydney")
   expect_warning(get_current_weather("Sydney"),
                  regexp = "Multiple stations match")
   SYD <- suppressWarnings(get_current_weather("Sydney"))
@@ -31,11 +35,12 @@ test_that("Query of 'Sydney' defaults to Observatory Hill", {
 })
 
 test_that("Query of 'castlem' and friends", {
-  # OK
+  skip_on_cran()
   expect_warning(get_current_weather(station_name = "castlem"))
 })
 
 test_that("Strict", {
+  skip_on_cran()
   expect_error(get_current_weather("Melbourne", strict = TRUE),
                regexp = "strict = TRUE.*Multiple stations match station_name.")
   expect_error(get_current_weather("ESPERANCE AWS", strict = TRUE))
@@ -47,6 +52,7 @@ test_that("Strict", {
 test_that("Query c(-27, 149) returns Surat (QLD, b/n Roma and St George).", {
   skip_on_cran()
   expect_message(get_current_weather(latlon = c(-27, 149)), regexp = "SURAT")
-  Surat <- get_current_weather(latlon = c(-27, 149), emit_latlon_msg = FALSE)
+  Surat <-
+    get_current_weather(latlon = c(-27, 149), emit_latlon_msg = FALSE)
   expect_equal(unique(Surat$full_name), "Surat")
 })
