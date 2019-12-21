@@ -79,7 +79,7 @@ Suggests:
     mapproj,
     rappdirs,
     roxygen2 (>= 6.1.0)
-RoxygenNote: 7.0.1
+RoxygenNote: 7.0.2
 NeedsCompilation: no
 ByteCompile: TRUE
 VignetteBuilder: knitr
