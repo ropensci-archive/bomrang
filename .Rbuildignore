@@ -17,3 +17,4 @@
 ^\.circleci$
 ^doc$
 ^Meta$
+^.travis.yml$
