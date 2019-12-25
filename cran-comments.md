@@ -1,41 +1,42 @@
 
 ## Test environments
 
-- local macOS install R version 3.6.0 (2019-04-26)
+- local macOS 10.14.16 install R version 3.6.1 (2019-07-05)
 
-- Circle-CI debian:9 R version 3.6.0 (2019-04-26)
+- Circle-CI debian:9 R version 3.6.1 (2019-07-05)
 
 - win-builder R Under development (unstable) (2019-06-27 r76748)
 
-- win-builder R version 3.6.0 (2019-04-26)
+- win-builder R version 3.6.1 (2019-07-05)
 
 ## R CMD check results
 
 0 errors | 0 warnings | 1 note
 
-This is a new minor release that adds new functionality, corrects bugs and
-makes minor changes to documentation
+This is a new minor release that adds enhanced functionality, corrects bugs and
+makes improves the documentation
 
 ## Bug fixes
 
-- Fixes a bug with links to documentation from `get_historical()` and `%>%`
+* resolves the `group_by` issues of
+[#105](https://github.com/ropensci/bomrang/issues/105) reported by
+[Blundys](https://github.com/Blundys)
 
-- Updates station location databases to use updated BOM URLs
-
-- Updates file and error handling for image downloads when downloads fail
-
-- Ensures that .Rds/.Rda files are saved using version 2, for R from 1.4.0 to
-3.5.0 such that users using older versions of R do not have to upgrade to use
-`bomrang`
-
-- Fixes bug that prevents end-user from self-updating internal databases
+* Adds `skip_on_cran()` to some tests causing failures in CRAN checks that
+should not have been tested on CRAN
 
 ## Minor changes
 
-- Plots radar images natively using re-exported `raster::plot()`
+* Changes `get_precis_forecast()` to allow it to import forecast from xml files
+stored on the local machine, thanks to Paul Melloy for the enhanced
+functionality
 
-- Adds `sweep_for_forecast_towns()`, which works analogously to
-`sweep_for_stations()`
+* Changes `get_historical()` so it will allow batch downloads using `lapply()`,
+now a `warning()` and a `data.frame()` with NA values is returned rather than
+stopping the process, thanks to Paul Melloy for the new functionality
+
+* Prebuild main vignette with examples depending on Internet connection, which
+allows for example output to be displayed for more functions
 
 ## Reverse dependencies
 

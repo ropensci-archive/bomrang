@@ -151,6 +151,7 @@ Following is an example fetching the ag bulletin for Queensland.
 
 ```r
 (QLD_bulletin <- get_ag_bulletin(state = "QLD"))
+#> Warning in FUN(X[[i]], ...): NAs introduced by coercion
 ```
 
 ## Using `get_weather_bulletin`
@@ -188,42 +189,30 @@ Following is an example fetching the 9AM bulletin for Queensland.
 
 ```r
 (qld_weather <- get_weather_bulletin(state = "QLD", morning = TRUE))
-#>            stations cld8ths wind_dir wind_speed_kmh
-#>   1:     Coconut Is      NA                      NA
-#>   2:        Coen Ap      NA        E             11
-#>   3:        Horn Is       8        E             19
-#>   4: Lockhart River       8      ESE             20
-#>   5:    Palmerville      NA      SSW              9
-#>  ---                                               
-#> 133:         Hobart      NA       NW             24
-#> 134:       Adelaide      NA       SE             17
-#> 135:       Perth Ap      NA        E             41
-#> 136:         Darwin       1       NE              2
-#> 137:  Alice Springs      NA       SE             20
-#>      temp_c_dry temp_c_dew temp_c_max temp_c_min temp_c_gr
-#>   1:         31         NA         36         27        NA
-#>   2:         29         20         35         23        NA
-#>   3:         31         23         33         28        NA
-#>   4:         30         22         33         26        NA
-#>   5:         29         18         37         23        NA
-#>  ---                                                      
-#> 133:         19          3         NA         NA        NA
-#> 134:         21         10         NA         NA        NA
-#> 135:         20         10         NA         NA        NA
-#> 136:         31         25         35         27        27
-#> 137:         37          8         45         26        NA
-#>      barhpa rain_mm weather seastate
-#>   1:   1010      NA                 
-#>   2:   1011      NA                 
-#>   3:   1011      NA                 
-#>   4:   1011     0.4                 
-#>   5:   1012      NA                 
-#>  ---                                
-#> 133:   1008      NA                 
-#> 134:   1021      NA                 
-#> 135:   1016      NA                 
-#> 136:   1010     5.0                 
-#> 137:   1010      NA
+#>            stations cld8ths wind_dir wind_speed_kmh temp_c_dry temp_c_dew
+#>   1:     Coconut Is      NA                      NA         32         NA
+#>   2:        Coen Ap      NA        E              7         31         21
+#>   3:        Horn Is       1        E             24         31         23
+#>   4: Lockhart River       1        E             20         30         22
+#>   5:    Palmerville      NA       NE              7         29         19
+#>  ---                                                                     
+#> 133:         Hobart      NA        E             13         15          6
+#> 134:       Adelaide      NA     CALM             NA         26         11
+#> 135:       Perth Ap      NA        S             19         21         10
+#> 136:         Darwin      NA        N              2         31         24
+#> 137:  Alice Springs      NA      ENE             28         39          2
+#>      temp_c_max temp_c_min temp_c_gr barhpa rain_mm weather seastate
+#>   1:         34         27        NA   1010      NA                 
+#>   2:         35         22        NA   1010      NA                 
+#>   3:         33         28        NA   1011      NA                 
+#>   4:         33         25        NA   1011      NA                 
+#>   5:         38         21        NA   1011      NA                 
+#>  ---                                                                
+#> 133:         NA         NA        NA   1023      NA                 
+#> 134:         NA         NA        NA   1016      NA                 
+#> 135:         NA         NA        NA   1016      NA                 
+#> 136:         NA         NA        NA   1010      NA                 
+#> 137:         44         25        NA   1010      NA
 ```
 
 Following is an example fetching the 3PM bulletin for Queensland.
@@ -231,42 +220,30 @@ Following is an example fetching the 3PM bulletin for Queensland.
 
 ```r
 (qld_weather <- get_weather_bulletin(state = "QLD"))
-#>            stations cld8ths wind_dir wind_speed_kmh
-#>   1:     Coconut Is      NA                      NA
-#>   2:        Coen Ap      NA        E             11
-#>   3:        Horn Is       8        E             19
-#>   4: Lockhart River       8      ESE             20
-#>   5:    Palmerville      NA      SSW              9
-#>  ---                                               
-#> 133:         Hobart      NA       NW             24
-#> 134:       Adelaide      NA       SE             17
-#> 135:       Perth Ap      NA        E             41
-#> 136:         Darwin       1       NE              2
-#> 137:  Alice Springs      NA       SE             20
-#>      temp_c_dry temp_c_dew temp_c_max temp_c_min temp_c_gr
-#>   1:         31         NA         36         27        NA
-#>   2:         29         20         35         23        NA
-#>   3:         31         23         33         28        NA
-#>   4:         30         22         33         26        NA
-#>   5:         29         18         37         23        NA
-#>  ---                                                      
-#> 133:         19          3         NA         NA        NA
-#> 134:         21         10         NA         NA        NA
-#> 135:         20         10         NA         NA        NA
-#> 136:         31         25         35         27        27
-#> 137:         37          8         45         26        NA
-#>      barhpa rain_mm weather seastate
-#>   1:   1010      NA                 
-#>   2:   1011      NA                 
-#>   3:   1011      NA                 
-#>   4:   1011     0.4                 
-#>   5:   1012      NA                 
-#>  ---                                
-#> 133:   1008      NA                 
-#> 134:   1021      NA                 
-#> 135:   1016      NA                 
-#> 136:   1010     5.0                 
-#> 137:   1010      NA
+#>            stations cld8ths wind_dir wind_speed_kmh temp_c_dry temp_c_dew
+#>   1:     Coconut Is      NA                      NA         32         NA
+#>   2:        Coen Ap      NA        E              7         31         21
+#>   3:        Horn Is       1        E             24         31         23
+#>   4: Lockhart River       1        E             20         30         22
+#>   5:    Palmerville      NA       NE              7         29         19
+#>  ---                                                                     
+#> 133:         Hobart      NA        E             13         15          6
+#> 134:       Adelaide      NA     CALM             NA         26         11
+#> 135:       Perth Ap      NA        S             19         21         10
+#> 136:         Darwin      NA        N              2         31         24
+#> 137:  Alice Springs      NA      ENE             28         39          2
+#>      temp_c_max temp_c_min temp_c_gr barhpa rain_mm weather seastate
+#>   1:         34         27        NA   1010      NA                 
+#>   2:         35         22        NA   1010      NA                 
+#>   3:         33         28        NA   1011      NA                 
+#>   4:         33         25        NA   1011      NA                 
+#>   5:         38         21        NA   1011      NA                 
+#>  ---                                                                
+#> 133:         NA         NA        NA   1023      NA                 
+#> 134:         NA         NA        NA   1016      NA                 
+#> 135:         NA         NA        NA   1016      NA                 
+#> 136:         NA         NA        NA   1010      NA                 
+#> 137:         44         25        NA   1010      NA
 ```
 
 
@@ -369,7 +346,7 @@ observations for the station closest to 35.2809°S, 149.1300°E (Canberra).
 (Canberra_mintemps <- get_historical(latlon = c(-35.2809, 149.1300),
                                      type = "min"))
 #> Closest station: 070351 (CANBERRA AIRPORT)
-#> Data saved as /var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//Rtmpqicv9L/IDCJAC0011_070351_1800_Data.csv
+#> Data saved as /var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//RtmpDTxWhl/IDCJAC0011_070351_1800_Data.csv
 #>   ---- Australian Bureau of Meteorology (BOM) Data Resource ----
 #>   (Original Request Parameters)
 #>   Station:		CANBERRA AIRPORT [070351] 
@@ -377,30 +354,30 @@ observations for the station closest to 35.2809°S, 149.1300°E (Canberra).
 #>   Measurement / Origin:	Min / Historical
 #>   Timespan:		2008-09-01 -- 2019-12-01 [11.3 years]
 #>   ---------------------------------------------------------------  
-#>       product_code station_number year month day
-#>    1:   IDCJAC0011          70351 2008     1   1
-#>    2:   IDCJAC0011          70351 2008     1   2
-#>    3:   IDCJAC0011          70351 2008     1   3
-#>    4:   IDCJAC0011          70351 2008     1   4
-#>    5:   IDCJAC0011          70351 2008     1   5
-#>   ---                                           
-#> 4369:   IDCJAC0011          70351 2019    12  17
-#> 4370:   IDCJAC0011          70351 2019    12  18
-#> 4371:   IDCJAC0011          70351 2019    12  19
-#> 4372:   IDCJAC0011          70351 2019    12  20
-#> 4373:   IDCJAC0011          70351 2019    12  21
-#>       min_temperature accum_days_min quality
-#>    1:              NA             NA        
-#>    2:              NA             NA        
-#>    3:              NA             NA        
-#>    4:              NA             NA        
-#>    5:              NA             NA        
-#>   ---                                       
-#> 4369:            12.1              1       N
-#> 4370:            12.2              1       N
-#> 4371:            15.8              1       N
-#> 4372:            12.8              1       N
-#> 4373:            14.7              1       N
+#>       product_code station_number year month day min_temperature
+#>    1:   IDCJAC0011          70351 2008     1   1              NA
+#>    2:   IDCJAC0011          70351 2008     1   2              NA
+#>    3:   IDCJAC0011          70351 2008     1   3              NA
+#>    4:   IDCJAC0011          70351 2008     1   4              NA
+#>    5:   IDCJAC0011          70351 2008     1   5              NA
+#>   ---                                                           
+#> 4372:   IDCJAC0011          70351 2019    12  20            12.8
+#> 4373:   IDCJAC0011          70351 2019    12  21            14.7
+#> 4374:   IDCJAC0011          70351 2019    12  22            15.5
+#> 4375:   IDCJAC0011          70351 2019    12  23             8.6
+#> 4376:   IDCJAC0011          70351 2019    12  24            15.3
+#>       accum_days_min quality
+#>    1:             NA        
+#>    2:             NA        
+#>    3:             NA        
+#>    4:             NA        
+#>    5:             NA        
+#>   ---                       
+#> 4372:              1       N
+#> 4373:              1       N
+#> 4374:              1       N
+#> 4375:              1       N
+#> 4376:              1       N
 ```
 
 If you want to see the data associated with the station, use `meta = TRUE` and
@@ -443,50 +420,39 @@ Following is an example sweeping for stations starting with Canberra.
 ```r
 # Show only the first ten stations in the list
 head(sweep_for_stations(latlon = c(-35.3, 149.2)), 10)
-#>       site dist                              name start  end
-#>  1: 070351   70                  CANBERRA AIRPORT  2008 2019
-#>  2: 070339   70 TUGGERANONG (ISABELLA PLAINS) AWS  1996 2019
-#>  3: 070349   70                  MOUNT GININI AWS  2004 2019
-#>  4: 070341   70 CAPTAINS FLAT (COWANGERONG RADAR)  2002 2019
-#>  5: 069132   69          BRAIDWOOD RACECOURSE AWS  1985 2019
-#>  6: 073007   73                    BURRINJUCK DAM  1908 2019
-#>  7: 070330   70              GOULBURN AIRPORT AWS  1988 2019
-#>  8: 070263   70                     GOULBURN TAFE  1971 2019
-#>  9: 069128   69                       NERRIGA AWS  2013 2019
-#> 10: 069049   69                 NERRIGA COMPOSITE  1898 2019
-#>          lat      lon state  elev bar_ht   wmo state_code
-#>  1: -35.3088 149.2004   ACT 577.1  577.6 94926       <NA>
-#>  2: -35.4184 149.0937   ACT 586.7  587.5 94925       <NA>
-#>  3: -35.5293 148.7721   ACT 760.0     NA 95925       <NA>
-#>  4: -35.6614 149.5122   NSW 358.0     NA 99089          N
-#>  5: -35.4253 149.7835   NSW 665.2  666.0 94927          N
-#>  6: -34.9997 148.5984   NSW 390.0     NA 94909          N
-#>  7: -34.8085 149.7311   NSW 640.0  640.8 95716          N
-#>  8: -34.7495 149.7034   NSW 670.0     NA 94716          N
-#>  9: -35.1103 150.0826   NSW 622.0  625.6 94943          N
-#> 10: -35.1165 150.0847   NSW 630.0     NA 94942          N
-#>                                                        url
-#>  1: http://www.bom.gov.au/fwo/IDN60903/IDN60903.94926.json
-#>  2: http://www.bom.gov.au/fwo/IDN60903/IDN60903.94925.json
-#>  3: http://www.bom.gov.au/fwo/IDN60903/IDN60903.95925.json
-#>  4: http://www.bom.gov.au/fwo/IDN60801/IDN60801.99089.json
-#>  5: http://www.bom.gov.au/fwo/IDN60801/IDN60801.94927.json
-#>  6: http://www.bom.gov.au/fwo/IDN60801/IDN60801.94909.json
-#>  7: http://www.bom.gov.au/fwo/IDN60801/IDN60801.95716.json
-#>  8: http://www.bom.gov.au/fwo/IDN60801/IDN60801.94716.json
-#>  9: http://www.bom.gov.au/fwo/IDN60801/IDN60801.94943.json
-#> 10: http://www.bom.gov.au/fwo/IDN60801/IDN60801.94942.json
-#>       distance
-#>  1:  0.9791884
-#>  2: 16.3172787
-#>  3: 46.4084466
-#>  4: 49.1327086
-#>  5: 54.7153470
-#>  6: 64.0835316
-#>  7: 72.9652110
-#>  8: 76.4731323
-#>  9: 82.9176026
-#> 10: 82.9268575
+#>       site dist                              name start  end      lat
+#>  1: 070351   70                  CANBERRA AIRPORT  2008 2019 -35.3088
+#>  2: 070339   70 TUGGERANONG (ISABELLA PLAINS) AWS  1996 2019 -35.4184
+#>  3: 070349   70                  MOUNT GININI AWS  2004 2019 -35.5293
+#>  4: 070341   70 CAPTAINS FLAT (COWANGERONG RADAR)  2002 2019 -35.6614
+#>  5: 069132   69          BRAIDWOOD RACECOURSE AWS  1985 2019 -35.4253
+#>  6: 073007   73                    BURRINJUCK DAM  1908 2019 -34.9997
+#>  7: 070330   70              GOULBURN AIRPORT AWS  1988 2019 -34.8085
+#>  8: 070263   70                     GOULBURN TAFE  1971 2019 -34.7495
+#>  9: 069128   69                       NERRIGA AWS  2013 2019 -35.1103
+#> 10: 069049   69                 NERRIGA COMPOSITE  1898 2019 -35.1165
+#>          lon state  elev bar_ht   wmo state_code
+#>  1: 149.2004   ACT 577.1  577.6 94926       <NA>
+#>  2: 149.0937   ACT 586.7  587.5 94925       <NA>
+#>  3: 148.7721   ACT 760.0     NA 95925       <NA>
+#>  4: 149.5122   NSW 358.0     NA 99089          N
+#>  5: 149.7835   NSW 665.2  666.0 94927          N
+#>  6: 148.5984   NSW 390.0     NA 94909          N
+#>  7: 149.7311   NSW 640.0  640.8 95716          N
+#>  8: 149.7034   NSW 670.0     NA 94716          N
+#>  9: 150.0826   NSW 622.0  625.6 94943          N
+#> 10: 150.0847   NSW 630.0     NA 94942          N
+#>                                                        url   distance
+#>  1: http://www.bom.gov.au/fwo/IDN60903/IDN60903.94926.json  0.9791884
+#>  2: http://www.bom.gov.au/fwo/IDN60903/IDN60903.94925.json 16.3172787
+#>  3: http://www.bom.gov.au/fwo/IDN60903/IDN60903.95925.json 46.4084466
+#>  4: http://www.bom.gov.au/fwo/IDN60801/IDN60801.99089.json 49.1327086
+#>  5: http://www.bom.gov.au/fwo/IDN60801/IDN60801.94927.json 54.7153470
+#>  6: http://www.bom.gov.au/fwo/IDN60801/IDN60801.94909.json 64.0835316
+#>  7: http://www.bom.gov.au/fwo/IDN60801/IDN60801.95716.json 72.9652110
+#>  8: http://www.bom.gov.au/fwo/IDN60801/IDN60801.94716.json 76.4731323
+#>  9: http://www.bom.gov.au/fwo/IDN60801/IDN60801.94943.json 82.9176026
+#> 10: http://www.bom.gov.au/fwo/IDN60801/IDN60801.94942.json 82.9268575
 ```
 
 
@@ -517,28 +483,17 @@ Following is an example sweeping for forecast towns starting with Canberra.
 ```r
 # Show only the first ten towns in the list
 head(sweep_for_forecast_towns(latlon = c(-35.3, 149.2)), 10)
-#>           aac              town      lon       lat   elev
-#>  1: NSW_PT027          Canberra 149.2003 -35.30880  577.6
-#>  2: NSW_PT235        Queanbeyan 149.2346 -35.34850  612.0
-#>  3: NSW_PT329 Portable RFSACT03 149.3162 -35.31110  719.0
-#>  4: NSW_PT281      Woden Valley 149.0845 -35.34844  610.0
-#>  5: NSW_PT254         Belconnen 149.0677 -35.23538  570.0
-#>  6: NSW_PT267         Gungahlin 149.1376 -35.18473  621.5
-#>  7: NSW_PT146       Tuggeranong 149.0953 -35.41860  586.7
-#>  8: NSW_PT327 Portable RFSACT01 148.9301 -35.45950  834.0
-#>  9: NSW_PT328 Portable RFSACT02 148.8485 -35.10660  749.0
-#> 10: NSW_PT093      Mount Ginini 148.7725 -35.52930 1760.0
-#>      distance
-#>  1:  0.978894
-#>  2:  6.239984
-#>  3: 10.616459
-#>  4: 11.778605
-#>  5: 13.997058
-#>  6: 14.015011
-#>  7: 16.250020
-#>  8: 30.220844
-#>  9: 38.502293
-#> 10: 46.374833
+#>           aac              town      lon       lat   elev  distance
+#>  1: NSW_PT027          Canberra 149.2003 -35.30880  577.6  0.978894
+#>  2: NSW_PT235        Queanbeyan 149.2346 -35.34850  612.0  6.239984
+#>  3: NSW_PT329 Portable RFSACT03 149.3162 -35.31110  719.0 10.616459
+#>  4: NSW_PT281      Woden Valley 149.0845 -35.34844  610.0 11.778605
+#>  5: NSW_PT254         Belconnen 149.0677 -35.23538  570.0 13.997058
+#>  6: NSW_PT267         Gungahlin 149.1376 -35.18473  621.5 14.015011
+#>  7: NSW_PT146       Tuggeranong 149.0953 -35.41860  586.7 16.250020
+#>  8: NSW_PT327 Portable RFSACT01 148.9301 -35.45950  834.0 30.220844
+#>  9: NSW_PT328 Portable RFSACT02 148.8485 -35.10660  749.0 38.502293
+#> 10: NSW_PT093      Mount Ginini 148.7725 -35.52930 1760.0 46.374833
 ```
 
 ## Using the update functions
@@ -652,150 +607,152 @@ defaults to all GeoTIFF images currently available.
 (avail <- get_available_imagery(product_id = "IDE00425"))
 #> 
 #> The following files are currently available for download:
-#>   [1] "IDE00425.201912201010.tif" "IDE00425.201912201020.tif"
-#>   [3] "IDE00425.201912201030.tif" "IDE00425.201912201040.tif"
-#>   [5] "IDE00425.201912201050.tif" "IDE00425.201912201100.tif"
-#>   [7] "IDE00425.201912201110.tif" "IDE00425.201912201120.tif"
-#>   [9] "IDE00425.201912201130.tif" "IDE00425.201912201140.tif"
-#>  [11] "IDE00425.201912201150.tif" "IDE00425.201912201200.tif"
-#>  [13] "IDE00425.201912201220.tif" "IDE00425.201912201230.tif"
-#>  [15] "IDE00425.201912201240.tif" "IDE00425.201912201250.tif"
-#>  [17] "IDE00425.201912201300.tif" "IDE00425.201912201310.tif"
-#>  [19] "IDE00425.201912201320.tif" "IDE00425.201912201330.tif"
-#>  [21] "IDE00425.201912201340.tif" "IDE00425.201912201350.tif"
-#>  [23] "IDE00425.201912201400.tif" "IDE00425.201912201410.tif"
-#>  [25] "IDE00425.201912201420.tif" "IDE00425.201912201430.tif"
-#>  [27] "IDE00425.201912201450.tif" "IDE00425.201912201500.tif"
-#>  [29] "IDE00425.201912201510.tif" "IDE00425.201912201520.tif"
-#>  [31] "IDE00425.201912201530.tif" "IDE00425.201912201540.tif"
-#>  [33] "IDE00425.201912201550.tif" "IDE00425.201912201600.tif"
-#>  [35] "IDE00425.201912201610.tif" "IDE00425.201912201620.tif"
-#>  [37] "IDE00425.201912201630.tif" "IDE00425.201912201640.tif"
-#>  [39] "IDE00425.201912201650.tif" "IDE00425.201912201700.tif"
-#>  [41] "IDE00425.201912201710.tif" "IDE00425.201912201720.tif"
-#>  [43] "IDE00425.201912201730.tif" "IDE00425.201912201740.tif"
-#>  [45] "IDE00425.201912201750.tif" "IDE00425.201912201800.tif"
-#>  [47] "IDE00425.201912201810.tif" "IDE00425.201912201820.tif"
-#>  [49] "IDE00425.201912201830.tif" "IDE00425.201912201840.tif"
-#>  [51] "IDE00425.201912201850.tif" "IDE00425.201912201900.tif"
-#>  [53] "IDE00425.201912201910.tif" "IDE00425.201912201920.tif"
-#>  [55] "IDE00425.201912201930.tif" "IDE00425.201912201940.tif"
-#>  [57] "IDE00425.201912201950.tif" "IDE00425.201912202000.tif"
-#>  [59] "IDE00425.201912202010.tif" "IDE00425.201912202020.tif"
-#>  [61] "IDE00425.201912202030.tif" "IDE00425.201912202040.tif"
-#>  [63] "IDE00425.201912202050.tif" "IDE00425.201912202100.tif"
-#>  [65] "IDE00425.201912202110.tif" "IDE00425.201912202120.tif"
-#>  [67] "IDE00425.201912202130.tif" "IDE00425.201912202140.tif"
-#>  [69] "IDE00425.201912202150.tif" "IDE00425.201912202200.tif"
-#>  [71] "IDE00425.201912202210.tif" "IDE00425.201912202220.tif"
-#>  [73] "IDE00425.201912202230.tif" "IDE00425.201912202240.tif"
-#>  [75] "IDE00425.201912202250.tif" "IDE00425.201912202300.tif"
-#>  [77] "IDE00425.201912202310.tif" "IDE00425.201912202320.tif"
-#>  [79] "IDE00425.201912202330.tif" "IDE00425.201912202340.tif"
-#>  [81] "IDE00425.201912202350.tif" "IDE00425.201912210000.tif"
-#>  [83] "IDE00425.201912210010.tif" "IDE00425.201912210020.tif"
-#>  [85] "IDE00425.201912210030.tif" "IDE00425.201912210040.tif"
-#>  [87] "IDE00425.201912210050.tif" "IDE00425.201912210100.tif"
-#>  [89] "IDE00425.201912210110.tif" "IDE00425.201912210120.tif"
-#>  [91] "IDE00425.201912210130.tif" "IDE00425.201912210140.tif"
-#>  [93] "IDE00425.201912210150.tif" "IDE00425.201912210200.tif"
-#>  [95] "IDE00425.201912210210.tif" "IDE00425.201912210220.tif"
-#>  [97] "IDE00425.201912210230.tif" "IDE00425.201912210250.tif"
-#>  [99] "IDE00425.201912210300.tif" "IDE00425.201912210310.tif"
-#> [101] "IDE00425.201912210320.tif" "IDE00425.201912210330.tif"
-#> [103] "IDE00425.201912210340.tif" "IDE00425.201912210350.tif"
-#> [105] "IDE00425.201912210400.tif" "IDE00425.201912210410.tif"
-#> [107] "IDE00425.201912210420.tif" "IDE00425.201912210430.tif"
-#> [109] "IDE00425.201912210440.tif" "IDE00425.201912210450.tif"
-#> [111] "IDE00425.201912210500.tif" "IDE00425.201912210510.tif"
-#> [113] "IDE00425.201912210520.tif" "IDE00425.201912210530.tif"
-#> [115] "IDE00425.201912210540.tif" "IDE00425.201912210550.tif"
-#> [117] "IDE00425.201912210600.tif" "IDE00425.201912210610.tif"
-#> [119] "IDE00425.201912210620.tif" "IDE00425.201912210630.tif"
-#> [121] "IDE00425.201912210640.tif" "IDE00425.201912210650.tif"
-#> [123] "IDE00425.201912210700.tif" "IDE00425.201912210710.tif"
-#> [125] "IDE00425.201912210720.tif" "IDE00425.201912210730.tif"
-#> [127] "IDE00425.201912210740.tif" "IDE00425.201912210750.tif"
-#> [129] "IDE00425.201912210800.tif" "IDE00425.201912210810.tif"
-#> [131] "IDE00425.201912210820.tif" "IDE00425.201912210830.tif"
-#> [133] "IDE00425.201912210840.tif" "IDE00425.201912210850.tif"
-#> [135] "IDE00425.201912210900.tif" "IDE00425.201912210910.tif"
-#> [137] "IDE00425.201912210920.tif" "IDE00425.201912210930.tif"
-#> [139] "IDE00425.201912210940.tif" "IDE00425.201912210950.tif"
-#> [141] "IDE00425.201912211000.tif" "IDE00425.201912211010.tif"
-#> [143] "IDE00425.201912211020.tif" "IDE00425.201912211030.tif"
-#>   [1] "IDE00425.201912201010.tif" "IDE00425.201912201020.tif"
-#>   [3] "IDE00425.201912201030.tif" "IDE00425.201912201040.tif"
-#>   [5] "IDE00425.201912201050.tif" "IDE00425.201912201100.tif"
-#>   [7] "IDE00425.201912201110.tif" "IDE00425.201912201120.tif"
-#>   [9] "IDE00425.201912201130.tif" "IDE00425.201912201140.tif"
-#>  [11] "IDE00425.201912201150.tif" "IDE00425.201912201200.tif"
-#>  [13] "IDE00425.201912201220.tif" "IDE00425.201912201230.tif"
-#>  [15] "IDE00425.201912201240.tif" "IDE00425.201912201250.tif"
-#>  [17] "IDE00425.201912201300.tif" "IDE00425.201912201310.tif"
-#>  [19] "IDE00425.201912201320.tif" "IDE00425.201912201330.tif"
-#>  [21] "IDE00425.201912201340.tif" "IDE00425.201912201350.tif"
-#>  [23] "IDE00425.201912201400.tif" "IDE00425.201912201410.tif"
-#>  [25] "IDE00425.201912201420.tif" "IDE00425.201912201430.tif"
-#>  [27] "IDE00425.201912201450.tif" "IDE00425.201912201500.tif"
-#>  [29] "IDE00425.201912201510.tif" "IDE00425.201912201520.tif"
-#>  [31] "IDE00425.201912201530.tif" "IDE00425.201912201540.tif"
-#>  [33] "IDE00425.201912201550.tif" "IDE00425.201912201600.tif"
-#>  [35] "IDE00425.201912201610.tif" "IDE00425.201912201620.tif"
-#>  [37] "IDE00425.201912201630.tif" "IDE00425.201912201640.tif"
-#>  [39] "IDE00425.201912201650.tif" "IDE00425.201912201700.tif"
-#>  [41] "IDE00425.201912201710.tif" "IDE00425.201912201720.tif"
-#>  [43] "IDE00425.201912201730.tif" "IDE00425.201912201740.tif"
-#>  [45] "IDE00425.201912201750.tif" "IDE00425.201912201800.tif"
-#>  [47] "IDE00425.201912201810.tif" "IDE00425.201912201820.tif"
-#>  [49] "IDE00425.201912201830.tif" "IDE00425.201912201840.tif"
-#>  [51] "IDE00425.201912201850.tif" "IDE00425.201912201900.tif"
-#>  [53] "IDE00425.201912201910.tif" "IDE00425.201912201920.tif"
-#>  [55] "IDE00425.201912201930.tif" "IDE00425.201912201940.tif"
-#>  [57] "IDE00425.201912201950.tif" "IDE00425.201912202000.tif"
-#>  [59] "IDE00425.201912202010.tif" "IDE00425.201912202020.tif"
-#>  [61] "IDE00425.201912202030.tif" "IDE00425.201912202040.tif"
-#>  [63] "IDE00425.201912202050.tif" "IDE00425.201912202100.tif"
-#>  [65] "IDE00425.201912202110.tif" "IDE00425.201912202120.tif"
-#>  [67] "IDE00425.201912202130.tif" "IDE00425.201912202140.tif"
-#>  [69] "IDE00425.201912202150.tif" "IDE00425.201912202200.tif"
-#>  [71] "IDE00425.201912202210.tif" "IDE00425.201912202220.tif"
-#>  [73] "IDE00425.201912202230.tif" "IDE00425.201912202240.tif"
-#>  [75] "IDE00425.201912202250.tif" "IDE00425.201912202300.tif"
-#>  [77] "IDE00425.201912202310.tif" "IDE00425.201912202320.tif"
-#>  [79] "IDE00425.201912202330.tif" "IDE00425.201912202340.tif"
-#>  [81] "IDE00425.201912202350.tif" "IDE00425.201912210000.tif"
-#>  [83] "IDE00425.201912210010.tif" "IDE00425.201912210020.tif"
-#>  [85] "IDE00425.201912210030.tif" "IDE00425.201912210040.tif"
-#>  [87] "IDE00425.201912210050.tif" "IDE00425.201912210100.tif"
-#>  [89] "IDE00425.201912210110.tif" "IDE00425.201912210120.tif"
-#>  [91] "IDE00425.201912210130.tif" "IDE00425.201912210140.tif"
-#>  [93] "IDE00425.201912210150.tif" "IDE00425.201912210200.tif"
-#>  [95] "IDE00425.201912210210.tif" "IDE00425.201912210220.tif"
-#>  [97] "IDE00425.201912210230.tif" "IDE00425.201912210250.tif"
-#>  [99] "IDE00425.201912210300.tif" "IDE00425.201912210310.tif"
-#> [101] "IDE00425.201912210320.tif" "IDE00425.201912210330.tif"
-#> [103] "IDE00425.201912210340.tif" "IDE00425.201912210350.tif"
-#> [105] "IDE00425.201912210400.tif" "IDE00425.201912210410.tif"
-#> [107] "IDE00425.201912210420.tif" "IDE00425.201912210430.tif"
-#> [109] "IDE00425.201912210440.tif" "IDE00425.201912210450.tif"
-#> [111] "IDE00425.201912210500.tif" "IDE00425.201912210510.tif"
-#> [113] "IDE00425.201912210520.tif" "IDE00425.201912210530.tif"
-#> [115] "IDE00425.201912210540.tif" "IDE00425.201912210550.tif"
-#> [117] "IDE00425.201912210600.tif" "IDE00425.201912210610.tif"
-#> [119] "IDE00425.201912210620.tif" "IDE00425.201912210630.tif"
-#> [121] "IDE00425.201912210640.tif" "IDE00425.201912210650.tif"
-#> [123] "IDE00425.201912210700.tif" "IDE00425.201912210710.tif"
-#> [125] "IDE00425.201912210720.tif" "IDE00425.201912210730.tif"
-#> [127] "IDE00425.201912210740.tif" "IDE00425.201912210750.tif"
-#> [129] "IDE00425.201912210800.tif" "IDE00425.201912210810.tif"
-#> [131] "IDE00425.201912210820.tif" "IDE00425.201912210830.tif"
-#> [133] "IDE00425.201912210840.tif" "IDE00425.201912210850.tif"
-#> [135] "IDE00425.201912210900.tif" "IDE00425.201912210910.tif"
-#> [137] "IDE00425.201912210920.tif" "IDE00425.201912210930.tif"
-#> [139] "IDE00425.201912210940.tif" "IDE00425.201912210950.tif"
-#> [141] "IDE00425.201912211000.tif" "IDE00425.201912211010.tif"
-#> [143] "IDE00425.201912211020.tif" "IDE00425.201912211030.tif"
+#>   [1] "IDE00425.201912231010.tif" "IDE00425.201912231020.tif"
+#>   [3] "IDE00425.201912231030.tif" "IDE00425.201912231040.tif"
+#>   [5] "IDE00425.201912231050.tif" "IDE00425.201912231100.tif"
+#>   [7] "IDE00425.201912231110.tif" "IDE00425.201912231120.tif"
+#>   [9] "IDE00425.201912231130.tif" "IDE00425.201912231140.tif"
+#>  [11] "IDE00425.201912231150.tif" "IDE00425.201912231200.tif"
+#>  [13] "IDE00425.201912231210.tif" "IDE00425.201912231220.tif"
+#>  [15] "IDE00425.201912231230.tif" "IDE00425.201912231240.tif"
+#>  [17] "IDE00425.201912231250.tif" "IDE00425.201912231300.tif"
+#>  [19] "IDE00425.201912231310.tif" "IDE00425.201912231320.tif"
+#>  [21] "IDE00425.201912231330.tif" "IDE00425.201912231340.tif"
+#>  [23] "IDE00425.201912231350.tif" "IDE00425.201912231400.tif"
+#>  [25] "IDE00425.201912231410.tif" "IDE00425.201912231420.tif"
+#>  [27] "IDE00425.201912231430.tif" "IDE00425.201912231450.tif"
+#>  [29] "IDE00425.201912231500.tif" "IDE00425.201912231510.tif"
+#>  [31] "IDE00425.201912231520.tif" "IDE00425.201912231530.tif"
+#>  [33] "IDE00425.201912231540.tif" "IDE00425.201912231550.tif"
+#>  [35] "IDE00425.201912231600.tif" "IDE00425.201912231610.tif"
+#>  [37] "IDE00425.201912231620.tif" "IDE00425.201912231630.tif"
+#>  [39] "IDE00425.201912231640.tif" "IDE00425.201912231650.tif"
+#>  [41] "IDE00425.201912231700.tif" "IDE00425.201912231710.tif"
+#>  [43] "IDE00425.201912231720.tif" "IDE00425.201912231730.tif"
+#>  [45] "IDE00425.201912231740.tif" "IDE00425.201912231750.tif"
+#>  [47] "IDE00425.201912231800.tif" "IDE00425.201912231810.tif"
+#>  [49] "IDE00425.201912231820.tif" "IDE00425.201912231830.tif"
+#>  [51] "IDE00425.201912231840.tif" "IDE00425.201912231850.tif"
+#>  [53] "IDE00425.201912231900.tif" "IDE00425.201912231910.tif"
+#>  [55] "IDE00425.201912231920.tif" "IDE00425.201912231930.tif"
+#>  [57] "IDE00425.201912231940.tif" "IDE00425.201912231950.tif"
+#>  [59] "IDE00425.201912232000.tif" "IDE00425.201912232010.tif"
+#>  [61] "IDE00425.201912232020.tif" "IDE00425.201912232030.tif"
+#>  [63] "IDE00425.201912232040.tif" "IDE00425.201912232050.tif"
+#>  [65] "IDE00425.201912232100.tif" "IDE00425.201912232110.tif"
+#>  [67] "IDE00425.201912232120.tif" "IDE00425.201912232130.tif"
+#>  [69] "IDE00425.201912232140.tif" "IDE00425.201912232150.tif"
+#>  [71] "IDE00425.201912232200.tif" "IDE00425.201912232210.tif"
+#>  [73] "IDE00425.201912232220.tif" "IDE00425.201912232230.tif"
+#>  [75] "IDE00425.201912232240.tif" "IDE00425.201912232250.tif"
+#>  [77] "IDE00425.201912232300.tif" "IDE00425.201912232310.tif"
+#>  [79] "IDE00425.201912232320.tif" "IDE00425.201912232330.tif"
+#>  [81] "IDE00425.201912232340.tif" "IDE00425.201912232350.tif"
+#>  [83] "IDE00425.201912240000.tif" "IDE00425.201912240010.tif"
+#>  [85] "IDE00425.201912240020.tif" "IDE00425.201912240030.tif"
+#>  [87] "IDE00425.201912240040.tif" "IDE00425.201912240050.tif"
+#>  [89] "IDE00425.201912240100.tif" "IDE00425.201912240110.tif"
+#>  [91] "IDE00425.201912240120.tif" "IDE00425.201912240130.tif"
+#>  [93] "IDE00425.201912240140.tif" "IDE00425.201912240150.tif"
+#>  [95] "IDE00425.201912240200.tif" "IDE00425.201912240210.tif"
+#>  [97] "IDE00425.201912240220.tif" "IDE00425.201912240230.tif"
+#>  [99] "IDE00425.201912240250.tif" "IDE00425.201912240300.tif"
+#> [101] "IDE00425.201912240310.tif" "IDE00425.201912240320.tif"
+#> [103] "IDE00425.201912240330.tif" "IDE00425.201912240340.tif"
+#> [105] "IDE00425.201912240350.tif" "IDE00425.201912240400.tif"
+#> [107] "IDE00425.201912240410.tif" "IDE00425.201912240420.tif"
+#> [109] "IDE00425.201912240430.tif" "IDE00425.201912240440.tif"
+#> [111] "IDE00425.201912240450.tif" "IDE00425.201912240500.tif"
+#> [113] "IDE00425.201912240510.tif" "IDE00425.201912240520.tif"
+#> [115] "IDE00425.201912240530.tif" "IDE00425.201912240540.tif"
+#> [117] "IDE00425.201912240550.tif" "IDE00425.201912240600.tif"
+#> [119] "IDE00425.201912240610.tif" "IDE00425.201912240620.tif"
+#> [121] "IDE00425.201912240630.tif" "IDE00425.201912240640.tif"
+#> [123] "IDE00425.201912240650.tif" "IDE00425.201912240700.tif"
+#> [125] "IDE00425.201912240710.tif" "IDE00425.201912240720.tif"
+#> [127] "IDE00425.201912240730.tif" "IDE00425.201912240740.tif"
+#> [129] "IDE00425.201912240750.tif" "IDE00425.201912240800.tif"
+#> [131] "IDE00425.201912240810.tif" "IDE00425.201912240820.tif"
+#> [133] "IDE00425.201912240830.tif" "IDE00425.201912240840.tif"
+#> [135] "IDE00425.201912240850.tif" "IDE00425.201912240900.tif"
+#> [137] "IDE00425.201912240910.tif" "IDE00425.201912240920.tif"
+#> [139] "IDE00425.201912240930.tif" "IDE00425.201912240940.tif"
+#> [141] "IDE00425.201912240950.tif" "IDE00425.201912241000.tif"
+#> [143] "IDE00425.201912241010.tif" "IDE00425.201912241020.tif"
+#> [145] "IDE00425.201912241030.tif" "IDE00425.201912241040.tif"
+#>   [1] "IDE00425.201912231010.tif" "IDE00425.201912231020.tif"
+#>   [3] "IDE00425.201912231030.tif" "IDE00425.201912231040.tif"
+#>   [5] "IDE00425.201912231050.tif" "IDE00425.201912231100.tif"
+#>   [7] "IDE00425.201912231110.tif" "IDE00425.201912231120.tif"
+#>   [9] "IDE00425.201912231130.tif" "IDE00425.201912231140.tif"
+#>  [11] "IDE00425.201912231150.tif" "IDE00425.201912231200.tif"
+#>  [13] "IDE00425.201912231210.tif" "IDE00425.201912231220.tif"
+#>  [15] "IDE00425.201912231230.tif" "IDE00425.201912231240.tif"
+#>  [17] "IDE00425.201912231250.tif" "IDE00425.201912231300.tif"
+#>  [19] "IDE00425.201912231310.tif" "IDE00425.201912231320.tif"
+#>  [21] "IDE00425.201912231330.tif" "IDE00425.201912231340.tif"
+#>  [23] "IDE00425.201912231350.tif" "IDE00425.201912231400.tif"
+#>  [25] "IDE00425.201912231410.tif" "IDE00425.201912231420.tif"
+#>  [27] "IDE00425.201912231430.tif" "IDE00425.201912231450.tif"
+#>  [29] "IDE00425.201912231500.tif" "IDE00425.201912231510.tif"
+#>  [31] "IDE00425.201912231520.tif" "IDE00425.201912231530.tif"
+#>  [33] "IDE00425.201912231540.tif" "IDE00425.201912231550.tif"
+#>  [35] "IDE00425.201912231600.tif" "IDE00425.201912231610.tif"
+#>  [37] "IDE00425.201912231620.tif" "IDE00425.201912231630.tif"
+#>  [39] "IDE00425.201912231640.tif" "IDE00425.201912231650.tif"
+#>  [41] "IDE00425.201912231700.tif" "IDE00425.201912231710.tif"
+#>  [43] "IDE00425.201912231720.tif" "IDE00425.201912231730.tif"
+#>  [45] "IDE00425.201912231740.tif" "IDE00425.201912231750.tif"
+#>  [47] "IDE00425.201912231800.tif" "IDE00425.201912231810.tif"
+#>  [49] "IDE00425.201912231820.tif" "IDE00425.201912231830.tif"
+#>  [51] "IDE00425.201912231840.tif" "IDE00425.201912231850.tif"
+#>  [53] "IDE00425.201912231900.tif" "IDE00425.201912231910.tif"
+#>  [55] "IDE00425.201912231920.tif" "IDE00425.201912231930.tif"
+#>  [57] "IDE00425.201912231940.tif" "IDE00425.201912231950.tif"
+#>  [59] "IDE00425.201912232000.tif" "IDE00425.201912232010.tif"
+#>  [61] "IDE00425.201912232020.tif" "IDE00425.201912232030.tif"
+#>  [63] "IDE00425.201912232040.tif" "IDE00425.201912232050.tif"
+#>  [65] "IDE00425.201912232100.tif" "IDE00425.201912232110.tif"
+#>  [67] "IDE00425.201912232120.tif" "IDE00425.201912232130.tif"
+#>  [69] "IDE00425.201912232140.tif" "IDE00425.201912232150.tif"
+#>  [71] "IDE00425.201912232200.tif" "IDE00425.201912232210.tif"
+#>  [73] "IDE00425.201912232220.tif" "IDE00425.201912232230.tif"
+#>  [75] "IDE00425.201912232240.tif" "IDE00425.201912232250.tif"
+#>  [77] "IDE00425.201912232300.tif" "IDE00425.201912232310.tif"
+#>  [79] "IDE00425.201912232320.tif" "IDE00425.201912232330.tif"
+#>  [81] "IDE00425.201912232340.tif" "IDE00425.201912232350.tif"
+#>  [83] "IDE00425.201912240000.tif" "IDE00425.201912240010.tif"
+#>  [85] "IDE00425.201912240020.tif" "IDE00425.201912240030.tif"
+#>  [87] "IDE00425.201912240040.tif" "IDE00425.201912240050.tif"
+#>  [89] "IDE00425.201912240100.tif" "IDE00425.201912240110.tif"
+#>  [91] "IDE00425.201912240120.tif" "IDE00425.201912240130.tif"
+#>  [93] "IDE00425.201912240140.tif" "IDE00425.201912240150.tif"
+#>  [95] "IDE00425.201912240200.tif" "IDE00425.201912240210.tif"
+#>  [97] "IDE00425.201912240220.tif" "IDE00425.201912240230.tif"
+#>  [99] "IDE00425.201912240250.tif" "IDE00425.201912240300.tif"
+#> [101] "IDE00425.201912240310.tif" "IDE00425.201912240320.tif"
+#> [103] "IDE00425.201912240330.tif" "IDE00425.201912240340.tif"
+#> [105] "IDE00425.201912240350.tif" "IDE00425.201912240400.tif"
+#> [107] "IDE00425.201912240410.tif" "IDE00425.201912240420.tif"
+#> [109] "IDE00425.201912240430.tif" "IDE00425.201912240440.tif"
+#> [111] "IDE00425.201912240450.tif" "IDE00425.201912240500.tif"
+#> [113] "IDE00425.201912240510.tif" "IDE00425.201912240520.tif"
+#> [115] "IDE00425.201912240530.tif" "IDE00425.201912240540.tif"
+#> [117] "IDE00425.201912240550.tif" "IDE00425.201912240600.tif"
+#> [119] "IDE00425.201912240610.tif" "IDE00425.201912240620.tif"
+#> [121] "IDE00425.201912240630.tif" "IDE00425.201912240640.tif"
+#> [123] "IDE00425.201912240650.tif" "IDE00425.201912240700.tif"
+#> [125] "IDE00425.201912240710.tif" "IDE00425.201912240720.tif"
+#> [127] "IDE00425.201912240730.tif" "IDE00425.201912240740.tif"
+#> [129] "IDE00425.201912240750.tif" "IDE00425.201912240800.tif"
+#> [131] "IDE00425.201912240810.tif" "IDE00425.201912240820.tif"
+#> [133] "IDE00425.201912240830.tif" "IDE00425.201912240840.tif"
+#> [135] "IDE00425.201912240850.tif" "IDE00425.201912240900.tif"
+#> [137] "IDE00425.201912240910.tif" "IDE00425.201912240920.tif"
+#> [139] "IDE00425.201912240930.tif" "IDE00425.201912240940.tif"
+#> [141] "IDE00425.201912240950.tif" "IDE00425.201912241000.tif"
+#> [143] "IDE00425.201912241010.tif" "IDE00425.201912241020.tif"
+#> [145] "IDE00425.201912241030.tif" "IDE00425.201912241040.tif"
 ```
 
 ### Using `get_satellite_imagery`
@@ -836,7 +793,7 @@ i <- get_satellite_imagery(product_id = avail, scans = 1, cache = TRUE)
 plot(i)
 ```
 
-<img src="vignettes/get_satellite_imagery-1.png" title="plot of chunk get_satellite_imagery" alt="plot of chunk get_satellite_imagery" style="display: block; margin: auto;" />
+<img src="get_satellite_imagery-1.png" title="plot of chunk get_satellite_imagery" alt="plot of chunk get_satellite_imagery" style="display: block; margin: auto;" />
 
 ## Using caching for satellite imagery
 
@@ -889,27 +846,27 @@ will return a data frame of all radar ID's in Australia.
 ```r
 x <- get_available_radar()
 head(x)  
-#>   product_id LocationID range         Name Longitude
-#> 1     IDR011         01 512km Broadmeadows  144.9460
-#> 2     IDR012         01 256km Broadmeadows  144.9460
-#> 3     IDR013         01 128km Broadmeadows  144.9460
-#> 4     IDR014         01  64km Broadmeadows  144.9460
-#> 5     IDR021         02 512km    Melbourne  144.7554
-#> 6     IDR022         02 256km    Melbourne  144.7554
-#>    Latitude Radar_id                Full_Name IDRnn0name
-#> 1 -37.69100        1 Melbourne (Broadmeadows)     CampRd
-#> 2 -37.69100        1 Melbourne (Broadmeadows)     CampRd
-#> 3 -37.69100        1 Melbourne (Broadmeadows)     CampRd
-#> 4 -37.69100        1 Melbourne (Broadmeadows)     CampRd
-#> 5 -37.85525        2     Melbourne (Laverton)       Melb
-#> 6 -37.85525        2     Melbourne (Laverton)       Melb
-#>   IDRnn1name State    Type Group    Status Archive
-#> 1     CampRd   VIC Doppler   Yes Reg_users  CampRd
-#> 2     CampRd   VIC Doppler   Yes Reg_users  CampRd
-#> 3     CampRd   VIC Doppler   Yes Reg_users  CampRd
-#> 4     CampRd   VIC Doppler   Yes Reg_users  CampRd
-#> 5  Melbourne   VIC Doppler   Yes    Public    Melb
-#> 6  Melbourne   VIC Doppler   Yes    Public    Melb
+#>   product_id LocationID range         Name Longitude  Latitude Radar_id
+#> 1     IDR011         01 512km Broadmeadows  144.9460 -37.69100        1
+#> 2     IDR012         01 256km Broadmeadows  144.9460 -37.69100        1
+#> 3     IDR013         01 128km Broadmeadows  144.9460 -37.69100        1
+#> 4     IDR014         01  64km Broadmeadows  144.9460 -37.69100        1
+#> 5     IDR021         02 512km    Melbourne  144.7554 -37.85525        2
+#> 6     IDR022         02 256km    Melbourne  144.7554 -37.85525        2
+#>                  Full_Name IDRnn0name IDRnn1name State    Type Group
+#> 1 Melbourne (Broadmeadows)     CampRd     CampRd   VIC Doppler   Yes
+#> 2 Melbourne (Broadmeadows)     CampRd     CampRd   VIC Doppler   Yes
+#> 3 Melbourne (Broadmeadows)     CampRd     CampRd   VIC Doppler   Yes
+#> 4 Melbourne (Broadmeadows)     CampRd     CampRd   VIC Doppler   Yes
+#> 5     Melbourne (Laverton)       Melb  Melbourne   VIC Doppler   Yes
+#> 6     Melbourne (Laverton)       Melb  Melbourne   VIC Doppler   Yes
+#>      Status Archive
+#> 1 Reg_users  CampRd
+#> 2 Reg_users  CampRd
+#> 3 Reg_users  CampRd
+#> 4 Reg_users  CampRd
+#> 5    Public    Melb
+#> 6    Public    Melb
 ```
 
 ### Using `get_radar_imagery`
@@ -935,7 +892,7 @@ library(raster)
 #> 
 #>     select
 x <- get_radar_imagery(product_id = "IDR032")
-#> file downloaded to:/var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//Rtmpqicv9L/file4e6fcee8081.gif
+#> file downloaded to:/var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//RtmpDTxWhl/file115815be878fc.gif
 
 # create a blank raster plot and add the radar layer
 r <-
@@ -952,7 +909,7 @@ r <-
   plot(x, add = TRUE)
 ```
 
-<img src="vignettes/get_radar_imagery-1.png" title="plot of chunk get_radar_imagery" alt="plot of chunk get_radar_imagery" style="display: block; margin: auto;" />
+<img src="get_radar_imagery-1.png" title="plot of chunk get_radar_imagery" alt="plot of chunk get_radar_imagery" style="display: block; margin: auto;" />
 
 # `dplyr` compatibility
 
@@ -965,7 +922,7 @@ For example:
 
 ```r
 adlmax <- get_historical(stationid = "023000", type = "max")
-#> Data saved as /var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//Rtmpqicv9L/IDCJAC0010_023000_1800_Data.csv
+#> Data saved as /var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//RtmpDTxWhl/IDCJAC0010_023000_1800_Data.csv
 adlmax
 #>   ---- Australian Bureau of Meteorology (BOM) Data Resource ----
 #>   (Original Request Parameters)
@@ -974,30 +931,30 @@ adlmax
 #>   Measurement / Origin:	Max / Historical
 #>   Timespan:		1887-01-01 -- 2019-12-01 [94.8 years]
 #>   ---------------------------------------------------------------  
-#>        product_code station_number year month day
-#>     1:   IDCJAC0010          23000 1887     1   1
-#>     2:   IDCJAC0010          23000 1887     1   2
-#>     3:   IDCJAC0010          23000 1887     1   3
-#>     4:   IDCJAC0010          23000 1887     1   4
-#>     5:   IDCJAC0010          23000 1887     1   5
-#>    ---                                           
-#> 48562:   IDCJAC0010          23000 2019    12  16
-#> 48563:   IDCJAC0010          23000 2019    12  17
-#> 48564:   IDCJAC0010          23000 2019    12  18
-#> 48565:   IDCJAC0010          23000 2019    12  19
-#> 48566:   IDCJAC0010          23000 2019    12  20
-#>        max_temperature accum_days_max quality
-#>     1:              NA             NA        
-#>     2:              NA             NA        
-#>     3:              NA             NA        
-#>     4:              NA             NA        
-#>     5:              NA             NA        
-#>    ---                                       
-#> 48562:            34.1              1       N
-#> 48563:            42.1              1       N
-#> 48564:            43.7              1       N
-#> 48565:            45.3              1       N
-#> 48566:            43.9              1       N
+#>        product_code station_number year month day max_temperature
+#>     1:   IDCJAC0010          23000 1887     1   1              NA
+#>     2:   IDCJAC0010          23000 1887     1   2              NA
+#>     3:   IDCJAC0010          23000 1887     1   3              NA
+#>     4:   IDCJAC0010          23000 1887     1   4              NA
+#>     5:   IDCJAC0010          23000 1887     1   5              NA
+#>    ---                                                           
+#> 48565:   IDCJAC0010          23000 2019    12  19            45.3
+#> 48566:   IDCJAC0010          23000 2019    12  20            43.9
+#> 48567:   IDCJAC0010          23000 2019    12  21            24.7
+#> 48568:   IDCJAC0010          23000 2019    12  22            27.8
+#> 48569:   IDCJAC0010          23000 2019    12  23            33.4
+#>        accum_days_max quality
+#>     1:             NA        
+#>     2:             NA        
+#>     3:             NA        
+#>     4:             NA        
+#>     5:             NA        
+#>    ---                       
+#> 48565:              1       N
+#> 48566:              1       N
+#> 48567:              1       N
+#> 48568:              1       N
+#> 48569:              1       N
 
 filter(adlmax, month == 10)
 #>   ---- Australian Bureau of Meteorology (BOM) Data Resource ----
@@ -1007,30 +964,30 @@ filter(adlmax, month == 10)
 #>   Measurement / Origin:	Max / Historical
 #>   Timespan:		1887-01-01 -- 2019-12-01 [94.8 years]
 #>   ---------------------------------------------------------------  
-#>       product_code station_number year month day
-#>    1:   IDCJAC0010          23000 1887    10   1
-#>    2:   IDCJAC0010          23000 1887    10   2
-#>    3:   IDCJAC0010          23000 1887    10   3
-#>    4:   IDCJAC0010          23000 1887    10   4
-#>    5:   IDCJAC0010          23000 1887    10   5
-#>   ---                                           
-#> 4119:   IDCJAC0010          23000 2019    10  27
-#> 4120:   IDCJAC0010          23000 2019    10  28
-#> 4121:   IDCJAC0010          23000 2019    10  29
-#> 4122:   IDCJAC0010          23000 2019    10  30
-#> 4123:   IDCJAC0010          23000 2019    10  31
-#>       max_temperature accum_days_max quality
-#>    1:            17.6              1       Y
-#>    2:            14.6              1       Y
-#>    3:            16.7              1       Y
-#>    4:            18.0              1       Y
-#>    5:            15.1              1       Y
-#>   ---                                       
-#> 4119:            19.5              1       N
-#> 4120:            25.4              1       N
-#> 4121:            32.7              1       N
-#> 4122:            35.5              1       N
-#> 4123:            37.2              1       N
+#>       product_code station_number year month day max_temperature
+#>    1:   IDCJAC0010          23000 1887    10   1            17.6
+#>    2:   IDCJAC0010          23000 1887    10   2            14.6
+#>    3:   IDCJAC0010          23000 1887    10   3            16.7
+#>    4:   IDCJAC0010          23000 1887    10   4            18.0
+#>    5:   IDCJAC0010          23000 1887    10   5            15.1
+#>   ---                                                           
+#> 4119:   IDCJAC0010          23000 2019    10  27            19.5
+#> 4120:   IDCJAC0010          23000 2019    10  28            25.4
+#> 4121:   IDCJAC0010          23000 2019    10  29            32.7
+#> 4122:   IDCJAC0010          23000 2019    10  30            35.5
+#> 4123:   IDCJAC0010          23000 2019    10  31            37.2
+#>       accum_days_max quality
+#>    1:              1       Y
+#>    2:              1       Y
+#>    3:              1       Y
+#>    4:              1       Y
+#>    5:              1       Y
+#>   ---                       
+#> 4119:              1       N
+#> 4120:              1       N
+#> 4121:              1       N
+#> 4122:              1       N
+#> 4123:              1       N
 ```
 
 The `magrittr` pipe has also been re-exported, so that too can be used 
@@ -1682,7 +1639,7 @@ if (requireNamespace("ggplot2", quietly = TRUE) &&
 }
 ```
 
-<img src="vignettes/station-locations-map-1.png" title="plot of chunk station-locations-map" alt="plot of chunk station-locations-map" style="display: block; margin: auto;" />
+<img src="station-locations-map-1.png" title="plot of chunk station-locations-map" alt="plot of chunk station-locations-map" style="display: block; margin: auto;" />
 
 ## Appendix 7 - Maps of historical data availability
 
@@ -1741,7 +1698,7 @@ grid.rect(width = 0.98,
                           fill = NA))
 ```
 
-<img src="vignettes/completeness_map-1.png" title="plot of chunk completeness_map" alt="plot of chunk completeness_map" style="display: block; margin: auto;" />
+<img src="completeness_map-1.png" title="plot of chunk completeness_map" alt="plot of chunk completeness_map" style="display: block; margin: auto;" />
 
 ### Historical data years available for stations
 
@@ -1774,4 +1731,4 @@ grid.rect(width = 0.98,
                           fill = NA))
 ```
 
-<img src="vignettes/years_available-1.png" title="plot of chunk years_available" alt="plot of chunk years_available" style="display: block; margin: auto;" />
+<img src="years_available-1.png" title="plot of chunk years_available" alt="plot of chunk years_available" style="display: block; margin: auto;" />

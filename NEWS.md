@@ -1,4 +1,4 @@
-# bomrang (development version)
+# bomrang 0.6.1
 
 ## Bug fixes
 
@@ -12,12 +12,13 @@ should not have been tested on CRAN
 ## Minor changes
 
 * Changes `get_precis_forecast()` to allow it to import forecast from xml files
-stored on the local machine, thanks to @PaulMelloy for the new functionality
+stored on the local machine, thanks to
+[PaulMelloy](https://github.com/PaulMelloy) for the enhanced functionality
 
 * Changes `get_historical()` so it will allow batch downloads using `lapply()`,
-now a `warning()` and returning `data.frame()` with NA values is returned
-rather than stopping the process, thanks to @PaulMelloy for the new
-functionality
+now a `warning()` and a `data.frame()` with NA values is returned rather than
+stopping the process, thanks to [PaulMelloy](https://github.com/PaulMelloy) for
+the enhanced functionality
 
 * Prebuild main vignette with examples depending on Internet connection, which
 allows for example output to be displayed for more functions
