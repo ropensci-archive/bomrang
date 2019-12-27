@@ -1,9 +1,9 @@
 
 ## Test environments
 
-- local macOS install R version 3.6.0 (2019-04-26)
+- local macOS install R version 3.6.2 (2019-12-12)
 
-- Circle-CI debian:9 R version 3.6.0 (2019-04-26)
+- Clear Linux 3.6.2 (2019-12-12)
 
 - win-builder R Under development (unstable) (2019-12-24 r77619)
 
