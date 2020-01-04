@@ -99,7 +99,7 @@ get_precis_forecast <- function(state = "AUS") {
     forecast_out <- data.table::rbindlist(forecast_out, fill = TRUE)
   }
   
-  return(forecast_out)
+  return(forecast_out[])
 }
 
 #' extract the values of the precis forecast items
@@ -225,7 +225,6 @@ get_precis_forecast <- function(state = "AUS") {
   out[, c(2:5, 18) := lapply(.SD, function(x)
    as.character(x)),
    .SDcols = c(2:5, 18)]
-  
   return(out)
 }
 

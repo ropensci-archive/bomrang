@@ -35,12 +35,12 @@
 #'
 #' @references
 #' Agricultural observations are retrieved from the Australian Bureau of
-#' Meteorology (\acronum{BOM}) Weather Data Services Agriculture Bulletins, \cr
+#' Meteorology (\acronym{BOM}) Weather Data Services Agriculture Bulletins, \cr
 #' \url{http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml}
 #'
 #'and
 #'
-#' Australian Bureau of Meteorology (\acronum{BOM})) Weather Data Services
+#' Australian Bureau of Meteorology (\acronym{BOM})) Weather Data Services
 #' Observation of Rainfall, \cr
 #' \url{http://www.bom.gov.au/climate/how/observations/rain-measure.shtml}
 #'
@@ -104,7 +104,7 @@ get_ag_bulletin <- function(state = "AUS") {
              FUN = .parse_bulletin)
     out <- data.table::rbindlist(out)
   }
-  return(out)
+  return(out[])
 }
 
 #' @noRd
