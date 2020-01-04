@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_satellite_imagery.R
 \name{get_available_imagery}
 \alias{get_available_imagery}
-\title{Get a Listing of Available BOM Satellite GeoTIFF Imagery}
+\title{Get a listing of available BOM satellite GeoTIFF imagery}
 \usage{
 get_available_imagery(product_id = "all")
 }
@@ -56,8 +56,8 @@ imagery <- get_available_imagery(product_id = "IDE00425")
 
 }
 \references{
-Australian Bureau of Meteorology (BOM) high-definition satellite images
-\url{http://www.bom.gov.au/australia/satellite/index.shtml}
+Australian Bureau of Meteorology (\acronym{BOM}) high-definition satellite
+images \url{http://www.bom.gov.au/australia/satellite/index.shtml}
 }
 \author{
 Adam H Sparks, \email{adamhsparks@gmail.com}

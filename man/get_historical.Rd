@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_historical.R
 \name{get_historical}
 \alias{get_historical}
-\title{Obtain Historical BOM Data}
+\title{Obtain historical BOM data}
 \usage{
 get_historical(
   stationid = NULL,

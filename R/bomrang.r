@@ -1,9 +1,10 @@
 
-#' Australian Government Bureau of Meteorology (\acronym{BOM}) Data Client
+#' Australian government Bureau of Meteorology (\acronym{BOM}) data client
 #'
 #' @name bomrang
-#' @author Adam H Sparks and Jonathan Carroll and Dean Marchiori and and Paul
-#' Melloy and  Mark Padgham and Hugh Parsonage and Keith Pembleton
+#' @author Adam H Sparks and Jonathan Carroll and James Goldie and Dean
+#' Marchiori and and Paul Melloy and  Mark Padgham and Hugh Parsonage and Keith
+#' Pembleton
 #' @docType package
 #' @import dplyr
 #'

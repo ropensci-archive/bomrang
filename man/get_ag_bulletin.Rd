@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_ag_bulletin.R
 \name{get_ag_bulletin}
 \alias{get_ag_bulletin}
-\title{Get BOM Agriculture Bulletin Information for Select Stations}
+\title{Get BOM agriculture bulletin information for select stations}
 \usage{
 get_ag_bulletin(state = "AUS")
 }
@@ -44,13 +44,13 @@ ag_bulletin
 }
 \references{
 Agricultural observations are retrieved from the Australian Bureau of
-Meteorology (BOM) Weather Data Services Agriculture Bulletins, \cr
+Meteorology (\acronum{BOM}) Weather Data Services Agriculture Bulletins, \cr
 \url{http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml}
 
 and
 
-Australian Bureau of Meteorology (BOM) Weather Data Services Observation of
-Rainfall, \cr
+Australian Bureau of Meteorology (\acronum{BOM})) Weather Data Services
+Observation of Rainfall, \cr
 \url{http://www.bom.gov.au/climate/how/observations/rain-measure.shtml}
 
 Station location and other metadata are sourced from the Australian Bureau of

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_precis_forecast.R
 \name{get_precis_forecast}
 \alias{get_precis_forecast}
-\title{Get BOM Daily Précis Forecast for Select Towns}
+\title{Get BOM daily précis forecast for select towns}
 \usage{
 get_precis_forecast(state = "AUS")
 }
@@ -13,13 +13,13 @@ Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 }
 \value{
 Tidy \code{\link[data.table]{data.table}} of a Australia \acronym{BOM} précis
-seven day forecasts for BOM selected towns.  For full details of fields and
-units returned see Appendix 2 in the \pkg{bomrang} vignette, use \cr
+seven day forecasts for \acronym{BOM} selected towns.  For full details of
+fields and units returned see Appendix 2 in the \pkg{bomrang} vignette, use\cr
 \code{vignette("bomrang", package = "bomrang")} to view.
 }
 \description{
-Fetch the \acronym{BOM} daily précis forecast and return a tidy data frame of the seven
-day town forecast for a specified state or territory.
+Fetch the \acronym{BOM} daily précis forecast and return a tidy data frame of
+the seven day town forecast for a specified state or territory.
 }
 \details{
 Allowed state and territory postal codes, only one state per request
@@ -43,8 +43,8 @@ BOM_forecast <- get_precis_forecast(state = "QLD")
 }
 }
 \references{
-Forecast data come from Australian Bureau of Meteorology (BOM) Weather Data
-Services \cr
+Forecast data come from Australian Bureau of Meteorology (\acronym{BOM})
+Weather Data Services \cr
 \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 
 Location data and other metadata for towns come from

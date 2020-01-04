@@ -633,7 +633,7 @@ adlmax %>%
 
 [Australian Bureau of Meteorology (BOM) High-definition satellite images](http://www.bom.gov.au/australia/satellite/index.shtml)
 
-## Appendix 1 - Output from `get_current_weather`
+## Appendix 1 - Output from get_current_weather()
 
 The function `get_current_weather()` will return a data frame that will contain
 some or all of the following fields.
@@ -1052,7 +1052,7 @@ automated weather stations.
 	   invading it
 	19 Cirrocumulus alone or Cirrocumulus predominant
 	
-## Appendix 2 - Output from `get_precis_forecast`
+## Appendix 2 - Output from get_precis_forecast()
 
 The function, `get_precis_forecast()`, will return a tidy data frame of the
 agriculture bulletin with the following fields:
@@ -1092,7 +1092,7 @@ characters)</td></tr>
 (percent)</td></tr>
 </table>
 
-## Appendix 3 - Output from `get_ag_bulletin`
+## Appendix 3 - Output from get_ag_bulletin()
 
 The function, `get_ag_bulletin()`, will return a tidy data frame of the
 agriculture bulletin with the following fields:
@@ -1136,7 +1136,7 @@ worldwide)</td></tr>
 <tr><td>wr</td><td>Wind run (kilometres)</td></tr>
 </table>
 
-## Appendix 4 - Output from `get_weather_bulletin`
+## Appendix 4 - Output from get_weather_bulletin()
 
 The function `get_weather_bulletin()` returns a tidy data frame of weather
 observations for 0900 or 1500 for a nominated state. Observations
@@ -1181,7 +1181,7 @@ suffixes defining the time period over which observations apply (for example,
 for minimum temperature observed at 9am yet included in 1500 bulletin).
 
 
-## Appendix 5 - Output from `get_coastal_forecast`
+## Appendix 5 - Output from get_coastal_forecast()
 
 The output of `get_coastal_forecast()` will return a data frame with coastal waters forecast values of each area within the given state with the following fields:  
 

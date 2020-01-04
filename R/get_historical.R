@@ -1,5 +1,5 @@
 
-#' Obtain Historical BOM Data
+#' Obtain historical BOM data
 #'
 #' Retrieves daily observations for a given station.
 #'

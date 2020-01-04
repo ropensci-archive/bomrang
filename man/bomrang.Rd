@@ -4,7 +4,7 @@
 \name{bomrang}
 \alias{bomrang}
 \alias{bomrang-package}
-\title{Australian Government Bureau of Meteorology (\acronym{BOM}) Data Client}
+\title{Australian government Bureau of Meteorology (\acronym{BOM}) data client}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 
@@ -26,6 +26,7 @@ Provides functions to interface with Australian Government Bureau
 }
 }
 \author{
-Adam H Sparks and Jonathan Carroll and Dean Marchiori and and Paul
-Melloy and  Mark Padgham and Hugh Parsonage and Keith Pembleton
+Adam H Sparks and Jonathan Carroll and James Goldie and Dean
+Marchiori and and Paul Melloy and  Mark Padgham and Hugh Parsonage and Keith
+Pembleton
 }

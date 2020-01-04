@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_coastal_forecast.R
 \name{get_coastal_forecast}
 \alias{get_coastal_forecast}
-\title{Get BOM Coastal Waters Forecast}
+\title{Get BOM coastal waters forecast}
 \usage{
 get_coastal_forecast(state = "AUS")
 }

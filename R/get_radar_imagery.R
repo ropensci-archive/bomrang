@@ -1,24 +1,24 @@
 
-#' Get a Listing of Available BOM Radar Imagery
+#' Get a listing of available BOM radar imagery
 #'
-#' Fetch a listing of available \acronym{BOM} radar imagery from
+#' Fetch a listing of available \acronym{BOM} \acronym{radar} imagery from
 #' \url{ftp://ftp.bom.gov.au/anon/gen/radar/} to determine which files are
 #' currently available for download.  The files available are the most recent
-#' radar imagery for each location, which are updated approximately every 6 to
-#' 10 minutes by the \acronym{BOM}.
+#' \acronym{radar} imagery for each location, which are updated approximately
+#' every 6 to 10 minutes by the \acronym{BOM}.
 #'
-#' @param radar_id Character. \acronym{BOM} radar ID of interest for which a
-#' list of available images will be returned.  Defaults to all images currently
-#' available.
+#' @param radar_id Character. \acronym{BOM} radar \acronym{ID} of interest for
+#' which a list of available images will be returned.  Defaults to all images
+#' currently available.
 #'
-#' @details Valid \acronym{BOM} radar ID for each location required.
+#' @details Valid \acronym{BOM} \acronym{radar} ID for each location required.
 #'
 #' @return
-#' A data frame of all selected radar locations with location information and
-#' \var{product_ids}.
+#' A data frame of all selected \acronym{radar} locations with location
+#' information and \var{product_ids}.
 #'
 #' @references
-#' Australian Bureau of Meteorology (BOM) radar images\cr
+#' Australian Bureau of Meteorology (BOM) radar images 
 #' \url{http://www.bom.gov.au/australia/radar/}
 #'
 #' @examples
@@ -69,7 +69,7 @@ get_available_radar <- function(radar_id = "all") {
   return(dat)
 }
 
-#' Get \acronym{BOM} Radar Imagery
+#' Get \acronym{BOM} radar imagery
 #'
 #' Fetch \acronym{BOM} radar imagery from
 #' \url{ftp://ftp.bom.gov.au/anon/gen/radar/} and return a
@@ -79,7 +79,7 @@ get_available_radar <- function(radar_id = "all") {
 #' \code{\link{get_available_radar}}.
 #'
 #' @param product_id Character. \acronym{BOM} product ID to download and import
-#' as a  \code{\link[raster]{raster}} object. Value is required.
+#' as a \code{\link[raster]{raster}} object.  Value is required.
 #'
 #' @param path Character. A character string with the name where the downloaded
 #' file is saved. If not provided, the default value \code{NULL} is used which
@@ -88,19 +88,20 @@ get_available_radar <- function(radar_id = "all") {
 #' @param download_only Logical. Whether the radar image is loaded into the
 #' environment as a \code{\link[raster]{raster}} layer, or just downloaded.
 #'
-#' @details Valid \acronym{BOM} Radar Product IDs for radar imagery can be
-#' obtained from \code{\link{get_available_radar}}.
+#' @details Valid \acronym{BOM} \acronym{Radar} Product IDs for radar imagery
+#' can be obtained from \code{\link{get_available_radar}}.
 #'
 #'@seealso
 #'\code{\link{get_available_radar}}
 #'
 #' @return
-#' A raster layer based on the most recent `.gif' radar image snapshot published
-#' by the \acronym{BOM}. If \code{download_only = TRUE} there will be a `NULL`
-#' return value with the download path printed in the console as a message.
+#' A raster layer based on the most recent `.gif' \acronum{radar} image snapshot
+#' published by the \acronym{BOM}. If \code{download_only = TRUE} there will be
+#' a `NULL` return value with the download path printed in the console as a
+#' message.
 #'
 #' @references
-#' Australian Bureau of Meteorology (BOM) radar images\cr
+#' Australian Bureau of Meteorology (\acronym{BOM}) radar images\cr
 #' \url{http://www.bom.gov.au/australia/radar/}
 #'
 #' @examples

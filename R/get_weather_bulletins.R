@@ -1,5 +1,5 @@
 
-#' Get BOM 0900 or 1500 Weather Bulletin
+#' Get BOM 0900 or 1500 weather bulletin
 #'
 #' Fetch the daily \acronym{BOM} 0900 or 1500 weather bulletins and return a
 #' tidy data frame for a specified state or territory.

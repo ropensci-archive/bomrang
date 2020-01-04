@@ -2,7 +2,7 @@
 % Please edit documentation in R/update_station_locations.R
 \name{update_station_locations}
 \alias{update_station_locations}
-\title{Update Internal Databases with Latest \acronym{BOM} Station Metadata}
+\title{Update internal databases with latest BOM station metadata}
 \usage{
 update_station_locations()
 }
@@ -33,7 +33,7 @@ update_station_locations()
 }
 \references{
 Station location and other metadata are sourced from the Australian Bureau of
-Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers:\cr
+Meteorology (\acronym{BOM}) webpage, Bureau of Meteorology Site Numbers:\cr
 \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 }
 \author{

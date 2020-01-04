@@ -1,8 +1,8 @@
 
-#' Get BOM Daily Précis Forecast for Select Towns
+#' Get BOM daily précis forecast for select towns
 #'
-#' Fetch the \acronym{BOM} daily précis forecast and return a tidy data frame of the seven
-#' day town forecast for a specified state or territory.
+#' Fetch the \acronym{BOM} daily précis forecast and return a tidy data frame of
+#' the seven day town forecast for a specified state or territory.
 #'
 #' @param state Australian state or territory as full name or postal code.
 #' Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
@@ -24,8 +24,8 @@
 #'
 #' @return
 #' Tidy \code{\link[data.table]{data.table}} of a Australia \acronym{BOM} précis
-#' seven day forecasts for BOM selected towns.  For full details of fields and
-#' units returned see Appendix 2 in the \pkg{bomrang} vignette, use \cr
+#' seven day forecasts for \acronym{BOM} selected towns.  For full details of
+#' fields and units returned see Appendix 2 in the \pkg{bomrang} vignette, use\cr
 #' \code{vignette("bomrang", package = "bomrang")} to view.
 #'
 #' @examples
@@ -34,8 +34,8 @@
 #' BOM_forecast <- get_precis_forecast(state = "QLD")
 #'}
 #' @references
-#' Forecast data come from Australian Bureau of Meteorology (BOM) Weather Data
-#' Services \cr
+#' Forecast data come from Australian Bureau of Meteorology (\acronym{BOM})
+#' Weather Data Services \cr
 #' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 #'
 #' Location data and other metadata for towns come from
@@ -196,7 +196,7 @@ get_precis_forecast <- function(state = "AUS") {
    "probability_of_precipitation"
   )
   data.table::setcolorder(out, refcols)
-  # set col classes ------------------------------------------------------------
+  # set col classes
   # factors
   out[, c(1, 11) := lapply(.SD, function(x)
    as.factor(x)),

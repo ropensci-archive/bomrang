@@ -1,5 +1,5 @@
 
-#' Get a Listing of Available BOM Satellite GeoTIFF Imagery
+#' Get a listing of available BOM satellite GeoTIFF imagery
 #'
 #' Fetch a listing of \acronym{BOM} 'GeoTIFF' satellite imagery from
 #' \url{ftp://ftp.bom.gov.au/anon/gen/gms/} to determine which files are
@@ -40,8 +40,8 @@
 #' A vector of all available files for the requested Product ID(s).
 #'
 #' @references
-#' Australian Bureau of Meteorology (BOM) high-definition satellite images
-#' \url{http://www.bom.gov.au/australia/satellite/index.shtml}
+#' Australian Bureau of Meteorology (\acronym{BOM}) high-definition satellite
+#' images \url{http://www.bom.gov.au/australia/satellite/index.shtml}
 #'
 #' @examples
 #' \donttest{

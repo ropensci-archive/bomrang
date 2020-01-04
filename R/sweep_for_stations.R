@@ -1,5 +1,5 @@
 
-#' Find Nearest BOM Weather Stations
+#' Find nearest BOM weather stations
 #'
 #' @param latlon A length-2 numeric vector. By default, Canberra
 #' (approximately).

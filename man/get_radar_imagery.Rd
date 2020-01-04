@@ -2,13 +2,13 @@
 % Please edit documentation in R/get_radar_imagery.R
 \name{get_radar_imagery}
 \alias{get_radar_imagery}
-\title{Get \acronym{BOM} Radar Imagery}
+\title{Get \acronym{BOM} radar imagery}
 \usage{
 get_radar_imagery(product_id, path = NULL, download_only = FALSE)
 }
 \arguments{
 \item{product_id}{Character. \acronym{BOM} product ID to download and import
-as a  \code{\link[raster]{raster}} object. Value is required.}
+as a \code{\link[raster]{raster}} object.  Value is required.}
 
 \item{path}{Character. A character string with the name where the downloaded
 file is saved. If not provided, the default value \code{NULL} is used which
@@ -18,9 +18,10 @@ saves the file in a temp directory.}
 environment as a \code{\link[raster]{raster}} layer, or just downloaded.}
 }
 \value{
-A raster layer based on the most recent `.gif' radar image snapshot published
-by the \acronym{BOM}. If \code{download_only = TRUE} there will be a `NULL`
-return value with the download path printed in the console as a message.
+A raster layer based on the most recent `.gif' \acronum{radar} image snapshot
+published by the \acronym{BOM}. If \code{download_only = TRUE} there will be
+a `NULL` return value with the download path printed in the console as a
+message.
 }
 \description{
 Fetch \acronym{BOM} radar imagery from
@@ -31,8 +32,8 @@ Suggested to check file availability first by using
 \code{\link{get_available_radar}}.
 }
 \details{
-Valid \acronym{BOM} Radar Product IDs for radar imagery can be
-obtained from \code{\link{get_available_radar}}.
+Valid \acronym{BOM} \acronym{Radar} Product IDs for radar imagery
+can be obtained from \code{\link{get_available_radar}}.
 }
 \examples{
 \donttest{
@@ -47,7 +48,7 @@ imagery <- get_radar_imagery(product_id = "IDR032", path = "image.gif")
 
 }
 \references{
-Australian Bureau of Meteorology (BOM) radar images\cr
+Australian Bureau of Meteorology (\acronym{BOM}) radar images\cr
 \url{http://www.bom.gov.au/australia/radar/}
 }
 \seealso{

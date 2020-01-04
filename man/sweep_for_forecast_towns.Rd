@@ -2,7 +2,7 @@
 % Please edit documentation in R/sweep_for_forecast_towns.R
 \name{sweep_for_forecast_towns}
 \alias{sweep_for_forecast_towns}
-\title{Find Nearest BOM Forecast Towns}
+\title{Find nearest BOM forecast towns}
 \usage{
 sweep_for_forecast_towns(latlon = c(-35.3, 149.2))
 }
@@ -15,7 +15,7 @@ A `data.table`` of all forecast towns (in this package) sorted
 by distance from \var{latlon}, ascending.
 }
 \description{
-Find Nearest BOM Forecast Towns
+Find nearest BOM forecast towns
 }
 \author{
 Hugh Parsonage, \email{hugh.parsonage@gmail.com} and

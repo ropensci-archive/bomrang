@@ -246,7 +246,7 @@ build due to this issue
 
 - Correct issue with converting the timzeone in ag bulletin to character where
 the conversion resulted in a vector of numerals, not the expected string of 
-characters, e.g. "EST"
+characters, _e.g._ "EST"
 
 - Remove redundant functionality in `update_station_locations()` where data were
 fetched using `tryCatch()` and then again without

@@ -2,7 +2,7 @@
 % Please edit documentation in R/update_forecast_towns.R
 \name{update_forecast_towns}
 \alias{update_forecast_towns}
-\title{Update Internal Database with Latest BOM Forecast Towns}
+\title{Update internal database with latest BOM forecast towns}
 \usage{
 update_forecast_towns()
 }
@@ -24,8 +24,8 @@ update_forecast_towns()
 }
 }
 \references{
-Data are sourced from: Australian Bureau of Meteorology (BOM) webpage,
-"Weather Data Services",
+Data are sourced from: Australian Bureau of Meteorology (\acronym{BOM})
+webpage, "Weather Data Services",
 \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 }
 \author{

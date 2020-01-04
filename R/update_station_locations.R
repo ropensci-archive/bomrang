@@ -1,5 +1,5 @@
 
-#' Update Internal Databases with Latest \acronym{BOM} Station Metadata
+#' Update internal databases with latest BOM station metadata
 #'
 #' Download the latest station locations and metadata and update internal
 #' databases that support the use of \code{\link{get_current_weather}}
@@ -24,7 +24,7 @@
 #'
 #' @references
 #' Station location and other metadata are sourced from the Australian Bureau of
-#' Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers:\cr
+#' Meteorology (\acronym{BOM}) webpage, Bureau of Meteorology Site Numbers:\cr
 #' \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}

@@ -1,5 +1,5 @@
 
-#' Get BOM Coastal Waters Forecast
+#' Get BOM coastal waters forecast
 #'
 #' Fetch the \acronym{BOM} daily Coastal Waters Forecast and return a tidy data
 #' frame of the forecast regions for a specified state or region.

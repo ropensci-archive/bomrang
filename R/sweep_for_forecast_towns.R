@@ -1,5 +1,5 @@
 
-#' Find Nearest BOM Forecast Towns
+#' Find nearest BOM forecast towns
 #'
 #' @param latlon A length-2 numeric vector. By default, Canberra
 #' (approximately).

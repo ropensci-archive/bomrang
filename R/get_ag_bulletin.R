@@ -1,5 +1,5 @@
 
-#' Get BOM Agriculture Bulletin Information for Select Stations
+#' Get BOM agriculture bulletin information for select stations
 #'
 #' Fetch the \acronym{BOM} agricultural bulletin information and return it in a
 #' tidy data frame
@@ -35,13 +35,13 @@
 #'
 #' @references
 #' Agricultural observations are retrieved from the Australian Bureau of
-#' Meteorology (BOM) Weather Data Services Agriculture Bulletins, \cr
+#' Meteorology (\acronum{BOM}) Weather Data Services Agriculture Bulletins, \cr
 #' \url{http://www.bom.gov.au/catalogue/observations/about-agricultural.shtml}
 #'
 #'and
 #'
-#' Australian Bureau of Meteorology (BOM) Weather Data Services Observation of
-#' Rainfall, \cr
+#' Australian Bureau of Meteorology (\acronum{BOM})) Weather Data Services
+#' Observation of Rainfall, \cr
 #' \url{http://www.bom.gov.au/climate/how/observations/rain-measure.shtml}
 #'
 #' Station location and other metadata are sourced from the Australian Bureau of

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_weather_bulletins.R
 \name{get_weather_bulletin}
 \alias{get_weather_bulletin}
-\title{Get BOM 0900 or 1500 Weather Bulletin}
+\title{Get BOM 0900 or 1500 weather bulletin}
 \usage{
 get_weather_bulletin(state = "qld", morning = TRUE)
 }
