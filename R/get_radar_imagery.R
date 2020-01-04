@@ -95,7 +95,7 @@ get_available_radar <- function(radar_id = "all") {
 #'\code{\link{get_available_radar}}
 #'
 #' @return
-#' A raster layer based on the most recent `.gif' \acronum{radar} image snapshot
+#' A raster layer based on the most recent `.gif' \acronym{radar} image snapshot
 #' published by the \acronym{BOM}. If \code{download_only = TRUE} there will be
 #' a `NULL` return value with the download path printed in the console as a
 #' message.
