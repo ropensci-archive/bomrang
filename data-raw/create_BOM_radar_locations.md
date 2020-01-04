@@ -57,15 +57,15 @@ sessioninfo::session_info()
 
     ## ─ Session info ───────────────────────────────────────────────────────────────
     ##  setting  value                       
-    ##  version  R version 3.6.1 (2019-07-05)
-    ##  os       macOS Mojave 10.14.6        
+    ##  version  R version 3.6.2 (2019-12-12)
+    ##  os       macOS Catalina 10.15.2      
     ##  system   x86_64, darwin15.6.0        
     ##  ui       X11                         
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2019-12-21                  
+    ##  date     2020-01-05                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
     ##  package     * version date       lib source        
@@ -77,7 +77,7 @@ sessioninfo::session_info()
     ##  digest        0.6.23  2019-11-23 [1] CRAN (R 3.6.0)
     ##  evaluate      0.14    2019-05-28 [1] CRAN (R 3.6.0)
     ##  fansi         0.4.0   2018-10-05 [1] CRAN (R 3.6.0)
-    ##  foreign       0.8-71  2018-07-20 [2] CRAN (R 3.6.1)
+    ##  foreign       0.8-72  2019-08-02 [1] CRAN (R 3.6.2)
     ##  glue          1.3.1   2019-03-12 [1] CRAN (R 3.6.0)
     ##  htmltools     0.4.0   2019-10-04 [1] CRAN (R 3.6.0)
     ##  knitr         1.26    2019-11-12 [1] CRAN (R 3.6.0)
@@ -92,5 +92,4 @@ sessioninfo::session_info()
     ##  xfun          0.11    2019-11-12 [1] CRAN (R 3.6.0)
     ##  yaml          2.2.0   2018-07-25 [1] CRAN (R 3.6.0)
     ## 
-    ## [1] /Users/adamsparks/Library/R/3.x/library
-    ## [2] /Library/Frameworks/R.framework/Versions/3.6/Resources/library
+    ## [1] /Library/Frameworks/R.framework/Versions/3.6/Resources/library
