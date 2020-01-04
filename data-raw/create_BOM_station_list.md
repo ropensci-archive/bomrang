@@ -123,12 +123,12 @@ bom_stations_raw <-
 str(bom_stations_raw)
 ```
 
-    ## Classes 'tbl_df', 'tbl' and 'data.frame':    7126 obs. of  11 variables:
+    ## Classes 'tbl_df', 'tbl' and 'data.frame':    7075 obs. of  11 variables:
     ##  $ site  : chr  "001006" "001007" "001010" "001013" ...
     ##  $ dist  : chr  "01" "01" "01" "01" ...
     ##  $ name  : chr  "WYNDHAM AERO" "TROUGHTON ISLAND" "THEDA" "WYNDHAM" ...
     ##  $ start : int  1951 1956 1965 1968 1998 1973 1997 1944 1967 1986 ...
-    ##  $ end   : int  2019 2019 2019 2019 2019 2019 2019 2019 2019 2019 ...
+    ##  $ end   : int  2020 2020 2020 2020 2020 2020 2020 2020 2020 2020 ...
     ##  $ lat   : num  -15.5 -13.8 -14.8 -15.5 -15.9 ...
     ##  $ lon   : num  128 126 126 128 128 ...
     ##  $ state : chr  "WA" "WA" "WA" "WA" ...
@@ -140,20 +140,20 @@ str(bom_stations_raw)
 bom_stations_raw
 ```
 
-    ## # A tibble: 7,126 x 11
+    ## # A tibble: 7,075 x 11
     ##    site   dist  name            start   end   lat   lon state  elev bar_ht   wmo
     ##    <chr>  <chr> <chr>           <int> <int> <dbl> <dbl> <chr> <dbl>  <dbl> <dbl>
-    ##  1 001006 01    WYNDHAM AERO     1951  2019 -15.5  128. WA      3.8    4.3 95214
-    ##  2 001007 01    TROUGHTON ISLA…  1956  2019 -13.8  126. WA      6      8   94102
-    ##  3 001010 01    THEDA            1965  2019 -14.8  126. WA    210     NA      NA
-    ##  4 001013 01    WYNDHAM          1968  2019 -15.5  128. WA     11     NA      NA
-    ##  5 001014 01    EMMA GORGE       1998  2019 -15.9  128. WA    130     NA      NA
-    ##  6 001018 01    MOUNT ELIZABETH  1973  2019 -16.4  126. WA    546    547   94211
-    ##  7 001019 01    KALUMBURU        1997  2019 -14.3  127. WA     23     24   94100
-    ##  8 001020 01    TRUSCOTT         1944  2019 -14.1  126. WA     51     52.5 95101
-    ##  9 001023 01    EL QUESTRO       1967  2019 -16.0  128. WA     90     NA      NA
-    ## 10 001024 01    ELLENBRAE        1986  2019 -16.0  127. WA    300     NA      NA
-    ## # … with 7,116 more rows
+    ##  1 001006 01    WYNDHAM AERO     1951  2020 -15.5  128. WA      3.8    4.3 95214
+    ##  2 001007 01    TROUGHTON ISLA…  1956  2020 -13.8  126. WA      6      8   94102
+    ##  3 001010 01    THEDA            1965  2020 -14.8  126. WA    210     NA      NA
+    ##  4 001013 01    WYNDHAM          1968  2020 -15.5  128. WA     11     NA      NA
+    ##  5 001014 01    EMMA GORGE       1998  2020 -15.9  128. WA    130     NA      NA
+    ##  6 001018 01    MOUNT ELIZABETH  1973  2020 -16.4  126. WA    546    547   94211
+    ##  7 001019 01    KALUMBURU        1997  2020 -14.3  127. WA     23     24   94100
+    ##  8 001020 01    TRUSCOTT         1944  2020 -14.1  126. WA     51     52.5 95101
+    ##  9 001023 01    EL QUESTRO       1967  2020 -16.0  128. WA     90     NA      NA
+    ## 10 001024 01    ELLENBRAE        1986  2020 -16.0  127. WA    300     NA      NA
+    ## # … with 7,065 more rows
 
 ## Check station locations
 
@@ -295,7 +295,7 @@ for the JSON files for stations providing weather data feeds, save the
 data as databases for *bomrang* to use.
 
 There are weather stations that do have a WMO but don’t report online,
-e.g., KIRIBATI NTC AWS or MARSHALL ISLANDS NTC AWS, in this section
+*e.g.*, KIRIBATI NTC AWS or MARSHALL ISLANDS NTC AWS, in this section
 remove these from the list and then create a database to provide URLs
 for valid JSON files providing weather data from BOM.
 
@@ -356,15 +356,15 @@ save(stations_site_list,
 
     ## ─ Session info ───────────────────────────────────────────────────────────────
     ##  setting  value                       
-    ##  version  R version 3.6.1 (2019-07-05)
-    ##  os       macOS Mojave 10.14.6        
+    ##  version  R version 3.6.2 (2019-12-12)
+    ##  os       macOS Catalina 10.15.2      
     ##  system   x86_64, darwin15.6.0        
     ##  ui       X11                         
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2019-12-21                  
+    ##  date     2020-01-05                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
     ##  package     * version date       lib source        
@@ -377,7 +377,7 @@ save(stations_site_list,
     ##  data.table  * 1.12.8  2019-12-09 [1] CRAN (R 3.6.0)
     ##  digest        0.6.23  2019-11-23 [1] CRAN (R 3.6.0)
     ##  dplyr         0.8.3   2019-07-04 [1] CRAN (R 3.6.0)
-    ##  ellipsis      0.3.0   2019-09-20 [1] CRAN (R 3.6.1)
+    ##  ellipsis      0.3.0   2019-09-20 [1] CRAN (R 3.6.0)
     ##  evaluate      0.14    2019-05-28 [1] CRAN (R 3.6.0)
     ##  fansi         0.4.0   2018-10-05 [1] CRAN (R 3.6.0)
     ##  glue          1.3.1   2019-03-12 [1] CRAN (R 3.6.0)
@@ -385,12 +385,12 @@ save(stations_site_list,
     ##  htmltools     0.4.0   2019-10-04 [1] CRAN (R 3.6.0)
     ##  httr          1.4.1   2019-08-05 [1] CRAN (R 3.6.0)
     ##  knitr         1.26    2019-11-12 [1] CRAN (R 3.6.0)
-    ##  lattice       0.20-38 2018-11-04 [2] CRAN (R 3.6.1)
+    ##  lattice       0.20-38 2018-11-04 [1] CRAN (R 3.6.2)
     ##  lifecycle     0.1.0   2019-08-01 [1] CRAN (R 3.6.0)
     ##  lubridate     1.7.4   2018-04-11 [1] CRAN (R 3.6.0)
     ##  magrittr    * 1.5     2014-11-22 [1] CRAN (R 3.6.0)
-    ##  pillar        1.4.3   2019-12-20 [1] CRAN (R 3.6.1)
-    ##  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 3.6.1)
+    ##  pillar        1.4.3   2019-12-20 [1] CRAN (R 3.6.0)
+    ##  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 3.6.0)
     ##  purrr         0.3.3   2019-10-18 [1] CRAN (R 3.6.0)
     ##  R6            2.4.1   2019-11-12 [1] CRAN (R 3.6.0)
     ##  Rcpp          1.0.3   2019-11-08 [1] CRAN (R 3.6.0)
@@ -405,11 +405,10 @@ save(stations_site_list,
     ##  tidyr         1.0.0   2019-09-11 [1] CRAN (R 3.6.0)
     ##  tidyselect    0.2.5   2018-10-11 [1] CRAN (R 3.6.0)
     ##  utf8          1.1.4   2018-05-24 [1] CRAN (R 3.6.0)
-    ##  vctrs         0.2.1   2019-12-17 [1] CRAN (R 3.6.1)
+    ##  vctrs         0.2.1   2019-12-17 [1] CRAN (R 3.6.0)
     ##  withr         2.1.2   2018-03-15 [1] CRAN (R 3.6.0)
     ##  xfun          0.11    2019-11-12 [1] CRAN (R 3.6.0)
     ##  yaml          2.2.0   2018-07-25 [1] CRAN (R 3.6.0)
     ##  zeallot       0.1.0   2018-01-28 [1] CRAN (R 3.6.0)
     ## 
-    ## [1] /Users/adamsparks/Library/R/3.x/library
-    ## [2] /Library/Frameworks/R.framework/Versions/3.6/Resources/library
+    ## [1] /Library/Frameworks/R.framework/Versions/3.6/Resources/library
