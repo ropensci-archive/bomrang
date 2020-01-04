@@ -36,7 +36,7 @@
 #'
 #' @examples
 #' \donttest{
-#' qld_weather <- get_weather_bulletin (state = "QLD", morning = FALSE)
+#' qld_weather <- get_weather_bulletin(state = "QLD", morning = FALSE)
 #' qld_weather
 #'}
 #' @references
