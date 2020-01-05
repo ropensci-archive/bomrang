@@ -114,6 +114,12 @@ update_station_locations <- function() {
   bom_stations_raw["end"][is.na(bom_stations_raw["end"])] <- 
     as.integer(format(Sys.Date(), "%Y"))
   
+  # keep only currently reporting stations
+  bom_stations_raw <- 
+    bom_stations_raw[bom_stations_raw$end == format(Sys.Date(), "%Y"), ] %>% 
+    dplyr::mutate(start = as.integer(start),
+                  end = as.integer(end))
+  
   # if sf is installed, correct the state column, otherwise skip
   if (requireNamespace("ASGS.foyer", quietly = TRUE)) {
     message(
