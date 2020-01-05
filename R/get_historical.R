@@ -147,8 +147,6 @@ get_historical <- get_historical_weather <-
     }
     
     
-    
-    
     ## ensure station is known
     ncc_list <- .get_ncc()
     
@@ -159,7 +157,7 @@ get_historical <- get_historical_weather <-
       stop("\nStation not recognised.\n",
            call. = FALSE)
     
-    #   type <- match.arg(type)  # what does this line do?
+    type <- match.arg(type)  # what does this line do?
     obscode <- switch(
       type,
       rain = 136,
