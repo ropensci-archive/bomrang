@@ -4,18 +4,23 @@
 \alias{get_precis_forecast}
 \title{Get BOM daily précis forecast for select towns}
 \usage{
-get_precis_forecast(state = "AUS")
+get_precis_forecast(state = "AUS", filepath = NULL)
 }
 \arguments{
 \item{state}{Australian state or territory as full name or postal code.
 Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
-"AUS" returning all state bulletins, see details for further information.}
+"AUS" returning all state bulletins, see Details for more.}
+
+\item{filepath}{A character string of the location of the \acronym{XML} file
+to parse. If \var{filepath} is specified function will use \acronym{BOM}
+daily précis forecast from local \acronym{XML} files at the specified
+location and not the \acronym{BOM} \acronym{FTP} server. See Details more.}
 }
 \value{
 Tidy \code{\link[data.table]{data.table}} of a Australia \acronym{BOM} précis
 seven day forecasts for \acronym{BOM} selected towns.  For full details of
-fields and units returned see Appendix 2 in the \pkg{bomrang} vignette, use\cr
-\code{vignette("bomrang", package = "bomrang")} to view.
+fields and units returned see Appendix 2 in the \pkg{bomrang} vignette,
+use\cr \code{vignette("bomrang", package = "bomrang")} to view.
 }
 \description{
 Fetch the \acronym{BOM} daily précis forecast and return a tidy data frame of
@@ -35,6 +40,10 @@ or all using \code{AUS}.
    \item{WA}{Western Australia}
    \item{AUS}{Australia, returns forecast for all states, NT and ACT}
  }
+
+ In some situations, access may be restricted to insecure \acronym{FTP} 
+ connections. Using \var{filepath} allows you to download and save the
+ \acronym{XML} files locally for use in \pkg{bomrang}.
 }
 \examples{
 \donttest{
@@ -55,5 +64,6 @@ the \acronym{BOM} anonymous \acronym{FTP} server with spatial data \cr
 }
 \author{
 Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton,
-\email{keith.pembleton@usq.edu.au}
+ \email{keith.pembleton@usq.edu.au} and Paul Melloy
+ \email{paul.melloy@usq.edu.au}
 }

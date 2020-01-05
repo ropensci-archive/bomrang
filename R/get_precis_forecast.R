@@ -6,10 +6,12 @@
 #'
 #' @param state Australian state or territory as full name or postal code.
 #' Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
-#' "AUS" returning all state bulletins, see details for further information.
-#' 
-#' @param filepath If filepath is specified function will retrieve \acronym{BOM} daily précis 
-#' forecast from xml files at that local location and not the \acronym{BOM} ftp server.
+#' "AUS" returning all state bulletins, see Details for more.
+#'
+#' @param filepath A character string of the location of the \acronym{XML} file
+#' to parse. If \var{filepath} is specified function will use \acronym{BOM}
+#' daily précis forecast from local \acronym{XML} files at the specified
+#' location and not the \acronym{BOM} \acronym{FTP} server. See Details more.
 #'
 #' @details Allowed state and territory postal codes, only one state per request
 #' or all using \code{AUS}.
@@ -25,11 +27,15 @@
 #'    \item{AUS}{Australia, returns forecast for all states, NT and ACT}
 #'  }
 #'
+#'  In some situations, access may be restricted to insecure \acronym{FTP} 
+#'  connections. Using \var{filepath} allows you to download and save the
+#'  \acronym{XML} files locally for use in \pkg{bomrang}.
+#'
 #' @return
 #' Tidy \code{\link[data.table]{data.table}} of a Australia \acronym{BOM} précis
 #' seven day forecasts for \acronym{BOM} selected towns.  For full details of
-#' fields and units returned see Appendix 2 in the \pkg{bomrang} vignette, use\cr
-#' \code{vignette("bomrang", package = "bomrang")} to view.
+#' fields and units returned see Appendix 2 in the \pkg{bomrang} vignette,
+#' use\cr \code{vignette("bomrang", package = "bomrang")} to view.
 #'
 #' @examples
 #' \donttest{
@@ -48,7 +54,8 @@
 #' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 #'
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com} and Keith Pembleton,
-#' \email{keith.pembleton@@usq.edu.au}
+#'  \email{keith.pembleton@@usq.edu.au} and Paul Melloy
+#'  \email{paul.melloy@@usq.edu.au}
 #' @importFrom data.table ":="
 #' @export get_precis_forecast
 
@@ -56,8 +63,11 @@ get_precis_forecast <- function(state = "AUS", filepath = NULL) {
   the_state <- .check_states(state) # see internal_functions.R
   
   # source from ftp server or Local filepath
-  if(is.null(filepath)){base_location <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
-  } else {base_location <- filepath}
+  if (is.null(filepath)) {
+    base_location <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
+  } else {
+    base_location <- .validate_filepath(filepath)
+  }
   
   # create vector of XML files
   AUS_XML <- c(
@@ -96,12 +106,21 @@ get_precis_forecast <- function(state = "AUS", filepath = NULL) {
         the_state == "WA" |
           the_state == "WESTERN AUSTRALIA" ~ paste0(base_location, AUS_XML[7])
       ) # returns either the url/xml_filename.xml OR filepath/xml_filename.xml depending if filepath is provided
-    if(is.null(filepath)){forecast_out <- .parse_forecast(xml_url)
-    } else {forecast_out <- .parse_forecast(xml_url, Local = TRUE)}
+    if (is.null(filepath)) {
+      forecast_out <- .parse_forecast(xml_url)
+    } else {
+      forecast_out <- .parse_forecast(xml_url, Local = TRUE)
+    }
   } else {
     file_list <- paste0(base_location, AUS_XML)
-    if(is.null(filepath)){forecast_out <- lapply(X = file_list, FUN = .parse_forecast)
-    } else {forecast_out <- lapply(X = file_list, FUN = .parse_forecast, Local = TRUE)}
+    if (is.null(filepath)) {
+      forecast_out <- lapply(X = file_list, FUN = .parse_forecast)
+    } else {
+      forecast_out <-
+        lapply(X = file_list,
+               FUN = .parse_forecast,
+               Local = TRUE)
+    }
     forecast_out <- data.table::rbindlist(forecast_out, fill = TRUE)
   }
   
@@ -129,15 +148,23 @@ get_precis_forecast <- function(state = "AUS", filepath = NULL) {
     upper_precipitation_limit <- lower_precipitation_limit <-
     NULL # nocov end
   
-  if(!isTRUE(Local)){xml_object <- .get_xml(xml_url)} # if filepath is not supplied retrieve forecast from BOM ftp site
-  if(isTRUE(Local)){xml_object <- .get_xml(xml_url,LOC = TRUE)} # if filepath IS supplied specify xml_object to contain the filepath 
+  if (!isTRUE(Local)) {
+    xml_object <-
+      .get_xml(xml_url)
+  } # if filepath is not supplied retrieve forecast from BOM ftp site
+  if (isTRUE(Local)) {
+    xml_object <-
+      .get_xml(xml_url, LOC = TRUE)
+  } # if filepath IS supplied specify xml_object to contain the filepath
   out <- .parse_precis_xml(xml_object)
-
-  data.table::setnames(out,
-                      c("air_temperature_maximum",
-                        "air_temperature_minimum"),
-                      c("maximum_temperature",
-                          "minimum_temperature"))
+  
+  data.table::setnames(
+    out,
+    c("air_temperature_maximum",
+      "air_temperature_minimum"),
+    c("maximum_temperature",
+      "minimum_temperature")
+  )
   
   # clean up and split out time cols into offset and remove extra chars
   .split_time_cols(x = out)
@@ -146,92 +173,94 @@ get_precis_forecast <- function(state = "AUS", filepath = NULL) {
   load(system.file("extdata", "AAC_codes.rda", package = "bomrang"))  # nocov
   data.table::setkey(out, "aac")
   out <- AAC_codes[out, on = c("aac", "town")]
-  # 
+  #
   # add state field
   out[, state := gsub("_.*", "", out$aac)]
   
   # add product ID field
   out[, product_id := substr(basename(xml_url),
-                            1,
-                            nchar(basename(xml_url)) - 4)]
+                             1,
+                             nchar(basename(xml_url)) - 4)]
   
   # remove unnecessary text from cols ------------------------------------------
   out[, probability_of_precipitation := gsub("%",
-                                            "",
-                                            probability_of_precipitation)]
+                                             "",
+                                             probability_of_precipitation)]
   
   # handle precipitation ranges where they may or may not be present -----------
   if ("precipitation_range" %in% colnames(out))
   {
-   # format any values that are only zero to make next step easier
-   out[precipitation_range == "0 mm", precipitation_range := "0 to 0 mm"]
-   
-   # separate the precipitation column into two, upper/lower limit ------------
-   out[, c("lower_precipitation_limit",
-           "upper_precipitation_limit") := data.table::tstrsplit(precipitation_range,
-                                                                 "to",
-                                                                 fixed = TRUE)]
-   
-   out[, upper_precipitation_limit := gsub("mm", "", upper_precipitation_limit)]
-   out[, precipitation_range := NULL]
-   
+    # format any values that are only zero to make next step easier
+    out[precipitation_range == "0 mm", precipitation_range := "0 to 0 mm"]
+    
+    # separate the precipitation column into two, upper/lower limit ------------
+    out[, c("lower_precipitation_limit",
+            "upper_precipitation_limit") := data.table::tstrsplit(precipitation_range,
+                                                                  "to",
+                                                                  fixed = TRUE)]
+    
+    out[, upper_precipitation_limit := gsub("mm", "", upper_precipitation_limit)]
+    out[, precipitation_range := NULL]
+    
   } else {
-   # if the columns don't exist insert as NA
-   out[, lower_precipitation_limit := NA]
-   out[, upper_precipitation_limit := NA]
+    # if the columns don't exist insert as NA
+    out[, lower_precipitation_limit := NA]
+    out[, upper_precipitation_limit := NA]
   }
   
   refcols <- c(
-   "index",
-   "product_id",
-   "state",
-   "town",
-   "aac",
-   "lat",
-   "lon",
-   "elev",
-   "start_time_local",
-   "end_time_local",
-   "utc_offset",
-   "start_time_utc",
-   "end_time_utc",
-   "minimum_temperature",
-   "maximum_temperature",
-   "lower_precipitation_limit",
-   "upper_precipitation_limit",
-   "precis",
-   "probability_of_precipitation"
+    "index",
+    "product_id",
+    "state",
+    "town",
+    "aac",
+    "lat",
+    "lon",
+    "elev",
+    "start_time_local",
+    "end_time_local",
+    "utc_offset",
+    "start_time_utc",
+    "end_time_utc",
+    "minimum_temperature",
+    "maximum_temperature",
+    "lower_precipitation_limit",
+    "upper_precipitation_limit",
+    "precis",
+    "probability_of_precipitation"
   )
   data.table::setcolorder(out, refcols)
   # set col classes
   # factors
   out[, c(1, 11) := lapply(.SD, function(x)
-   as.factor(x)),
-   .SDcols = c(1, 11)]
+    as.factor(x)),
+    .SDcols = c(1, 11)]
   
   # numeric
   out[, c(6:8, 14:17, 19) := lapply(.SD, function(x)
-     suppressWarnings(as.numeric(x))),
-   .SDcols = c(6:8, 14:17, 19)]
+    suppressWarnings(as.numeric(x))),
+    .SDcols = c(6:8, 14:17, 19)]
   
   # dates
   out[, c(9:10) := lapply(.SD, function(x)
-   as.POSIXct(x,
-              origin = "1970-1-1",
-              format = "%Y-%m-%d %H:%M:%OS")),
-   .SDcols = c(9:10)]
-  
-  out[, c(12:13) := lapply(.SD, function(x)
     as.POSIXct(x,
                origin = "1970-1-1",
-               format = "%Y-%m-%d %H:%M:%OS",
-               tz = "GMT")),
+               format = "%Y-%m-%d %H:%M:%OS")),
+    .SDcols = c(9:10)]
+  
+  out[, c(12:13) := lapply(.SD, function(x)
+    as.POSIXct(
+      x,
+      origin = "1970-1-1",
+      format = "%Y-%m-%d %H:%M:%OS",
+      tz = "GMT"
+    )),
     .SDcols = c(12:13)]
   
   # character
   out[, c(2:5, 18) := lapply(.SD, function(x)
-   as.character(x)),
-   .SDcols = c(2:5, 18)]
+    as.character(x)),
+    .SDcols = c(2:5, 18)]
   return(out)
 }
 

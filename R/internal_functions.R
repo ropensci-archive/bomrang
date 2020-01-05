@@ -247,3 +247,24 @@
     .SDcols = c("start_time_utc", "end_time_utc")]
   return(x)
 }
+
+#' Validates user entered filepath value
+#'
+#' @param filepath User provided value for checking
+#'
+#' @noRd
+.validate_filepath <- function(filepath) {
+  filepath <- trimws(filepath)
+  if (substr(filepath, nchar(filepath) - 1, nchar(filepath)) == "//") {
+    p <- substr(filepath, 1, nchar(filepath) - 2)
+  } else if (substr(filepath, nchar(filepath), nchar(filepath)) == "/" |
+             substr(filepath, nchar(filepath), nchar(filepath)) == "\\") {
+    p <- substr(filepath, 1, nchar(filepath) - 1)
+  } else {
+    p <- filepath
+  }
+  if (!file.exists(p) & !file.exists(filepath)) {
+    stop("\nFile directory does not exist: ", filepath, ".\n",
+         call. = FALSE)
+  }
+}
