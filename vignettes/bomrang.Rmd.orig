@@ -25,16 +25,18 @@ library(bomrang)
 
 ## Introduction
 
-_bomrang_ provides functions for interacting with 
-[Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BOM serves several types of data data as XML, JSON and SHTML files.
+bomrang provides functions for interacting with 
+[Australian Bureau of Meteorology (BOM) Weather Data
+Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BOM
+serves several types of data data as XML, JSON and SHTML files.
 This package fetches these files, parses them and return a tidy data frame.
 Satellite and radar imagery files are also made available to the public via
-anonymous FTP. _bomrang_ provides functionality to query, fetch and create 
+anonymous FTP. bomrang provides functionality to query, fetch and create 
 `raster::stack()` objects of the GeoTIFF imagery.
 
-## Using _bomrang_
+## Using bomrang
 
-Several functions are provided by _bomrang_ to retrieve Australian Bureau of
+Several functions are provided by bomrang to retrieve Australian Bureau of
 Meteorology (BOM) data. A family of functions retrieve weather data and return
 tidy data frames; `get_precis_forecast()`, which retrieves the précis (short)
 forecast; `get_current_weather()`, which fetches the current weather from a
@@ -46,13 +48,13 @@ min/max, rainfall, or solar exposure data. A second family of functions retrieve
 information pertaining to satellite and radar imagery, `get_available_imagery()`
 and the imagery itself, `_imagery()` for satellite, and
 `get_available_radar()` and `get_radar_imagery()`  for radar images. The last
-group functions provides internal functionality for _bomrang_ itself;
+group functions provides internal functionality for bomrang itself;
 `update_forecast_towns()`, which updates an internal database of forecast
 locations distributed with the package, `sweep_for_stations()` which returns the
 nearest weather stations to a point in Australia and, `manage_cache()` that
 provides facilities for managing cached satellite imagery.
 
-## Using `get_current_weather`
+## Using get_current_weather()
 
 `get_current_weather()` takes one of two arguments: `station_name` and `latlon`,
 returning the current weather observations (and the observations of the last 72
@@ -81,7 +83,7 @@ Following is an example fetching the current weather for Melbourne.
 Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
 ```
 
-## Using `get_precis_forecast`
+## Using get_precis_forecast()
 
 This function only takes one argument, `state`. The `state` parameter allows the
 user to select the forecast for just one state or a national forecast. States or
@@ -122,7 +124,7 @@ Following is an example fetching the forecast for Queensland.
 ```
 
 
-## Using `get_ag_bulletin`
+## Using get_ag_bulletin()
 
 `get_ag_bulletin()` only takes one argument, `state`. The `state` parameter
 allows the user to select the bulletin for just one state or a national
@@ -159,7 +161,7 @@ Following is an example fetching the ag bulletin for Queensland.
 (QLD_bulletin <- get_ag_bulletin(state = "QLD"))
 ```
 
-## Using `get_weather_bulletin`
+## Using get_weather_bulletin()
 
 This function takes two arguments, `state` for the desired state; and `morning`
 if `TRUE`, return the 9am bulletin for the nominated state; otherwise return the
@@ -202,7 +204,7 @@ Following is an example fetching the 3PM bulletin for Queensland.
 ```
 
 
-## Using `get_coastal_forecast`
+## Using get_coastal_forecast()
 
 This function only takes one argument, `state`. The `state` parameter allows the
 user to select the forecast for just one state or a national forecast. States or
@@ -243,7 +245,7 @@ Following is an example fetching the forecast for Queensland.
 ```
 
 
-## Using `get_historical`
+## Using get_historical()
 
 `get_historical()` takes either of two arguments: `stationid` and `latlon`, as 
 well as a type of observation (`"rain"`, `"min"` (temperature), `"max"`
@@ -300,18 +302,7 @@ observations for the station closest to 35.2809°S, 149.1300°E (Canberra).
                                      type = "min"))
 ```
 
-If you want to see the data associated with the station, use `meta = TRUE` and
-`get_historica()` will return a list with a data frame containing
-information about the station's data as well as the historical data in a
-second data frame object.
-
-```{r historical_meta, eval=TRUE}
-(Canberra_mintemps <- get_historical(latlon = c(-35.2809, 149.1300),
-                                     type = "min",
-                                     meta = TRUE))
-```
-
-## Using `sweep_for_stations`
+## Using sweep_for_stations()
 
 `sweep_for_stations()` only takes one argument, `latlon`, a length-2 numeric
 vector. By default, this is Canberra (approximately).
@@ -340,7 +331,7 @@ head(sweep_for_stations(latlon = c(-35.3, 149.2)), 10)
 ```
 
 
-## Using `sweep_for_forecast_towns`
+## Using sweep_for_forecast_towns()
 
 `sweep_for_forecast_towns()` only takes one argument, `latlon`, a length-2
 numeric vector. By default, this is Canberra (approximately).
@@ -370,19 +361,19 @@ head(sweep_for_forecast_towns(latlon = c(-35.3, 149.2)), 10)
 
 ## Using the update functions
 
-_bomrang_ uses internal databases of station location data from BOM to provide
+bomrang uses internal databases of station location data from BOM to provide
 location and other metadata, _e.g._ elevation, station names, WMO codes, etc. to
 make the process of querying for weather data faster. These databases are
-created and packaged with _bomrang_ for distribution and are updated with new
+created and packaged with bomrang for distribution and are updated with new
 releases. Users have the option of updating these databases after installing
-_bomrang_. While this option gives the users the ability to keep the databases
-up-to-date and gives _bomrang_'s authors flexibility in maintaining it, this
+bomrang. While this option gives the users the ability to keep the databases
+up-to-date and gives bomrang's authors flexibility in maintaining it, this
 also means that reproducibility may be affected since the same version of
-_bomrang_ may have different databases on different machines. If reproducibility
+bomrang may have different databases on different machines. If reproducibility
 is necessary, care should be taken to ensure that the version of the databases
 is the same across different machines.
 
-The databases consist of three files, used by _bomrang_, `AAC_codes.rda`, 
+The databases consist of three files, used by bomrang, `AAC_codes.rda`, 
 `JSONurl_latlon_by_station_name.rda` and `stations_site_list.rda`. These files
 can be located on your local system by using the following command, 
 
@@ -391,12 +382,12 @@ paste0(.libPaths(), "/bomrang/extdata")[1]
 ```
 
 unless you have specified another location for library installations and
-installed _bomrang_ there, in which case it would still be in `bomrang/extdata`.
+installed bomrang there, in which case it would still be in `bomrang/extdata`.
 
 ### Using `update_forecast_towns`
 
 `update_forecast_towns()` downloads the latest précis forecast locations
-from the BOM server and updates _bomrang_'s internal database of towns used for
+from the BOM server and updates bomrang's internal database of towns used for
 forecast locations. This database is distributed with the package to make the
 process faster when fetching the forecast. 
 
@@ -415,7 +406,7 @@ update_forecast_towns()
 and updates bomrang's internal databases that support the use of
 `get_current_weather()` and `get_ag_bulletin()`. There is no need to use this
 unless you know that a station exists in BOM's database that is not available in
-the databases distributed with _bomrang_
+the databases distributed with bomrang
 
 ### Example
 
@@ -426,9 +417,9 @@ database.
 update_station_locations()
 ```
 
-## Using _bomrang_ to retrieve satellite imagery
+## Using bomrang to retrieve satellite imagery
 
-_bomrang_ provides functionality to retrieve high-definition GeoTIFF satellite
+bomrang provides functionality to retrieve high-definition GeoTIFF satellite
 imagery provided by BOM through public FTP with the following types of imagery
 being available: i.)
 [Infrared images](http://www.bom.gov.au/australia/satellite/about_images.shtml#ir),
@@ -459,7 +450,7 @@ Valid BOM satellite Product IDs for GeoTIFF files include:
 <tr><td colspan = 3><strong>Information gathered from Australian Bureau of Meteorology (BOM)</strong></td></tr>
 </table>
 
-### Using `get_available_imagery`
+### Using get_available_imagery()
 
 `get_available_imagery()` only takes one argument, `product_id`, a BOM identifier
 for the imagery that you wish to check for available imagery. Using this
@@ -475,7 +466,7 @@ defaults to all GeoTIFF images currently available.
 (avail <- get_available_imagery(product_id = "IDE00425"))
 ```
 
-### Using `get_satellite_imagery`
+### Using get_satellite_imagery()
 
 `get_satellite_imagery()` fetches BOM satellite GeoTIFF imagery, returning a
 raster stack object and takes three arguments. Files are available at
@@ -518,7 +509,7 @@ If you elect to use `cache = TRUE` when downloading imagery, note that the GTiff
 files can be quite large and will fill disk space. By using the default
 `cache = FALSE` the files will be deleted when the current R session is closed.
 
-Should you chose to use caching, _bomrang_ provided functions to interact with
+Should you chose to use caching, bomrang provided functions to interact with
 the cached files:
 
 - List files in the cache, `manage_cache$list()`
@@ -540,21 +531,22 @@ the location of the directory:
 
 `manage_cache$cache_path_get()`
 
-## Using _bomrang_ to retrieve radar imagery
+## Using bomrang to retrieve radar imagery
 
-_bomrang_ provides functionality to retrieve the latest radar imagery provided
+bomrang provides functionality to retrieve the latest radar imagery provided
 by BOM through public FTP. These are the latest snapshots for each radar
 locations at various radar ranges _e.g._, 512km, 256km, 128km and 64km for some
 stations.
 
-### Using `get_available_radar`
+### Using get_available_radar()
 
 `get_available_radar()` fetches the available radar imagery from the BOM FTP and
 returns a data frame for reference. This data frame contains the product_id 
 which is required when using the `get_radar_imagery()` function. The files
 available are the latest `.gif` files of BOM radar imagery which are typically
 updated each 6-10 minutes. Only the most recent image is retrieved for each
-radar location. There are usually several radar ranges available for each radar location, such as 512km, 256km, 128km and possibly 64km. The arguments are:
+radar location. There are usually several radar ranges available for each radar
+location, such as 512km, 256km, 128km and possibly 64km. The arguments are:
 
 * `radar_id`  which is the BOM radar ID number. This defaults to 'all' which 
 will return a data frame of all radar ID's in Australia.
@@ -564,7 +556,7 @@ x <- get_available_radar()
 head(x)  
 ```
 
-### Using `get_radar_imagery`
+### Using get_radar_imagery()
 
 `get_radar_imagery()` fetches the latest BOM radar imagery for a given product
 ID. The files available are the latest `.gif` files of BOM radar imagery which
@@ -596,7 +588,7 @@ r <-
   plot(x, add = TRUE)
 ```
 
-# `dplyr` compatibility
+# dplyr compatibility
 
 Some returned objects have been classed as `bomrang_tbl` which allow dispatch for 
 dplyr methods, _e.g._ `mutate`, `filter`, `select`, `arrange`, `slice`,
@@ -619,7 +611,6 @@ adlmax %>%
   select(station_number, year:day, max_temperature) %>% 
   filter(month == 10)
 ```
-
 
 ## References
 
