@@ -39,13 +39,13 @@ citEntry(
                       as.person("Mark Padgham"),
                       as.person("Hugh Parsonage"),
                       as.person("Keith Pembleton")),
-  title = "{bomrang}: Australian Government Bureau of Meteorology ('BOM') Data Client",
+  title = "{bomrang}: Australian Government Bureau of Meteorology (BOM) Data Client",
   year = year,
   note = note,
   url = "https://CRAN.R-project.org/package=bomrang",
 
   textVersion = paste("Adam H. Sparks, Jonathan Carroll, James Goldie, Dean Marchiori, Paul Melloy, Mark Padgham, Hugh Parsonage and Keith Pembleton. (", year, ").",
-  " bomrang:  Australian Government Bureau of Meteorology ('BOM') Data Client. ",
+  " bomrang:  Australian Government Bureau of Meteorology (BOM) Data Client. ",
   note, ".",
   " https://CRAN.R-project.org/package=bomrang", sep = "")
 )
