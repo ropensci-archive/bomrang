@@ -62,7 +62,7 @@
 get_precis_forecast <- function(state = "AUS", filepath = NULL) {
   the_state <- .check_states(state) # see internal_functions.R
   
-  # source from ftp server or Local filepath
+  # source from ftp server or local filepath
   if (is.null(filepath)) {
     base_location <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
   } else {
@@ -83,7 +83,8 @@ get_precis_forecast <- function(state = "AUS", filepath = NULL) {
     # TAS
     "IDV10753.xml",
     # VIC
-    "IDW14199.xml"  # WA
+    "IDW14199.xml"
+    # WA
   )
   
   if (the_state != "AUS") {
