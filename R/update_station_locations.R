@@ -108,12 +108,15 @@ update_station_locations <- function() {
   bom_stations_raw <- bom_stations_raw[, -8]
   
   # trim the end of the rows off that have extra info that's not in columns
-  nrows <- nrow(bom_stations_raw) - 7
-  bom_stations_raw <- bom_stations_raw[1:nrows,]
+  nrows <- nrow(bom_stations_raw) - 3
+  bom_stations_raw <- bom_stations_raw[1:nrows, ]
   
   # add current year to stations that are still active
-  bom_stations_raw <-
-    bom_stations_raw[bom_stations_raw$end == format(Sys.Date(), "%Y"),] %>%
+  bom_stations_raw$end[is.na(bom_stations_raw$end)] <- format(Sys.Date(), "%Y")
+  
+  # keep only currently reporting stations
+  bom_stations_raw <- 
+    bom_stations_raw[bom_stations_raw$end == format(Sys.Date(), "%Y"), ] %>% 
     dplyr::mutate(start = as.integer(start),
                   end = as.integer(end))
   
