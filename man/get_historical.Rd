@@ -16,11 +16,11 @@ get_historical(
 
 \item{latlon}{Length-2 numeric vector of Latitude/Longitude. See Details.}
 
+\item{radius}{Numeric value, distance (km) from \var{latlon} must be numeric.}
+
 \item{type}{Measurement type, either daily "rain", "min" (temp), "max"
 (temp), or "solar" (exposure). Partial matching is performed. If not
 specified returns the first matching type in the order listed.}
-
-\item{radias}{Numeric value, distance (km) from \var{latlon} must be numeric.}
 }
 \value{
 A \code{bomrang_tbl} object (extension of a
