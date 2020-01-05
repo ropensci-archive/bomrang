@@ -178,7 +178,9 @@
 #' @keywords internal
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #' @noRd
-.get_xml <- function(xml_url) {
+.get_xml <- function(xml_url, LOC = FALSE) {
+    if(!isTRUE(LOC)){
+    # Read xml file into xml_object from the BOM ftp site
   tryCatch({
     xml_object <- xml2::read_xml(x = xml_url)
   },
@@ -187,8 +189,23 @@
       "\nThe server with the files is not responding. ",
       "Please retry again later.\n"
     ))
-  return(xml_object)
-}
+    return(xml_object)
+    }
+  
+  if(isTRUE(LOC)){
+    # Read xml file into xml_object from the local filepath
+    tryCatch({
+      xml <- xml_url
+      xml_object <- xml2::read_xml(xml)
+    },
+    error = function(x)
+      stop(
+        "\nThe file location could not be found. ",
+        "Please check the filepath.\n"
+      ))
+    return(xml_object)
+  }
+  }
 
 #' splits time cols and removes extra chars for forecast XML objects
 #'
