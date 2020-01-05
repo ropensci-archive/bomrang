@@ -81,7 +81,6 @@
 #' get_historical(stationid = "023000", type = "max") ## ~48,000+ daily records
 #' get_historical(latlon = c(-35.2809, 149.1300),
 #'                type = "min") ## 3,500+ daily records
-#' 
 #' }
 #' @rdname get_historical
 #' @export get_historical
@@ -89,7 +88,6 @@
 get_historical <- get_historical_weather <- 
   function(stationid = NULL,
            latlon = NULL,
-           radius = NULL,
            type = c("rain", "min", "max", "solar")) {
     site <- ncc_obs_code <- NULL #nocov
     
@@ -100,58 +98,31 @@ get_historical <- get_historical_weather <-
       warning("Only one of stationid or latlon may be provided. ",
               "Using stationid.")
     }
-    if(!is.null(stationid) & !is.null(radius)){
-      ncc_list <- .get_ncc()
-      
-      if (suppressWarnings(all(
-        is.na(as.numeric(stationid)) |
-        (as.numeric(stationid) %notin% ncc_list$site)
-      ))){
-        stop("\nStation not recognised.\n",
-             call. = FALSE)}
-      latlon <- as.vector(unlist(dplyr::slice(ncc_list[ncc_list$site == as.numeric(stationid[1]),c("lat","lon")],1)))
-      stationdetails <- subset(sweep_for_stations(latlon = latlon), distance <= radius)[, , drop = TRUE]
-      stationid <- stationdetails$site
-    }
-    
     if (is.null(stationid)) {
       if (!identical(length(latlon), 2L) || !is.numeric(latlon))
         stop("latlon must be a 2-element numeric vector.",
              call. = FALSE)
-      if(is.null(radius)){
-        stationdetails <-
+      stationdetails <-
         sweep_for_stations(latlon = latlon)[1, , drop = TRUE]
       message("Closest station: ",
               stationdetails$site,
               " (",
               stationdetails$name,
-              ")")}else{
-      if(is.numeric(radius)){
-        stationdetails <-
-          subset(sweep_for_stations(latlon = latlon), distance <= radius)[, , drop = TRUE]
-        message("Closest station: ",
-                stationdetails$site[1],
-                " (",
-                stationdetails$name[1],
-                ")")
-      }else{stop("Radius distance (km) from latlong must be numeric")}}
+              ")")
       stationid <- stationdetails$site
     }
-    
-    
-    
     
     ## ensure station is known
     ncc_list <- .get_ncc()
     
     if (suppressWarnings(all(
       is.na(as.numeric(stationid)) |
-      (as.numeric(stationid) %notin% ncc_list$site)
+      as.numeric(stationid) %notin% ncc_list$site
     )))
       stop("\nStation not recognised.\n",
            call. = FALSE)
     
- #   type <- match.arg(type)  # what does this line do?
+    type <- match.arg(type)
     obscode <- switch(
       type,
       rain = 136,
@@ -160,86 +131,58 @@ get_historical <- get_historical_weather <-
       solar = 193
     )
     
-
-    dat2 <- 
-      lapply(stationid, 
-           FUN = function(stationX){
-     ncc_station <- ncc_list[ncc_list$site == as.numeric(stationX),]        
-             
-    if(obscode %notin% ncc_station$ncc_obs_code){ 
-      message(
-        "\n`type` ",
-        type,
-        " is not available for `stationid` ",
-        as.character(stationX)
-        )
-      dat <- data.frame(product_code = NA,
-                        station_number = as.integer(stationX),
-                        year = NA,
-                        month = NA,
-                        day = NA,
-                        switch(
-                          type,
-                          min = data.frame(min_temperature = NA,
-                                           accum_days_min = NA,
-                                           quality = NA),
-                          max = data.frame(max_temperature = NA,
-                                           accum_days_max = NA,
-                                           quality = NA),
-                          rain = data.frame(rainfall = NA,
-                                            period = NA,
-                                            quality = NA),
-                          solar = data.frame(solar_exposure = NA)
-                          
-                        ))
-      # returns an empty data.frame and gives a warning if there is no data for the requested station
-    }else{
-      
-      zipurl <- .get_zip_url(stationX, obscode)
-      dat <- .get_zip_and_load(zipurl)
-      
-      names(dat) <- c("product_code",
-                      "station_number",
-                      "year",
-                      "month",
-                      "day",
-                      switch(
-                        type,
-                        min = c("min_temperature",
-                                "accum_days_min",
-                                "quality"),
-                        max = c("max_temperature",
-                                "accum_days_max",
-                                "quality"),
-                        rain = c("rainfall",
-                                 "period",
-                                 "quality"),
-                        solar = c("solar_exposure")
-                      ))
-    }
+    ncc_list <-
+      dplyr::filter(ncc_list, c(site == as.numeric(stationid) &
+                                  ncc_obs_code == obscode))
+    
+    if (obscode %notin% ncc_list$ncc_obs_code)
+      stop(call. = FALSE,
+           "\n`type` ",
+           type,
+           " is not available for `stationid` ",
+           stationid,
+           "\n")
+    
+    zipurl <- .get_zip_url(stationid, obscode)
+    dat <- .get_zip_and_load(zipurl)
+    
+    names(dat) <- c("product_code",
+                    "station_number",
+                    "year",
+                    "month",
+                    "day",
+                    switch(
+                      type,
+                      min = c("min_temperature",
+                              "accum_days_min",
+                              "quality"),
+                      max = c("max_temperature",
+                              "accum_days_max",
+                              "quality"),
+                      rain = c("rainfall",
+                               "period",
+                               "quality"),
+                      solar = c("solar_exposure")
+                    ))
     
     return(
       structure(
         dat,
         class = union("bomrang_tbl", class(dat)),
-        station_number = stationX,
+        station = stationid,
         type = type,
         origin = "historical",
-        location = ncc_station$name,
-        lat = ncc_station$lat,
-        lon = ncc_station$lon,
-        start = ncc_station$start,
-        end = ncc_station$end,
-        count = ncc_station$years,
+        location = ncc_list$name,
+        lat = ncc_list$lat,
+        lon = ncc_list$lon,
+        start = ncc_list$start,
+        end = ncc_list$end,
+        count = ncc_list$years,
         units = "years",
-        ncc_list = ncc_station
+        ncc_list = ncc_list
       )
-    )})
-  
-     return(
-       dplyr::bind_rows(dat2)
-     )
-    }
+    )
+  }
 
 #' Get latest historical station metadata
 #'
