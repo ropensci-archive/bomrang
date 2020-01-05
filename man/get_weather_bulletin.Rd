@@ -45,7 +45,7 @@ sometimes contain typographical errors which may lead to warnings about
 }
 \examples{
 \donttest{
-qld_weather <- get_weather_bulletin (state = "QLD", morning = FALSE)
+qld_weather <- get_weather_bulletin(state = "QLD", morning = FALSE)
 qld_weather
 }
 }
