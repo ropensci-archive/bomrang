@@ -16,16 +16,18 @@ vignette: >
 
 ## Introduction
 
-_bomrang_ provides functions for interacting with 
-[Australian Bureau of Meteorology (BOM) Weather Data Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BOM serves several types of data data as XML, JSON and SHTML files.
+bomrang provides functions for interacting with 
+[Australian Bureau of Meteorology (BOM) Weather Data
+Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BOM
+serves several types of data data as XML, JSON and SHTML files.
 This package fetches these files, parses them and return a tidy data frame.
 Satellite and radar imagery files are also made available to the public via
-anonymous FTP. _bomrang_ provides functionality to query, fetch and create 
+anonymous FTP. bomrang provides functionality to query, fetch and create 
 `raster::stack()` objects of the GeoTIFF imagery.
 
-## Using _bomrang_
+## Using bomrang
 
-Several functions are provided by _bomrang_ to retrieve Australian Bureau of
+Several functions are provided by bomrang to retrieve Australian Bureau of
 Meteorology (BOM) data. A family of functions retrieve weather data and return
 tidy data frames; `get_precis_forecast()`, which retrieves the précis (short)
 forecast; `get_current_weather()`, which fetches the current weather from a
@@ -37,13 +39,13 @@ min/max, rainfall, or solar exposure data. A second family of functions retrieve
 information pertaining to satellite and radar imagery, `get_available_imagery()`
 and the imagery itself, `_imagery()` for satellite, and
 `get_available_radar()` and `get_radar_imagery()`  for radar images. The last
-group functions provides internal functionality for _bomrang_ itself;
+group functions provides internal functionality for bomrang itself;
 `update_forecast_towns()`, which updates an internal database of forecast
 locations distributed with the package, `sweep_for_stations()` which returns the
 nearest weather stations to a point in Australia and, `manage_cache()` that
 provides facilities for managing cached satellite imagery.
 
-## Using `get_current_weather`
+## Using get_current_weather()
 
 `get_current_weather()` takes one of two arguments: `station_name` and `latlon`,
 returning the current weather observations (and the observations of the last 72
@@ -73,7 +75,7 @@ Following is an example fetching the current weather for Melbourne.
 Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
 ```
 
-## Using `get_precis_forecast`
+## Using get_precis_forecast()
 
 This function only takes one argument, `state`. The `state` parameter allows the
 user to select the forecast for just one state or a national forecast. States or
@@ -112,10 +114,82 @@ Following is an example fetching the forecast for Queensland.
 
 ```r
 (QLD_forecast <- get_precis_forecast(state = "QLD"))
+#>      index product_id state         town       aac       lat      lon
+#>   1:     0   IDQ11295   QLD     Brisbane QLD_PT001 -27.48080 153.0389
+#>   2:     1   IDQ11295   QLD     Brisbane QLD_PT001 -27.48080 153.0389
+#>   3:     2   IDQ11295   QLD     Brisbane QLD_PT001 -27.48080 153.0389
+#>   4:     3   IDQ11295   QLD     Brisbane QLD_PT001 -27.48080 153.0389
+#>   5:     4   IDQ11295   QLD     Brisbane QLD_PT001 -27.48080 153.0389
+#>  ---                                                                 
+#> 787:     2   IDQ11295   QLD Port Douglas QLD_PT254 -16.48681 145.4635
+#> 788:     3   IDQ11295   QLD Port Douglas QLD_PT254 -16.48681 145.4635
+#> 789:     4   IDQ11295   QLD Port Douglas QLD_PT254 -16.48681 145.4635
+#> 790:     5   IDQ11295   QLD Port Douglas QLD_PT254 -16.48681 145.4635
+#> 791:     6   IDQ11295   QLD Port Douglas QLD_PT254 -16.48681 145.4635
+#>      elev    start_time_local end_time_local utc_offset
+#>   1:  8.1 2020-01-05 05:00:00     2020-01-06      10:00
+#>   2:  8.1 2020-01-06 00:00:00     2020-01-07      10:00
+#>   3:  8.1 2020-01-07 00:00:00     2020-01-08      10:00
+#>   4:  8.1 2020-01-08 00:00:00     2020-01-09      10:00
+#>   5:  8.1 2020-01-09 00:00:00     2020-01-10      10:00
+#>  ---                                                   
+#> 787: 70.4 2020-01-07 00:00:00     2020-01-08      10:00
+#> 788: 70.4 2020-01-08 00:00:00     2020-01-09      10:00
+#> 789: 70.4 2020-01-09 00:00:00     2020-01-10      10:00
+#> 790: 70.4 2020-01-10 00:00:00     2020-01-11      10:00
+#> 791: 70.4 2020-01-11 00:00:00     2020-01-12      10:00
+#>           start_time_utc        end_time_utc minimum_temperature
+#>   1: 2020-01-04 19:00:00 2020-01-05 14:00:00                  NA
+#>   2: 2020-01-05 14:00:00 2020-01-06 14:00:00                  22
+#>   3: 2020-01-06 14:00:00 2020-01-07 14:00:00                  22
+#>   4: 2020-01-07 14:00:00 2020-01-08 14:00:00                  21
+#>   5: 2020-01-08 14:00:00 2020-01-09 14:00:00                  21
+#>  ---                                                            
+#> 787: 2020-01-06 14:00:00 2020-01-07 14:00:00                  25
+#> 788: 2020-01-07 14:00:00 2020-01-08 14:00:00                  25
+#> 789: 2020-01-08 14:00:00 2020-01-09 14:00:00                  25
+#> 790: 2020-01-09 14:00:00 2020-01-10 14:00:00                  24
+#> 791: 2020-01-10 14:00:00 2020-01-11 14:00:00                  25
+#>      maximum_temperature lower_precipitation_limit
+#>   1:                  32                        NA
+#>   2:                  31                         0
+#>   3:                  31                        NA
+#>   4:                  31                        NA
+#>   5:                  32                        NA
+#>  ---                                              
+#> 787:                  31                         2
+#> 788:                  31                         1
+#> 789:                  32                         0
+#> 790:                  32                         1
+#> 791:                  33                         0
+#>      upper_precipitation_limit                 precis
+#>   1:                        NA          Mostly sunny.
+#>   2:                         1 Morning shower or two.
+#>   3:                        NA         Partly cloudy.
+#>   4:                        NA         Partly cloudy.
+#>   5:                        NA          Mostly sunny.
+#>  ---                                                 
+#> 787:                        20         Shower or two.
+#> 788:                        20         Shower or two.
+#> 789:                        15         Shower or two.
+#> 790:                         8         Shower or two.
+#> 791:                         4         Shower or two.
+#>      probability_of_precipitation
+#>   1:                            0
+#>   2:                           50
+#>   3:                           10
+#>   4:                            0
+#>   5:                           10
+#>  ---                             
+#> 787:                           60
+#> 788:                           50
+#> 789:                           50
+#> 790:                           60
+#> 791:                           50
 ```
 
 
-## Using `get_ag_bulletin`
+## Using get_ag_bulletin()
 
 `get_ag_bulletin()` only takes one argument, `state`. The `state` parameter
 allows the user to select the bulletin for just one state or a national
@@ -151,9 +225,133 @@ Following is an example fetching the ag bulletin for Queensland.
 
 ```r
 (QLD_bulletin <- get_ag_bulletin(state = "QLD"))
+#>     product_id state dist                             name   wmo  site
+#>  1:   IDQ60604   QLD   27                       WEIPA AERO 94170 27045
+#>  2:   IDQ60604   QLD   29                   MOUNT ISA AERO 94332 29127
+#>  3:   IDQ60604   QLD   30             RICHMOND POST OFFICE 94340 30045
+#>  4:   IDQ60604   QLD   30               GEORGETOWN AIRPORT 94274 30124
+#>  5:   IDQ60604   QLD   31                      CAIRNS AERO 94287 31011
+#>  6:   IDQ60604   QLD   31        WALKAMIN RESEARCH STATION 95284 31108
+#>  7:   IDQ60604   QLD   31                  MAREEBA AIRPORT 95286 31210
+#>  8:   IDQ60604   QLD   32          SOUTH JOHNSTONE EXP STN 95292 32037
+#>  9:   IDQ60604   QLD   32                  TOWNSVILLE AERO 94294 32040
+#> 10:   IDQ60604   QLD   33             AYR DPI RESEARCH STN 95295 33002
+#> 11:   IDQ60604   QLD   33         COLLINSVILLE POST OFFICE 94360 33013
+#> 12:   IDQ60604   QLD   33                       MACKAY M.O 94367 33119
+#> 13:   IDQ60604   QLD   35                TAMBO POST OFFICE 94355 35069
+#> 14:   IDQ60604   QLD   35                  EMERALD AIRPORT 94363 35264
+#> 15:   IDQ60604   QLD   36                   LONGREACH AERO 94346 36031
+#> 16:   IDQ60604   QLD   38               BIRDSVILLE AIRPORT 95482 38026
+#> 17:   IDQ60604   QLD   39                 ROCKHAMPTON AERO 94374 39083
+#> 18:   IDQ60604   QLD   39                 THANGOOL AIRPORT 94376 39089
+#> 19:   IDQ60604   QLD   39                   BUNDABERG AERO 94387 39128
+#> 20:   IDQ60604   QLD   40  UNIVERSITY OF QUEENSLAND GATTON 94562 40082
+#> 21:   IDQ60604   QLD   40                    BRISBANE AERO 94578 40842
+#> 22:   IDQ60604   QLD   40 LOGAN CITY WATER TREATMENT PLANT 95581 40854
+#> 23:   IDQ60604   QLD   41                       OAKEY AERO 94552 41359
+#> 24:   IDQ60604   QLD   41                    DALBY AIRPORT 94542 41522
+#> 25:   IDQ60604   QLD   41                          WARWICK 94555 41525
+#> 26:   IDQ60604   QLD   43             MITCHELL POST OFFICE 94514 43020
+#> 27:   IDQ60604   QLD   43                     ROMA AIRPORT 94515 43091
+#> 28:   IDQ60604   QLD   43                ST GEORGE AIRPORT 94517 43109
+#> 29:   IDQ60604   QLD   45             THARGOMINDAH AIRPORT 95492 45025
+#>     product_id state dist                             name   wmo  site
+#>                  station      obs_time_local        obs_time_utc
+#>  1:                Weipa 2020-01-05 09:00:00 2020-01-04 23:00:00
+#>  2:            Mount Isa 2020-01-05 09:00:00 2020-01-04 23:00:00
+#>  3:             Richmond 2020-01-05 09:00:00 2020-01-04 23:00:00
+#>  4:   Georgetown Airport 2020-01-05 09:00:00 2020-01-04 23:00:00
+#>  5:               Cairns 2020-01-05 09:00:00 2020-01-04 23:00:00
+#>  6:             Walkamin 2020-01-05 09:00:00 2020-01-04 23:00:00
+#>  7:              Mareeba 2020-01-05 09:00:00 2020-01-04 23:00:00
+#>  8:      South Johnstone 2020-01-05 09:00:00 2020-01-04 23:00:00
+#>  9:           Townsville 2020-01-05 09:00:00 2020-01-04 23:00:00
+#> 10:                  Ayr 2020-01-05 09:00:00 2020-01-04 23:00:00
+#> 11:         Collinsville 2020-01-05 09:00:00 2020-01-04 23:00:00
+#> 12:               Mackay 2020-01-05 09:00:00 2020-01-04 23:00:00
+#> 13:                Tambo 2020-01-05 09:00:00 2020-01-04 23:00:00
+#> 14:              Emerald 2020-01-05 09:00:00 2020-01-04 23:00:00
+#> 15:            Longreach 2020-01-05 09:00:00 2020-01-04 23:00:00
+#> 16:           Birdsville 2020-01-05 09:00:00 2020-01-04 23:00:00
+#> 17:          Rockhampton 2020-01-05 09:00:00 2020-01-04 23:00:00
+#> 18:             Thangool 2020-01-05 09:00:00 2020-01-04 23:00:00
+#> 19:            Bundaberg 2020-01-05 09:00:00 2020-01-04 23:00:00
+#> 20:               Gatton 2020-01-05 09:00:00 2020-01-04 23:00:00
+#> 21:     Brisbane Airport 2020-01-05 09:00:00 2020-01-04 23:00:00
+#> 22:           Logan City 2020-01-05 09:00:00 2020-01-04 23:00:00
+#> 23:                Oakey 2020-01-05 09:00:00 2020-01-04 23:00:00
+#> 24:                Dalby 2020-01-05 09:00:00 2020-01-04 23:00:00
+#> 25:              Warwick 2020-01-05 09:00:00 2020-01-04 23:00:00
+#> 26:             Mitchell 2020-01-05 09:00:00 2020-01-04 23:00:00
+#> 27:                 Roma 2020-01-05 09:00:00 2020-01-04 23:00:00
+#> 28:            St George 2020-01-05 09:00:00 2020-01-04 23:00:00
+#> 29: Thargomindah Airport 2020-01-05 09:00:00 2020-01-04 23:00:00
+#>                  station      obs_time_local        obs_time_utc
+#>     time_zone      lat      lon  elev bar_ht start  end    r   tn   tx
+#>  1:       EST -12.6778 141.9208  18.0   18.6  1972 2018  0.4 24.7 34.1
+#>  2:       EST -20.6778 139.4875 340.3  341.0  1966 2018  0.0 24.2 40.2
+#>  3:       EST -20.7289 143.1425 211.1  214.5  1889 2018  0.0 27.5 39.8
+#>  4:       EST -18.3039 143.5306 301.8  302.5  2004 2018  0.0 25.4 38.5
+#>  5:       EST -16.8736 145.7458   2.2    8.3  1941 2018 33.4 23.9 30.8
+#>  6:       EST -17.1347 145.4281 594.0     NA  1965 2018  0.8 20.4 31.4
+#>  7:       EST -17.0704 145.4293 471.9  473.1  2000 2018  9.4 21.5 32.7
+#>  8:       EST -17.6053 145.9972  18.3   18.6  1920 2018 41.8 22.7 29.2
+#>  9:       EST -19.2483 146.7661   4.3    9.1  1940 2018  0.0 24.4 33.2
+#> 10:       EST -19.6169 147.3758  17.0     NA  1951 2018  0.6 21.9 32.3
+#> 11:       EST -20.5533 147.8464 196.0     NA  1939 2018  0.0 20.5 35.9
+#> 12:       EST -21.1172 149.2169  30.3   36.3  1959 2018  0.0 25.4 30.4
+#> 13:       EST -24.8819 146.2564 395.1  397.4  1877 2018  0.0 23.0 39.0
+#> 14:       EST -23.5694 148.1756 189.4  190.1  1981 2018  0.0 21.1 37.1
+#> 15:       EST -23.4397 144.2828 192.2  192.5  1949 2018  0.0 25.2 40.2
+#> 16:       EST -25.8975 139.3472  46.6   47.0  2000 2018  0.0 29.2 45.5
+#> 17:       EST -23.3753 150.4775  10.4   15.1  1939 2018  0.0 21.4 33.3
+#> 18:       EST -24.4935 150.5709 193.1  193.8  1929 2018  0.0 16.3 36.6
+#> 19:       EST -24.9069 152.3230  30.8   31.5  1942 2018  0.0 19.9 31.6
+#> 20:       EST -27.5436 152.3375  89.0     NA  1897 2018  0.0 14.8 37.7
+#> 21:       EST -27.3917 153.1292   4.5    9.5  1992 2018  0.0 20.4 29.8
+#> 22:       EST -27.6839 153.1947  14.0     NA  1992 2018  0.0 20.0 32.0
+#> 23:       EST -27.4034 151.7413 405.7  407.1  1970 2018  0.0 16.1 37.1
+#> 24:       EST -27.1605 151.2634 343.9  344.4  1992 2018  0.0 16.3 38.6
+#> 25:       EST -28.2061 152.1003 475.4  475.8  1994 2018  0.0 14.7 38.5
+#> 26:       EST -26.4888 147.9777 336.5  338.0  1884 2018  0.0 20.7 40.4
+#> 27:       EST -26.5477 148.7710 307.4  307.8  1985 2018  0.0 24.3 39.9
+#> 28:       EST -28.0489 148.5942 198.5  199.1  1997 2018   NA   NA   NA
+#> 29:       EST -27.9867 143.8150 130.9  131.4  1999 2018  0.0 31.7 44.4
+#>     time_zone      lat      lon  elev bar_ht start  end    r   tn   tx
+#>      twd   ev   tg   sn solr   t5  t10  t20  t50  t1m  wr
+#>  1:  4.4   NA   NA   NA 21.2   NA   NA   NA   NA   NA  NA
+#>  2:  9.3   NA   NA   NA 27.1   NA   NA   NA   NA   NA  NA
+#>  3: 10.0 18.4   NA   NA 30.4   NA   NA   NA   NA   NA  NA
+#>  4:  7.2   NA   NA   NA 26.4   NA   NA   NA   NA   NA  NA
+#>  5:  3.7   NA   NA   NA 15.1   NA   NA   NA   NA   NA  NA
+#>  6:  3.5  4.8 20.0   NA 17.2   NA 28.7 29.0   NA   NA 206
+#>  7:  5.0   NA   NA   NA 22.4 29.1   NA 29.6 29.4 31.4  NA
+#>  8:  3.6   NA   NA   NA 10.7 28.1 28.1 28.8 28.9 28.7  NA
+#>  9:  6.6   NA   NA   NA 23.0   NA   NA   NA   NA   NA  NA
+#> 10:  5.1   NA   NA   NA 23.7 31.2 29.9 31.4 32.9 32.8  NA
+#> 11:  5.0  9.4   NA   NA 26.6   NA   NA   NA   NA   NA  NA
+#> 12:  5.8   NA   NA   NA 28.0   NA   NA   NA   NA   NA  NA
+#> 13: 11.0 11.2 19.0   NA 30.8   NA   NA   NA   NA   NA  NA
+#> 14:  7.8   NA   NA   NA 30.5 40.7 34.7 34.3 35.7   NA  NA
+#> 15: 11.4   NA   NA   NA 30.4   NA 33.8 34.8 34.4 33.1  NA
+#> 16: 13.1   NA   NA   NA 22.4   NA   NA   NA   NA   NA  NA
+#> 17:  7.0   NA   NA   NA 30.1   NA   NA   NA   NA   NA  NA
+#> 18:  7.4   NA   NA   NA 30.6   NA   NA   NA   NA   NA  NA
+#> 19:  7.1   NA   NA   NA 28.5 28.5 28.6 29.3 30.0 29.5  NA
+#> 20:  6.4   NA   NA   NA 31.1 34.3 29.5 29.3 28.4   NA 163
+#> 21:  5.5   NA 16.4 12.9 31.0 30.0 29.0 29.0 30.0 28.0 279
+#> 22:  3.2   NA   NA   NA 31.1   NA   NA   NA   NA   NA  NA
+#> 23: 10.2   NA   NA   NA 30.9   NA   NA   NA   NA   NA  NA
+#> 24:  9.2   NA   NA   NA 31.0 33.2   NA 28.6   NA 26.2 259
+#> 25: 12.5   NA   NA   NA 31.0 30.4 29.5 30.1 29.0 27.2 155
+#> 26: 12.2   NA 19.6   NA 30.7   NA   NA   NA   NA   NA  NA
+#> 27: 11.5   NA   NA   NA 30.8   NA   NA   NA   NA   NA  NA
+#> 28: 13.4   NA   NA   NA 31.2 39.8 35.7 35.6 35.9 34.0  NA
+#> 29: 20.3   NA   NA   NA 30.7   NA   NA   NA   NA   NA  NA
+#>      twd   ev   tg   sn solr   t5  t10  t20  t50  t1m  wr
 ```
 
-## Using `get_weather_bulletin`
+## Using get_weather_bulletin()
 
 This function takes two arguments, `state` for the desired state; and `morning`
 if `TRUE`, return the 9am bulletin for the nominated state; otherwise return the
@@ -188,30 +386,42 @@ Following is an example fetching the 9AM bulletin for Queensland.
 
 ```r
 (qld_weather <- get_weather_bulletin(state = "QLD", morning = TRUE))
-#>            stations cld8ths wind_dir wind_speed_kmh temp_c_dry temp_c_dew
-#>   1:     Coconut Is      NA                      NA         30         NA
-#>   2:        Coen Ap      NA        E              4         29         22
-#>   3:        Horn Is       8        E             20         30         24
-#>   4: Lockhart River       4        E             13         30         22
-#>   5:    Palmerville      NA      ENE              9         29         19
-#>  ---                                                                     
-#> 133:         Hobart      NA        E              9         20          9
-#> 134:       Adelaide      NA        W              6         29          3
-#> 135:       Perth Ap      NA        E             24         23         10
-#> 136:         Darwin       2      NNW             11         31         25
-#> 137:  Alice Springs      NA        E             20         39          2
-#>      temp_c_max temp_c_min temp_c_gr barhpa rain_mm weather seastate
-#>   1:         37         28        NA   1010      NA                 
-#>   2:         36         24        NA   1011      NA                 
-#>   3:         33         27        NA   1011       2                 
-#>   4:         33         24        NA   1012      NA                 
-#>   5:         39         23        NA   1012      NA                 
-#>  ---                                                                
-#> 133:         NA         NA        NA   1016      NA                 
-#> 134:         NA         NA        NA   1017      NA                 
-#> 135:         NA         NA        NA   1013      NA                 
-#> 136:         36         23        26   1010      10                 
-#> 137:         46         27        NA   1008      NA
+#>            stations cld8ths wind_dir wind_speed_kmh temp_c_dry
+#>   1:     Coconut Is      NA                      NA         32
+#>   2:        Coen Ap      NA        E              4         29
+#>   3:        Horn Is      NA      ESE             11         30
+#>   4: Lockhart River       8        W              7         27
+#>   5:    Palmerville      NA        E              6         29
+#>  ---                                                          
+#> 133:         Hobart      NA       NW             20         24
+#> 134:       Adelaide      NA       SW             15         21
+#> 135:       Perth Ap      NA        E             33         14
+#> 136:         Darwin       5      ENE              6         31
+#> 137:  Alice Springs       8      ESE             20         32
+#>      temp_c_dew temp_c_max temp_c_min temp_c_gr barhpa rain_mm weather
+#>   1:         NA         36         26        NA   1010      NA        
+#>   2:         23         35         24        NA   1010     0.8        
+#>   3:         22         35         26        NA   1010      NA        
+#>   4:         25         33         25        NA   1011     9.0        
+#>   5:         20         36         25        NA   1010      NA        
+#>  ---                                                                  
+#> 133:          7         NA         NA        NA   1000      NA        
+#> 134:         12         NA         NA        NA   1016      NA        
+#> 135:          3         NA         NA        NA   1022      NA        
+#> 136:         23         35         27        26   1008      NA        
+#> 137:         12         43         27        NA   1008      NA        
+#>      seastate
+#>   1:         
+#>   2:         
+#>   3:         
+#>   4:         
+#>   5:         
+#>  ---         
+#> 133:         
+#> 134:         
+#> 135:         
+#> 136:         
+#> 137:
 ```
 
 Following is an example fetching the 3PM bulletin for Queensland.
@@ -219,34 +429,46 @@ Following is an example fetching the 3PM bulletin for Queensland.
 
 ```r
 (qld_weather <- get_weather_bulletin(state = "QLD"))
-#>            stations cld8ths wind_dir wind_speed_kmh temp_c_dry temp_c_dew
-#>   1:     Coconut Is      NA                      NA         30         NA
-#>   2:        Coen Ap      NA        E              4         29         22
-#>   3:        Horn Is       8        E             20         30         24
-#>   4: Lockhart River       4        E             13         30         22
-#>   5:    Palmerville      NA      ENE              9         29         19
-#>  ---                                                                     
-#> 133:         Hobart      NA        E              9         20          9
-#> 134:       Adelaide      NA        W              6         29          3
-#> 135:       Perth Ap      NA        E             24         23         10
-#> 136:         Darwin       2      NNW             11         31         25
-#> 137:  Alice Springs      NA        E             20         39          2
-#>      temp_c_max temp_c_min temp_c_gr barhpa rain_mm weather seastate
-#>   1:         37         28        NA   1010      NA                 
-#>   2:         36         24        NA   1011      NA                 
-#>   3:         33         27        NA   1011       2                 
-#>   4:         33         24        NA   1012      NA                 
-#>   5:         39         23        NA   1012      NA                 
-#>  ---                                                                
-#> 133:         NA         NA        NA   1016      NA                 
-#> 134:         NA         NA        NA   1017      NA                 
-#> 135:         NA         NA        NA   1013      NA                 
-#> 136:         36         23        26   1010      10                 
-#> 137:         46         27        NA   1008      NA
+#>            stations cld8ths wind_dir wind_speed_kmh temp_c_dry
+#>   1:     Coconut Is      NA                      NA         32
+#>   2:        Coen Ap      NA        E              4         29
+#>   3:        Horn Is      NA      ESE             11         30
+#>   4: Lockhart River       8        W              7         27
+#>   5:    Palmerville      NA        E              6         29
+#>  ---                                                          
+#> 133:         Hobart      NA       NW             20         24
+#> 134:       Adelaide      NA       SW             15         21
+#> 135:       Perth Ap      NA        E             33         14
+#> 136:         Darwin       5      ENE              6         31
+#> 137:  Alice Springs       8      ESE             20         32
+#>      temp_c_dew temp_c_max temp_c_min temp_c_gr barhpa rain_mm weather
+#>   1:         NA         36         26        NA   1010      NA        
+#>   2:         23         35         24        NA   1010     0.8        
+#>   3:         22         35         26        NA   1010      NA        
+#>   4:         25         33         25        NA   1011     9.0        
+#>   5:         20         36         25        NA   1010      NA        
+#>  ---                                                                  
+#> 133:          7         NA         NA        NA   1000      NA        
+#> 134:         12         NA         NA        NA   1016      NA        
+#> 135:          3         NA         NA        NA   1022      NA        
+#> 136:         23         35         27        26   1008      NA        
+#> 137:         12         43         27        NA   1008      NA        
+#>      seastate
+#>   1:         
+#>   2:         
+#>   3:         
+#>   4:         
+#>   5:         
+#>  ---         
+#> 133:         
+#> 134:         
+#> 135:         
+#> 136:         
+#> 137:
 ```
 
 
-## Using `get_coastal_forecast`
+## Using get_coastal_forecast()
 
 This function only takes one argument, `state`. The `state` parameter allows the
 user to select the forecast for just one state or a national forecast. States or
@@ -285,10 +507,517 @@ Following is an example fetching the forecast for Queensland.
 
 ```r
 (QLD_coastal_forecast <- get_coastal_forecast(state = "QLD"))
+#>     index product_id    type state_code
+#>  1:  <NA>   IDQ11290    <NA>        QLD
+#>  2:  <NA>   IDQ11290    <NA>        QLD
+#>  3:  <NA>   IDQ11290    <NA>        QLD
+#>  4:  <NA>   IDQ11290    <NA>        QLD
+#>  5:     0   IDQ11290    <NA>        QLD
+#>  6:     1   IDQ11290    <NA>        QLD
+#>  7:     2   IDQ11290    <NA>        QLD
+#>  8:     0   IDQ11290    <NA>        QLD
+#>  9:     1   IDQ11290    <NA>        QLD
+#> 10:     2   IDQ11290    <NA>        QLD
+#> 11:     0   IDQ11290 Coastal        QLD
+#> 12:     1   IDQ11290 Coastal        QLD
+#> 13:     2   IDQ11290 Coastal        QLD
+#> 14:     0   IDQ11290    <NA>        QLD
+#> 15:     1   IDQ11290    <NA>        QLD
+#> 16:     2   IDQ11290    <NA>        QLD
+#> 17:     0   IDQ11290    <NA>        QLD
+#> 18:     1   IDQ11290    <NA>        QLD
+#> 19:     2   IDQ11290    <NA>        QLD
+#> 20:     0   IDQ11290    <NA>        QLD
+#> 21:     1   IDQ11290    <NA>        QLD
+#> 22:     2   IDQ11290    <NA>        QLD
+#> 23:     0   IDQ11290    <NA>        QLD
+#> 24:     1   IDQ11290    <NA>        QLD
+#> 25:     2   IDQ11290    <NA>        QLD
+#> 26:     0   IDQ11290    <NA>        QLD
+#> 27:     1   IDQ11290    <NA>        QLD
+#> 28:     2   IDQ11290    <NA>        QLD
+#> 29:     0   IDQ11290    <NA>        QLD
+#> 30:     1   IDQ11290    <NA>        QLD
+#> 31:     2   IDQ11290    <NA>        QLD
+#> 32:     0   IDQ11290   Local        QLD
+#> 33:     1   IDQ11290   Local        QLD
+#> 34:     2   IDQ11290   Local        QLD
+#> 35:     0   IDQ11290    <NA>        QLD
+#> 36:     1   IDQ11290    <NA>        QLD
+#> 37:     2   IDQ11290    <NA>        QLD
+#> 38:     0   IDQ11290    <NA>        QLD
+#> 39:     1   IDQ11290    <NA>        QLD
+#> 40:     2   IDQ11290    <NA>        QLD
+#> 41:     0   IDQ11290   Local        QLD
+#> 42:     1   IDQ11290   Local        QLD
+#> 43:     2   IDQ11290   Local        QLD
+#> 44:     0   IDQ11290    <NA>        QLD
+#> 45:     1   IDQ11290    <NA>        QLD
+#>                                                          dist_name
+#>  1:                                                     Queensland
+#>  2:                                 Queensland Gulf of Carpentaria
+#>  3:                                               North Queensland
+#>  4:                                               South Queensland
+#>  5: South East Gulf of Carpentaria: QLD-NT Border to Cape Keerweer
+#>  6: South East Gulf of Carpentaria: QLD-NT Border to Cape Keerweer
+#>  7: South East Gulf of Carpentaria: QLD-NT Border to Cape Keerweer
+#>  8:   North East Gulf of Carpentaria: Cape Keerweer to Crab Island
+#>  9:   North East Gulf of Carpentaria: Cape Keerweer to Crab Island
+#> 10:   North East Gulf of Carpentaria: Cape Keerweer to Crab Island
+#> 11:                                                  Torres Strait
+#> 12:                                                  Torres Strait
+#> 13:                                                  Torres Strait
+#> 14:                  Peninsula Coast: Sharp Point to Cape Melville
+#> 15:                  Peninsula Coast: Sharp Point to Cape Melville
+#> 16:                  Peninsula Coast: Sharp Point to Cape Melville
+#> 17:              Cooktown Coast: Cape Melville to Cape Tribulation
+#> 18:              Cooktown Coast: Cape Melville to Cape Tribulation
+#> 19:              Cooktown Coast: Cape Melville to Cape Tribulation
+#> 20:                     Cairns Coast: Cape Tribulation to Cardwell
+#> 21:                     Cairns Coast: Cape Tribulation to Cardwell
+#> 22:                     Cairns Coast: Cape Tribulation to Cardwell
+#> 23:                            Townsville Coast: Cardwell to Bowen
+#> 24:                            Townsville Coast: Cardwell to Bowen
+#> 25:                            Townsville Coast: Cardwell to Bowen
+#> 26:                             Mackay Coast: Bowen to St Lawrence
+#> 27:                             Mackay Coast: Bowen to St Lawrence
+#> 28:                             Mackay Coast: Bowen to St Lawrence
+#> 29:                Capricornia Coast: St Lawrence to Burnett Heads
+#> 30:                Capricornia Coast: St Lawrence to Burnett Heads
+#> 31:                Capricornia Coast: St Lawrence to Burnett Heads
+#> 32:                                                     Hervey Bay
+#> 33:                                                     Hervey Bay
+#> 34:                                                     Hervey Bay
+#> 35:         Fraser Island Coast: Sandy Cape to Double Island Point
+#> 36:         Fraser Island Coast: Sandy Cape to Double Island Point
+#> 37:         Fraser Island Coast: Sandy Cape to Double Island Point
+#> 38:     Sunshine Coast Waters: Double Island Point to Cape Moreton
+#> 39:     Sunshine Coast Waters: Double Island Point to Cape Moreton
+#> 40:     Sunshine Coast Waters: Double Island Point to Cape Moreton
+#> 41:                                                    Moreton Bay
+#> 42:                                                    Moreton Bay
+#> 43:                                                    Moreton Bay
+#> 44:                Gold Coast Waters: Cape Moreton to Point Danger
+#> 45:                Gold Coast Waters: Cape Moreton to Point Danger
+#>     pt_1_name pt_2_name       aac    start_time_local
+#>  1:      <NA>      <NA> QLD_FA001 2020-01-05 04:45:43
+#>  2:      <NA>      <NA> QLD_FA002 2020-01-05 05:00:00
+#>  3:      <NA>      <NA> QLD_FA003 2020-01-05 05:00:00
+#>  4:      <NA>      <NA> QLD_FA004 2020-01-05 05:00:00
+#>  5:      <NA>      <NA> QLD_MW001 2020-01-05 05:00:00
+#>  6:      <NA>      <NA> QLD_MW001 2020-01-06 00:00:00
+#>  7:      <NA>      <NA> QLD_MW001 2020-01-07 00:00:00
+#>  8:      <NA>      <NA> QLD_MW002 2020-01-05 05:00:00
+#>  9:      <NA>      <NA> QLD_MW002 2020-01-06 00:00:00
+#> 10:      <NA>      <NA> QLD_MW002 2020-01-07 00:00:00
+#> 11:      <NA>      <NA> QLD_MW003 2020-01-05 05:00:00
+#> 12:      <NA>      <NA> QLD_MW003 2020-01-06 00:00:00
+#> 13:      <NA>      <NA> QLD_MW003 2020-01-07 00:00:00
+#> 14:      <NA>      <NA> QLD_MW004 2020-01-05 05:00:00
+#> 15:      <NA>      <NA> QLD_MW004 2020-01-06 00:00:00
+#> 16:      <NA>      <NA> QLD_MW004 2020-01-07 00:00:00
+#> 17:      <NA>      <NA> QLD_MW005 2020-01-05 05:00:00
+#> 18:      <NA>      <NA> QLD_MW005 2020-01-06 00:00:00
+#> 19:      <NA>      <NA> QLD_MW005 2020-01-07 00:00:00
+#> 20:      <NA>      <NA> QLD_MW006 2020-01-05 05:00:00
+#> 21:      <NA>      <NA> QLD_MW006 2020-01-06 00:00:00
+#> 22:      <NA>      <NA> QLD_MW006 2020-01-07 00:00:00
+#> 23:      <NA>      <NA> QLD_MW007 2020-01-05 05:00:00
+#> 24:      <NA>      <NA> QLD_MW007 2020-01-06 00:00:00
+#> 25:      <NA>      <NA> QLD_MW007 2020-01-07 00:00:00
+#> 26:      <NA>      <NA> QLD_MW008 2020-01-05 05:00:00
+#> 27:      <NA>      <NA> QLD_MW008 2020-01-06 00:00:00
+#> 28:      <NA>      <NA> QLD_MW008 2020-01-07 00:00:00
+#> 29:      <NA>      <NA> QLD_MW009 2020-01-05 05:00:00
+#> 30:      <NA>      <NA> QLD_MW009 2020-01-06 00:00:00
+#> 31:      <NA>      <NA> QLD_MW009 2020-01-07 00:00:00
+#> 32:      <NA>      <NA> QLD_MW010 2020-01-05 05:00:00
+#> 33:      <NA>      <NA> QLD_MW010 2020-01-06 00:00:00
+#> 34:      <NA>      <NA> QLD_MW010 2020-01-07 00:00:00
+#> 35:      <NA>      <NA> QLD_MW011 2020-01-05 05:00:00
+#> 36:      <NA>      <NA> QLD_MW011 2020-01-06 00:00:00
+#> 37:      <NA>      <NA> QLD_MW011 2020-01-07 00:00:00
+#> 38:      <NA>      <NA> QLD_MW012 2020-01-05 05:00:00
+#> 39:      <NA>      <NA> QLD_MW012 2020-01-06 00:00:00
+#> 40:      <NA>      <NA> QLD_MW012 2020-01-07 00:00:00
+#> 41:      <NA>      <NA> QLD_MW013 2020-01-05 05:00:00
+#> 42:      <NA>      <NA> QLD_MW013 2020-01-06 00:00:00
+#> 43:      <NA>      <NA> QLD_MW013 2020-01-07 00:00:00
+#> 44:      <NA>      <NA> QLD_MW014 2020-01-05 05:00:00
+#> 45:      <NA>      <NA> QLD_MW014 2020-01-06 00:00:00
+#>          end_time_local utc_offset      start_time_utc
+#>  1: 2020-01-05 04:45:43      10:00 2020-01-05 04:45:43
+#>  2: 2020-01-05 05:00:00      10:00 2020-01-05 05:00:00
+#>  3: 2020-01-05 05:00:00      10:00 2020-01-05 05:00:00
+#>  4: 2020-01-05 05:00:00      10:00 2020-01-05 05:00:00
+#>  5: 2020-01-05 05:00:00      10:00 2020-01-05 05:00:00
+#>  6: 2020-01-06 00:00:00      10:00 2020-01-06 00:00:00
+#>  7: 2020-01-07 00:00:00      10:00 2020-01-07 00:00:00
+#>  8: 2020-01-05 05:00:00      10:00 2020-01-05 05:00:00
+#>  9: 2020-01-06 00:00:00      10:00 2020-01-06 00:00:00
+#> 10: 2020-01-07 00:00:00      10:00 2020-01-07 00:00:00
+#> 11: 2020-01-05 05:00:00      10:00 2020-01-05 05:00:00
+#> 12: 2020-01-06 00:00:00      10:00 2020-01-06 00:00:00
+#> 13: 2020-01-07 00:00:00      10:00 2020-01-07 00:00:00
+#> 14: 2020-01-05 05:00:00      10:00 2020-01-05 05:00:00
+#> 15: 2020-01-06 00:00:00      10:00 2020-01-06 00:00:00
+#> 16: 2020-01-07 00:00:00      10:00 2020-01-07 00:00:00
+#> 17: 2020-01-05 05:00:00      10:00 2020-01-05 05:00:00
+#> 18: 2020-01-06 00:00:00      10:00 2020-01-06 00:00:00
+#> 19: 2020-01-07 00:00:00      10:00 2020-01-07 00:00:00
+#> 20: 2020-01-05 05:00:00      10:00 2020-01-05 05:00:00
+#> 21: 2020-01-06 00:00:00      10:00 2020-01-06 00:00:00
+#> 22: 2020-01-07 00:00:00      10:00 2020-01-07 00:00:00
+#> 23: 2020-01-05 05:00:00      10:00 2020-01-05 05:00:00
+#> 24: 2020-01-06 00:00:00      10:00 2020-01-06 00:00:00
+#> 25: 2020-01-07 00:00:00      10:00 2020-01-07 00:00:00
+#> 26: 2020-01-05 05:00:00      10:00 2020-01-05 05:00:00
+#> 27: 2020-01-06 00:00:00      10:00 2020-01-06 00:00:00
+#> 28: 2020-01-07 00:00:00      10:00 2020-01-07 00:00:00
+#> 29: 2020-01-05 05:00:00      10:00 2020-01-05 05:00:00
+#> 30: 2020-01-06 00:00:00      10:00 2020-01-06 00:00:00
+#> 31: 2020-01-07 00:00:00      10:00 2020-01-07 00:00:00
+#> 32: 2020-01-05 05:00:00      10:00 2020-01-05 05:00:00
+#> 33: 2020-01-06 00:00:00      10:00 2020-01-06 00:00:00
+#> 34: 2020-01-07 00:00:00      10:00 2020-01-07 00:00:00
+#> 35: 2020-01-05 05:00:00      10:00 2020-01-05 05:00:00
+#> 36: 2020-01-06 00:00:00      10:00 2020-01-06 00:00:00
+#> 37: 2020-01-07 00:00:00      10:00 2020-01-07 00:00:00
+#> 38: 2020-01-05 05:00:00      10:00 2020-01-05 05:00:00
+#> 39: 2020-01-06 00:00:00      10:00 2020-01-06 00:00:00
+#> 40: 2020-01-07 00:00:00      10:00 2020-01-07 00:00:00
+#> 41: 2020-01-05 05:00:00      10:00 2020-01-05 05:00:00
+#> 42: 2020-01-06 00:00:00      10:00 2020-01-06 00:00:00
+#> 43: 2020-01-07 00:00:00      10:00 2020-01-07 00:00:00
+#> 44: 2020-01-05 05:00:00      10:00 2020-01-05 05:00:00
+#> 45: 2020-01-06 00:00:00      10:00 2020-01-06 00:00:00
+#>            end_time_utc
+#>  1: 2020-01-05 04:45:43
+#>  2: 2020-01-05 05:00:00
+#>  3: 2020-01-05 05:00:00
+#>  4: 2020-01-05 05:00:00
+#>  5: 2020-01-05 05:00:00
+#>  6: 2020-01-06 00:00:00
+#>  7: 2020-01-07 00:00:00
+#>  8: 2020-01-05 05:00:00
+#>  9: 2020-01-06 00:00:00
+#> 10: 2020-01-07 00:00:00
+#> 11: 2020-01-05 05:00:00
+#> 12: 2020-01-06 00:00:00
+#> 13: 2020-01-07 00:00:00
+#> 14: 2020-01-05 05:00:00
+#> 15: 2020-01-06 00:00:00
+#> 16: 2020-01-07 00:00:00
+#> 17: 2020-01-05 05:00:00
+#> 18: 2020-01-06 00:00:00
+#> 19: 2020-01-07 00:00:00
+#> 20: 2020-01-05 05:00:00
+#> 21: 2020-01-06 00:00:00
+#> 22: 2020-01-07 00:00:00
+#> 23: 2020-01-05 05:00:00
+#> 24: 2020-01-06 00:00:00
+#> 25: 2020-01-07 00:00:00
+#> 26: 2020-01-05 05:00:00
+#> 27: 2020-01-06 00:00:00
+#> 28: 2020-01-07 00:00:00
+#> 29: 2020-01-05 05:00:00
+#> 30: 2020-01-06 00:00:00
+#> 31: 2020-01-07 00:00:00
+#> 32: 2020-01-05 05:00:00
+#> 33: 2020-01-06 00:00:00
+#> 34: 2020-01-07 00:00:00
+#> 35: 2020-01-05 05:00:00
+#> 36: 2020-01-06 00:00:00
+#> 37: 2020-01-07 00:00:00
+#> 38: 2020-01-05 05:00:00
+#> 39: 2020-01-06 00:00:00
+#> 40: 2020-01-07 00:00:00
+#> 41: 2020-01-05 05:00:00
+#> 42: 2020-01-06 00:00:00
+#> 43: 2020-01-07 00:00:00
+#> 44: 2020-01-05 05:00:00
+#> 45: 2020-01-06 00:00:00
+#>                                                                               forecast_seas
+#>  1:                                                                                    <NA>
+#>  2:                                                                                    <NA>
+#>  3:                                                                                    <NA>
+#>  4:                                                                                    <NA>
+#>  5:                                                                          Below 1 metre.
+#>  6:                                                                          Below 1 metre.
+#>  7:                                                                          Below 1 metre.
+#>  8:                                                                          Below 1 metre.
+#>  9:                                                                          Below 1 metre.
+#> 10:                                                                          Below 1 metre.
+#> 11:                                                                          Below 1 metre.
+#> 12:                                                                       Below 0.5 metres.
+#> 13:                                                                          Below 1 metre.
+#> 14:                    Below 1 metre, increasing to 1 to 1.5 metres south of Cape Sidmouth.
+#> 15:                                                                         Around 1 metre.
+#> 16:                                                                          Below 1 metre.
+#> 17:                                                                        1 to 1.5 metres.
+#> 18:       Around 1 metre, increasing to 1 to 1.5 metres north of Cooktown by early evening.
+#> 19:                                                                         Around 1 metre.
+#> 20:                         Around 1 metre, increasing to 1 to 1.5 metres outside the reef.
+#> 21:                                                                         Around 1 metre.
+#> 22:                                                                          Below 1 metre.
+#> 23:                         Around 1 metre, increasing to 1 to 1.5 metres outside the reef.
+#> 24:    Around 1 metre, increasing to 1 to 1.5 metres outside the reef during the afternoon.
+#> 25:                                                                         Around 1 metre.
+#> 26:                                                                         Around 1 metre.
+#> 27: Below 1 metre, increasing to 1 to 1.5 metres offshore south of Mackay by early evening.
+#> 28:                                                                          Below 1 metre.
+#> 29:                                                                         Around 1 metre.
+#> 30:             Around 1 metre, increasing to 1 to 1.5 metres inshore during the afternoon.
+#> 31:                                                                         Around 1 metre.
+#> 32:                                                                          Below 1 metre.
+#> 33:                                  Around 1 metre, increasing to 1 to 1.5 metres inshore.
+#> 34:                                                                         Around 1 metre.
+#> 35:                                                                         Around 1 metre.
+#> 36:             Around 1 metre, increasing to 1 to 1.5 metres inshore during the afternoon.
+#> 37:                                                                          Below 1 metre.
+#> 38:                                                                         Around 1 metre.
+#> 39:                                                                          Below 1 metre.
+#> 40:                                                                          Below 1 metre.
+#> 41:                                                                         Around 1 metre.
+#> 42:                                                                          Below 1 metre.
+#> 43:                                                                          Below 1 metre.
+#> 44:                         Around 1 metre, increasing to 1 to 1.5 metres by early evening.
+#> 45:                                                                          Below 1 metre.
+#>                                                                                                forecast_weather
+#>  1:                                                                                                        <NA>
+#>  2:                                                                                                        <NA>
+#>  3:                                                                                                        <NA>
+#>  4:                                                                                                        <NA>
+#>  5:                                         Partly cloudy. 50% chance of showers. The chance of a thunderstorm.
+#>  6:                                                                Partly cloudy. The chance of a thunderstorm.
+#>  7:                                                                Partly cloudy. The chance of a thunderstorm.
+#>  8:                                         Partly cloudy. 50% chance of showers. The chance of a thunderstorm.
+#>  9:                                         Partly cloudy. 60% chance of showers. The chance of a thunderstorm.
+#> 10:                                         Partly cloudy. 60% chance of showers. The chance of a thunderstorm.
+#> 11:                                      Mostly sunny. The chance of a thunderstorm offshore west of Cape York.
+#> 12:                                     Partly cloudy. The chance of a thunderstorm offshore west of Cape York.
+#> 13:                                                                Partly cloudy. The chance of a thunderstorm.
+#> 14:                                       Cloudy. 60% chance of showers. The chance of a thunderstorm offshore.
+#> 15:                                                                       Partly cloudy. 50% chance of showers.
+#> 16:                                                                                              Partly cloudy.
+#> 17:                 Partly cloudy. 70% chance of showers. The chance of a thunderstorm offshore in the morning.
+#> 18:                                                                       Partly cloudy. 50% chance of showers.
+#> 19:                                                                       Partly cloudy. 50% chance of showers.
+#> 20: Partly cloudy. 80% chance of showers. The chance of a thunderstorm offshore north of Cairns in the morning.
+#> 21:                                                                              Cloudy. 80% chance of showers.
+#> 22:                                                                       Partly cloudy. 60% chance of showers.
+#> 23:                                                                       Partly cloudy. 50% chance of showers.
+#> 24:                                                                              Cloudy. 80% chance of showers.
+#> 25:                                                                       Partly cloudy. 50% chance of showers.
+#> 26:                                                                                              Partly cloudy.
+#> 27:                                                                              Cloudy. 70% chance of showers.
+#> 28:                                                                                              Partly cloudy.
+#> 29:                                                                                              Partly cloudy.
+#> 30:                                                                                              Partly cloudy.
+#> 31:                                                                                               Mostly sunny.
+#> 32:                                                                                              Partly cloudy.
+#> 33:                                                                                              Partly cloudy.
+#> 34:                                                                                               Mostly sunny.
+#> 35:                                                                                              Partly cloudy.
+#> 36:                                                                                              Partly cloudy.
+#> 37:                                                                                               Mostly sunny.
+#> 38:                                                                                               Mostly sunny.
+#> 39:                                                                                              Partly cloudy.
+#> 40:                                                                                               Mostly sunny.
+#> 41:                                                                                               Mostly sunny.
+#> 42:                                                                                              Partly cloudy.
+#> 43:                                                                                              Partly cloudy.
+#> 44:                                                                                              Partly cloudy.
+#> 45:                                                                                              Partly cloudy.
+#>                                                                                                                                                                                       forecast_winds
+#>  1:                                                                                                                                                                                             <NA>
+#>  2:                                                                                                                                                                                             <NA>
+#>  3:                                                                                                                                                                                             <NA>
+#>  4:                                                                                                                                                                                             <NA>
+#>  5:           Variable about 10 knots becoming northeasterly 10 to 15 knots during the morning. Winds becoming variable about 10 knots in the afternoon, with inshore sea breezes of 10 to 15 knots.
+#>  6:           Variable about 10 knots, becoming northeasterly 10 to 15 knots in the morning, then becoming variable about 10 knots in the late afternoon with inshore sea breezes of 10 to 15 knots.
+#>  7:        Variable about 10 knots, becoming northeasterly 10 to 15 knots during the morning, then becoming variable about 10 knots during the afternoon with inshore sea breezes of 10 to 15 knots.
+#>  8:                                   East to northeasterly 10 to 15 knots becoming variable about 10 knots in the afternoon, then tending east to northeasterly 10 to 15 knots in the late evening.
+#>  9:                                                                                East to northeasterly 10 to 15 knots, becoming variable about 10 knots in the afternoon with inshore sea breezes.
+#> 10:                                                                                                          East to northeasterly about 10 knots, becoming north to northeasterly in the afternoon.
+#> 11:                                                                                                                                                            East to southeasterly about 10 knots.
+#> 12:                                                                                East to southeasterly about 10 knots, tending northeasterly to the southwest of Thursday Island in the afternoon.
+#> 13:                                                                                             Variable below 10 knots, tending northeasterly to the southwest of Thursday Island in the afternoon.
+#> 14: East to southeasterly 10 to 15 knots, increasing to 15 to 20 knots south of Cape Sidmouth in the late morning. Winds tending northeasterly with afternoon sea breezes in Princess Charlotte Bay.
+#> 15:                                                                                          East to southeasterly 10 to 15 knots, tending northeasterly in Princess Charlotte Bay in the afternoon.
+#> 16:                                                                                          East to southeasterly 10 to 15 knots, tending northeasterly in Princess Charlotte Bay in the afternoon.
+#> 17:                                                                                                                East to southeasterly 10 to 15 knots increasing to 15 to 20 knots in the morning.
+#> 18:                                                                                                                                                            East to southeasterly 10 to 15 knots.
+#> 19:                                                                                                                                                                         Easterly 10 to 15 knots.
+#> 20:                                                                                             East to southeasterly 10 to 15 knots increasing to 15 to 20 knots north of Innisfail in the morning.
+#> 21:                                                                                                                                                            East to southeasterly 10 to 15 knots.
+#> 22:                                                                                                                                                            East to southeasterly 10 to 15 knots.
+#> 23:                                   Easterly 15 to 20 knots, decreasing to 10 to 15 knots before dawn. Winds inshore tending northeasterly and reaching up to 20 knots with afternoon sea breezes.
+#> 24:                                                                             Easterly 10 to 15 knots. Winds inshore tending northeasterly and reaching up to 20 knots with afternoon sea breezes.
+#> 25:                                                                             Easterly 10 to 15 knots. Winds inshore tending northeasterly and reaching up to 20 knots with afternoon sea breezes.
+#> 26:                                                                               Easterly 10 to 15 knots. Inshore afternoon sea breezes tending northeasterly and reaching up to 20 knots at times.
+#> 27:       Easterly 10 to 15 knots tending northeasterly inshore south of Sarina with afternoon sea breezes. Winds reaching up to 20 knots on exposed waters around the Whitsundays in the afternoon.
+#> 28:                                Easterly about 10 knots increasing to 10 to 15 knots during the morning. Winds reaching up to 20 knots on exposed waters around the Whitsundays in the afternoon.
+#> 29:                                                                                                                                                            East to northeasterly 10 to 15 knots.
+#> 30:                                                                                                East to northeasterly 10 to 15 knots, reaching up to 20 knots inshore with afternoon sea breezes.
+#> 31:                                                       Easterly about 10 knots increasing to 10 to 15 knots during the morning. Winds reaching up to 20 knots inshore with afternoon sea breezes.
+#> 32:                                       East to northeasterly 10 to 15 knots, with inshore afternoon sea breezes reaching up to 20 knots along the western bay and through the Great Sandy Strait.
+#> 33:                                                                                          East to northeasterly 10 to 15 knots, reaching up to 20 knots along the western shore in the afternoon.
+#> 34:                                                                                                                             Easterly about 10 knots increasing to 10 to 15 knots during the day.
+#> 35:                                                                                                                                                            East to northeasterly 10 to 15 knots.
+#> 36:                                                                                                                                                                    Northeasterly 10 to 15 knots.
+#> 37:                                                                                                                                                                         Easterly 10 to 15 knots.
+#> 38:                                                                                                North to northeasterly 10 to 15 knots with inshore afternoon sea breezes reaching up to 20 knots.
+#> 39:                                                                                                                                                                    Northeasterly 10 to 15 knots.
+#> 40:                                                                                                                                                            East to northeasterly 10 to 15 knots.
+#> 41:                                               North to northwesterly 10 to 15 knots tending north to northeasterly in the middle of the day. Winds reaching 15 to 20 knots during the afternoon.
+#> 42:                                                                                                                                                                    Northeasterly 10 to 15 knots.
+#> 43:                                                                                                                                                            East to northeasterly 10 to 15 knots.
+#> 44:                                                   North to northwesterly 10 to 15 knots tending north to northeasterly 15 to 20 knots in the afternoon, easing to 10 to 15 knots in the evening.
+#> 45:                                                                                                                     Northeasterly about 10 knots, increasing to 10 to 15 knots in the afternoon.
+#>                                                                           forecast_swell1
+#>  1:                                                                                  <NA>
+#>  2:                                                                                  <NA>
+#>  3:                                                                                  <NA>
+#>  4:                                                                                  <NA>
+#>  5:                                                                                  <NA>
+#>  6:                                                                                  <NA>
+#>  7:                                                                                  <NA>
+#>  8:                                                                                  <NA>
+#>  9:                                                                                  <NA>
+#> 10:                                                                                  <NA>
+#> 11:                                                  East to southeasterly below 1 metre.
+#> 12:                                                  East to southeasterly below 1 metre.
+#> 13:                                                  East to southeasterly below 1 metre.
+#> 14:                                        Southeasterly around 1 metre outside the reef.
+#> 15:                                                  East to southeasterly below 1 metre.
+#> 16:                                                  East to southeasterly below 1 metre.
+#> 17:                                East to southeasterly around 1 metre outside the reef.
+#> 18:                                                  East to southeasterly below 1 metre.
+#> 19:                                                               Easterly below 1 metre.
+#> 20:                               East to southeasterly 1 to 1.5 metres outside the reef.
+#> 21:                                East to southeasterly around 1 metre outside the reef.
+#> 22:                                             Easterly around 1 metre outside the reef.
+#> 23:                                                              Easterly around 1 metre.
+#> 24:                                                  East to northeasterly below 1 metre.
+#> 25:                                East to northeasterly around 1 metre outside the reef.
+#> 26:                                                                     Below 0.5 metres.
+#> 27:                                                  East to northeasterly below 1 metre.
+#> 28:                                                                     Below 0.5 metres.
+#> 29:                                                              Easterly around 1 metre.
+#> 30:                                                 East to northeasterly around 1 metre.
+#> 31:                                                 East to northeasterly around 1 metre.
+#> 32:                             North to northeasterly below 1 metre in the northern bay.
+#> 33:                                                 North to northeasterly below 1 metre.
+#> 34:                                                 North to northeasterly below 1 metre.
+#> 35:                                                              Easterly around 1 metre.
+#> 36:                                                 East to northeasterly around 1 metre.
+#> 37:                                                         Northeasterly around 1 metre.
+#> 38:                                                              Easterly around 1 metre.
+#> 39:                                                 East to northeasterly around 1 metre.
+#> 40:                                                    Southerly around 1 metre offshore.
+#> 41:                                                                                  <NA>
+#> 42:                                                                                  <NA>
+#> 43:                                                                                  <NA>
+#> 44:                                                               Easterly below 1 metre.
+#> 45:                                                               Easterly below 1 metre.
+#>                             forecast_swell2 forecast_caution
+#>  1:                                    <NA>             <NA>
+#>  2:                                    <NA>             <NA>
+#>  3:                                    <NA>             <NA>
+#>  4:                                    <NA>             <NA>
+#>  5:                                    <NA>             <NA>
+#>  6:                                    <NA>             <NA>
+#>  7:                                    <NA>             <NA>
+#>  8:                                    <NA>             <NA>
+#>  9:                                    <NA>             <NA>
+#> 10:                                    <NA>             <NA>
+#> 11:                                    <NA>             <NA>
+#> 12:                                    <NA>             <NA>
+#> 13:                                    <NA>             <NA>
+#> 14:                                    <NA>             <NA>
+#> 15:                                    <NA>             <NA>
+#> 16:                                    <NA>             <NA>
+#> 17:                                    <NA>             <NA>
+#> 18:                                    <NA>             <NA>
+#> 19:                                    <NA>             <NA>
+#> 20:                                    <NA>             <NA>
+#> 21:                                    <NA>             <NA>
+#> 22:                                    <NA>             <NA>
+#> 23:                                    <NA>             <NA>
+#> 24:                                    <NA>             <NA>
+#> 25:                                    <NA>             <NA>
+#> 26:                                    <NA>             <NA>
+#> 27:                                    <NA>             <NA>
+#> 28:                                    <NA>             <NA>
+#> 29:                                    <NA>             <NA>
+#> 30:                                    <NA>             <NA>
+#> 31:                                    <NA>             <NA>
+#> 32:                                    <NA>             <NA>
+#> 33:                                    <NA>             <NA>
+#> 34:                                    <NA>             <NA>
+#> 35:                                    <NA>             <NA>
+#> 36:                                    <NA>             <NA>
+#> 37:                                    <NA>             <NA>
+#> 38:                                    <NA>             <NA>
+#> 39:                                    <NA>             <NA>
+#> 40:                                    <NA>             <NA>
+#> 41:                                    <NA>             <NA>
+#> 42:                                    <NA>             <NA>
+#> 43:                                    <NA>             <NA>
+#> 44:                                    <NA>             <NA>
+#> 45:                                    <NA>             <NA>
+#>     marine_forecast tropical_system_location forecast_waves
+#>  1:            <NA>                       NA             NA
+#>  2:            <NA>                       NA             NA
+#>  3:            <NA>                       NA             NA
+#>  4:            <NA>                       NA             NA
+#>  5:            <NA>                       NA             NA
+#>  6:            <NA>                       NA             NA
+#>  7:            <NA>                       NA             NA
+#>  8:            <NA>                       NA             NA
+#>  9:            <NA>                       NA             NA
+#> 10:            <NA>                       NA             NA
+#> 11:            <NA>                       NA             NA
+#> 12:            <NA>                       NA             NA
+#> 13:            <NA>                       NA             NA
+#> 14:            <NA>                       NA             NA
+#> 15:            <NA>                       NA             NA
+#> 16:            <NA>                       NA             NA
+#> 17:            <NA>                       NA             NA
+#> 18:            <NA>                       NA             NA
+#> 19:            <NA>                       NA             NA
+#> 20:            <NA>                       NA             NA
+#> 21:            <NA>                       NA             NA
+#> 22:            <NA>                       NA             NA
+#> 23:            <NA>                       NA             NA
+#> 24:            <NA>                       NA             NA
+#> 25:            <NA>                       NA             NA
+#> 26:            <NA>                       NA             NA
+#> 27:            <NA>                       NA             NA
+#> 28:            <NA>                       NA             NA
+#> 29:            <NA>                       NA             NA
+#> 30:            <NA>                       NA             NA
+#> 31:            <NA>                       NA             NA
+#> 32:            <NA>                       NA             NA
+#> 33:            <NA>                       NA             NA
+#> 34:            <NA>                       NA             NA
+#> 35:            <NA>                       NA             NA
+#> 36:            <NA>                       NA             NA
+#> 37:            <NA>                       NA             NA
+#> 38:            <NA>                       NA             NA
+#> 39:            <NA>                       NA             NA
+#> 40:            <NA>                       NA             NA
+#> 41:            <NA>                       NA             NA
+#> 42:            <NA>                       NA             NA
+#> 43:            <NA>                       NA             NA
+#> 44:            <NA>                       NA             NA
+#> 45:            <NA>                       NA             NA
+#>  [ reached getOption("max.print") -- omitted 5 rows ]
 ```
 
 
-## Using `get_historical`
+## Using get_historical()
 
 `get_historical()` takes either of two arguments: `stationid` and `latlon`, as 
 well as a type of observation (`"rain"`, `"min"` (temperature), `"max"`
@@ -345,13 +1074,13 @@ observations for the station closest to 35.2809°S, 149.1300°E (Canberra).
 (Canberra_mintemps <- get_historical(latlon = c(-35.2809, 149.1300),
                                      type = "min"))
 #> Closest station: 070351 (CANBERRA AIRPORT)
-#> Data saved as /var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//RtmpDTxWhl/IDCJAC0011_070351_1800_Data.csv
+#> Data saved as /var/folders/yv/4xy6zs3x5qsgj96389nkjvtw0000gn/T//Rtmp2kXOWM/IDCJAC0011_070351_1800_Data.csv
 #>   ---- Australian Bureau of Meteorology (BOM) Data Resource ----
 #>   (Original Request Parameters)
 #>   Station:		CANBERRA AIRPORT [070351] 
 #>   Location:		lat: -35.3088, lon: 149.2004
 #>   Measurement / Origin:	Min / Historical
-#>   Timespan:		2008-09-01 -- 2019-12-01 [11.3 years]
+#>   Timespan:		2008-09-01 -- 2020-01-01 [11.4 years]
 #>   ---------------------------------------------------------------  
 #>       product_code station_number year month day min_temperature
 #>    1:   IDCJAC0011          70351 2008     1   1              NA
@@ -360,11 +1089,11 @@ observations for the station closest to 35.2809°S, 149.1300°E (Canberra).
 #>    4:   IDCJAC0011          70351 2008     1   4              NA
 #>    5:   IDCJAC0011          70351 2008     1   5              NA
 #>   ---                                                           
-#> 4374:   IDCJAC0011          70351 2019    12  22            15.5
-#> 4375:   IDCJAC0011          70351 2019    12  23             8.6
-#> 4376:   IDCJAC0011          70351 2019    12  24            15.3
-#> 4377:   IDCJAC0011          70351 2019    12  25            15.1
-#> 4378:   IDCJAC0011          70351 2019    12  26            15.6
+#> 4384:   IDCJAC0011          70351 2020     1   1            13.5
+#> 4385:   IDCJAC0011          70351 2020     1   2            10.7
+#> 4386:   IDCJAC0011          70351 2020     1   3            15.6
+#> 4387:   IDCJAC0011          70351 2020     1   4            18.5
+#> 4388:   IDCJAC0011          70351 2020     1   5            17.3
 #>       accum_days_min quality
 #>    1:             NA        
 #>    2:             NA        
@@ -372,27 +1101,14 @@ observations for the station closest to 35.2809°S, 149.1300°E (Canberra).
 #>    4:             NA        
 #>    5:             NA        
 #>   ---                       
-#> 4374:              1       N
-#> 4375:              1       N
-#> 4376:              1       N
-#> 4377:              1       N
-#> 4378:              1       N
+#> 4384:              1       N
+#> 4385:              1       N
+#> 4386:              1       N
+#> 4387:              1       N
+#> 4388:              1       N
 ```
 
-If you want to see the data associated with the station, use `meta = TRUE` and
-`get_historica()` will return a list with a data frame containing
-information about the station's data as well as the historical data in a
-second data frame object.
-
-
-```r
-(Canberra_mintemps <- get_historical(latlon = c(-35.2809, 149.1300),
-                                     type = "min",
-                                     meta = TRUE))
-#> Error in get_historical(latlon = c(-35.2809, 149.13), type = "min", meta = TRUE): unused argument (meta = TRUE)
-```
-
-## Using `sweep_for_stations`
+## Using sweep_for_stations()
 
 `sweep_for_stations()` only takes one argument, `latlon`, a length-2 numeric
 vector. By default, this is Canberra (approximately).
@@ -420,16 +1136,16 @@ Following is an example sweeping for stations starting with Canberra.
 # Show only the first ten stations in the list
 head(sweep_for_stations(latlon = c(-35.3, 149.2)), 10)
 #>       site dist                              name start  end      lat
-#>  1: 070351   70                  CANBERRA AIRPORT  2008 2019 -35.3088
-#>  2: 070339   70 TUGGERANONG (ISABELLA PLAINS) AWS  1996 2019 -35.4184
-#>  3: 070349   70                  MOUNT GININI AWS  2004 2019 -35.5293
-#>  4: 070341   70 CAPTAINS FLAT (COWANGERONG RADAR)  2002 2019 -35.6614
-#>  5: 069132   69          BRAIDWOOD RACECOURSE AWS  1985 2019 -35.4253
-#>  6: 073007   73                    BURRINJUCK DAM  1908 2019 -34.9997
-#>  7: 070330   70              GOULBURN AIRPORT AWS  1988 2019 -34.8085
-#>  8: 070263   70                     GOULBURN TAFE  1971 2019 -34.7495
-#>  9: 069128   69                       NERRIGA AWS  2013 2019 -35.1103
-#> 10: 069049   69                 NERRIGA COMPOSITE  1898 2019 -35.1165
+#>  1: 070351   70                  CANBERRA AIRPORT  2008 2020 -35.3088
+#>  2: 070339   70 TUGGERANONG (ISABELLA PLAINS) AWS  1996 2020 -35.4184
+#>  3: 070349   70                  MOUNT GININI AWS  2004 2020 -35.5293
+#>  4: 070341   70 CAPTAINS FLAT (COWANGERONG RADAR)  2002 2020 -35.6614
+#>  5: 069132   69          BRAIDWOOD RACECOURSE AWS  1985 2020 -35.4253
+#>  6: 073007   73                    BURRINJUCK DAM  1908 2020 -34.9997
+#>  7: 070330   70              GOULBURN AIRPORT AWS  1988 2020 -34.8085
+#>  8: 070263   70                     GOULBURN TAFE  1971 2020 -34.7495
+#>  9: 069128   69                       NERRIGA AWS  2013 2020 -35.1103
+#> 10: 069049   69                 NERRIGA COMPOSITE  1898 2020 -35.1165
 #>          lon state  elev bar_ht   wmo state_code
 #>  1: 149.2004   ACT 577.1  577.6 94926       <NA>
 #>  2: 149.0937   ACT 586.7  587.5 94925       <NA>
@@ -455,7 +1171,7 @@ head(sweep_for_stations(latlon = c(-35.3, 149.2)), 10)
 ```
 
 
-## Using `sweep_for_forecast_towns`
+## Using sweep_for_forecast_towns()
 
 `sweep_for_forecast_towns()` only takes one argument, `latlon`, a length-2
 numeric vector. By default, this is Canberra (approximately).
@@ -497,19 +1213,19 @@ head(sweep_for_forecast_towns(latlon = c(-35.3, 149.2)), 10)
 
 ## Using the update functions
 
-_bomrang_ uses internal databases of station location data from BOM to provide
+bomrang uses internal databases of station location data from BOM to provide
 location and other metadata, _e.g._ elevation, station names, WMO codes, etc. to
 make the process of querying for weather data faster. These databases are
-created and packaged with _bomrang_ for distribution and are updated with new
+created and packaged with bomrang for distribution and are updated with new
 releases. Users have the option of updating these databases after installing
-_bomrang_. While this option gives the users the ability to keep the databases
-up-to-date and gives _bomrang_'s authors flexibility in maintaining it, this
+bomrang. While this option gives the users the ability to keep the databases
+up-to-date and gives bomrang's authors flexibility in maintaining it, this
 also means that reproducibility may be affected since the same version of
-_bomrang_ may have different databases on different machines. If reproducibility
+bomrang may have different databases on different machines. If reproducibility
 is necessary, care should be taken to ensure that the version of the databases
 is the same across different machines.
 
-The databases consist of three files, used by _bomrang_, `AAC_codes.rda`, 
+The databases consist of three files, used by bomrang, `AAC_codes.rda`, 
 `JSONurl_latlon_by_station_name.rda` and `stations_site_list.rda`. These files
 can be located on your local system by using the following command, 
 
@@ -519,12 +1235,12 @@ paste0(.libPaths(), "/bomrang/extdata")[1]
 ```
 
 unless you have specified another location for library installations and
-installed _bomrang_ there, in which case it would still be in `bomrang/extdata`.
+installed bomrang there, in which case it would still be in `bomrang/extdata`.
 
 ### Using `update_forecast_towns`
 
 `update_forecast_towns()` downloads the latest précis forecast locations
-from the BOM server and updates _bomrang_'s internal database of towns used for
+from the BOM server and updates bomrang's internal database of towns used for
 forecast locations. This database is distributed with the package to make the
 process faster when fetching the forecast. 
 
@@ -544,7 +1260,7 @@ update_forecast_towns()
 and updates bomrang's internal databases that support the use of
 `get_current_weather()` and `get_ag_bulletin()`. There is no need to use this
 unless you know that a station exists in BOM's database that is not available in
-the databases distributed with _bomrang_
+the databases distributed with bomrang
 
 ### Example
 
@@ -556,9 +1272,9 @@ database.
 update_station_locations()
 ```
 
-## Using _bomrang_ to retrieve satellite imagery
+## Using bomrang to retrieve satellite imagery
 
-_bomrang_ provides functionality to retrieve high-definition GeoTIFF satellite
+bomrang provides functionality to retrieve high-definition GeoTIFF satellite
 imagery provided by BOM through public FTP with the following types of imagery
 being available: i.)
 [Infrared images](http://www.bom.gov.au/australia/satellite/about_images.shtml#ir),
@@ -589,7 +1305,7 @@ Valid BOM satellite Product IDs for GeoTIFF files include:
 <tr><td colspan = 3><strong>Information gathered from Australian Bureau of Meteorology (BOM)</strong></td></tr>
 </table>
 
-### Using `get_available_imagery`
+### Using get_available_imagery()
 
 `get_available_imagery()` only takes one argument, `product_id`, a BOM identifier
 for the imagery that you wish to check for available imagery. Using this
@@ -606,153 +1322,157 @@ defaults to all GeoTIFF images currently available.
 (avail <- get_available_imagery(product_id = "IDE00425"))
 #> 
 #> The following files are currently available for download:
-#>   [1] "IDE00425.201912250010.tif" "IDE00425.201912250020.tif"
-#>   [3] "IDE00425.201912250030.tif" "IDE00425.201912250040.tif"
-#>   [5] "IDE00425.201912250050.tif" "IDE00425.201912250100.tif"
-#>   [7] "IDE00425.201912250110.tif" "IDE00425.201912250120.tif"
-#>   [9] "IDE00425.201912250130.tif" "IDE00425.201912250140.tif"
-#>  [11] "IDE00425.201912250150.tif" "IDE00425.201912250200.tif"
-#>  [13] "IDE00425.201912250210.tif" "IDE00425.201912250220.tif"
-#>  [15] "IDE00425.201912250230.tif" "IDE00425.201912250250.tif"
-#>  [17] "IDE00425.201912250300.tif" "IDE00425.201912250310.tif"
-#>  [19] "IDE00425.201912250320.tif" "IDE00425.201912250330.tif"
-#>  [21] "IDE00425.201912250340.tif" "IDE00425.201912250350.tif"
-#>  [23] "IDE00425.201912250400.tif" "IDE00425.201912250410.tif"
-#>  [25] "IDE00425.201912250420.tif" "IDE00425.201912250430.tif"
-#>  [27] "IDE00425.201912250440.tif" "IDE00425.201912250450.tif"
-#>  [29] "IDE00425.201912250500.tif" "IDE00425.201912250510.tif"
-#>  [31] "IDE00425.201912250520.tif" "IDE00425.201912250530.tif"
-#>  [33] "IDE00425.201912250540.tif" "IDE00425.201912250550.tif"
-#>  [35] "IDE00425.201912250600.tif" "IDE00425.201912250610.tif"
-#>  [37] "IDE00425.201912250620.tif" "IDE00425.201912250630.tif"
-#>  [39] "IDE00425.201912250640.tif" "IDE00425.201912250650.tif"
-#>  [41] "IDE00425.201912250700.tif" "IDE00425.201912250710.tif"
-#>  [43] "IDE00425.201912250720.tif" "IDE00425.201912250730.tif"
-#>  [45] "IDE00425.201912250740.tif" "IDE00425.201912250750.tif"
-#>  [47] "IDE00425.201912250800.tif" "IDE00425.201912250810.tif"
-#>  [49] "IDE00425.201912250820.tif" "IDE00425.201912250830.tif"
-#>  [51] "IDE00425.201912250840.tif" "IDE00425.201912250850.tif"
-#>  [53] "IDE00425.201912250900.tif" "IDE00425.201912250910.tif"
-#>  [55] "IDE00425.201912250920.tif" "IDE00425.201912250930.tif"
-#>  [57] "IDE00425.201912250940.tif" "IDE00425.201912250950.tif"
-#>  [59] "IDE00425.201912251000.tif" "IDE00425.201912251010.tif"
-#>  [61] "IDE00425.201912251020.tif" "IDE00425.201912251030.tif"
-#>  [63] "IDE00425.201912251040.tif" "IDE00425.201912251050.tif"
-#>  [65] "IDE00425.201912251100.tif" "IDE00425.201912251110.tif"
-#>  [67] "IDE00425.201912251120.tif" "IDE00425.201912251130.tif"
-#>  [69] "IDE00425.201912251140.tif" "IDE00425.201912251150.tif"
-#>  [71] "IDE00425.201912251200.tif" "IDE00425.201912251210.tif"
-#>  [73] "IDE00425.201912251220.tif" "IDE00425.201912251230.tif"
-#>  [75] "IDE00425.201912251240.tif" "IDE00425.201912251250.tif"
-#>  [77] "IDE00425.201912251300.tif" "IDE00425.201912251310.tif"
-#>  [79] "IDE00425.201912251320.tif" "IDE00425.201912251330.tif"
-#>  [81] "IDE00425.201912251340.tif" "IDE00425.201912251350.tif"
-#>  [83] "IDE00425.201912251400.tif" "IDE00425.201912251410.tif"
-#>  [85] "IDE00425.201912251420.tif" "IDE00425.201912251430.tif"
-#>  [87] "IDE00425.201912251450.tif" "IDE00425.201912251500.tif"
-#>  [89] "IDE00425.201912251510.tif" "IDE00425.201912251520.tif"
-#>  [91] "IDE00425.201912251530.tif" "IDE00425.201912251540.tif"
-#>  [93] "IDE00425.201912251550.tif" "IDE00425.201912251600.tif"
-#>  [95] "IDE00425.201912251610.tif" "IDE00425.201912251620.tif"
-#>  [97] "IDE00425.201912251630.tif" "IDE00425.201912251640.tif"
-#>  [99] "IDE00425.201912251650.tif" "IDE00425.201912251700.tif"
-#> [101] "IDE00425.201912251710.tif" "IDE00425.201912251720.tif"
-#> [103] "IDE00425.201912251730.tif" "IDE00425.201912251740.tif"
-#> [105] "IDE00425.201912251750.tif" "IDE00425.201912251800.tif"
-#> [107] "IDE00425.201912251810.tif" "IDE00425.201912251820.tif"
-#> [109] "IDE00425.201912251830.tif" "IDE00425.201912251840.tif"
-#> [111] "IDE00425.201912251850.tif" "IDE00425.201912251900.tif"
-#> [113] "IDE00425.201912251910.tif" "IDE00425.201912251920.tif"
-#> [115] "IDE00425.201912251930.tif" "IDE00425.201912251940.tif"
-#> [117] "IDE00425.201912251950.tif" "IDE00425.201912252000.tif"
-#> [119] "IDE00425.201912252010.tif" "IDE00425.201912252020.tif"
-#> [121] "IDE00425.201912252030.tif" "IDE00425.201912252040.tif"
-#> [123] "IDE00425.201912252050.tif" "IDE00425.201912252100.tif"
-#> [125] "IDE00425.201912252110.tif" "IDE00425.201912252120.tif"
-#> [127] "IDE00425.201912252130.tif" "IDE00425.201912252140.tif"
-#> [129] "IDE00425.201912252150.tif" "IDE00425.201912252200.tif"
-#> [131] "IDE00425.201912252210.tif" "IDE00425.201912252220.tif"
-#> [133] "IDE00425.201912252230.tif" "IDE00425.201912252240.tif"
-#> [135] "IDE00425.201912252250.tif" "IDE00425.201912252300.tif"
-#> [137] "IDE00425.201912252310.tif" "IDE00425.201912252320.tif"
-#> [139] "IDE00425.201912252330.tif" "IDE00425.201912252340.tif"
-#> [141] "IDE00425.201912252350.tif" "IDE00425.201912260000.tif"
-#> [143] "IDE00425.201912260010.tif" "IDE00425.201912260020.tif"
-#>   [1] "IDE00425.201912250010.tif" "IDE00425.201912250020.tif"
-#>   [3] "IDE00425.201912250030.tif" "IDE00425.201912250040.tif"
-#>   [5] "IDE00425.201912250050.tif" "IDE00425.201912250100.tif"
-#>   [7] "IDE00425.201912250110.tif" "IDE00425.201912250120.tif"
-#>   [9] "IDE00425.201912250130.tif" "IDE00425.201912250140.tif"
-#>  [11] "IDE00425.201912250150.tif" "IDE00425.201912250200.tif"
-#>  [13] "IDE00425.201912250210.tif" "IDE00425.201912250220.tif"
-#>  [15] "IDE00425.201912250230.tif" "IDE00425.201912250250.tif"
-#>  [17] "IDE00425.201912250300.tif" "IDE00425.201912250310.tif"
-#>  [19] "IDE00425.201912250320.tif" "IDE00425.201912250330.tif"
-#>  [21] "IDE00425.201912250340.tif" "IDE00425.201912250350.tif"
-#>  [23] "IDE00425.201912250400.tif" "IDE00425.201912250410.tif"
-#>  [25] "IDE00425.201912250420.tif" "IDE00425.201912250430.tif"
-#>  [27] "IDE00425.201912250440.tif" "IDE00425.201912250450.tif"
-#>  [29] "IDE00425.201912250500.tif" "IDE00425.201912250510.tif"
-#>  [31] "IDE00425.201912250520.tif" "IDE00425.201912250530.tif"
-#>  [33] "IDE00425.201912250540.tif" "IDE00425.201912250550.tif"
-#>  [35] "IDE00425.201912250600.tif" "IDE00425.201912250610.tif"
-#>  [37] "IDE00425.201912250620.tif" "IDE00425.201912250630.tif"
-#>  [39] "IDE00425.201912250640.tif" "IDE00425.201912250650.tif"
-#>  [41] "IDE00425.201912250700.tif" "IDE00425.201912250710.tif"
-#>  [43] "IDE00425.201912250720.tif" "IDE00425.201912250730.tif"
-#>  [45] "IDE00425.201912250740.tif" "IDE00425.201912250750.tif"
-#>  [47] "IDE00425.201912250800.tif" "IDE00425.201912250810.tif"
-#>  [49] "IDE00425.201912250820.tif" "IDE00425.201912250830.tif"
-#>  [51] "IDE00425.201912250840.tif" "IDE00425.201912250850.tif"
-#>  [53] "IDE00425.201912250900.tif" "IDE00425.201912250910.tif"
-#>  [55] "IDE00425.201912250920.tif" "IDE00425.201912250930.tif"
-#>  [57] "IDE00425.201912250940.tif" "IDE00425.201912250950.tif"
-#>  [59] "IDE00425.201912251000.tif" "IDE00425.201912251010.tif"
-#>  [61] "IDE00425.201912251020.tif" "IDE00425.201912251030.tif"
-#>  [63] "IDE00425.201912251040.tif" "IDE00425.201912251050.tif"
-#>  [65] "IDE00425.201912251100.tif" "IDE00425.201912251110.tif"
-#>  [67] "IDE00425.201912251120.tif" "IDE00425.201912251130.tif"
-#>  [69] "IDE00425.201912251140.tif" "IDE00425.201912251150.tif"
-#>  [71] "IDE00425.201912251200.tif" "IDE00425.201912251210.tif"
-#>  [73] "IDE00425.201912251220.tif" "IDE00425.201912251230.tif"
-#>  [75] "IDE00425.201912251240.tif" "IDE00425.201912251250.tif"
-#>  [77] "IDE00425.201912251300.tif" "IDE00425.201912251310.tif"
-#>  [79] "IDE00425.201912251320.tif" "IDE00425.201912251330.tif"
-#>  [81] "IDE00425.201912251340.tif" "IDE00425.201912251350.tif"
-#>  [83] "IDE00425.201912251400.tif" "IDE00425.201912251410.tif"
-#>  [85] "IDE00425.201912251420.tif" "IDE00425.201912251430.tif"
-#>  [87] "IDE00425.201912251450.tif" "IDE00425.201912251500.tif"
-#>  [89] "IDE00425.201912251510.tif" "IDE00425.201912251520.tif"
-#>  [91] "IDE00425.201912251530.tif" "IDE00425.201912251540.tif"
-#>  [93] "IDE00425.201912251550.tif" "IDE00425.201912251600.tif"
-#>  [95] "IDE00425.201912251610.tif" "IDE00425.201912251620.tif"
-#>  [97] "IDE00425.201912251630.tif" "IDE00425.201912251640.tif"
-#>  [99] "IDE00425.201912251650.tif" "IDE00425.201912251700.tif"
-#> [101] "IDE00425.201912251710.tif" "IDE00425.201912251720.tif"
-#> [103] "IDE00425.201912251730.tif" "IDE00425.201912251740.tif"
-#> [105] "IDE00425.201912251750.tif" "IDE00425.201912251800.tif"
-#> [107] "IDE00425.201912251810.tif" "IDE00425.201912251820.tif"
-#> [109] "IDE00425.201912251830.tif" "IDE00425.201912251840.tif"
-#> [111] "IDE00425.201912251850.tif" "IDE00425.201912251900.tif"
-#> [113] "IDE00425.201912251910.tif" "IDE00425.201912251920.tif"
-#> [115] "IDE00425.201912251930.tif" "IDE00425.201912251940.tif"
-#> [117] "IDE00425.201912251950.tif" "IDE00425.201912252000.tif"
-#> [119] "IDE00425.201912252010.tif" "IDE00425.201912252020.tif"
-#> [121] "IDE00425.201912252030.tif" "IDE00425.201912252040.tif"
-#> [123] "IDE00425.201912252050.tif" "IDE00425.201912252100.tif"
-#> [125] "IDE00425.201912252110.tif" "IDE00425.201912252120.tif"
-#> [127] "IDE00425.201912252130.tif" "IDE00425.201912252140.tif"
-#> [129] "IDE00425.201912252150.tif" "IDE00425.201912252200.tif"
-#> [131] "IDE00425.201912252210.tif" "IDE00425.201912252220.tif"
-#> [133] "IDE00425.201912252230.tif" "IDE00425.201912252240.tif"
-#> [135] "IDE00425.201912252250.tif" "IDE00425.201912252300.tif"
-#> [137] "IDE00425.201912252310.tif" "IDE00425.201912252320.tif"
-#> [139] "IDE00425.201912252330.tif" "IDE00425.201912252340.tif"
-#> [141] "IDE00425.201912252350.tif" "IDE00425.201912260000.tif"
-#> [143] "IDE00425.201912260010.tif" "IDE00425.201912260020.tif"
+#>   [1] "IDE00425.202001032310.tif" "IDE00425.202001032320.tif"
+#>   [3] "IDE00425.202001032330.tif" "IDE00425.202001032340.tif"
+#>   [5] "IDE00425.202001032350.tif" "IDE00425.202001040000.tif"
+#>   [7] "IDE00425.202001040010.tif" "IDE00425.202001040020.tif"
+#>   [9] "IDE00425.202001040030.tif" "IDE00425.202001040040.tif"
+#>  [11] "IDE00425.202001040050.tif" "IDE00425.202001040100.tif"
+#>  [13] "IDE00425.202001040110.tif" "IDE00425.202001040120.tif"
+#>  [15] "IDE00425.202001040130.tif" "IDE00425.202001040140.tif"
+#>  [17] "IDE00425.202001040150.tif" "IDE00425.202001040200.tif"
+#>  [19] "IDE00425.202001040210.tif" "IDE00425.202001040220.tif"
+#>  [21] "IDE00425.202001040230.tif" "IDE00425.202001040250.tif"
+#>  [23] "IDE00425.202001040300.tif" "IDE00425.202001040310.tif"
+#>  [25] "IDE00425.202001040320.tif" "IDE00425.202001040330.tif"
+#>  [27] "IDE00425.202001040340.tif" "IDE00425.202001040350.tif"
+#>  [29] "IDE00425.202001040400.tif" "IDE00425.202001040410.tif"
+#>  [31] "IDE00425.202001040420.tif" "IDE00425.202001040430.tif"
+#>  [33] "IDE00425.202001040440.tif" "IDE00425.202001040450.tif"
+#>  [35] "IDE00425.202001040500.tif" "IDE00425.202001040510.tif"
+#>  [37] "IDE00425.202001040520.tif" "IDE00425.202001040530.tif"
+#>  [39] "IDE00425.202001040540.tif" "IDE00425.202001040550.tif"
+#>  [41] "IDE00425.202001040600.tif" "IDE00425.202001040610.tif"
+#>  [43] "IDE00425.202001040620.tif" "IDE00425.202001040630.tif"
+#>  [45] "IDE00425.202001040640.tif" "IDE00425.202001040650.tif"
+#>  [47] "IDE00425.202001040700.tif" "IDE00425.202001040710.tif"
+#>  [49] "IDE00425.202001040720.tif" "IDE00425.202001040730.tif"
+#>  [51] "IDE00425.202001040740.tif" "IDE00425.202001040750.tif"
+#>  [53] "IDE00425.202001040800.tif" "IDE00425.202001040810.tif"
+#>  [55] "IDE00425.202001040820.tif" "IDE00425.202001040830.tif"
+#>  [57] "IDE00425.202001040840.tif" "IDE00425.202001040850.tif"
+#>  [59] "IDE00425.202001040900.tif" "IDE00425.202001040910.tif"
+#>  [61] "IDE00425.202001040920.tif" "IDE00425.202001040930.tif"
+#>  [63] "IDE00425.202001040940.tif" "IDE00425.202001040950.tif"
+#>  [65] "IDE00425.202001041000.tif" "IDE00425.202001041010.tif"
+#>  [67] "IDE00425.202001041020.tif" "IDE00425.202001041030.tif"
+#>  [69] "IDE00425.202001041040.tif" "IDE00425.202001041050.tif"
+#>  [71] "IDE00425.202001041100.tif" "IDE00425.202001041110.tif"
+#>  [73] "IDE00425.202001041120.tif" "IDE00425.202001041130.tif"
+#>  [75] "IDE00425.202001041140.tif" "IDE00425.202001041150.tif"
+#>  [77] "IDE00425.202001041200.tif" "IDE00425.202001041210.tif"
+#>  [79] "IDE00425.202001041220.tif" "IDE00425.202001041230.tif"
+#>  [81] "IDE00425.202001041240.tif" "IDE00425.202001041250.tif"
+#>  [83] "IDE00425.202001041300.tif" "IDE00425.202001041310.tif"
+#>  [85] "IDE00425.202001041320.tif" "IDE00425.202001041330.tif"
+#>  [87] "IDE00425.202001041340.tif" "IDE00425.202001041350.tif"
+#>  [89] "IDE00425.202001041400.tif" "IDE00425.202001041410.tif"
+#>  [91] "IDE00425.202001041420.tif" "IDE00425.202001041430.tif"
+#>  [93] "IDE00425.202001041450.tif" "IDE00425.202001041500.tif"
+#>  [95] "IDE00425.202001041510.tif" "IDE00425.202001041520.tif"
+#>  [97] "IDE00425.202001041530.tif" "IDE00425.202001041540.tif"
+#>  [99] "IDE00425.202001041550.tif" "IDE00425.202001041600.tif"
+#> [101] "IDE00425.202001041610.tif" "IDE00425.202001041620.tif"
+#> [103] "IDE00425.202001041630.tif" "IDE00425.202001041640.tif"
+#> [105] "IDE00425.202001041650.tif" "IDE00425.202001041700.tif"
+#> [107] "IDE00425.202001041710.tif" "IDE00425.202001041720.tif"
+#> [109] "IDE00425.202001041730.tif" "IDE00425.202001041740.tif"
+#> [111] "IDE00425.202001041750.tif" "IDE00425.202001041800.tif"
+#> [113] "IDE00425.202001041810.tif" "IDE00425.202001041820.tif"
+#> [115] "IDE00425.202001041830.tif" "IDE00425.202001041840.tif"
+#> [117] "IDE00425.202001041850.tif" "IDE00425.202001041900.tif"
+#> [119] "IDE00425.202001041910.tif" "IDE00425.202001041920.tif"
+#> [121] "IDE00425.202001041930.tif" "IDE00425.202001041940.tif"
+#> [123] "IDE00425.202001041950.tif" "IDE00425.202001042000.tif"
+#> [125] "IDE00425.202001042010.tif" "IDE00425.202001042020.tif"
+#> [127] "IDE00425.202001042030.tif" "IDE00425.202001042040.tif"
+#> [129] "IDE00425.202001042050.tif" "IDE00425.202001042100.tif"
+#> [131] "IDE00425.202001042110.tif" "IDE00425.202001042120.tif"
+#> [133] "IDE00425.202001042130.tif" "IDE00425.202001042140.tif"
+#> [135] "IDE00425.202001042150.tif" "IDE00425.202001042200.tif"
+#> [137] "IDE00425.202001042210.tif" "IDE00425.202001042220.tif"
+#> [139] "IDE00425.202001042230.tif" "IDE00425.202001042240.tif"
+#> [141] "IDE00425.202001042250.tif" "IDE00425.202001042300.tif"
+#> [143] "IDE00425.202001042310.tif" "IDE00425.202001042320.tif"
+#> [145] "IDE00425.202001042330.tif" "IDE00425.202001042340.tif"
+#> [147] "IDE00425.202001042350.tif"
+#>   [1] "IDE00425.202001032310.tif" "IDE00425.202001032320.tif"
+#>   [3] "IDE00425.202001032330.tif" "IDE00425.202001032340.tif"
+#>   [5] "IDE00425.202001032350.tif" "IDE00425.202001040000.tif"
+#>   [7] "IDE00425.202001040010.tif" "IDE00425.202001040020.tif"
+#>   [9] "IDE00425.202001040030.tif" "IDE00425.202001040040.tif"
+#>  [11] "IDE00425.202001040050.tif" "IDE00425.202001040100.tif"
+#>  [13] "IDE00425.202001040110.tif" "IDE00425.202001040120.tif"
+#>  [15] "IDE00425.202001040130.tif" "IDE00425.202001040140.tif"
+#>  [17] "IDE00425.202001040150.tif" "IDE00425.202001040200.tif"
+#>  [19] "IDE00425.202001040210.tif" "IDE00425.202001040220.tif"
+#>  [21] "IDE00425.202001040230.tif" "IDE00425.202001040250.tif"
+#>  [23] "IDE00425.202001040300.tif" "IDE00425.202001040310.tif"
+#>  [25] "IDE00425.202001040320.tif" "IDE00425.202001040330.tif"
+#>  [27] "IDE00425.202001040340.tif" "IDE00425.202001040350.tif"
+#>  [29] "IDE00425.202001040400.tif" "IDE00425.202001040410.tif"
+#>  [31] "IDE00425.202001040420.tif" "IDE00425.202001040430.tif"
+#>  [33] "IDE00425.202001040440.tif" "IDE00425.202001040450.tif"
+#>  [35] "IDE00425.202001040500.tif" "IDE00425.202001040510.tif"
+#>  [37] "IDE00425.202001040520.tif" "IDE00425.202001040530.tif"
+#>  [39] "IDE00425.202001040540.tif" "IDE00425.202001040550.tif"
+#>  [41] "IDE00425.202001040600.tif" "IDE00425.202001040610.tif"
+#>  [43] "IDE00425.202001040620.tif" "IDE00425.202001040630.tif"
+#>  [45] "IDE00425.202001040640.tif" "IDE00425.202001040650.tif"
+#>  [47] "IDE00425.202001040700.tif" "IDE00425.202001040710.tif"
+#>  [49] "IDE00425.202001040720.tif" "IDE00425.202001040730.tif"
+#>  [51] "IDE00425.202001040740.tif" "IDE00425.202001040750.tif"
+#>  [53] "IDE00425.202001040800.tif" "IDE00425.202001040810.tif"
+#>  [55] "IDE00425.202001040820.tif" "IDE00425.202001040830.tif"
+#>  [57] "IDE00425.202001040840.tif" "IDE00425.202001040850.tif"
+#>  [59] "IDE00425.202001040900.tif" "IDE00425.202001040910.tif"
+#>  [61] "IDE00425.202001040920.tif" "IDE00425.202001040930.tif"
+#>  [63] "IDE00425.202001040940.tif" "IDE00425.202001040950.tif"
+#>  [65] "IDE00425.202001041000.tif" "IDE00425.202001041010.tif"
+#>  [67] "IDE00425.202001041020.tif" "IDE00425.202001041030.tif"
+#>  [69] "IDE00425.202001041040.tif" "IDE00425.202001041050.tif"
+#>  [71] "IDE00425.202001041100.tif" "IDE00425.202001041110.tif"
+#>  [73] "IDE00425.202001041120.tif" "IDE00425.202001041130.tif"
+#>  [75] "IDE00425.202001041140.tif" "IDE00425.202001041150.tif"
+#>  [77] "IDE00425.202001041200.tif" "IDE00425.202001041210.tif"
+#>  [79] "IDE00425.202001041220.tif" "IDE00425.202001041230.tif"
+#>  [81] "IDE00425.202001041240.tif" "IDE00425.202001041250.tif"
+#>  [83] "IDE00425.202001041300.tif" "IDE00425.202001041310.tif"
+#>  [85] "IDE00425.202001041320.tif" "IDE00425.202001041330.tif"
+#>  [87] "IDE00425.202001041340.tif" "IDE00425.202001041350.tif"
+#>  [89] "IDE00425.202001041400.tif" "IDE00425.202001041410.tif"
+#>  [91] "IDE00425.202001041420.tif" "IDE00425.202001041430.tif"
+#>  [93] "IDE00425.202001041450.tif" "IDE00425.202001041500.tif"
+#>  [95] "IDE00425.202001041510.tif" "IDE00425.202001041520.tif"
+#>  [97] "IDE00425.202001041530.tif" "IDE00425.202001041540.tif"
+#>  [99] "IDE00425.202001041550.tif" "IDE00425.202001041600.tif"
+#> [101] "IDE00425.202001041610.tif" "IDE00425.202001041620.tif"
+#> [103] "IDE00425.202001041630.tif" "IDE00425.202001041640.tif"
+#> [105] "IDE00425.202001041650.tif" "IDE00425.202001041700.tif"
+#> [107] "IDE00425.202001041710.tif" "IDE00425.202001041720.tif"
+#> [109] "IDE00425.202001041730.tif" "IDE00425.202001041740.tif"
+#> [111] "IDE00425.202001041750.tif" "IDE00425.202001041800.tif"
+#> [113] "IDE00425.202001041810.tif" "IDE00425.202001041820.tif"
+#> [115] "IDE00425.202001041830.tif" "IDE00425.202001041840.tif"
+#> [117] "IDE00425.202001041850.tif" "IDE00425.202001041900.tif"
+#> [119] "IDE00425.202001041910.tif" "IDE00425.202001041920.tif"
+#> [121] "IDE00425.202001041930.tif" "IDE00425.202001041940.tif"
+#> [123] "IDE00425.202001041950.tif" "IDE00425.202001042000.tif"
+#> [125] "IDE00425.202001042010.tif" "IDE00425.202001042020.tif"
+#> [127] "IDE00425.202001042030.tif" "IDE00425.202001042040.tif"
+#> [129] "IDE00425.202001042050.tif" "IDE00425.202001042100.tif"
+#> [131] "IDE00425.202001042110.tif" "IDE00425.202001042120.tif"
+#> [133] "IDE00425.202001042130.tif" "IDE00425.202001042140.tif"
+#> [135] "IDE00425.202001042150.tif" "IDE00425.202001042200.tif"
+#> [137] "IDE00425.202001042210.tif" "IDE00425.202001042220.tif"
+#> [139] "IDE00425.202001042230.tif" "IDE00425.202001042240.tif"
+#> [141] "IDE00425.202001042250.tif" "IDE00425.202001042300.tif"
+#> [143] "IDE00425.202001042310.tif" "IDE00425.202001042320.tif"
+#> [145] "IDE00425.202001042330.tif" "IDE00425.202001042340.tif"
+#> [147] "IDE00425.202001042350.tif"
 ```
 
-### Using `get_satellite_imagery`
+### Using get_satellite_imagery()
 
 `get_satellite_imagery()` fetches BOM satellite GeoTIFF imagery, returning a
 raster stack object and takes three arguments. Files are available at
@@ -798,7 +1518,7 @@ If you elect to use `cache = TRUE` when downloading imagery, note that the GTiff
 files can be quite large and will fill disk space. By using the default
 `cache = FALSE` the files will be deleted when the current R session is closed.
 
-Should you chose to use caching, _bomrang_ provided functions to interact with
+Should you chose to use caching, bomrang provided functions to interact with
 the cached files:
 
 - List files in the cache, `manage_cache$list()`
@@ -820,21 +1540,22 @@ the location of the directory:
 
 `manage_cache$cache_path_get()`
 
-## Using _bomrang_ to retrieve radar imagery
+## Using bomrang to retrieve radar imagery
 
-_bomrang_ provides functionality to retrieve the latest radar imagery provided
+bomrang provides functionality to retrieve the latest radar imagery provided
 by BOM through public FTP. These are the latest snapshots for each radar
 locations at various radar ranges _e.g._, 512km, 256km, 128km and 64km for some
 stations.
 
-### Using `get_available_radar`
+### Using get_available_radar()
 
 `get_available_radar()` fetches the available radar imagery from the BOM FTP and
 returns a data frame for reference. This data frame contains the product_id 
 which is required when using the `get_radar_imagery()` function. The files
 available are the latest `.gif` files of BOM radar imagery which are typically
 updated each 6-10 minutes. Only the most recent image is retrieved for each
-radar location. There are usually several radar ranges available for each radar location, such as 512km, 256km, 128km and possibly 64km. The arguments are:
+radar location. There are usually several radar ranges available for each radar
+location, such as 512km, 256km, 128km and possibly 64km. The arguments are:
 
 * `radar_id`  which is the BOM radar ID number. This defaults to 'all' which 
 will return a data frame of all radar ID's in Australia.
@@ -866,7 +1587,7 @@ head(x)
 #> 6    Public    Melb
 ```
 
-### Using `get_radar_imagery`
+### Using get_radar_imagery()
 
 `get_radar_imagery()` fetches the latest BOM radar imagery for a given product
 ID. The files available are the latest `.gif` files of BOM radar imagery which
@@ -883,7 +1604,7 @@ be specified and the function will accept only one at a time.
 ```r
 library(raster)
 x <- get_radar_imagery(product_id = "IDR032")
-#> file downloaded to:/var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//RtmpDTxWhl/file11581167e40bf.gif
+#> file downloaded to:/var/folders/yv/4xy6zs3x5qsgj96389nkjvtw0000gn/T//Rtmp2kXOWM/file16e4a694646b6.gif
 
 # create a blank raster plot and add the radar layer
 r <-
@@ -902,7 +1623,7 @@ r <-
 
 <img src="get_radar_imagery-1.png" title="plot of chunk get_radar_imagery" alt="plot of chunk get_radar_imagery" style="display: block; margin: auto;" />
 
-# `dplyr` compatibility
+# dplyr compatibility
 
 Some returned objects have been classed as `bomrang_tbl` which allow dispatch for 
 dplyr methods, _e.g._ `mutate`, `filter`, `select`, `arrange`, `slice`,
@@ -913,14 +1634,14 @@ For example:
 
 ```r
 adlmax <- get_historical(stationid = "023000", type = "max")
-#> Data saved as /var/folders/_x/gqh2xrvn4qb0qs5d8795n8vr0000gn/T//RtmpDTxWhl/IDCJAC0010_023000_1800_Data.csv
+#> Data saved as /var/folders/yv/4xy6zs3x5qsgj96389nkjvtw0000gn/T//Rtmp2kXOWM/IDCJAC0010_023000_1800_Data.csv
 adlmax
 #>   ---- Australian Bureau of Meteorology (BOM) Data Resource ----
 #>   (Original Request Parameters)
 #>   Station:		ADELAIDE (WEST TERRACE / NGAYIRDAPIRA) [023000] 
 #>   Location:		lat: -34.9257, lon: 138.5832
 #>   Measurement / Origin:	Max / Historical
-#>   Timespan:		1887-01-01 -- 2019-12-01 [94.8 years]
+#>   Timespan:		1887-01-01 -- 2020-01-01 [94.8 years]
 #>   ---------------------------------------------------------------  
 #>        product_code station_number year month day max_temperature
 #>     1:   IDCJAC0010          23000 1887     1   1              NA
@@ -929,11 +1650,11 @@ adlmax
 #>     4:   IDCJAC0010          23000 1887     1   4              NA
 #>     5:   IDCJAC0010          23000 1887     1   5              NA
 #>    ---                                                           
-#> 48567:   IDCJAC0010          23000 2019    12  21            24.7
-#> 48568:   IDCJAC0010          23000 2019    12  22            27.8
-#> 48569:   IDCJAC0010          23000 2019    12  23            33.4
-#> 48570:   IDCJAC0010          23000 2019    12  24            31.5
-#> 48571:   IDCJAC0010          23000 2019    12  25            35.5
+#> 48577:   IDCJAC0010          23000 2019    12  31            24.4
+#> 48578:   IDCJAC0010          23000 2020     1   1            25.3
+#> 48579:   IDCJAC0010          23000 2020     1   2            31.8
+#> 48580:   IDCJAC0010          23000 2020     1   3            40.6
+#> 48581:   IDCJAC0010          23000 2020     1   4            24.6
 #>        accum_days_max quality
 #>     1:             NA        
 #>     2:             NA        
@@ -941,11 +1662,11 @@ adlmax
 #>     4:             NA        
 #>     5:             NA        
 #>    ---                       
-#> 48567:              1       N
-#> 48568:              1       N
-#> 48569:              1       N
-#> 48570:              1       N
-#> 48571:              1       N
+#> 48577:              1       N
+#> 48578:              1       N
+#> 48579:              1       N
+#> 48580:              1       N
+#> 48581:              1       N
 
 filter(adlmax, month == 10)
 #>   ---- Australian Bureau of Meteorology (BOM) Data Resource ----
@@ -953,7 +1674,7 @@ filter(adlmax, month == 10)
 #>   Station:		ADELAIDE (WEST TERRACE / NGAYIRDAPIRA) [023000] 
 #>   Location:		lat: -34.9257, lon: 138.5832
 #>   Measurement / Origin:	Max / Historical
-#>   Timespan:		1887-01-01 -- 2019-12-01 [94.8 years]
+#>   Timespan:		1887-01-01 -- 2020-01-01 [94.8 years]
 #>   ---------------------------------------------------------------  
 #>       product_code station_number year month day max_temperature
 #>    1:   IDCJAC0010          23000 1887    10   1            17.6
@@ -989,27 +1710,8 @@ to chain together operations
 adlmax %>% 
   select(station_number, year:day, max_temperature) %>% 
   filter(month == 10)
-#>   ---- Australian Bureau of Meteorology (BOM) Data Resource ----
-#>   (Original Request Parameters)
-#>   Station:		ADELAIDE (WEST TERRACE / NGAYIRDAPIRA) [023000] 
-#>   Location:		lat: -34.9257, lon: 138.5832
-#>   Measurement / Origin:	Max / Historical
-#>   Timespan:		1887-01-01 -- 2019-12-01 [94.8 years]
-#>   ---------------------------------------------------------------  
-#>       station_number year month day max_temperature
-#>    1:          23000 1887    10   1            17.6
-#>    2:          23000 1887    10   2            14.6
-#>    3:          23000 1887    10   3            16.7
-#>    4:          23000 1887    10   4            18.0
-#>    5:          23000 1887    10   5            15.1
-#>   ---                                              
-#> 4119:          23000 2019    10  27            19.5
-#> 4120:          23000 2019    10  28            25.4
-#> 4121:          23000 2019    10  29            32.7
-#> 4122:          23000 2019    10  30            35.5
-#> 4123:          23000 2019    10  31            37.2
+#> Error in (function (classes, fdef, mtable) : unable to find an inherited method for function 'select' for signature '"bomrang_tbl"'
 ```
-
 
 ## References
 
@@ -1023,7 +1725,7 @@ adlmax %>%
 
 [Australian Bureau of Meteorology (BOM) High-definition satellite images](http://www.bom.gov.au/australia/satellite/index.shtml)
 
-## Appendix 1 - Output from `get_current_weather`
+## Appendix 1 - Output from get_current_weather()
 
 The function `get_current_weather()` will return a data frame that will contain
 some or all of the following fields.
@@ -1442,7 +2144,7 @@ automated weather stations.
 	   invading it
 	19 Cirrocumulus alone or Cirrocumulus predominant
 	
-## Appendix 2 - Output from `get_precis_forecast`
+## Appendix 2 - Output from get_precis_forecast()
 
 The function, `get_precis_forecast()`, will return a tidy data frame of the
 agriculture bulletin with the following fields:
@@ -1482,7 +2184,7 @@ characters)</td></tr>
 (percent)</td></tr>
 </table>
 
-## Appendix 3 - Output from `get_ag_bulletin`
+## Appendix 3 - Output from get_ag_bulletin()
 
 The function, `get_ag_bulletin()`, will return a tidy data frame of the
 agriculture bulletin with the following fields:
@@ -1526,7 +2228,7 @@ worldwide)</td></tr>
 <tr><td>wr</td><td>Wind run (kilometres)</td></tr>
 </table>
 
-## Appendix 4 - Output from `get_weather_bulletin`
+## Appendix 4 - Output from get_weather_bulletin()
 
 The function `get_weather_bulletin()` returns a tidy data frame of weather
 observations for 0900 or 1500 for a nominated state. Observations
@@ -1571,7 +2273,7 @@ suffixes defining the time period over which observations apply (for example,
 for minimum temperature observed at 9am yet included in 1500 bulletin).
 
 
-## Appendix 5 - Output from `get_coastal_forecast`
+## Appendix 5 - Output from get_coastal_forecast()
 
 The output of `get_coastal_forecast()` will return a data frame with coastal waters forecast values of each area within the given state with the following fields:  
 
