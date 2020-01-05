@@ -108,14 +108,11 @@ update_station_locations <- function() {
   bom_stations_raw <- bom_stations_raw[, -8]
   
   # trim the end of the rows off that have extra info that's not in columns
-  nrows <- nrow(bom_stations_raw) - 7
+  nrows <- nrow(bom_stations_raw) - 3
   bom_stations_raw <- bom_stations_raw[1:nrows,]
   
-  # add current year to stations that are still active
-  bom_stations_raw <-
-    bom_stations_raw[bom_stations_raw$end == format(Sys.Date(), "%Y"),] %>%
-    dplyr::mutate(start = as.integer(start),
-                  end = as.integer(end))
+  bom_stations_raw["end"][is.na(bom_stations_raw["end"])] <- 
+    as.integer(format(Sys.Date(), "%Y"))
   
   # if sf is installed, correct the state column, otherwise skip
   if (requireNamespace("ASGS.foyer", quietly = TRUE)) {
