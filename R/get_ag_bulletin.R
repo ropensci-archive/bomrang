@@ -104,7 +104,7 @@ get_ag_bulletin <- function(state = "AUS") {
              FUN = .parse_bulletin)
     out <- data.table::rbindlist(out)
   }
-  return(out)
+  return(out[])
 }
 
 #' @noRd
