@@ -11,10 +11,10 @@ get_precis_forecast(state = "AUS", filepath = NULL)
 Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 "AUS" returning all state bulletins, see Details for more.}
 
-\item{filepath}{A character string of the location of the \acronym{XML} file
-to parse. If \var{filepath} is specified function will use \acronym{BOM}
-daily précis forecast from local \acronym{XML} files at the specified
-location and not the \acronym{BOM} \acronym{FTP} server. See Details more.}
+\item{filepath}{A character string of the location of an \acronym{XML} file
+to parse.  If \var{filepath} is specified function will use \acronym{BOM}
+daily précis forecast from a local \acronym{XML} filea at the specified
+location and not the \acronym{BOM} \acronym{FTP} server.  See Details more.}
 }
 \value{
 Tidy \code{\link[data.table]{data.table}} of a Australia \acronym{BOM} précis

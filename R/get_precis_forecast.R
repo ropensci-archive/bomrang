@@ -8,10 +8,10 @@
 #' Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 #' "AUS" returning all state bulletins, see Details for more.
 #'
-#' @param filepath A character string of the location of the \acronym{XML} file
-#' to parse. If \var{filepath} is specified function will use \acronym{BOM}
-#' daily précis forecast from local \acronym{XML} files at the specified
-#' location and not the \acronym{BOM} \acronym{FTP} server. See Details more.
+#' @param filepath A character string of the location of an \acronym{XML} file
+#' to parse.  If \var{filepath} is specified function will use \acronym{BOM}
+#' daily précis forecast from a local \acronym{XML} filea at the specified
+#' location and not the \acronym{BOM} \acronym{FTP} server.  See Details more.
 #'
 #' @details Allowed state and territory postal codes, only one state per request
 #' or all using \code{AUS}.
