@@ -254,17 +254,10 @@
 #'
 #' @noRd
 .validate_filepath <- function(filepath) {
-  filepath <- trimws(filepath)
-  if (substr(filepath, nchar(filepath) - 1, nchar(filepath)) == "//") {
-    p <- substr(filepath, 1, nchar(filepath) - 2)
-  } else if (substr(filepath, nchar(filepath), nchar(filepath)) == "/" |
-             substr(filepath, nchar(filepath), nchar(filepath)) == "\\") {
-    p <- substr(filepath, 1, nchar(filepath) - 1)
-  } else {
-    p <- filepath
-  }
-  if (!file.exists(p) & !file.exists(filepath)) {
-    stop("\nFile directory does not exist: ", filepath, ".\n",
+  p <- trimws(filepath)
+  if (!file.exists(p) & tolower(tools::file_ext(p)) != "xml") {
+    stop("\nFile does not exist: ", filepath, " or file is not an XML file.\n",
          call. = FALSE)
   }
+  return(p)
 }
