@@ -7,6 +7,7 @@
 get_historical(
   stationid = NULL,
   latlon = NULL,
+  radius = NULL,
   type = c("rain", "min", "max", "solar")
 )
 }
@@ -18,6 +19,8 @@ get_historical(
 \item{type}{Measurement type, either daily "rain", "min" (temp), "max"
 (temp), or "solar" (exposure). Partial matching is performed. If not
 specified returns the first matching type in the order listed.}
+
+\item{radias}{Numeric value, distance (km) from \var{latlon} must be numeric.}
 }
 \value{
 A \code{bomrang_tbl} object (extension of a
@@ -97,6 +100,7 @@ attributes).
 get_historical(stationid = "023000", type = "max") ## ~48,000+ daily records
 get_historical(latlon = c(-35.2809, 149.1300),
                type = "min") ## 3,500+ daily records
+
 }
 }
 \author{
