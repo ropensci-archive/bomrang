@@ -7,9 +7,6 @@
 #' @param state Australian state or territory as full name or postal code.
 #' Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 #' "AUS" returning all state bulletins, see details for further information.
-#' 
-#' @param filepath If filepath is specified function will retrieve \acronym{BOM} daily précis 
-#' forecast from xml files at that local location and not the \acronym{BOM} ftp server.
 #'
 #' @details Allowed state and territory postal codes, only one state per request
 #' or all using \code{AUS}.
@@ -52,12 +49,11 @@
 #' @importFrom data.table ":="
 #' @export get_precis_forecast
 
-get_precis_forecast <- function(state = "AUS", filepath = NULL) {
+get_precis_forecast <- function(state = "AUS") {
   the_state <- .check_states(state) # see internal_functions.R
   
-  # source from ftp server or Local filepath
-  if(is.null(filepath)){base_location <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
-  } else {base_location <- filepath}
+  # ftp server
+  ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
   
   # create vector of XML files
   AUS_XML <- c(
@@ -80,28 +76,26 @@ get_precis_forecast <- function(state = "AUS", filepath = NULL) {
     xml_url <-
       dplyr::case_when(
         the_state == "ACT" |
-          the_state == "CANBERRA" ~ paste0(base_location, AUS_XML[1]),
+          the_state == "CANBERRA" ~ paste0(ftp_base, AUS_XML[1]),
         the_state == "NSW" |
-          the_state == "NEW SOUTH WALES" ~ paste0(base_location, AUS_XML[1]),
+          the_state == "NEW SOUTH WALES" ~ paste0(ftp_base, AUS_XML[1]),
         the_state == "NT" |
-          the_state == "NORTHERN TERRITORY" ~ paste0(base_location, AUS_XML[2]),
+          the_state == "NORTHERN TERRITORY" ~ paste0(ftp_base, AUS_XML[2]),
         the_state == "QLD" |
-          the_state == "QUEENSLAND" ~ paste0(base_location, AUS_XML[3]),
+          the_state == "QUEENSLAND" ~ paste0(ftp_base, AUS_XML[3]),
         the_state == "SA" |
-          the_state == "SOUTH AUSTRALIA" ~ paste0(base_location, AUS_XML[4]),
+          the_state == "SOUTH AUSTRALIA" ~ paste0(ftp_base, AUS_XML[4]),
         the_state == "TAS" |
-          the_state == "TASMANIA" ~ paste0(base_location, AUS_XML[5]),
+          the_state == "TASMANIA" ~ paste0(ftp_base, AUS_XML[5]),
         the_state == "VIC" |
-          the_state == "VICTORIA" ~ paste0(base_location, AUS_XML[6]),
+          the_state == "VICTORIA" ~ paste0(ftp_base, AUS_XML[6]),
         the_state == "WA" |
-          the_state == "WESTERN AUSTRALIA" ~ paste0(base_location, AUS_XML[7])
-      ) # returns either the url/xml_filename.xml OR filepath/xml_filename.xml depending if filepath is provided
-    if(is.null(filepath)){forecast_out <- .parse_forecast(xml_url)
-    } else {forecast_out <- .parse_forecast(xml_url, Local = TRUE)}
+          the_state == "WESTERN AUSTRALIA" ~ paste0(ftp_base, AUS_XML[7])
+      )
+    forecast_out <- .parse_forecast(xml_url)
   } else {
-    file_list <- paste0(base_location, AUS_XML)
-    if(is.null(filepath)){forecast_out <- lapply(X = file_list, FUN = .parse_forecast)
-    } else {forecast_out <- lapply(X = file_list, FUN = .parse_forecast, Local = TRUE)}
+    file_list <- paste0(ftp_base, AUS_XML)
+    forecast_out <- lapply(X = file_list, FUN = .parse_forecast)
     forecast_out <- data.table::rbindlist(forecast_out, fill = TRUE)
   }
   
@@ -112,12 +106,12 @@ get_precis_forecast <- function(state = "AUS", filepath = NULL) {
 #'
 #' @param y précis forecast xml_object
 #'
-#' @return a data.table of the forecast for cleaning and returning to user
+#' @return a data.table of the forecast fore cleaning and returning to user
 #' @keywords internal
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
 #' @noRd
 
-.parse_forecast <- function(xml_url, Local = FALSE) {
+.parse_forecast <- function(xml_url) {
   # CRAN note avoidance
   AAC_codes <- # nocov start
     attrs <- end_time_local <- precipitation_range <-
@@ -129,8 +123,7 @@ get_precis_forecast <- function(state = "AUS", filepath = NULL) {
     upper_precipitation_limit <- lower_precipitation_limit <-
     NULL # nocov end
   
-  if(!isTRUE(Local)){xml_object <- .get_xml(xml_url)} # if filepath is not supplied retrieve forecast from BOM ftp site
-  if(isTRUE(Local)){xml_object <- .get_xml(xml_url,LOC = TRUE)} # if filepath IS supplied specify xml_object to contain the filepath 
+  xml_object <- .get_xml(xml_url)
   out <- .parse_precis_xml(xml_object)
 
   data.table::setnames(out,
