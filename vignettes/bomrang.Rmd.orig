@@ -1305,7 +1305,7 @@ grid.rect(width = 0.98,
 
 ### Historical data years available for stations
 
-```{r years_available, fig.width = 7, fig.height = 5, message = FALSE}
+```{r years_available, fig.width = 7, fig.height = 5, message = FALSE, warning=FALSE}
 years_available <- ggplot(ncc, aes(x = lon, y = lat)) + 
   geom_polygon(data = Aust_map, aes(x = long, y = lat, group = group), 
                color = grey(0.7),
