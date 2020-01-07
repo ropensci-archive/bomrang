@@ -4,7 +4,7 @@
 \alias{get_coastal_forecast}
 \title{Get BOM coastal waters forecast}
 \usage{
-get_coastal_forecast(state = "AUS")
+get_coastal_forecast(state = "AUS", filepath = NULL)
 }
 \arguments{
 \item{state}{Australian state or territory as full name or postal code.

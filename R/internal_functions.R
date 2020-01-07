@@ -237,10 +237,15 @@
 #'
 #' @noRd
 .validate_filepath <- function(filepath) {
-  p <- trimws(filepath)
-  if (!file.exists(p) & tolower(tools::file_ext(p)) != "xml") {
+  if (is.null(filepath)) {
+    location <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
+    return(location)
+  } else {
+  location <- trimws(filepath)
+  if (!file.exists(location) & tolower(tools::file_ext(location)) != "xml") {
     stop("\nFile does not exist: ", filepath, " or file is not an XML file.\n",
          call. = FALSE)
   }
-  return(p)
+  return(location)
+  }
 }

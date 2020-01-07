@@ -68,12 +68,9 @@ get_ag_bulletin <- function(state = "AUS", filepath = NULL) {
 
   the_state <- .check_states(state) # see internal_functions.R
 
-  # source from ftp server or local filepath
-  if (is.null(filepath)) {
-    base_location <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
-  } else {
-    base_location <- .validate_filepath(filepath)
-  }
+  # see internal_functions.R for these functions
+  the_state <- .check_states(state) 
+  location <- .validate_filepath(filepath)
   
   # create vector of XML files
   AUS_XML <- c(
@@ -96,25 +93,25 @@ get_ag_bulletin <- function(state = "AUS", filepath = NULL) {
     xml_url <-
       dplyr::case_when(
         the_state == "ACT" |
-          the_state == "CANBERRA" ~ paste0(ftp_base, AUS_XML[1]),
+          the_state == "CANBERRA" ~ paste0(location, AUS_XML[1]),
         the_state == "NSW" |
-          the_state == "NEW SOUTH WALES" ~ paste0(ftp_base, AUS_XML[1]),
+          the_state == "NEW SOUTH WALES" ~ paste0(location, AUS_XML[1]),
         the_state == "NT" |
-          the_state == "NORTHERN TERRITORY" ~ paste0(ftp_base, AUS_XML[2]),
+          the_state == "NORTHERN TERRITORY" ~ paste0(location, AUS_XML[2]),
         the_state == "QLD" |
-          the_state == "QUEENSLAND" ~ paste0(ftp_base, AUS_XML[3]),
+          the_state == "QUEENSLAND" ~ paste0(location, AUS_XML[3]),
         the_state == "SA" |
-          the_state == "SOUTH AUSTRALIA" ~ paste0(ftp_base, AUS_XML[4]),
+          the_state == "SOUTH AUSTRALIA" ~ paste0(location, AUS_XML[4]),
         the_state == "TAS" |
-          the_state == "TASMANIA" ~ paste0(ftp_base, AUS_XML[5]),
+          the_state == "TASMANIA" ~ paste0(location, AUS_XML[5]),
         the_state == "VIC" |
-          the_state == "VICTORIA" ~ paste0(ftp_base, AUS_XML[6]),
+          the_state == "VICTORIA" ~ paste0(location, AUS_XML[6]),
         the_state == "WA" |
-          the_state == "WESTERN AUSTRALIA" ~ paste0(ftp_base, AUS_XML[7])
+          the_state == "WESTERN AUSTRALIA" ~ paste0(location, AUS_XML[7])
       )
     out <- .parse_bulletin(xml_url)
   } else {
-    file_list <- paste0(ftp_base, AUS_XML)
+    file_list <- paste0(location, AUS_XML)
     out <-
       lapply(X = file_list,
              FUN = .parse_bulletin)
