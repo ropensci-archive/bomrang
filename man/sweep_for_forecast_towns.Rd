@@ -11,8 +11,8 @@ sweep_for_forecast_towns(latlon = c(-35.3, 149.2))
 (approximately).}
 }
 \value{
-A `data.table`` of all forecast towns (in this package) sorted
-by distance from \var{latlon}, ascending.
+A \code{\link{data.table}} of all forecast towns (in this package)
+sorted by distance from \var{latlon}, ascending.
 }
 \description{
 Find nearest BOM forecast towns
