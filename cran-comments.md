@@ -38,6 +38,9 @@ distributed with bomrang and when user updated them on their own machine
 * Prebuild main vignette with examples depending on Internet connection, which
 allows for example output to be displayed for more functions
 
+* Updates my name to align with other packages I maintain by using my middle
+initial, "H."
+
 ## Reverse dependencies
 
 * No ERRORs or WARNINGs found
