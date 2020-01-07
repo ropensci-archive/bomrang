@@ -11,11 +11,11 @@ get_precis_forecast(state = "AUS", filepath = NULL)
 Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 "AUS" returning all state bulletins, see Details for more.}
 
-\item{filepath}{A character string of the location of a \emph{single}
-\acronym{XML} file to parse.  If \var{filepath} is specified function will
-use \acronym{BOM} daily précis forecast from a local \acronym{XML} file at
-the specified location and not the \acronym{BOM} \acronym{FTP} server.
-See Details for more.}
+\item{filepath}{A character string of the location of \acronym{XML} file(s)
+to parse.  If \var{filepath} is specified function will use \acronym{BOM}
+daily précis forecast from a local \acronym{XML} file at the specified
+location and not the \acronym{BOM} \acronym{FTP} server. See Details for
+more.}
 }
 \value{
 Tidy \code{\link[data.table]{data.table}} of a Australia \acronym{BOM} précis
@@ -24,8 +24,8 @@ fields and units returned see Appendix 2 in the \pkg{bomrang} vignette,
 use\cr \code{vignette("bomrang", package = "bomrang")} to view.
 }
 \description{
-Fetch the \acronym{BOM} daily précis forecast and return a tidy data frame of
-the seven day town forecast for a specified state or territory.
+Fetch the \acronym{BOM} daily précis forecast and return a data frame of the
+seven-day town forecasts for a specified state or territory.
 }
 \details{
 Allowed state and territory postal codes, only one state per request

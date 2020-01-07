@@ -2,17 +2,17 @@
 #' Get BOM agriculture bulletin information for select stations
 #'
 #' Fetch the \acronym{BOM} agricultural bulletin information and return it in a
-#' tidy data frame
+#' data frame
 #'
 #' @param state Australian state or territory as full name or postal code.
 #'  Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 #'  "AUS" returning all state bulletins, see Details for more.
 #'
-#' @param filepath A character string of the location of a \emph{single}
-#'  \acronym{XML} file to parse.  If \var{filepath} is specified function will
-#'  use \acronym{BOM} ag bulletin from a local \acronym{XML} file at the
-#'  specified location and not the \acronym{BOM} \acronym{FTP} server. See
-#'  Details for more.
+#' @param filepath A character string of the location of \acronym{XML} file(s)
+#'  to parse.  If \var{filepath} is specified function will use \acronym{BOM}
+#'  daily précis forecast from a local \acronym{XML} file at the specified
+#'  location and not the \acronym{BOM} \acronym{FTP} server. See Details for
+#'  more.
 #'
 #' @details Allowed state and territory postal codes, only one state per request
 #' or all using \code{AUS}.

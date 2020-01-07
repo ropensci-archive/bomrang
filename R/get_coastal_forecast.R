@@ -1,18 +1,18 @@
 
 #' Get BOM coastal waters forecast
 #'
-#' Fetch the \acronym{BOM} daily Coastal Waters Forecast and return a tidy data
-#' frame of the forecast regions for a specified state or region.
+#' Fetch the \acronym{BOM} daily Coastal Waters Forecast and return a data frame
+#' of the forecast regions for a specified state or region.
 #'
 #' @param state Australian state or territory as full name or postal code.
 #'  Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 #'  "AUS" returning all state forecasts, see details for further information.
 #'
-#' @param filepath A character string of the location of a \emph{single}
-#'  \acronym{XML} file to parse.  If \var{filepath} is specified function will
-#'  use \acronym{BOM} ag bulletin from a local \acronym{XML} file at the
-#'  specified location and not the \acronym{BOM} \acronym{FTP} server. See
-#'  Details for more.
+#' @param filepath A character string of the location of \acronym{XML} file(s)
+#'  to parse.  If \var{filepath} is specified function will use \acronym{BOM}
+#'  daily précis forecast from a local \acronym{XML} file at the specified
+#'  location and not the \acronym{BOM} \acronym{FTP} server. See Details for
+#'  more.
 #'
 #' @details Allowed state and territory postal codes, only one state per request
 #' or all using \code{AUS}.
@@ -34,7 +34,9 @@
 #'
 #' @return
 #' Tidy \code{\link[data.table]{data.table}} of a Australia \acronym{BOM}
-#' Coastal Waters Forecast.
+#' Coastal Waters Forecast. For full details of fields and units
+#' returned see Appendix 5 in the \pkg{bomrang} vignette, use \cr
+#' \code{vignette("bomrang", package = "bomrang")} to view.
 #'
 #' @examples
 #' \donttest{

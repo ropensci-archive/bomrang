@@ -11,19 +11,21 @@ get_coastal_forecast(state = "AUS", filepath = NULL)
 Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 "AUS" returning all state forecasts, see details for further information.}
 
-\item{filepath}{A character string of the location of a \emph{single}
-\acronym{XML} file to parse.  If \var{filepath} is specified function will
-use \acronym{BOM} ag bulletin from a local \acronym{XML} file at the
-specified location and not the \acronym{BOM} \acronym{FTP} server. See
-Details for more.}
+\item{filepath}{A character string of the location of \acronym{XML} file(s)
+to parse.  If \var{filepath} is specified function will use \acronym{BOM}
+daily précis forecast from a local \acronym{XML} file at the specified
+location and not the \acronym{BOM} \acronym{FTP} server. See Details for
+more.}
 }
 \value{
 Tidy \code{\link[data.table]{data.table}} of a Australia \acronym{BOM}
-Coastal Waters Forecast.
+Coastal Waters Forecast. For full details of fields and units
+returned see Appendix 5 in the \pkg{bomrang} vignette, use \cr
+\code{vignette("bomrang", package = "bomrang")} to view.
 }
 \description{
-Fetch the \acronym{BOM} daily Coastal Waters Forecast and return a tidy data
-frame of the forecast regions for a specified state or region.
+Fetch the \acronym{BOM} daily Coastal Waters Forecast and return a data frame
+of the forecast regions for a specified state or region.
 }
 \details{
 Allowed state and territory postal codes, only one state per request

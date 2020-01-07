@@ -1,20 +1,18 @@
 
-
-
 #' Get BOM daily précis forecast for select towns
 #'
-#' Fetch the \acronym{BOM} daily précis forecast and return a tidy data frame of
-#' the seven day town forecast for a specified state or territory.
+#' Fetch the \acronym{BOM} daily précis forecast and return a data frame of the
+#' seven-day town forecasts for a specified state or territory.
 #'
 #' @param state Australian state or territory as full name or postal code.
 #' Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 #' "AUS" returning all state bulletins, see Details for more.
 #'
-#' @param filepath A character string of the location of a \emph{single}
-#'  \acronym{XML} file to parse.  If \var{filepath} is specified function will
-#'  use \acronym{BOM} daily précis forecast from a local \acronym{XML} file at
-#'  the specified location and not the \acronym{BOM} \acronym{FTP} server.
-#'  See Details for more.
+#' @param filepath A character string of the location of \acronym{XML} file(s)
+#'  to parse.  If \var{filepath} is specified function will use \acronym{BOM}
+#'  daily précis forecast from a local \acronym{XML} file at the specified
+#'  location and not the \acronym{BOM} \acronym{FTP} server. See Details for
+#'  more.
 #'
 #' @details Allowed state and territory postal codes, only one state per request
 #' or all using \code{AUS}.
