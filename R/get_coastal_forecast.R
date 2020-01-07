@@ -5,8 +5,14 @@
 #' frame of the forecast regions for a specified state or region.
 #'
 #' @param state Australian state or territory as full name or postal code.
-#' Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
-#' "AUS" returning all state forecasts, see details for further information.
+#'  Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
+#'  "AUS" returning all state forecasts, see details for further information.
+#'
+#' @param filepath A character string of the location of a \emph{single}
+#'  \acronym{XML} file to parse.  If \var{filepath} is specified function will
+#'  use \acronym{BOM} ag bulletin from a local \acronym{XML} file at the
+#'  specified location and not the \acronym{BOM} \acronym{FTP} server. See
+#'  Details for more.
 #'
 #' @details Allowed state and territory postal codes, only one state per request
 #' or all using \code{AUS}.
@@ -21,6 +27,10 @@
 #'    \item{WA}{Western Australia}
 #'    \item{AUS}{Australia, returns forecast for all states, NT and ACT}
 #'  }
+#'
+#'  In some situations, access may be restricted to insecure \acronym{FTP}
+#'  connections. Using \var{filepath} allows you to download and save the
+#'  \acronym{XML} files locally for use in \pkg{bomrang}.
 #'
 #' @return
 #' Tidy \code{\link[data.table]{data.table}} of a Australia \acronym{BOM}
@@ -47,9 +57,8 @@
 #' @export get_coastal_forecast
 
 get_coastal_forecast <- function(state = "AUS", filepath = NULL) {
-  
   # see internal_functions.R for these functions
-  the_state <- .check_states(state) 
+  the_state <- .check_states(state)
   location <- .validate_filepath(filepath)
   
   # create vector of XML files
@@ -89,7 +98,7 @@ get_coastal_forecast <- function(state = "AUS", filepath = NULL) {
         the_state == "WA" |
           the_state == "WESTERN AUSTRALIA" ~ paste0(location, AUS_XML[7])
       )
-    out <- .parse_coastal_forecast(xml_url)
+    out <- .parse_coastal_forecast(xml_url, .file_path = filepath)
   } else {
     file_list <- paste0(location, AUS_XML)
     out <- lapply(X = file_list, FUN = .parse_coastal_forecast)
@@ -98,7 +107,7 @@ get_coastal_forecast <- function(state = "AUS", filepath = NULL) {
   return(out[])
 }
 
-.parse_coastal_forecast <- function(xml_url) {
+.parse_coastal_forecast <- function(xml_url, .file_path) {
   # CRAN note avoidance
   AAC_codes <-
     marine_AAC_codes <- attrs <- end_time_local <- # nocov start
@@ -109,7 +118,13 @@ get_coastal_forecast <- function(state = "AUS", filepath = NULL) {
     tropical_system_location <- forecast_waves <- NULL # nocov end
   
   # download the XML forecast
-  xml_object <- .get_xml(xml_url)
+  # see internal functions for .get_xml() shared function
+  if (is.null(.filepath)) {
+    xml_object <-
+      .get_xml(xml_url)
+  } else
+    xml_object <- .filepath
+  
   out <- .parse_coastal_xml(xml_object)
   
   # clean up and split out time cols into offset and remove extra chars
@@ -192,10 +207,12 @@ get_coastal_forecast <- function(state = "AUS", filepath = NULL) {
     .SDcols = c(9:10)]
   
   out[, c(12:13) := lapply(.SD, function(x)
-    as.POSIXct(x,
-               origin = "1970-1-1",
-               format = "%Y-%m-%d %H:%M:%OS",
-               tz = "GMT")),
+    as.POSIXct(
+      x,
+      origin = "1970-1-1",
+      format = "%Y-%m-%d %H:%M:%OS",
+      tz = "GMT"
+    )),
     .SDcols = c(12:13)]
   
   # character

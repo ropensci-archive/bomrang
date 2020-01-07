@@ -5,8 +5,8 @@
 #' tidy data frame
 #'
 #' @param state Australian state or territory as full name or postal code.
-#' Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
-#' "AUS" returning all state bulletins, see Details for more.
+#'  Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
+#'  "AUS" returning all state bulletins, see Details for more.
 #'
 #' @param filepath A character string of the location of a \emph{single}
 #'  \acronym{XML} file to parse.  If \var{filepath} is specified function will
@@ -109,7 +109,7 @@ get_ag_bulletin <- function(state = "AUS", filepath = NULL) {
         the_state == "WA" |
           the_state == "WESTERN AUSTRALIA" ~ paste0(location, AUS_XML[7])
       )
-    out <- .parse_bulletin(xml_url)
+    out <- .parse_bulletin(xml_url, .filepath = filepath)
   } else {
     file_list <- paste0(location, AUS_XML)
     out <-
@@ -121,12 +121,16 @@ get_ag_bulletin <- function(state = "AUS", filepath = NULL) {
 }
 
 #' @noRd
-.parse_bulletin <- function(xml_url) {
+.parse_bulletin <- function(xml_url, .filepath) {
   # CRAN NOTE avoidance
   stations_site_list <- site <- obs_time_local <- obs_time_utc <-  NULL # nocov
   
   # see internal functions for .get_xml() shared function
-  xml_object <- .get_xml(xml_url)
+  if (is.null(.filepath)) {
+    xml_object <-
+      .get_xml(xml_url)
+  } else
+    xml_object <- .filepath
   
   # get definitions (and all possible value fields to check against)
   definition_attrs <- xml2::xml_find_all(xml_object, "//data-def")
@@ -173,7 +177,7 @@ get_ag_bulletin <- function(state = "AUS", filepath = NULL) {
   # remove leading 0 to merge with stations_site_list
   out[, site := gsub("^0{1,2}", "", out$site)]
   
-  # merge with AAC codes -------------------------------------------------------
+  # merge with AAC codes
   # load AAC code/town name list to join with final output
   load(system.file("extdata", "stations_site_list.rda", # nocov
                    package = "bomrang")) # nocov
@@ -182,7 +186,7 @@ get_ag_bulletin <- function(state = "AUS", filepath = NULL) {
   data.table::setkey(out, "site")
   out <- stations_site_list[out, on = "site"]
   
-  # tidy up the cols -----------------------------------------------------------
+  # tidy up the cols
   refcols <- c(
     "product_id",
     "state",
