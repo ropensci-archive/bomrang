@@ -56,7 +56,7 @@
 #' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com} and Keith Pembleton,
-#'  \email{keith.pembleton@@usq.edu.au} and Paul Melloy
+#'  \email{keith.pembleton@@usq.edu.au} and Paul Melloy, 
 #'  \email{paul@@melloy.com.au}
 #' @importFrom data.table ":="
 #' @export get_precis_forecast
