@@ -12,8 +12,8 @@
 #' If \pkg{ASGS.foyer} is installed locally, this function will automatically
 #' check and correct any invalid state values for stations located in Australia.
 #' If \pkg{ASGS.foyer} is not installed, the function will update the internal
-#' database without validating the state values for stations by reported lon/lat
-#' location.
+#' database without validating the state values for stations by reported
+#' longitude/latitude location.
 #'
 #' @examples
 #' \dontrun{
