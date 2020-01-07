@@ -111,7 +111,7 @@ bom_stations_raw <-
 
 # remove extra columns for source of location
 bom_stations_raw <- bom_stations_raw[, -8]
-
+ 
 # trim the end of the rows off that have extra info that's not in columns
 nrows <- nrow(bom_stations_raw) - 3
 bom_stations_raw <- bom_stations_raw[1:nrows, ]
