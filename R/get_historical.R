@@ -89,6 +89,7 @@
 get_historical <- get_historical_weather <-
   function(stationid = NULL,
            latlon = NULL,
+           radius = NULL,
            type = c("rain", "min", "max", "solar")) {
     site <- ncc_obs_code <- NULL #nocov
 

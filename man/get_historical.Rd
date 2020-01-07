@@ -100,7 +100,6 @@ attributes).
 get_historical(stationid = "023000", type = "max") ## ~48,000+ daily records
 get_historical(latlon = c(-35.2809, 149.1300),
                type = "min") ## 3,500+ daily records
-
 }
 }
 \author{

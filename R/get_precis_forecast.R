@@ -8,10 +8,11 @@
 #' Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 #' "AUS" returning all state bulletins, see Details for more.
 #'
-#' @param filepath A character string of the location of an \acronym{XML} file
-#' to parse.  If \var{filepath} is specified function will use \acronym{BOM}
-#' daily précis forecast from a local \acronym{XML} filea at the specified
-#' location and not the \acronym{BOM} \acronym{FTP} server.  See Details more.
+#' @param filepath A character string of the location of a \emph{single}
+#'  \acronym{XML} file to parse.  If \var{filepath} is specified function will
+#'  use \acronym{BOM} daily précis forecast from a local \acronym{XML} filea at
+#'  the specified location and not the \acronym{BOM} \acronym{FTP} server.
+#'  See Details more.
 #'
 #' @details Allowed state and territory postal codes, only one state per request
 #' or all using \code{AUS}.
@@ -53,26 +54,21 @@
 #' \acronym{DBF} file portion of a shapefile, \cr
 #' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 #'
-#' @author Adam H Sparks, \email{adamhsparks@@gmail.com} and Keith Pembleton,
+#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com} and Keith Pembleton,
 #'  \email{keith.pembleton@@usq.edu.au} and Paul Melloy
 #'  \email{paul.melloy@@usq.edu.au}
 #' @importFrom data.table ":="
 #' @export get_precis_forecast
 
-get_precis_forecast <- function(state = "AUS") {
+get_precis_forecast <- function(state = "AUS", filepath = NULL) {
   the_state <- .check_states(state) # see internal_functions.R
 
-<<<<<<< HEAD
   # source from ftp server or local filepath
   if (is.null(filepath)) {
     base_location <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
   } else {
     base_location <- .validate_filepath(filepath)
   }
-=======
-  # ftp server
-  ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
->>>>>>> master
 
   # create vector of XML files
   AUS_XML <- c(
@@ -110,7 +106,6 @@ get_precis_forecast <- function(state = "AUS") {
         the_state == "VIC" |
           the_state == "VICTORIA" ~ paste0(ftp_base, AUS_XML[6]),
         the_state == "WA" |
-<<<<<<< HEAD
           the_state == "WESTERN AUSTRALIA" ~ paste0(base_location, AUS_XML[7])
       ) # returns either the url/xml_filename.xml OR filepath/xml_filename.xml depending if filepath is provided
     if (is.null(filepath)) {
@@ -128,14 +123,6 @@ get_precis_forecast <- function(state = "AUS") {
                FUN = .parse_forecast,
                Local = TRUE)
     }
-=======
-          the_state == "WESTERN AUSTRALIA" ~ paste0(ftp_base, AUS_XML[7])
-      )
-    forecast_out <- .parse_forecast(xml_url)
-  } else {
-    file_list <- paste0(ftp_base, AUS_XML)
-    forecast_out <- lapply(X = file_list, FUN = .parse_forecast)
->>>>>>> master
     forecast_out <- data.table::rbindlist(forecast_out, fill = TRUE)
   }
 
@@ -146,9 +133,9 @@ get_precis_forecast <- function(state = "AUS") {
 #'
 #' @param y précis forecast xml_object
 #'
-#' @return a data.table of the forecast fore cleaning and returning to user
+#' @return a data.table of the forecast for cleaning and returning to user
 #' @keywords internal
-#' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
+#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #' @noRd
 
 .parse_forecast <- function(xml_url) {
@@ -163,7 +150,6 @@ get_precis_forecast <- function(state = "AUS") {
     upper_precipitation_limit <- lower_precipitation_limit <-
     NULL # nocov end
 
-<<<<<<< HEAD
   if (!isTRUE(Local)) {
     xml_object <-
       .get_xml(xml_url)
@@ -172,9 +158,6 @@ get_precis_forecast <- function(state = "AUS") {
     xml_object <-
       .get_xml(xml_url, LOC = TRUE)
   } # if filepath IS supplied specify xml_object to contain the filepath
-=======
-  xml_object <- .get_xml(xml_url)
->>>>>>> master
   out <- .parse_precis_xml(xml_object)
 
   data.table::setnames(
@@ -289,7 +272,7 @@ get_precis_forecast <- function(state = "AUS") {
 #'
 #' @return a data.table of the forecast for further refining
 #' @keywords internal
-#' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
+#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #' @noRd
 
 .parse_precis_xml <- function(xml_object) {

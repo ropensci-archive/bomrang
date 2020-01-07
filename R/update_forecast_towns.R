@@ -21,7 +21,7 @@
 #' webpage, "Weather Data Services",
 #' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 #'
-#' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
+#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #' @export update_forecast_towns
 
 update_forecast_towns <- function() {

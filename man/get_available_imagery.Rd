@@ -60,5 +60,5 @@ Australian Bureau of Meteorology (\acronym{BOM}) high-definition satellite
 images \url{http://www.bom.gov.au/australia/satellite/index.shtml}
 }
 \author{
-Adam H Sparks, \email{adamhsparks@gmail.com}
+Adam H. Sparks, \email{adamhsparks@gmail.com}
 }

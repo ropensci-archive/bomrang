@@ -212,7 +212,7 @@ get_coastal_forecast <- function(state = "AUS") {
 #'
 #' @return a data.table of the forecast for further refining
 #' @keywords internal
-#' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
+#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #' @noRd
 
 .parse_coastal_xml <- function(xml_object) {

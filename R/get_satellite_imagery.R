@@ -50,7 +50,7 @@
 #' imagery <- get_available_imagery(product_id = "IDE00425")
 #' }
 #'
-#' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
+#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #' @export get_available_imagery
 
 get_available_imagery <- function(product_id = "all") {
@@ -137,7 +137,7 @@ get_available_imagery <- function(product_id = "all") {
 #' imagery <- get_satellite_imagery(product_id = avail, scans = 2)
 #' }
 
-#' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
+#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #' @rdname get_satellite_imagery
 #' @export get_satellite_imagery
 

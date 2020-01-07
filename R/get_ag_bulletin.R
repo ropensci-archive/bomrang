@@ -4,13 +4,12 @@
 #' Fetch the \acronym{BOM} agricultural bulletin information and return it in a
 #' tidy data frame
 #'
-#' @param state Australian state or territory as full name or postal code.
-#' Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
-#' "AUS" returning all state bulletins, see details for more.
+#' @inheritParams get_precis_forecast
 #'
 #' @details Allowed state and territory postal codes, only one state per request
 #' or all using \code{AUS}.
 #'  \describe{
+#'    \item{ACT}{Australian Capital Territory (will return NSW)}
 #'    \item{NSW}{New South Wales}
 #'    \item{NT}{Northern Territory}
 #'    \item{QLD}{Queensland}
@@ -18,8 +17,12 @@
 #'    \item{TAS}{Tasmania}
 #'    \item{VIC}{Victoria}
 #'    \item{WA}{Western Australia}
-#'    \item{AUS}{Australia, returns bulletin for all states and NT}
+#'    \item{AUS}{Australia, returns forecast for all states, NT and ACT}
 #'  }
+#'
+#'  In some situations, access may be restricted to insecure \acronym{FTP}
+#'  connections. Using \var{filepath} allows you to download and save the
+#'  \acronym{XML} files locally for use in \pkg{bomrang}.
 #'
 #' @return
 #'  Tidy \code{\link[data.table]{data.table}} of Australia \acronym{BOM} 
@@ -48,16 +51,21 @@
 #' Meteorology (\acronym{BOM}) webpage, Bureau of Meteorology Site Numbers: \cr
 #' \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 #'
-#' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
+#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com} and Paul Melloy
+#' \email{paul.melloy@@usq.edu.au}
 #' @importFrom magrittr "%>%"
 #' @export get_ag_bulletin
 
-get_ag_bulletin <- function(state = "AUS") {
+get_ag_bulletin <- function(state = "AUS", filepath = NULL) {
 
   the_state <- .check_states(state) # see internal_functions.R
-  
-  # ftp server
-  ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
+
+  # source from ftp server or local filepath
+  if (is.null(filepath)) {
+    base_location <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
+  } else {
+    base_location <- .validate_filepath(filepath)
+  }
   
   # create vector of XML files
   AUS_XML <- c(

@@ -11,10 +11,11 @@ get_precis_forecast(state = "AUS", filepath = NULL)
 Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 "AUS" returning all state bulletins, see Details for more.}
 
-\item{filepath}{A character string of the location of an \acronym{XML} file
-to parse.  If \var{filepath} is specified function will use \acronym{BOM}
-daily précis forecast from a local \acronym{XML} filea at the specified
-location and not the \acronym{BOM} \acronym{FTP} server.  See Details more.}
+\item{filepath}{A character string of the location of a \emph{single}
+\acronym{XML} file to parse.  If \var{filepath} is specified function will
+use \acronym{BOM} daily précis forecast from a local \acronym{XML} filea at
+the specified location and not the \acronym{BOM} \acronym{FTP} server.
+See Details more.}
 }
 \value{
 Tidy \code{\link[data.table]{data.table}} of a Australia \acronym{BOM} précis
@@ -41,7 +42,7 @@ or all using \code{AUS}.
    \item{AUS}{Australia, returns forecast for all states, NT and ACT}
  }
 
- In some situations, access may be restricted to insecure \acronym{FTP} 
+ In some situations, access may be restricted to insecure \acronym{FTP}
  connections. Using \var{filepath} allows you to download and save the
  \acronym{XML} files locally for use in \pkg{bomrang}.
 }
@@ -63,7 +64,7 @@ the \acronym{BOM} anonymous \acronym{FTP} server with spatial data \cr
 \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 }
 \author{
-Adam H Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton,
+Adam H. Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton,
  \email{keith.pembleton@usq.edu.au} and Paul Melloy
  \email{paul.melloy@usq.edu.au}
 }

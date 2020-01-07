@@ -4,12 +4,18 @@
 \alias{get_ag_bulletin}
 \title{Get BOM agriculture bulletin information for select stations}
 \usage{
-get_ag_bulletin(state = "AUS")
+get_ag_bulletin(state = "AUS", filepath = NULL)
 }
 \arguments{
 \item{state}{Australian state or territory as full name or postal code.
 Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
-"AUS" returning all state bulletins, see details for more.}
+"AUS" returning all state bulletins, see Details for more.}
+
+\item{filepath}{A character string of the location of a \emph{single}
+\acronym{XML} file to parse.  If \var{filepath} is specified function will
+use \acronym{BOM} daily précis forecast from a local \acronym{XML} filea at
+the specified location and not the \acronym{BOM} \acronym{FTP} server.
+See Details more.}
 }
 \value{
 Tidy \code{\link[data.table]{data.table}} of Australia \acronym{BOM} 
@@ -25,6 +31,7 @@ tidy data frame
 Allowed state and territory postal codes, only one state per request
 or all using \code{AUS}.
  \describe{
+   \item{ACT}{Australian Capital Territory (will return NSW)}
    \item{NSW}{New South Wales}
    \item{NT}{Northern Territory}
    \item{QLD}{Queensland}
@@ -32,8 +39,12 @@ or all using \code{AUS}.
    \item{TAS}{Tasmania}
    \item{VIC}{Victoria}
    \item{WA}{Western Australia}
-   \item{AUS}{Australia, returns bulletin for all states and NT}
+   \item{AUS}{Australia, returns forecast for all states, NT and ACT}
  }
+
+ In some situations, access may be restricted to insecure \acronym{FTP}
+ connections. Using \var{filepath} allows you to download and save the
+ \acronym{XML} files locally for use in \pkg{bomrang}.
 }
 \examples{
 \donttest{
@@ -58,5 +69,6 @@ Meteorology (\acronym{BOM}) webpage, Bureau of Meteorology Site Numbers: \cr
 \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 }
 \author{
-Adam H Sparks, \email{adamhsparks@gmail.com}
+Adam H. Sparks, \email{adamhsparks@gmail.com} and Paul Melloy
+\email{paul.melloy@usq.edu.au}
 }

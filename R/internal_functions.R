@@ -196,7 +196,7 @@
 #'
 #' @return cleaned data.table cols of date and time
 #' @keywords internal
-#' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
+#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #' @noRd
 
 .split_time_cols <- function(x) {
