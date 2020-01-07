@@ -16,7 +16,8 @@ get_historical(
 
 \item{latlon}{Length-2 numeric vector of Latitude/Longitude. See Details.}
 
-\item{radius}{Numeric value, distance (km) from \var{latlon} must be numeric.}
+\item{radius}{Numeric value, distance (km) from \var{latlon}, must be
+numeric.}
 
 \item{type}{Measurement type, either daily "rain", "min" (temp), "max"
 (temp), or "solar" (exposure). Partial matching is performed. If not
@@ -66,7 +67,7 @@ Retrieves daily observations for a given station.
 \section{Caution}{
 
 Temperature data prior to 1910 should be used with extreme caution as many
-stations, prior to that date, were exposed in non-standard shelters, some
+stations prior to that date were exposed in non-standard shelters. Some
 of which give readings which are several degrees warmer or cooler than
 those measured according to post-1910 standards.
 
@@ -78,7 +79,7 @@ previous day if the night was particularly warm.
 Either \var{stationid} or \var{latlon} must be provided, but if both are,
 then \var{stationid} will be used as it is more reliable.
 
-In some cases data is available back to the 1800s, so tens of thousands of
+In some cases data is available back to the 1800s, so tens-of-thousands of
 daily records will be returned. Other stations will be newer and will
 return fewer observations.
 }

@@ -6,7 +6,8 @@
 #' @md
 #' @param stationid \acronym{BOM} station 'ID'. See Details.
 #' @param latlon Length-2 numeric vector of Latitude/Longitude. See Details.
-#' @param radius Numeric value, distance (km) from \var{latlon} must be numeric.
+#' @param radius Numeric value, distance (km) from \var{latlon}, must be
+#'   numeric.
 #' @param type Measurement type, either daily "rain", "min" (temp), "max"
 #'   (temp), or "solar" (exposure). Partial matching is performed. If not
 #'   specified returns the first matching type in the order listed.
@@ -49,7 +50,7 @@
 #'
 #' @section Caution:
 #'   Temperature data prior to 1910 should be used with extreme caution as many
-#'   stations, prior to that date, were exposed in non-standard shelters, some
+#'   stations prior to that date were exposed in non-standard shelters. Some
 #'   of which give readings which are several degrees warmer or cooler than
 #'   those measured according to post-1910 standards.
 #'
@@ -61,7 +62,7 @@
 #'   Either \var{stationid} or \var{latlon} must be provided, but if both are,
 #'   then \var{stationid} will be used as it is more reliable.
 #'
-#'   In some cases data is available back to the 1800s, so tens of thousands of
+#'   In some cases data is available back to the 1800s, so tens-of-thousands of
 #'   daily records will be returned. Other stations will be newer and will
 #'   return fewer observations.
 #'
