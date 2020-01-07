@@ -3,9 +3,9 @@
 
 - local macOS install R version 3.6.2 (2019-12-12)
 
-- Clear Linux 3.6.2 (2019-12-12)
+- Manjaro Linux 3.6.2 (2019-12-12)
 
-- win-builder R Under development (unstable) (2019-12-24 r77619)
+- win-builder R Under development (unstable) (2020-01-03 r77630)
 
 - win-builder R version 3.6.2 (2019-12-12)
 
@@ -13,29 +13,33 @@
 
 0 errors | 0 warnings | 1 note
 
-This is a new minor release that adds new functionality, corrects bugs and
-makes minor changes to documentation
+This is a new minor release that fixes the issues with the CRAN checks as
+requested and fixes other minor bugs and provides further enhancements
 
 ## Bug fixes
 
-- Fixes a bug with links to documentation from `get_historical()` and `%>%`
+* Adds `skip_on_cran()` to some tests causing failures in CRAN checks that
+should not have been tested on CRAN
 
-- Updates station location databases to use updated BOM URLs
+* resolves the `group_by` issues of
+[#105](https://github.com/ropensci/bomrang/issues/105) reported by
+[Blundys](https://github.com/Blundys)
 
-- Updates file and error handling for image downloads when downloads fail
+* Fixes bug in functions returning `data.table` objects that don't print to
+console
 
-- Ensures that .Rds/.Rda files are saved using version 2, for R from 1.4.0 to
-3.5.0 such that users using older versions of R do not have to upgrade to use
-`bomrang`
+* Fixes an incorrect vignette reference
 
-- Fixes bug that prevents end-user from self-updating internal databases
+* Fixes bugs that removed station locations from internal lists being
+distributed with bomrang and when user updated them on their own machine
 
 ## Minor changes
 
-- Plots radar images natively using re-exported `raster::plot()`
+* Prebuild main vignette with examples depending on Internet connection, which
+allows for example output to be displayed for more functions
 
-- Adds `sweep_for_forecast_towns()`, which works analogously to
-`sweep_for_stations()`
+* Updates my name to align with other packages I maintain by using my middle
+initial, "H."
 
 ## Reverse dependencies
 

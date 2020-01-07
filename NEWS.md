@@ -9,15 +9,13 @@
 * Adds `skip_on_cran()` to some tests causing failures in CRAN checks that
 should not have been tested on CRAN
 
+* Fixes bug in functions returning [data.table] objects that don't print to
+console
+
+* Fixes bugs that removed station locations from internal lists being
+distributed with bomrang and when user updated them on their own machine
+
 ## Minor changes
-
-* Changes `get_precis_forecast()` to allow it to import forecast from xml files
-stored on the local machine, thanks to @PaulMelloy for the new functionality
-
-* Changes `get_historical()` so it will allow batch downloads using `lapply()`,
-now a `warning()` and returning `data.frame()` with NA values is returned
-rather than stopping the process, thanks to @PaulMelloy for the new
-functionality
 
 * Prebuild main vignette with examples depending on Internet connection, which
 allows for example output to be displayed for more functions

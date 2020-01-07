@@ -26,7 +26,12 @@ Provides functions to interface with Australian Government Bureau
 }
 }
 \author{
+<<<<<<< HEAD
 Adam H Sparks and Jonathan Carroll and James Goldie and Dean
 Marchiori and and Paul Melloy and  Mark Padgham and Hugh Parsonage and Keith
+=======
+Adam H. Sparks and Jonathan Carroll and James Goldie and Dean
+Marchiori and Paul Melloy and Mark Padgham and Hugh Parsonage and Keith
+>>>>>>> master
 Pembleton
 }

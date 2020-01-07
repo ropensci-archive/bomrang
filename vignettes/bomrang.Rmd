@@ -1151,8 +1151,43 @@ observations for the station closest to 35.2809°S, 149.1300°E (Canberra).
 (Canberra_mintemps <- get_historical(latlon = c(-35.2809, 149.1300),
                                      type = "min"))
 #> Closest station: 070351 (CANBERRA AIRPORT)
+<<<<<<< HEAD
 #> Data saved as /var/folders/yv/4xy6zs3x5qsgj96389nkjvtw0000gn/T//RtmpGQYpRW/IDCJAC0011_070351_1800_Data.csv
 #> Error in tools::toTitleCase(attr(x, "type")): 'text' must be a character vector
+=======
+#> Data saved as /var/folders/yv/4xy6zs3x5qsgj96389nkjvtw0000gn/T//RtmpwfSUka/IDCJAC0011_070351_1800_Data.csv
+#>   ---- Australian Bureau of Meteorology (BOM) Data Resource ----
+#>   (Original Request Parameters)
+#>   Station:		CANBERRA AIRPORT [070351] 
+#>   Location:		lat: -35.3088, lon: 149.2004
+#>   Measurement / Origin:	Min / Historical
+#>   Timespan:		2008-09-01 -- 2020-01-01 [11.4 years]
+#>   ---------------------------------------------------------------  
+#>       product_code station_number year month day min_temperature
+#>    1:   IDCJAC0011          70351 2008     1   1              NA
+#>    2:   IDCJAC0011          70351 2008     1   2              NA
+#>    3:   IDCJAC0011          70351 2008     1   3              NA
+#>    4:   IDCJAC0011          70351 2008     1   4              NA
+#>    5:   IDCJAC0011          70351 2008     1   5              NA
+#>   ---                                                           
+#> 4384:   IDCJAC0011          70351 2020     1   1            13.5
+#> 4385:   IDCJAC0011          70351 2020     1   2            10.7
+#> 4386:   IDCJAC0011          70351 2020     1   3            15.6
+#> 4387:   IDCJAC0011          70351 2020     1   4            18.5
+#> 4388:   IDCJAC0011          70351 2020     1   5            17.3
+#>       accum_days_min quality
+#>    1:             NA        
+#>    2:             NA        
+#>    3:             NA        
+#>    4:             NA        
+#>    5:             NA        
+#>   ---                       
+#> 4384:              1       N
+#> 4385:              1       N
+#> 4386:              1       N
+#> 4387:              1       N
+#> 4388:              1       N
+>>>>>>> master
 ```
 
 ## Using sweep_for_stations()
@@ -1440,7 +1475,12 @@ defaults to all GeoTIFF images currently available.
 #> [137] "IDE00425.202001050910.tif" "IDE00425.202001050920.tif"
 #> [139] "IDE00425.202001050930.tif" "IDE00425.202001050940.tif"
 #> [141] "IDE00425.202001050950.tif" "IDE00425.202001051000.tif"
+<<<<<<< HEAD
 #> [143] "IDE00425.202001051010.tif"
+=======
+#> [143] "IDE00425.202001051010.tif" "IDE00425.202001051020.tif"
+#> [145] "IDE00425.202001051030.tif"
+>>>>>>> master
 #>   [1] "IDE00425.202001041010.tif" "IDE00425.202001041020.tif"
 #>   [3] "IDE00425.202001041030.tif" "IDE00425.202001041040.tif"
 #>   [5] "IDE00425.202001041050.tif" "IDE00425.202001041100.tif"
@@ -1512,7 +1552,12 @@ defaults to all GeoTIFF images currently available.
 #> [137] "IDE00425.202001050910.tif" "IDE00425.202001050920.tif"
 #> [139] "IDE00425.202001050930.tif" "IDE00425.202001050940.tif"
 #> [141] "IDE00425.202001050950.tif" "IDE00425.202001051000.tif"
+<<<<<<< HEAD
 #> [143] "IDE00425.202001051010.tif"
+=======
+#> [143] "IDE00425.202001051010.tif" "IDE00425.202001051020.tif"
+#> [145] "IDE00425.202001051030.tif"
+>>>>>>> master
 ```
 
 ### Using get_satellite_imagery()
@@ -1647,7 +1692,11 @@ be specified and the function will accept only one at a time.
 ```r
 library(raster)
 x <- get_radar_imagery(product_id = "IDR032")
+<<<<<<< HEAD
 #> file downloaded to:/var/folders/yv/4xy6zs3x5qsgj96389nkjvtw0000gn/T//RtmpGQYpRW/file1226593146f0.gif
+=======
+#> file downloaded to:/var/folders/yv/4xy6zs3x5qsgj96389nkjvtw0000gn/T//RtmpwfSUka/file17065810ee82.gif
+>>>>>>> master
 
 # create a blank raster plot and add the radar layer
 r <-
@@ -1677,12 +1726,81 @@ For example:
 
 ```r
 adlmax <- get_historical(stationid = "023000", type = "max")
+<<<<<<< HEAD
 #> Data saved as /var/folders/yv/4xy6zs3x5qsgj96389nkjvtw0000gn/T//RtmpGQYpRW/IDCJAC0010_023000_1800_Data.csv
 adlmax
 #> Error in tools::toTitleCase(attr(x, "type")): 'text' must be a character vector
 
 filter(adlmax, month == 10)
 #> Error in tools::toTitleCase(attr(x, "type")): 'text' must be a character vector
+=======
+#> Data saved as /var/folders/yv/4xy6zs3x5qsgj96389nkjvtw0000gn/T//RtmpwfSUka/IDCJAC0010_023000_1800_Data.csv
+adlmax
+#>   ---- Australian Bureau of Meteorology (BOM) Data Resource ----
+#>   (Original Request Parameters)
+#>   Station:		ADELAIDE (WEST TERRACE / NGAYIRDAPIRA) [023000] 
+#>   Location:		lat: -34.9257, lon: 138.5832
+#>   Measurement / Origin:	Max / Historical
+#>   Timespan:		1887-01-01 -- 2020-01-01 [94.8 years]
+#>   ---------------------------------------------------------------  
+#>        product_code station_number year month day max_temperature
+#>     1:   IDCJAC0010          23000 1887     1   1              NA
+#>     2:   IDCJAC0010          23000 1887     1   2              NA
+#>     3:   IDCJAC0010          23000 1887     1   3              NA
+#>     4:   IDCJAC0010          23000 1887     1   4              NA
+#>     5:   IDCJAC0010          23000 1887     1   5              NA
+#>    ---                                                           
+#> 48577:   IDCJAC0010          23000 2019    12  31            24.4
+#> 48578:   IDCJAC0010          23000 2020     1   1            25.3
+#> 48579:   IDCJAC0010          23000 2020     1   2            31.8
+#> 48580:   IDCJAC0010          23000 2020     1   3            40.6
+#> 48581:   IDCJAC0010          23000 2020     1   4            24.6
+#>        accum_days_max quality
+#>     1:             NA        
+#>     2:             NA        
+#>     3:             NA        
+#>     4:             NA        
+#>     5:             NA        
+#>    ---                       
+#> 48577:              1       N
+#> 48578:              1       N
+#> 48579:              1       N
+#> 48580:              1       N
+#> 48581:              1       N
+
+filter(adlmax, month == 10)
+#>   ---- Australian Bureau of Meteorology (BOM) Data Resource ----
+#>   (Original Request Parameters)
+#>   Station:		ADELAIDE (WEST TERRACE / NGAYIRDAPIRA) [023000] 
+#>   Location:		lat: -34.9257, lon: 138.5832
+#>   Measurement / Origin:	Max / Historical
+#>   Timespan:		1887-01-01 -- 2020-01-01 [94.8 years]
+#>   ---------------------------------------------------------------  
+#>       product_code station_number year month day max_temperature
+#>    1:   IDCJAC0010          23000 1887    10   1            17.6
+#>    2:   IDCJAC0010          23000 1887    10   2            14.6
+#>    3:   IDCJAC0010          23000 1887    10   3            16.7
+#>    4:   IDCJAC0010          23000 1887    10   4            18.0
+#>    5:   IDCJAC0010          23000 1887    10   5            15.1
+#>   ---                                                           
+#> 4119:   IDCJAC0010          23000 2019    10  27            19.5
+#> 4120:   IDCJAC0010          23000 2019    10  28            25.4
+#> 4121:   IDCJAC0010          23000 2019    10  29            32.7
+#> 4122:   IDCJAC0010          23000 2019    10  30            35.5
+#> 4123:   IDCJAC0010          23000 2019    10  31            37.2
+#>       accum_days_max quality
+#>    1:              1       Y
+#>    2:              1       Y
+#>    3:              1       Y
+#>    4:              1       Y
+#>    5:              1       Y
+#>   ---                       
+#> 4119:              1       N
+#> 4120:              1       N
+#> 4121:              1       N
+#> 4122:              1       N
+#> 4123:              1       N
+>>>>>>> master
 ```
 
 The `magrittr` pipe has also been re-exported, so that too can be used 

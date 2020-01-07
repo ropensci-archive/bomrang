@@ -27,7 +27,7 @@
 #'    \item{AUS}{Australia, returns forecast for all states, NT and ACT}
 #'  }
 #'
-#'  In some situations, access may be restricted to insecure \acronym{FTP} 
+#'  In some situations, access may be restricted to insecure \acronym{FTP}
 #'  connections. Using \var{filepath} allows you to download and save the
 #'  \acronym{XML} files locally for use in \pkg{bomrang}.
 #'
@@ -59,16 +59,21 @@
 #' @importFrom data.table ":="
 #' @export get_precis_forecast
 
-get_precis_forecast <- function(state = "AUS", filepath = NULL) {
+get_precis_forecast <- function(state = "AUS") {
   the_state <- .check_states(state) # see internal_functions.R
-  
+
+<<<<<<< HEAD
   # source from ftp server or local filepath
   if (is.null(filepath)) {
     base_location <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
   } else {
     base_location <- .validate_filepath(filepath)
   }
-  
+=======
+  # ftp server
+  ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/fwo/"
+>>>>>>> master
+
   # create vector of XML files
   AUS_XML <- c(
     "IDN11060.xml",
@@ -86,25 +91,26 @@ get_precis_forecast <- function(state = "AUS", filepath = NULL) {
     "IDW14199.xml"
     # WA
   )
-  
+
   if (the_state != "AUS") {
     xml_url <-
       dplyr::case_when(
         the_state == "ACT" |
-          the_state == "CANBERRA" ~ paste0(base_location, AUS_XML[1]),
+          the_state == "CANBERRA" ~ paste0(ftp_base, AUS_XML[1]),
         the_state == "NSW" |
-          the_state == "NEW SOUTH WALES" ~ paste0(base_location, AUS_XML[1]),
+          the_state == "NEW SOUTH WALES" ~ paste0(ftp_base, AUS_XML[1]),
         the_state == "NT" |
-          the_state == "NORTHERN TERRITORY" ~ paste0(base_location, AUS_XML[2]),
+          the_state == "NORTHERN TERRITORY" ~ paste0(ftp_base, AUS_XML[2]),
         the_state == "QLD" |
-          the_state == "QUEENSLAND" ~ paste0(base_location, AUS_XML[3]),
+          the_state == "QUEENSLAND" ~ paste0(ftp_base, AUS_XML[3]),
         the_state == "SA" |
-          the_state == "SOUTH AUSTRALIA" ~ paste0(base_location, AUS_XML[4]),
+          the_state == "SOUTH AUSTRALIA" ~ paste0(ftp_base, AUS_XML[4]),
         the_state == "TAS" |
-          the_state == "TASMANIA" ~ paste0(base_location, AUS_XML[5]),
+          the_state == "TASMANIA" ~ paste0(ftp_base, AUS_XML[5]),
         the_state == "VIC" |
-          the_state == "VICTORIA" ~ paste0(base_location, AUS_XML[6]),
+          the_state == "VICTORIA" ~ paste0(ftp_base, AUS_XML[6]),
         the_state == "WA" |
+<<<<<<< HEAD
           the_state == "WESTERN AUSTRALIA" ~ paste0(base_location, AUS_XML[7])
       ) # returns either the url/xml_filename.xml OR filepath/xml_filename.xml depending if filepath is provided
     if (is.null(filepath)) {
@@ -122,9 +128,17 @@ get_precis_forecast <- function(state = "AUS", filepath = NULL) {
                FUN = .parse_forecast,
                Local = TRUE)
     }
+=======
+          the_state == "WESTERN AUSTRALIA" ~ paste0(ftp_base, AUS_XML[7])
+      )
+    forecast_out <- .parse_forecast(xml_url)
+  } else {
+    file_list <- paste0(ftp_base, AUS_XML)
+    forecast_out <- lapply(X = file_list, FUN = .parse_forecast)
+>>>>>>> master
     forecast_out <- data.table::rbindlist(forecast_out, fill = TRUE)
   }
-  
+
   return(forecast_out[])
 }
 
@@ -132,12 +146,12 @@ get_precis_forecast <- function(state = "AUS", filepath = NULL) {
 #'
 #' @param y précis forecast xml_object
 #'
-#' @return a data.table of the forecast for cleaning and returning to user
+#' @return a data.table of the forecast fore cleaning and returning to user
 #' @keywords internal
 #' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
 #' @noRd
 
-.parse_forecast <- function(xml_url, Local = FALSE) {
+.parse_forecast <- function(xml_url) {
   # CRAN note avoidance
   AAC_codes <- # nocov start
     attrs <- end_time_local <- precipitation_range <-
@@ -148,7 +162,8 @@ get_precis_forecast <- function(state = "AUS", filepath = NULL) {
     end_time_utc <-
     upper_precipitation_limit <- lower_precipitation_limit <-
     NULL # nocov end
-  
+
+<<<<<<< HEAD
   if (!isTRUE(Local)) {
     xml_object <-
       .get_xml(xml_url)
@@ -157,8 +172,11 @@ get_precis_forecast <- function(state = "AUS", filepath = NULL) {
     xml_object <-
       .get_xml(xml_url, LOC = TRUE)
   } # if filepath IS supplied specify xml_object to contain the filepath
+=======
+  xml_object <- .get_xml(xml_url)
+>>>>>>> master
   out <- .parse_precis_xml(xml_object)
-  
+
   data.table::setnames(
     out,
     c("air_temperature_maximum",
@@ -166,10 +184,10 @@ get_precis_forecast <- function(state = "AUS", filepath = NULL) {
     c("maximum_temperature",
       "minimum_temperature")
   )
-  
+
   # clean up and split out time cols into offset and remove extra chars
   .split_time_cols(x = out)
-  
+
   # merge with aac codes for location information ------------------------------
   load(system.file("extdata", "AAC_codes.rda", package = "bomrang"))  # nocov
   data.table::setkey(out, "aac")
@@ -177,38 +195,38 @@ get_precis_forecast <- function(state = "AUS", filepath = NULL) {
   #
   # add state field
   out[, state := gsub("_.*", "", out$aac)]
-  
+
   # add product ID field
   out[, product_id := substr(basename(xml_url),
                              1,
                              nchar(basename(xml_url)) - 4)]
-  
+
   # remove unnecessary text from cols ------------------------------------------
   out[, probability_of_precipitation := gsub("%",
                                              "",
                                              probability_of_precipitation)]
-  
+
   # handle precipitation ranges where they may or may not be present -----------
   if ("precipitation_range" %in% colnames(out))
   {
     # format any values that are only zero to make next step easier
     out[precipitation_range == "0 mm", precipitation_range := "0 to 0 mm"]
-    
+
     # separate the precipitation column into two, upper/lower limit ------------
     out[, c("lower_precipitation_limit",
             "upper_precipitation_limit") := data.table::tstrsplit(precipitation_range,
                                                                   "to",
                                                                   fixed = TRUE)]
-    
+
     out[, upper_precipitation_limit := gsub("mm", "", upper_precipitation_limit)]
     out[, precipitation_range := NULL]
-    
+
   } else {
     # if the columns don't exist insert as NA
     out[, lower_precipitation_limit := NA]
     out[, upper_precipitation_limit := NA]
   }
-  
+
   refcols <- c(
     "index",
     "product_id",
@@ -236,19 +254,19 @@ get_precis_forecast <- function(state = "AUS", filepath = NULL) {
   out[, c(1, 11) := lapply(.SD, function(x)
     as.factor(x)),
     .SDcols = c(1, 11)]
-  
+
   # numeric
   out[, c(6:8, 14:17, 19) := lapply(.SD, function(x)
     suppressWarnings(as.numeric(x))),
     .SDcols = c(6:8, 14:17, 19)]
-  
+
   # dates
   out[, c(9:10) := lapply(.SD, function(x)
     as.POSIXct(x,
                origin = "1970-1-1",
                format = "%Y-%m-%d %H:%M:%OS")),
     .SDcols = c(9:10)]
-  
+
   out[, c(12:13) := lapply(.SD, function(x)
     as.POSIXct(
       x,
@@ -257,7 +275,7 @@ get_precis_forecast <- function(state = "AUS", filepath = NULL) {
       tz = "GMT"
     )),
     .SDcols = c(12:13)]
-  
+
   # character
   out[, c(2:5, 18) := lapply(.SD, function(x)
     as.character(x)),
@@ -276,10 +294,10 @@ get_precis_forecast <- function(state = "AUS", filepath = NULL) {
 
 .parse_precis_xml <- function(xml_object) {
   forecast_icon_code <- NULL
-  
+
   # get the actual forecast objects
   fp <- xml2::xml_find_all(xml_object, ".//forecast-period")
-  
+
   locations_index <- data.table::data.table(
     # find all the aacs
     aac = xml2::xml_find_first(fp, ".//parent::area") %>%
@@ -294,7 +312,7 @@ get_precis_forecast <- function(state = "AUS", filepath = NULL) {
     start_time_utc = xml2::xml_attr(fp, "start-time-utc"),
     end_time_utc = xml2::xml_attr(fp, "end-time-utc")
   )
-  
+
   vals <- lapply(fp, function(node) {
     # find names of all children nodes
     childnodes <- node %>%
@@ -306,18 +324,18 @@ get_precis_forecast <- function(state = "AUS", filepath = NULL) {
       xml2::xml_attr("type")
     # create columns names based on either node name or attr value
     names <- ifelse(is.na(names), childnodes, names)
-    
+
     # find all values
     values <- node %>%
       xml2::xml_children() %>%
       xml2::xml_text()
-    
+
     # create data frame and properly label the columns
     df <- data.frame(t(values), stringsAsFactors = FALSE)
     names(df) <- names
     df
   })
-  
+
   vals <- data.table::rbindlist(vals, fill = TRUE)
   sub_out <- cbind(locations_index, vals)
   # drop icon code

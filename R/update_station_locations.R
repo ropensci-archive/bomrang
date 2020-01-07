@@ -36,23 +36,23 @@ update_station_locations <- function() {
     "If reproducibility is necessary, you may not wish to proceed.\n",
     "Do you understand and wish to proceed (Y/n)?\n"
   )
-  
+
   answer <-
     readLines(con = getOption("bomrang.connection"), n = 1)
-  
+
   answer <- toupper(answer)
-  
+
   if (answer %notin% c("Y", "YES")) {
     stop("Station databases were not updated.",
          call. = FALSE)
   }
-  
+
   message("Updating internal station databases.\n")
-  
+
   # CRAN NOTE avoidance
   site <- state_code <- wmo <- state <- lon <- lat <- # nocov start
   actual_state <- state_from_latlon <- start <- end <- NULL # nocov end
-  
+
   tryCatch({
     curl::curl_download(
       url =
@@ -68,7 +68,7 @@ update_station_locations <- function() {
       "Please retry again later.\n",
       call. = FALSE
     ))
-  
+
   bom_stations_raw <-
     readr::read_table(
       file.path(tempdir(), "stations.zip"),
@@ -103,23 +103,23 @@ update_station_locations <- function() {
         wmo = readr::col_integer()
       )
     )
-  
+
   # remove extra columns for source of location
   bom_stations_raw <- bom_stations_raw[, -8]
-  
+
   # trim the end of the rows off that have extra info that's not in columns
   nrows <- nrow(bom_stations_raw) - 3
   bom_stations_raw <- bom_stations_raw[1:nrows,]
-  
-  bom_stations_raw["end"][is.na(bom_stations_raw["end"])] <- 
+
+  bom_stations_raw["end"][is.na(bom_stations_raw["end"])] <-
     as.integer(format(Sys.Date(), "%Y"))
-  
+
   # keep only currently reporting stations
-  bom_stations_raw <- 
-    bom_stations_raw[bom_stations_raw$end == format(Sys.Date(), "%Y"), ] %>% 
+  bom_stations_raw <-
+    bom_stations_raw[bom_stations_raw$end == format(Sys.Date(), "%Y"), ] %>%
     dplyr::mutate(start = as.integer(start),
                   end = as.integer(end))
-  
+
   # if sf is installed, correct the state column, otherwise skip
   if (requireNamespace("ASGS.foyer", quietly = TRUE)) {
     message(
@@ -135,7 +135,7 @@ update_station_locations <- function() {
                             yr = "2016",
                             return = "v")
     }
-    
+
     bom_stations_raw %>%
       .[lon > -50, state_from_latlon := latlon2state(lat, lon)] %>%
       .[state_from_latlon == "New South Wales", actual_state := "NSW"] %>%
@@ -150,10 +150,10 @@ update_station_locations <- function() {
       .[actual_state != state &
           state %notin% c("ANT", "ISL"), state := actual_state] %>%
       .[, actual_state := NULL]
-    
+
     data.table::setDF(bom_stations_raw)
   }
-  
+
   # recode the states to match product codes
   # IDD - NT,
   # IDN - NSW/ACT,
@@ -161,7 +161,7 @@ update_station_locations <- function() {
   # IDS - SA,
   # IDT - Tas/Antarctica,
   # IDV - Vic, IDW - WA
-  
+
   bom_stations_raw$state_code <- NA
   bom_stations_raw$state_code[bom_stations_raw$state == "WA"] <- "W"
   bom_stations_raw$state_code[bom_stations_raw$state == "QLD"] <-
@@ -175,7 +175,7 @@ update_station_locations <- function() {
   bom_stations_raw$state_code[bom_stations_raw$state == "NSW"] <-
     "N"
   bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <- "S"
-  
+
   stations_site_list <-
     bom_stations_raw %>%
     dplyr::select(site:wmo, state, state_code) %>%
@@ -227,27 +227,27 @@ update_station_locations <- function() {
           )
       )
     )
-  
+
   # There are weather stations that do have a wmo but don't report online,
   # most of these don't have a "state" value, e.g., KIRIBATI NTC AWS or
   # MARSHALL ISLANDS NTC AWS, remove these from the list
-  
+
   JSONurl_site_list <-
     stations_site_list[!is.na(stations_site_list$url), ]
-  
+
   JSONurl_site_list <-
     JSONurl_site_list %>%
     dplyr::rowwise() %>%
     dplyr::mutate(url = dplyr::if_else(httr::http_error(url),
                                        NA_character_,
                                        url))
-  
+
   # Remove new NA values from invalid URLs and convert to data.table
   JSONurl_site_list <-
     data.table::data.table(JSONurl_site_list[!is.na(JSONurl_site_list$url), ])
-  
+
   message("Overwriting existing databases")
-  
+
   fname <- system.file("extdata", "JSONurl_site_list.rda",
                        package = "bomrang")
   save(
@@ -256,15 +256,15 @@ update_station_locations <- function() {
     compress = "bzip2",
     version = 2
   )
-  
+
   stations_site_list <-
     stations_site_list %>%
     dplyr::select(-state_code, -url) %>%
     dplyr::filter(end == lubridate::year(Sys.Date()))
-  
+
   stations_site_list$site <-
     gsub("^0{1,2}", "", stations_site_list$site)
-  
+
   fname <-
     system.file("extdata", "stations_site_list.rda", package = "bomrang")
   save(stations_site_list, file = fname, compress = "bzip2")

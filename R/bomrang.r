@@ -2,7 +2,7 @@
 #' Australian government Bureau of Meteorology (\acronym{BOM}) data client
 #'
 #' @name bomrang
-#' @author Adam H Sparks and Jonathan Carroll and James Goldie and Dean
+#' @author Adam H. Sparks and Jonathan Carroll and James Goldie and Dean
 #' Marchiori and Paul Melloy and Mark Padgham and Hugh Parsonage and Keith
 #' Pembleton
 #' @docType package

@@ -14,10 +14,10 @@
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.1",
+    "version": "3.6.2",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.1 (2019-07-05)",
+  "runtimePlatform": "R version 3.6.2 (2019-12-12)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -27,7 +27,7 @@
   "author": [
     {
       "@type": "Person",
-      "givenName": "Adam",
+      "givenName": "Adam H.",
       "familyName": "Sparks",
       "email": "adamhsparks@gmail.com",
       "@id": "https://orcid.org/0000-0002-0061-8359"
@@ -84,7 +84,7 @@
   "maintainer": [
     {
       "@type": "Person",
-      "givenName": "Adam",
+      "givenName": "Adam H.",
       "familyName": "Sparks",
       "email": "adamhsparks@gmail.com",
       "@id": "https://orcid.org/0000-0002-0061-8359"
@@ -518,7 +518,7 @@
       "author": [
         {
           "@type": "Person",
-          "givenName": ["Adam", "H"],
+          "givenName": ["Adam", "H."],
           "familyName": "Sparks"
         },
         {
@@ -528,8 +528,18 @@
         },
         {
           "@type": "Person",
+          "givenName": "James",
+          "familyName": "Goldie"
+        },
+        {
+          "@type": "Person",
           "givenName": "Dean",
           "familyName": "Marchiori"
+        },
+        {
+          "@type": "Person",
+          "givenName": "Paul",
+          "familyName": "Melloy"
         },
         {
           "@type": "Person",
@@ -547,7 +557,7 @@
           "familyName": "Pembleton"
         }
       ],
-      "name": "{bomrang}: Australian Government Bureau of Meteorology (BOM) Data from R",
+      "name": "{bomrang}: Australian Government Bureau of Meteorology (BOM) Data Client",
       "url": "https://CRAN.R-project.org/package=bomrang"
     }
   ],
