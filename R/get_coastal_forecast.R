@@ -33,7 +33,7 @@
 #'  \acronym{XML} files locally for use in \pkg{bomrang}.
 #'
 #' @return
-#' Tidy \code{\link[data.table]{data.table}} of a Australia \acronym{BOM}
+#' A \code{\link[data.table]{data.table}} of an Australia \acronym{BOM}
 #' Coastal Waters Forecast. For full details of fields and units
 #' returned see Appendix 5 in the \pkg{bomrang} vignette, use \cr
 #' \code{vignette("bomrang", package = "bomrang")} to view.
