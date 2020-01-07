@@ -13,9 +13,9 @@ Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 
 \item{filepath}{A character string of the location of a \emph{single}
 \acronym{XML} file to parse.  If \var{filepath} is specified function will
-use \acronym{BOM} daily précis forecast from a local \acronym{XML} filea at
-the specified location and not the \acronym{BOM} \acronym{FTP} server.
-See Details more.}
+use \acronym{BOM} ag bulletin from a local \acronym{XML} file at the
+specified location and not the \acronym{BOM} \acronym{FTP} server. See
+Details for more.}
 }
 \value{
 Tidy \code{\link[data.table]{data.table}} of Australia \acronym{BOM} 

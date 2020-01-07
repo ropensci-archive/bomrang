@@ -10,9 +10,9 @@
 #'
 #' @param filepath A character string of the location of a \emph{single}
 #'  \acronym{XML} file to parse.  If \var{filepath} is specified function will
-#'  use \acronym{BOM} daily précis forecast from a local \acronym{XML} filea at
+#'  use \acronym{BOM} daily précis forecast from a local \acronym{XML} file at
 #'  the specified location and not the \acronym{BOM} \acronym{FTP} server.
-#'  See Details more.
+#'  See Details for more.
 #'
 #' @details Allowed state and territory postal codes, only one state per request
 #' or all using \code{AUS}.
