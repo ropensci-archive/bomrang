@@ -67,5 +67,5 @@ the \acronym{BOM} anonymous \acronym{FTP} server with spatial data \cr
 \author{
 Adam H. Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton,
  \email{keith.pembleton@usq.edu.au} and Paul Melloy
- \email{paul.melloy@usq.edu.au}
+ \email{paul@melloy.com.au}
 }

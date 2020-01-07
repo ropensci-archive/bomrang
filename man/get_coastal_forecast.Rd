@@ -64,5 +64,6 @@ Location data and other metadata come from the \acronym{BOM} anonymous
 \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00003.dbf}
 }
 \author{
-Dean Marchiori, \email{deanmarchiori@gmail.com}
+Dean Marchiori, \email{deanmarchiori@gmail.com} and Paul Melloy
+\email{paul@melloy.com.au}
 }

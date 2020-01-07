@@ -60,7 +60,7 @@
 #' \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com} and Paul Melloy
-#' \email{paul.melloy@@usq.edu.au}
+#' \email{paul@@melloy.com.au}
 #' @importFrom magrittr "%>%"
 #' @export get_ag_bulletin
 

@@ -70,5 +70,5 @@ Meteorology (\acronym{BOM}) webpage, Bureau of Meteorology Site Numbers: \cr
 }
 \author{
 Adam H. Sparks, \email{adamhsparks@gmail.com} and Paul Melloy
-\email{paul.melloy@usq.edu.au}
+\email{paul@melloy.com.au}
 }
