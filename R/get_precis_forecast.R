@@ -42,6 +42,7 @@
 #' \donttest{
 #' # get the short forecast for Queensland
 #' BOM_forecast <- get_precis_forecast(state = "QLD")
+#' BOM_forecast
 #'}
 #' @references
 #' Forecast data come from Australian Bureau of Meteorology (\acronym{BOM})
