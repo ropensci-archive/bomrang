@@ -83,7 +83,7 @@ daily records will be returned. Other stations will be newer and will
 return fewer observations.
 }
 
-\section{\code{dplyr} Compatibility}{
+\section{\pkg{dplyr} Compatibility}{
  The \code{bomrang_tbl} class is
 compatible with \code{\link[dplyr:dplyr-package]{dplyr}} as long as the
 \code{bomrang} package is on the search path. Common functions
@@ -91,7 +91,7 @@ compatible with \code{\link[dplyr:dplyr-package]{dplyr}} as long as the
 \code{\link[dplyr]{arrange}}, \code{\link[dplyr]{mutate}},
 \code{\link[dplyr:select]{rename}}, \code{\link[dplyr]{arrange}},
 \code{\link[dplyr]{slice}}, \code{\link[dplyr]{group_by}}) are provided
-which mask the dplyr versions (but use those internally, maintaining
+which mask the \pkg{dplyr} versions (but use those internally, maintaining
 attributes).
 }
 
