@@ -2,14 +2,14 @@
 % Please edit documentation in R/parse_precis_forecast.R
 \name{parse_precis_forecast}
 \alias{parse_precis_forecast}
-\title{Parse local BOM daily précis forecast file(s) for select towns}
+\title{Parse local BOM daily précis forecast XML file(s) for select towns}
 \usage{
-parse_precis_forecast(state = "AUS", filepath = NULL)
+parse_precis_forecast(state, filepath)
 }
 \arguments{
-\item{state}{Australian state or territory as full name or postal code.
-Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
-"AUS" returning all state bulletins, see Details for more.}
+\item{state}{Required value of an Australian state or territory as full name
+or postal code.  Fuzzy string matching via \code{\link[base]{agrep}} is
+done.}
 
 \item{filepath}{A string providing the directory location of the précis
 file(s) to parse. See Details for more.}
@@ -50,12 +50,19 @@ present in the directory.
 \examples{
 \donttest{
 # parse the short forecast for Queensland
+
 # download to tempfile() using basename() to keep original name
 download.file(url = "ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ11295.xml",
- destfile = file.path(tempdir(), basename(url)), mode = "wb")
-BOM_forecast <- parse_precis_forecast(state = "QLD", filepath = tempdir())
+              destfile = file.path(tempdir(),
+              basename("ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ11295.xml")),
+              mode = "wb")
+
+BOM_forecast <- parse_precis_forecast(state = "QLD",
+                                      filepath = tempdir())
+
 BOM_forecast
 }
+
 }
 \references{
 Forecast data come from Australian Bureau of Meteorology (\acronym{BOM})

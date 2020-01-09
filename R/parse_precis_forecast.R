@@ -1,14 +1,17 @@
 
-#' Parse local BOM daily précis forecast file(s) for select towns
+
+#' Parse local BOM daily précis forecast XML file(s) for select towns
 #'
 #' Parse local \acronym{BOM} daily précis forecast \acronym{XML} file(s) and
 #' return a data frame of the seven-day town forecasts for a specified state or
 #' territory or all Australia.
 #'
-#' @inheritParams get_precis_forecast
+#' @param state Required value of an Australian state or territory as full name
+#'  or postal code.  Fuzzy string matching via \code{\link[base]{agrep}} is
+#'  done.
 #'
 #' @param filepath A string providing the directory location of the précis
-#' file(s) to parse. See Details for more.
+#'  file(s) to parse. See Details for more.
 #'
 #' @details Allowed state and territory postal codes, only one state per request
 #' or all using \code{AUS}.
@@ -23,7 +26,7 @@
 #'    \item{WA}{Western Australia}
 #'    \item{AUS}{Australia, returns forecast for all states, NT and ACT}
 #'  }
-#'  
+#'
 #' @details The \var{filepath} argument will only accept a directory where files
 #' are located for parsing. DO NOT supply the full path including the file name.
 #' This function will only parse the requested state or all of Australia in the
@@ -40,12 +43,19 @@
 #' @examples
 #' \donttest{
 #' # parse the short forecast for Queensland
+#'
 #' # download to tempfile() using basename() to keep original name
 #' download.file(url = "ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ11295.xml",
-#'  destfile = file.path(tempdir(), basename(url)), mode = "wb")
-#' BOM_forecast <- parse_precis_forecast(state = "QLD", filepath = tempdir())
+#'               destfile = file.path(tempdir(),
+#'               basename("ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ11295.xml")),
+#'               mode = "wb")
+#'
+#' BOM_forecast <- parse_precis_forecast(state = "QLD",
+#'                                       filepath = tempdir())
+#'
 #' BOM_forecast
 #'}
+#'
 #' @references
 #' Forecast data come from Australian Bureau of Meteorology (\acronym{BOM})
 #' Weather Data Services \cr
@@ -63,10 +73,10 @@
 #' @export parse_precis_forecast
 #'
 
-parse_precis_forecast <- function(state = "AUS", filepath = NULL) {
+parse_precis_forecast <- function(state, filepath) {
   the_state <- .check_states(state)
   location <- .validate_filepath(filepath)
-  forecast_out <- .return_precis(file_loc = location, the_state = the_state)
-  
+  forecast_out <-
+    .return_precis(file_loc = location, cleaned_state = the_state)
   return(forecast_out[])
 }

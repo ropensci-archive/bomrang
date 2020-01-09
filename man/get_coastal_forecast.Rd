@@ -4,18 +4,12 @@
 \alias{get_coastal_forecast}
 \title{Get BOM coastal waters forecast}
 \usage{
-get_coastal_forecast(state = "AUS", filepath = NULL)
+get_coastal_forecast(state = "AUS")
 }
 \arguments{
 \item{state}{Australian state or territory as full name or postal code.
 Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 "AUS" returning all state forecasts, see details for further information.}
-
-\item{filepath}{A character string of the location of \acronym{XML} file(s)
-to parse.  If \var{filepath} is specified function will use \acronym{BOM}
-daily précis forecast from a local \acronym{XML} file at the specified
-location and not the \acronym{BOM} \acronym{FTP} server. See Details for
-more.}
 }
 \value{
 A \code{\link[data.table]{data.table}} of an Australia \acronym{BOM}
@@ -41,10 +35,6 @@ or all using \code{AUS}.
    \item{WA}{Western Australia}
    \item{AUS}{Australia, returns forecast for all states, NT and ACT}
  }
-
- In some situations, access may be restricted to insecure \acronym{FTP}
- connections. Using \var{filepath} allows you to download and save the
- \acronym{XML} files locally for use in \pkg{bomrang}.
 }
 \examples{
 \donttest{
