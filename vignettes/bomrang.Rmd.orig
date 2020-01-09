@@ -29,7 +29,7 @@ bomrang provides functions for interacting with
 [Australian Bureau of Meteorology (BOM) Weather Data
 Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BOM
 serves several types of data data as XML, JSON and SHTML files.
-This package fetches these files, parses them and return a tidy data frame.
+This package fetches these files, parses them and return a data frame.
 Satellite and radar imagery files are also made available to the public via
 anonymous FTP. bomrang provides functionality to query, fetch and create 
 `raster::stack()` objects of the GeoTIFF imagery.
@@ -38,7 +38,7 @@ anonymous FTP. bomrang provides functionality to query, fetch and create
 
 Several functions are provided by bomrang to retrieve Australian Bureau of
 Meteorology (BOM) data. A family of functions retrieve weather data and return
-tidy data frames; `get_precis_forecast()`, which retrieves the précis (short)
+data frames; `get_precis_forecast()`, which retrieves the précis (short)
 forecast; `get_current_weather()`, which fetches the current weather from a
 given station; `get_ag_bulletin()`, which retrieves the agriculture
 bulletin; `get_weather_bulletin()` which fetches the 0900 and 1500 weather
@@ -67,8 +67,8 @@ offer unambiguous station names.
 
 If `latlon` is used, the observations returned are from the station nearest to
 that latitude-longitude coordinate. `latlon` values are entered as decimal
-degrees, _e.g._ -34, 151 for Sydney. The function also emits a message, to
-tell the user which station was used.
+degrees, _e.g._ `latlon = c(-34, 151)` for Sydney. The function also emits a
+message, to tell the user which station was used.
 
 ### Results
 
@@ -186,8 +186,8 @@ codes.
 
 ### Results
 
-The function `get_weather_bulletin()` will return a tidy data frame of BOM data
-for the requested state(s) or territory.
+The function `get_weather_bulletin()` will return a data frame of BOM data for
+the requested state(s) or territory.
 
 ### Example
 
@@ -384,7 +384,7 @@ paste0(.libPaths(), "/bomrang/extdata")[1]
 unless you have specified another location for library installations and
 installed bomrang there, in which case it would still be in `bomrang/extdata`.
 
-### Using `update_forecast_towns`
+### Using update_forecast_towns()
 
 `update_forecast_towns()` downloads the latest précis forecast locations
 from the BOM server and updates bomrang's internal database of towns used for
@@ -400,7 +400,7 @@ database.
 update_forecast_towns()
 ```
 
-### Using `update_station_locations`
+### Using update_station_locations
 
 `update_station_locations()` downloads the latest station locations and metadata
 and updates bomrang's internal databases that support the use of
@@ -1045,8 +1045,8 @@ automated weather stations.
 	
 ## Appendix 2 - Output from get_precis_forecast()
 
-The function, `get_precis_forecast()`, will return a tidy data frame of the
-agriculture bulletin with the following fields:
+The function, `get_precis_forecast()`, will return a data frame of the 7 day
+short forecast with the following fields:
 
 <table>
 <tr><th>Field Name</th><th>Description</th></tr>
@@ -1085,8 +1085,8 @@ characters)</td></tr>
 
 ## Appendix 3 - Output from get_ag_bulletin()
 
-The function, `get_ag_bulletin()`, will return a tidy data frame of the
-agriculture bulletin with the following fields:
+The function, `get_ag_bulletin()`, will return a data frame of the agriculture
+bulletin with the following fields:
 
 <table>
 <tr><th>Field Name</th><th>Description</th></tr>
@@ -1129,7 +1129,7 @@ worldwide)</td></tr>
 
 ## Appendix 4 - Output from get_weather_bulletin()
 
-The function `get_weather_bulletin()` returns a tidy data frame of weather
+The function `get_weather_bulletin()` returns a data frame of weather
 observations for 0900 or 1500 for a nominated state. Observations
 differ between states, but contain some or all of the following fields. All
 units are metric (temperatures in Celsius; wind speeds in kilometres per hour;
