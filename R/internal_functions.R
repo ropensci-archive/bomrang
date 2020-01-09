@@ -1,8 +1,4 @@
 
-
-
-
-
 `%notin%` <- function(x, table) {
   match(x, table, nomatch = 0L) == 0L
 }
@@ -301,24 +297,23 @@
 #'
 #' @noRd
 .return_precis <- function(file_loc, cleaned_state) {
+  # create vector of XML files
+  AUS_XML <- c(
+    "IDN11060.xml",
+    # NSW
+    "IDD10207.xml",
+    # NT
+    "IDQ11295.xml",
+    # QLD
+    "IDS10044.xml",
+    # SA
+    "IDT16710.xml",
+    # TAS
+    "IDV10753.xml",
+    # VIC
+    "IDW14199.xml"  # WA
+  )
   if (cleaned_state != "AUS") {
-    # create vector of XML files
-    AUS_XML <- c(
-      "IDN11060.xml",
-      # NSW
-      "IDD10207.xml",
-      # NT
-      "IDQ11295.xml",
-      # QLD
-      "IDS10044.xml",
-      # SA
-      "IDT16710.xml",
-      # TAS
-      "IDV10753.xml",
-      # VIC
-      "IDW14199.xml"  # WA
-    )
-    
     xml_url <- .create_bom_file(AUS_XML,
                                 .the_state = cleaned_state,
                                 .file_loc = file_loc)
@@ -326,7 +321,7 @@
     precis_out <- .parse_precis_forecast(xml_url)
     return(precis_out[])
   } else {
-    file_list <- paste0(file_loc, AUS_XML)
+    file_list <- paste0(file_loc, "/", AUS_XML)
     precis_out <-
       lapply(X = file_list, FUN = .parse_precis_forecast)
     precis_out <- data.table::rbindlist(precis_out, fill = TRUE)
@@ -529,23 +524,22 @@
 # Ag bulletin functions for get() and parse() ----------------------------------
 .return_bulletin <- function(file_loc, cleaned_state) {
   # create vector of XML files
+  AUS_XML <- c(
+    "IDN65176.xml",
+    # NSW
+    "IDD65176.xml",
+    # NT
+    "IDQ60604.xml",
+    # QLD
+    "IDS65176.xml",
+    # SA
+    "IDT65176.xml",
+    # TAS
+    "IDV65176.xml",
+    # VIC
+    "IDW65176.xml"  # WA
+  )
   if (cleaned_state != "AUS") {
-    AUS_XML <- c(
-      "IDN65176.xml",
-      # NSW
-      "IDD65176.xml",
-      # NT
-      "IDQ60604.xml",
-      # QLD
-      "IDS65176.xml",
-      # SA
-      "IDT65176.xml",
-      # TAS
-      "IDV65176.xml",
-      # VIC
-      "IDW65176.xml"  # WA
-    )
-    
     xml_url <- .create_bom_file(AUS_XML,
                                 .the_state = cleaned_state,
                                 .file_loc = file_loc)
@@ -553,7 +547,7 @@
     bulletin_out <- .parse_bulletin(xml_url)
     return(bulletin_out[])
   } else {
-    file_list <- paste0(file_loc, AUS_XML)
+    file_list <- paste0(file_loc, "/", AUS_XML)
     bulletin_out <-
       lapply(X = file_list, FUN = .parse_bulletin)
     bulletin_out <- data.table::rbindlist(bulletin_out, fill = TRUE)
@@ -686,23 +680,23 @@
 # Coastal forecast functions for get() and parse()------------------------------
 
 .return_coastal <- function(file_loc, cleaned_state) {
+  # create vector of XML files
+  AUS_XML <- c(
+    "IDN11001.xml",
+    # NSW
+    "IDD11030.xml",
+    # NT
+    "IDQ11290.xml",
+    # QLD
+    "IDS11072.xml",
+    # SA
+    "IDT12329.xml",
+    # TAS
+    "IDV10200.xml",
+    # VIC
+    "IDW11160.xml"  # WA
+  )
   if (cleaned_state != "AUS") {
-    # create vector of XML files
-    AUS_XML <- c(
-      "IDN11001.xml",
-      # NSW
-      "IDD11030.xml",
-      # NT
-      "IDQ11290.xml",
-      # QLD
-      "IDS11072.xml",
-      # SA
-      "IDT12329.xml",
-      # TAS
-      "IDV10200.xml",
-      # VIC
-      "IDW11160.xml"  # WA
-    )
     xml_url <- .create_bom_file(AUS_XML,
                                 .the_state = cleaned_state,
                                 .file_loc = file_loc)
@@ -710,7 +704,7 @@
     coastal_out <- .parse_coastal_forecast(xml_url)
     return(coastal_out[])
   } else {
-    file_list <- paste0(file_loc, AUS_XML)
+    file_list <- paste0(file_loc, "/", AUS_XML)
     coastal_out <-
       lapply(X = file_list, FUN = .parse_coastal_forecast)
     coastal_out <- data.table::rbindlist(coastal_out, fill = TRUE)
