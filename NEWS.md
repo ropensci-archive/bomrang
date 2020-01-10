@@ -1,5 +1,29 @@
 # bomrang (development version)
 
+## Bug fixes
+
+* resolves an issue where `select()` was not recognised as being re-exported
+by bomrang from dplyr
+
+## Major changes
+
+* Requires R >= 3.5.0 now due to changes in serialisation of internal .Rds files
+used to store databases of station information
+
+* Adds three new functions to parse local XML files, not relying on R's ability
+to fetch files from an insecure FTP server
+
+  * `parse_ag_bulletin()`
+  
+  * `parse_coastal_forecast()`
+  
+  * `parse_precis_forecast()`
+
+## Minor changes
+
+* Comprehensive cleaning of the vignette and reformatting of help files for all
+functions
+
 # bomrang 0.6.1
 
 ## Bug fixes
@@ -11,7 +35,7 @@
 * Adds `skip_on_cran()` to some tests causing failures in CRAN checks that
 should not have been tested on CRAN
 
-* Fixes bug in functions returning [data.table] objects that don't print to
+* Fixes bug in functions returning data.table objects that don't print to
 console
 
 * Fixes bugs that removed station locations from internal lists being
