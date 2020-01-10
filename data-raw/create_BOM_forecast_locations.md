@@ -43,8 +43,7 @@ if (!dir.exists("../inst/extdata")) {
 
 save(AAC_codes,
      file = "../inst/extdata/AAC_codes.rda",
-     compress = "bzip2",
-     version = 2)
+     compress = "bzip2")
 ```
 
 ## Session Info
@@ -63,7 +62,7 @@ sessioninfo::session_info()
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2020-01-05                  
+    ##  date     2020-01-10                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
     ##  package     * version date       lib source        

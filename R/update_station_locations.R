@@ -253,8 +253,7 @@ update_station_locations <- function() {
   save(
     JSONurl_site_list,
     file = fname,
-    compress = "bzip2",
-    version = 2
+    compress = "bzip2"
   )
 
   stations_site_list <-

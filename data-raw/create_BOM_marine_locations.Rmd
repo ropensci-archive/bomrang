@@ -47,7 +47,7 @@ Save the marine zones to disk for use in bomrang.
     }
 
   save(marine_AAC_codes, file = "../inst/extdata/marine_AAC_codes.rda",
-     compress = "bzip2", version = 2)
+     compress = "bzip2")
 ```
 
 ## Session Info

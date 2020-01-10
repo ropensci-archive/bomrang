@@ -106,7 +106,7 @@ bom_stations_raw <-
 
 # remove extra columns for source of location
 bom_stations_raw <- bom_stations_raw[, -8]
-
+ 
 # trim the end of the rows off that have extra info that's not in columns
 nrows <- nrow(bom_stations_raw) - 3
 bom_stations_raw <- bom_stations_raw[1:nrows, ]
@@ -124,7 +124,7 @@ bom_stations_raw <-
 str(bom_stations_raw)
 ```
 
-    ## Classes 'tbl_df', 'tbl' and 'data.frame':    7078 obs. of  11 variables:
+    ## Classes 'tbl_df', 'tbl' and 'data.frame':    7074 obs. of  11 variables:
     ##  $ site  : chr  "001006" "001007" "001010" "001013" ...
     ##  $ dist  : chr  "01" "01" "01" "01" ...
     ##  $ name  : chr  "WYNDHAM AERO" "TROUGHTON ISLAND" "THEDA" "WYNDHAM" ...
@@ -141,7 +141,7 @@ str(bom_stations_raw)
 bom_stations_raw
 ```
 
-    ## # A tibble: 7,078 x 11
+    ## # A tibble: 7,074 x 11
     ##    site   dist  name            start   end   lat   lon state  elev bar_ht   wmo
     ##    <chr>  <chr> <chr>           <int> <int> <dbl> <dbl> <chr> <dbl>  <dbl> <dbl>
     ##  1 001006 01    WYNDHAM AERO     1951  2020 -15.5  128. WA      3.8    4.3 95214
@@ -154,7 +154,7 @@ bom_stations_raw
     ##  8 001020 01    TRUSCOTT         1944  2020 -14.1  126. WA     51     52.5 95101
     ##  9 001023 01    EL QUESTRO       1967  2020 -16.0  128. WA     90     NA      NA
     ## 10 001024 01    ELLENBRAE        1986  2020 -16.0  127. WA    300     NA      NA
-    ## # … with 7,068 more rows
+    ## # … with 7,064 more rows
 
 ## Check station locations
 
@@ -322,8 +322,7 @@ if (!dir.exists("../inst/extdata")) {
 # Save database
 save(JSONurl_site_list,
      file = "../inst/extdata/JSONurl_site_list.rda",
-     compress = "bzip2",
-     version = 2)
+     compress = "bzip2")
 ```
 
 ### Save station location data for `get_ag_bulletin()`
@@ -349,8 +348,7 @@ data.table::setkey(stations_site_list, "site")
 
 save(stations_site_list,
      file = "../inst/extdata/current_stations_site_list.rda",
-     compress = "bzip2",
-     version = 2)
+     compress = "bzip2")
 ```
 
 ## Session Info
@@ -365,7 +363,7 @@ save(stations_site_list,
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2020-01-05                  
+    ##  date     2020-01-10                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
     ##  package     * version date       lib source        

@@ -48,8 +48,7 @@ if (!dir.exists("../inst/extdata")) {
 
 save(AAC_codes,
      file = "../inst/extdata/AAC_codes.rda",
-     compress = "bzip2",
-     version = 2)
+     compress = "bzip2")
 ```
 
 ## Session Info
