@@ -43,7 +43,7 @@ URL: https://github.com/ropensci/bomrang, https://docs.ropensci.org/bomrang/
 BugReports: https://github.com/ropensci/bomrang/issues
 License: MIT + file LICENSE
 Depends:
-    R (>= 3.2.0)
+    R (>= 3.5.0)
 Imports:
     curl (>= 2.8.1),
     crayon,
