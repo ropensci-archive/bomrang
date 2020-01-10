@@ -28,7 +28,6 @@ test_that("Query stationid = '023000',
 test_that("Query stationid = '023000'", {
             skip_on_cran()
             ADLhistmax <- get_historical("023000", type = "max")
-            message("ADLhistmax has ", ncol(ADLhistmax), " cols")
             expect_is(ADLhistmax, "bomrang_tbl")
             expect_equal(attr(ADLhistmax, "station"), "023000")
             expect_true(nrow(ADLhistmax) > 0)
