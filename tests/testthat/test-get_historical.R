@@ -1,6 +1,7 @@
 context("Historical Observations")
 
 test_that("Error handling", {
+  skip_on_cran()
   expect_error(get_historical(), regexp = "stationid.*latlon.*provided")
   expect_error(get_historical("sodiuhfosdhfoisdh"),
                regexp = "Station not recognised")
