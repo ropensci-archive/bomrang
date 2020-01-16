@@ -78,7 +78,8 @@ Suggests:
     maps,
     mapproj,
     rappdirs,
-    roxygen2 (>= 6.1.0)
+    roxygen2 (>= 6.1.0),
+    webmockr
 RoxygenNote: 7.0.2
 NeedsCompilation: no
 ByteCompile: TRUE
