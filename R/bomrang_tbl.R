@@ -48,9 +48,5 @@ print.bomrang_tbl <- function(x, ...) {
 }
 
 .stylecat <- function(...) {
-  cat(crayon::cyan(
-    # crayon::italic(
-    paste0(...))
-    # )
-    )
+  cat(crayon::cyan(crayon::italic(paste0(...))))
 }
