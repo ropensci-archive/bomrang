@@ -34,7 +34,7 @@ print.bomrang_tbl <- function(x, ...) {
             units,
             "]",
             "\n")
-  ## dplyr groupings
+  # dplyr groupings
   if (!is.null(attr(x, "vars"))) {
     .stylecat("  Groups:\t\t", vars, paste0(" [", length(indices), "]\n"))
   }
