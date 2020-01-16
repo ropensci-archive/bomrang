@@ -1,6 +1,6 @@
 context("get_coastal_forecast")
 
-# Test that get_coastal_forecast returns a data frame with 19 colums -------------------
+# Test that get_coastal_forecast returns a data frame with 19 colums -----------
 test_that("get_coastal_forecast returns at most 22 columns", {
   skip_on_cran()
   bom_forecast <- get_coastal_forecast(state = "NSW")
@@ -26,7 +26,7 @@ test_that("get_coastal_forecast returns at most 22 columns", {
   expect_is(bom_forecast$forecast_swell1, "character")
 })
 
-# Test that get_coastal_forecast returns the requested state forecast ------------------
+# Test that get_coastal_forecast returns the requested state forecast ----------
 test_that("get_coastal_forecast returns the forecast for ACT/NSW", {
   skip_on_cran()
   bom_forecast <- get_coastal_forecast(state = "ACT")

@@ -272,7 +272,8 @@
         .the_state == "NSW" |
           .the_state == "NEW SOUTH WALES" ~ paste0(.file_loc, "/", AUS_XML[1]),
         .the_state == "NT" |
-          .the_state == "NORTHERN TERRITORY" ~ paste0(.file_loc, "/", AUS_XML[2]),
+          .the_state == "NORTHERN TERRITORY" ~ paste0(.file_loc,
+                                                      "/", AUS_XML[2]),
         .the_state == "QLD" |
           .the_state == "QUEENSLAND" ~ paste0(.file_loc, "/", AUS_XML[3]),
         .the_state == "SA" |
@@ -396,7 +397,9 @@
                                 "to",
                                 fixed = TRUE)]
     
-    out[, upper_precipitation_limit := gsub("mm", "", upper_precipitation_limit)]
+    out[, upper_precipitation_limit := gsub("mm",
+                                            "",
+                                            upper_precipitation_limit)]
     out[, precipitation_range := NULL]
     
   } else {
@@ -732,7 +735,9 @@
   .split_time_cols(x = out)
   
   # merge with aac codes for location information
-  load(system.file("extdata", "marine_AAC_codes.rda", package = "bomrang"))  # nocov
+  load(system.file("extdata",
+                   "marine_AAC_codes.rda",
+                   package = "bomrang"))  # nocov
   data.table::setkey(out, "aac")
   out <- marine_AAC_codes[out, on = c("aac", "dist_name")]
   

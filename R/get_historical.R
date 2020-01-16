@@ -23,8 +23,10 @@
 #'   **Day**:\tab Day of observation (1-31).\cr
 #'   **Min_temperature**:\tab Minimum daily recorded temperature (degrees C).\cr
 #'   **Max_temperature**:\tab Maximum daily recorded temperature (degrees C).\cr
-#'   **Accum_days_min**:\tab Accumulated number of days of minimum temperature.\cr
-#'   **Accum_days_max**:\tab Accumulated number of days of maximum temperature.\cr
+#'   **Accum_days_min**:\tab Accumulated number of days of minimum
+#'    temperature.\cr
+#'   **Accum_days_max**:\tab Accumulated number of days of maximum 
+#'   temperature.\cr
 #'   **Rainfall**:\tab Daily recorded rainfall in mm.\cr
 #'   **Period**:\tab Period over which rainfall was measured.\cr
 #'   **Solar_exposure**:\tab Daily global solar exposure in MJ/m^2.\cr
@@ -293,9 +295,12 @@ get_historical <- get_historical_weather <-
 #' @noRd
 
 .get_zip_url <- function(site, code = 122) {
+  
+  base_url <- "http://www.bom.gov.au/jsp/ncc/cdio/weatherData/"
   url1 <-
     paste0(
-      "http://www.bom.gov.au/jsp/ncc/cdio/weatherData/av?p_stn_num=",
+      base_url,
+      "av?p_stn_num=",
       site,
       "&p_display_type=availableYears&p_nccObsCode=",
       code
@@ -306,7 +311,8 @@ get_historical <- get_historical_weather <-
   pc <- sub("^.*:", "", raw)
   url2 <-
     paste0(
-      "http://www.bom.gov.au/jsp/ncc/cdio/weatherData/av?p_display_type=dailyZippedDataFile&p_stn_num=",
+      base_url,
+      "av?p_display_type=dailyZippedDataFile&p_stn_num=",
       site,
       "&p_c=",
       pc,

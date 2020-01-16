@@ -36,8 +36,10 @@ station/product type, with some subset of the following columns
 \strong{Day}:\tab Day of observation (1-31).\cr
 \strong{Min_temperature}:\tab Minimum daily recorded temperature (degrees C).\cr
 \strong{Max_temperature}:\tab Maximum daily recorded temperature (degrees C).\cr
-\strong{Accum_days_min}:\tab Accumulated number of days of minimum temperature.\cr
-\strong{Accum_days_max}:\tab Accumulated number of days of maximum temperature.\cr
+\strong{Accum_days_min}:\tab Accumulated number of days of minimum
+temperature.\cr
+\strong{Accum_days_max}:\tab Accumulated number of days of maximum
+temperature.\cr
 \strong{Rainfall}:\tab Daily recorded rainfall in mm.\cr
 \strong{Period}:\tab Period over which rainfall was measured.\cr
 \strong{Solar_exposure}:\tab Daily global solar exposure in MJ/m^2.\cr

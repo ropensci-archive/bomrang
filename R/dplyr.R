@@ -105,7 +105,8 @@ group_by.bomrang_tbl <- function(.data, ...) {
   attribs <- attributes(.data)[setdiff(.bomrang_attribs, "class")]
   .data <- NextMethod(.data)
   attributes(.data) <- utils::modifyList(attributes(.data), attribs)
-  attr(.data, "class") <- union(c("bomrang_tbl", "data.table", "grouped_df"), attr(.data, "class"))
+  attr(.data, "class") <- union(c("bomrang_tbl", "data.table", "grouped_df"),
+                                attr(.data, "class"))
   .data
 }
 

@@ -20,7 +20,6 @@ manage_cache <- NULL # nocov start
 # This function is never called.
 # It only supresses the "Namespaces in Imports field not imported from:" check
 # Suggested by @jeroen in rOpenSci Slack
-# https://github.com/opencpu/opencpu/blob/10469ee3ddde0d0dca85bd96d2873869d1a64cd6/R/utils.R#L156-L165
 
 stub <- function(){
   rgdal::readGDAL()
