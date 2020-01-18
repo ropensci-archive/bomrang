@@ -11,31 +11,29 @@
 }
 
 #' Get response from a BOM URL
-#' 
+#'
 #' Gets response from a BOM URL, checks for response first, then
 #' tries to fetch the data or returns an informatative message, failing
 #' gracefully per CRAN policies.
-#' 
+#'
 #' @param remote_file file resource being requested from BOM
-#' 
+#'
 #' @details Original execution came from
 #' <https://community.rstudio.com/t/internet-resources-should-fail-gracefully/49199/12>
-#' 
+#'
 #' @author Adam H. Sparks, adamhsparks@@gmail.com
 #' @noRd
-#' 
+#'
 .get_url <- function(remote_file) {
   try_GET <- function(x, ...) {
-    tryCatch(
-      {
+    tryCatch({
       response = curl::curl_fetch_memory(url = x,
                                          handle = curl::new_handle())
-      },
-      error = function(e)
-        conditionMessage(e),
-      warning = function(w)
-        conditionMessage(w)
-    )
+    },
+    error = function(e)
+      conditionMessage(e),
+    warning = function(w)
+      conditionMessage(w))
   }
   # a proper response will return a list class object
   # otherwise a timeout will just be a character string
@@ -52,9 +50,11 @@
   resp <- try_GET(x = remote_file)
   # Then stop if status > 400
   if (as.integer(resp$status_code) == 404) {
-    stop(call. = FALSE,
+    stop(
+      call. = FALSE,
       "\nA file or station was matched. However, a corresponding file was not ",
-      "found at bom.gov.au.\n")
+      "found at bom.gov.au.\n"
+    )
   } # Then check for timeout problems
   if (!is_response(resp)) {
     message(resp) # return char string value server provides
@@ -68,7 +68,7 @@
   if (tools::file_ext(remote_file) == "json") {
     json_out <-
       jsonlite::fromJSON(rawToChar(resp$content))
-      return(json_out)
+    return(json_out)
   }
   if (tools::file_ext(remote_file) == "tif") {
     raster_out <- raster::raster()
@@ -404,7 +404,16 @@
     upper_precipitation_limit <- lower_precipitation_limit <-
     NULL # nocov end
   
-  xml_object <- .get_url(.file_loc)
+  # load the XML from ftp
+  if (substr(.file_loc, 1, 3) == "ftp") {
+    xml_object <- .get_url(.file_loc)
+    if (is.null(xml_object)) {
+      return(invisible(NULL))
+    }
+  }
+  
+  # load the XML from local
+  xml_object <- xml2::read_xml(.file_loc)
   
   out <- .parse_precis_xml(xml_object)
   
@@ -620,10 +629,16 @@
   stations_site_list <-
     site <- obs_time_local <- obs_time_utc <-  NULL # nocov
   
-  xml_object <- .get_url(xml_url)
-  if (is.null(xml_object)) {
-    return(invisible(NULL))
+  # load the XML from ftp
+  if (substr(xml_url, 1, 3) == "ftp") {
+    xml_object <- .get_url(xml_url)
+    if (is.null(xml_object)) {
+      return(invisible(NULL))
+    }
   }
+  
+  # load the XML from local
+  xml_object <- xml2::read_xml(xml_url)
   
   # get definitions (and all possible value fields to check against)
   definition_attrs <- xml2::xml_find_all(xml_object, "//data-def")
@@ -787,11 +802,16 @@
     state_code <-
     tropical_system_location <- forecast_waves <- NULL # nocov end
   
-  # download the XML forecast
-  xml_object <- .get_url(xml_url)
-  if (is.null(xml_object)) {
-    return(invisible(NULL))
+  # load the XML from ftp
+  if (substr(xml_url, 1, 3) == "ftp") {
+    xml_object <- .get_url(xml_url)
+    if (is.null(xml_object)) {
+      return(invisible(NULL))
+    }
   }
+  
+  # load the XML from local
+  xml_object <- xml2::read_xml(xml_url)
   
   out <- .parse_coastal_xml(xml_object)
   
