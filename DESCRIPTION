@@ -61,6 +61,7 @@ Imports:
     readr (>= 1.1.1),
     rvest,
     tidyr (>= 0.6.3),
+    tools,
     utils,
     xml2 (>= 1.1.1)
 Encoding: UTF-8
@@ -78,8 +79,7 @@ Suggests:
     maps,
     mapproj,
     rappdirs,
-    roxygen2 (>= 6.1.0),
-    webmockr
+    roxygen2 (>= 6.1.0)
 RoxygenNote: 7.0.2
 NeedsCompilation: no
 ByteCompile: TRUE

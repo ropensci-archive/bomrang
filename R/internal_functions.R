@@ -10,6 +10,75 @@
   suppressWarnings(as.double(v))
 }
 
+#' Get response from a BOM URL
+#' 
+#' Gets response from a BOM URL, checks for response first, then
+#' tries to fetch the data or returns an informatative message, failing
+#' gracefully per CRAN policies.
+#' 
+#' @param remote_file file resource being requested from BOM
+#' 
+#' @details Original execution came from
+#' <https://community.rstudio.com/t/internet-resources-should-fail-gracefully/49199/12>
+#' 
+#' @author Adam H. Sparks, adamhsparks@@gmail.com
+#' @noRd
+#' 
+.get_url <- function(remote_file) {
+  try_GET <- function(x, ...) {
+    
+    tryCatch(
+      {
+      response = curl::curl_fetch_memory(url = x,
+                                         handle = curl::new_handle())
+      },
+      error = function(e)
+        conditionMessage(e),
+      warning = function(w)
+        conditionMessage(w)
+    )
+  }
+  # a proper response will return a list class object
+  # otherwise a timeout will just be a character string
+  is_response <- function(x) {
+    class(x) == "list"
+  }
+  
+  # First check internet connection
+  if (!curl::has_internet()) {
+    message("No Internet connection.")
+    return(invisible(NULL))
+  }
+  # Then try for timeout problems
+  resp <- try_GET(x = remote_file)
+  if (!is_response(resp)) {
+    message(resp)
+    return(invisible(NULL))
+  }
+  # Then stop if status > 400
+  if (resp$status_code == 404) {
+    httr::message_for_status(resp)
+    return(invisible(NULL))
+  }
+  
+  # Or then stop if the file is not found
+  if (resp == "Given file does not exist") {
+    message("The file requested was not found.")
+    return(invisible(NULL))
+  }
+  
+  if (tools::file_ext(remote_file) == "xml") {
+    xml_out <- xml2::read_xml(rawToChar(resp$content))
+    return(xml_out)
+  } else if (tools::file_ext(remote_file) == "tif") {
+    raster_out <- raster::raster()
+    return(raster_out)
+  } else if (tools::file_ext(remote_file) == "gif") {
+    raster_out <- raster::raster()
+    return(raster_out)
+  }
+}
+
 # Distance over a great circle. Reasonable approximation.
 .haversine_distance <- function(lat1, lon1, lat2, lon2) {
   # to radians
@@ -168,26 +237,6 @@
     stop("Unable to determine state")
   
   return(state)
-}
-
-#' Import BOM XML Files from Server Into R Session
-#'
-#' @param data_loc Location of XML file(s) to be downloaded/parsed/loaded.
-#'
-#' @return data loaded from the XML file
-#' @keywords internal
-#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
-#' @noRd
-.get_xml <- function(xml_url) {
-  tryCatch({
-    xml_object <- xml2::read_xml(x = xml_url)
-  },
-  error = function(x)
-    stop(
-      "\nThe server with the files is not responding. ",
-      "Please retry again later.\n"
-    ))
-  return(xml_object)
 }
 
 #' splits time cols and removes extra chars for forecast XML objects
@@ -351,7 +400,7 @@
     upper_precipitation_limit <- lower_precipitation_limit <-
     NULL # nocov end
   
-  xml_object <- .get_xml(.file_loc)
+  xml_object <- .get_url(.file_loc)
   
   out <- .parse_precis_xml(xml_object)
   
@@ -564,7 +613,7 @@
   stations_site_list <-
     site <- obs_time_local <- obs_time_utc <-  NULL # nocov
   
-  xml_object <- .get_xml(xml_url)
+  xml_object <- .get_url(xml_url)
   
   # get definitions (and all possible value fields to check against)
   definition_attrs <- xml2::xml_find_all(xml_object, "//data-def")
@@ -726,8 +775,7 @@
     tropical_system_location <- forecast_waves <- NULL # nocov end
   
   # download the XML forecast
-  # see internal functions for .get_xml() shared function
-  xml_object <- .get_xml(xml_url)
+  xml_object <- .get_url(xml_url)
   
   out <- .parse_coastal_xml(xml_object)
   
