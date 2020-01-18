@@ -227,6 +227,9 @@ get_current_weather <-
     }
     
     observations.json <- .get_url(remote_file = json_url)
+    if (is.null(observations.json)) {
+      return(invisible(NULL))
+    }
     
     if ("observations" %notin% names(observations.json) ||
         "data" %notin% names(observations.json$observations)) {

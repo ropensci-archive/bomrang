@@ -370,6 +370,9 @@
                                 .file_loc = file_loc)
     
     precis_out <- .parse_precis_forecast(xml_url)
+    if (is.null(precis_out)) {
+      return(invisible(NULL))
+    }
     return(precis_out[])
   } else {
     file_list <- paste0(file_loc, "/", AUS_XML)
@@ -598,6 +601,9 @@
                                 .file_loc = file_loc)
     
     bulletin_out <- .parse_bulletin(xml_url)
+    if (is.null(bulletin_out)) {
+      return(invisible(NULL))
+    }
     return(bulletin_out[])
   } else {
     file_list <- paste0(file_loc, "/", AUS_XML)
@@ -615,6 +621,9 @@
     site <- obs_time_local <- obs_time_utc <-  NULL # nocov
   
   xml_object <- .get_url(xml_url)
+  if (is.null(xml_object)) {
+    return(invisible(NULL))
+  }
   
   # get definitions (and all possible value fields to check against)
   definition_attrs <- xml2::xml_find_all(xml_object, "//data-def")
@@ -755,6 +764,9 @@
                                 .file_loc = file_loc)
     
     coastal_out <- .parse_coastal_forecast(xml_url)
+    if (is.null(coastal_out)) {
+      return(invisible(NULL))
+    }
     return(coastal_out[])
   } else {
     file_list <- paste0(file_loc, "/", AUS_XML)
@@ -777,6 +789,9 @@
   
   # download the XML forecast
   xml_object <- .get_url(xml_url)
+  if (is.null(xml_object)) {
+    return(invisible(NULL))
+  }
   
   out <- .parse_coastal_xml(xml_object)
   
