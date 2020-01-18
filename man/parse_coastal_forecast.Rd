@@ -2,7 +2,7 @@
 % Please edit documentation in R/parse_coastal_forecast.R
 \name{parse_coastal_forecast}
 \alias{parse_coastal_forecast}
-\title{Parse local BOMBOM coastal waters forecast XML files}
+\title{Parse local BOM coastal waters forecast XML files}
 \usage{
 parse_coastal_forecast(state = "AUS", filepath)
 }

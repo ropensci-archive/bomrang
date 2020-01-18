@@ -1,6 +1,5 @@
 
-
-#' Parse local BOMBOM coastal waters forecast XML files
+#' Parse local BOM coastal waters forecast XML files
 #'
 #' Parse local \acronym{BOM} daily coastal waters forecast \acronym{XML} file(s)
 #'  and return a data frame for a specified state or territory or all Australia.
