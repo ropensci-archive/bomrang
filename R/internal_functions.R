@@ -26,7 +26,6 @@
 #' 
 .get_url <- function(remote_file) {
   try_GET <- function(x, ...) {
-    
     tryCatch(
       {
       response = curl::curl_fetch_memory(url = x,
@@ -49,31 +48,33 @@
     message("No Internet connection.")
     return(invisible(NULL))
   }
-  # Then try for timeout problems
-  resp <- try_GET(x = remote_file)
-  if (!is_response(resp)) {
-    message(resp)
-    return(invisible(NULL))
-  }
-  # Then stop if status > 400
-  if (resp$status_code == 404) {
-    httr::message_for_status(resp)
-    return(invisible(NULL))
-  }
   
-  # Or then stop if the file is not found
-  if (resp == "Given file does not exist") {
-    message("The file requested was not found.")
+  resp <- try_GET(x = remote_file)
+  # Then stop if status > 400
+  if (as.integer(resp$status_code) == 404) {
+    stop(call. = FALSE,
+      "\nA file or station was matched. However, a corresponding file was not ",
+      "found at bom.gov.au.\n")
+  } # Then check for timeout problems
+  if (!is_response(resp)) {
+    message(resp) # return char string value server provides
     return(invisible(NULL))
   }
   
   if (tools::file_ext(remote_file) == "xml") {
     xml_out <- xml2::read_xml(rawToChar(resp$content))
     return(xml_out)
-  } else if (tools::file_ext(remote_file) == "tif") {
+  }
+  if (tools::file_ext(remote_file) == "json") {
+    json_out <-
+      jsonlite::fromJSON(rawToChar(resp$content))
+      return(json_out)
+  }
+  if (tools::file_ext(remote_file) == "tif") {
     raster_out <- raster::raster()
     return(raster_out)
-  } else if (tools::file_ext(remote_file) == "gif") {
+  }
+  if (tools::file_ext(remote_file) == "gif") {
     raster_out <- raster::raster()
     return(raster_out)
   }

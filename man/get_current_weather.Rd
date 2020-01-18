@@ -33,7 +33,7 @@ indicating which station was actually used (\emph{i.e.}, which station was
 found to be nearest to the given coordinate).}
 }
 \value{
-A \code{bomrang_tbl} object (extension of a 
+A \code{bomrang_tbl} object (extension of a
 \code{\link[base]{data.frame}})  of requested BOM station's current and prior
  72hr data. For full details of fields and units returned, see Appendix 1
  in the \pkg{bomrang} vignette, use \cr
@@ -71,11 +71,11 @@ for a complete list of fields and units.
 \references{
 Weather data observations are retrieved from:
 Australian Bureau of Meteorology (\acronym{BOM}) Weather Data Services,
-Observations - individual stations: 
+Observations - individual stations:
 \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 
 Station location and other metadata are sourced from the Australian Bureau of
-Meteorology (\acronym{BOM}) webpage, Bureau of Meteorology Site Numbers: 
+Meteorology (\acronym{BOM}) webpage, Bureau of Meteorology Site Numbers:
 \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 }
 \author{
