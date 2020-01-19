@@ -1,11 +1,12 @@
 
 context("Cache directory handling")
 
-# set up the cache in tempdir() for testing on CRAN
+# set up the cache in tempdir() for testing
 manage_cache$cache_path_set("foobar", type = "tempdir")
 
 # test that .set_cache() creates a cache directory if none exists --------------
 test_that("test that set_cache creates a cache directory if none exists", {
+  skip_on_cran()
   cache <- TRUE
   .set_cache(cache)
   expect_true(dir.exists(manage_cache$cache_path_get()))
@@ -18,6 +19,7 @@ test_that("test that set_cache creates a cache directory if none exists", {
 # test that .set_cache() does a cache directory if cache is FALSE --------------
 
 test_that("test that set_cache does not create a dir if cache == FALSE", {
+  skip_on_cran()
   cache <- FALSE
   cache_dir <- .set_cache(cache)
   expect_true(cache_dir == tempdir())
@@ -27,6 +29,7 @@ test_that("test that set_cache does not create a dir if cache == FALSE", {
 test_that("cache directory is created if necessary", {
   # if cache directory exists during testing, remove it
   # clean up before testing
+  skip_on_cran()
   if (dir.exists(manage_cache$cache_path_get())) {
     unlink(manage_cache$cache_path_get(),
            recursive = TRUE,

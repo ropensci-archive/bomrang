@@ -7,7 +7,6 @@ test_that("get_coastal_forecast returns at most 22 columns", {
   bom_forecast <- get_coastal_forecast(state = "NSW")
   expect_lte(ncol(bom_forecast), 22)
   expect_equal(bom_forecast[["state_code"]][1], "NSW")
-
   expect_is(bom_forecast$index, "factor")
   expect_is(bom_forecast$product_id, "character")
   expect_is(bom_forecast$type, "character")
@@ -103,7 +102,6 @@ test_that("parse_coastal_forecast returns at most 22 columns",
               parse_coastal_forecast(state = "NSW", filepath = tempdir())
             expect_lte(ncol(bom_forecast), 22)
             expect_equal(bom_forecast[["state_code"]][1], "NSW")
-            
             expect_is(bom_forecast$index, "factor")
             expect_is(bom_forecast$product_id, "character")
             expect_is(bom_forecast$type, "character")

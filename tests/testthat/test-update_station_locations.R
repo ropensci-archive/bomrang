@@ -1,7 +1,6 @@
 
-context("update_station_locations")
+context("update_station_locations()")
 
-# If input is no, don't proceed ------------------------------------------------
 test_that("update_station_locations() stops if 'no'", {
   skip_on_cran()
   
@@ -14,12 +13,10 @@ test_that("update_station_locations() stops if 'no'", {
   close(f)
 })
 
-# update_station_locations downloads and imports the proper file ---------------
 
 test_that("update_station_locations() downloads and imports the proper file",
           {
             skip_on_cran()
-            
             f <- file()
             options(bomrang.connection = f)
             ans <- "yes"

@@ -291,4 +291,3 @@ test_that("parse_precis_forecast() stops if the state is recognised", {
   state <- "Kansas"
   expect_error(parse_precis_forecast(state = state, filepath = tempdir()))
 })
-

@@ -1,7 +1,6 @@
 
-context("update_forecast_locations")
+context("update_forecast_locations()")
 
-# If input is no, don't proceed ------------------------------------------------
 test_that("update_forecast_towns() stops if 'no'", {
   skip_on_cran()
   
@@ -14,7 +13,6 @@ test_that("update_forecast_towns() stops if 'no'", {
   close(f)
 })
 
-# update_forecast_locations() downloads and imports the proper file ------------
 test_that("update_forecast_towns() downloads and imports proper file", {
   skip_on_cran()
   f <- file()
