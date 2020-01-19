@@ -2,7 +2,7 @@
 #' Get BOM 0900 or 1500 weather bulletin
 #'
 #' Fetch the daily \acronym{BOM} 0900 or 1500 weather bulletins and return a
-#' tidy data frame for a specified state or territory.
+#' data frame for a specified state or territory.
 #'
 #' @param state Australian state or territory as full name or postal code.
 #' Fuzzy string matching via \code{\link[base]{agrep}} is done.
@@ -28,10 +28,10 @@
 #' \code{"NAs introduced by coercion"}.
 #'
 #' @return
-#' Tidy data frame of Australian 9am or 3pm weather observations for a state.
-#' For full details of fields and units returned see Appendix 4,
-#' "Appendix 4 - Output from get_weather_bulletin()" in the \pkg{bomrang}
-#' vignette, use \cr
+#' Data frame as a \code{\link[data.table]{data.table}} object of Australian 9am
+#' or 3pm weather observations for a state. For full details of fields and units
+#' returned see Appendix 4, "Appendix 4 - Output from get_weather_bulletin()"
+#' in the \pkg{bomrang} vignette, use \cr
 #' \code{vignette("bomrang", package = "bomrang")} to view.
 #'
 #' @examples
@@ -48,9 +48,11 @@
 #' @export get_weather_bulletin
 
 get_weather_bulletin <- function(state = "qld", morning = TRUE) {
+  
   the_state <- .convert_state(state) # see internal_functions.R
   if (the_state == "AUS") {
-    stop("Weather bulletins can only be extracted for individual states.")
+    stop(call. = FALSE,
+         "Weather bulletins can only be extracted for individual states.")
   }
 
   if (morning) {
@@ -125,8 +127,9 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
     convert = TRUE
   ) %>%
     dplyr::mutate_at(.funs = as.numeric,
-                     .vars = vars)
-
+                     .vars = vars) %>% 
+    dplyr::mutate_all(na_if,"")
+  
   names(out) <- sub("current_details_", "", names(out))
   names(out) <- sub("x24_hour_details_", "", names(out))
   names(out) <- sub("x6_hour_details_", "", names(out))
@@ -206,7 +209,8 @@ tidy_bulletin_header <- function(bull) {
     names(bull) <- paste0(r1, r2, r3)
     bull <- bull[3:nrow(bull), ]
   } else {
-    stop("Weather bulletin has unrecognised format.")
+    stop("Weather bulletin has unrecognised format.",
+         call. = FALSE)
   }
 
   bull
