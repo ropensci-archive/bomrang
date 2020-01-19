@@ -1,8 +1,7 @@
 
-context("Radar imagery")
+context("Available radar imagery")
 
-# get_available_radar 
-
+# get_available_radar()---------------------------------------------------------
 test_that("get_available_radar error handling works", {
   skip_on_cran()
   expect_error(expect_warning(get_available_radar(radar_id = "abc")))
@@ -28,7 +27,9 @@ test_that("get_available_radar functions properly", {
 })
 
 
-# get_radar_imagery
+context("Fetching radar imagery")
+
+# get_radar_imagery()-----------------------------------------------------------
 
 test_that("Error handling works", {
   skip_on_cran()
@@ -36,6 +37,7 @@ test_that("Error handling works", {
   expect_error(expect_warning(get_radar_imagery()))
   expect_error(get_radar_imagery(c("IDR032", "IDR022")))
 })
+
 
 
 test_that("get_radar_imagery functions properly", {
