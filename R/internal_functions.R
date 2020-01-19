@@ -185,6 +185,9 @@
     substring(gsub("[[:punct:]]", "", tolower(state)), 1, 2)
   
   state_code <- c(
+    "AUS",
+    "AUS",
+    "AUS",
     "NSW",
     "NSW",
     "VIC",
@@ -205,6 +208,9 @@
     "NT"
   )
   state_names <- c(
+    "au",
+    "oz",
+    "as",
     "ne",
     "ns",
     "vi",
