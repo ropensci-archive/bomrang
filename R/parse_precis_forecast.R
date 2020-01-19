@@ -70,6 +70,9 @@
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com} and Keith Pembleton,
 #'  \email{keith.pembleton@@usq.edu.au} and Paul Melloy,
 #'  \email{paul@@melloy.com.au}
+#'  
+#' @seealso get_precis_forecast
+#'  
 #' @export parse_precis_forecast
 #'
 

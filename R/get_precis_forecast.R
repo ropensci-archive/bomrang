@@ -22,10 +22,6 @@
 #'    \item{AUS}{Australia, returns forecast for all states, NT and ACT}
 #'  }
 #'
-#'  In some situations, access may be restricted to insecure \acronym{FTP}
-#'  connections. Using \var{filepath} allows you to download and save the
-#'  \acronym{XML} files locally for use in \pkg{bomrang}.
-#'
 #' @return
 #' A \code{\link[data.table]{data.table}} of an Australia \acronym{BOM} précis
 #' seven day forecasts for \acronym{BOM} selected towns.  For full details of
@@ -52,6 +48,9 @@
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com} and Keith Pembleton,
 #'  \email{keith.pembleton@@usq.edu.au} and Paul Melloy, 
 #'  \email{paul@@melloy.com.au}
+#'  
+#' @seealso parse_precis_forecast
+#'  
 #' @export get_precis_forecast
 
 get_precis_forecast <- function(state = "AUS") {

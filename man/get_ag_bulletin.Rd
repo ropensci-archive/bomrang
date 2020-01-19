@@ -12,7 +12,7 @@ Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 "AUS" returning all state bulletins, see Details for more.}
 }
 \value{
-A \code{\link[data.table]{data.table}} of Australia \acronym{BOM}
+Tidy \code{\link[data.table]{data.table}} of Australia \acronym{BOM}
  agricultural bulletin information.  For full details of fields and units
  returned see Appendix 3 in the \pkg{bomrang} vignette, use \cr
  \code{vignette("bomrang", package = "bomrang")} to view.
@@ -35,10 +35,6 @@ or all using \code{AUS}.
    \item{WA}{Western Australia}
    \item{AUS}{Australia, returns forecast for all states, NT and ACT}
  }
-
- In some situations, access may be restricted to insecure \acronym{FTP}
- connections. Using \var{filepath} allows you to download and save the
- \acronym{XML} files locally for use in \pkg{bomrang}.
 }
 \examples{
 \donttest{
@@ -61,6 +57,9 @@ Observation of Rainfall, \cr
 Station location and other metadata are sourced from the Australian Bureau of
 Meteorology (\acronym{BOM}) webpage, Bureau of Meteorology Site Numbers: \cr
 \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
+}
+\seealso{
+parse_ag_bulletin
 }
 \author{
 Adam H. Sparks, \email{adamhsparks@gmail.com} and Paul Melloy

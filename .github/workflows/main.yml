@@ -38,7 +38,7 @@ jobs:
           r-version: ${{ matrix.config.r }}
 
       - uses: r-lib/actions/setup-pandoc@master
-      
+
       - name: Install apt spatial libs
         if: runner.os == 'Linux'
         env:

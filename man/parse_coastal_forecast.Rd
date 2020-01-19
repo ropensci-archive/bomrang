@@ -71,6 +71,9 @@ Location data and other metadata come from the \acronym{BOM} anonymous
 \acronym{DBF} file portion of a shapefile, \cr
 \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00003.dbf}
 }
+\seealso{
+get_coastal_forecast
+}
 \author{
 Dean Marchiori, \email{deanmarchiori@gmail.com} and Paul Melloy
 \email{paul@melloy.com.au}

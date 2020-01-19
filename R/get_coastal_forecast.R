@@ -1,5 +1,4 @@
 
-
 #' Get BOM coastal waters forecast
 #'
 #' Fetch the \acronym{BOM} daily Coastal Waters Forecast and return a data frame
@@ -47,6 +46,9 @@
 #'
 #' @author Dean Marchiori, \email{deanmarchiori@@gmail.com} and Paul Melloy
 #' \email{paul@@melloy.com.au}
+#' 
+#' @seealso parse_coastal_forecast()
+#' 
 #' @export get_coastal_forecast
 
 get_coastal_forecast <- function(state = "AUS") {

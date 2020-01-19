@@ -1,5 +1,4 @@
 
-
 #' Get BOM agriculture bulletin information for select stations
 #'
 #' Fetch the \acronym{BOM} agricultural bulletin information and return it in a
@@ -23,11 +22,8 @@
 #'    \item{AUS}{Australia, returns forecast for all states, NT and ACT}
 #'  }
 #'
-#'  In some situations, access may be restricted to insecure \acronym{FTP}
-#'  connections. Using \var{filepath} allows you to download and save the
-#'  \acronym{XML} files locally for use in \pkg{bomrang}.
-#'
-#' @return A \code{\link[data.table]{data.table}} of Australia \acronym{BOM}
+#' @return
+#'  Tidy \code{\link[data.table]{data.table}} of Australia \acronym{BOM}
 #'  agricultural bulletin information.  For full details of fields and units
 #'  returned see Appendix 3 in the \pkg{bomrang} vignette, use \cr
 #'  \code{vignette("bomrang", package = "bomrang")} to view.
@@ -56,12 +52,14 @@
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com} and Paul Melloy
 #' \email{paul@@melloy.com.au}
 #'
+#' @seealso parse_ag_bulletin
+#'
 #' @export get_ag_bulletin
 
 get_ag_bulletin <- function(state = "AUS") {
   # this is just a placeholder for functionality with parse_ag_bulletin()
   filepath <- NULL
-  
+
   # see internal_functions.R for these functions
   the_state <- .check_states(state)
   location <- .validate_filepath(filepath)

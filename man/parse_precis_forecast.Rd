@@ -75,6 +75,9 @@ the \acronym{BOM} anonymous \acronym{FTP} server with spatial data \cr
 \acronym{DBF} file portion of a shapefile, \cr
 \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 }
+\seealso{
+get_precis_forecast
+}
 \author{
 Adam H. Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton,
  \email{keith.pembleton@usq.edu.au} and Paul Melloy,

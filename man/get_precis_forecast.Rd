@@ -35,10 +35,6 @@ or all using \code{AUS}.
    \item{WA}{Western Australia}
    \item{AUS}{Australia, returns forecast for all states, NT and ACT}
  }
-
- In some situations, access may be restricted to insecure \acronym{FTP}
- connections. Using \var{filepath} allows you to download and save the
- \acronym{XML} files locally for use in \pkg{bomrang}.
 }
 \examples{
 \donttest{
@@ -57,6 +53,9 @@ the \acronym{BOM} anonymous \acronym{FTP} server with spatial data \cr
 \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/}, specifically the
 \acronym{DBF} file portion of a shapefile, \cr
 \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
+}
+\seealso{
+parse_precis_forecast
 }
 \author{
 Adam H. Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton,
