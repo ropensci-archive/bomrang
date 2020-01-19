@@ -1,5 +1,4 @@
 
-
 #' Parse local BOM daily précis forecast XML file(s) for select towns
 #'
 #' Parse local \acronym{BOM} daily précis forecast \acronym{XML} file(s) and
