@@ -70,14 +70,6 @@
       jsonlite::fromJSON(rawToChar(resp$content))
     return(json_out)
   }
-  if (tools::file_ext(remote_file) == "tif") {
-    raster_out <- raster::raster()
-    return(raster_out)
-  }
-  if (tools::file_ext(remote_file) == "gif") {
-    raster_out <- raster::raster()
-    return(raster_out)
-  }
 }
 
 # Distance over a great circle. Reasonable approximation.
@@ -294,7 +286,7 @@
   } else {
     location <- trimws(filepath)
     if (!file.exists(location)) {
-      stop("\nDirector does not exist: ", filepath,
+      stop("\nDirectory does not exist: ", filepath,
            call. = FALSE)
     } else if (tolower(tools::file_ext(location)) == "xml") {
       stop("\nYou have provided a file, not a directory containing a file.",
