@@ -615,7 +615,7 @@
 .parse_bulletin <- function(xml_url) {
   # CRAN NOTE avoidance
   stations_site_list <-
-    site <- obs_time_local <- obs_time_utc <-  NULL # nocov
+    site <- obs_time_local <- obs_time_utc <- r <- NULL # nocov
   
   # load the XML from ftp
   if (substr(xml_url, 1, 3) == "ftp") {
