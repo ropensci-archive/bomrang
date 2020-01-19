@@ -1,4 +1,5 @@
 
+
 #' Get BOM Agriculture Bulletin Information for Select Stations
 #'
 #' Fetch the \acronym{BOM} agricultural bulletin information and return it in a
@@ -22,7 +23,7 @@
 #'  }
 #'
 #' @return
-#'  Tidy \code{\link[data.table]{data.table}} of Australia \acronym{BOM} 
+#'  Tidy \code{\link[data.table]{data.table}} of Australia \acronym{BOM}
 #'  agricultural bulletin information.  For full details of fields and units
 #'  returned see Appendix 3 in the \pkg{bomrang} vignette, use \cr
 #'  \code{vignette("bomrang", package = "bomrang")} to view.
@@ -53,7 +54,6 @@
 #' @export get_ag_bulletin
 
 get_ag_bulletin <- function(state = "AUS") {
-
   the_state <- .check_states(state) # see internal_functions.R
   
   # ftp server
@@ -110,7 +110,8 @@ get_ag_bulletin <- function(state = "AUS") {
 #' @noRd
 .parse_bulletin <- function(xml_url) {
   # CRAN NOTE avoidance
-  stations_site_list <- site <- obs_time_local <- obs_time_utc <-  NULL # nocov
+  stations_site_list <-
+    site <- obs_time_local <- obs_time_utc <-  NULL # nocov
   
   # see internal functions for .get_xml() shared function
   xml_object <- .get_xml(xml_url)
@@ -132,8 +133,8 @@ get_ag_bulletin <- function(state = "AUS") {
       xml2::xml_attr("obs-time-utc"),
     time_zone = xml2::xml_find_first(observations, ".//ancestor::obs") %>%
       xml2::xml_attr("time-zone"),
-    site =  xml2::xml_find_first(observations, ".//ancestor::obs") %>%
-      xml2:: xml_attr("site"),
+    site = xml2::xml_find_first(observations, ".//ancestor::obs") %>%
+      xml2::xml_attr("site"),
     station = xml2::xml_find_first(observations, ".//ancestor::obs") %>%
       xml2::xml_attr("station"),
     observation = observations %>% xml2::xml_attr("t"),
@@ -145,14 +146,14 @@ get_ag_bulletin <- function(state = "AUS") {
   
   out <- data.table::dcast(
     out,
-    product_id + obs_time_local + obs_time_utc + time_zone + site + station ~ 
+    product_id + obs_time_local + obs_time_utc + time_zone + site + station ~
       observation,
     value.var = "values"
   )
   
   # check that all fields are present, if not add missing col with NAs
   missing <-
-    setdiff(unlist(definition_attrs), names(out[, -c(1:5)]))
+    setdiff(unlist(definition_attrs), names(out[,-c(1:5)]))
   if (length(missing) != 0) {
     out[, eval(missing) := NA]
   }
