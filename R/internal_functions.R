@@ -392,28 +392,24 @@
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #' @noRd
 
-.parse_precis_forecast <- function(.file_loc) {
+.parse_precis_forecast <- function(xml_url) {
   # CRAN note avoidance
   AAC_codes <- # nocov start
-    attrs <- end_time_local <- precipitation_range <-
-    start_time_local <-
-    values <-  .SD <- .N <- .I <- .GRP <- .BY <- .EACHI <-
-    state <-
+    attrs <- end_time_local <- precipitation_range <- start_time_local <-
+    values <-  .SD <- .N <- .I <- .GRP <- .BY <- .EACHI <- state <-
     product_id <- probability_of_precipitation <- start_time_utc <-
-    end_time_utc <-
-    upper_precipitation_limit <- lower_precipitation_limit <-
+    end_time_utc <- upper_precipitation_limit <- lower_precipitation_limit <-
     NULL # nocov end
   
   # load the XML from ftp
-  if (substr(.file_loc, 1, 3) == "ftp") {
-    xml_object <- .get_url(.file_loc)
+  if (substr(xml_url, 1, 3) == "ftp") {
+    xml_object <- .get_url(xml_url)
     if (is.null(xml_object)) {
       return(invisible(NULL))
     }
+  } else {# load the XML from local
+    xml_object <- xml2::read_xml(xml_url)
   }
-  
-  # load the XML from local
-  xml_object <- xml2::read_xml(.file_loc)
   
   out <- .parse_precis_xml(xml_object)
   
@@ -437,9 +433,9 @@
   out[, state := gsub("_.*", "", out$aac)]
   
   # add product ID field
-  out[, product_id := substr(basename(.file_loc),
+  out[, product_id := substr(basename(xml_url),
                              1,
-                             nchar(basename(.file_loc)) - 4)]
+                             nchar(basename(xml_url)) - 4)]
   
   # remove unnecessary text from cols
   out[, probability_of_precipitation := gsub("%",
@@ -635,10 +631,9 @@
     if (is.null(xml_object)) {
       return(invisible(NULL))
     }
+  } else {# load the XML from local
+    xml_object <- xml2::read_xml(xml_url)
   }
-  
-  # load the XML from local
-  xml_object <- xml2::read_xml(xml_url)
   
   # get definitions (and all possible value fields to check against)
   definition_attrs <- xml2::xml_find_all(xml_object, "//data-def")
@@ -743,10 +738,12 @@
                format = "%Y%m%d %H%M")),
     .SDcols = c(13:14)]
   
-  # numeric
-  out[, c(4:7, 9:10, 17:30) := lapply(.SD, function(x)
-    as.numeric(x)),
-    .SDcols = c(4:7, 9:10, 17:30)]
+  # set "Tce" to 0.01
+  out[, r := gsub("Tce", "0.01", r)]
+  
+  # set numeric cols
+  out[, c(4:7, 9:10, 17:30) := lapply(.SD, as.numeric), 
+                                     .SDcols = c(4:7, 9:10, 17:30)]
   
   data.table::setcolorder(out, refcols)
   
@@ -808,10 +805,9 @@
     if (is.null(xml_object)) {
       return(invisible(NULL))
     }
+  } else {# load the XML from local
+    xml_object <- xml2::read_xml(xml_url)
   }
-  
-  # load the XML from local
-  xml_object <- xml2::read_xml(xml_url)
   
   out <- .parse_coastal_xml(xml_object)
   
