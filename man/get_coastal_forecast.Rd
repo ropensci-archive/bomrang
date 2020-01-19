@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_coastal_forecast.R
 \name{get_coastal_forecast}
 \alias{get_coastal_forecast}
-\title{Get BOM Coastal Waters Forecast}
+\title{Get BOM coastal waters forecast}
 \usage{
 get_coastal_forecast(state = "AUS")
 }
@@ -12,12 +12,14 @@ Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 "AUS" returning all state forecasts, see details for further information.}
 }
 \value{
-Tidy \code{\link[data.table]{data.table}} of a Australia \acronym{BOM}
-Coastal Waters Forecast.
+A \code{\link[data.table]{data.table}} of an Australia \acronym{BOM}
+Coastal Waters Forecast. For full details of fields and units
+returned see Appendix 5 in the \pkg{bomrang} vignette, use \cr
+\code{vignette("bomrang", package = "bomrang")} to view.
 }
 \description{
-Fetch the \acronym{BOM} daily Coastal Waters Forecast and return a tidy data
-frame of the forecast regions for a specified state or region.
+Fetch the \acronym{BOM} daily Coastal Waters Forecast and return a data frame
+of the forecast regions for a specified state or region.
 }
 \details{
 Allowed state and territory postal codes, only one state per request
@@ -51,6 +53,10 @@ Location data and other metadata come from the \acronym{BOM} anonymous
 \acronym{DBF} file portion of a shapefile, \cr
 \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00003.dbf}
 }
+\seealso{
+parse_coastal_forecast()
+}
 \author{
-Dean Marchiori, \email{deanmarchiori@gmail.com}
+Dean Marchiori, \email{deanmarchiori@gmail.com} and Paul Melloy
+\email{paul@melloy.com.au}
 }

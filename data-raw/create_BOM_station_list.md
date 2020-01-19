@@ -112,7 +112,8 @@ nrows <- nrow(bom_stations_raw) - 3
 bom_stations_raw <- bom_stations_raw[1:nrows, ]
 
 # add current year to stations that are still active
-bom_stations_raw$end[is.na(bom_stations_raw$end)] <- format(Sys.Date(), "%Y")
+bom_stations_raw["end"][is.na(bom_stations_raw["end"])] <- 
+    as.integer(format(Sys.Date(), "%Y"))
 
 # keep only currently reporting stations
 bom_stations_raw <- 
@@ -295,7 +296,7 @@ for the JSON files for stations providing weather data feeds, save the
 data as databases for *bomrang* to use.
 
 There are weather stations that do have a WMO but don’t report online,
-e.g., KIRIBATI NTC AWS or MARSHALL ISLANDS NTC AWS, in this section
+*e.g.*, KIRIBATI NTC AWS or MARSHALL ISLANDS NTC AWS, in this section
 remove these from the list and then create a database to provide URLs
 for valid JSON files providing weather data from BOM.
 

@@ -1,12 +1,16 @@
 
-#' Get BOM coastal waters forecast
+
+#' Parse local BOMBOM coastal waters forecast XML files
 #'
-#' Fetch the \acronym{BOM} daily Coastal Waters Forecast and return a data frame
-#' of the forecast regions for a specified state or region.
+#' Parse local \acronym{BOM} daily coastal waters forecast \acronym{XML} file(s)
+#'  and return a data frame for a specified state or territory or all Australia.
 #'
-#' @param state Australian state or territory as full name or postal code.
-#'  Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
-#'  "AUS" returning all state forecasts, see details for further information.
+#' @param state Required value of an Australian state or territory as full name
+#'  or postal code.  Fuzzy string matching via \code{\link[base]{agrep}} is
+#'  done.
+#'
+#' @param filepath A string providing the directory location of the coastal
+#'  forecast file(s) to parse. See Details for more.
 #'
 #' @details Allowed state and territory postal codes, only one state per request
 #' or all using \code{AUS}.
@@ -22,6 +26,12 @@
 #'    \item{AUS}{Australia, returns forecast for all states, NT and ACT}
 #'  }
 #'
+#' @details The \var{filepath} argument will only accept a directory where files
+#' are located for parsing. DO NOT supply the full path including the file name.
+#' This function will only parse the requested state or all of Australia in the
+#' same fashion as `get_coastal_forecast()`, provided that the files are all
+#' present in the directory.
+#'
 #' @return
 #' A \code{\link[data.table]{data.table}} of an Australia \acronym{BOM}
 #' Coastal Waters Forecast. For full details of fields and units
@@ -30,7 +40,16 @@
 #'
 #' @examples
 #' \donttest{
-#' coastal_forecast <- get_coastal_forecast(state = "NSW")
+#' # parse the coastal forecast for Queensland
+#'
+#' #download to tempfile() using basename() to keep original name
+#' download.file(url = "ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ11290.xml",
+#'               destfile = file.path(tempdir(),
+#'               basename("ftp://ftp.bom.gov.au/anon/gen/fwo/IDQ11290.xml")),
+#'               mode = "wb")
+#'
+#' coastal_forecast <- parse_coastal_forecast(state = "QLD",
+#'                                            filepath = tempdir())
 #' coastal_forecast
 #'}
 #' @references
@@ -47,14 +66,11 @@
 #' @author Dean Marchiori, \email{deanmarchiori@@gmail.com} and Paul Melloy
 #' \email{paul@@melloy.com.au}
 #' 
-#' @seealso parse_coastal_forecast()
+#' @seealso get_coastal_forecast
 #' 
-#' @export get_coastal_forecast
+#' @export parse_coastal_forecast
 
-get_coastal_forecast <- function(state = "AUS") {
-  # this is just a placeholder for functionality with parse_coastal_forecast()
-  filepath = NULL
-  
+parse_coastal_forecast <- function(state = "AUS", filepath) {
   # see internal_functions.R for these functions
   the_state <- .check_states(state)
   location <- .validate_filepath(filepath)

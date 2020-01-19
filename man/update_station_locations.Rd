@@ -2,7 +2,7 @@
 % Please edit documentation in R/update_station_locations.R
 \name{update_station_locations}
 \alias{update_station_locations}
-\title{Update Internal Databases with Latest \acronym{BOM} Station Metadata}
+\title{Update internal databases with latest BOM station metadata}
 \usage{
 update_station_locations()
 }
@@ -23,8 +23,8 @@ function.
 If \pkg{ASGS.foyer} is installed locally, this function will automatically
 check and correct any invalid state values for stations located in Australia.
 If \pkg{ASGS.foyer} is not installed, the function will update the internal
-database without validating the state values for stations by reported lon/lat
-location.
+database without validating the state values for stations by reported
+longitude/latitude location.
 }
 \examples{
 \dontrun{
@@ -33,9 +33,9 @@ update_station_locations()
 }
 \references{
 Station location and other metadata are sourced from the Australian Bureau of
-Meteorology (BOM) webpage, Bureau of Meteorology Site Numbers:\cr
+Meteorology (\acronym{BOM}) webpage, Bureau of Meteorology Site Numbers:\cr
 \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 }
 \author{
-Adam H Sparks, \email{adamhsparks@gmail.com}
+Adam H. Sparks, \email{adamhsparks@gmail.com}
 }

@@ -1,10 +1,10 @@
 
-#' Find Nearest BOM Forecast Towns
+#' Find nearest BOM forecast towns
 #'
 #' @param latlon A length-2 numeric vector. By default, Canberra
 #' (approximately).
-#' @return A `data.table`` of all forecast towns (in this package) sorted
-#' by distance from \var{latlon}, ascending.
+#' @return A \code{\link{data.table}} of all forecast towns (in this package)
+#' sorted by distance from \var{latlon}, ascending.
 #' @author Hugh Parsonage, \email{hugh.parsonage@@gmail.com} and
 #'  James Goldie, \email{me@@rensa.co}
 #' @importFrom data.table copy setorderv

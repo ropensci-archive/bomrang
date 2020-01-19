@@ -85,5 +85,5 @@ Australian Bureau of Meteorology (BOM) high-definition satellite images \cr
 \code{\link{manage_cache}}
 }
 \author{
-Adam H Sparks, \email{adamhsparks@gmail.com}
+Adam H. Sparks, \email{adamhsparks@gmail.com}
 }

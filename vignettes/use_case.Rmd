@@ -133,7 +133,7 @@ for (x in seq_len(nrow(subscribers_list))) {
 }
 ```
 
-The process is automated to run on a Cron job such that the précis forecast is
+The process is automated to run on a cron job such that the précis forecast is
 automatically downloaded and thresholds are calculated on a daily basis with
 email alerts being sent automatically.
 

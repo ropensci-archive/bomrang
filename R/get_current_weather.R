@@ -8,14 +8,14 @@
 #' Note this may be different to \code{full_name} in the response. See
 #' \strong{Details}.
 #' @param latlon A length-2 numeric vector giving the decimal degree
-#' latitude and longitude (in that order), \emph{e.g.} \code{latlon =
+#' latitude and longitude (in that order), \emph{e.g.}, \code{latlon =
 #' c(-34, 151)} for Sydney. When given instead of \code{station_name}, the
 #' nearest station (in this package) is used, with a message indicating the
 #' nearest such station. (See also \code{\link{sweep_for_stations}}.) Ignored if
 #' used in combination with \var{station_name}, with a warning.
 #' @param emit_latlon_msg Logical. If \code{TRUE} (the default), and
 #' \code{latlon} is selected, a message is emitted before the table is returned
-#' indicating which station was actually used (\emph{i.e.} which station was
+#' indicating which station was actually used (\emph{i.e.}, which station was
 #' found to be nearest to the given coordinate).
 #'
 #' @details

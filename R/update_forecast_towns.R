@@ -1,5 +1,5 @@
 
-#' Update Internal Database with Latest BOM Forecast Towns
+#' Update internal database with latest BOM forecast towns
 #'
 #' @description
 #' Download the latest select forecast towns from the \acronym{BOM} server and
@@ -17,11 +17,11 @@
 #' @return Updated database of \acronym{BOM} précis forecast towns
 #'
 #' @references
-#' Data are sourced from: Australian Bureau of Meteorology (BOM) webpage,
-#' "Weather Data Services",
+#' Data are sourced from: Australian Bureau of Meteorology (\acronym{BOM})
+#' webpage, "Weather Data Services",
 #' \url{http://www.bom.gov.au/catalogue/data-feeds.shtml}
 #'
-#' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
+#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #' @export update_forecast_towns
 
 update_forecast_towns <- function() {

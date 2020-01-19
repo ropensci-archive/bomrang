@@ -1,5 +1,5 @@
 
-#' Get a Listing of Available BOM Satellite GeoTIFF Imagery
+#' Get a listing of available BOM satellite GeoTIFF imagery
 #'
 #' Fetch a listing of \acronym{BOM} 'GeoTIFF' satellite imagery from
 #' \url{ftp://ftp.bom.gov.au/anon/gen/gms/} to determine which files are
@@ -40,8 +40,8 @@
 #' A vector of all available files for the requested Product ID(s).
 #'
 #' @references
-#' Australian Bureau of Meteorology (BOM) high-definition satellite images
-#' \url{http://www.bom.gov.au/australia/satellite/index.shtml}
+#' Australian Bureau of Meteorology (\acronym{BOM}) high-definition satellite
+#' images \url{http://www.bom.gov.au/australia/satellite/index.shtml}
 #'
 #' @examples
 #' \donttest{
@@ -50,7 +50,7 @@
 #' imagery <- get_available_imagery(product_id = "IDE00425")
 #' }
 #'
-#' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
+#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #' @export get_available_imagery
 
 get_available_imagery <- function(product_id = "all") {
@@ -137,7 +137,7 @@ get_available_imagery <- function(product_id = "all") {
 #' imagery <- get_satellite_imagery(product_id = avail, scans = 2)
 #' }
 
-#' @author Adam H Sparks, \email{adamhsparks@@gmail.com}
+#' @author Adam H. Sparks, \email{adamhsparks@@gmail.com}
 #' @rdname get_satellite_imagery
 #' @export get_satellite_imagery
 
@@ -151,41 +151,41 @@ get_satellite_imagery <- get_satellite <-
 
     ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/gms/"
 
-    # set the cache dir --------------------------------------------------------
+    # set the cache dir
     cache_dir <- .set_cache(cache)
 
-    # if we're feeding output from get_available_imagery(), use those values----
+    # if we're feeding output from get_available_imagery(), use those values
     if (substr(
       product_id[1],
       nchar(product_id[1]) - 3, nchar(product_id[1])
     ) == ".tif") {
       tif_files <- utils::tail(product_id, scans)
     } else {
-      # otherwise check the user entered product_id values ---------------------
+      # otherwise check the user entered product_id values
       .check_IDs(product_id)
 
       if (any(grepl("tif_files", list.files(tempdir())))) {
-        # read files already checked using available_images()-------------------
+        # read files already checked using available_images()
         tif_files <- readLines(file.path(tempdir(), "tif_files"))
       } else {
-        # check what's on the server -------------------------------------------
+        # check what's on the server 
         tif_files <- .ftp_images(product_id, bom_server = ftp_base)
       }
 
-      # filter by number of scans requested ------------------------------------
+      # filter by number of scans requested
       tif_files <- utils::tail(tif_files, scans)
     }
 
-    # check what files are available locally in the cache directory ------------
+    # check what files are available locally in the cache directory
     local_files <-
       list.files(cache_dir, pattern = "^IDE.*\\tif$")
 
-    # create list of files to download that don't exist locally ----------------
+    # create list of files to download that don't exist locally
     tif_files <- tif_files[tif_files %notin% local_files]
 
     tif_files <- paste0(ftp_base, tif_files)
 
-    # download files from server -----------------------------------------------
+    # download files from server
     tryCatch({
       Map(
         function(urls, destination)
@@ -206,7 +206,7 @@ get_satellite_imagery <- get_satellite <-
       ))
     }
     )
-    # create raster stack object of the GeoTIFF files --------------------------
+    # create raster stack object of the GeoTIFF files
     files <-
       list.files(cache_dir, pattern = "\\.tif$", full.names = TRUE)
     files <- basename(files)[basename(files) %in% basename(tif_files)]
@@ -223,7 +223,7 @@ get_satellite_imagery <- get_satellite <-
     return(read_tif)
   }
 
-# Local internal functions -----------------------------------------------------
+# Local internal functions
 #' @noRd
 .check_IDs <- function(product_id) {
   IDs <- c(
@@ -260,14 +260,14 @@ get_satellite_imagery <- get_satellite <-
 
 #' @noRd
 .ftp_images <- function(product_id, bom_server) {
-  # setup internal variables ---------------------------------------------------
+  # setup internal variables
   list_files <- curl::new_handle()
   curl::handle_setopt(list_files,
     ftp_use_epsv = TRUE,
     dirlistonly = TRUE
   )
 
-  # get file list from FTP server ----------------------------------------------
+  # get file list from FTP server
   con <- curl::curl(
     url = bom_server,
     "r",
@@ -276,10 +276,10 @@ get_satellite_imagery <- get_satellite <-
   tif_files <- readLines(con)
   close(con)
 
-  # filter only the GeoTIFF files ----------------------------------------------
+  # filter only the GeoTIFF files
   tif_files <- tif_files[grepl("^.*\\.tif", tif_files)]
 
-  # select the Product ID requested from list of files -------------------------
+  # select the Product ID requested from list of files
   if (product_id != "all") {
     tif_files <- switch(
       product_id,
@@ -377,7 +377,7 @@ get_satellite_imagery <- get_satellite <-
     tif_files
   }
 
-  # check if the Product ID requested provides any files on server -------------
+  # check if the Product ID requested provides any files on server
   if (length(tif_files) == 0 |
     tif_files[1] == "ftp://ftp.bom.gov.au/anon/gen/gms/") {
     stop(paste0("\nSorry, no files are currently available for ", product_id))

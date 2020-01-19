@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_weather_bulletins.R
 \name{get_weather_bulletin}
 \alias{get_weather_bulletin}
-\title{Get BOM 0900 or 1500 Weather Bulletin}
+\title{Get BOM 0900 or 1500 weather bulletin}
 \usage{
 get_weather_bulletin(state = "qld", morning = TRUE)
 }
@@ -15,10 +15,10 @@ state; otherwise return the 3pm bulletin.}
 }
 \value{
 Tidy data frame of Australian 9am or 3pm weather observations for a state.
-For full details of fields and units returned see Appendix 4 in the
-\pkg{bomrang} vignette, use \cr
-\code{vignette("bomrang", package = "bomrang")}
-to view.
+For full details of fields and units returned see Appendix 4,
+"Appendix 4 - Output from get_weather_bulletin()" in the \pkg{bomrang}
+vignette, use \cr
+\code{vignette("bomrang", package = "bomrang")} to view.
 }
 \description{
 Fetch the daily \acronym{BOM} 0900 or 1500 weather bulletins and return a

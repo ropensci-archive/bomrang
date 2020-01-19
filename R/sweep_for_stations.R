@@ -1,10 +1,10 @@
 
-#' Find Nearest BOM Weather Stations
+#' Find nearest BOM weather stations
 #'
 #' @param latlon A length-2 numeric vector. By default, Canberra
 #' (approximately).
-#' @return A `data.table` of all weather stations (in this package) sorted
-#' by distance from \var{latlon}, ascending.
+#' @return A \code{\link{data.table}} of all weather stations (in this package)
+#' sorted by distance from \var{latlon}, ascending.
 #' @author Hugh Parsonage, \email{hugh.parsonage@@gmail.com}
 #' @importFrom data.table copy setorderv
 #' @export sweep_for_stations
@@ -28,4 +28,3 @@ sweep_for_stations <- function(latlon = c(-35.3, 149.2)) {
     setorderv("distance") %>%
     .[]
 }
-

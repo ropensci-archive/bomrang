@@ -2,11 +2,12 @@
 % Please edit documentation in R/get_historical.R
 \name{get_historical}
 \alias{get_historical}
-\title{Obtain Historical BOM Data}
+\title{Obtain historical BOM data}
 \usage{
 get_historical(
   stationid = NULL,
   latlon = NULL,
+  radius = NULL,
   type = c("rain", "min", "max", "solar")
 )
 }
@@ -14,6 +15,9 @@ get_historical(
 \item{stationid}{\acronym{BOM} station 'ID'. See Details.}
 
 \item{latlon}{Length-2 numeric vector of Latitude/Longitude. See Details.}
+
+\item{radius}{Numeric value, distance (km) from \var{latlon}, must be
+numeric.}
 
 \item{type}{Measurement type, either daily "rain", "min" (temp), "max"
 (temp), or "solar" (exposure). Partial matching is performed. If not
@@ -63,7 +67,7 @@ Retrieves daily observations for a given station.
 \section{Caution}{
 
 Temperature data prior to 1910 should be used with extreme caution as many
-stations, prior to that date, were exposed in non-standard shelters, some
+stations prior to that date were exposed in non-standard shelters. Some
 of which give readings which are several degrees warmer or cooler than
 those measured according to post-1910 standards.
 
@@ -75,12 +79,12 @@ previous day if the night was particularly warm.
 Either \var{stationid} or \var{latlon} must be provided, but if both are,
 then \var{stationid} will be used as it is more reliable.
 
-In some cases data is available back to the 1800s, so tens of thousands of
+In some cases data is available back to the 1800s, so tens-of-thousands of
 daily records will be returned. Other stations will be newer and will
 return fewer observations.
 }
 
-\section{\code{dplyr} Compatibility}{
+\section{\pkg{dplyr} Compatibility}{
  The \code{bomrang_tbl} class is
 compatible with \code{\link[dplyr:dplyr-package]{dplyr}} as long as the
 \code{bomrang} package is on the search path. Common functions
@@ -88,7 +92,7 @@ compatible with \code{\link[dplyr:dplyr-package]{dplyr}} as long as the
 \code{\link[dplyr]{arrange}}, \code{\link[dplyr]{mutate}},
 \code{\link[dplyr:select]{rename}}, \code{\link[dplyr]{arrange}},
 \code{\link[dplyr]{slice}}, \code{\link[dplyr]{group_by}}) are provided
-which mask the dplyr versions (but use those internally, maintaining
+which mask the \pkg{dplyr} versions (but use those internally, maintaining
 attributes).
 }
 
