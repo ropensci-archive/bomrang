@@ -1,6 +1,7 @@
 ## Preserve attributes through dplyr operations
 
 ## attributes set by bomrang which should be preserved
+# nocov start
 .bomrang_attribs <- c("class", "station", "type", "origin", 
                       "location", "lat", "lon", "start", 
                       "end", "count", "units", "years", 
@@ -126,3 +127,5 @@ slice.bomrang_tbl <- function(.data, ...) {
   attributes(.data) <- utils::modifyList(attributes(.data), attribs)
   .data
 }
+
+# nocov end
