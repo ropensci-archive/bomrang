@@ -49,7 +49,7 @@
 #'  \email{keith.pembleton@@usq.edu.au} and Paul Melloy, 
 #'  \email{paul@@melloy.com.au}
 #'  
-#' @seealso parse_precis_forecast
+#' @seealso \link{parse_precis_forecast}
 #'  
 #' @export get_precis_forecast
 

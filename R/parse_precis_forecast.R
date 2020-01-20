@@ -29,8 +29,8 @@
 #' @details The \var{filepath} argument will only accept a directory where files
 #' are located for parsing. DO NOT supply the full path including the file name.
 #' This function will only parse the requested state or all of Australia in the
-#' same fashion as `get_precis_forecast()`, provided that the files are all
-#' present in the directory.
+#' same fashion as \code{\link{get_precis_forecast}}, provided that the files
+#' are all present in the directory.
 #'
 #' @return
 #' A \code{\link[data.table]{data.table}} of Australia \acronym{BOM} précis
@@ -70,7 +70,7 @@
 #'  \email{keith.pembleton@@usq.edu.au} and Paul Melloy,
 #'  \email{paul@@melloy.com.au}
 #'  
-#' @seealso get_precis_forecast
+#' @seealso \link{get_precis_forecast}
 #'  
 #' @export parse_precis_forecast
 #'

@@ -54,7 +54,7 @@ Location data and other metadata come from the \acronym{BOM} anonymous
 \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00003.dbf}
 }
 \seealso{
-parse_coastal_forecast()
+\link{parse_coastal_forecast}
 }
 \author{
 Dean Marchiori, \email{deanmarchiori@gmail.com} and Paul Melloy

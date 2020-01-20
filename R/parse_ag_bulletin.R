@@ -1,3 +1,4 @@
+
 #' Parse local BOM agriculture bulletin XML file(s) for select stations
 #'
 #' Parse local \acronym{BOM} agriculture bulletin \acronym{XML} file(s) and
@@ -27,8 +28,8 @@
 #' @details The \var{filepath} argument will only accept a directory where files
 #' are located for parsing. DO NOT supply the full path including the file name.
 #' This function will only parse the requested state or all of Australia in the
-#' same fashion as `get_precis_forecast()`, provided that the files are all
-#' present in the directory.
+#' same fashion as \code{\link{get_precis_forecast}}, provided that the files
+#' are all present in the directory.
 #'
 #' @return A \code{\link[data.table]{data.table}} of Australia \acronym{BOM}
 #'  agricultural bulletin information.  For full details of fields and units
@@ -69,7 +70,7 @@
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com} and Paul Melloy
 #' \email{paul@@melloy.com.au}
 #'
-#' @seealso get_ag_bulletin
+#' @seealso \link{get_ag_bulletin}
 #'
 #' @export parse_ag_bulletin
 #' 

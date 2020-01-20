@@ -78,6 +78,8 @@
 #'   which mask the \pkg{dplyr} versions (but use those internally, maintaining
 #'   attributes).
 #'
+#' @seealso \link{get_current_weather}
+#'
 #' @author Jonathan Carroll, \email{rpkg@@jcarroll.com.au}
 #'
 #' @examples
@@ -86,10 +88,10 @@
 #' get_historical(latlon = c(-35.2809, 149.1300),
 #'                type = "min") ## 3,500+ daily records
 #' }
-#' @rdname get_historical
-#' @export get_historical
+#' @rdname get_historical_weather
+#' @export get_historical_weather
 
-get_historical <- get_historical_weather <-
+get_historical_weather <-
   function(stationid = NULL,
            latlon = NULL,
            radius = NULL,

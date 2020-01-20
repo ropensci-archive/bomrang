@@ -47,7 +47,7 @@
 #' @author Dean Marchiori, \email{deanmarchiori@@gmail.com} and Paul Melloy
 #' \email{paul@@melloy.com.au}
 #' 
-#' @seealso parse_coastal_forecast()
+#' @seealso \link{parse_coastal_forecast}
 #' 
 #' @export get_coastal_forecast
 

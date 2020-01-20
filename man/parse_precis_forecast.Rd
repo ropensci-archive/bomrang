@@ -44,8 +44,8 @@ or all using \code{AUS}.
 The \var{filepath} argument will only accept a directory where files
 are located for parsing. DO NOT supply the full path including the file name.
 This function will only parse the requested state or all of Australia in the
-same fashion as `get_precis_forecast()`, provided that the files are all
-present in the directory.
+same fashion as \code{\link{get_precis_forecast}}, provided that the files
+are all present in the directory.
 }
 \examples{
 \donttest{
@@ -76,7 +76,7 @@ the \acronym{BOM} anonymous \acronym{FTP} server with spatial data \cr
 \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 }
 \seealso{
-get_precis_forecast
+\link{get_precis_forecast}
 }
 \author{
 Adam H. Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton,

@@ -55,7 +55,7 @@ the \acronym{BOM} anonymous \acronym{FTP} server with spatial data \cr
 \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 }
 \seealso{
-parse_precis_forecast
+\link{parse_precis_forecast}
 }
 \author{
 Adam H. Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton,
