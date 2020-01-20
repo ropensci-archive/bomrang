@@ -1,7 +1,11 @@
 # vignettes that depend on internet access need to be precompiled and take a
 # while to run
 library(knitr)
-knit("vignettes/bomrang.Rmd.orig", "vignettes/bomrang.Rmd")
+knit(input = "vignettes/bomrang.Rmd.orig",
+     output = "vignettes/bomrang.Rmd")
+
+knit(input = "vignettes/use_case.Rmd.orig",
+     output = "vignettes/use_case.Rmd")
 
 # remove file path such that vignettes will build with figures
 replace <- readLines("vignettes/bomrang.Rmd")

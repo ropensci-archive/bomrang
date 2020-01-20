@@ -10,7 +10,9 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-
+```{r load_libraries_hidden, eval=TRUE, echo=FALSE, message=FALSE, results='hide'}
+library(bomrang)
+```
 
 ## Using _bomrang_ with the _WINS_ for pulses project
 
@@ -31,8 +33,7 @@ loss. It does this by using the `get_precis_forecast()` function from
 _bomrang_ along with functionality from 
 [_mailR_](https://CRAN.R-project.org/package=mailR) (Rahul 2015).
 
-
-```r
+```{r install_packages, eval=FALSE}
 install.packages("bomrang")
 install.packages("mailR")
 library(dplyr)  # filter()
@@ -43,8 +44,7 @@ library(mailR)
 For this to work we require a list of alert subscribers. Here we create a dummy
 set of subscribers, locations, and email addresses.
 
-
-```r
+```{r suscribers, eval=TRUE}
 subscribers_list <-
   data.frame(cbind(
     c(1, 2, 3),
@@ -63,18 +63,10 @@ colnames(subscribers_list) <-
 head(subscribers_list)
 ```
 
-```
-##   Entry  Name Surname  Location                 email
-## 1     1   Joe   Blogs     Dalby   XXXX.XXXX@gmail.com
-## 2     2  John     Doe Toowoomba XXXX.XXXX@hotmail.com
-## 3     3 Jayne     Doe   Warwick     123.123@gmail.com
-```
-
 We also need to specify our email address and password. For this project we are
 using a gmail account to send the email alerts.
 
-
-```r
+```{r our_email, eval=FALSE}
 our_email <- "yyyy***xxxx@gmail.com"
 our_password <- "*password*"
 ```
@@ -82,14 +74,12 @@ our_password <- "*password*"
 Finally we need to set a forecast temperature threshold that will trigger an
 alert to be sent.
 
-
-```r
+```{r threshold, eval=FALSE}
 threshold_temp <- 40
 ```
 
 We then use _bomrang_ to access the latest précis forecast for Queensland.
-
-```r
+```{r forecast, eval=FALSE}
 QLD_forecast <- get_precis_forecast(state = "QLD")
 ```
 
@@ -101,8 +91,7 @@ subscribers if the forecast maximum temperatures are greater than or equal to
 the threshold. This email informs the recipient of the dates that high
 temperatures are expected.
 
-
-```r
+```{r for_loop, eval=FALSE}
 QLD_hotdates <-
   QLD_forecast %>%
   filter(maximum_temperature >= threshold_temp)
