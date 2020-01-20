@@ -322,7 +322,7 @@ get_historical <- get_historical_weather <-
   url2
 }
 
-#' Download a BOM Data .zip File and Load into Session
+#' Download a BOM Data .zip file and load into session
 #'
 #' @param url URL of zip file to be downloaded/extracted/loaded.
 #'
