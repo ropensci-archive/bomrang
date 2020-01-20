@@ -124,7 +124,7 @@ bom_stations_raw <-
 str(bom_stations_raw)
 ```
 
-    ## Classes 'tbl_df', 'tbl' and 'data.frame':    7074 obs. of  11 variables:
+    ## Classes 'tbl_df', 'tbl' and 'data.frame':    7073 obs. of  11 variables:
     ##  $ site  : chr  "001006" "001007" "001010" "001013" ...
     ##  $ dist  : chr  "01" "01" "01" "01" ...
     ##  $ name  : chr  "WYNDHAM AERO" "TROUGHTON ISLAND" "THEDA" "WYNDHAM" ...
@@ -141,7 +141,7 @@ str(bom_stations_raw)
 bom_stations_raw
 ```
 
-    ## # A tibble: 7,074 x 11
+    ## # A tibble: 7,073 x 11
     ##    site   dist  name            start   end   lat   lon state  elev bar_ht   wmo
     ##    <chr>  <chr> <chr>           <int> <int> <dbl> <dbl> <chr> <dbl>  <dbl> <dbl>
     ##  1 001006 01    WYNDHAM AERO     1951  2020 -15.5  128. WA      3.8    4.3 95214
@@ -154,7 +154,7 @@ bom_stations_raw
     ##  8 001020 01    TRUSCOTT         1944  2020 -14.1  126. WA     51     52.5 95101
     ##  9 001023 01    EL QUESTRO       1967  2020 -16.0  128. WA     90     NA      NA
     ## 10 001024 01    ELLENBRAE        1986  2020 -16.0  127. WA    300     NA      NA
-    ## # … with 7,064 more rows
+    ## # … with 7,063 more rows
 
 ## Check station locations
 
@@ -363,51 +363,54 @@ save(stations_site_list,
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2020-01-10                  
+    ##  date     2020-01-20                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
-    ##  package     * version date       lib source        
-    ##  ASGS.foyer  * 0.2.1   2018-05-17 [1] CRAN (R 3.6.0)
-    ##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 3.6.0)
-    ##  backports     1.1.5   2019-10-02 [1] CRAN (R 3.6.0)
-    ##  cli           2.0.0   2019-12-09 [1] CRAN (R 3.6.0)
-    ##  crayon        1.3.4   2017-09-16 [1] CRAN (R 3.6.0)
-    ##  curl          4.3     2019-12-02 [1] CRAN (R 3.6.0)
-    ##  data.table  * 1.12.8  2019-12-09 [1] CRAN (R 3.6.0)
-    ##  digest        0.6.23  2019-11-23 [1] CRAN (R 3.6.0)
-    ##  dplyr         0.8.3   2019-07-04 [1] CRAN (R 3.6.0)
-    ##  ellipsis      0.3.0   2019-09-20 [1] CRAN (R 3.6.0)
-    ##  evaluate      0.14    2019-05-28 [1] CRAN (R 3.6.0)
-    ##  fansi         0.4.0   2018-10-05 [1] CRAN (R 3.6.0)
-    ##  glue          1.3.1   2019-03-12 [1] CRAN (R 3.6.0)
-    ##  hms           0.5.2   2019-10-30 [1] CRAN (R 3.6.0)
-    ##  htmltools     0.4.0   2019-10-04 [1] CRAN (R 3.6.0)
-    ##  httr          1.4.1   2019-08-05 [1] CRAN (R 3.6.0)
-    ##  knitr         1.26    2019-11-12 [1] CRAN (R 3.6.0)
-    ##  lattice       0.20-38 2018-11-04 [1] CRAN (R 3.6.2)
-    ##  lifecycle     0.1.0   2019-08-01 [1] CRAN (R 3.6.0)
-    ##  lubridate     1.7.4   2018-04-11 [1] CRAN (R 3.6.0)
-    ##  magrittr    * 1.5     2014-11-22 [1] CRAN (R 3.6.0)
-    ##  pillar        1.4.3   2019-12-20 [1] CRAN (R 3.6.0)
-    ##  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 3.6.0)
-    ##  purrr         0.3.3   2019-10-18 [1] CRAN (R 3.6.0)
-    ##  R6            2.4.1   2019-11-12 [1] CRAN (R 3.6.0)
-    ##  Rcpp          1.0.3   2019-11-08 [1] CRAN (R 3.6.0)
-    ##  readr         1.3.1   2018-12-21 [1] CRAN (R 3.6.0)
-    ##  rlang         0.4.2   2019-11-23 [1] CRAN (R 3.6.0)
-    ##  rmarkdown     2.0     2019-12-12 [1] CRAN (R 3.6.0)
-    ##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 3.6.0)
-    ##  sp          * 1.3-2   2019-11-07 [1] CRAN (R 3.6.0)
-    ##  stringi       1.4.3   2019-03-12 [1] CRAN (R 3.6.0)
-    ##  stringr       1.4.0   2019-02-10 [1] CRAN (R 3.6.0)
-    ##  tibble        2.1.3   2019-06-06 [1] CRAN (R 3.6.0)
-    ##  tidyr         1.0.0   2019-09-11 [1] CRAN (R 3.6.0)
-    ##  tidyselect    0.2.5   2018-10-11 [1] CRAN (R 3.6.0)
-    ##  utf8          1.1.4   2018-05-24 [1] CRAN (R 3.6.0)
-    ##  vctrs         0.2.1   2019-12-17 [1] CRAN (R 3.6.0)
-    ##  withr         2.1.2   2018-03-15 [1] CRAN (R 3.6.0)
-    ##  xfun          0.11    2019-11-12 [1] CRAN (R 3.6.0)
-    ##  yaml          2.2.0   2018-07-25 [1] CRAN (R 3.6.0)
-    ##  zeallot       0.1.0   2018-01-28 [1] CRAN (R 3.6.0)
+    ##  package     * version    date       lib source                             
+    ##  ASGS.foyer  * 0.2.1      2018-05-17 [1] CRAN (R 3.6.0)                     
+    ##  assertthat    0.2.1      2019-03-21 [1] CRAN (R 3.6.0)                     
+    ##  backports     1.1.5      2019-10-02 [1] CRAN (R 3.6.0)                     
+    ##  cli           2.0.1      2020-01-08 [1] CRAN (R 3.6.2)                     
+    ##  clisymbols    1.2.0      2017-05-21 [1] CRAN (R 3.6.0)                     
+    ##  crayon        1.3.4      2017-09-16 [1] CRAN (R 3.6.0)                     
+    ##  curl          4.3        2019-12-02 [1] CRAN (R 3.6.0)                     
+    ##  data.table  * 1.12.8     2019-12-09 [1] CRAN (R 3.6.0)                     
+    ##  digest        0.6.23     2019-11-23 [1] CRAN (R 3.6.0)                     
+    ##  dplyr         0.8.3      2019-07-04 [1] CRAN (R 3.6.0)                     
+    ##  ellipsis      0.3.0      2019-09-20 [1] CRAN (R 3.6.0)                     
+    ##  evaluate      0.14       2019-05-28 [1] CRAN (R 3.6.0)                     
+    ##  fansi         0.4.1      2020-01-08 [1] CRAN (R 3.6.2)                     
+    ##  glue          1.3.1.9000 2020-01-17 [1] Github (tidyverse/glue@8094d3b)    
+    ##  hms           0.5.3      2020-01-08 [1] CRAN (R 3.6.2)                     
+    ##  htmltools     0.4.0      2019-10-04 [1] CRAN (R 3.6.0)                     
+    ##  httr          1.4.1.9000 2020-01-12 [1] Github (hadley/httr@844c8c7)       
+    ##  knitr         1.27       2020-01-16 [1] CRAN (R 3.6.2)                     
+    ##  lattice       0.20-38    2018-11-04 [1] CRAN (R 3.6.2)                     
+    ##  lifecycle     0.1.0      2019-08-01 [1] CRAN (R 3.6.0)                     
+    ##  lubridate     1.7.4      2018-04-11 [1] CRAN (R 3.6.0)                     
+    ##  magrittr    * 1.5        2014-11-22 [1] CRAN (R 3.6.0)                     
+    ##  pillar        1.4.3      2019-12-20 [1] CRAN (R 3.6.0)                     
+    ##  pkgconfig     2.0.3      2019-09-22 [1] CRAN (R 3.6.0)                     
+    ##  prompt        1.0.0      2020-01-12 [1] Github (gaborcsardi/prompt@b332c42)
+    ##  purrr         0.3.3      2019-10-18 [1] CRAN (R 3.6.0)                     
+    ##  R6            2.4.1      2019-11-12 [1] CRAN (R 3.6.0)                     
+    ##  Rcpp          1.0.3      2019-11-08 [1] CRAN (R 3.6.0)                     
+    ##  readr         1.3.1      2018-12-21 [1] CRAN (R 3.6.0)                     
+    ##  rlang         0.4.2      2019-11-23 [1] CRAN (R 3.6.0)                     
+    ##  rmarkdown     2.0        2019-12-12 [1] CRAN (R 3.6.0)                     
+    ##  rstudioapi    0.10       2019-03-19 [1] CRAN (R 3.6.0)                     
+    ##  sessioninfo   1.1.1      2018-11-05 [1] CRAN (R 3.6.0)                     
+    ##  sp          * 1.3-2      2019-11-07 [1] CRAN (R 3.6.0)                     
+    ##  stringi       1.4.5      2020-01-11 [1] CRAN (R 3.6.2)                     
+    ##  stringr       1.4.0      2019-02-10 [1] CRAN (R 3.6.0)                     
+    ##  tibble        2.1.3      2019-06-06 [1] CRAN (R 3.6.0)                     
+    ##  tidyr         1.0.0      2019-09-11 [1] CRAN (R 3.6.0)                     
+    ##  tidyselect    0.2.5      2018-10-11 [1] CRAN (R 3.6.0)                     
+    ##  utf8          1.1.4      2018-05-24 [1] CRAN (R 3.6.0)                     
+    ##  vctrs         0.2.1      2019-12-17 [1] CRAN (R 3.6.0)                     
+    ##  withr         2.1.2      2018-03-15 [1] CRAN (R 3.6.0)                     
+    ##  xfun          0.12       2020-01-13 [1] CRAN (R 3.6.0)                     
+    ##  yaml          2.2.0      2018-07-25 [1] CRAN (R 3.6.0)                     
+    ##  zeallot       0.1.0      2018-01-28 [1] CRAN (R 3.6.0)                     
     ## 
     ## [1] /Library/Frameworks/R.framework/Versions/3.6/Resources/library

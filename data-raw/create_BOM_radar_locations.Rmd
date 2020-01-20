@@ -36,6 +36,8 @@ radar_locations$LocationID <-
 
 data.table::setDT(radar_locations)
 data.table::setkey(radar_locations, "Name")
+
+str(radar_locations)
 ```
 
 Save the radar locations to disk for use in the R package.
@@ -45,10 +47,9 @@ if (!dir.exists("../inst/extdata")) {
   dir.create("../inst/extdata", recursive = TRUE)
 }
 
-save(
-  radar_locations,
-  file = "../inst/extdata/radar_locations.rda",
-  compress = "bzip2"
+save(radar_locations,
+     file = "../inst/extdata/radar_locations.rda",
+     compress = "bzip2"
 )
 ```
 
