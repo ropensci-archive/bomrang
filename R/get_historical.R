@@ -84,9 +84,10 @@
 #'
 #' @examples
 #' \donttest{
-#' get_historical(stationid = "023000", type = "max") ## ~48,000+ daily records
-#' get_historical(latlon = c(-35.2809, 149.1300),
-#'                type = "min") ## 3,500+ daily records
+#' get_historical_weather(stationid = "023000",
+#'                        type = "max") ## ~48,000+ daily records
+#' get_historical_weather(latlon = c(-35.2809, 149.1300),
+#'                        type = "min") ## 3,500+ daily records
 #' }
 #' @rdname get_historical_weather
 #' @export get_historical_weather
