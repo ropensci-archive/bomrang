@@ -1,12 +1,11 @@
 
 context("Cache directory handling")
 
-# set up the cache in tempdir() for testing
-manage_cache$cache_path_set("foobar", type = "tempdir")
-
 # test that .set_cache() creates a cache directory if none exists --------------
 test_that("test that set_cache creates a cache directory if none exists", {
   skip_on_cran()
+  # set up the cache in tempdir() for testing
+  manage_cache$cache_path_set("foobar", type = "tempdir")
   cache <- TRUE
   .set_cache(cache)
   expect_true(dir.exists(manage_cache$cache_path_get()))
@@ -20,6 +19,8 @@ test_that("test that set_cache creates a cache directory if none exists", {
 
 test_that("test that set_cache does not create a dir if cache == FALSE", {
   skip_on_cran()
+  # set up the cache in tempdir() for testing
+  manage_cache$cache_path_set("foobar", type = "tempdir")
   cache <- FALSE
   cache_dir <- .set_cache(cache)
   expect_true(cache_dir == tempdir())
@@ -44,6 +45,7 @@ test_that("cache directory is created if necessary", {
 
 test_that("caching utils list files in cache and delete when asked", {
   skip_on_cran()
+  manage_cache$cache_path_set("foobar", type = "tempdir")
   f <-
     raster::raster(system.file("external/test.grd", package = "raster"))
   cache_dir <- manage_cache$cache_path_get()
