@@ -291,3 +291,16 @@ test_that("parse_precis_forecast() stops if the state is recognised", {
   state <- "Kansas"
   expect_error(parse_precis_forecast(state = state, filepath = tempdir()))
 })
+
+# Test that parse_precis_forecast() stops if directory does not exist or file
+# not matched
+test_that(" Test that parse_precis_forecast() stops for bad directory", {
+  skip_on_cran()
+  expect_error(parse_precis_forecast(state = "AUS", filepath = "xx"))
+})
+
+test_that(" Test that parse_precis_forecast() stops if XML provided", {
+  skip_on_cran()
+  expect_error(parse_precis_forecast(state = "AUS", filepath = 
+                                       file.path(tempdir(), "IDW14199.xml")))
+})
