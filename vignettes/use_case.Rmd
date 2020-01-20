@@ -17,7 +17,7 @@ vignette: >
 [Summer pulses (*e.g.*, mungbeans) are a high value crop for Queensland grain growers](http://www.pulseaus.com.au/about/australian-pulse-industry). However,
 temperatures above 40C, particularly during flowering, can have a severe
 detrimental effect on crop yields (Kaushal *et al.* 2016). A key strategy that
-plants use to minimise the impact of heat stress is evaporative cooling.
+plants use to minimise the impact of heat stress is evapourative cooling.
 Ensuring crops are well watered prior to a heat stress event (so to facilitate
 high rates of evaporative cooling) is a potential strategy to ensure that
 irrigated crops avoid heat stress. However, this requires farmers to recognise a
