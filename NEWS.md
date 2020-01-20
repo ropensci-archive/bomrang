@@ -1,9 +1,21 @@
-# bomrang (development version)
+# bomrang 0.7.0
 
 ## Bug fixes
 
-* resolves an issue where `select()` was not recognised as being re-exported
+* Resolves an issue where `select()` was not recognised as being re-exported
 by bomrang from dplyr
+
+* Fixes bug where precipitation to 9am, column `r`, in ag bulletin was not
+reported at 0.01 for "Tce" as documented in vignette
+
+* Fixes bug where weather bulletin contained empty cells rather than a proper
+`NA` value where data was missing
+
+* Adds `skip_on_cran()` to all tests causing failures in CRAN checks that
+should not have been tested on CRAN
+
+* Corrects (and skips) a test that failed on Solaris and macOS when writing to
+disk by using `tempdir()` rather than the userspace
 
 ## Major changes
 
@@ -11,18 +23,33 @@ by bomrang from dplyr
 used to store databases of station information
 
 * Adds three new functions to parse local XML files, not relying on R's ability
-to fetch files from an insecure FTP server
+to fetch files from an insecure FTP server, thanks to @paulmelloy for this
 
   * `parse_ag_bulletin()`
   
   * `parse_coastal_forecast()`
   
   * `parse_precis_forecast()`
+  
+* Improved test coverage, ~93&nbsp;%
+  
+  * Adds tests for previously untested `get_weather_bulletin()`
+  
+  * Adds tests for `bomrang_tbl()` functionality
+  
+* Fail gracefully with message and returns `invisble(NULL)` if a resource is not
+available for XML or JSON files, not erroring. In cases where a file is not
+found, error 404 or on the FTP server, an error message is still returned
 
 ## Minor changes
 
 * Comprehensive cleaning of the vignette and reformatting of help files for all
 functions
+
+* Precompile use_case vignette as well as main vignette
+
+* Improved matching of possible character strings entered by user for state to
+include variations of two-letter abbreviations of Australia
 
 # bomrang 0.6.1
 

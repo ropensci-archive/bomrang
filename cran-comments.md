@@ -5,7 +5,7 @@
 
 - Manjaro Linux 3.6.2 (2019-12-12)
 
-- win-builder R Under development (unstable) (2020-01-03 r77630)
+- win-builder R Under development (unstable) (2020-01-07 r77633)
 
 - win-builder R version 3.6.2 (2019-12-12)
 
@@ -13,33 +13,25 @@
 
 0 errors | 0 warnings | 1 note
 
-This is a new minor release that fixes the issues with the CRAN checks as
-requested and fixes other minor bugs and provides further enhancements
+This is a new major release that fixes the issues with the CRAN checks as
+requested and fixes other minor bugs and provides new functionality.
+
+I am very sorry about the previous submission that still caused failing checks.
+I trust that I've been able to correctly identify and fix the problems with the
+previous version in this one.
 
 ## Bug fixes
 
-* Adds `skip_on_cran()` to some tests causing failures in CRAN checks that
+* Adds `skip_on_cran()` to all tests causing failures in CRAN checks that
 should not have been tested on CRAN
 
-* resolves the `group_by` issues of
-[#105](https://github.com/ropensci/bomrang/issues/105) reported by
-[Blundys](https://github.com/Blundys)
+* Corrects (and skips) a test that failed on Solaris and macOS when writing to
+disk by using `tempdir()` rather than the userspace
 
-* Fixes bug in functions returning `data.table` objects that don't print to
-console
+## Major changes
 
-* Fixes an incorrect vignette reference
-
-* Fixes bugs that removed station locations from internal lists being
-distributed with bomrang and when user updated them on their own machine
-
-## Minor changes
-
-* Prebuild main vignette with examples depending on Internet connection, which
-allows for example output to be displayed for more functions
-
-* Updates my name to align with other packages I maintain by using my middle
-initial, "H."
+* Requires R >= 3.5.0 now due to changes in serialisation of internal .Rds files
+used to store databases of station information
 
 ## Reverse dependencies
 
