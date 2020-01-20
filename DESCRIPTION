@@ -80,6 +80,7 @@ Suggests:
     mapproj,
     rappdirs,
     roxygen2 (>= 6.1.0)
+Language: en-AU
 RoxygenNote: 7.0.2
 NeedsCompilation: no
 ByteCompile: TRUE
