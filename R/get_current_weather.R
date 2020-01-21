@@ -236,6 +236,7 @@ get_current_weather <-
     if ("observations" %notin% names(observations.json) ||
         "data" %notin% names(observations.json$observations)) {
       stop(
+        call. = FALSE,
         "\nA station was matched. ",
         "However, the JSON returned by bom.gov.au was not in expected form.\n"
       )
