@@ -269,7 +269,7 @@ KIRIBATI NTC AWS or MARSHALL ISLANDS NTC AWS, in this section remove these from
 the list and then create a database to provide URLs for valid JSON files
 providing weather data from BOM.
 
-### Save JSON URL database for `get_current_weather()` and `get_historical()`
+### Save JSON URL database for `get_current_weather()` and `get_historical_weather()`
 
 ```{r save_url_data, eval=TRUE, message=FALSE}
 JSONurl_site_list <-

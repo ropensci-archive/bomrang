@@ -2,8 +2,9 @@
 context("print.bomrang_tbl()")
 test_that("print.bomrang_tbl() returns a proper header", {
   skip_on_cran()
-  x <- capture.output(get_historical(latlon = c(-35.2809, 149.1300),
-                                     type = "min"))
+  x <-
+    capture.output(get_historical_weather(latlon = c(-35.2809, 149.1300),
+                                          type = "min"))
   expect_type(x, "character")
   expect_equal(x[[1]],
                "  --- Australian Bureau of Meteorology (BOM) Data Resource ---")

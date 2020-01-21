@@ -47,8 +47,8 @@ tidy data frames;
   - `get_ag_bulletin()`, which retrieves the agriculture bulletin;
   - `get_weather_bulletin()`, which retrieves the BOM 0900 or 1500 bulletins;
   - `get_coastal_forecast()`, which returns coastal waters forecasts; and
-  - `get_historical()`, which retrieves historical daily observations for a given
-station.
+  - `get_historical_weather()`, which retrieves historical daily observations
+  for a given station.
 
 A second group of functions retrieve information pertaining to satellite
 and radar imagery,

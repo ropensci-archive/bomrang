@@ -34,7 +34,7 @@ forecast; `get_current_weather()`, which fetches the current weather from a
 given station; `get_ag_bulletin()`, which retrieves the agriculture
 bulletin; `get_weather_bulletin()` which fetches the 0900 and 1500 weather
 bulletins; `get_coastal_forecast()` which fetches coastal waters forecasts for
-each state and `get_historical()` which fetches historical daily temperature
+each state and `get_historical_weather()` which fetches historical daily temperature
 min/max, rainfall, or solar exposure data. A second family of functions retrieve 
 information pertaining to satellite and radar imagery, `get_available_imagery()`
 and the imagery itself, `_imagery()` for satellite, and
@@ -1063,9 +1063,9 @@ Following is an example fetching the forecast for Queensland.
 ```
 
 
-## Using get_historical()
+## Using get_historical_weather()
 
-`get_historical()` takes either of two arguments: `stationid` and `latlon`, as 
+`get_historical_weather()` takes either of two arguments: `stationid` and `latlon`, as 
 well as a type of observation (`"rain"`, `"min"` (temperature), `"max"`
 (temperature), or `"solar"`), returning the historical daily weather
 observations of that type for the given location. An optional fourth argument,
@@ -1117,7 +1117,7 @@ observations for the station closest to 35.2809°S, 149.1300°E (Canberra).
 
 
 ```r
-(Canberra_mintemps <- get_historical(latlon = c(-35.2809, 149.1300),
+(Canberra_mintemps <- get_historical_weather(latlon = c(-35.2809, 149.1300),
                                      type = "min"))
 #> Closest station: 070351 (CANBERRA AIRPORT)
 #> Data saved as /var/folders/yv/4xy6zs3x5qsgj96389nkjvtw0000gn/T//RtmpVoC8GU/IDCJAC0011_070351_1800_Data.csv
@@ -1677,7 +1677,7 @@ For example:
 
 
 ```r
-adlmax <- get_historical(stationid = "023000", type = "max")
+adlmax <- get_historical_weather(stationid = "023000", type = "max")
 #> Data saved as /var/folders/yv/4xy6zs3x5qsgj96389nkjvtw0000gn/T//RtmpVoC8GU/IDCJAC0010_023000_1800_Data.csv
 adlmax
 #>   --- Australian Bureau of Meteorology (BOM) Data Resource ---

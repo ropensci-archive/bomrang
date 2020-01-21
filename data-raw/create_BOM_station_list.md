@@ -300,7 +300,7 @@ There are weather stations that do have a WMO but don’t report online,
 remove these from the list and then create a database to provide URLs
 for valid JSON files providing weather data from BOM.
 
-### Save JSON URL database for `get_current_weather()` and `get_historical()`
+### Save JSON URL database for `get_current_weather()` and `get_historical_weather()`
 
 ``` r
 JSONurl_site_list <-
@@ -363,7 +363,7 @@ save(stations_site_list,
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2020-01-20                  
+    ##  date     2020-01-21                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
     ##  package     * version    date       lib source                             
@@ -397,7 +397,7 @@ save(stations_site_list,
     ##  Rcpp          1.0.3      2019-11-08 [1] CRAN (R 3.6.0)                     
     ##  readr         1.3.1      2018-12-21 [1] CRAN (R 3.6.0)                     
     ##  rlang         0.4.2      2019-11-23 [1] CRAN (R 3.6.0)                     
-    ##  rmarkdown     2.0        2019-12-12 [1] CRAN (R 3.6.0)                     
+    ##  rmarkdown     2.1        2020-01-20 [1] CRAN (R 3.6.2)                     
     ##  rstudioapi    0.10       2019-03-19 [1] CRAN (R 3.6.0)                     
     ##  sessioninfo   1.1.1      2018-11-05 [1] CRAN (R 3.6.0)                     
     ##  sp          * 1.3-2      2019-11-07 [1] CRAN (R 3.6.0)                     

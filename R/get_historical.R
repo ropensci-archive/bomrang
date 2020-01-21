@@ -289,7 +289,7 @@ get_historical_weather <-
 #'
 #' @md
 #' @param site site ID.
-#' @param code measurement type. See internals of [get_historical].
+#' @param code measurement type. See internals of [get_historical_weather].
 #' @importFrom httr GET content
 #'
 #' @return URL of the historical observation resource
