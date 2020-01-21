@@ -57,7 +57,7 @@
 #' Station location and other metadata are sourced from the Australian Bureau of
 #' Meteorology (\acronym{BOM}) webpage, Bureau of Meteorology Site Numbers:
 #' \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
-#' 
+#'
 #' @seealso \link{get_historical_weather}
 #'
 #' @author Hugh Parsonage, \email{hugh.parsonage@@gmail.com}
@@ -234,11 +234,19 @@ get_current_weather <-
     }
     
     if ("observations" %notin% names(observations.json) ||
-        "data" %notin% names(observations.json$observations)) {
+        "data" %notin% names(observations.json$observations) ||
+        length(observations.json$observations$data) == 0) {
+      id_code <- gsub("http://www.bom.gov.au/fwo/", "", json_url)
+      id_code <- gsub(".json", "", id_code)
+      web_url <-
+        paste0("http://www.bom.gov.au/products/", id_code, ".shtml")
       stop(
         call. = FALSE,
-        "\nA station was matched. ",
-        "However, the JSON returned by bom.gov.au was not in expected form.\n"
+        "\nA station was matched.",
+        "\nA JSON file was found, however it was not in expected form. ",
+        "You may wish to check the BOM website for the station for further ",
+        "possible information on the station's status, ",
+        web_url
       )
     }
     
