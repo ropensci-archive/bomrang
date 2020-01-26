@@ -52,7 +52,7 @@
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com} and Paul Melloy
 #' \email{paul@@melloy.com.au}
 #'
-#' @seealso parse_ag_bulletin
+#' @seealso \link{parse_ag_bulletin}
 #'
 #' @export get_ag_bulletin
 

@@ -59,7 +59,7 @@ Meteorology (\acronym{BOM}) webpage, Bureau of Meteorology Site Numbers: \cr
 \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 }
 \seealso{
-parse_ag_bulletin
+\link{parse_ag_bulletin}
 }
 \author{
 Adam H. Sparks, \email{adamhsparks@gmail.com} and Paul Melloy
