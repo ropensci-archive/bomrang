@@ -38,7 +38,7 @@
   # a proper response will return a list class object
   # otherwise a timeout will just be a character string
   is_response <- function(x) {
-    class(x) == "list"
+    inherits(x, "list")
   }
   
   # First check internet connection
