@@ -81,7 +81,7 @@ Suggests:
     rappdirs,
     roxygen2 (>= 6.1.0)
 Language: en-AU
-RoxygenNote: 7.0.2
+RoxygenNote: 7.1.0
 NeedsCompilation: no
 ByteCompile: TRUE
 VignetteBuilder: knitr
