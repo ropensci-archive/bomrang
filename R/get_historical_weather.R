@@ -3,18 +3,19 @@
 #'
 #' Retrieves daily observations for a given station.
 #'
-#' @md
-#' @param stationid \acronym{BOM} station 'ID'. See Details.
+#' @param stationid \acronym{BOM} station \sQuote{ID}. See Details.
 #' @param latlon Length-2 numeric vector of Latitude/Longitude. See Details.
 #' @param radius Numeric value, distance (km) from \var{latlon}, must be
 #'   numeric.
-#' @param type Measurement type, either daily "rain", "min" (temp), "max"
-#'   (temp), or "solar" (exposure). Partial matching is performed. If not
-#'   specified returns the first matching type in the order listed.
+#' @param type Measurement type for \code{daily}, either daily \dQuote{rain},
+#'   \dQuote{min} (temp), \dQuote{max} (temp), or \dQuote{solar} (exposure).
+#'   Partial matching is performed. If not specified returns the first
+#'   matching type in the order listed. Ignored if \code{hourly} or
+#'   \code{minute} are selected for \code{tscale}.
 #' @return A \code{bomrang_tbl} object (extension of a
-#'   \code{\link[base]{data.frame}}) of historical observations for the chosen
-#'   station/product type, with some subset of the following columns
-#'
+#'   \code{\link[base]{data.frame}}) of historical observations for the selected
+#'   station/product type, with some subset of the following columns:
+#'   
 #'   \tabular{rl}{
 #'   **Product_code**:\tab BOM internal code.\cr
 #'   **Station_number**:\tab BOM station ID.\cr
@@ -34,8 +35,8 @@
 #'               \tab routine quality control process are marked accordingly.
 #'   }
 #'
-#'   The following attributes are set on the data, and these are
-#'   used to generate the header
+#'   The following attributes are set on the data, and these are used to
+#'   generate the header:
 #'
 #'   \tabular{rl}{
 #'   **site**:\tab BOM station ID.\cr
@@ -61,8 +62,8 @@
 #'   temperature in the 24 hours to prior to 9 AM can occur around 9 AM the
 #'   previous day if the night was particularly warm.
 #'
-#'   Either \var{stationid} or \var{latlon} must be provided, but if both are,
-#'   then \var{stationid} will be used as it is more reliable.
+#'   Either \code{stationid} or \code{latlon} must be provided, but if both are,
+#'   then \code{stationid} will be used as it is more reliable.
 #'
 #'   In some cases data is available back to the 1800s, so tens-of-thousands of
 #'   daily records will be returned. Other stations will be newer and will

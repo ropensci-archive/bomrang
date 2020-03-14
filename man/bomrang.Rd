@@ -4,7 +4,7 @@
 \name{bomrang}
 \alias{bomrang}
 \alias{bomrang-package}
-\title{Australian government Bureau of Meteorology (\acronym{BOM}) data client}
+\title{Australian government Bureau of Meteorology BOM data client}
 \description{
 \if{html}{\figure{logo.png}{options: align='right' alt='logo' width='120'}}
 

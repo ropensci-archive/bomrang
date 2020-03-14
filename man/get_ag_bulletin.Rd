@@ -9,7 +9,7 @@ get_ag_bulletin(state = "AUS")
 \arguments{
 \item{state}{Australian state or territory as full name or postal code.
 Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
-"AUS" returning all state bulletins, see Details for more.}
+\dQuote{AUS} returning all state bulletins, see Details for more.}
 }
 \value{
 A data frame as a \code{\link[data.table]{data.table}} object of Australia

@@ -27,8 +27,8 @@
 #'
 #' Note that the column \code{local_date_time_full} is set to a
 #' \code{POSIXct} object in the local time of the \strong{user}.
-#' For more details see "Appendix 1 - Output from get_current_weather()" in
-#' the \pkg{bomrang} vignette \cr
+#' For more details see \dQuote{Appendix 1 - Output from get_current_weather()}
+#' in the \pkg{bomrang} vignette \cr
 #' \code{vignette("bomrang", package = "bomrang")}\cr
 #' for a complete list of fields and units.
 #'
