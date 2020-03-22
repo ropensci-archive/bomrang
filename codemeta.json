@@ -10,14 +10,14 @@
   "codeRepository": "https://github.com/ropensci/bomrang",
   "issueTracker": "https://github.com/ropensci/bomrang/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.7.0",
+  "version": "0.7.0.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.2",
+    "version": "3.6.3",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.2 (2019-12-12)",
+  "runtimePlatform": "R version 3.6.3 (2020-02-29)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -27,7 +27,7 @@
   "author": [
     {
       "@type": "Person",
-      "givenName": "Adam H.",
+      "givenName": "Adam",
       "familyName": "Sparks",
       "email": "adamhsparks@gmail.com",
       "@id": "https://orcid.org/0000-0002-0061-8359"
@@ -84,7 +84,7 @@
   "maintainer": [
     {
       "@type": "Person",
-      "givenName": "Adam H.",
+      "givenName": "Adam",
       "familyName": "Sparks",
       "email": "adamhsparks@gmail.com",
       "@id": "https://orcid.org/0000-0002-0061-8359"
@@ -436,6 +436,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=rvest"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "stationaRy",
+      "name": "stationaRy",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=stationaRy"
     },
     {
       "@type": "SoftwareApplication",

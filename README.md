@@ -1,5 +1,6 @@
 _bomrang_: Australian Government Bureau of Meteorology (BOM) Data Client <img align="right" src="man/figures/logo.png">
 ================
+[![R build status](https://github.com/ropensci/bomrang/workflows/R-CMD-check/badge.svg)](https://github.com/ropensci/bomrang/actions)
 [![GitHub Workflows](https://github.com/ropensci/bomrang/actions)](https://github.com/ropensci/bomrang/workflows/R-CMD-check/badge.svg)
 [![codecov](https://codecov.io/gh/ropensci/bomrang/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/bomrang) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.598301.svg)](https://doi.org/10.5281/zenodo.598301)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/bomrang)](https://cran.r-project.org/package=bomrang)
