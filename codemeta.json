@@ -5,7 +5,7 @@
   ],
   "@type": "SoftwareSourceCode",
   "identifier": "bomrang",
-  "description": "Provides functions to interface with Australian Government Bureau\n    of Meteorology ('BOM') data, fetching data and returning a tidy data frame\n    of precis forecasts, historical and current weather data from stations,\n    agriculture bulletin data, 'BOM' 0900 or 1500 weather bulletins and\n    downloading and importing radar and satellite imagery files.  Data (c)\n    Australian Government Bureau of Meteorology Creative Commons (CC)\n    Attribution 3.0 licence or Public Access Licence (PAL) as appropriate.  See\n    <http://www.bom.gov.au/other/copyright.shtml> for further details.",
+  "description": "Provides functions to interface with Australian Government Bureau\n    of Meteorology ('BOM') data, fetching data and returning a data frame of\n    precis forecasts, historical and current weather data from stations,\n    agriculture bulletin data, 'BOM' 0900 or 1500 weather bulletins and\n    downloading and importing radar and satellite imagery files.  Data (c)\n    Australian Government Bureau of Meteorology Creative Commons (CC)\n    Attribution 3.0 licence or Public Access Licence (PAL) as appropriate.  See\n    <http://www.bom.gov.au/other/copyright.shtml> for further details.",
   "name": "bomrang: Australian Government Bureau of Meteorology ('BOM') Data Client",
   "codeRepository": "https://github.com/ropensci/bomrang",
   "issueTracker": "https://github.com/ropensci/bomrang/issues",
@@ -27,7 +27,7 @@
   "author": [
     {
       "@type": "Person",
-      "givenName": "Adam",
+      "givenName": "Adam H.",
       "familyName": "Sparks",
       "email": "adamhsparks@gmail.com",
       "@id": "https://orcid.org/0000-0002-0061-8359"
@@ -84,7 +84,7 @@
   "maintainer": [
     {
       "@type": "Person",
-      "givenName": "Adam",
+      "givenName": "Adam H.",
       "familyName": "Sparks",
       "email": "adamhsparks@gmail.com",
       "@id": "https://orcid.org/0000-0002-0061-8359"
