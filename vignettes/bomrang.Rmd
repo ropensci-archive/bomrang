@@ -10,10 +10,6 @@ vignette: >
   %\VignetteEncoding{UTF-8}
 ---
 
-
-
-
-
 ## Introduction
 
 bomrang provides functions for interacting with 
