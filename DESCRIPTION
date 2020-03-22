@@ -54,8 +54,8 @@ Authors@R:
             comment = c(ORCID = "0000-0002-5012-9035"))
             )
 Description: Provides functions to interface with Australian Government Bureau
-    of Meteorology ('BOM') data, fetching data and returning a tidy data frame
-    of precis forecasts, historical and current weather data from stations,
+    of Meteorology ('BOM') data, fetching data and returning a data frame of
+    precis forecasts, historical and current weather data from stations,
     agriculture bulletin data, 'BOM' 0900 or 1500 weather bulletins and
     downloading and importing radar and satellite imagery files.  Data (c)
     Australian Government Bureau of Meteorology Creative Commons (CC)
