@@ -40,13 +40,13 @@
   is_response <- function(x) {
     inherits(x, "list")
   }
-  
+
   # First check internet connection
   if (!curl::has_internet()) {
     message("No Internet connection.")
     return(invisible(NULL))
   }
-  
+
   resp <- try_GET(x = remote_file)
   # Then stop if status > 400
   if (as.integer(resp$status_code) == 404) {
@@ -60,7 +60,7 @@
     message(resp) # return char string value server provides
     return(invisible(NULL))
   }
-  
+
   if (tools::file_ext(remote_file) == "xml") {
     xml_out <- xml2::read_xml(rawToChar(resp$content))
     return(xml_out)
@@ -79,10 +79,10 @@
   lat2 <- lat2 * pi / 180
   lon1 <- lon1 * pi / 180
   lon2 <- lon2 * pi / 180
-  
+
   delta_lat <- abs(lat1 - lat2)
   delta_lon <- abs(lon1 - lon2)
-  
+
   # radius of earth
   6371 * 2 * asin(sqrt(`+`(
     (sin(delta_lat / 2)) ^ 2,
@@ -110,7 +110,7 @@
 
 .check_states <- function(state) {
   state <- toupper(state)
-  
+
   states <- c(
     "ACT",
     "NSW",
@@ -133,7 +133,7 @@
     "AUS",
     "OZ"
   )
-  
+
   if (state %in% states) {
     the_state <- state
     return(the_state)
@@ -141,7 +141,7 @@
     likely_states <- agrep(pattern = state,
                            x = states,
                            value = TRUE)
-    
+
     if (length(likely_states) == 1) {
       the_state <- toupper(likely_states)
       message(
@@ -160,7 +160,7 @@
       )
     }
   }
-  
+
   if (length(likely_states) > 1) {
     message(
       "Multiple states match state.",
@@ -183,7 +183,7 @@
   state <- gsub(" ", "", state)
   state <-
     substring(gsub("[[:punct:]]", "", tolower(state)), 1, 2)
-  
+
   state_code <- c(
     "AUS",
     "AUS",
@@ -231,10 +231,10 @@
     "nt"
   )
   state <- state_code[pmatch(state, state_names)]
-  
+
   if (any(is.na(state)))
     stop("Unable to determine state")
-  
+
   return(state)
 }
 
@@ -254,14 +254,14 @@
         "UTC_offset_drop") := data.table::tstrsplit(start_time_local,
                                                     "+",
                                                     fixed = TRUE)]
-  
+
   x[, c("end_time_local",
         "utc_offset") := data.table::tstrsplit(end_time_local,
                                                "+",
                                                fixed = TRUE)]
-  
+
   x[, "UTC_offset_drop" := NULL]
-  
+
   # remove the "T" from time cols
   x[, c("start_time_local",
         "end_time_local",
@@ -272,7 +272,7 @@
                 "end_time_local",
                 "start_time_utc",
                 "end_time_utc")]
-  
+
   # remove the "Z" from UTC cols
   x[, c("start_time_utc", "end_time_utc") := lapply(.SD, gsub, pattern = "Z",
                                                     replacement = ""),
@@ -366,7 +366,7 @@
     xml_url <- .create_bom_file(AUS_XML,
                                 .the_state = cleaned_state,
                                 .file_loc = file_loc)
-    
+
     precis_out <- .parse_precis_forecast(xml_url)
     if (is.null(precis_out)) {
       return(invisible(NULL))
@@ -398,7 +398,7 @@
     product_id <- probability_of_precipitation <- start_time_utc <-
     end_time_utc <- upper_precipitation_limit <- lower_precipitation_limit <-
     NULL # nocov end
-  
+
   # load the XML from ftp
   if (substr(xml_url, 1, 3) == "ftp") {
     xml_object <- .get_url(xml_url)
@@ -408,9 +408,9 @@
   } else {# load the XML from local
     xml_object <- xml2::read_xml(xml_url)
   }
-  
+
   out <- .parse_precis_xml(xml_object)
-  
+
   data.table::setnames(
     out,
     c("air_temperature_maximum",
@@ -418,52 +418,51 @@
     c("maximum_temperature",
       "minimum_temperature")
   )
-  
+
   # clean up and split out time cols into offset and remove extra chars
   .split_time_cols(x = out)
-  
+
   # merge with aac codes for location information
   load(system.file("extdata", "AAC_codes.rda", package = "bomrang"))  # nocov
   data.table::setkey(out, "aac")
   out <- AAC_codes[out, on = c("aac", "town")]
-  #
+
   # add state field
   out[, state := gsub("_.*", "", out$aac)]
-  
+
   # add product ID field
   out[, product_id := substr(basename(xml_url),
                              1,
                              nchar(basename(xml_url)) - 4)]
-  
+
   # remove unnecessary text from cols
   out[, probability_of_precipitation := gsub("%",
                                              "",
                                              probability_of_precipitation)]
-  
+
   # handle precipitation ranges where they may or may not be present
-  if ("precipitation_range" %in% colnames(out))
-  {
+  if ("precipitation_range" %in% colnames(out)) {
     # format any values that are only zero to make next step easier
     out[precipitation_range == "0 mm", precipitation_range := "0 to 0 mm"]
-    
+
     # separate the precipitation column into two, upper/lower limit
     out[, c("lower_precipitation_limit",
             "upper_precipitation_limit") :=
           data.table::tstrsplit(precipitation_range,
                                 "to",
                                 fixed = TRUE)]
-    
+
     out[, upper_precipitation_limit := gsub("mm",
                                             "",
                                             upper_precipitation_limit)]
     out[, precipitation_range := NULL]
-    
+
   } else {
     # if the columns don't exist insert as NA
     out[, lower_precipitation_limit := NA]
     out[, upper_precipitation_limit := NA]
   }
-  
+
   refcols <- c(
     "index",
     "product_id",
@@ -491,19 +490,19 @@
   out[, c(1, 11) := lapply(.SD, function(x)
     as.factor(x)),
     .SDcols = c(1, 11)]
-  
+
   # numeric
   out[, c(6:8, 14:17, 19) := lapply(.SD, function(x)
     suppressWarnings(as.numeric(x))),
     .SDcols = c(6:8, 14:17, 19)]
-  
+
   # dates
   out[, c(9:10) := lapply(.SD, function(x)
     as.POSIXct(x,
                origin = "1970-1-1",
                format = "%Y-%m-%d %H:%M:%OS")),
     .SDcols = c(9:10)]
-  
+
   out[, c(12:13) := lapply(.SD, function(x)
     as.POSIXct(
       x,
@@ -512,7 +511,7 @@
       tz = "GMT"
     )),
     .SDcols = c(12:13)]
-  
+
   # character
   out[, c(2:5, 18) := lapply(.SD, function(x)
     as.character(x)),
@@ -531,10 +530,10 @@
 
 .parse_precis_xml <- function(xml_object) {
   forecast_icon_code <- NULL
-  
+
   # get the actual forecast objects
   fp <- xml2::xml_find_all(xml_object, ".//forecast-period")
-  
+
   locations_index <- data.table::data.table(
     # find all the aacs
     aac = xml2::xml_find_first(fp, ".//parent::area") %>%
@@ -549,7 +548,7 @@
     start_time_utc = xml2::xml_attr(fp, "start-time-utc"),
     end_time_utc = xml2::xml_attr(fp, "end-time-utc")
   )
-  
+
   vals <- lapply(fp, function(node) {
     # find names of all children nodes
     childnodes <- node %>%
@@ -561,18 +560,18 @@
       xml2::xml_attr("type")
     # create columns names based on either node name or attr value
     names <- ifelse(is.na(names), childnodes, names)
-    
+
     # find all values
     values <- node %>%
       xml2::xml_children() %>%
       xml2::xml_text()
-    
+
     # create data frame and properly label the columns
     df <- data.frame(t(values), stringsAsFactors = FALSE)
     names(df) <- names
     df
   })
-  
+
   vals <- data.table::rbindlist(vals, fill = TRUE)
   sub_out <- cbind(locations_index, vals)
   # drop icon code
@@ -602,7 +601,7 @@
     xml_url <- .create_bom_file(AUS_XML,
                                 .the_state = cleaned_state,
                                 .file_loc = file_loc)
-    
+
     bulletin_out <- .parse_bulletin(xml_url)
     if (is.null(bulletin_out)) {
       return(invisible(NULL))
@@ -622,7 +621,7 @@
   # CRAN NOTE avoidance
   stations_site_list <-
     site <- obs_time_local <- obs_time_utc <- r <- NULL # nocov
-  
+
   # load the XML from ftp
   if (substr(xml_url, 1, 3) == "ftp") {
     xml_object <- .get_url(xml_url)
@@ -632,17 +631,17 @@
   } else {# load the XML from local
     xml_object <- xml2::read_xml(xml_url)
   }
-  
+
   # get definitions (and all possible value fields to check against)
   definition_attrs <- xml2::xml_find_all(xml_object, "//data-def")
   definition_attrs <- xml2::xml_attrs(definition_attrs)
   definition_attrs <-
     lapply(definition_attrs, function(x)
       x[[1]][[1]])
-  
+
   # get the actual observations and create a data table
   observations <- xml2::xml_find_all(xml_object, ".//d")
-  
+
   out <- data.table::data.table(
     obs_time_local = xml2::xml_find_first(observations, ".//ancestor::obs") %>%
       xml2::xml_attr("obs-time-local"),
@@ -660,24 +659,24 @@
                         1,
                         nchar(basename(xml_url)) - 4)
   )
-  
+
   out <- data.table::dcast(
     out,
     product_id + obs_time_local + obs_time_utc + time_zone + site + station ~
       observation,
     value.var = "values"
   )
-  
+
   # check that all fields are present, if not add missing col with NAs
   missing <-
     setdiff(unlist(definition_attrs), names(out[, -c(1:5)]))
   if (length(missing) != 0) {
     out[, eval(missing) := NA]
   }
-  
+
   # remove leading 0 to merge with stations_site_list
   out[, site := gsub("^0{1,2}", "", out$site)]
-  
+
   # merge with AAC codes
   # load AAC code/town name list to join with final output
   load(system.file("extdata", "stations_site_list.rda", # nocov
@@ -686,7 +685,7 @@
   data.table::setkey(stations_site_list, "site")
   data.table::setkey(out, "site")
   out <- stations_site_list[out, on = "site"]
-  
+
   # tidy up the cols
   refcols <- c(
     "product_id",
@@ -720,13 +719,13 @@
     "t1m",
     "wr"
   )
-  
+
   # set col classes
   # factor
   out[, c(1:3, 11:12) := lapply(.SD, function(x)
     as.factor(x)),
     .SDcols = c(1:3, 11:12)]
-  
+
   # dates
   out[, obs_time_local := gsub("T", " ", obs_time_local)]
   out[, obs_time_utc := gsub("T", " ", obs_time_utc)]
@@ -735,16 +734,16 @@
                origin = "1970-1-1",
                format = "%Y%m%d %H%M")),
     .SDcols = c(13:14)]
-  
+
   # set "Tce" to 0.01
   out[, r := gsub("Tce", "0.01", r)]
-  
+
   # set numeric cols
-  out[, c(4:7, 9:10, 17:30) := lapply(.SD, as.numeric), 
+  out[, c(4:7, 9:10, 17:30) := lapply(.SD, as.numeric),
                                      .SDcols = c(4:7, 9:10, 17:30)]
-  
+
   data.table::setcolorder(out, refcols)
-  
+
   # return from main function
   return(out)
 }
@@ -772,7 +771,7 @@
     xml_url <- .create_bom_file(AUS_XML,
                                 .the_state = cleaned_state,
                                 .file_loc = file_loc)
-    
+
     coastal_out <- .parse_coastal_forecast(xml_url)
     if (is.null(coastal_out)) {
       return(invisible(NULL))
@@ -796,7 +795,7 @@
     forecast_swell2 <- forecast_caution <- marine_forecast <-
     state_code <-
     tropical_system_location <- forecast_waves <- NULL # nocov end
-  
+
   # load the XML from ftp
   if (substr(xml_url, 1, 3) == "ftp") {
     xml_object <- .get_url(xml_url)
@@ -806,50 +805,50 @@
   } else {# load the XML from local
     xml_object <- xml2::read_xml(xml_url)
   }
-  
+
   out <- .parse_coastal_xml(xml_object)
-  
+
   # clean up and split out time cols into offset and remove extra chars
   .split_time_cols(x = out)
-  
+
   # merge with aac codes for location information
   load(system.file("extdata",
                    "marine_AAC_codes.rda",
                    package = "bomrang"))  # nocov
   data.table::setkey(out, "aac")
   out <- marine_AAC_codes[out, on = c("aac", "dist_name")]
-  
+
   # add state field
   out[, state_code := gsub("_.*", "", out$aac)]
-  
+
   # return final forecast object
-  
+
   # add product ID field
   out[, product_id := substr(basename(xml_url),
                              1,
                              nchar(basename(xml_url)) - 4)]
-  
+
   # some fields only come out on special occasions, if absent, add as NA
   if (!"forecast_swell2" %in% colnames(out)) {
     out[, forecast_swell2 := NA]
   }
-  
+
   if (!"forecast_caution" %in% colnames(out)) {
     out[, forecast_caution := NA]
   }
-  
+
   if (!"marine_forecast" %in% colnames(out)) {
     out[, marine_forecast := NA]
   }
-  
+
   if (!"tropical_system_location" %in% colnames(out)) {
     out[, tropical_system_location := NA]
   }
-  
+
   if (!"forecast_waves" %in% colnames(out)) {
     out[, forecast_waves := NA]
   }
-  
+
   # reorder columns
   refcols <- c(
     "index",
@@ -875,21 +874,21 @@
     "tropical_system_location",
     "forecast_waves"
   )
-  
+
   data.table::setcolorder(out, refcols)
-  
+
   # set col classes
   # factors
   out[, c(1, 11) := lapply(.SD, function(x)
     as.factor(x)),
     .SDcols = c(1, 11)]
-  
+
   out[, c(9:10) := lapply(.SD, function(x)
     as.POSIXct(x,
                origin = "1970-1-1",
                format = "%Y-%m-%d %H:%M:%OS")),
     .SDcols = c(9:10)]
-  
+
   out[, c(12:13) := lapply(.SD, function(x)
     as.POSIXct(
       x,
@@ -898,12 +897,12 @@
       tz = "GMT"
     )),
     .SDcols = c(12:13)]
-  
+
   # character
   out[, c(6:8, 14:20) := lapply(.SD, function(x)
     as.character(x)),
     .SDcols = c(6:8, 14:20)]
-  
+
   return(out)
 }
 
@@ -921,11 +920,11 @@
     forecast_waves <- synoptic_situation <-  # nocov start
     preamble <- warning_summary_footer <- product_footer <-
     postamble <- NULL  # nocov end
-  
+
   # get the actual forecast objects
   meta <- xml2::xml_find_all(xml_object, ".//text")
   fp <- xml2::xml_find_all(xml_object, ".//forecast-period")
-  
+
   locations_index <- data.table::data.table(
     # find all the aacs
     aac = xml2::xml_parent(meta) %>%
@@ -952,7 +951,7 @@
       xml2::xml_find_first(".//parent::forecast-period") %>%
       xml2::xml_attr("start-time-local")
   )
-  
+
   vals <- lapply(fp, function(node) {
     # find names of all children nodes
     childnodes <- node %>%
@@ -964,40 +963,40 @@
       xml2::xml_attr("type")
     # create columns names based on either node name or attr value
     names <- ifelse(is.na(names), childnodes, names)
-    
+
     # find all values
     values <- node %>%
       xml2::xml_children() %>%
       xml2::xml_text()
-    
+
     # create data frame and properly label the columns
     df <- data.frame(t(values), stringsAsFactors = FALSE)
     names(df) <- names
     df
   })
-  
+
   vals <- data.table::rbindlist(vals, fill = TRUE)
   sub_out <- cbind(locations_index, vals)
-  
+
   if ("synoptic_situation" %in% names(sub_out)) {
     sub_out[, synoptic_situation := NULL]
   }
-  
+
   if ("preamble" %in% names(sub_out)) {
     sub_out[, preamble := NULL]
   }
-  
+
   if ("warning_summary_footer" %in% names(sub_out)) {
     sub_out[, warning_summary_footer := NULL]
   }
-  
+
   if ("product_footer" %in% names(sub_out)) {
     sub_out[, product_footer := NULL]
   }
-  
+
   if ("postamble" %in% names(sub_out)) {
     sub_out[, postamble := NULL]
   }
-  
+
   return(sub_out)
 }

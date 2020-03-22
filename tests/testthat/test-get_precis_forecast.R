@@ -155,7 +155,7 @@ test_that("parse_precis_forecast() returns 19 columns and min < max", {
       "probability_of_precipitation"
     )
   )
-  
+
   expect_is(bom_forecast$index, "factor")
   expect_is(bom_forecast$product_id, "character")
   expect_is(bom_forecast$state, "character")
@@ -301,6 +301,6 @@ test_that(" Test that parse_precis_forecast() stops for bad directory", {
 
 test_that(" Test that parse_precis_forecast() stops if XML provided", {
   skip_on_cran()
-  expect_error(parse_precis_forecast(state = "AUS", filepath = 
+  expect_error(parse_precis_forecast(state = "AUS", filepath =
                                        file.path(tempdir(), "IDW14199.xml")))
 })

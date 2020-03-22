@@ -6,7 +6,8 @@
 #'
 #' @param state Australian state or territory as full name or postal code.
 #'  Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
-#'  \dQuote{AUS} returning all state forecasts, see details for further information.
+#'  \dQuote{AUS} returning all state forecasts, see details for further
+#'   information.
 #'
 #' @details Allowed state and territory postal codes, only one state per request
 #' or all using \code{AUS}.
@@ -46,15 +47,15 @@
 #'
 #' @author Dean Marchiori, \email{deanmarchiori@@gmail.com} and Paul Melloy
 #' \email{paul@@melloy.com.au}
-#' 
+#'
 #' @seealso \link{parse_coastal_forecast}
-#' 
+#'
 #' @export get_coastal_forecast
 
 get_coastal_forecast <- function(state = "AUS") {
   # this is just a placeholder for functionality with parse_coastal_forecast()
   filepath <- NULL
-  
+
   # see internal_functions.R for these functions
   the_state <- .check_states(state)
   location <- .validate_filepath(filepath)

@@ -3,7 +3,7 @@ context("update_forecast_locations()")
 
 test_that("update_forecast_towns() stops if 'no'", {
   skip_on_cran()
-  
+
   f <- file()
   options(bomrang.connection = f)
   ans <- "no"

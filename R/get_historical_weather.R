@@ -15,7 +15,7 @@
 #' @return A \code{bomrang_tbl} object (extension of a
 #'   \code{\link[base]{data.frame}}) of historical observations for the selected
 #'   station/product type, with some subset of the following columns:
-#'   
+#'
 #'   \tabular{rl}{
 #'   **Product_code**:\tab BOM internal code.\cr
 #'   **Station_number**:\tab BOM station ID.\cr
@@ -26,7 +26,7 @@
 #'   **Max_temperature**:\tab Maximum daily recorded temperature (degrees C).\cr
 #'   **Accum_days_min**:\tab Accumulated number of days of minimum
 #'    temperature.\cr
-#'   **Accum_days_max**:\tab Accumulated number of days of maximum 
+#'   **Accum_days_max**:\tab Accumulated number of days of maximum
 #'   temperature.\cr
 #'   **Rainfall**:\tab Daily recorded rainfall in mm.\cr
 #'   **Period**:\tab Period over which rainfall was measured.\cr
@@ -299,7 +299,7 @@ get_historical_weather <-
 #' @noRd
 
 .get_zip_url <- function(site, code = 122) {
-  
+
   base_url <- "http://www.bom.gov.au/jsp/ncc/cdio/weatherData/"
   url1 <-
     paste0(

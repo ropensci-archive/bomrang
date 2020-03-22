@@ -48,7 +48,7 @@
 #' @export get_weather_bulletin
 
 get_weather_bulletin <- function(state = "qld", morning = TRUE) {
-  
+
   the_state <- .convert_state(state) # see internal_functions.R
   if (the_state == "AUS") {
     stop(call. = FALSE,
@@ -127,9 +127,9 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
     convert = TRUE
   ) %>%
     dplyr::mutate_at(.funs = as.numeric,
-                     .vars = vars) %>% 
-    dplyr::mutate_all(na_if,"")
-  
+                     .vars = vars) %>%
+    dplyr::mutate_all(na_if, "")
+
   names(out) <- sub("current_details_", "", names(out))
   names(out) <- sub("x24_hour_details_", "", names(out))
   names(out) <- sub("x6_hour_details_", "", names(out))

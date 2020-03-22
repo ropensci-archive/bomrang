@@ -30,23 +30,23 @@ update_forecast_towns <- function() {
     "If reproducibility is necessary, you may not wish to proceed.\n",
     "Do you understand and wish to proceed (Y/n)?\n"
   )
-  
+
   answer <-
     readLines(con = getOption("bomrang.connection"), n = 1)
-  
+
   answer <- toupper(answer)
-  
+
   if (answer %notin% c("Y", "YES")) {
     stop("Forecast towns were not updated.",
          call. = FALSE)
   }
-  
+
   message("Updating forecast towns.\n")
-  
+
   original_timeout <- options("timeout")[[1]]
   options(timeout = 300)
   on.exit(options(timeout = original_timeout))
-  
+
   # fetch new database from BOM server
   curl::curl_download(
     "ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf",
@@ -54,12 +54,12 @@ update_forecast_towns <- function() {
     mode = "wb",
     quiet = TRUE
   )
-  
+
   # import BOM dbf file
   AAC_codes <-
     foreign::read.dbf(file.path(tempdir(), "AAC_codes.dbf"), as.is = TRUE)
   AAC_codes <- AAC_codes[, c(2:3, 7:9)]
-  
+
   # overwrite the existing isd_history.rda file on disk
   message("\nOverwriting existing database of forecast towns and AAC codes.\n")
   fname <-

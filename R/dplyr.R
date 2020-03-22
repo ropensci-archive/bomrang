@@ -2,9 +2,9 @@
 
 ## attributes set by bomrang which should be preserved
 # nocov start
-.bomrang_attribs <- c("class", "station", "type", "origin", 
-                      "location", "lat", "lon", "start", 
-                      "end", "count", "units", "years", 
+.bomrang_attribs <- c("class", "station", "type", "origin",
+                      "location", "lat", "lon", "start",
+                      "end", "count", "units", "years",
                       "ncc_list", "vars", "indices", "groups")
 
 #' @name filter

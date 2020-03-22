@@ -266,6 +266,6 @@ test_that(" Test that parse_ag_bulletin() stops for bad directory", {
 
 test_that(" Test that parse_ag_bulletin() stops if XML provided", {
   skip_on_cran()
-  expect_error(parse_coastal_forecast(state = "AUS", filepath = 
+  expect_error(parse_coastal_forecast(state = "AUS", filepath =
                                         file.path(tempdir(), "IDW65176.xml")))
 })

@@ -73,7 +73,7 @@
 #' @seealso \link{get_ag_bulletin}
 #'
 #' @export parse_ag_bulletin
-#' 
+#'
 parse_ag_bulletin <- function(state, filepath) {
   the_state <- .check_states(state)
   location <- .validate_filepath(filepath)

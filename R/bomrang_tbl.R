@@ -18,7 +18,6 @@ print.bomrang_tbl <- function(x, ...) {
   units    <- attr(x, "units") %||% NULL
   vars     <- attr(x, "vars") %||% "UNKNOWN"
   indices  <- attr(x, "indices") %||% "UNKNOWN"
-  
   .stylecat("  --- Australian Bureau of Meteorology (BOM) Data Resource ---\n")
   .stylecat("  (Original Request Parameters)\n")
   .stylecat("  Station:\t\t", location, " [", station, "] \n")
@@ -44,7 +43,6 @@ print.bomrang_tbl <- function(x, ...) {
     .stylecat("  Groups:\t\t", vars, paste0(" [", indices, "]\n"))
   }
   .stylecat("  ", strrep("-", 63), "  \n")
-  
 }
 
 .stylecat <- function(...) {

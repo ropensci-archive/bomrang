@@ -21,8 +21,7 @@ manage_cache <- NULL # nocov start
 # It only supresses the "Namespaces in Imports field not imported from:" check
 # Suggested by @jeroen in rOpenSci Slack
 
-stub <- function(){
+stub <- function() {
   rgdal::readGDAL()
-} 
+}
 # nocov end
-

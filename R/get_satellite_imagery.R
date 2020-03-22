@@ -141,7 +141,7 @@ get_available_imagery <- function(product_id = "all") {
 #' @rdname get_satellite_imagery
 #' @export get_satellite_imagery
 
-get_satellite_imagery <- get_satellite <- 
+get_satellite_imagery <- get_satellite <-
   function(product_id,
              scans = 1,
              cache = FALSE) {
@@ -168,7 +168,7 @@ get_satellite_imagery <- get_satellite <-
         # read files already checked using available_images()
         tif_files <- readLines(file.path(tempdir(), "tif_files"))
       } else {
-        # check what's on the server 
+        # check what's on the server
         tif_files <- .ftp_images(product_id, bom_server = ftp_base)
       }
 

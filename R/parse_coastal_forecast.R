@@ -64,9 +64,9 @@
 #'
 #' @author Dean Marchiori, \email{deanmarchiori@@gmail.com} and Paul Melloy
 #' \email{paul@@melloy.com.au}
-#' 
+#'
 #' @seealso \link{get_coastal_forecast}
-#' 
+#'
 #' @export parse_coastal_forecast
 
 parse_coastal_forecast <- function(state = "AUS", filepath) {

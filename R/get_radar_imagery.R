@@ -18,7 +18,7 @@
 #' information and \var{product_ids}.
 #'
 #' @references
-#' Australian Bureau of Meteorology (BOM) radar images 
+#' Australian Bureau of Meteorology (BOM) radar image
 #' \url{http://www.bom.gov.au/australia/radar/}
 #'
 #' @examples
@@ -62,7 +62,7 @@ get_available_radar <- function(radar_id = "all") {
   if (radar_id[1] == "all") {
     dat <- dat
   } else if (as.numeric(radar_id) %in% dat$Radar_id) {
-    dat <- dat[dat$Radar_id %in% as.numeric(radar_id),]
+    dat <- dat[dat$Radar_id %in% as.numeric(radar_id), ]
   } else{
     stop("radar_id not found")
   }
@@ -130,10 +130,10 @@ get_radar_imagery <- get_radar <-
         call. = FALSE
       )
     }
-    
+
     ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/radar"
     fp <- file.path(ftp_base, paste0(product_id, ".gif"))
-    
+
     if (is.null(path)) {
       path <- tempfile(fileext = ".gif", tmpdir = tempdir())
     }

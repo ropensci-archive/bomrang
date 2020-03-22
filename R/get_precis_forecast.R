@@ -46,21 +46,21 @@
 #' \url{ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDM00013.dbf}
 #'
 #' @author Adam H. Sparks, \email{adamhsparks@@gmail.com} and Keith Pembleton,
-#'  \email{keith.pembleton@@usq.edu.au} and Paul Melloy, 
+#'  \email{keith.pembleton@@usq.edu.au} and Paul Melloy,
 #'  \email{paul@@melloy.com.au}
-#'  
+#'
 #' @seealso \link{parse_precis_forecast}
-#'  
+#'
 #' @export get_precis_forecast
 
 get_precis_forecast <- function(state = "AUS") {
-  
+
   # this is just a placeholder for functionality with parse_precis_forecast()
   filepath <- NULL
   # see internal_functions.R for these functions
   the_state <- .check_states(state)
   location <- .validate_filepath(filepath)
   forecast_out <- .return_precis(location, the_state)
-  
+
   return(forecast_out)
 }

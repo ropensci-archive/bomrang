@@ -17,14 +17,13 @@ test_that("Error handling", {
                regexp = "\nA file or station was matched. However, *")
 })
 
-test_that("Query 'Melbourne Airport' returns data frame w/ correct station",
-          {
-            skip_on_cran()
-            get_current_weather("Sydney")
-            YMML <- get_current_weather("Melbourne Airport")
-            expect_is(YMML, "bomrang_tbl")
-            expect_equal(YMML$full_name[1], "Melbourne Airport")
-          })
+test_that("Query 'Melbourne Airport' returns data frame w/ correct station", {
+  skip_on_cran()
+  get_current_weather("Sydney")
+  YMML <- get_current_weather("Melbourne Airport")
+  expect_is(YMML, "bomrang_tbl")
+  expect_equal(YMML$full_name[1], "Melbourne Airport")
+})
 
 test_that("Query of 'Sydney' defaults to Observatory Hill", {
   skip_on_cran()
