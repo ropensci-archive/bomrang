@@ -36,7 +36,7 @@ test_that("Query of 'Sydney' defaults to Observatory Hill", {
 
 test_that("Query of 'castlem' and friends", {
   skip_on_cran()
-  expect_warning(get_current_weather(station_name = "castlem"))
+  expect_error(get_current_weather(station_name = "castlem"))
 })
 
 test_that("Strict", {
