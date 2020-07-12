@@ -124,24 +124,29 @@ bom_stations_raw <-
 str(bom_stations_raw)
 ```
 
-    ## Classes 'tbl_df', 'tbl' and 'data.frame':    7072 obs. of  11 variables:
-    ##  $ site  : chr  "001006" "001007" "001010" "001013" ...
-    ##  $ dist  : chr  "01" "01" "01" "01" ...
-    ##  $ name  : chr  "WYNDHAM AERO" "TROUGHTON ISLAND" "THEDA" "WYNDHAM" ...
-    ##  $ start : int  1951 1956 1965 1968 1998 1973 1997 1944 1967 1986 ...
-    ##  $ end   : int  2020 2020 2020 2020 2020 2020 2020 2020 2020 2020 ...
-    ##  $ lat   : num  -15.5 -13.8 -14.8 -15.5 -15.9 ...
-    ##  $ lon   : num  128 126 126 128 128 ...
-    ##  $ state : chr  "WA" "WA" "WA" "WA" ...
-    ##  $ elev  : num  3.8 6 210 11 130 546 23 51 90 300 ...
-    ##  $ bar_ht: num  4.3 8 NA NA NA 547 24 52.5 NA NA ...
-    ##  $ wmo   : num  95214 94102 NA NA NA ...
+    ## tibble [7,075 × 11] (S3: tbl_df/tbl/data.frame)
+    ##  $ site  : chr [1:7075] "001006" "001007" "001010" "001013" ...
+    ##  $ dist  : chr [1:7075] "01" "01" "01" "01" ...
+    ##  $ name  : chr [1:7075] "WYNDHAM AERO" "TROUGHTON ISLAND" "THEDA" "WYNDHAM" ...
+    ##  $ start : int [1:7075] 1951 1956 1965 1968 1998 1973 1997 1944 1967 1986 ...
+    ##  $ end   : int [1:7075] 2020 2020 2020 2020 2020 2020 2020 2020 2020 2020 ...
+    ##  $ lat   : num [1:7075] -15.5 -13.8 -14.8 -15.5 -15.9 ...
+    ##  $ lon   : num [1:7075] 128 126 126 128 128 ...
+    ##  $ state : chr [1:7075] "WA" "WA" "WA" "WA" ...
+    ##  $ elev  : num [1:7075] 3.8 6 210 11 130 546 23 51 90 300 ...
+    ##  $ bar_ht: num [1:7075] 4.3 8 NA NA NA 547 24 52.5 NA NA ...
+    ##  $ wmo   : num [1:7075] 95214 94102 NA NA NA ...
+    ##  - attr(*, "problems")= tibble [15 × 4] (S3: tbl_df/tbl/data.frame)
+    ##   ..$ row     : int [1:15] 19390 19390 19391 19391 19391 19391 19391 19391 19392 19392 ...
+    ##   ..$ col     : int [1:15] 3 NA 4 5 6 7 8 NA 4 5 ...
+    ##   ..$ expected: chr [1:15] "33 chars" "12 columns" "a double" "a double" ...
+    ##   ..$ actual  : chr [1:15] "0" "3 columns" "teor" "y (A" ...
 
 ``` r
 bom_stations_raw
 ```
 
-    ## # A tibble: 7,072 x 11
+    ## # A tibble: 7,075 x 11
     ##    site   dist  name            start   end   lat   lon state  elev bar_ht   wmo
     ##    <chr>  <chr> <chr>           <int> <int> <dbl> <dbl> <chr> <dbl>  <dbl> <dbl>
     ##  1 001006 01    WYNDHAM AERO     1951  2020 -15.5  128. WA      3.8    4.3 95214
@@ -154,7 +159,7 @@ bom_stations_raw
     ##  8 001020 01    TRUSCOTT         1944  2020 -14.1  126. WA     51     52.5 95101
     ##  9 001023 01    EL QUESTRO       1967  2020 -16.0  128. WA     90     NA      NA
     ## 10 001024 01    ELLENBRAE        1986  2020 -16.0  127. WA    300     NA      NA
-    ## # … with 7,062 more rows
+    ## # … with 7,065 more rows
 
 ## Check station locations
 
@@ -355,60 +360,58 @@ save(stations_site_list,
 
     ## ─ Session info ───────────────────────────────────────────────────────────────
     ##  setting  value                       
-    ##  version  R version 3.6.3 (2020-02-29)
-    ##  os       macOS Catalina 10.15.3      
-    ##  system   x86_64, darwin15.6.0        
+    ##  version  R version 4.0.2 (2020-06-22)
+    ##  os       macOS Catalina 10.15.5      
+    ##  system   x86_64, darwin17.0          
     ##  ui       X11                         
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2020-03-16                  
+    ##  date     2020-07-12                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
-    ##  package     * version    date       lib source                             
-    ##  ASGS.foyer  * 0.2.1      2018-05-17 [1] CRAN (R 3.6.0)                     
-    ##  assertthat    0.2.1      2019-03-21 [1] CRAN (R 3.6.0)                     
-    ##  cli           2.0.2      2020-02-28 [1] CRAN (R 3.6.0)                     
-    ##  clisymbols    1.2.0      2017-05-21 [1] CRAN (R 3.6.0)                     
-    ##  crayon        1.3.4      2017-09-16 [1] CRAN (R 3.6.0)                     
-    ##  curl          4.3        2019-12-02 [1] CRAN (R 3.6.0)                     
-    ##  data.table  * 1.12.8     2019-12-09 [1] CRAN (R 3.6.0)                     
-    ##  digest        0.6.25     2020-02-23 [1] CRAN (R 3.6.0)                     
-    ##  dplyr         0.8.5      2020-03-07 [1] CRAN (R 3.6.0)                     
-    ##  ellipsis      0.3.0      2019-09-20 [1] CRAN (R 3.6.0)                     
-    ##  evaluate      0.14       2019-05-28 [1] CRAN (R 3.6.0)                     
-    ##  fansi         0.4.1      2020-01-08 [1] CRAN (R 3.6.0)                     
-    ##  glue          1.3.2      2020-03-14 [1] Github (tidyverse/glue@0cbbb17)    
-    ##  hms           0.5.3      2020-01-08 [1] CRAN (R 3.6.0)                     
-    ##  htmltools     0.4.0      2019-10-04 [1] CRAN (R 3.6.0)                     
-    ##  httr          1.4.1.9000 2020-03-13 [1] Github (hadley/httr@844c8c7)       
-    ##  knitr         1.28       2020-02-06 [1] CRAN (R 3.6.0)                     
-    ##  lattice       0.20-38    2018-11-04 [1] CRAN (R 3.6.3)                     
-    ##  lifecycle     0.2.0      2020-03-06 [1] CRAN (R 3.6.0)                     
-    ##  lubridate     1.7.4      2018-04-11 [1] CRAN (R 3.6.0)                     
-    ##  magrittr    * 1.5        2014-11-22 [1] CRAN (R 3.6.0)                     
-    ##  pillar        1.4.3      2019-12-20 [1] CRAN (R 3.6.0)                     
-    ##  pkgconfig     2.0.3      2019-09-22 [1] CRAN (R 3.6.0)                     
-    ##  prompt        1.0.0      2020-03-13 [1] Github (gaborcsardi/prompt@b332c42)
-    ##  purrr         0.3.3      2019-10-18 [1] CRAN (R 3.6.0)                     
-    ##  R6            2.4.1      2019-11-12 [1] CRAN (R 3.6.0)                     
-    ##  Rcpp          1.0.3      2019-11-08 [1] CRAN (R 3.6.0)                     
-    ##  readr         1.3.1      2018-12-21 [1] CRAN (R 3.6.0)                     
-    ##  rlang         0.4.5      2020-03-01 [1] CRAN (R 3.6.0)                     
-    ##  rmarkdown     2.1        2020-01-20 [1] CRAN (R 3.6.0)                     
-    ##  rstudioapi    0.11       2020-02-07 [1] CRAN (R 3.6.0)                     
-    ##  sessioninfo   1.1.1      2018-11-05 [1] CRAN (R 3.6.0)                     
-    ##  sp          * 1.4-1      2020-02-28 [1] CRAN (R 3.6.0)                     
-    ##  stringi       1.4.6      2020-02-17 [1] CRAN (R 3.6.0)                     
-    ##  stringr       1.4.0      2019-02-10 [1] CRAN (R 3.6.0)                     
-    ##  tibble        2.1.3      2019-06-06 [1] CRAN (R 3.6.0)                     
-    ##  tidyr         1.0.2      2020-01-24 [1] CRAN (R 3.6.0)                     
-    ##  tidyselect    1.0.0      2020-01-27 [1] CRAN (R 3.6.0)                     
-    ##  utf8          1.1.4      2018-05-24 [1] CRAN (R 3.6.0)                     
-    ##  vctrs         0.2.4      2020-03-10 [1] CRAN (R 3.6.0)                     
-    ##  withr         2.1.2      2018-03-15 [1] CRAN (R 3.6.0)                     
-    ##  xfun          0.12       2020-01-13 [1] CRAN (R 3.6.0)                     
-    ##  yaml          2.2.1      2020-02-01 [1] CRAN (R 3.6.0)                     
+    ##  package     * version date       lib source        
+    ##  ASGS.foyer  * 0.2.1   2018-05-17 [1] CRAN (R 4.0.0)
+    ##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.0.0)
+    ##  cli           2.0.2   2020-02-28 [1] CRAN (R 4.0.0)
+    ##  crayon        1.3.4   2017-09-16 [1] CRAN (R 4.0.0)
+    ##  curl          4.3     2019-12-02 [1] CRAN (R 4.0.0)
+    ##  data.table  * 1.12.8  2019-12-09 [1] CRAN (R 4.0.0)
+    ##  digest        0.6.25  2020-02-23 [1] CRAN (R 4.0.0)
+    ##  dplyr         1.0.0   2020-05-29 [1] CRAN (R 4.0.0)
+    ##  ellipsis      0.3.1   2020-05-15 [1] CRAN (R 4.0.0)
+    ##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.0.0)
+    ##  fansi         0.4.1   2020-01-08 [1] CRAN (R 4.0.0)
+    ##  generics      0.0.2   2018-11-29 [1] CRAN (R 4.0.0)
+    ##  glue          1.4.1   2020-05-13 [1] CRAN (R 4.0.0)
+    ##  hms           0.5.3   2020-01-08 [1] CRAN (R 4.0.0)
+    ##  htmltools     0.5.0   2020-06-16 [1] CRAN (R 4.0.0)
+    ##  httr          1.4.1   2019-08-05 [1] CRAN (R 4.0.0)
+    ##  knitr         1.29    2020-06-23 [1] CRAN (R 4.0.0)
+    ##  lattice       0.20-41 2020-04-02 [1] CRAN (R 4.0.2)
+    ##  lifecycle     0.2.0   2020-03-06 [1] CRAN (R 4.0.0)
+    ##  lubridate     1.7.9   2020-06-08 [1] CRAN (R 4.0.0)
+    ##  magrittr    * 1.5     2014-11-22 [1] CRAN (R 4.0.0)
+    ##  pillar        1.4.6   2020-07-10 [1] CRAN (R 4.0.2)
+    ##  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 4.0.0)
+    ##  purrr         0.3.4   2020-04-17 [1] CRAN (R 4.0.0)
+    ##  R6            2.4.1   2019-11-12 [1] CRAN (R 4.0.0)
+    ##  Rcpp          1.0.5   2020-07-06 [1] CRAN (R 4.0.2)
+    ##  readr         1.3.1   2018-12-21 [1] CRAN (R 4.0.0)
+    ##  rlang         0.4.7   2020-07-09 [1] CRAN (R 4.0.2)
+    ##  rmarkdown     2.3     2020-06-18 [1] CRAN (R 4.0.0)
+    ##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.0.0)
+    ##  sp          * 1.4-2   2020-05-20 [1] CRAN (R 4.0.0)
+    ##  stringi       1.4.6   2020-02-17 [1] CRAN (R 4.0.0)
+    ##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.0.0)
+    ##  tibble        3.0.3   2020-07-10 [1] CRAN (R 4.0.2)
+    ##  tidyr         1.1.0   2020-05-20 [1] CRAN (R 4.0.0)
+    ##  tidyselect    1.1.0   2020-05-11 [1] CRAN (R 4.0.0)
+    ##  utf8          1.1.4   2018-05-24 [1] CRAN (R 4.0.0)
+    ##  vctrs         0.3.1   2020-06-05 [1] CRAN (R 4.0.0)
+    ##  withr         2.2.0   2020-04-20 [1] CRAN (R 4.0.0)
+    ##  xfun          0.15    2020-06-21 [1] CRAN (R 4.0.0)
+    ##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.0)
     ## 
-    ## [1] /Library/Frameworks/R.framework/Versions/3.6/Resources/library
+    ## [1] /Library/Frameworks/R.framework/Versions/4.0/Resources/library

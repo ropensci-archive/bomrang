@@ -35,7 +35,7 @@ data.table::setkey(radar_locations, "Name")
 str(radar_locations)
 ```
 
-    ## Classes 'data.table' and 'data.frame':   61 obs. of  13 variables:
+    ## Classes 'data.table' and 'data.frame':   62 obs. of  13 variables:
     ##  $ Name      : chr  "Adelaide" "Albany" "Alice Springs" "Bairnsdale" ...
     ##  $ Longitude : num  138 118 134 148 148 ...
     ##  $ Latitude  : num  -34.6 -34.9 -23.8 -37.9 -19.9 ...
@@ -49,7 +49,7 @@ str(radar_locations)
     ##  $ Status    : chr  "Public" "Public" "Public" "Public" ...
     ##  $ Archive   : chr  "BuckPk" "Albany" "AliceSp" "Bnsdale" ...
     ##  $ LocationID: chr  "64" "31" "25" "68" ...
-    ##  - attr(*, "data_types")= chr  "C" "F" "F" "N" ...
+    ##  - attr(*, "data_types")= chr [1:13] "C" "F" "F" "N" ...
     ##  - attr(*, ".internal.selfref")=<externalptr> 
     ##  - attr(*, "sorted")= chr "Name"
 
@@ -74,42 +74,38 @@ sessioninfo::session_info()
 
     ## ─ Session info ───────────────────────────────────────────────────────────────
     ##  setting  value                       
-    ##  version  R version 3.6.2 (2019-12-12)
-    ##  os       macOS Catalina 10.15.2      
-    ##  system   x86_64, darwin15.6.0        
+    ##  version  R version 4.0.2 (2020-06-22)
+    ##  os       macOS Catalina 10.15.5      
+    ##  system   x86_64, darwin17.0          
     ##  ui       X11                         
     ##  language (EN)                        
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2020-01-20                  
+    ##  date     2020-07-12                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
-    ##  package     * version    date       lib source                             
-    ##  assertthat    0.2.1      2019-03-21 [1] CRAN (R 3.6.0)                     
-    ##  cli           2.0.1      2020-01-08 [1] CRAN (R 3.6.2)                     
-    ##  clisymbols    1.2.0      2017-05-21 [1] CRAN (R 3.6.0)                     
-    ##  crayon        1.3.4      2017-09-16 [1] CRAN (R 3.6.0)                     
-    ##  curl          4.3        2019-12-02 [1] CRAN (R 3.6.0)                     
-    ##  data.table    1.12.8     2019-12-09 [1] CRAN (R 3.6.0)                     
-    ##  digest        0.6.23     2019-11-23 [1] CRAN (R 3.6.0)                     
-    ##  evaluate      0.14       2019-05-28 [1] CRAN (R 3.6.0)                     
-    ##  fansi         0.4.1      2020-01-08 [1] CRAN (R 3.6.2)                     
-    ##  foreign       0.8-72     2019-08-02 [1] CRAN (R 3.6.2)                     
-    ##  glue          1.3.1.9000 2020-01-17 [1] Github (tidyverse/glue@8094d3b)    
-    ##  htmltools     0.4.0      2019-10-04 [1] CRAN (R 3.6.0)                     
-    ##  knitr         1.27       2020-01-16 [1] CRAN (R 3.6.2)                     
-    ##  magrittr      1.5        2014-11-22 [1] CRAN (R 3.6.0)                     
-    ##  prompt        1.0.0      2020-01-12 [1] Github (gaborcsardi/prompt@b332c42)
-    ##  Rcpp          1.0.3      2019-11-08 [1] CRAN (R 3.6.0)                     
-    ##  rlang         0.4.2      2019-11-23 [1] CRAN (R 3.6.0)                     
-    ##  rmarkdown     2.0        2019-12-12 [1] CRAN (R 3.6.0)                     
-    ##  rstudioapi    0.10       2019-03-19 [1] CRAN (R 3.6.0)                     
-    ##  sessioninfo   1.1.1      2018-11-05 [1] CRAN (R 3.6.0)                     
-    ##  stringi       1.4.5      2020-01-11 [1] CRAN (R 3.6.2)                     
-    ##  stringr       1.4.0      2019-02-10 [1] CRAN (R 3.6.0)                     
-    ##  withr         2.1.2      2018-03-15 [1] CRAN (R 3.6.0)                     
-    ##  xfun          0.12       2020-01-13 [1] CRAN (R 3.6.0)                     
-    ##  yaml          2.2.0      2018-07-25 [1] CRAN (R 3.6.0)                     
+    ##  package     * version date       lib source        
+    ##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.0.0)
+    ##  cli           2.0.2   2020-02-28 [1] CRAN (R 4.0.0)
+    ##  crayon        1.3.4   2017-09-16 [1] CRAN (R 4.0.0)
+    ##  curl          4.3     2019-12-02 [1] CRAN (R 4.0.0)
+    ##  data.table    1.12.8  2019-12-09 [1] CRAN (R 4.0.0)
+    ##  digest        0.6.25  2020-02-23 [1] CRAN (R 4.0.0)
+    ##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.0.0)
+    ##  fansi         0.4.1   2020-01-08 [1] CRAN (R 4.0.0)
+    ##  foreign       0.8-80  2020-05-24 [1] CRAN (R 4.0.2)
+    ##  glue          1.4.1   2020-05-13 [1] CRAN (R 4.0.0)
+    ##  htmltools     0.5.0   2020-06-16 [1] CRAN (R 4.0.0)
+    ##  knitr         1.29    2020-06-23 [1] CRAN (R 4.0.0)
+    ##  magrittr      1.5     2014-11-22 [1] CRAN (R 4.0.0)
+    ##  rlang         0.4.7   2020-07-09 [1] CRAN (R 4.0.2)
+    ##  rmarkdown     2.3     2020-06-18 [1] CRAN (R 4.0.0)
+    ##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.0.0)
+    ##  stringi       1.4.6   2020-02-17 [1] CRAN (R 4.0.0)
+    ##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.0.0)
+    ##  withr         2.2.0   2020-04-20 [1] CRAN (R 4.0.0)
+    ##  xfun          0.15    2020-06-21 [1] CRAN (R 4.0.0)
+    ##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.0)
     ## 
-    ## [1] /Library/Frameworks/R.framework/Versions/3.6/Resources/library
+    ## [1] /Library/Frameworks/R.framework/Versions/4.0/Resources/library
