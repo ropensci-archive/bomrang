@@ -1,4 +1,5 @@
 
+
 #' Obtain historical BOM data
 #'
 #' Retrieves daily observations for a given station.
@@ -99,7 +100,7 @@ get_historical_weather <-
            radius = NULL,
            type = c("rain", "min", "max", "solar")) {
     site <- ncc_obs_code <- NULL #nocov
-
+    
     if (is.null(stationid) & is.null(latlon))
       stop("stationid or latlon must be provided.",
            call. = FALSE)
@@ -120,17 +121,17 @@ get_historical_weather <-
               ")")
       stationid <- stationdetails$site
     }
-
+    
     ## ensure station is known
     ncc_list <- .get_ncc()
-
+    
     if (suppressWarnings(all(
       is.na(as.numeric(stationid)) |
       as.numeric(stationid) %notin% ncc_list$site
     )))
       stop("\nStation not recognised.\n",
            call. = FALSE)
-
+    
     type <- match.arg(type)
     obscode <- switch(
       type,
@@ -139,11 +140,11 @@ get_historical_weather <-
       max = 122,
       solar = 193
     )
-
+    
     ncc_list <-
       dplyr::filter(ncc_list, c(site == as.numeric(stationid) &
                                   ncc_obs_code == obscode))
-
+    
     if (obscode %notin% ncc_list$ncc_obs_code)
       stop(call. = FALSE,
            "\n`type` ",
@@ -151,10 +152,10 @@ get_historical_weather <-
            " is not available for `stationid` ",
            stationid,
            "\n")
-
+    
     zipurl <- .get_zip_url(stationid, obscode)
     dat <- .get_zip_and_load(zipurl)
-
+    
     names(dat) <- c("product_code",
                     "station_number",
                     "year",
@@ -173,7 +174,7 @@ get_historical_weather <-
                                "quality"),
                       solar = c("solar_exposure")
                     ))
-
+    
     return(
       structure(
         dat,
@@ -211,25 +212,25 @@ get_historical_weather <-
     start_year <-
     end_month <- end_year <- years <- percent <- AWS <-
     start <- end <- ncc_obs_code <- site <- NULL #nocov end
-
+  
   base_url <- "http://www.bom.gov.au/climate/data/lists_by_element/"
-
+  
   rain <- paste0(base_url, "alphaAUS_136.txt")
   tmax <- paste0(base_url, "alphaAUS_122.txt")
   tmin <- paste0(base_url, "alphaAUS_123.txt")
   solar <- paste0(base_url, "alphaAUS_193.txt")
-
+  
   weather <- c(rain, tmax, tmin, solar)
   names(weather) <- c("rain", "tmax", "tmin", "solar")
-
+  
   ncc_codes <- vector(mode = "list", length = length(weather))
   names(ncc_codes) <- names(weather)
-
+  
   for (i in seq_along(weather)) {
     ncc_obs_code <- substr(weather[i],
                            nchar(weather[i]) - 6,
                            nchar(weather[i]) - 4)
-
+    
     ncc <-
       readr::read_table(
         weather[i],
@@ -262,11 +263,11 @@ get_historical_weather <-
         ),
         na = ""
       )
-
+    
     # trim the end of the rows off that have extra info that's not in columns
     nrows <- nrow(ncc) - 7
-    ncc <- ncc[1:nrows, ]
-
+    ncc <- ncc[1:nrows,]
+    
     # unite month and year, convert to a date and add ncc_obs_code
     ncc <-
       ncc %>%
@@ -275,7 +276,7 @@ get_historical_weather <-
       dplyr::mutate(start = lubridate::dmy(paste0("01-", start))) %>%
       dplyr::mutate(end = lubridate::dmy(paste0("01-", end))) %>%
       dplyr::mutate(ncc_obs_code = ncc_obs_code)
-
+    
     ncc_codes[[i]] <- ncc
   }
   dplyr::bind_rows(ncc_codes)
@@ -299,7 +300,6 @@ get_historical_weather <-
 #' @noRd
 
 .get_zip_url <- function(site, code = 122) {
-
   base_url <- "http://www.bom.gov.au/jsp/ncc/cdio/weatherData/"
   url1 <-
     paste0(
@@ -310,7 +310,7 @@ get_historical_weather <-
       code
     )
   raw <- httr::content(httr::GET(url1), "text")
-  if (grepl("BUREAU FOOTER", raw))
+  if (grepl("Error code: 1001", raw))
     stop("Error in retrieving resource identifiers.")
   pc <- sub("^.*:", "", raw)
   url2 <-
@@ -341,6 +341,7 @@ get_historical_weather <-
   unlink(tmp)
   datfile <- grep("Data.csv", zipped, value = TRUE)
   message("Data saved as ", datfile)
-  dat <- utils::read.csv(datfile, header = TRUE)
+  dat <-
+    utils::read.csv(datfile, header = TRUE, stringsAsFactors = TRUE)
   dat
 }
