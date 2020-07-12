@@ -29,9 +29,9 @@
 #'
 #' @return
 #' Data frame as a \code{\link[data.table]{data.table}} object of Australian 9am
-#' or 3pm weather observations for a state. For full details of fields and units
-#' returned see Appendix 4, "Appendix 4 - Output from get_weather_bulletin()"
-#' in the \pkg{bomrang} vignette, use \cr
+#' or 3pm weather observations for a state.  For full details of fields and
+#' units returned see Appendix 4, "Appendix 4 - Output from
+#' get_weather_bulletin()" in the \pkg{bomrang} vignette, use \cr
 #' \code{vignette("bomrang", package = "bomrang")} to view.
 #'
 #' @examples
@@ -49,6 +49,8 @@
 
 get_weather_bulletin <- function(state = "qld", morning = TRUE) {
 
+  na_if <- NULL
+  
   the_state <- .convert_state(state) # see internal_functions.R
   if (the_state == "AUS") {
     stop(call. = FALSE,
@@ -128,7 +130,8 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
   ) %>%
     dplyr::mutate_at(.funs = as.numeric,
                      .vars = vars) %>%
-    dplyr::mutate_all(na_if, "")
+    dplyr::mutate_all(list(~dplyr::na_if(., "")))
+  
 
   names(out) <- sub("current_details_", "", names(out))
   names(out) <- sub("x24_hour_details_", "", names(out))
