@@ -1,4 +1,12 @@
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - '*'
+      - '!*/*'
+  pull-request:
+    branches:
+      - '*'
+      - '!*/*'
 
 name: R-CMD-check
 
