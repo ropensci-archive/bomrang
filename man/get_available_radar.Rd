@@ -33,7 +33,7 @@ imagery <- get_available_radar(radar_id = "3")
 
 }
 \references{
-Australian Bureau of Meteorology (BOM) radar images 
+Australian Bureau of Meteorology (BOM) radar image
 \url{http://www.bom.gov.au/australia/radar/}
 }
 \author{

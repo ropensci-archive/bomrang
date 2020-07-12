@@ -9,7 +9,8 @@ get_coastal_forecast(state = "AUS")
 \arguments{
 \item{state}{Australian state or territory as full name or postal code.
 Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
-\dQuote{AUS} returning all state forecasts, see details for further information.}
+\dQuote{AUS} returning all state forecasts, see details for further
+ information.}
 }
 \value{
 A \code{\link[data.table]{data.table}} of an Australia \acronym{BOM}

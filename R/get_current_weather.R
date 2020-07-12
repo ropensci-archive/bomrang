@@ -74,8 +74,9 @@ get_current_weather <-
            strict = FALSE,
            latlon = NULL,
            emit_latlon_msg = TRUE) {
-    # CRAN NOTE avoidance
-    JSONurl_site_list <- name <- NULL # nocov
+    
+    if(getRversion() >= "2.15.1")
+      utils::globalVariables(c("JSONurl_site_list", "name"))
 
     # Load JSON URL list
     load(system.file("extdata", "JSONurl_site_list.rda",  # nocov start

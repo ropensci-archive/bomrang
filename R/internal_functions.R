@@ -3,9 +3,6 @@
   match(x, table, nomatch = 0L) == 0L
 }
 
-# suppress messages for these special chars used in data.table
-.SD <- .N <- .I <- .GRP <- .BY <- .EACHI <- NULL
-
 .force_double <- function(v) {
   suppressWarnings(as.double(v))
 }
@@ -13,7 +10,7 @@
 #' Get response from a BOM URL
 #'
 #' Gets response from a BOM URL, checks for response first, then
-#' tries to fetch the data or returns an informatative message, failing
+#' tries to fetch the data or returns an informative message, failing
 #' gracefully per CRAN policies.
 #'
 #' @param remote_file file resource being requested from BOM
@@ -249,7 +246,9 @@
 #' @noRd
 
 .split_time_cols <- function(x) {
-  start_time_local <- end_time_local <- NULL
+  if(getRversion() >= "2.15.1")
+    utils::globalVariables(c(".SD", "start_time_local", "end_time_local")
+    )
   x[, c("start_time_local",
         "UTC_offset_drop") := data.table::tstrsplit(start_time_local,
                                                     "+",
@@ -391,13 +390,30 @@
 #' @noRd
 
 .parse_precis_forecast <- function(xml_url) {
-  # CRAN note avoidance
-  AAC_codes <- # nocov start
-    attrs <- end_time_local <- precipitation_range <- start_time_local <-
-    values <-  .SD <- .N <- .I <- .GRP <- .BY <- .EACHI <- state <-
-    product_id <- probability_of_precipitation <- start_time_utc <-
-    end_time_utc <- upper_precipitation_limit <- lower_precipitation_limit <-
-    NULL # nocov end
+  if (getRversion() >= "2.15.1")
+    utils::globalVariables(
+      c(
+        ".SD",
+        "AAC_codes",
+        "attrs",
+        "end_time_local",
+        "precipitation_range",
+        "start_time_local",
+        "values",
+        ".N",
+        ".I",
+        ".GRP",
+        ".BY",
+        ".EACHI",
+        "state",
+        "product_id",
+        "probability_of_precipitation",
+        "start_time_utc",
+        "end_time_utc",
+        "upper_precipitation_limit",
+        "lower_precipitation_limit"
+      )
+    )
 
   # load the XML from ftp
   if (substr(xml_url, 1, 3) == "ftp") {
@@ -529,7 +545,7 @@
 #' @noRd
 
 .parse_precis_xml <- function(xml_object) {
-  forecast_icon_code <- NULL
+  if (getRversion() >= "2.15.1") utils::globalVariables(c("forecast_icon_code"))
 
   # get the actual forecast objects
   fp <- xml2::xml_find_all(xml_object, ".//forecast-period")

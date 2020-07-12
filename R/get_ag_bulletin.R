@@ -58,7 +58,9 @@
 
 get_ag_bulletin <- function(state = "AUS") {
   # this is just a placeholder for functionality with parse_ag_bulletin()
-  filepath <- NULL
+  if(getRversion() >= "2.15.1")
+    utils::globalVariables(c("filepath")
+    )
 
   # see internal_functions.R for these functions
   the_state <- .check_states(state)

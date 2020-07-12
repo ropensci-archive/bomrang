@@ -29,7 +29,7 @@ matching type in the order listed. Ignored if \code{hourly} or
 A \code{bomrang_tbl} object (extension of a
   \code{\link[base]{data.frame}}) of historical observations for the selected
   station/product type, with some subset of the following columns:
-  
+
   \tabular{rl}{
   **Product_code**:\tab BOM internal code.\cr
   **Station_number**:\tab BOM station ID.\cr
@@ -40,7 +40,7 @@ A \code{bomrang_tbl} object (extension of a
   **Max_temperature**:\tab Maximum daily recorded temperature (degrees C).\cr
   **Accum_days_min**:\tab Accumulated number of days of minimum
    temperature.\cr
-  **Accum_days_max**:\tab Accumulated number of days of maximum 
+  **Accum_days_max**:\tab Accumulated number of days of maximum
   temperature.\cr
   **Rainfall**:\tab Daily recorded rainfall in mm.\cr
   **Period**:\tab Period over which rainfall was measured.\cr
