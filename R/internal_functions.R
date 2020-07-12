@@ -1,4 +1,5 @@
 
+
 `%notin%` <- function(x, table) {
   match(x, table, nomatch = 0L) == 0L
 }
@@ -246,9 +247,9 @@
 #' @noRd
 
 .split_time_cols <- function(x) {
-  if(getRversion() >= "2.15.1")
-    utils::globalVariables(c(".SD", "start_time_local", "end_time_local")
-    )
+  
+  .SD<- start_time_local<- end_time_local <- NULL
+    
   x[, c("start_time_local",
         "UTC_offset_drop") := data.table::tstrsplit(start_time_local,
                                                     "+",
@@ -345,6 +346,9 @@
 #'
 #' @noRd
 .return_precis <- function(file_loc, cleaned_state) {
+  
+  product_id <- probability_of_precipitation <- lower_precipitation_limit <- NULL
+  
   # create vector of XML files
   AUS_XML <- c(
     "IDN11060.xml",
@@ -390,30 +394,26 @@
 #' @noRd
 
 .parse_precis_forecast <- function(xml_url) {
-  if (getRversion() >= "2.15.1")
-    utils::globalVariables(
-      c(
-        ".SD",
-        "AAC_codes",
-        "attrs",
-        "end_time_local",
-        "precipitation_range",
-        "start_time_local",
-        "values",
-        ".N",
-        ".I",
-        ".GRP",
-        ".BY",
-        ".EACHI",
-        "state",
-        "product_id",
-        "probability_of_precipitation",
-        "start_time_utc",
-        "end_time_utc",
-        "upper_precipitation_limit",
-        "lower_precipitation_limit"
-      )
-    )
+  .SD <- #nocov start
+    AAC_codes <-
+    attrs <-
+    end_time_local <-
+    precipitation_range <-
+    start_time_local <-
+    values <-
+    .N <-
+    .I <-
+    .GRP <-
+    .BY <-
+    .EACHI <-
+    state <-
+    product_id <-
+    probability_of_precipitation <-
+    start_time_utc <-
+    end_time_utc <-
+    upper_precipitation_limit <-
+    lower_precipitation_limit <-
+    forecast_icon_code <- NULL #nocov end
 
   # load the XML from ftp
   if (substr(xml_url, 1, 3) == "ftp") {
@@ -545,7 +545,7 @@
 #' @noRd
 
 .parse_precis_xml <- function(xml_object) {
-  if (getRversion() >= "2.15.1") utils::globalVariables(c("forecast_icon_code"))
+  forecast_icon_code <- NULL
 
   # get the actual forecast objects
   fp <- xml2::xml_find_all(xml_object, ".//forecast-period")
@@ -636,7 +636,7 @@
 .parse_bulletin <- function(xml_url) {
   # CRAN NOTE avoidance
   stations_site_list <-
-    site <- obs_time_local <- obs_time_utc <- r <- NULL # nocov
+    site <- obs_time_local <- obs_time_utc <- r <- .SD <- NULL # nocov
 
   # load the XML from ftp
   if (substr(xml_url, 1, 3) == "ftp") {
@@ -810,7 +810,7 @@
     start_time_local <- values <- product_id <-
     forecast_swell2 <- forecast_caution <- marine_forecast <-
     state_code <-
-    tropical_system_location <- forecast_waves <- NULL # nocov end
+    tropical_system_location <- forecast_waves <- .SD <- AAC_codes <- NULL # nocov end
 
   # load the XML from ftp
   if (substr(xml_url, 1, 3) == "ftp") {

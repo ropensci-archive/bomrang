@@ -54,8 +54,7 @@
 
 get_coastal_forecast <- function(state = "AUS") {
   # this is just a placeholder for functionality with parse_coastal_forecast()
-  if(getRversion() >= "2.15.1")
-    utils::globalVariables("filepath")
+  filepath <- NULL
 
   # see internal_functions.R for these functions
   the_state <- .check_states(state)
