@@ -78,6 +78,7 @@ jobs:
             libgdal-dev \
             libgeos-dev \
             libproj-dev
+            
       - name: Install dependencies
         run: |
           library(remotes)

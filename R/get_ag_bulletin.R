@@ -25,7 +25,7 @@
 #' @return
 #'  A data frame as a \code{\link[data.table]{data.table}} object of Australia
 #'  \acronym{BOM} agricultural bulletin information.  For full details of fields
-#'  and units returned see Appendix 3 in the \pkg{bomrang} vignette, use \cr
+#'  and units returned see Appendix 3 in the \CRANpkg{bomrang} vignette, use \cr
 #'  \code{vignette("bomrang", package = "bomrang")} to view.
 #'
 #' @examples

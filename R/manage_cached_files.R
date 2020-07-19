@@ -1,8 +1,8 @@
 
 #' @title Manage locally cached bomrang files
 #'
-#' @description Manage cached \pkg{bomrang} satellite imagery files with
-#' \pkg{hoardr}.
+#' @description Manage cached \CRANpkg{bomrang} satellite imagery files with
+#' \CRANpkg{hoardr}.
 #'
 #' @export
 #' @name manage_cache

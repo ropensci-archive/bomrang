@@ -6,12 +6,12 @@
 #' \code{\link{get_ag_bulletin}} and \code{\link{get_historical_weather}}.
 #' There is no need to use this unless you know that a station exists in
 #' \acronym{BOM}'s database that is not available in the databases distributed
-#' with \pkg{bomrang}. In fact, for reproducibility purposes, users are
+#' with \CRANpkg{bomrang}. In fact, for reproducibility purposes, users are
 #' discouraged from using this function.
 #'
-#' If \pkg{ASGS.foyer} is installed locally, this function will automatically
+#' If \CRANpkg{ASGS.foyer} is installed locally, this function will automatically
 #' check and correct any invalid state values for stations located in Australia.
-#' If \pkg{ASGS.foyer} is not installed, the function will update the internal
+#' If \CRANpkg{ASGS.foyer} is not installed, the function will update the internal
 #' database without validating the state values for stations by reported
 #' longitude/latitude location.
 #'

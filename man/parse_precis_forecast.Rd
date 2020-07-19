@@ -17,7 +17,7 @@ file(s) to parse. See Details for more.}
 \value{
 A \code{\link[data.table]{data.table}} of Australia \acronym{BOM} précis
 seven day forecasts for \acronym{BOM} selected towns.  For full details of
-fields and units returned see Appendix 2 in the \pkg{bomrang} vignette,
+fields and units returned see Appendix 2 in the \CRANpkg{bomrang} vignette,
 use\cr
 \code{vignette("bomrang", package = "bomrang")} to view.
 }

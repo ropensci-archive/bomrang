@@ -108,7 +108,7 @@ get_available_imagery <- function(product_id = "all") {
 #' \item{IDE00439}{AHI VIS (Ch3) greyscale 0.5km AUS equirect. GIS}
 #' }
 #'
-#' We cache using \pkg{hoardr}, find your cache folder by executing
+#' We cache using \CRANpkg{hoardr}, find your cache folder by executing
 #' \code{manage_cache$cache_path_get}.
 #'
 #' @seealso

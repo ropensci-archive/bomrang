@@ -88,7 +88,7 @@ Retrieves daily observations for a given station.
   return fewer observations.
 }
 
-\section{\pkg{dplyr} Compatibility}{
+\section{\CRANpkg{dplyr} Compatibility}{
  The \code{bomrang_tbl} class is
   compatible with \code{\link[dplyr:dplyr-package]{dplyr}} as long as the
   \code{bomrang} package is on the search path. Common functions
@@ -96,8 +96,8 @@ Retrieves daily observations for a given station.
   \code{\link[dplyr]{arrange}}, \code{\link[dplyr]{mutate}},
   \code{\link[dplyr:select]{rename}}, \code{\link[dplyr]{arrange}},
   \code{\link[dplyr]{slice}}, \code{\link[dplyr]{group_by}}) are provided
-  which mask the \pkg{dplyr} versions (but use those internally, maintaining
-  attributes).
+  which mask the \CRANpkg{dplyr} versions (but use those internally,
+  maintaining attributes).
 }
 
 \examples{

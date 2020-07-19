@@ -36,7 +36,7 @@ found to be nearest to the given coordinate).}
 A \code{bomrang_tbl} object (extension of a
 \code{\link[base]{data.frame}})  of requested BOM station's current and prior
  72hr data. For full details of fields and units returned, see Appendix 1
- in the \pkg{bomrang} vignette, use \cr
+ in the \CRANpkg{bomrang} vignette, use \cr
 \code{vignette("bomrang", package = "bomrang")} to view.
 }
 \description{
@@ -52,7 +52,7 @@ is \code{Castlemaine}, not \code{Castlemaine Prison}.
 Note that the column \code{local_date_time_full} is set to a
 \code{POSIXct} object in the local time of the \strong{user}.
 For more details see \dQuote{Appendix 1 - Output from get_current_weather()}
-in the \pkg{bomrang} vignette \cr
+in the \CRANpkg{bomrang} vignette \cr
 \code{vignette("bomrang", package = "bomrang")}\cr
 for a complete list of fields and units.
 }

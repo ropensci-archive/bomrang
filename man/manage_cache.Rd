@@ -4,8 +4,8 @@
 \alias{manage_cache}
 \title{Manage locally cached bomrang files}
 \description{
-Manage cached \pkg{bomrang} satellite imagery files with
-\pkg{hoardr}.
+Manage cached \CRANpkg{bomrang} satellite imagery files with
+\CRANpkg{hoardr}.
 }
 \details{
 The default cache directory is\cr

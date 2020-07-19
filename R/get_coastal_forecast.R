@@ -26,7 +26,7 @@
 #' @return
 #' A \code{\link[data.table]{data.table}} of an Australia \acronym{BOM}
 #' Coastal Waters Forecast. For full details of fields and units
-#' returned see Appendix 5 in the \pkg{bomrang} vignette, use \cr
+#' returned see Appendix 5 in the \CRANpkg{bomrang} vignette, use \cr
 #' \code{vignette("bomrang", package = "bomrang")} to view.
 #'
 #' @examples
