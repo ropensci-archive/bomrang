@@ -71,8 +71,7 @@ Meta
 
     - All code is licensed MIT
 
-    - All data is copyright Australia Bureau of Meteorology, BOM Copyright
-    Notice <br /><http://reg.bom.gov.au/other/copyright.shtml>
+    - All data is copyright Australia Bureau of Meteorology, BOM Copyright Notice <br /><http://reg.bom.gov.au/other/copyright.shtml>
 
 - To cite *bomrang*, please use the output from `citation("bomrang")`
 
