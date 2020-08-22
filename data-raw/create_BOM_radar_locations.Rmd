@@ -10,11 +10,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ## Get BOM Radar Locations
 
 BOM maintains a shapefile of radar site names and their geographic locations.
-For ease, we'll just use the .dbf file part of the shapefile to extract the 
-product codes and radar locations. The file is available from BOM's anonymous
-FTP server with spatial data <ftp://ftp.bom.gov.au/anon/home/adfd/spatial/>,
-specifically the DBF file portion of a shapefile, 
-<ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDR00007.dbf>
+For ease, we'll just use the .dbf file part of the shapefile to extract the product codes and radar locations.
+The file is available from BOM's anonymous FTP server with spatial data <ftp://ftp.bom.gov.au/anon/home/adfd/spatial/>, specifically the DBF file portion of a shapefile, 
+<ftp://ftp.bom.gov.au/anon/home/adfd/spatial/IDR00007.dbf>.
 
 ```{r get_radarlocs}
 curl::curl_download(
