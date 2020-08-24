@@ -231,53 +231,67 @@ get_historical_weather <-
                            nchar(weather[i]) - 6,
                            nchar(weather[i]) - 4)
     
-    ncc <-
-      readr::read_table(
-        weather[i],
-        skip = 4,
-        col_names = c(
-          "site",
-          "name",
-          "lat",
-          "lon",
-          "start_month",
-          "start_year",
-          "end_month",
-          "end_year",
-          "years",
-          "percent",
-          "AWS"
-        ),
-        col_types = c(
-          site = readr::col_integer(),
-          name = readr::col_character(),
-          lat = readr::col_double(),
-          lon = readr::col_double(),
-          start_month = readr::col_character(),
-          start_year = readr::col_character(),
-          end_month = readr::col_character(),
-          end_year = readr::col_character(),
-          years = readr::col_double(),
-          percent = readr::col_integer(),
-          AWS = readr::col_character()
-        ),
-        na = ""
-      )
+    # read the station list in as a vector first so that we can
+    # detect and remove the header and footer...
+    ncc <- readLines(weather[i])
+    header_start <- grep('^\\-+$', ncc) + 1L
+    footer_start <- grep('^[0-9]+ stations', ncc) - 1L
     
-    # trim the end of the rows off that have extra info that's not in columns
-    nrows <- nrow(ncc) - 7
-    ncc <- ncc[1:nrows,]
-    
-    # unite month and year, convert to a date and add ncc_obs_code
-    ncc <-
-      ncc %>%
-      tidyr::unite(start, start_month, start_year, sep = "-") %>%
-      tidyr::unite(end, end_month, end_year, sep = "-") %>%
-      dplyr::mutate(start = lubridate::dmy(paste0("01-", start))) %>%
-      dplyr::mutate(end = lubridate::dmy(paste0("01-", end))) %>%
-      dplyr::mutate(ncc_obs_code = ncc_obs_code)
-    
-    ncc_codes[[i]] <- ncc
+    if (length(header_start > 0) && length(footer_start > 0)) {
+      # ... then process it as a data frame
+      ncc <-
+        readr::read_table(
+          ncc[header_start:footer_start],
+          skip = 0,
+          col_names = c(
+            "site",
+            "name",
+            "lat",
+            "lon",
+            "start_month",
+            "start_year",
+            "end_month",
+            "end_year",
+            "years",
+            "percent",
+            "AWS"
+          ),
+          col_types = c(
+            site = readr::col_integer(),
+            name = readr::col_character(),
+            lat = readr::col_double(),
+            lon = readr::col_double(),
+            start_month = readr::col_character(),
+            start_year = readr::col_character(),
+            end_month = readr::col_character(),
+            end_year = readr::col_character(),
+            years = readr::col_double(),
+            percent = readr::col_integer(),
+            AWS = readr::col_character()
+          ),
+          na = ""
+        )
+      
+      # unite month and year, convert to a date and add ncc_obs_code
+      ncc <-
+        ncc %>%
+        tidyr::unite(start, start_month, start_year, sep = "-") %>%
+        tidyr::unite(end, end_month, end_year, sep = "-") %>%
+        dplyr::mutate(start = lubridate::dmy(paste0("01-", start))) %>%
+        dplyr::mutate(end = lubridate::dmy(paste0("01-", end))) %>%
+        dplyr::mutate(ncc_obs_code = ncc_obs_code)
+      
+      # finally, store in a list
+      ncc_codes[[i]] <- ncc
+      
+    } else {
+      warning(paste0(
+        'The list of available stations for `type = ', names(weather)[i],
+        '` is currently empty. This is likely a temporary error in the Bureau ',
+        'of Meteorology\'s database and may cause requests for ',
+        names(weather)[i], ' station data to fail.'
+      ))
+    }
   }
   dplyr::bind_rows(ncc_codes)
 }
