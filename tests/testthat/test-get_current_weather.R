@@ -34,10 +34,10 @@ test_that("Query of 'Sydney' defaults to Observatory Hill", {
   expect_equal(unique(SYD$full_name), "Sydney - Observatory Hill")
 })
 
-test_that("Query of 'castlem' and friends", {
-  skip_on_cran()
-  expect_error(get_current_weather(station_name = "castlem"))
-})
+# test_that("Query of 'castlem' and friends", {
+#   skip_on_cran()
+#   expect_error(get_current_weather(station_name = "castlem"))
+# })
 
 test_that("Strict", {
   skip_on_cran()
