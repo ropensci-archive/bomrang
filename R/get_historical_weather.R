@@ -1,5 +1,4 @@
 
-
 #' Obtain historical BOM data
 #'
 #' Retrieves daily observations for a given station.
@@ -286,12 +285,13 @@ get_historical_weather <-
       ncc_codes[[i]] <- ncc
       
     } else {
-      warning(paste0(
-        'The list of available stations for `type = ', names(weather)[i],
-        '` is currently empty. This is likely a temporary error in the Bureau ',
-        'of Meteorology\'s database and may cause requests for ',
-        names(weather)[i], ' station data to fail.'
-      ))
+      warning(call. = FALSE,
+        "The list of available stations for `type = ", names(weather)[i],
+        "` is currently empty.\n",
+        "This is likely a temporary error in the Bureau of Meteorology\'s\n",
+        "database and may cause requests for ", names(weather)[i], 
+        " station data to fail."
+      )
     }
   }
   dplyr::bind_rows(ncc_codes)
