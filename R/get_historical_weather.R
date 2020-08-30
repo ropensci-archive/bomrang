@@ -203,7 +203,8 @@ get_historical_weather <-
 #'
 #' @return A data frame of metadata for BOM historical records
 #' @keywords internal
-#' @author Jonathan Carroll, \email{rpkg@@jcarroll.com.au}
+#' @author Jonathan Carroll, \email{rpkg@@jcarroll.com.au} and James Goldie
+#'  \email{me@@rensa.co}.
 #' @noRd
 
 .get_ncc <- function() {
