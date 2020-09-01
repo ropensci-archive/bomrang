@@ -19,5 +19,5 @@ Find nearest BOM forecast towns
 }
 \author{
 Hugh Parsonage, \email{hugh.parsonage@gmail.com} and
- James Goldie, \email{me@rensa.co}
+James Goldie, \email{me@rensa.co}
 }

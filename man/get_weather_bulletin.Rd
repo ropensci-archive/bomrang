@@ -26,16 +26,16 @@ data frame for a specified state or territory.
 }
 \details{
 Allowed state and territory postal codes:
- \describe{
-   \item{ACT}{Australian Capital Territory (will return NSW)}
-   \item{NSW}{New South Wales}
-   \item{NT}{Northern Territory}
-   \item{QLD}{Queensland}
-   \item{SA}{South Australia}
-   \item{TAS}{Tasmania}
-   \item{VIC}{Victoria}
-   \item{WA}{Western Australia}
- }
+\describe{
+\item{ACT}{Australian Capital Territory (will return NSW)}
+\item{NSW}{New South Wales}
+\item{NT}{Northern Territory}
+\item{QLD}{Queensland}
+\item{SA}{South Australia}
+\item{TAS}{Tasmania}
+\item{VIC}{Victoria}
+\item{WA}{Western Australia}
+}
 It is not possible to return weather bulletins for the entire country in a
 single call. Rainfall figures for the 9am bulletin are generally for the
 preceding 24 hours, while those for the 3pm bulletin are for the preceding 6

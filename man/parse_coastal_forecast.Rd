@@ -22,22 +22,22 @@ returned see Appendix 5 in the \CRANpkg{bomrang} vignette, use \cr
 }
 \description{
 Parse local \acronym{BOM} daily coastal waters forecast \acronym{XML} file(s)
- and return a data frame for a specified state or territory or all Australia.
+and return a data frame for a specified state or territory or all Australia.
 }
 \details{
 Allowed state and territory postal codes, only one state per request
 or all using \code{AUS}.
- \describe{
-   \item{ACT}{Australian Capital Territory (will return NSW)}
-   \item{NSW}{New South Wales}
-   \item{NT}{Northern Territory}
-   \item{QLD}{Queensland}
-   \item{SA}{South Australia}
-   \item{TAS}{Tasmania}
-   \item{VIC}{Victoria}
-   \item{WA}{Western Australia}
-   \item{AUS}{Australia, returns forecast for all states, NT and ACT}
- }
+\describe{
+\item{ACT}{Australian Capital Territory (will return NSW)}
+\item{NSW}{New South Wales}
+\item{NT}{Northern Territory}
+\item{QLD}{Queensland}
+\item{SA}{South Australia}
+\item{TAS}{Tasmania}
+\item{VIC}{Victoria}
+\item{WA}{Western Australia}
+\item{AUS}{Australia, returns forecast for all states, NT and ACT}
+}
 
 The \var{filepath} argument will only accept a directory where files
 are located for parsing. DO NOT supply the full path including the file name.

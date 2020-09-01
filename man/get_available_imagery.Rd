@@ -24,7 +24,7 @@ function.
 }
 \details{
 Valid \acronym{BOM} satellite Product IDs for 'GeoTIFF' files
- include:
+include:
 \describe{
 \item{IDE00420}{AHI cloud cover only 2km FD GEOS GIS}
 \item{IDE00421}{AHI IR (Ch13) greyscale 2km FD GEOS GIS}

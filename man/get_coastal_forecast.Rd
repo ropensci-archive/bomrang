@@ -10,7 +10,7 @@ get_coastal_forecast(state = "AUS")
 \item{state}{Australian state or territory as full name or postal code.
 Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 \dQuote{AUS} returning all state forecasts, see details for further
- information.}
+information.}
 }
 \value{
 A \code{\link[data.table]{data.table}} of an Australia \acronym{BOM}
@@ -25,17 +25,17 @@ of the forecast regions for a specified state or region.
 \details{
 Allowed state and territory postal codes, only one state per request
 or all using \code{AUS}.
- \describe{
-   \item{ACT}{Australian Capital Territory (will return NSW)}
-   \item{NSW}{New South Wales}
-   \item{NT}{Northern Territory}
-   \item{QLD}{Queensland}
-   \item{SA}{South Australia}
-   \item{TAS}{Tasmania}
-   \item{VIC}{Victoria}
-   \item{WA}{Western Australia}
-   \item{AUS}{Australia, returns forecast for all states, NT and ACT}
- }
+\describe{
+\item{ACT}{Australian Capital Territory (will return NSW)}
+\item{NSW}{New South Wales}
+\item{NT}{Northern Territory}
+\item{QLD}{Queensland}
+\item{SA}{South Australia}
+\item{TAS}{Tasmania}
+\item{VIC}{Victoria}
+\item{WA}{Western Australia}
+\item{AUS}{Australia, returns forecast for all states, NT and ACT}
+}
 }
 \examples{
 \donttest{

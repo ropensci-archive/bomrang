@@ -20,15 +20,15 @@ all files. For deleting many specific files, use\cr
 \section{Useful user functions}{
 
 \itemize{
- \item \code{manage_cache$cache_path_get()} - get cache path
- \item \code{manage_cache$cache_path_set()} - set cache path
- \item \code{manage_cache$list()} - returns a character vector of full
- path file names
- \item \code{manage_cache$files()} - returns file objects with metadata
- \item \code{manage_cache$details()} - returns files with details
- \item \code{manage_cache$delete()} - delete specific files
- \item \code{manage_cache$delete_all()} - delete all files, returns
- nothing
+\item \code{manage_cache$cache_path_get()} - get cache path
+\item \code{manage_cache$cache_path_set()} - set cache path
+\item \code{manage_cache$list()} - returns a character vector of full
+path file names
+\item \code{manage_cache$files()} - returns file objects with metadata
+\item \code{manage_cache$details()} - returns files with details
+\item \code{manage_cache$delete()} - delete specific files
+\item \code{manage_cache$delete_all()} - delete all files, returns
+nothing
 }
 }
 

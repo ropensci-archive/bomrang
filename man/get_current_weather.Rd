@@ -35,8 +35,8 @@ found to be nearest to the given coordinate).}
 \value{
 A \code{bomrang_tbl} object (extension of a
 \code{\link[base]{data.frame}})  of requested BOM station's current and prior
- 72hr data. For full details of fields and units returned, see Appendix 1
- in the \CRANpkg{bomrang} vignette, use \cr
+72hr data. For full details of fields and units returned, see Appendix 1
+in the \CRANpkg{bomrang} vignette, use \cr
 \code{vignette("bomrang", package = "bomrang")} to view.
 }
 \description{

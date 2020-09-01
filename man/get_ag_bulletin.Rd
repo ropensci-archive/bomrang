@@ -13,9 +13,9 @@ Fuzzy string matching via \code{\link[base]{agrep}} is done.  Defaults to
 }
 \value{
 A data frame as a \code{\link[data.table]{data.table}} object of Australia
- \acronym{BOM} agricultural bulletin information.  For full details of fields
- and units returned see Appendix 3 in the \CRANpkg{bomrang} vignette, use \cr
- \code{vignette("bomrang", package = "bomrang")} to view.
+\acronym{BOM} agricultural bulletin information.  For full details of fields
+and units returned see Appendix 3 in the \CRANpkg{bomrang} vignette, use \cr
+\code{vignette("bomrang", package = "bomrang")} to view.
 }
 \description{
 Fetch the \acronym{BOM} agricultural bulletin information and return it in a
@@ -24,17 +24,17 @@ data frame
 \details{
 Allowed state and territory postal codes, only one state per request
 or all using \code{AUS}.
- \describe{
-   \item{ACT}{Australian Capital Territory (will return NSW)}
-   \item{NSW}{New South Wales}
-   \item{NT}{Northern Territory}
-   \item{QLD}{Queensland}
-   \item{SA}{South Australia}
-   \item{TAS}{Tasmania}
-   \item{VIC}{Victoria}
-   \item{WA}{Western Australia}
-   \item{AUS}{Australia, returns forecast for all states, NT and ACT}
- }
+\describe{
+\item{ACT}{Australian Capital Territory (will return NSW)}
+\item{NSW}{New South Wales}
+\item{NT}{Northern Territory}
+\item{QLD}{Queensland}
+\item{SA}{South Australia}
+\item{TAS}{Tasmania}
+\item{VIC}{Victoria}
+\item{WA}{Western Australia}
+\item{AUS}{Australia, returns forecast for all states, NT and ACT}
+}
 }
 \examples{
 \donttest{
