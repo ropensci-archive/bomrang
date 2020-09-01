@@ -2,17 +2,9 @@
 % Please edit documentation in R/get_historical_weather.R
 \name{get_historical_weather}
 \alias{get_historical_weather}
-\alias{get_historical}
 \title{Obtain historical BOM data}
 \usage{
 get_historical_weather(
-  stationid = NULL,
-  latlon = NULL,
-  radius = NULL,
-  type = c("rain", "min", "max", "solar")
-)
-
-get_historical(
   stationid = NULL,
   latlon = NULL,
   radius = NULL,
