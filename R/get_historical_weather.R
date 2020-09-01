@@ -2,6 +2,9 @@
 #' Obtain historical BOM data
 #'
 #' Retrieves daily observations for a given station.
+#' 
+#' @note Methods \code{get_historical_weather} and \code{get_historical} are
+#' equivalent. No preference is given to the use of either.
 #'
 #' @param stationid \acronym{BOM} station \sQuote{ID}. See Details.
 #' @param latlon Length-2 numeric vector of Latitude/Longitude. See Details.
@@ -85,6 +88,8 @@
 #'
 #' @examples
 #' \donttest{
+#' get_historical(stationid = "023000",
+#'                type = "max") ## ~48,000+ daily records
 #' get_historical_weather(stationid = "023000",
 #'                        type = "max") ## ~48,000+ daily records
 #' get_historical_weather(latlon = c(-35.2809, 149.1300),
@@ -192,6 +197,15 @@ get_historical_weather <-
       )
     )
   }
+
+#' @rdname get_historical_weather
+#' @export
+get_historical <- function(stationid = NULL,
+                           latlon = NULL,
+                           radius = NULL,
+                           type = c("rain", "min", "max", "solar")) {
+  return(get_historical_weather(stationid, latlon, radius, type))
+}
 
 #' Get latest historical station metadata
 #'

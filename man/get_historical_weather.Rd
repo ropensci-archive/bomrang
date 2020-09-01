@@ -2,9 +2,17 @@
 % Please edit documentation in R/get_historical_weather.R
 \name{get_historical_weather}
 \alias{get_historical_weather}
+\alias{get_historical}
 \title{Obtain historical BOM data}
 \usage{
 get_historical_weather(
+  stationid = NULL,
+  latlon = NULL,
+  radius = NULL,
+  type = c("rain", "min", "max", "solar")
+)
+
+get_historical(
   stationid = NULL,
   latlon = NULL,
   radius = NULL,
@@ -68,6 +76,10 @@ A \code{bomrang_tbl} object (extension of a
 \description{
 Retrieves daily observations for a given station.
 }
+\note{
+Methods \code{get_historical_weather} and \code{get_historical} are
+equivalent. No preference is given to the use of either.
+}
 \section{Caution}{
 
   Temperature data prior to 1910 should be used with extreme caution as many
@@ -102,6 +114,8 @@ Retrieves daily observations for a given station.
 
 \examples{
 \donttest{
+get_historical(stationid = "023000",
+               type = "max") ## ~48,000+ daily records
 get_historical_weather(stationid = "023000",
                        type = "max") ## ~48,000+ daily records
 get_historical_weather(latlon = c(-35.2809, 149.1300),
