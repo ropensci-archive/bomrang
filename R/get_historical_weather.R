@@ -2,7 +2,7 @@
 #' Obtain historical BOM data
 #'
 #' Retrieves daily observations for a given station.
-#' 
+#'
 #' @note Methods \code{get_historical_weather} and \code{get_historical} are
 #' equivalent. No preference is given to the use of either.
 #'
@@ -88,10 +88,8 @@
 #'
 #' @examples
 #' \donttest{
-#' get_historical(stationid = "023000",
-#'                type = "max") ## ~48,000+ daily records
 #' get_historical_weather(stationid = "023000",
-#'                        type = "max") ## ~48,000+ daily records
+#'                       type = "max") ## ~48,000+ daily records
 #' get_historical_weather(latlon = c(-35.2809, 149.1300),
 #'                        type = "min") ## 3,500+ daily records
 #' }
@@ -198,14 +196,17 @@ get_historical_weather <-
     )
   }
 
+# export `get_historical()` ----
 #' @rdname get_historical_weather
+#' @examples
+#' \donttest{
+#' get_historical(stationid = "023000",
+#'               type = "max") ## ~48,000+ daily records
+#' get_historical(latlon = c(-35.2809, 149.1300),
+#'                type = "min") ## 3,500+ daily records
+#' }
 #' @export
-get_historical <- function(stationid = NULL,
-                           latlon = NULL,
-                           radius = NULL,
-                           type = c("rain", "min", "max", "solar")) {
-  return(get_historical_weather(stationid, latlon, radius, type))
-}
+get_historical <- get_historical_weather
 
 #' Get latest historical station metadata
 #'
@@ -299,11 +300,14 @@ get_historical <- function(stationid = NULL,
       ncc_codes[[i]] <- ncc
       
     } else {
-      warning(call. = FALSE,
-        "The list of available stations for `type = ", names(weather)[i],
+      warning(
+        call. = FALSE,
+        "The list of available stations for `type = ",
+        names(weather)[i],
         "` is currently empty.\n",
         "This is likely a temporary error in the Bureau of Meteorology\'s\n",
-        "database and may cause requests for ", names(weather)[i], 
+        "database and may cause requests for ",
+        names(weather)[i],
         " station data to fail."
       )
     }
