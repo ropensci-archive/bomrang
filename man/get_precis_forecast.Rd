@@ -24,17 +24,17 @@ seven-day town forecasts for a specified state or territory.
 \details{
 Allowed state and territory postal codes, only one state per request
 or all using \code{AUS}.
- \describe{
-   \item{ACT}{Australian Capital Territory (will return NSW)}
-   \item{NSW}{New South Wales}
-   \item{NT}{Northern Territory}
-   \item{QLD}{Queensland}
-   \item{SA}{South Australia}
-   \item{TAS}{Tasmania}
-   \item{VIC}{Victoria}
-   \item{WA}{Western Australia}
-   \item{AUS}{Australia, returns forecast for all states, NT and ACT}
- }
+\describe{
+\item{ACT}{Australian Capital Territory (will return NSW)}
+\item{NSW}{New South Wales}
+\item{NT}{Northern Territory}
+\item{QLD}{Queensland}
+\item{SA}{South Australia}
+\item{TAS}{Tasmania}
+\item{VIC}{Victoria}
+\item{WA}{Western Australia}
+\item{AUS}{Australia, returns forecast for all states, NT and ACT}
+}
 }
 \examples{
 \donttest{
@@ -59,6 +59,6 @@ the \acronym{BOM} anonymous \acronym{FTP} server with spatial data \cr
 }
 \author{
 Adam H. Sparks, \email{adamhsparks@gmail.com} and Keith Pembleton,
- \email{keith.pembleton@usq.edu.au} and Paul Melloy,
- \email{paul@melloy.com.au}
+\email{keith.pembleton@usq.edu.au} and Paul Melloy,
+\email{paul@melloy.com.au}
 }

@@ -43,18 +43,18 @@ Valid \acronym{BOM} satellite Product IDs for use with
 \item{IDE00422}{AHI VIS (Ch3) greyscale 2km FD GEOS GIS}
 \item{IDE00423}{AHI IR (Ch13) Zehr 2km FD GEOS GIS}
 \item{IDE00425}{AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km FD
- GEOS GIS}
+GEOS GIS}
 \item{IDE00426}{AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km FD
- GEOS GIS}
+GEOS GIS}
 \item{IDE00427}{AHI WV (Ch8) 2km FD GEOS GIS}
 \item{IDE00430}{AHI cloud cover only 2km AUS equirect. GIS}
 \item{IDE00431}{AHI IR (Ch13) greyscale 2km AUS equirect. GIS}
 \item{IDE00432}{AHI VIS (Ch3) greyscale 2km AUS equirect. GIS}
 \item{IDE00433}{AHI IR (Ch13) Zehr 2km AUS equirect. GIS}
 \item{IDE00435}{AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km AUS
- equirect. GIS}
+equirect. GIS}
 \item{IDE00436}{AHI VIS (true colour) / IR (Ch13 greyscale) composite 2km AUS
- equirect. GIS}
+equirect. GIS}
 \item{IDE00437}{AHI WV (Ch8) 2km AUS equirect. GIS}
 \item{IDE00439}{AHI VIS (Ch3) greyscale 0.5km AUS equirect. GIS}
 }

@@ -104,6 +104,7 @@ Suggests:
     roxygen2 (>= 6.1.0)
 Language: en-AU
 RoxygenNote: 7.1.1
+Roxygen: list(markdown = TRUE)
 NeedsCompilation: no
 ByteCompile: TRUE
 VignetteBuilder: knitr
