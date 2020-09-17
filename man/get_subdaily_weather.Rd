@@ -49,10 +49,12 @@ stations that are outside of BOM's network, please use
 }
 \examples{
 \donttest{
-# Get hourly weather data, both `stationid` and `name` refer to the same
-# station, CHARLTON, in Victoria
-get_subdaily_weather(stationid = "080128")
-get_subdaily_weather(name = "CHARLTON")
+# `stationid` and `name` refer to the same station, CHARLTON, in Victoria
+# Get hourly weather data
+get_subdaily_weather(stationid = "080128", years = 2018:2019, hourly = TRUE)
+
+# Get sub-hourly weather data
+get_subdaily_weather(name = "CHARLTON", years = 2018:2019, hourly = FALSE)
 }
 
 }
