@@ -1,9 +1,11 @@
 
+
 #' Obtain historical BOM data in sub-daily time scales
 #'
 #' Retrieves ten minute or hourly weather observations for a given station.
 #'
 #' @param stationid \acronym{BOM} station \sQuote{ID}. See Details.
+#' @param station_name Official \acronym{BOM} station name. See Details.
 #' @param years Year(s) of weather data to download. Entered as integers,
 #'   \emph{e.g.} \code{2001:2002}. Defaults to all available years for the
 #'   specified station if left unspecified.
@@ -36,6 +38,7 @@
 #' @export get_subdaily_weather
 
 get_subdaily_weather <- function(stationid = NULL,
+                                 name = NULL,
                                  years = NULL,
                                  hourly = TRUE,
                                  ...) {
@@ -47,10 +50,12 @@ get_subdaily_weather <- function(stationid = NULL,
   # Load stationAry metadata
   stationaRy_meta <- stationaRy::get_station_metadata()
   
-  station_name <- JSONurl_site_list %>%
-    dplyr::filter(stationid == site) %>% 
-    dplyr::pull(name)
-
+  if (is.null(name)) {
+    station_name <- JSONurl_site_list %>%
+      dplyr::filter(stationid == site) %>%
+      dplyr::pull(name)
+  }
+  
   # validate that exists in BOM network
   if (any(station_name %notin% stationaRy_meta$name)) {
     stop(call. = FALSE,

@@ -4,7 +4,13 @@
 \alias{get_subdaily_weather}
 \title{Obtain historical BOM data in sub-daily time scales}
 \usage{
-get_subdaily_weather(stationid = NULL, years = NULL, hourly = TRUE, ...)
+get_subdaily_weather(
+  stationid = NULL,
+  name = NULL,
+  years = NULL,
+  hourly = TRUE,
+  ...
+)
 }
 \arguments{
 \item{stationid}{\acronym{BOM} station \sQuote{ID}. See Details.}
@@ -19,6 +25,8 @@ than sub-hourly values. Defaults to \code{TRUE}.}
 
 \item{...}{Other parameters as passed along to
 \code{\link[stationaRy]{get_met_data}}.}
+
+\item{station_name}{Official \acronym{BOM} station name. See Details.}
 }
 \value{
 A \code{bomrang_tbl} object (extension of a
