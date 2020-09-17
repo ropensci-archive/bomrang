@@ -31,7 +31,34 @@ than sub-hourly values if available for the selected station. Defaults to
 }
 \value{
 A \code{\link[tibble]{tibble}} object of historical sub-daily (hourly
-or less)time-scale observations for the selected station.
+or less)time-scale observations for the selected station. While times are
+recorded using the Universal Time Code (UTC) in the source data, they are
+adjusted here to local standard time for the station's locale.
+\describe{
+\item{id}{A character string identifying the fixed weather station
+from the USAF Master Station Catalog identifier and the WBAN identifier.}
+\item{time}{A datetime value representing the observation time.}
+\item{temp}{Air temperature measured in degrees Celsius.}
+\item{wd}{The angle of wind direction, measured in a clockwise direction,
+between true north and the direction from which the wind is blowing. For
+example, \code{wd = 90} indicates the wind is blowing from due east. \code{wd = 225}
+indicates the wind is blowing from the south west. The minimum value is \code{1},
+and the maximum value is \code{360}.}
+\item{ws}{Wind speed in meters per second.}
+\item{atmos_pres}{The air pressure in hectopascals relative to Mean Sea Level
+(MSL).}
+\item{dew_point}{The temperature in degrees Celsius to which a given parcel
+of air must be cooled at constant pressure and water vapor content in order
+for saturation to occur.}
+\item{rh}{Relative humidity, measured as a percentage, as calculated using
+the August-Roche-Magnus approximation.}
+\item{ceil_hgt}{The height above ground level of the lowest cloud cover or
+other obscuring phenomena amounting to at least 5/8 sky coverage. Measured in
+meters. Unlimited height (no obstruction) is denoted by the value \code{22000}.}
+\item{visibility}{The horizontal distance at which an object can be seen and
+identified. Measured in meters. Values greater than \code{16000} are entered as
+\code{16000} (which constitutes 10 mile visibility).}
+}
 }
 \description{
 Retrieves hourly or smaller, if available, weather observations for a given
@@ -60,4 +87,8 @@ get_subdaily_weather(name = "CHARLTON", years = 2018:2019, hourly = FALSE)
 }
 \seealso{
 \link{get_current_weather} \link{get_historical_weather}
+}
+\author{
+Adam H. Sparks, \email{adamhsparks@gmail.com} and Richard Iannone,
+\email{riannone@me.com}
 }
