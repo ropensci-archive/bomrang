@@ -21,7 +21,8 @@ specified station if left unspecified.}
 
 \item{hourly}{If \code{TRUE} this forces the values to start on
 the hour and returns hourly values for the entire period requested rather
-than sub-hourly values. Defaults to \code{TRUE}.}
+than sub-hourly values if available for the selected station. Defaults to
+\code{TRUE}.}
 
 \item{...}{Other parameters as passed along to
 \code{\link[stationaRy]{get_met_data}}.}

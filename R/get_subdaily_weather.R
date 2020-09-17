@@ -11,7 +11,8 @@
 #'   specified station if left unspecified.
 #' @param hourly If \code{TRUE} this forces the values to start on
 #'   the hour and returns hourly values for the entire period requested rather
-#'   than sub-hourly values. Defaults to \code{TRUE}.
+#'   than sub-hourly values if available for the selected station. Defaults to
+#'   \code{TRUE}.
 #' @param ... Other parameters as passed along to
 #'  \code{\link[stationaRy]{get_met_data}}.
 #' @return A \code{bomrang_tbl} object (extension of a
@@ -54,8 +55,6 @@ get_subdaily_weather <- function(stationid = NULL,
 
   stationaRy_meta <- stationaRy::get_station_metadata()
   
-  name <- toupper(name)
-  
   if (is.null(name) & is.null(stationid)) {
     stop(call. = FALSE,
          "You must provide either a `stationid` or `name`.")
@@ -75,6 +74,7 @@ get_subdaily_weather <- function(stationid = NULL,
   }
   
   # validate that exists in BOM network
+  station_name <- toupper(name)
   if (any(station_name %notin% stationaRy_meta$name)) {
     stop(call. = FALSE,
          "You have requested a station that is not present in the BOM network.")
