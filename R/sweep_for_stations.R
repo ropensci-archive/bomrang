@@ -12,15 +12,21 @@
 sweep_for_stations <- function(latlon = c(-35.3, 149.2)) {
   Lat <- latlon[1]
   Lon <- latlon[2]
-
+  
+  if (!identical(length(latlon), 2L) ||
+      !is.numeric(latlon)) {
+    stop("latlon must be a 2-element numeric vector.",
+         call. = FALSE)
+  }
+  
   # CRAN NOTE avoidance:
   JSONurl_site_list <- lat <- lon <- NULL # nocov
-
+  
   # Load JSON URL list
   load(system.file("extdata",
                    "JSONurl_site_list.rda",
                    package = "bomrang"))
-
+  
   JSONurl_site_list %>%
     copy %>%
     # Lat Lon are in JSON
