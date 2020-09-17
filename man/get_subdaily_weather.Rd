@@ -31,15 +31,17 @@ than sub-hourly values. Defaults to \code{TRUE}.}
 \value{
 A \code{bomrang_tbl} object (extension of a
 \code{\link[base]{data.frame}}) of historical sub-daily (hourly or
-ten-minute)time-scale observations for the selected station.
+less)time-scale observations for the selected station.
 }
 \description{
-Retrieves ten minute or hourly weather observations for a given station.
+Retrieves hourly or smaller, if available, weather observations for a given
+station.
 }
 \details{
-A value for \code{stationid} or \code{latlon} must be provided. If
+A value for \var{stationid} or \var{name} must be provided. If
 you are uncertain, you may use \code{\link{sweep_for_stations}} to identify
-possible candidate stations to query.
+possible candidate stations to query. See
+\code{vignette("bomrang", package = "bomrang")} for an example of this use.
 
 Only stations falling within BOM's network are returned. If you require
 stations that are outside of BOM's network, please use
@@ -47,8 +49,10 @@ stations that are outside of BOM's network, please use
 }
 \examples{
 \donttest{
-# Get hourly weather data for CHARLTON station in Victoria
+# Get hourly weather data, both `stationid` and `name` refer to the same
+# station, CHARLTON, in Victoria
 get_subdaily_weather(stationid = "080128")
+get_subdaily_weather(name = "CHARLTON")
 }
 
 }

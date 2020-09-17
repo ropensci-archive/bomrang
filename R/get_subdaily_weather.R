@@ -1,8 +1,8 @@
 
-
 #' Obtain historical BOM data in sub-daily time scales
 #'
-#' Retrieves ten minute or hourly weather observations for a given station.
+#' Retrieves hourly or smaller, if available, weather observations for a given
+#'   station.
 #'
 #' @param stationid \acronym{BOM} station \sQuote{ID}. See Details.
 #' @param station_name Official \acronym{BOM} station name. See Details.
@@ -16,11 +16,12 @@
 #'  \code{\link[stationaRy]{get_met_data}}.
 #' @return A \code{bomrang_tbl} object (extension of a
 #'   \code{\link[base]{data.frame}}) of historical sub-daily (hourly or
-#'   ten-minute)time-scale observations for the selected station.
+#'   less)time-scale observations for the selected station.
 #'
-#' @details A value for \code{stationid} or \code{latlon} must be provided. If
+#' @details A value for \var{stationid} or \var{name} must be provided. If
 #'   you are uncertain, you may use \code{\link{sweep_for_stations}} to identify
-#'   possible candidate stations to query.
+#'   possible candidate stations to query. See
+#'   \code{vignette("bomrang", package = "bomrang")} for an example of this use.
 #'
 #'   Only stations falling within BOM's network are returned. If you require
 #'   stations that are outside of BOM's network, please use
@@ -28,8 +29,10 @@
 #'
 #' @examples
 #' \donttest{
-#' # Get hourly weather data for CHARLTON station in Victoria
+#' # Get hourly weather data, both `stationid` and `name` refer to the same
+#' # station, CHARLTON, in Victoria
 #' get_subdaily_weather(stationid = "080128")
+#' get_subdaily_weather(name = "CHARLTON")
 #' }
 #'
 #' @seealso \link{get_current_weather} \link{get_historical_weather}
@@ -42,14 +45,20 @@ get_subdaily_weather <- function(stationid = NULL,
                                  years = NULL,
                                  hourly = TRUE,
                                  ...) {
-  # Load JSON URL list and metadata for BOM
+  # load JSON URL list and metadata for BOM
   load(system.file("extdata",
                    "JSONurl_site_list.rda",
                    package = "bomrang"))
   
-  # Load stationAry metadata
+  # load stationAry metadata
   stationaRy_meta <- stationaRy::get_station_metadata()
   
+  if (is.null(name) & is.null(stationid)) {
+    stop(call. = FALSE,
+         "You must provide either a `stationid` or `name`.")
+  }
+  
+  # fetch station name if stationid is provided
   if (is.null(name)) {
     station_name <- JSONurl_site_list %>%
       dplyr::filter(stationid == site) %>%
@@ -66,13 +75,13 @@ get_subdaily_weather <- function(stationid = NULL,
       dplyr::pull(id)
   }
   
-  dat <- stationaRy::get_met_data(station_id = station_id,
+  # fetch data and return
+  met_data <- stationaRy::get_met_data(station_id = station_id,
                                   years = years,
                                   make_hourly = hourly)
   
-  
-  if (nrow(dat) >= 1) {
-    return(dat)
+  if (nrow(met_data) >= 1) {
+    return(met_data)
   } else
     message("No records were found for this station and year combination.",
             call. = FALSE)
