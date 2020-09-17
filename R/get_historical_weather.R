@@ -105,23 +105,23 @@ get_historical_weather <- get_historical <-
     site <- ncc_obs_code <- NULL #nocov
     
     if (is.null(stationid) & is.null(latlon))
-      stop("stationid or latlon must be provided.",
+      stop("\nstationid or latlon must be provided\n.",
            call. = FALSE)
     if (!is.null(stationid) & !is.null(latlon)) {
-      warning("Only one of stationid or latlon may be provided. ",
-              "Using stationid.")
+      warning("\nOnly one of stationid or latlon may be provided. ",
+              "\nUsing `stationid`\n.")
     }
     if (is.null(stationid)) {
       if (!identical(length(latlon), 2L) || !is.numeric(latlon))
-        stop("latlon must be a 2-element numeric vector.",
+        stop("\n`latlon` must be a 2-element numeric vector.",
              call. = FALSE)
       stationdetails <-
         sweep_for_stations(latlon = latlon)[1, , drop = TRUE]
-      message("Closest station: ",
+      message("\nClosest station: ",
               stationdetails$site,
               " (",
               stationdetails$name,
-              ")")
+              ")\n")
       stationid <- stationdetails$site
     }
     
@@ -132,7 +132,7 @@ get_historical_weather <- get_historical <-
       is.na(as.numeric(stationid)) |
       as.numeric(stationid) %notin% ncc_list$site
     )))
-      stop("\nStation not recognised.\n",
+      stop("\nStation not recognised.",
            call. = FALSE)
     
     type <- match.arg(type)
