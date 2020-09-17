@@ -15,9 +15,8 @@
 #'   \code{TRUE}.
 #' @param ... Other parameters as passed along to
 #'  \code{\link[stationaRy]{get_met_data}}.
-#' @return A \code{bomrang_tbl} object (extension of a
-#'   \code{\link[base]{data.frame}}) of historical sub-daily (hourly or
-#'   less)time-scale observations for the selected station.
+#' @return A \code{\link[tibble]{tibble}} object of historical sub-daily (hourly
+#'   or less)time-scale observations for the selected station.
 #'
 #' @details A value for \var{stationid} or \var{name} must be provided. If
 #'   you are uncertain, you may use \code{\link{sweep_for_stations}} to identify

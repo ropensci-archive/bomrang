@@ -30,9 +30,8 @@ than sub-hourly values if available for the selected station. Defaults to
 \item{station_name}{Official \acronym{BOM} station name. See Details.}
 }
 \value{
-A \code{bomrang_tbl} object (extension of a
-\code{\link[base]{data.frame}}) of historical sub-daily (hourly or
-less)time-scale observations for the selected station.
+A \code{\link[tibble]{tibble}} object of historical sub-daily (hourly
+or less)time-scale observations for the selected station.
 }
 \description{
 Retrieves hourly or smaller, if available, weather observations for a given
