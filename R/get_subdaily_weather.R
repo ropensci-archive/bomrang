@@ -31,8 +31,8 @@
 #' \donttest{
 #' # Get hourly weather data, both `stationid` and `name` refer to the same
 #' # station, CHARLTON, in Victoria
-#' get_subdaily_weather(stationid = "080128")
-#' get_subdaily_weather(name = "CHARLTON")
+#' get_subdaily_weather(stationid = "080128", years = 2018:2019, hourly = TRUE)
+#' get_subdaily_weather(name = "CHARLTON", years = 2018:2019, hourly = FALSE)
 #' }
 #'
 #' @seealso \link{get_current_weather} \link{get_historical_weather}
@@ -45,17 +45,24 @@ get_subdaily_weather <- function(stationid = NULL,
                                  years = NULL,
                                  hourly = TRUE,
                                  ...) {
-  # load JSON URL list and metadata for BOM
+
   load(system.file("extdata",
                    "JSONurl_site_list.rda",
                    package = "bomrang"))
-  
-  # load stationAry metadata
+
   stationaRy_meta <- stationaRy::get_station_metadata()
+  
+  name <- toupper(name)
   
   if (is.null(name) & is.null(stationid)) {
     stop(call. = FALSE,
          "You must provide either a `stationid` or `name`.")
+  }
+  
+  if (!is.null(name) & !is.null(stationid)) {
+    warning(call. = FALSE,
+         "You have provided both a `stationid` and `name`, using `name`.")
+    stationid <- NULL
   }
   
   # fetch station name if stationid is provided
