@@ -16,7 +16,7 @@ test_that("Error handling", {
       latlon = c(1, 2),
       type = "max"
     ))
-  expect_equal(x$warnings[1], "Only one of stationid or latlon may be provided. Using stationid.")
+  expect_equal(x$warnings[1], "\nOnly one of stationid or latlon may be provided. \nUsing stationid\n.")
   expect_equal(
     x$warnings[2],
     "The list of available stations for `type = rain` is currently empty.\nThis is likely a temporary error in the Bureau of Meteorology's\ndatabase and may cause requests for rain station data to fail."
