@@ -108,7 +108,7 @@ get_historical_weather <- get_historical <-
       stop("\nstationid or latlon must be provided\n.",
            call. = FALSE)
     if (!is.null(stationid) & !is.null(latlon)) {
-      warning("\nOnly one of stationid or latlon may be provided. ",
+      warning("\nOnly one of `stationid` or `latlon` may be provided. ",
               "\nUsing `stationid`\n.")
     }
     if (is.null(stationid)) {
