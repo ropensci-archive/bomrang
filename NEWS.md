@@ -179,7 +179,7 @@ Appendix 7
 
 - Move copyright information from start-up message into CITATION file
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.3.0
 
@@ -200,7 +200,7 @@ message if more than one file is to be loaded in current session
 
 - Update citations for package to reflect current package and paper citation
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.2.2
 
@@ -212,7 +212,7 @@ Fix corrupted zip file download issue for `get_historical()` on Windows
 
 - Update citations for package to reflect current package and paper citation
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.2.1
 
@@ -233,10 +233,9 @@ links and author e-mail addresses
 - Correct field names in `get_precis_forecast()` where `maximum_temperature` and
 `minimum_temperature` were reversed
 
-- Move rappdirs to Suggests to fix NOTEs on
-https://cran.rstudio.com/web/checks/check_results_bomrang.html
+- Move rappdirs to Suggests to fix NOTEs on <https://cran.rstudio.com/web/checks/check_results_bomrang.html>
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.2.0
 
@@ -254,7 +253,7 @@ precipitation data gracefully
 
 - Add `rappdirs` to Imports section of DESCRIPTION file to fix missing import
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.1.4
 
@@ -276,7 +275,7 @@ precipitation data gracefully
 
 - Correct issues with updating internal databases
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.1.2
 
@@ -304,7 +303,7 @@ characters, _e.g._ "EST"
 - Remove redundant functionality in `update_station_locations()` where data were
 fetched using `tryCatch()` and then again without
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.1.1
 
@@ -316,7 +315,7 @@ fetched using `tryCatch()` and then again without
 
 - Add new hex-sticker image to README
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.1.0
 
@@ -346,7 +345,7 @@ removes _rlang_ usage from package.
 
 - `bomrang_cache_delete_all()`, now superseded by `manage_cache$delete_all()`
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.0.8
 
@@ -372,7 +371,7 @@ should instead refer to `update_forecast_towns()`
 
 - Fix issue where updating internal stations would fail
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.0.7
 
@@ -393,7 +392,7 @@ vignette, thanks @mpadge
 
 - Ensure authorship order is the same order in all files
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.0.6
 
@@ -408,7 +407,7 @@ vignette, thanks @mpadge
 - Fetch BOM 0900 and 1500 weather bulletins from SHTML sources and create a
 tidy data frame of the data
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.0.5
 
@@ -502,7 +501,7 @@ reading/maintenance
 
 - fixed a repeat of `return(tidy_df)` in `get_precis_forecast()`
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.0.4-1
 
@@ -510,7 +509,7 @@ reading/maintenance
 
 - Update internal functionality for _dplyr_ 0.7.0
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.0.4
 
@@ -518,7 +517,7 @@ reading/maintenance
 
 - Use _jsonlite_ library rather than _rjson_
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.0.3-5
 
@@ -529,7 +528,7 @@ taking too long to run
 
 - Use proper GitHub URL in DESCRIPTION file
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.0.3-4
 
@@ -539,7 +538,7 @@ taking too long to run
 
 - `update_precis_locations()` is now `update_forecast_towns()`
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.0.3-3
 
@@ -558,14 +557,14 @@ the `get_*()` functions
 
 - Correct documentation reference in README file
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.0.3-1
 
 ## Minor changes
 - Add vignette describing the data returned from `get_current_weather()`
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.0.3
 
@@ -587,7 +586,7 @@ in a few seconds as desired using the new `update_station_locations()` function
 - Add a new file describing internal database creation for station locations,
 metadata and JSON URLs, create_BOM_station_list.md
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.0.2-1
 
@@ -595,7 +594,7 @@ metadata and JSON URLs, create_BOM_station_list.md
 
 - Add more information to description field in DESCRIPTION file
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.0.2
 
@@ -640,7 +639,7 @@ message on exit
 values. The site will be listed with location data and `NA` for all
 meteorological values  
 
---------------------------------------------------------------------------------
+
 
 # bomrang 0.0.1
 
