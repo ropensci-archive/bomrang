@@ -4,8 +4,8 @@ _bomrang_: Australian Government Bureau of Meteorology (BOM) Data Client <img al
 [![codecov](https://codecov.io/gh/ropensci/bomrang/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/bomrang) [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.598301.svg)](https://doi.org/10.5281/zenodo.598301)
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/bomrang)](https://cran.r-project.org/package=bomrang)
 [![](https://badges.ropensci.org/121_status.svg)](https://github.com/ropensci/software-review/issues/121)
-[![status](https://joss.theoj.org/papers/10.21105/joss.00411/status.svg)](https://joss.theoj.org/papers/10.21105/joss.00411)
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![status](https://joss.theoj.org/papers/10.21105/joss.00177/status.svg)](hhttps://joss.theoj.org/papers/10.21105/joss.00177)
+[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
 
 Provides functions to interface with Australian Government Bureau of Meteorology (BOM) data, fetching data and returning a tidy data frame of précis forecasts, current weather data from stations, ag information bulletins, historical weather data and downloading and importing radar or satellite imagery.
 
