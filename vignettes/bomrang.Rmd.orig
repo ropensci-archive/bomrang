@@ -25,55 +25,39 @@ library(bomrang)
 
 ## Introduction
 
-bomrang provides functions for interacting with 
-[Australian Bureau of Meteorology (BOM) Weather Data
-Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts. BOM
-serves several types of data data as XML, JSON and SHTML files.
+bomrang provides functions for interacting with [Australian Bureau of Meteorology (BOM) Weather Data
+Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts.
+BOM serves several types of data data as XML, JSON and SHTML files.
 This package fetches these files, parses them and return a data frame.
-Satellite and radar imagery files are also made available to the public via
-anonymous FTP. bomrang provides functionality to query, fetch and create 
-`raster::stack()` objects of the GeoTIFF imagery.
+Satellite and radar imagery files are also made available to the public via anonymous FTP.
+bomrang provides functionality to query, fetch and create `raster::stack()` objects of the GeoTIFF imagery.
 
 ## Using bomrang
 
-Several functions are provided by bomrang to retrieve Australian Bureau of
-Meteorology (BOM) data. A family of functions retrieve weather data and return
-data frames; `get_precis_forecast()`, which retrieves the précis (short)
-forecast; `get_current_weather()`, which fetches the current weather from a
-given station; `get_ag_bulletin()`, which retrieves the agriculture
-bulletin; `get_weather_bulletin()` which fetches the 0900 and 1500 weather
-bulletins; `get_coastal_forecast()` which fetches coastal waters forecasts for
-each state and `get_historical()` which fetches historical daily temperature
-min/max, rainfall, or solar exposure data. A second family of functions retrieve 
-information pertaining to satellite and radar imagery, `get_available_imagery()`
-and the imagery itself, `_imagery()` for satellite, and
-`get_available_radar()` and `get_radar_imagery()`  for radar images. The last
-group functions provides internal functionality for bomrang itself;
-`update_forecast_towns()`, which updates an internal database of forecast
-locations distributed with the package, `sweep_for_stations()` which returns the
-nearest weather stations to a point in Australia and, `manage_cache()` that
-provides facilities for managing cached satellite imagery.
+Several functions are provided by bomrang to retrieve Australian Bureau of Meteorology (BOM) data.
+A family of functions retrieve weather data and return data frames; 
+ * `get_precis_forecast()`, which retrieves the précis (short) forecast;
+ * `get_current_weather()`, which fetches the current weather from a given station;
+ * `get_ag_bulletin()`, which retrieves the agriculture bulletin;
+ * `get_weather_bulletin()`, which fetches the 0900 and 1500 weather bulletins;
+ * `get_coastal_forecast()`, which fetches coastal waters forecasts for each state;
+ * `get_subdaily_weather()`, which fetches hourly (or smaller time-step) weather data for up to 16 weather variables; and
+ * `get_historical()` which fetches historical daily temperature min/max, rainfall, or solar exposure data.
+A second family of functions retrieve information pertaining to satellite and radar imagery, `get_available_imagery()` and the imagery itself, `_imagery()` for satellite, and
+`get_available_radar()` and `get_radar_imagery()`  for radar images.
+The last group functions provides internal functionality for bomrang itself; `update_forecast_towns()`, which updates an internal database of forecast locations distributed with the package, `sweep_for_stations()` which returns the nearest weather stations to a point in Australia and, `manage_cache()` that provides facilities for managing cached satellite imagery.
 
 ## Using get_current_weather()
 
-`get_current_weather()` takes one of two arguments: `station_name` and `latlon`,
-returning the current weather observations (and the observations of the last 72
-hours) for the given location.
+`get_current_weather()` takes one of two arguments: `station_name` and `latlon`, returning the current weather observations (and the observations of the last 72 hours) for the given location.
 
-If `station_name` is used, the weather observations for the last 72 hours are
-returned for that station. If the string provided is ambiguous, the function
-returns an observation for one of the possible stations and emits a warning to
-offer unambiguous station names. 
+If `station_name` is used, the weather observations for the last 72 hours are returned for that station. If the string provided is ambiguous, the function returns an observation for one of the possible stations and emits a warning to offer unambiguous station names. 
 
-If `latlon` is used, the observations returned are from the station nearest to
-that latitude-longitude coordinate. `latlon` values are entered as decimal
-degrees, _e.g._ `latlon = c(-34, 151)` for Sydney. The function also emits a
-message, to tell the user which station was used.
+If `latlon` is used, the observations returned are from the station nearest to that latitude-longitude coordinate. `latlon` values are entered as decimal degrees, _e.g._ `latlon = c(-34, 151)` for Sydney. The function also emits a message, to tell the user which station was used.
 
 ### Results
 
-The table returned will have different fields depending on the station that is
-selected. 
+The table returned will have different fields depending on the station that is selected. 
 
 ### Example
 
@@ -85,10 +69,8 @@ Melbourne_weather <- get_current_weather("Melbourne (Olympic Park)")
 
 ## Using get_precis_forecast()
 
-This function only takes one argument, `state`. The `state` parameter allows the
-user to select the forecast for just one state or a national forecast. States or
-territories are specified using the official postal codes or full name with
-fuzzy matching performed via `agrep()`
+This function only takes one argument, `state`. The `state` parameter allows the user to select the forecast for just one state or a national forecast.
+States or territories are specified using the official postal codes or full name with fuzzy matching performed via `agrep()`.
 
 - **ACT** - Australian Capital Territory
 
@@ -106,14 +88,12 @@ fuzzy matching performed via `agrep()`
 
 - **WA** - Western Australia
 
-- **AUS** - Australia, returns national forecast including all states, NT and
-ACT.
+- **AUS** - Australia, returns national forecast including all states, NT and ACT.
 
 ### Results
 
-The function, `get_precis_forecast()`, will return a data frame of the weather
-forecast for the daily forecast for selected towns. See Appendix 1 for a full
-description of the fields and values.
+The function, `get_precis_forecast()`, will return a data frame of the weather forecast for the daily forecast for selected towns.
+See Appendix 1 for a full description of the fields and values.
 
 ### Example
 
@@ -126,10 +106,8 @@ Following is an example fetching the forecast for Queensland.
 
 ## Using get_ag_bulletin()
 
-`get_ag_bulletin()` only takes one argument, `state`. The `state` parameter
-allows the user to select the bulletin for just one state or a national
-forecast. States or territories are specified using the official postal codes or
-full name with fuzzy matching performed via `agrep()`.
+`get_ag_bulletin()` only takes one argument, `state`.
+The `state` parameter allows the user to select the bulletin for just one state or a national forecast. States or territories are specified using the official postal codes or full name with fuzzy matching performed via `agrep()`.
 
 - **NSW** - New South Wales
 
@@ -149,9 +127,8 @@ full name with fuzzy matching performed via `agrep()`.
 
 ### Results
 
-The function, `get_ag_bulletin()`, will return a data frame of the agriculture
-bulletin for selected stations. See Appendix 3 for a full list and description
-of the fields and values.
+The function, `get_ag_bulletin()`, will return a data frame of the agriculture bulletin for selected stations.
+See Appendix 3 for a full list and description of the fields and values.
 
 ### Example
 
@@ -163,10 +140,7 @@ Following is an example fetching the ag bulletin for Queensland.
 
 ## Using get_weather_bulletin()
 
-This function takes two arguments, `state` for the desired state; and `morning`
-if `TRUE`, return the 9am bulletin for the nominated state; otherwise return the
-3pm bulletin. States or territories are specified using the official postal
-codes.
+This function takes two arguments, `state` for the desired state; and `morning` if `TRUE`, return the 9am bulletin for the nominated state; otherwise return the 3pm bulletin. States or territories are specified using the official postal codes.
 
 -   **ACT**  Australian Capital Territory (will return NSW)
 
@@ -186,8 +160,7 @@ codes.
 
 ### Results
 
-The function `get_weather_bulletin()` will return a data frame of BOM data for
-the requested state(s) or territory.
+The function `get_weather_bulletin()` will return a data frame of BOM data for the requested state(s) or territory.
 
 ### Example
 
@@ -206,10 +179,8 @@ Following is an example fetching the 3PM bulletin for Queensland.
 
 ## Using get_coastal_forecast()
 
-This function only takes one argument, `state`. The `state` parameter allows the
-user to select the forecast for just one state or a national forecast. States or
-territories are specified using the official postal codes or full name with
-fuzzy matching performed via `agrep()`
+This function only takes one argument, `state`. The `state` parameter allows the user to select the forecast for just one state or a national forecast.
+States or territories are specified using the official postal codes or full name with fuzzy matching performed via `agrep()`
 
 - **ACT** - Australian Capital Territory
 
@@ -227,14 +198,11 @@ fuzzy matching performed via `agrep()`
 
 - **WA** - Western Australia
 
-- **AUS** - Australia, returns national forecast including all states, NT and
-ACT.
+- **AUS** - Australia, returns national forecast including all states, NT and ACT.
 
 ### Results
 
-The function, `get_coastal_forecast()`, will return a data frame of the coastal
-waters forecast for marine zones in each state. See Appendix 6 for a full
-description of the fields and values.
+The function, `get_coastal_forecast()`, will return a data frame of the coastal waters forecast for marine zones in each state. See Appendix 6 for a full description of the fields and values.
 
 ### Example
 
@@ -247,28 +215,20 @@ Following is an example fetching the forecast for Queensland.
 
 ## Using get_historical()
 
-`get_historical()` takes either of two arguments: `stationid` and `latlon`, as 
-well as a type of observation (`"rain"`, `"min"` (temperature), `"max"`
-(temperature), or `"solar"`), returning the historical daily weather
-observations of that type for the given location. An optional fourth argument,
-`meta` returns a `list()` object of two data frames when set to `TRUE`. The
-first table, `"meta"`, will include metadata on the station and data. The second
-table, `"historical_data"`, will be as discussed in *Results* below.
+`get_historical()` takes either of two arguments: `stationid` and `latlon`, as well as a type of observation (`"rain"`, `"min"` (temperature), `"max"` (temperature), or `"solar"`), returning the historical daily weather observations of that type for the given location.
+An optional fourth argument, `meta` returns a `list()` object of two data frames when set to `TRUE`.
+The first table, `"meta"`, will include metadata on the station and data.
+The second table, `"historical_data"`, will be as discussed in *Results* below.
 
-If `latlon` is used, the observations returned are from the station nearest to
-that latitude-longitude coordinate. `latlon` values are entered as decimal
-degrees, _e.g._ -34, 151 for Sydney. The function also emits a message, to
-tell the user which station was used.
+If `latlon` is used, the observations returned are from the station nearest to that latitude-longitude coordinate.
+`latlon` values are entered as decimal degrees, _e.g._ -34, 151 for Sydney.
+The function also emits a message, to tell the user which station was used.
 
 ### Results
 
-The table returned may have different fields depending on the station that is
-selected. The time period over which observations are available will be highly
-dependent on the station requested. Some stations may only have a decade or less
-of data (e.g. max temperature at `070351 (CANBERRA AIRPORT)` has ~3,700+
-observations back to 2008) while others may have very extensive records (e.g.
-rainfall at `ADELAIDE (WEST TERRACE / NGAYIRDAPIRA)` has ~65,000+ observations
-back to 1839, three years after the city was founded.)
+The table returned may have different fields depending on the station that is selected.
+The time period over which observations are available will be highly dependent on the station requested. Some stations may only have a decade or less of data (_e.g._ max temperature at `070351 (CANBERRA AIRPORT)` has ~3,700+ observations back to 2008) while others may have very extensive records (_e.g._
+rainfall at `ADELAIDE (WEST TERRACE / NGAYIRDAPIRA)` has ~65,000+ observations back to 1839, three years after the city was founded.)
 
 The optional metadata table will always have the following fields 
   
@@ -294,23 +254,70 @@ The optional metadata table will always have the following fields
 
 ### Example
 
-Following is an example fetching the historical daily temperature minimum
-observations for the station closest to 35.2809°S, 149.1300°E (Canberra).
+Following is an example fetching the historical daily temperature minimum observations for the station closest to 35.2809°S, 149.1300°E (Canberra).
 
 ```{r historical_mintemps, eval=TRUE}
 (Canberra_mintemps <- get_historical(latlon = c(-35.2809, 149.1300),
                                      type = "min"))
 ```
 
-## Using sweep_for_stations()
 
-`sweep_for_stations()` only takes one argument, `latlon`, a length-2 numeric
-vector. By default, this is Canberra (approximately).
+## Using get_subdaily_weather()
+
+`get_subdaily_weather()` allows the user to query a database of stations outside of Australia, containing BOM station data and return values at hourly or smaller intervals if available.
+The function takes two arguments, either `stationid` or `name` to identify a station in BOM's network.
+Two additional arguments, `years` to specify the years for which data should be returned and `hourly`, which defaults to `TRUE`, allow the user to specify if the weather data should be aggregated to start on the hour and be returned in hourly intervals.
+Further options for `stationaRy::get_met_data()` can be pased through `...` as needed.
 
 ### Results
 
-This function will search for weather stations and return a data frame of all
-weather stations (in this package) sorted by distance from `latlon`, ascending.
+Returns an unmodified result from `stationaRy::get_met_data()`, a `tibble::tibble()` object with 16 columns.
+
+  - **id**: A character string that is a unique identifier for the weather station.
+
+  - **usaf**: A character string identifying the fixed weather station from the USAF Master Station Catalog. USAF is an acronym for United States Air Force.
+
+  - **wban**: A character string for the fixed weather station NCDC WBAN identifier. NCDC is an acronym for National Climatic Data Center. WBAN is an acronym for Weather Bureau, Air Force and Navy.
+  
+  - **name**: A character string with the station name.
+  
+  - **country**: A character string with the two character country code where the station is located. Not identical to  `country_code`.
+  
+  - **state**: Character string of the two character abbreviation of a US state (when applicable).
+
+  - **icao**: The ICAO identifier for the station.
+  
+  - **lat**: Latitude (degrees) rounded to three decimal places.
+
+  - **lon**: Longitude (degrees) rounded to three decimal places.
+  
+  - **elev**: Numeric value for the elevation as measured in meters. 
+  
+  - **begin_date**: The earliest date for which data are available.
+  
+  - **end_date**: The latest date for which data are available.
+  
+  - **begin_year**: The earliest year for which data are available.
+  
+  - **end_year**: The latest year for which data are available.
+  
+  - **tz_name**: The time zone name.
+
+
+### Example
+
+```{r get_subdaily_weather, eval=TRUE}
+get_subdaily_weather(stationid = "080128")
+```
+
+## Using sweep_for_stations()
+
+`sweep_for_stations()` only takes one argument, `latlon`, a length-2 numeric vector.
+By default, this is Canberra (approximately).
+
+### Results
+
+This function will search for weather stations and return a data frame of all weather stations (in this package) sorted by distance from `latlon`, ascending.
 The fields in the data frame are:
 
 **name** - station name
@@ -321,7 +328,7 @@ The fields in the data frame are:
 
 **distance** - distance from provided `latlon` value (kilometres).
 
-### Example  
+### Example 1
 
 Following is an example sweeping for stations starting with Canberra.
 
@@ -330,16 +337,45 @@ Following is an example sweeping for stations starting with Canberra.
 head(sweep_for_stations(latlon = c(-35.3, 149.2)), 10)
 ```
 
+### Example 2
+
+Following is an example sweeping for stations and matching names in `stationaRy` to retreive sub-daily weather data.
+
+The Victorian town of Curyo is selected as the focal point and the top four closest stations to the given latlon values are returned that match.
+
+```{r sweep_stations_subdaily, eval=TRUE}
+curyo_latlong <- c(-35.779312, 142.778332)
+
+stat_dat <- get_station_metadata() %>%
+   filter(name %in% sweep_for_stations(curyo_latlong)$name[1:4])
+
+for (i in stat_dat$id) {
+   if (i == stat_dat$id[1]) {
+      BOM_weather_list <- list()
+   }
+   print(stat_dat$name[which(stat_dat$id == i)])
+
+   BOM_weather_list[[i]] <-
+      get_met_data(i, years = 2019) %>%
+      filter(time %within% events[6, "exposed"]) %>%
+      mutate(Location = stat_dat$name[which(stat_dat$id == i)]) %>%
+      select(Location, everything())
+}
+
+weather_vic <- bind_rows(BOM_weather_list)
+
+weather_vic <- bind_rows(weather_vic, Curyo_w, Curyo_alt)
+
+summary(weather_vic)
+```
 
 ## Using sweep_for_forecast_towns()
 
-`sweep_for_forecast_towns()` only takes one argument, `latlon`, a length-2
-numeric vector. By default, this is Canberra (approximately).
+`sweep_for_forecast_towns()` only takes one argument, `latlon`, a length-2 numeric vector. By default, this is Canberra (approximately).
 
 ### Results
 
-This function will search for weather stations and return a data frame of all
-weather stations (in this package) sorted by distance from `latlon`, ascending.
+This function will search for weather stations and return a data frame of all weather stations (in this package) sorted by distance from `latlon`, ascending.
 The fields in the data frame are:
 
 **name** - forecast town
@@ -361,40 +397,28 @@ head(sweep_for_forecast_towns(latlon = c(-35.3, 149.2)), 10)
 
 ## Using the update functions
 
-bomrang uses internal databases of station location data from BOM to provide
-location and other metadata, _e.g._ elevation, station names, WMO codes, etc. to
-make the process of querying for weather data faster. These databases are
-created and packaged with bomrang for distribution and are updated with new
-releases. Users have the option of updating these databases after installing
-bomrang. While this option gives the users the ability to keep the databases
-up-to-date and gives bomrang's authors flexibility in maintaining it, this
-also means that reproducibility may be affected since the same version of
-bomrang may have different databases on different machines. If reproducibility
-is necessary, care should be taken to ensure that the version of the databases
-is the same across different machines.
+bomrang uses internal databases of station location data from BOM to provide location and other metadata, _e.g._ elevation, station names, WMO codes, etc. to make the process of querying for weather data faster. These databases are created and packaged with bomrang for distribution and are updated with new releases.
+Users have the option of updating these databases after installing bomrang.
+While this option gives the users the ability to keep the databases up-to-date and gives bomrang's authors flexibility in maintaining it, this also means that reproducibility may be affected since the same version of bomrang may have different databases on different machines.
+If reproducibility is necessary, care should be taken to ensure that the version of the databases is the same across different machines.
 
-The databases consist of three files, used by bomrang, `AAC_codes.rda`, 
-`JSONurl_latlon_by_station_name.rda` and `stations_site_list.rda`. These files
-can be located on your local system by using the following command, 
+The databases consist of three files, used by bomrang, `AAC_codes.rda`, `JSONurl_latlon_by_station_name.rda` and `stations_site_list.rda`.
+These files can be located on your local system by using the following command, 
 
 ```{r, eval=FALSE}
 paste0(.libPaths(), "/bomrang/extdata")[1]
 ```
 
-unless you have specified another location for library installations and
-installed bomrang there, in which case it would still be in `bomrang/extdata`.
+unless you have specified another location for library installations and installed bomrang there, in which case it would still be in `bomrang/extdata`.
 
 ### Using update_forecast_towns()
 
-`update_forecast_towns()` downloads the latest précis forecast locations
-from the BOM server and updates bomrang's internal database of towns used for
-forecast locations. This database is distributed with the package to make the
-process faster when fetching the forecast. 
+`update_forecast_towns()` downloads the latest précis forecast locations from the BOM server and updates bomrang's internal database of towns used for forecast locations.
+This database is distributed with the package to make the process faster when fetching the forecast.
 
 ### Example
 
-Following is an example updating the précis forecast locations internal
-database.
+Following is an example updating the précis forecast locations internal database.
 
 ```{r update_forecast_towns, eval=FALSE}
 update_forecast_towns()
@@ -402,16 +426,12 @@ update_forecast_towns()
 
 ### Using update_station_locations
 
-`update_station_locations()` downloads the latest station locations and metadata
-and updates bomrang's internal databases that support the use of
-`get_current_weather()` and `get_ag_bulletin()`. There is no need to use this
-unless you know that a station exists in BOM's database that is not available in
-the databases distributed with bomrang
+`update_station_locations()` downloads the latest station locations and metadata and updates bomrang's internal databases that support the use of `get_current_weather()` and `get_ag_bulletin()`.
+There is no need to use this unless you know that a station exists in BOM's database that is not available in the databases distributed with bomrang.
 
 ### Example
 
-Following is an example updating the précis forecast locations internal
-database.
+Following is an example updating the précis forecast locations internal database.
 
 ```{r update_station_locations, eval=FALSE}
 update_station_locations()
@@ -419,14 +439,8 @@ update_station_locations()
 
 ## Using bomrang to retrieve satellite imagery
 
-bomrang provides functionality to retrieve high-definition GeoTIFF satellite
-imagery provided by BOM through public FTP with the following types of imagery
-being available: i.)
-[Infrared images](http://www.bom.gov.au/australia/satellite/about_images.shtml#ir),
-ii.)
-[Visible images](http://www.bom.gov.au/australia/satellite/about_images.shtml#vis)
-and iii.)
-[Clouds/surface composite](http://www.bom.gov.au/australia/satellite/about_images.shtml#cloud).
+bomrang provides functionality to retrieve high-definition GeoTIFF satellite imagery provided by BOM through public FTP with the following types of imagery being available: i.) [Infrared images](http://www.bom.gov.au/australia/satellite/about_images.shtml#ir), ii.)
+[Visible images](http://www.bom.gov.au/australia/satellite/about_images.shtml#vis) and iii.) [Clouds/surface composite](http://www.bom.gov.au/australia/satellite/about_images.shtml#cloud).
 
 Valid BOM satellite Product IDs for GeoTIFF files include:
 
@@ -452,15 +466,11 @@ Valid BOM satellite Product IDs for GeoTIFF files include:
 
 ### Using get_available_imagery()
 
-`get_available_imagery()` only takes one argument, `product_id`, a BOM identifier
-for the imagery that you wish to check for available imagery. Using this
-function will fetch a listing of BOM GeoTIFF satellite imagery from
-[ftp://ftp.bom.gov.au/anon/gen/gms/](ftp://ftp.bom.gov.au/anon/gen/gms/) to
-display which files are currently available for download. These files are
-available at ten minute update frequency with a 24 hour delete time. 
-This function can be used see the most recent files available and then specify
-in the `_imagery()` function. If no valid Product ID is supplied,
-defaults to all GeoTIFF images currently available.
+`get_available_imagery()` only takes one argument, `product_id`, a BOM identifier for the imagery that you wish to check for available imagery.
+Using this function will fetch a listing of BOM GeoTIFF satellite imagery from [ftp://ftp.bom.gov.au/anon/gen/gms/](ftp://ftp.bom.gov.au/anon/gen/gms/) to display which files are currently available for download.
+These files are available at ten minute update frequency with a 24 hour delete time.
+This function can be used see the most recent files available and then specify in the `_imagery()` function.
+If no valid Product ID is supplied, defaults to all GeoTIFF images currently available.
 
 ```{r get_available_imagery, eval=TRUE}
 (avail <- get_available_imagery(product_id = "IDE00425"))
@@ -468,27 +478,25 @@ defaults to all GeoTIFF images currently available.
 
 ### Using get_satellite_imagery()
 
-`get_satellite_imagery()` fetches BOM satellite GeoTIFF imagery, returning a
-raster stack object and takes three arguments. Files are available at
-ten minute update frequency with a 24 hour delete time. It is suggested to check
-file availability first by using `get_available_imagery()`. The arguments
-are:
+`get_satellite_imagery()` fetches BOM satellite GeoTIFF imagery, returning a raster stack object and takes three arguments.
+Files are available at ten minute update frequency with a 24 hour delete time.
+It is suggested to check file availability first by using `get_available_imagery()`.
+The arguments are:
 
 - `product_id`, a character value of the BOM product ID to download.
-Alternatively, a vector of values from `get_available_imagery()` may be used
-here. This argument is mandatory.
+Alternatively, a vector of values from `get_available_imagery()` may be used here.
+This argument is mandatory.
 
-- `scans` a numeric value for the number of scans to download, starting with the
-most recent and progressing backwards, *e.g.*, `1` - the most recent single scan
-available , `6` - the most recent hour available, `12` - the most recent 2 hours
-available, etc. Negating will return the oldest files first. Defaults to 1. This
-argument is optional.
+- `scans` a numeric value for the number of scans to download, starting with the most recent and progressing backwards, *e.g.*, `1` - the most recent single scan available , `6` - the most recent hour available, `12` - the most recent 2 hours available, etc.
+Negating will return the oldest files first.
+Defaults to 1.
+This argument is optional.
 
-- `cache` a logical value that indicates whether or not to store image files
-locally for later use?  If `FALSE`, the downloaded files are removed when R
-session is closed. To take advantage of cached files in future sessions, set 
-`TRUE`. Defaults to `FALSE`. This argument is optional. Cached files may be
-managed with the `manage_cache()` function.
+- `cache` a logical value that indicates whether or not to store image files locally for later use?
+If `FALSE`, the downloaded files are removed when R session is closed. To take advantage of cached files in future sessions, set `TRUE`.
+Defaults to `FALSE`.
+This argument is optional.
+Cached files may be managed with the `manage_cache()` function.
 
 ```{r get_satellite_imagery, eval=TRUE}
 # Specify product ID and scans
@@ -505,12 +513,10 @@ plot(i)
 
 ## Using caching for satellite imagery
 
-If you elect to use `cache = TRUE` when downloading imagery, note that the GTiff
-files can be quite large and will fill disk space. By using the default
-`cache = FALSE` the files will be deleted when the current R session is closed.
+If you elect to use `cache = TRUE` when downloading imagery, note that the GTiff files can be quite large and will fill disk space.
+By using the default `cache = FALSE` the files will be deleted when the current R session is closed.
 
-Should you chose to use caching, bomrang provided functions to interact with
-the cached files:
+Should you chose to use caching, bomrang provided functions to interact with the cached files:
 
 - List files in the cache, `manage_cache$list()`
   
@@ -526,30 +532,23 @@ the cached files:
 
 - Delete all files in cache, `manage_cache$delete_all()`
 
-To access the files directly, outside of R, the following command will give you
-the location of the directory:
+To access the files directly, outside of R, the following command will give you the location of the directory:
 
 `manage_cache$cache_path_get()`
 
 ## Using bomrang to retrieve radar imagery
 
-bomrang provides functionality to retrieve the latest radar imagery provided
-by BOM through public FTP. These are the latest snapshots for each radar
-locations at various radar ranges _e.g._, 512km, 256km, 128km and 64km for some
-stations.
+bomrang provides functionality to retrieve the latest radar imagery provided by BOM through public FTP. These are the latest snapshots for each radar locations at various radar ranges _e.g._, 512km, 256km, 128km and 64km for some stations.
 
 ### Using get_available_radar()
 
-`get_available_radar()` fetches the available radar imagery from the BOM FTP and
-returns a data frame for reference. This data frame contains the product_id 
-which is required when using the `get_radar_imagery()` function. The files
-available are the latest `.gif` files of BOM radar imagery which are typically
-updated each 6-10 minutes. Only the most recent image is retrieved for each
-radar location. There are usually several radar ranges available for each radar
-location, such as 512km, 256km, 128km and possibly 64km. The arguments are:
+`get_available_radar()` fetches the available radar imagery from the BOM FTP and returns a data frame for reference.
+This data frame contains the product_id, which is required when using the `get_radar_imagery()` function.
+The files available are the latest `.gif` files of BOM radar imagery which are typically updated each 6-10 minutes. Only the most recent image is retrieved for each radar location.
+There are usually several radar ranges available for each radar location, such as 512km, 256km, 128km and possibly 64km.
+The arguments are:
 
-* `radar_id`  which is the BOM radar ID number. This defaults to 'all' which 
-will return a data frame of all radar ID's in Australia.
+* `radar_id`  which is the BOM radar ID number. This defaults to 'all' which will return a data frame of all radar ID's in Australia.
 
 ```{r, get_available_radar}
 x <- get_available_radar()
@@ -558,16 +557,14 @@ head(x)
 
 ### Using get_radar_imagery()
 
-`get_radar_imagery()` fetches the latest BOM radar imagery for a given product
-ID. The files available are the latest `.gif` files of BOM radar imagery which
-are typically updated each 6-10 minutes. Only the most recent image is retrieved
-for each radar location. There are usually several radar ranges available for
-each radar location, such as 512km, 256km, 128km and possibly 64km. The only
-argument is:
+`get_radar_imagery()` fetches the latest BOM radar imagery for a given product ID. The files available are the latest `.gif` files of BOM radar imagery, which are typically updated each 6-10 minutes.
+Only the most recent image is retrieved for each radar location.
+There are usually several radar ranges available for each radar location, such as 512km, 256km, 128km and possibly 64km.
+The only argument is:
 
-* `product_id` the BOM product_id associated with each radar imagery file. 
-These can be obtained from the `get_available_radar()` function. This value must
-be specified and the function will accept only one at a time.
+* `product_id` the BOM product_id associated with each radar imagery file.
+These can be obtained from the `get_available_radar()` function.
+This value must be specified and the function will accept only one at a time.
 
 ```{r get_radar_imagery, fig.height=9, fig.width=8}
 library(raster)
@@ -590,9 +587,7 @@ r <-
 
 # dplyr compatibility
 
-Some returned objects have been classed as `bomrang_tbl` which allow dispatch for 
-dplyr methods, _e.g._ `mutate()`, `filter()`, `select()`, `arrange()`, `slice()`,
-`rename()`, and `group_by()` while preserving the header information.
+Some returned objects have been classed as `bomrang_tbl` which allow dispatch for dplyr methods, _e.g._ `mutate()`, `filter()`, `select()`, `arrange()`, `slice()`, `rename()`, and `group_by()` while preserving the header information.
 
 For example:
 
@@ -626,8 +621,7 @@ adlmax %>%
 
 ## Appendix 1 - Output from get_current_weather()
 
-The function `get_current_weather()` will return a data frame that will contain
-some or all of the following fields.
+The function `get_current_weather()` will return a data frame that will contain some or all of the following fields.
 
 ### Fields and descriptions
 
@@ -718,9 +712,7 @@ P_tend_typ:
 
 ### Wx[9] - Present weather
 
-This consists of a two or 3 digit code figure plus (when relevant)
-a short, text abbreviation of the weather The abbreviations used (frequently
- together, _e.g._, XXRA for heavy rain, FZDZ for freezing drizzle) include
+This consists of a two or 3 digit code figure plus (when relevant) a short, text abbreviation of the weather The abbreviations used (frequently  together, _e.g._, XXRA for heavy rain, FZDZ for freezing drizzle) include:
 
 - BL Blowing (usually of sand or snow)  
 - DR Drifting (usually of sand or snow)  
@@ -752,8 +744,7 @@ Also, some other abbreviations used include
 
 ### Code figures
 
-(This is a subset of a larger table, not all values of which are used)
-wmo international BUFR code table 0 20 003, CREX code table B 20 003
+(This is a subset of a larger table, not all values of which are used) wmo international BUFR code table 0 20 003, CREX code table B 20 003:
 
 	 00 Clouds not observed
 	 01 Cloud decreasing
@@ -761,10 +752,8 @@ wmo international BUFR code table 0 20 003, CREX code table B 20 003
 	 03 Cloud increasing
 	 04 Smoke or volcanic ash
 	 05 Haze
-	 06 Widespread dust suspended in the air, not raised locally at the
-	    time of observation
-	 07 Dust or sand raised locally by the wind at the time of observation,
-	    but no well developed dust devils, sandstorm, or duststorm
+	 06 Widespread dust suspended in the air, not raised locally at the time of observation
+	 07 Dust or sand raised locally by the wind at the time of observation, but no well developed dust devils, sandstorm, or duststorm
 	 08 Well developed dust devils, but no sandstorm or duststorm
 	 09 Duststorm or sandstorm
 	 10 Mist
@@ -773,8 +762,7 @@ wmo international BUFR code table 0 20 003, CREX code table B 20 003
 	 13 Lightning visible, but no thunder heard
 	 14 Precipitation in sight, but not reaching the ground or sea (virga)
 	 15 Precipitation in sight, reaching the ground, but more than 5km away
-	 16 Precipitation in sight, reaching the ground, near but not at the
-	    observing station
+	 16 Precipitation in sight, reaching the ground, near but not at the observing station
 	 17 Thunderstorm without precipitation
 	 18 Squalls
 	 19 Funnel clouds (tornado, water spout)
@@ -788,17 +776,12 @@ wmo international BUFR code table 0 20 003, CREX code table B 20 003
 	 27 Recent (within the last hour) showers of hail or mixed rain and hail
 	 28 Recent (within the last hour) Fog or ice fog
 	 29 Recent (within the last hour) thunderstorm
-	 30 Slight or moderate duststorm or sandstorm, has decreased in the
-	    last hour
-	 31 Slight or moderate duststorm or sandstorm, with no appreciable
-	    change in the last hour
-	 32 Slight or moderate duststorm or sandstorm, has begun or
-	    increased in the last hour
+	 30 Slight or moderate duststorm or sandstorm, has decreased in the last hour
+	 31 Slight or moderate duststorm or sandstorm, with no appreciable change in the last hour
+	 32 Slight or moderate duststorm or sandstorm, has begun or increased in the last hour
 	 33 Severe duststorm or sandstorm, has decreased in the last hour
-	 34 Severe duststorm or sandstorm, with no appreciable change in the
-	    last hour
-	 35 Severe duststorm or sandstorm, has begun or increased in the
-	    last hour
+	 34 Severe duststorm or sandstorm, with no appreciable change in the last hour
+	 35 Severe duststorm or sandstorm, has begun or increased in the last hour
 	 36 Slight or moderate drifting snow, generally below eye level
 	 37 Heavy drifting snow,  generally below eye level
 	 38 Slight or moderate blowing snow, generally above eye level
@@ -808,8 +791,7 @@ wmo international BUFR code table 0 20 003, CREX code table B 20 003
 	 42 Fog or ice fog, sky visible, has become thinner in the last hour
 	 43 Fog or ice fog, sky invisible, has become thinner in the last hour
 	 44 Fog or ice fog, sky visible, no appreciable change in the last hour
-	 45 Fog or ice fog, sky invisible, no appreciable change in the last
-	    hour
+	 45 Fog or ice fog, sky invisible, no appreciable change in the last hour
 	 46 Fog or ice fog, sky visible, has become thicker in the last hour
 	 47 Fog or ice fog, sky invisible, has become thicker in the last hour
 	 48 Fog, depositing rime (freezing fog), sky visible
@@ -851,20 +833,14 @@ wmo international BUFR code table 0 20 003, CREX code table B 20 003
 	 84 Moderate or heavy shower or showers of mixed rain and snow
 	 85 Slight shower or showers of snow
 	 86 Moderate or heavy shower or showers of snow
-	 87 Slight shower or showers of snow pellets or small hail, with
-	    or without rain or mixed rain and snow
-	 88 Moderate or heavy shower or showers of snow pellets or small
-	    hail, with or without rain or mixed rain and snow
-	 89 Slight shower or showers of hail, with or without rain or 
-	    mixed rain and snow, but no thunder
-	 90 Moderate or heavy shower or showers of hail, with or without
-	    rain or mixed rain and snow, but no thunder
+	 87 Slight shower or showers of snow pellets or small hail, with or without rain or mixed rain and snow
+	 88 Moderate or heavy shower or showers of snow pellets or small hail, with or without rain or mixed rain and snow
+	 89 Slight shower or showers of hail, with or without rain or mixed rain and snow, but no thunder
+	 90 Moderate or heavy shower or showers of hail, with or without rain or mixed rain and snow, but no thunder
 	 91 Slight rain now, with thunder during the last hour
 	 92 Moderate or heavy rain now, with thunder during the last hour
-	 93 Slight snow, mixed rain and snow, or hail now, with thunder
-	    during the last hour
-	 94 Moderate or heavy snow, mixed rain and snow, or hail now, with
-	    thunder during the last hour
+	 93 Slight snow, mixed rain and snow, or hail now, with thunder during the last hour
+	 94 Moderate or heavy snow, mixed rain and snow, or hail now, with thunder during the last hour
 	 95 Slight or moderate thunderstorm with rain or snow but no hail
 	 96 Slight or moderate thunderstorm with hail
 	 97 Heavy thunderstorm with rain or snow but no hail
@@ -940,8 +916,7 @@ wmo international BUFR code table 0 20 003, CREX code table B 20 003
 	187 Heavy snow shower or showers or heavy intermittent snow
 	190 Thunderstorm
 	191 Slight or moderate thunderstorm without precipitation
-	192 Slight or moderate thunderstorm with rain showers and/or snow
-	    showers
+	192 Slight or moderate thunderstorm with rain showers and/or snow showers
 	193 Slight or moderate thunderstorm with hail
 	194 Heavy thunderstorm without precipitation
 	195 Heavy thunderstorm with rain showers and/or snow showers
@@ -951,18 +926,14 @@ wmo international BUFR code table 0 20 003, CREX code table B 20 003
 	509 Data not available
 	510 Data should have been reported but wasn't
 
-#### Pw1 and Pw2 - Past weather
-        wmo international BUFR code table 0 20 004, CREX code table B 20 004
+#### Pw1 and Pw2 - Past weather wmo international BUFR code table 0 20 004, CREX code table B 20 004
 
-	If only one type of weather has occurred in the last 3-6 hours,
-only Pw1 and Pw2 will be the same. If there has been more than one, Pw1
-and Pw2 should be different, with Pw1 reflecting the "more important" past
-weather. Code figures 0-9 normally apply to manned stations, 10-19 to
-automated weather stations.
+	If only one type of weather has occurred in the last 3-6 hours, only Pw1 and Pw2 will be the same.
+	If there has been more than one, Pw1 and Pw2 should be different, with Pw1 reflecting the "more important" past weather.
+	Code figures 0-9 normally apply to manned stations, 10-19 to automated weather stations.
 
 	 0 Cloud covering less than 1/2 the sky
-	 1 Cloud covering more than 1/2 the sky part of the time
-	   and less than 1/2 the sky part of the time
+	 1 Cloud covering more than 1/2 the sky part of the time and less than 1/2 the sky part of the time
 	 2 Cloud covering more than 1/2 the sky
 	 3 Sandstorm, dustorm or blowing snow
 	 4 Fog, ice fog, or thick haze
@@ -983,70 +954,48 @@ automated weather stations.
 	19 Thunderstorm
 	 
 #### Low_cld_code:
-	(This is a subset of a larger table, not all values of which are used)
-	wmo international BUFR code table 0 20 012, CREX code table B 20 012
+	(This is a subset of a larger table, not all values of which are used) wmo international BUFR code table 0 20 012, CREX code table B 20 012
 
 	30 No low level cloud
-	31 Cumulus humilis, or Cumulus fractus (not of bad weather), or both
-	32 Cumulus mediocris or congestus, with or without Cumulus humilis
-	   or fractus or Stratocumulus, all bases at the same level
-	33 Cumulonimbus calvus, with or without Cumulus, Stratocumulus
-	   or Stratus
+	31 Cumulus humilis, or Cumulus fractus (not of bad weather), or both 32 Cumulus mediocris or congestus, with or without Cumulus humilis or fractus or Stratocumulus, all bases at the same level
+	33 Cumulonimbus calvus, with or without Cumulus, Stratocumulus or Stratus
 	34 Stratocumulus cumulogenitus
 	35 Stratocumulus other than stratocumulus cumulogenitus
-	36 Stratus nebulosis or Stratus fractus (not of bad weather), or both
-	37 Stratus fractus or Cumulus fractus of bad weather or both (pannus)
-	38 Cumulus and Stratocumulus other than stratocumulus cumulogenitus,
-	   with bases at different levels
-	39 Cumulonimbus capillatus with or without Cumulonimbus calvus
-	   Cumulus, Stratocumulus, Stratus or pannus
+	36 Stratus nebulosis or Stratus fractus (not of bad weather), or both 37 Stratus fractus or Cumulus fractus of bad weather or both (pannus)
+	38 Cumulus and Stratocumulus other than stratocumulus cumulogenitus, with bases at different levels
+	39 Cumulonimbus capillatus with or without Cumulonimbus calvus Cumulus, Stratocumulus, Stratus or pannus
 
 #### Mid_cld_code:
-	(This is a subset of a larger table, not all values of which are used)
-	wmo international BUFR code table 0 20 012, CREX code table B 20 012
+	(This is a subset of a larger table, not all values of which are used) wmo international BUFR code table 0 20 012, CREX code table B 20 012
 
 	20 No middle level cloud
 	21 Altostratus translucidus
 	22 Altostratus opacus or Nimbostratus
 	23 Altocumulus translucidus at a single level
-	24 Patches (often lenticular) of Altocumulus translucidus, continually
-	   changing and at one or more levels
-	25 Altocumulus translucidus in bands, or one or more layers of
-	   Altocumulus translucidus or opacus, progressively invading the
-	   sky
+	24 Patches (often lenticular) of Altocumulus translucidus, continually changing and at one or more levels
+	25 Altocumulus translucidus in bands, or one or more layers of Altocumulus translucidus or opacus, progressively invading the sky
 	26 Altocumulus cumulogenitus or cumulonimbogenitus
-	27 Altocumulus translucidus or opacus in two or more layers, or
-	   Altocumulus opacus in a single layer, not progressively invading
-	   the sky, or Altocumulus with Altostratus or Nimbostratus
+	27 Altocumulus translucidus or opacus in two or more layers, or Altocumulus opacus in a single layer, not progressively invading the sky, or Altocumulus with Altostratus or Nimbostratus
 	28 Altocumulus castellanus or floccus
 	29 Altocumulus of a chaotic sky, usually at several levels
 
 #### Hi_cld_code:
-	(This is a subset of a larger table, not all values of which are used)
-	wmo international BUFR code table 0 20 012, CREX code table B 20 012
+	(This is a subset of a larger table, not all values of which are used) wmo international BUFR code table 0 20 012, CREX code table B 20 012
 
 	10 No high level cloud
-	11 Cirrus fibratus, sometimes unicus, not progressively invading
-	   the sky
-	12 Cirrus spissatus in patches or entangled sheaves, which usually
-	   do not increase
+	11 Cirrus fibratus, sometimes unicus, not progressively invading the sky
+	12 Cirrus spissatus in patches or entangled sheaves, which usually do not increase
 	13 Cirrus spissatus cumulonimbogenitus
 	14 Cirrus unicus or fibratus or both, progressively invading the sky
-	15 Cirrus (often in bands) and Cirrostratus or Cirrostratus alone,
-	   progressively invading the sky, but continuous cloud less than
-	   45 degrees above the horizon.
-	16 Cirrus (often in bands) and Cirrostratus or Cirrostratus alone,
-	   progressively invading the sky, but continuous cloud more than
-	   45 degrees above the horizon without covering the entire sky
+	15 Cirrus (often in bands) and Cirrostratus or Cirrostratus alone, progressively invading the sky, but continuous cloud less than 45 degrees above the horizon.
+	16 Cirrus (often in bands) and Cirrostratus or Cirrostratus alone, progressively invading the sky, but continuous cloud more than 45 degrees above the horizon without covering the entire sky
 	17 Cirrostratus covering the entire sky
-	18 Cirrostratus not covering the entire sky and not progressively
-	   invading it
+	18 Cirrostratus not covering the entire sky and not progressively invading it
 	19 Cirrocumulus alone or Cirrocumulus predominant
 	
 ## Appendix 2 - Output from get_precis_forecast()
 
-The function, `get_precis_forecast()`, will return a data frame of the 7 day
-short forecast with the following fields:
+The function, `get_precis_forecast()`, will return a data frame of the 7 day short forecast with the following fields:
 
 <table>
 <tr><th>Field Name</th><th>Description</th></tr>
@@ -1085,8 +1034,7 @@ characters)</td></tr>
 
 ## Appendix 3 - Output from get_ag_bulletin()
 
-The function, `get_ag_bulletin()`, will return a data frame of the agriculture
-bulletin with the following fields:
+The function, `get_ag_bulletin()`, will return a data frame of the agriculture bulletin with the following fields:
 
 <table>
 <tr><th>Field Name</th><th>Description</th></tr>
@@ -1129,12 +1077,10 @@ worldwide)</td></tr>
 
 ## Appendix 4 - Output from get_weather_bulletin()
 
-The function `get_weather_bulletin()` returns a data frame of weather
-observations for 0900 or 1500 for a nominated state. Observations
-differ between states, but contain some or all of the following fields. All
-units are metric (temperatures in Celsius; wind speeds in kilometres per hour;
-rainfall amounts in millimetres; pressure in hectoPascals). "AWS" in a station
-name denotes observations from an Automatic Weather Station.
+The function `get_weather_bulletin()` returns a data frame of weather observations for 0900 or 1500 for a nominated state.
+Observations differ between states, but contain some or all of the following fields.
+All units are metric (temperatures in Celsius; wind speeds in kilometres per hour; rainfall amounts in millimetres; pressure in hectoPascals).
+"AWS" in a station name denotes observations from an Automatic Weather Station.
 
 
 <table>
@@ -1158,23 +1104,16 @@ measured at height of 10m)</td></tr>
 </table><br>
 
 
-Seastate is described by a text string formed from the three components of (sea
-state, swell, direction). Sea state is denoted "C" (Calm), "SM" (Smooth), "SL"
-(Slight), "M" (Moderate), "R" (Rough), "VR" (Very Rough), "H" (High), "VH" (Very
-High), or "PH" (Phenomenal). Swell is denoted "LS" (Low Short), "LA" (Low
-Average), "LL" (Low Long), "MS" (Moderate Short), "MA" (Mod Average), "ML" (Mod
-Long), "HS" (Heavy Short), "HA" (heavy Average), "HL" (Heavy Long), or "C"
-(Confused). Direction denotes direction from which the swell is coming.
+Seastate is described by a text string formed from the three components of (sea state, swell, direction). Sea state is denoted "C" (Calm), "SM" (Smooth), "SL" (Slight), "M" (Moderate), "R" (Rough), "VR" (Very Rough), "H" (High), "VH" (Very High), or "PH" (Phenomenal). Swell is denoted "LS" (Low Short), "LA" (Low
+Average), "LL" (Low Long), "MS" (Moderate Short), "MA" (Mod Average), "ML" (Mod Long), "HS" (Heavy Short), "HA" (heavy Average), "HL" (Heavy Long), or "C" (Confused).
+Direction denotes direction from which the swell is coming.
 
-Names of rainfall and temperature variables for some states include prefixes or
-suffixes defining the time period over which observations apply (for example,
-"temp_c_6hmax" for maximum temperature between 0980 and 1500, or "temp_c_9ammin"
-for minimum temperature observed at 9am yet included in 1500 bulletin).
+Names of rainfall and temperature variables for some states include prefixes or suffixes defining the time period over which observations apply (for example, "temp_c_6hmax" for maximum temperature between 0980 and 1500, or "temp_c_9ammin" for minimum temperature observed at 9am yet included in 1500 bulletin).
 
 
 ## Appendix 5 - Output from get_coastal_forecast()
 
-The output of `get_coastal_forecast()` will return a data frame with coastal waters forecast values of each area within the given state with the following fields:  
+The output of `get_coastal_forecast()` will return a data frame with coastal waters forecast values of each area within the given state with the following fields:
 
 <table>
 <tr><th>Field Name</th><th>Description</th></tr>
@@ -1332,3 +1271,4 @@ grid.rect(width = 0.98,
                           col = "black",
                           fill = NA))
 ```
+ 
