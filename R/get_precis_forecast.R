@@ -321,5 +321,5 @@ get_precis_forecast <- function(state = "AUS") {
   sub_out <- cbind(locations_index, vals)
   # drop icon code
   sub_out[, forecast_icon_code := NULL]
-  return(sub_out)
+  return(sub_out[])
 }
