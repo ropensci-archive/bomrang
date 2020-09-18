@@ -1,4 +1,5 @@
 
+
 #' Obtain historical BOM data in sub-daily time scales
 #'
 #' Retrieves hourly or smaller, if available, weather observations for a given
@@ -99,6 +100,10 @@ get_subdaily_weather <- function(stationid = NULL,
   
   # fetch station name when `stationid` is provided
   if (is.null(name)) {
+    if (stationid %notin% JSONurl_site_list$site) {
+      stop(call. = FALSE,
+           "You have requested a station that is not present in the BOM network.")
+    }
     station_name <- JSONurl_site_list %>%
       dplyr::filter(stationid == site) %>%
       dplyr::pull(name)
@@ -108,12 +113,12 @@ get_subdaily_weather <- function(stationid = NULL,
     if (any(station_name  %notin% stationaRy_meta$name)) {
       stop(call. = FALSE,
            "You have requested a station that is not present in the BOM network.")
-    } else {
-      station_name <- stationaRy_meta %>%
-        dplyr::filter(name == station_name) %>%
-        dplyr::pull(id)
     }
   }
+  
+  station_name <- stationaRy_meta %>%
+    dplyr::filter(name == station_name) %>%
+    dplyr::pull(id)
   
   # fetch data and return
   met_data <- stationaRy::get_met_data(station_id = station_name,
