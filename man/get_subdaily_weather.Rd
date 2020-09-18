@@ -15,6 +15,8 @@ get_subdaily_weather(
 \arguments{
 \item{stationid}{\acronym{BOM} station \sQuote{ID}. See Details.}
 
+\item{name}{Official \acronym{BOM} station name. See Details.}
+
 \item{years}{Year(s) of weather data to download. Entered as integers,
 \emph{e.g.} \code{2001:2002}. Defaults to all available years for the
 specified station if left unspecified.}
@@ -26,8 +28,6 @@ than sub-hourly values if available for the selected station. Defaults to
 
 \item{...}{Other parameters as passed along to
 \code{\link[stationaRy]{get_met_data}}.}
-
-\item{station_name}{Official \acronym{BOM} station name. See Details.}
 }
 \value{
 A \code{\link[tibble]{tibble}} object of historical sub-daily (hourly

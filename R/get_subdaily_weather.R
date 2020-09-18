@@ -5,7 +5,7 @@
 #'   station.
 #'
 #' @param stationid \acronym{BOM} station \sQuote{ID}. See Details.
-#' @param station_name Official \acronym{BOM} station name. See Details.
+#' @param name Official \acronym{BOM} station name. See Details.
 #' @param years Year(s) of weather data to download. Entered as integers,
 #'   \emph{e.g.} \code{2001:2002}. Defaults to all available years for the
 #'   specified station if left unspecified.
@@ -44,7 +44,7 @@
 #' identified. Measured in meters. Values greater than `16000` are entered as
 #'  `16000` (which constitutes 10 mile visibility).}
 #' }
-#' 
+#'
 #' @details A value for \var{stationid} or \var{name} must be provided. If
 #'   you are uncertain, you may use \code{\link{sweep_for_stations}} to identify
 #'   possible candidate stations to query. See
@@ -59,7 +59,7 @@
 #' # `stationid` and `name` refer to the same station, CHARLTON, in Victoria
 #' # Get hourly weather data
 #' get_subdaily_weather(stationid = "080128", years = 2018:2019, hourly = TRUE)
-#' 
+#'
 #' # Get sub-hourly weather data
 #' get_subdaily_weather(name = "CHARLTON", years = 2018:2019, hourly = FALSE)
 #' }
@@ -77,11 +77,13 @@ get_subdaily_weather <- function(stationid = NULL,
                                  years = NULL,
                                  hourly = TRUE,
                                  ...) {
-
+  # CRAN Note avoidance
+  JSONurl_site_list <- site <- id <- NULL
+  
   load(system.file("extdata",
                    "JSONurl_site_list.rda",
                    package = "bomrang"))
-
+  
   stationaRy_meta <- stationaRy::get_station_metadata()
   
   if (is.null(name) & is.null(stationid)) {
@@ -91,32 +93,32 @@ get_subdaily_weather <- function(stationid = NULL,
   
   if (!is.null(name) & !is.null(stationid)) {
     warning(call. = FALSE,
-         "You have provided both a `stationid` and `name`, using `name`.")
+            "You have provided both a `stationid` and `name`, using `name`.")
     stationid <- NULL
   }
   
-  # fetch station name if stationid is provided
+  # fetch station name when `stationid` is provided
   if (is.null(name)) {
     station_name <- JSONurl_site_list %>%
       dplyr::filter(stationid == site) %>%
       dplyr::pull(name)
-  }
-  
-  # validate that exists in BOM network
-  station_name <- toupper(name)
-  if (any(station_name %notin% stationaRy_meta$name)) {
-    stop(call. = FALSE,
-         "You have requested a station that is not present in the BOM network.")
   } else {
-    station_id <- stationaRy_meta %>%
-      dplyr::filter(name == station_name) %>%
-      dplyr::pull(id)
+    # validate station name when `name` is provided
+    station_name <- toupper(name)
+    if (any(station_name  %notin% stationaRy_meta$name)) {
+      stop(call. = FALSE,
+           "You have requested a station that is not present in the BOM network.")
+    } else {
+      station_name <- stationaRy_meta %>%
+        dplyr::filter(name == station_name) %>%
+        dplyr::pull(id)
+    }
   }
   
   # fetch data and return
-  met_data <- stationaRy::get_met_data(station_id = station_id,
-                                  years = years,
-                                  make_hourly = hourly)
+  met_data <- stationaRy::get_met_data(station_id = station_name,
+                                       years = years,
+                                       make_hourly = hourly)
   
   if (nrow(met_data) >= 1) {
     return(met_data)
