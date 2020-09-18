@@ -78,7 +78,7 @@ Session Info
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Brisbane          
-    ##  date     2020-08-22                  
+    ##  date     2020-09-18                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
     ##  package     * version date       lib source        
@@ -91,17 +91,17 @@ Session Info
     ##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.0.1)
     ##  fansi         0.4.1   2020-01-08 [1] CRAN (R 4.0.2)
     ##  foreign       0.8-80  2020-05-24 [2] CRAN (R 4.0.2)
-    ##  glue          1.4.1   2020-05-13 [1] CRAN (R 4.0.2)
+    ##  glue          1.4.2   2020-08-27 [1] CRAN (R 4.0.2)
     ##  htmltools     0.5.0   2020-06-16 [1] CRAN (R 4.0.2)
     ##  knitr         1.29    2020-06-23 [1] CRAN (R 4.0.2)
     ##  magrittr      1.5     2014-11-22 [1] CRAN (R 4.0.2)
     ##  rlang         0.4.7   2020-07-09 [1] CRAN (R 4.0.2)
     ##  rmarkdown     2.3     2020-06-18 [1] CRAN (R 4.0.2)
     ##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.0.2)
-    ##  stringi       1.4.6   2020-02-17 [1] CRAN (R 4.0.2)
+    ##  stringi       1.5.3   2020-09-09 [1] CRAN (R 4.0.2)
     ##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.0.2)
     ##  withr         2.2.0   2020-04-20 [1] CRAN (R 4.0.2)
-    ##  xfun          0.16    2020-07-24 [1] CRAN (R 4.0.2)
+    ##  xfun          0.17    2020-09-09 [1] CRAN (R 4.0.2)
     ##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.2)
     ## 
     ## [1] /Users/adamsparks/.R/library
