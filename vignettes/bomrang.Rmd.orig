@@ -1,6 +1,6 @@
 ---
 title: "bomrang"
-author: "Adam H Sparks, Jonathan Carroll, Dean Marchiori, Mark Padgham and Hugh Parsonage"
+author: "Adam H Sparks, Jonathan Carroll, Dean Marchiori, Paul Melloy, Mark Padgham and Hugh Parsonage"
 output:
   rmarkdown::html_vignette:
     toc: true
