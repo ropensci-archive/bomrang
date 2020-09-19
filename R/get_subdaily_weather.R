@@ -1,5 +1,4 @@
 
-
 #' Obtain historical BOM data in sub-daily time scales
 #'
 #' Retrieves hourly or smaller, if available, weather observations for a given
@@ -16,10 +15,10 @@
 #'   \code{TRUE}.
 #' @param ... Other parameters as passed along to
 #'  \code{\link[stationaRy]{get_met_data}}.
-#' @return A \code{\link[tibble]{tibble}} object of historical sub-daily (hourly
-#'   or less)time-scale observations for the selected station. While times are
-#'   recorded using the Universal Time Code (UTC) in the source data, they are
-#'   adjusted here to local standard time for the station's locale.
+#' @return A \code{\link[data.table]{data.table}} object of historical sub-daily
+#'   (hourly or less) time-scale observations for the selected station.  While
+#'   times are recorded using the Universal Time Code (UTC) in the source data,
+#'   they are adjusted here to local standard time for the station's locale.
 #' \describe{
 #' \item{id}{A character string identifying the fixed weather station
 #' from the USAF Master Station Catalog identifier and the WBAN identifier.}
@@ -126,7 +125,7 @@ get_subdaily_weather <- function(stationid = NULL,
                                        make_hourly = hourly)
   
   if (nrow(met_data) >= 1) {
-    return(met_data)
+    return(data.table::setDT(met_data))
   } else
     message("No records were found for this station and year combination.",
             call. = FALSE)

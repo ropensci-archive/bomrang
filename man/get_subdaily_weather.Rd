@@ -30,10 +30,10 @@ than sub-hourly values if available for the selected station. Defaults to
 \code{\link[stationaRy]{get_met_data}}.}
 }
 \value{
-A \code{\link[tibble]{tibble}} object of historical sub-daily (hourly
-or less)time-scale observations for the selected station. While times are
-recorded using the Universal Time Code (UTC) in the source data, they are
-adjusted here to local standard time for the station's locale.
+A \code{\link[data.table]{data.table}} object of historical sub-daily
+(hourly or less) time-scale observations for the selected station.  While
+times are recorded using the Universal Time Code (UTC) in the source data,
+they are adjusted here to local standard time for the station's locale.
 \describe{
 \item{id}{A character string identifying the fixed weather station
 from the USAF Master Station Catalog identifier and the WBAN identifier.}
