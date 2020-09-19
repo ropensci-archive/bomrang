@@ -16,11 +16,14 @@ test_that("Error handling", {
       latlon = c(1, 2),
       type = "max"
     ))
-  expect_equal(x$warnings[1], "\nOnly one of `stationid` or `latlon` may be provided. \nUsing `stationid`\n.")
   expect_equal(
-    x$warnings[2],
-    "The list of available stations for `type = rain` is currently empty.\nThis is likely a temporary error in the Bureau of Meteorology's\ndatabase and may cause requests for rain station data to fail."
+    x$warnings[1],
+    "\nOnly one of `stationid` or `latlon` may be provided. \nUsing `stationid`\n."
   )
+  # expect_equal(
+  #   x$warnings[2],
+  #   "The list of available stations for `type = rain` is currently empty.\nThis is likely a temporary error in the Bureau of Meteorology's\ndatabase and may cause requests for rain station data to fail."
+  # )
   expect_error(get_historical_weather("023000", type = "sodiuhfosdhfoisdh"),
                regexp = "arg.*rain.*solar")
 })
@@ -30,25 +33,16 @@ test_that(
           type = 'rain' returns bomrang_tbl w/ correct station and some data",
   {
     skip_on_cran()
-    ADLhistrain <- tryCatch({
-      get_historical_weather("023000", type = "rain")
-      expect_is(ADLhistrain, "bomrang_tbl")
-      expect_true(nrow(ADLhistrain) > 0)
-      expect_equal(ncol(ADLhistrain), 8)
-      expect_equal(ADLhistrain$product_code[1], factor("IDCJAC0009"))
-      expect_equal(ADLhistrain$station_number[1], 23000)
-      expect_equal(attr(ADLhistrain, "station"), "023000")
-    }, warning = function(w) {
-      expect_message(
-        get_historical_weather("023000", type = "rain"),
-        "The list of available stations for `type = rain`*"
-      )
-    }, error = function(e) {
-      expect_error(get_historical_weather("023000", type = "rain"),
-                   regexp = "`type` rain is not available for `stationid` 023000")
-    })
+    ADLhistrain <- get_historical_weather("023000", type = "rain")
+    expect_is(ADLhistrain, "bomrang_tbl")
+    expect_true(nrow(ADLhistrain) > 0)
+    expect_equal(ncol(ADLhistrain), 8)
+    expect_equal(ADLhistrain$product_code[1], factor("IDCJAC0009"))
+    expect_equal(ADLhistrain$station_number[1], 23000)
+    expect_equal(attr(ADLhistrain, "station"), "023000")
   }
 )
+
 
 test_that("Query stationid = '023000'", {
   skip_on_cran()
@@ -65,26 +59,15 @@ test_that(
           type = 'rain' returns bomrang_tbl w/ correct station and some data",
   {
     skip_on_cran()
-    ADLhistrain <- tryCatch({
+    ADLhistrain <-
       get_historical_weather(latlon = c(-34.9285, 138.6007),
                              type = "rain")
-      expect_is(ADLhistrain, "bomrang_tbl")
-      expect_true(nrow(ADLhistrain) > 0)
-      expect_equal(ncol(ADLhistrain), 8)
-      expect_equal(ADLhistrain$product_code[1], factor("IDCJAC0009"))
-      expect_equal(ADLhistrain$station_number[1], 23000)
-      expect_equal(attr(ADLhistrain, "station"), "023000")
-    }, warning = function(w) {
-      expect_message(
-        get_historical_weather(latlon = c(-34.9285, 138.6007),
-                               type = "rain"),
-        "The list of available stations for `type = rain`*"
-      )
-    }, error = function(e) {
-      expect_error(get_historical_weather(latlon = c(-34.9285, 138.6007),
-                                          type = "rain"),
-                   regexp = "`type` rain is not available for `stationid` 023000")
-    })
+    expect_is(ADLhistrain, "bomrang_tbl")
+    expect_true(nrow(ADLhistrain) > 0)
+    expect_equal(ncol(ADLhistrain), 8)
+    expect_equal(ADLhistrain$product_code[1], factor("IDCJAC0009"))
+    expect_equal(ADLhistrain$station_number[1], 23000)
+    expect_equal(attr(ADLhistrain, "station"), "023000")
   }
 )
 
