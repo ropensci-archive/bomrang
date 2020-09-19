@@ -10,14 +10,13 @@
   "codeRepository": "https://github.com/ropensci/bomrang",
   "issueTracker": "https://github.com/ropensci/bomrang/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.7.0.9000",
+  "version": "0.8.0",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
-    "version": "3.6.3",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 3.6.3 (2020-02-29)",
+  "runtimePlatform": "R version 4.0.2 (2020-06-22)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -486,7 +485,7 @@
       "sameAs": "https://CRAN.R-project.org/package=xml2"
     }
   ],
-  "contIntegration": "https://travis-ci.org/ropensci/bomrang",
+  "contIntegration": "https://codecov.io/gh/ropensci/bomrang",
   "releaseNotes": "https://github.com/ropensci/bomrang/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/bomrang/blob/master/README.md",
   "citation": [
@@ -597,10 +596,11 @@
   ],
   "review": {
     "@type": "Review",
-    "url": "https://github.com/ropensci/onboarding/issues/121",
-    "provider": "http://ropensci.org"
+    "url": "https://github.com/ropensci/software-review/issues/121",
+    "provider": "https://ropensci.org"
   },
-  "developmentStatus": "http://www.repostatus.org/#active",
+  "developmentStatus": "https://www.repostatus.org/#active",
   "copyrightHolder": {},
-  "funder": {}
+  "funder": {},
+  "fileSize": "2867.87KB"
 }
