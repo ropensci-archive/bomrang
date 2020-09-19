@@ -44,9 +44,11 @@ Several functions are provided by *bomrang* to retrieve Australian Bureau of Met
   
   - `get_weather_bulletin()`, which retrieves the BOM 0900 or 1500 bulletins;
   
-  - `get_coastal_forecast()`, which returns coastal waters forecasts; and
+  - `get_coastal_forecast()`, which returns coastal waters forecasts;
   
-  - `get_historical_weather()`, which retrieves historical daily observations for a given station.
+  - `get_historical_weather()`, which retrieves historical daily observations for a given station; and
+  
+  - `get_subdaily_weather()`, which retrieves historical data for a given station at hourly or smaller time-step intervals.
 
 A second group of functions retrieve information pertaining to satellite and radar imagery,
   
