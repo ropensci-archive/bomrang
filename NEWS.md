@@ -15,7 +15,7 @@ Thanks to James Goldie, [@rensa](https://github.com/rensa) for this fix.
 ## Enhanced vignette
 
 * The new `get_subdaily_weather()` function is detailed in the vignette, along with an example of how to use `sweep_for_stations()` to identify stations that possibly provide sub-daily weather data within a given radius of a given point.
-Thanks to Paul Melloy, [PaulMelloy](https://github.com/PaulMelloy) for this.
+Thanks to Paul Melloy, [@PaulMelloy](https://github.com/PaulMelloy) for this.
 
 ## Standardised function naming
 
