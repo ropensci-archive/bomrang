@@ -5,13 +5,13 @@ test_that("Error handling", {
   expect_error(get_subdaily_weather(), regexp = "*stationid.*name")
   expect_error(get_subdaily_weather("sodiuhfosdhfoisdh"),
                regexp =
-                 "You have requested a station that is not present in the BOM network.")
+                 "You have requested a station that is not present*.")
   expect_error(get_subdaily_weather(2),
                regexp =
-                 "You have requested a station that is not present in the BOM network.")
+                 "You have requested a station that is not present*.")
   expect_error(get_subdaily_weather("2"),
                regexp =
-                 "You have requested a station that is not present in the BOM network.")
+                 "You have requested a station that is not present*.")
   
   x <-
     evaluate_promise(get_subdaily_weather(
@@ -29,7 +29,7 @@ test_that(
   {
     skip_on_cran()
       Charlton <- get_subdaily_weather("080128", hourly = TRUE, years = 2018)
-      expect_is(Charlton, "tbl_df")
+      expect_is(Charlton, "data.table")
       expect_true(nrow(Charlton) > 0)
       expect_equal(ncol(Charlton), 10)
       expect_equal(Charlton$id[1], "948390-99999")
