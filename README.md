@@ -92,4 +92,4 @@ References
 [Australian Bureau of Meteorology (BOM) High-definition satellite images](http://www.bom.gov.au/australia/satellite/index.shtml)
 
 
-[![](http://ropensci.org/public_images/github_footer.png)](http://ropensci.org/)
+[![](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org/)
