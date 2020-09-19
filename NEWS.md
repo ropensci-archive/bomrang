@@ -23,6 +23,12 @@ Thanks to Paul Melloy, [@PaulMelloy](https://github.com/PaulMelloy) for this.
 Neither name is preferred and both will be provided going forward.
 This is simply to provide a standard nomenclature across the package for function names.
 
+## Internal changes
+
+* Update internal databases of station and forecast locations.
+
+* Reorganise functions and files to be more consistent within the package.
+
 # bomrang 0.7.0
 
 ## Bug fixes
