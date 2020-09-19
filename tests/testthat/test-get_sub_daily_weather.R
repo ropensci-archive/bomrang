@@ -28,8 +28,7 @@ test_that(
           hourly = TRUE, returns tibble w/ correct station and some data",
   {
     skip_on_cran()
-    Charlton <- tryCatch({
-      get_subdaily_weather("080128", hourly = TRUE, years = 2018)
+      Charlton <- get_subdaily_weather("080128", hourly = TRUE, years = 2018)
       expect_is(Charlton, "tbl_df")
       expect_true(nrow(Charlton) > 0)
       expect_equal(ncol(Charlton), 10)
@@ -51,7 +50,5 @@ test_that(
           "visibility"
         )
       )
-      
-    })
   }
 )
