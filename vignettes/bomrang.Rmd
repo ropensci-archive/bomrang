@@ -1151,7 +1151,7 @@ Following is an example fetching the historical daily temperature minimum observ
 `get_subdaily_weather()` allows the user to query a database of stations outside of Australia, containing BOM station data and return values at hourly or smaller intervals if available.
 The function takes two arguments, either `stationid` or `name` to identify a station in BOM's network.
 Two additional arguments, `years` to specify the years for which data should be returned and `hourly`, which defaults to `TRUE`, allow the user to specify if the weather data should be aggregated to start on the hour and be returned in hourly intervals.
-Further options for `stationaRy::get_met_data()` can be pased through `...` as needed.
+Further options for `stationaRy::get_met_data()` can be pasesd through `...` as needed.
 
 ### Results
 
@@ -1489,6 +1489,7 @@ If no valid Product ID is supplied, defaults to all GeoTIFF images currently ava
 #> [139] "IDE00425.202009190730.tif" "IDE00425.202009190740.tif"
 #> [141] "IDE00425.202009190750.tif" "IDE00425.202009190800.tif"
 #> [143] "IDE00425.202009190810.tif" "IDE00425.202009190820.tif"
+#> [145] "IDE00425.202009190830.tif" "IDE00425.202009190840.tif"
 #>   [1] "IDE00425.202009180810.tif" "IDE00425.202009180820.tif"
 #>   [3] "IDE00425.202009180830.tif" "IDE00425.202009180840.tif"
 #>   [5] "IDE00425.202009180850.tif" "IDE00425.202009180900.tif"
@@ -1561,6 +1562,7 @@ If no valid Product ID is supplied, defaults to all GeoTIFF images currently ava
 #> [139] "IDE00425.202009190730.tif" "IDE00425.202009190740.tif"
 #> [141] "IDE00425.202009190750.tif" "IDE00425.202009190800.tif"
 #> [143] "IDE00425.202009190810.tif" "IDE00425.202009190820.tif"
+#> [145] "IDE00425.202009190830.tif" "IDE00425.202009190840.tif"
 ```
 
 ### Using get_satellite_imagery()
@@ -1702,7 +1704,7 @@ This value must be specified and the function will accept only one at a time.
 ```r
 library(raster)
 x <- get_radar_imagery(product_id = "IDR032")
-#> file downloaded to:/var/folders/yv/4xy6zs3x5qsgj96389nkjvtw0000gn/T//RtmpDw3o9I/file81c3158952b0.gif
+#> file downloaded to:/var/folders/yv/4xy6zs3x5qsgj96389nkjvtw0000gn/T//RtmpDw3o9I/file81c36321418c.gif
 
 # create a blank raster plot and add the radar layer
 r <-

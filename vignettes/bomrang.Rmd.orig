@@ -267,7 +267,7 @@ Following is an example fetching the historical daily temperature minimum observ
 `get_subdaily_weather()` allows the user to query a database of stations outside of Australia, containing BOM station data and return values at hourly or smaller intervals if available.
 The function takes two arguments, either `stationid` or `name` to identify a station in BOM's network.
 Two additional arguments, `years` to specify the years for which data should be returned and `hourly`, which defaults to `TRUE`, allow the user to specify if the weather data should be aggregated to start on the hour and be returned in hourly intervals.
-Further options for `stationaRy::get_met_data()` can be pased through `...` as needed.
+Further options for `stationaRy::get_met_data()` can be pasesd through `...` as needed.
 
 ### Results
 
