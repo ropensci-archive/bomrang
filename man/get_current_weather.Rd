@@ -79,7 +79,7 @@ Meteorology (\acronym{BOM}) webpage, Bureau of Meteorology Site Numbers:
 \url{http://www.bom.gov.au/climate/cdo/about/site-num.shtml}
 }
 \seealso{
-\link{get_historical_weather}
+\link{get_historical_weather} \link{get_subdaily_weather}
 }
 \author{
 Hugh Parsonage, \email{hugh.parsonage@gmail.com}

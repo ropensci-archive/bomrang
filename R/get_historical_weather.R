@@ -83,7 +83,7 @@
 #'   which mask the \CRANpkg{dplyr} versions (but use those internally,
 #'   maintaining attributes).
 #'
-#' @seealso \link{get_current_weather}
+#' @seealso \link{get_current_weather} \link{get_subdaily_weather}
 #'
 #' @author Jonathan Carroll, \email{rpkg@@jcarroll.com.au}
 #'
