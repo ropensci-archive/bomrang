@@ -7,7 +7,7 @@
 ## Bug fixes
 
 * For a time BOM was not listing historical rainfall records.
-A message is emitted now if records are missing or unavailable rather than `get_historical_weather() failing.
+A message is emitted now if records are missing or unavailable rather than `get_historical_weather()` failing.
 Thanks to James Goldie, [@rensa](https://github.com/rensa) for this fix.
 
 * Cross-links in the function documentation have been fixed.
