@@ -127,7 +127,7 @@ get_historical(latlon = c(-35.2809, 149.1300),
 }
 }
 \seealso{
-\link{get_current_weather} \link{get_subdaily_weather}
+\link{get_current_weather}
 }
 \author{
 Jonathan Carroll, \email{rpkg@jcarroll.com.au}

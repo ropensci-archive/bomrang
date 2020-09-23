@@ -1,8 +1,4 @@
-# bomrang 0.8.0
-
-## New function
-
-* `get_subdaily_weather()` is added to fetch weather data in one hour or less intervals for stations in the BOM network using the CRAN package [stationarRy](https://cran.r-project.org/package=stationaRy).
+# bomrang 0.7.1
 
 ## Bug fixes
 
@@ -11,11 +7,6 @@ A message is emitted now if records are missing or unavailable rather than `get_
 Thanks to James Goldie, [@rensa](https://github.com/rensa) for this fix.
 
 * Cross-links in the function documentation have been fixed.
-
-## Enhanced vignette
-
-* The new `get_subdaily_weather()` function is detailed in the vignette, along with an example of how to use `sweep_for_stations()` to identify stations that possibly provide sub-daily weather data within a given radius of a given point.
-Thanks to Paul Melloy, [@PaulMelloy](https://github.com/PaulMelloy) for this.
 
 ## Standardised function naming
 

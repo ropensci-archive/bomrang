@@ -48,8 +48,6 @@ Several functions are provided by *bomrang* to retrieve Australian Bureau of Met
   
   - `get_historical_weather()`, which retrieves historical daily observations for a given station; and
   
-  - `get_subdaily_weather()`, which retrieves historical data for a given station at hourly or smaller time-step intervals.
-
 A second group of functions retrieve information pertaining to satellite and radar imagery,
   
   - `get_available_imagery()`;

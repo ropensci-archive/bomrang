@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropensci/bomrang",
   "issueTracker": "https://github.com/ropensci/bomrang/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.8.0",
+  "version": "0.7.1",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -438,18 +438,6 @@
     },
     {
       "@type": "SoftwareApplication",
-      "identifier": "stationaRy",
-      "name": "stationaRy",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=stationaRy"
-    },
-    {
-      "@type": "SoftwareApplication",
       "identifier": "tidyr",
       "name": "tidyr",
       "version": ">= 0.6.3",
@@ -602,5 +590,5 @@
   "developmentStatus": "https://www.repostatus.org/#active",
   "copyrightHolder": {},
   "funder": {},
-  "fileSize": "657730.069KB"
+  "fileSize": "657668.552KB"
 }
