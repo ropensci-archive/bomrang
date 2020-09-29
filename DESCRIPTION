@@ -1,7 +1,7 @@
 Package: bomrang
 Type: Package
 Title: Australian Government Bureau of Meteorology ('BOM') Data Client
-Version: 0.7.1
+Version: 0.7.1.9000
 Authors@R:
     c(person(given = "Adam H.",
              family = "Sparks",
