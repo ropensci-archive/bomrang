@@ -1,6 +1,6 @@
-# bomrang 0.7.1.1
+# bomrang 0.7.2
 
-* Fixes an example that wrote to R userspace, when it should not
+* Fixes an example that wrote to R userspace, when it should not in `get_radar_imagery()`
 
 # bomrang 0.7.1
 
