@@ -1,3 +1,7 @@
+# bomrang 0.7.1.1
+
+* Fixes an example that wrote to R userspace, when it should not
+
 # bomrang 0.7.1
 
 ## Bug fixes
