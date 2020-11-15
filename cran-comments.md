@@ -1,3 +1,4 @@
+## bomrang version 0.7.2
 
 ## Test environments
 
@@ -15,7 +16,7 @@ This is a new patch release that fixes a bug in the documentation
 
 ## Bug fixes
 
-* Fixes an example that wrote to R userspace, when it should not
+* Fixes an example that wrote to R userspace, when it should not in `get_radar_imagery()`
 
 ## Reverse dependencies
 
