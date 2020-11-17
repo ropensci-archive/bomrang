@@ -10,13 +10,13 @@
   "codeRepository": "https://github.com/ropensci/bomrang",
   "issueTracker": "https://github.com/ropensci/bomrang/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.7.1",
+  "version": "0.7.2",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.2 (2020-06-22)",
+  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -582,13 +582,8 @@
     "https://CRAN.R-project.org/package=bomrang",
     "https://docs.ropensci.org/bomrang/"
   ],
-  "review": {
-    "@type": "Review",
-    "url": "https://github.com/ropensci/software-review/issues/121",
-    "provider": "https://ropensci.org"
-  },
   "developmentStatus": "https://www.repostatus.org/#active",
   "copyrightHolder": {},
   "funder": {},
-  "fileSize": "657668.552KB"
+  "fileSize": "1360.913KB"
 }

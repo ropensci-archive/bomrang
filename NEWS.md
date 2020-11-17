@@ -1,4 +1,6 @@
-# bomrang (development version)
+# bomrang 0.7.2
+
+* Fixes an example that wrote to R userspace, when it should not in `get_radar_imagery()`
 
 # bomrang 0.7.1
 

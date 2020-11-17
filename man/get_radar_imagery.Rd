@@ -40,6 +40,8 @@ library(raster)
 imagery <- get_radar_imagery(product_id = "IDR032")
 plot(imagery)
 
+# Save imagery to a local path
+imagery <- get_radar_imagery(product_id = "IDR032", path = "image.gif")
 }
 
 }
