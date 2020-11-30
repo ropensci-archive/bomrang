@@ -2,8 +2,7 @@
 
 ## Bug fixes
 
-* `get_current_weather()` now returns the correct values for `rel_hum`, rather than returning
-  a column of `NA`.
+* `get_current_weather()` now returns the correct values for `rel_hum`, rather than returning a column of `NA`.
 
 # bomrang 0.7.2
 
