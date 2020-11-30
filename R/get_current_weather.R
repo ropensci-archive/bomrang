@@ -280,8 +280,6 @@ get_current_weather <-
       )),
       .SDcols = "aifstime_utc"]
     
-    out[, "rel_hum" := suppressWarnings(as.integer("rel_hum"))]
-    
     # Columns which are meant to be numeric
     double_cols <-
       c("lat",
