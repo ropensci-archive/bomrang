@@ -1,4 +1,4 @@
-# bomrang 0.7.3
+# bomrang (development version)
 
 ## Bug fixes
 
