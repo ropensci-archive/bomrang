@@ -90,6 +90,3 @@ References
 [Australian Bureau of Meteorology (BOM) Weather Data Services Observation of Rainfall](http://www.bom.gov.au/climate/how/observations/rain-measure.shtml)
 
 [Australian Bureau of Meteorology (BOM) High-definition satellite images](http://www.bom.gov.au/australia/satellite/index.shtml)
-
-
-[![](https://ropensci.org/public_images/github_footer.png)](https://ropensci.org/)
