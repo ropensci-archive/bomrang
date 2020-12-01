@@ -199,14 +199,14 @@ get_satellite_imagery <- get_satellite <-
       )
     },
     error = function() {
-      return(terra::rast(
+      return(magick::image_read(
         system.file("error_images",
                     "image_error_message.png",
                     package = "bomrang")
       ))
     }
     )
-    # create raster stack object of the GeoTIFF files
+    # create SpatRaster object of the GeoTIFF files
     files <-
       list.files(cache_dir, pattern = "\\.tif$", full.names = TRUE)
     files <- basename(files)[basename(files) %in% basename(tif_files)]
