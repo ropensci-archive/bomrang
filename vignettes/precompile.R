@@ -10,6 +10,9 @@ knit(input = "vignettes/use_case.Rmd.orig",
 # remove file path such that vignettes will build with figures
 replace <- readLines("vignettes/bomrang.Rmd")
 replace <- gsub("<img src=\"vignettes/", "<img src=\"", replace)
+# this replaces the .gif with .png extension, the radar .gif image is converted
+# when knitting
+replace <- gsub(".gif", ".png", replace)
 fileConn <- file("vignettes/bomrang.Rmd")
 writeLines(replace, fileConn)
 close(fileConn)
