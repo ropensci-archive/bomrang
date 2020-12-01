@@ -61,8 +61,8 @@ get_available_radar <- function(radar_id = "all") {
     )
   if (radar_id[1] == "all") {
     dat <- dat
-  } else if (is.numeric(radar_id) && as.numeric(radar_id) %in% dat$Radar_id) {
-    dat <- dat[dat$Radar_id %in% as.numeric(radar_id), ]
+  } else if (is.numeric(radar_id) && radar_id %in% dat$Radar_id) {
+    dat <- dat[dat$Radar_id %in% radar_id, ]
   } else{
     stop("radar_id not found")
   }
@@ -79,14 +79,14 @@ get_available_radar <- function(radar_id = "all") {
 #' \code{\link{get_available_radar}}.
 #'
 #' @param product_id Character. \acronym{BOM} product ID to download and import
-#' as a \code{\link[terra]{SpatRaster}} object.  Value is required.
+#' as a \CRANpkg{magick} object.  Value is required.
 #'
 #' @param path Character. A character string with the name where the downloaded
-#' file is saved. If not provided, the default value \code{NULL} is used which
-#' saves the file in a temp directory.
+#' file is saved.  If not provided, the default value \code{NULL} is used which
+#' saves the file in an \R session temp directory.
 #'
 #' @param download_only Logical. Whether the radar image is loaded into the
-#' environment as a \code{\link[terra]{SpatRaster}} layer, or just downloaded.
+#' environment as a \CRANpkg{magick} object or just downloaded.
 #'
 #' @details Valid \acronym{BOM} \acronym{Radar} Product IDs for radar imagery
 #' can be obtained from \code{\link{get_available_radar}}.
@@ -95,10 +95,10 @@ get_available_radar <- function(radar_id = "all") {
 #'\code{\link{get_available_radar}}
 #'
 #' @return
-#' A raster layer based on the most recent `.gif' \acronym{radar} image snapshot
-#' published by the \acronym{BOM}. If \code{download_only = TRUE} there will be
-#' a `NULL` return value with the download path printed in the console as a
-#' message.
+#' A \CRANpkg{magick} object of the most recent \acronym{radar} image snapshot
+#'  published by the \acronym{BOM}. If \code{download_only = TRUE} there will be
+#'  a `NULL` return value with the download path printed in the console as a
+#'  message.
 #'
 #' @references
 #' Australian Bureau of Meteorology (\acronym{BOM}) radar images\cr
@@ -108,7 +108,7 @@ get_available_radar <- function(radar_id = "all") {
 #' \donttest{
 #' # Fetch most recent radar image for Wollongong 256km radar
 #' imagery <- get_radar_imagery(product_id = "IDR032")
-#' plot(imagery)
+#' imagery
 #' }
 #'
 #' @author Dean Marchiori, \email{deanmarchiori@@gmail.com}
@@ -150,21 +150,16 @@ get_radar_imagery <- get_radar <-
           quiet = TRUE
         )
         message("file downloaded to:", path)
-        y <- terra::rast(x = path)
-        y[is.na(y)] <- 999
+        y <- magick::image_read(path = path)
         return(y)
       }
     },
     error = function() {
-      return(terra::rast(
+      return(magick::image_read(
+        path = 
         system.file("error_images",
                     "image_error_message.png",
                     package = "bomrang")
       ))
     })
   }
-
-# Export raster plot functionality to plot radar imagery
-#' @importFrom terra plot
-#' @export
-terra::plot
