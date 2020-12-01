@@ -479,7 +479,8 @@ head(x)
 
 ### Using get_radar_imagery()
 
-`get_radar_imagery()` fetches the latest BOM radar imagery for a given product ID. The files available are the latest `.gif` files of BOM radar imagery, which are typically updated each 6-10 minutes.
+`get_radar_imagery()` fetches the latest BOM radar imagery for a given product ID.
+The files available are the latest `.gif` files of BOM radar imagery, which are typically updated each 6-10 minutes.
 Only the most recent image is retrieved for each radar location.
 There are usually several radar ranges available for each radar location, such as 512km, 256km, 128km and possibly 64km.
 The only argument is:
@@ -491,19 +492,7 @@ This value must be specified and the function will accept only one at a time.
 ```{r get_radar_imagery, fig.height=9, fig.width=8}
 x <- get_radar_imagery(product_id = "IDR032")
 
-# create a blank raster plot and add the radar layer
-r <-
-  terra::rast(
-  ncol = 564,
-  nrow = 524,
-  xmn = 0,
-  xmx = 524,
-  ymn = 0,
-  ymx = 564
-  )
-  values(r) <- NA
-  plot(r)
-  plot(x, add = TRUE)
+plot(x)
 ```
 
 # dplyr compatibility
