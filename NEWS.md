@@ -10,6 +10,12 @@
 
 * Switch GIS raster file support from `raster` to `terra`
 
+* `radar_id` values in `get_available_radar()` are now provided as a numeric value.
+This previously was a character that was internally coerced to numeric
+
+* `get_radar_imagery()` now returns a magick-image object rather than a `raster` object.
+The files are .gif natively, this is a better way to handle them
+
 # bomrang 0.7.2
 
 * Fixes an example that wrote to R userspace, when it should not in `get_radar_imagery()`
