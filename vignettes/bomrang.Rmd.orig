@@ -33,7 +33,7 @@ Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts.
 BOM serves several types of data data as XML, JSON and SHTML files.
 This package fetches these files, parses them and return a data frame.
 Satellite and radar imagery files are also made available to the public via anonymous FTP.
-_bomrang_ provides functionality to query, fetch and create `terra::SpatRaster()` objects of the GeoTIFF imagery.
+_bomrang_ provides functionality to query, fetch and create `terra::SpatRaster()` objects of the GeoTIFF imagery or a magick object of radar image gif files.
 
 ## Using _bomrang_
 
@@ -53,9 +53,11 @@ The last group functions provides internal functionality for _bomrang_ itself; `
 
 `get_current_weather()` takes one of two arguments: `station_name` and `latlon`, returning the current weather observations (and the observations of the last 72 hours) for the given location.
 
-If `station_name` is used, the weather observations for the last 72 hours are returned for that station. If the string provided is ambiguous, the function returns an observation for one of the possible stations and emits a warning to offer unambiguous station names. 
+If `station_name` is used, the weather observations for the last 72 hours are returned for that station.
+If the string provided is ambiguous, the function returns an observation for one of the possible stations and emits a warning to offer unambiguous station names. 
 
-If `latlon` is used, the observations returned are from the station nearest to that latitude-longitude coordinate. `latlon` values are entered as decimal degrees, _e.g._ `latlon = c(-34, 151)` for Sydney. The function also emits a message, to tell the user which station was used.
+If `latlon` is used, the observations returned are from the station nearest to that latitude-longitude coordinate. `latlon` values are entered as decimal degrees, _e.g._ `latlon = c(-34, 151)` for Sydney.
+The function also emits a message, to tell the user which station was used.
 
 ### Results
 
@@ -109,7 +111,8 @@ Following is an example fetching the forecast for Queensland.
 ## Using get_ag_bulletin()
 
 `get_ag_bulletin()` only takes one argument, `state`.
-The `state` parameter allows the user to select the bulletin for just one state or a national forecast. States or territories are specified using the official postal codes or full name with fuzzy matching performed via `agrep()`.
+The `state` parameter allows the user to select the bulletin for just one state or a national forecast.
+States or territories are specified using the official postal codes or full name with fuzzy matching performed via `agrep()`.
 
 - **NSW** - New South Wales
 
@@ -142,7 +145,8 @@ Following is an example fetching the ag bulletin for Queensland.
 
 ## Using get_weather_bulletin()
 
-This function takes two arguments, `state` for the desired state; and `morning` if `TRUE`, return the 9am bulletin for the nominated state; otherwise return the 3pm bulletin. States or territories are specified using the official postal codes.
+This function takes two arguments, `state` for the desired state; and `morning` if `TRUE`, return the 9am bulletin for the nominated state; otherwise return the 3pm bulletin.
+States or territories are specified using the official postal codes.
 
 -   **ACT**  Australian Capital Territory (will return NSW)
 
@@ -181,7 +185,8 @@ Following is an example fetching the 3PM bulletin for Queensland.
 
 ## Using get_coastal_forecast()
 
-This function only takes one argument, `state`. The `state` parameter allows the user to select the forecast for just one state or a national forecast.
+This function only takes one argument, `state`.
+The `state` parameter allows the user to select the forecast for just one state or a national forecast.
 States or territories are specified using the official postal codes or full name with fuzzy matching performed via `agrep()`
 
 - **ACT** - Australian Capital Territory
@@ -204,7 +209,8 @@ States or territories are specified using the official postal codes or full name
 
 ### Results
 
-The function, `get_coastal_forecast()`, will return a data frame of the coastal waters forecast for marine zones in each state. See Appendix 6 for a full description of the fields and values.
+The function, `get_coastal_forecast()`, will return a data frame of the coastal waters forecast for marine zones in each state.
+See Appendix 6 for a full description of the fields and values.
 
 ### Example
 
@@ -229,7 +235,8 @@ The function also emits a message, to tell the user which station was used.
 ### Results
 
 The table returned may have different fields depending on the station that is selected.
-The time period over which observations are available will be highly dependent on the station requested. Some stations may only have a decade or less of data (_e.g._ max temperature at `070351 (CANBERRA AIRPORT)` has ~3,700+ observations back to 2008) while others may have very extensive records (_e.g._
+The time period over which observations are available will be highly dependent on the station requested.
+Some stations may only have a decade or less of data (_e.g._ max temperature at `070351 (CANBERRA AIRPORT)` has ~3,700+ observations back to 2008) while others may have very extensive records (_e.g._
 rainfall at `ADELAIDE (WEST TERRACE / NGAYIRDAPIRA)` has ~65,000+ observations back to 1839, three years after the city was founded.)
 
 The optional metadata table will always have the following fields 
@@ -319,7 +326,8 @@ head(sweep_for_forecast_towns(latlon = c(-35.3, 149.2)), 10)
 
 ## Using the update functions
 
-_bomrang_ uses internal databases of station location data from BOM to provide location and other metadata, _e.g._ elevation, station names, WMO codes, etc. to make the process of querying for weather data faster. These databases are created and packaged with _bomrang_ for distribution and are updated with new releases.
+_bomrang_ uses internal databases of station location data from BOM to provide location and other metadata, _e.g._ elevation, station names, WMO codes, etc. to make the process of querying for weather data faster.
+These databases are created and packaged with _bomrang_ for distribution and are updated with new releases.
 Users have the option of updating these databases after installing _bomrang_.
 While this option gives the users the ability to keep the databases up-to-date and gives _bomrang_'s authors flexibility in maintaining it, this also means that reproducibility may be affected since the same version of _bomrang_ may have different databases on different machines.
 If reproducibility is necessary, care should be taken to ensure that the version of the databases is the same across different machines.
@@ -429,7 +437,11 @@ i <- get_satellite_imagery(product_id = avail, scans = 1)
 
 # Cache image for later use
 i <- get_satellite_imagery(product_id = avail, scans = 1, cache = TRUE)
+```
 
+`terra::plot()` has been re-exported to simplify visualising these files while using _bomrang_.
+
+```{r plot_satellite}
 plot(i)
 ```
 
@@ -438,7 +450,7 @@ plot(i)
 If you elect to use `cache = TRUE` when downloading imagery, note that the GTiff files can be quite large and will fill disk space.
 By using the default `cache = FALSE` the files will be deleted when the current R session is closed.
 
-Should you chose to use caching, _bomrang_ provided functions to interact with the cached files:
+Should you choose to use caching, _bomrang_ provided functions to interact with the cached files:
 
 - List files in the cache, `manage_cache$list()`
   
@@ -460,7 +472,8 @@ To access the files directly, outside of R, the following command will give you 
 
 ## Using _bomrang_ to retrieve radar imagery
 
-_bomrang_ provides functionality to retrieve the latest radar imagery provided by BOM through public FTP. These are the latest snapshots for each radar locations at various radar ranges _e.g._, 512km, 256km, 128km and 64km for some stations.
+_bomrang_ provides functionality to retrieve the latest radar imagery provided by BOM through public FTP.
+These are the latest snapshots for each radar locations at various radar ranges _e.g._, 512km, 256km, 128km and 64km for some stations.
 
 ### Using get_available_radar()
 
@@ -490,9 +503,7 @@ These can be obtained from the `get_available_radar()` function.
 This value must be specified and the function will accept only one at a time.
 
 ```{r get_radar_imagery, fig.height=9, fig.width=8}
-x <- get_radar_imagery(product_id = "IDR032")
-
-plot(x)
+(get_radar_imagery(product_id = "IDR032"))
 ```
 
 # dplyr compatibility
@@ -508,8 +519,7 @@ adlmax
 filter(adlmax, month == 10)
 ```
 
-The `magrittr` pipe has also been re-exported, so that too can be used 
-to chain together operations
+The `magrittr` pipe has also been re-exported, so that too can be used to chain together operations
 
 ```{r}
 adlmax %>% 

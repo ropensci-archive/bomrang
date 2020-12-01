@@ -24,7 +24,7 @@ Services](http://www.bom.gov.au/catalogue/data-feeds.shtml) forecasts.
 BOM serves several types of data data as XML, JSON and SHTML files.
 This package fetches these files, parses them and return a data frame.
 Satellite and radar imagery files are also made available to the public via anonymous FTP.
-_bomrang_ provides functionality to query, fetch and create `terra::SpatRaster()` objects of the GeoTIFF imagery.
+_bomrang_ provides functionality to query, fetch and create `terra::SpatRaster()` objects of the GeoTIFF imagery or a magick object of radar image gif files.
 
 ## Using _bomrang_
 
@@ -44,9 +44,11 @@ The last group functions provides internal functionality for _bomrang_ itself; `
 
 `get_current_weather()` takes one of two arguments: `station_name` and `latlon`, returning the current weather observations (and the observations of the last 72 hours) for the given location.
 
-If `station_name` is used, the weather observations for the last 72 hours are returned for that station. If the string provided is ambiguous, the function returns an observation for one of the possible stations and emits a warning to offer unambiguous station names. 
+If `station_name` is used, the weather observations for the last 72 hours are returned for that station.
+If the string provided is ambiguous, the function returns an observation for one of the possible stations and emits a warning to offer unambiguous station names. 
 
-If `latlon` is used, the observations returned are from the station nearest to that latitude-longitude coordinate. `latlon` values are entered as decimal degrees, _e.g._ `latlon = c(-34, 151)` for Sydney. The function also emits a message, to tell the user which station was used.
+If `latlon` is used, the observations returned are from the station nearest to that latitude-longitude coordinate. `latlon` values are entered as decimal degrees, _e.g._ `latlon = c(-34, 151)` for Sydney.
+The function also emits a message, to tell the user which station was used.
 
 ### Results
 
@@ -174,7 +176,8 @@ Following is an example fetching the forecast for Queensland.
 ## Using get_ag_bulletin()
 
 `get_ag_bulletin()` only takes one argument, `state`.
-The `state` parameter allows the user to select the bulletin for just one state or a national forecast. States or territories are specified using the official postal codes or full name with fuzzy matching performed via `agrep()`.
+The `state` parameter allows the user to select the bulletin for just one state or a national forecast.
+States or territories are specified using the official postal codes or full name with fuzzy matching performed via `agrep()`.
 
 - **NSW** - New South Wales
 
@@ -400,7 +403,8 @@ Following is an example fetching the ag bulletin for Queensland.
 
 ## Using get_weather_bulletin()
 
-This function takes two arguments, `state` for the desired state; and `morning` if `TRUE`, return the 9am bulletin for the nominated state; otherwise return the 3pm bulletin. States or territories are specified using the official postal codes.
+This function takes two arguments, `state` for the desired state; and `morning` if `TRUE`, return the 9am bulletin for the nominated state; otherwise return the 3pm bulletin.
+States or territories are specified using the official postal codes.
 
 -   **ACT**  Australian Capital Territory (will return NSW)
 
@@ -513,7 +517,8 @@ Following is an example fetching the 3PM bulletin for Queensland.
 
 ## Using get_coastal_forecast()
 
-This function only takes one argument, `state`. The `state` parameter allows the user to select the forecast for just one state or a national forecast.
+This function only takes one argument, `state`.
+The `state` parameter allows the user to select the forecast for just one state or a national forecast.
 States or territories are specified using the official postal codes or full name with fuzzy matching performed via `agrep()`
 
 - **ACT** - Australian Capital Territory
@@ -536,7 +541,8 @@ States or territories are specified using the official postal codes or full name
 
 ### Results
 
-The function, `get_coastal_forecast()`, will return a data frame of the coastal waters forecast for marine zones in each state. See Appendix 6 for a full description of the fields and values.
+The function, `get_coastal_forecast()`, will return a data frame of the coastal waters forecast for marine zones in each state.
+See Appendix 6 for a full description of the fields and values.
 
 ### Example
 
@@ -1069,7 +1075,8 @@ The function also emits a message, to tell the user which station was used.
 ### Results
 
 The table returned may have different fields depending on the station that is selected.
-The time period over which observations are available will be highly dependent on the station requested. Some stations may only have a decade or less of data (_e.g._ max temperature at `070351 (CANBERRA AIRPORT)` has ~3,700+ observations back to 2008) while others may have very extensive records (_e.g._
+The time period over which observations are available will be highly dependent on the station requested.
+Some stations may only have a decade or less of data (_e.g._ max temperature at `070351 (CANBERRA AIRPORT)` has ~3,700+ observations back to 2008) while others may have very extensive records (_e.g._
 rainfall at `ADELAIDE (WEST TERRACE / NGAYIRDAPIRA)` has ~65,000+ observations back to 1839, three years after the city was founded.)
 
 The optional metadata table will always have the following fields 
@@ -1104,7 +1111,7 @@ Following is an example fetching the historical daily temperature minimum observ
                                      type = "min"))
 #> 
 #> Closest station: 070351 (CANBERRA AIRPORT)
-#> Data saved as /var/folders/w7/y2cm1lcj4wn647m7zr3nvd500000gn/T//RtmpYJF5NX/IDCJAC0011_070351_1800_Data.csv
+#> Data saved as /var/folders/w7/y2cm1lcj4wn647m7zr3nvd500000gn/T//RtmpPZEc07/IDCJAC0011_070351_1800_Data.csv
 #>   --- Australian Bureau of Meteorology (BOM) Data Resource ---
 #>   (Original Request Parameters)
 #>   Station:		CANBERRA AIRPORT [070351] 
@@ -1262,7 +1269,8 @@ head(sweep_for_forecast_towns(latlon = c(-35.3, 149.2)), 10)
 
 ## Using the update functions
 
-_bomrang_ uses internal databases of station location data from BOM to provide location and other metadata, _e.g._ elevation, station names, WMO codes, etc. to make the process of querying for weather data faster. These databases are created and packaged with _bomrang_ for distribution and are updated with new releases.
+_bomrang_ uses internal databases of station location data from BOM to provide location and other metadata, _e.g._ elevation, station names, WMO codes, etc. to make the process of querying for weather data faster.
+These databases are created and packaged with _bomrang_ for distribution and are updated with new releases.
 Users have the option of updating these databases after installing _bomrang_.
 While this option gives the users the ability to keep the databases up-to-date and gives _bomrang_'s authors flexibility in maintaining it, this also means that reproducibility may be affected since the same version of _bomrang_ may have different databases on different machines.
 If reproducibility is necessary, care should be taken to ensure that the version of the databases is the same across different machines.
@@ -1345,294 +1353,290 @@ If no valid Product ID is supplied, defaults to all GeoTIFF images currently ava
 (avail <- get_available_imagery(product_id = "IDE00425"))
 #> 
 #> The following files are currently available for download:
-#>   [1] "IDE00425.202011300610.tif"
-#>   [2] "IDE00425.202011300620.tif"
-#>   [3] "IDE00425.202011300630.tif"
-#>   [4] "IDE00425.202011300640.tif"
-#>   [5] "IDE00425.202011300650.tif"
-#>   [6] "IDE00425.202011300700.tif"
-#>   [7] "IDE00425.202011300710.tif"
-#>   [8] "IDE00425.202011300720.tif"
-#>   [9] "IDE00425.202011300730.tif"
-#>  [10] "IDE00425.202011300740.tif"
-#>  [11] "IDE00425.202011300750.tif"
-#>  [12] "IDE00425.202011300800.tif"
-#>  [13] "IDE00425.202011300810.tif"
-#>  [14] "IDE00425.202011300820.tif"
-#>  [15] "IDE00425.202011300830.tif"
-#>  [16] "IDE00425.202011300840.tif"
-#>  [17] "IDE00425.202011300850.tif"
-#>  [18] "IDE00425.202011300900.tif"
-#>  [19] "IDE00425.202011300910.tif"
-#>  [20] "IDE00425.202011300920.tif"
-#>  [21] "IDE00425.202011300930.tif"
-#>  [22] "IDE00425.202011300940.tif"
-#>  [23] "IDE00425.202011300950.tif"
-#>  [24] "IDE00425.202011301000.tif"
-#>  [25] "IDE00425.202011301010.tif"
-#>  [26] "IDE00425.202011301020.tif"
-#>  [27] "IDE00425.202011301030.tif"
-#>  [28] "IDE00425.202011301040.tif"
-#>  [29] "IDE00425.202011301050.tif"
-#>  [30] "IDE00425.202011301100.tif"
-#>  [31] "IDE00425.202011301110.tif"
-#>  [32] "IDE00425.202011301120.tif"
-#>  [33] "IDE00425.202011301130.tif"
-#>  [34] "IDE00425.202011301140.tif"
-#>  [35] "IDE00425.202011301150.tif"
-#>  [36] "IDE00425.202011301200.tif"
-#>  [37] "IDE00425.202011301210.tif"
-#>  [38] "IDE00425.202011301220.tif"
-#>  [39] "IDE00425.202011301230.tif"
-#>  [40] "IDE00425.202011301240.tif"
-#>  [41] "IDE00425.202011301250.tif"
-#>  [42] "IDE00425.202011301300.tif"
-#>  [43] "IDE00425.202011301310.tif"
-#>  [44] "IDE00425.202011301320.tif"
-#>  [45] "IDE00425.202011301330.tif"
-#>  [46] "IDE00425.202011301340.tif"
-#>  [47] "IDE00425.202011301350.tif"
-#>  [48] "IDE00425.202011301400.tif"
-#>  [49] "IDE00425.202011301410.tif"
-#>  [50] "IDE00425.202011301420.tif"
-#>  [51] "IDE00425.202011301430.tif"
-#>  [52] "IDE00425.202011301450.tif"
-#>  [53] "IDE00425.202011301500.tif"
-#>  [54] "IDE00425.202011301510.tif"
-#>  [55] "IDE00425.202011301520.tif"
-#>  [56] "IDE00425.202011301530.tif"
-#>  [57] "IDE00425.202011301540.tif"
-#>  [58] "IDE00425.202011301550.tif"
-#>  [59] "IDE00425.202011301600.tif"
-#>  [60] "IDE00425.202011301610.tif"
-#>  [61] "IDE00425.202011301620.tif"
-#>  [62] "IDE00425.202011301630.tif"
-#>  [63] "IDE00425.202011301640.tif"
-#>  [64] "IDE00425.202011301650.tif"
-#>  [65] "IDE00425.202011301700.tif"
-#>  [66] "IDE00425.202011301710.tif"
-#>  [67] "IDE00425.202011301720.tif"
-#>  [68] "IDE00425.202011301730.tif"
-#>  [69] "IDE00425.202011301740.tif"
-#>  [70] "IDE00425.202011301750.tif"
-#>  [71] "IDE00425.202011301800.tif"
-#>  [72] "IDE00425.202011301810.tif"
-#>  [73] "IDE00425.202011301820.tif"
-#>  [74] "IDE00425.202011301830.tif"
-#>  [75] "IDE00425.202011301840.tif"
-#>  [76] "IDE00425.202011301850.tif"
-#>  [77] "IDE00425.202011301900.tif"
-#>  [78] "IDE00425.202011301910.tif"
-#>  [79] "IDE00425.202011301920.tif"
-#>  [80] "IDE00425.202011301930.tif"
-#>  [81] "IDE00425.202011301940.tif"
-#>  [82] "IDE00425.202011301950.tif"
-#>  [83] "IDE00425.202011302000.tif"
-#>  [84] "IDE00425.202011302010.tif"
-#>  [85] "IDE00425.202011302020.tif"
-#>  [86] "IDE00425.202011302030.tif"
-#>  [87] "IDE00425.202011302040.tif"
-#>  [88] "IDE00425.202011302050.tif"
-#>  [89] "IDE00425.202011302100.tif"
-#>  [90] "IDE00425.202011302110.tif"
-#>  [91] "IDE00425.202011302120.tif"
-#>  [92] "IDE00425.202011302130.tif"
-#>  [93] "IDE00425.202011302140.tif"
-#>  [94] "IDE00425.202011302150.tif"
-#>  [95] "IDE00425.202011302200.tif"
-#>  [96] "IDE00425.202011302210.tif"
-#>  [97] "IDE00425.202011302220.tif"
-#>  [98] "IDE00425.202011302230.tif"
-#>  [99] "IDE00425.202011302240.tif"
-#> [100] "IDE00425.202011302250.tif"
-#> [101] "IDE00425.202011302300.tif"
-#> [102] "IDE00425.202011302310.tif"
-#> [103] "IDE00425.202011302320.tif"
-#> [104] "IDE00425.202011302330.tif"
-#> [105] "IDE00425.202011302340.tif"
-#> [106] "IDE00425.202011302350.tif"
-#> [107] "IDE00425.202012010000.tif"
-#> [108] "IDE00425.202012010010.tif"
-#> [109] "IDE00425.202012010020.tif"
-#> [110] "IDE00425.202012010030.tif"
-#> [111] "IDE00425.202012010040.tif"
-#> [112] "IDE00425.202012010050.tif"
-#> [113] "IDE00425.202012010100.tif"
-#> [114] "IDE00425.202012010110.tif"
-#> [115] "IDE00425.202012010120.tif"
-#> [116] "IDE00425.202012010130.tif"
-#> [117] "IDE00425.202012010140.tif"
-#> [118] "IDE00425.202012010150.tif"
-#> [119] "IDE00425.202012010200.tif"
-#> [120] "IDE00425.202012010210.tif"
-#> [121] "IDE00425.202012010220.tif"
-#> [122] "IDE00425.202012010230.tif"
-#> [123] "IDE00425.202012010250.tif"
-#> [124] "IDE00425.202012010300.tif"
-#> [125] "IDE00425.202012010310.tif"
-#> [126] "IDE00425.202012010320.tif"
-#> [127] "IDE00425.202012010330.tif"
-#> [128] "IDE00425.202012010340.tif"
-#> [129] "IDE00425.202012010350.tif"
-#> [130] "IDE00425.202012010400.tif"
-#> [131] "IDE00425.202012010410.tif"
-#> [132] "IDE00425.202012010420.tif"
-#> [133] "IDE00425.202012010430.tif"
-#> [134] "IDE00425.202012010440.tif"
-#> [135] "IDE00425.202012010450.tif"
-#> [136] "IDE00425.202012010500.tif"
-#> [137] "IDE00425.202012010510.tif"
-#> [138] "IDE00425.202012010520.tif"
-#> [139] "IDE00425.202012010530.tif"
-#> [140] "IDE00425.202012010540.tif"
-#> [141] "IDE00425.202012010550.tif"
-#> [142] "IDE00425.202012010600.tif"
-#> [143] "IDE00425.202012010610.tif"
-#> [144] "IDE00425.202012010620.tif"
-#>   [1] "IDE00425.202011300610.tif"
-#>   [2] "IDE00425.202011300620.tif"
-#>   [3] "IDE00425.202011300630.tif"
-#>   [4] "IDE00425.202011300640.tif"
-#>   [5] "IDE00425.202011300650.tif"
-#>   [6] "IDE00425.202011300700.tif"
-#>   [7] "IDE00425.202011300710.tif"
-#>   [8] "IDE00425.202011300720.tif"
-#>   [9] "IDE00425.202011300730.tif"
-#>  [10] "IDE00425.202011300740.tif"
-#>  [11] "IDE00425.202011300750.tif"
-#>  [12] "IDE00425.202011300800.tif"
-#>  [13] "IDE00425.202011300810.tif"
-#>  [14] "IDE00425.202011300820.tif"
-#>  [15] "IDE00425.202011300830.tif"
-#>  [16] "IDE00425.202011300840.tif"
-#>  [17] "IDE00425.202011300850.tif"
-#>  [18] "IDE00425.202011300900.tif"
-#>  [19] "IDE00425.202011300910.tif"
-#>  [20] "IDE00425.202011300920.tif"
-#>  [21] "IDE00425.202011300930.tif"
-#>  [22] "IDE00425.202011300940.tif"
-#>  [23] "IDE00425.202011300950.tif"
-#>  [24] "IDE00425.202011301000.tif"
-#>  [25] "IDE00425.202011301010.tif"
-#>  [26] "IDE00425.202011301020.tif"
-#>  [27] "IDE00425.202011301030.tif"
-#>  [28] "IDE00425.202011301040.tif"
-#>  [29] "IDE00425.202011301050.tif"
-#>  [30] "IDE00425.202011301100.tif"
-#>  [31] "IDE00425.202011301110.tif"
-#>  [32] "IDE00425.202011301120.tif"
-#>  [33] "IDE00425.202011301130.tif"
-#>  [34] "IDE00425.202011301140.tif"
-#>  [35] "IDE00425.202011301150.tif"
-#>  [36] "IDE00425.202011301200.tif"
-#>  [37] "IDE00425.202011301210.tif"
-#>  [38] "IDE00425.202011301220.tif"
-#>  [39] "IDE00425.202011301230.tif"
-#>  [40] "IDE00425.202011301240.tif"
-#>  [41] "IDE00425.202011301250.tif"
-#>  [42] "IDE00425.202011301300.tif"
-#>  [43] "IDE00425.202011301310.tif"
-#>  [44] "IDE00425.202011301320.tif"
-#>  [45] "IDE00425.202011301330.tif"
-#>  [46] "IDE00425.202011301340.tif"
-#>  [47] "IDE00425.202011301350.tif"
-#>  [48] "IDE00425.202011301400.tif"
-#>  [49] "IDE00425.202011301410.tif"
-#>  [50] "IDE00425.202011301420.tif"
-#>  [51] "IDE00425.202011301430.tif"
-#>  [52] "IDE00425.202011301450.tif"
-#>  [53] "IDE00425.202011301500.tif"
-#>  [54] "IDE00425.202011301510.tif"
-#>  [55] "IDE00425.202011301520.tif"
-#>  [56] "IDE00425.202011301530.tif"
-#>  [57] "IDE00425.202011301540.tif"
-#>  [58] "IDE00425.202011301550.tif"
-#>  [59] "IDE00425.202011301600.tif"
-#>  [60] "IDE00425.202011301610.tif"
-#>  [61] "IDE00425.202011301620.tif"
-#>  [62] "IDE00425.202011301630.tif"
-#>  [63] "IDE00425.202011301640.tif"
-#>  [64] "IDE00425.202011301650.tif"
-#>  [65] "IDE00425.202011301700.tif"
-#>  [66] "IDE00425.202011301710.tif"
-#>  [67] "IDE00425.202011301720.tif"
-#>  [68] "IDE00425.202011301730.tif"
-#>  [69] "IDE00425.202011301740.tif"
-#>  [70] "IDE00425.202011301750.tif"
-#>  [71] "IDE00425.202011301800.tif"
-#>  [72] "IDE00425.202011301810.tif"
-#>  [73] "IDE00425.202011301820.tif"
-#>  [74] "IDE00425.202011301830.tif"
-#>  [75] "IDE00425.202011301840.tif"
-#>  [76] "IDE00425.202011301850.tif"
-#>  [77] "IDE00425.202011301900.tif"
-#>  [78] "IDE00425.202011301910.tif"
-#>  [79] "IDE00425.202011301920.tif"
-#>  [80] "IDE00425.202011301930.tif"
-#>  [81] "IDE00425.202011301940.tif"
-#>  [82] "IDE00425.202011301950.tif"
-#>  [83] "IDE00425.202011302000.tif"
-#>  [84] "IDE00425.202011302010.tif"
-#>  [85] "IDE00425.202011302020.tif"
-#>  [86] "IDE00425.202011302030.tif"
-#>  [87] "IDE00425.202011302040.tif"
-#>  [88] "IDE00425.202011302050.tif"
-#>  [89] "IDE00425.202011302100.tif"
-#>  [90] "IDE00425.202011302110.tif"
-#>  [91] "IDE00425.202011302120.tif"
-#>  [92] "IDE00425.202011302130.tif"
-#>  [93] "IDE00425.202011302140.tif"
-#>  [94] "IDE00425.202011302150.tif"
-#>  [95] "IDE00425.202011302200.tif"
-#>  [96] "IDE00425.202011302210.tif"
-#>  [97] "IDE00425.202011302220.tif"
-#>  [98] "IDE00425.202011302230.tif"
-#>  [99] "IDE00425.202011302240.tif"
-#> [100] "IDE00425.202011302250.tif"
-#> [101] "IDE00425.202011302300.tif"
-#> [102] "IDE00425.202011302310.tif"
-#> [103] "IDE00425.202011302320.tif"
-#> [104] "IDE00425.202011302330.tif"
-#> [105] "IDE00425.202011302340.tif"
-#> [106] "IDE00425.202011302350.tif"
-#> [107] "IDE00425.202012010000.tif"
-#> [108] "IDE00425.202012010010.tif"
-#> [109] "IDE00425.202012010020.tif"
-#> [110] "IDE00425.202012010030.tif"
-#> [111] "IDE00425.202012010040.tif"
-#> [112] "IDE00425.202012010050.tif"
-#> [113] "IDE00425.202012010100.tif"
-#> [114] "IDE00425.202012010110.tif"
-#> [115] "IDE00425.202012010120.tif"
-#> [116] "IDE00425.202012010130.tif"
-#> [117] "IDE00425.202012010140.tif"
-#> [118] "IDE00425.202012010150.tif"
-#> [119] "IDE00425.202012010200.tif"
-#> [120] "IDE00425.202012010210.tif"
-#> [121] "IDE00425.202012010220.tif"
-#> [122] "IDE00425.202012010230.tif"
-#> [123] "IDE00425.202012010250.tif"
-#> [124] "IDE00425.202012010300.tif"
-#> [125] "IDE00425.202012010310.tif"
-#> [126] "IDE00425.202012010320.tif"
-#> [127] "IDE00425.202012010330.tif"
-#> [128] "IDE00425.202012010340.tif"
-#> [129] "IDE00425.202012010350.tif"
-#> [130] "IDE00425.202012010400.tif"
-#> [131] "IDE00425.202012010410.tif"
-#> [132] "IDE00425.202012010420.tif"
-#> [133] "IDE00425.202012010430.tif"
-#> [134] "IDE00425.202012010440.tif"
-#> [135] "IDE00425.202012010450.tif"
-#> [136] "IDE00425.202012010500.tif"
-#> [137] "IDE00425.202012010510.tif"
-#> [138] "IDE00425.202012010520.tif"
-#> [139] "IDE00425.202012010530.tif"
-#> [140] "IDE00425.202012010540.tif"
-#> [141] "IDE00425.202012010550.tif"
-#> [142] "IDE00425.202012010600.tif"
-#> [143] "IDE00425.202012010610.tif"
-#> [144] "IDE00425.202012010620.tif"
+#>   [1] "IDE00425.202011300910.tif"
+#>   [2] "IDE00425.202011300920.tif"
+#>   [3] "IDE00425.202011300930.tif"
+#>   [4] "IDE00425.202011300940.tif"
+#>   [5] "IDE00425.202011300950.tif"
+#>   [6] "IDE00425.202011301000.tif"
+#>   [7] "IDE00425.202011301010.tif"
+#>   [8] "IDE00425.202011301020.tif"
+#>   [9] "IDE00425.202011301030.tif"
+#>  [10] "IDE00425.202011301040.tif"
+#>  [11] "IDE00425.202011301050.tif"
+#>  [12] "IDE00425.202011301100.tif"
+#>  [13] "IDE00425.202011301110.tif"
+#>  [14] "IDE00425.202011301120.tif"
+#>  [15] "IDE00425.202011301130.tif"
+#>  [16] "IDE00425.202011301140.tif"
+#>  [17] "IDE00425.202011301150.tif"
+#>  [18] "IDE00425.202011301200.tif"
+#>  [19] "IDE00425.202011301210.tif"
+#>  [20] "IDE00425.202011301220.tif"
+#>  [21] "IDE00425.202011301230.tif"
+#>  [22] "IDE00425.202011301240.tif"
+#>  [23] "IDE00425.202011301250.tif"
+#>  [24] "IDE00425.202011301300.tif"
+#>  [25] "IDE00425.202011301310.tif"
+#>  [26] "IDE00425.202011301320.tif"
+#>  [27] "IDE00425.202011301330.tif"
+#>  [28] "IDE00425.202011301340.tif"
+#>  [29] "IDE00425.202011301350.tif"
+#>  [30] "IDE00425.202011301400.tif"
+#>  [31] "IDE00425.202011301410.tif"
+#>  [32] "IDE00425.202011301420.tif"
+#>  [33] "IDE00425.202011301430.tif"
+#>  [34] "IDE00425.202011301450.tif"
+#>  [35] "IDE00425.202011301500.tif"
+#>  [36] "IDE00425.202011301510.tif"
+#>  [37] "IDE00425.202011301520.tif"
+#>  [38] "IDE00425.202011301530.tif"
+#>  [39] "IDE00425.202011301540.tif"
+#>  [40] "IDE00425.202011301550.tif"
+#>  [41] "IDE00425.202011301600.tif"
+#>  [42] "IDE00425.202011301610.tif"
+#>  [43] "IDE00425.202011301620.tif"
+#>  [44] "IDE00425.202011301630.tif"
+#>  [45] "IDE00425.202011301640.tif"
+#>  [46] "IDE00425.202011301650.tif"
+#>  [47] "IDE00425.202011301700.tif"
+#>  [48] "IDE00425.202011301710.tif"
+#>  [49] "IDE00425.202011301720.tif"
+#>  [50] "IDE00425.202011301730.tif"
+#>  [51] "IDE00425.202011301740.tif"
+#>  [52] "IDE00425.202011301750.tif"
+#>  [53] "IDE00425.202011301800.tif"
+#>  [54] "IDE00425.202011301810.tif"
+#>  [55] "IDE00425.202011301820.tif"
+#>  [56] "IDE00425.202011301830.tif"
+#>  [57] "IDE00425.202011301840.tif"
+#>  [58] "IDE00425.202011301850.tif"
+#>  [59] "IDE00425.202011301900.tif"
+#>  [60] "IDE00425.202011301910.tif"
+#>  [61] "IDE00425.202011301920.tif"
+#>  [62] "IDE00425.202011301930.tif"
+#>  [63] "IDE00425.202011301940.tif"
+#>  [64] "IDE00425.202011301950.tif"
+#>  [65] "IDE00425.202011302000.tif"
+#>  [66] "IDE00425.202011302010.tif"
+#>  [67] "IDE00425.202011302020.tif"
+#>  [68] "IDE00425.202011302030.tif"
+#>  [69] "IDE00425.202011302040.tif"
+#>  [70] "IDE00425.202011302050.tif"
+#>  [71] "IDE00425.202011302100.tif"
+#>  [72] "IDE00425.202011302110.tif"
+#>  [73] "IDE00425.202011302120.tif"
+#>  [74] "IDE00425.202011302130.tif"
+#>  [75] "IDE00425.202011302140.tif"
+#>  [76] "IDE00425.202011302150.tif"
+#>  [77] "IDE00425.202011302200.tif"
+#>  [78] "IDE00425.202011302210.tif"
+#>  [79] "IDE00425.202011302220.tif"
+#>  [80] "IDE00425.202011302230.tif"
+#>  [81] "IDE00425.202011302240.tif"
+#>  [82] "IDE00425.202011302250.tif"
+#>  [83] "IDE00425.202011302300.tif"
+#>  [84] "IDE00425.202011302310.tif"
+#>  [85] "IDE00425.202011302320.tif"
+#>  [86] "IDE00425.202011302330.tif"
+#>  [87] "IDE00425.202011302340.tif"
+#>  [88] "IDE00425.202011302350.tif"
+#>  [89] "IDE00425.202012010000.tif"
+#>  [90] "IDE00425.202012010010.tif"
+#>  [91] "IDE00425.202012010020.tif"
+#>  [92] "IDE00425.202012010030.tif"
+#>  [93] "IDE00425.202012010040.tif"
+#>  [94] "IDE00425.202012010050.tif"
+#>  [95] "IDE00425.202012010100.tif"
+#>  [96] "IDE00425.202012010110.tif"
+#>  [97] "IDE00425.202012010120.tif"
+#>  [98] "IDE00425.202012010130.tif"
+#>  [99] "IDE00425.202012010140.tif"
+#> [100] "IDE00425.202012010150.tif"
+#> [101] "IDE00425.202012010200.tif"
+#> [102] "IDE00425.202012010210.tif"
+#> [103] "IDE00425.202012010220.tif"
+#> [104] "IDE00425.202012010230.tif"
+#> [105] "IDE00425.202012010250.tif"
+#> [106] "IDE00425.202012010300.tif"
+#> [107] "IDE00425.202012010310.tif"
+#> [108] "IDE00425.202012010320.tif"
+#> [109] "IDE00425.202012010330.tif"
+#> [110] "IDE00425.202012010340.tif"
+#> [111] "IDE00425.202012010350.tif"
+#> [112] "IDE00425.202012010400.tif"
+#> [113] "IDE00425.202012010410.tif"
+#> [114] "IDE00425.202012010420.tif"
+#> [115] "IDE00425.202012010430.tif"
+#> [116] "IDE00425.202012010440.tif"
+#> [117] "IDE00425.202012010450.tif"
+#> [118] "IDE00425.202012010500.tif"
+#> [119] "IDE00425.202012010510.tif"
+#> [120] "IDE00425.202012010520.tif"
+#> [121] "IDE00425.202012010530.tif"
+#> [122] "IDE00425.202012010540.tif"
+#> [123] "IDE00425.202012010550.tif"
+#> [124] "IDE00425.202012010600.tif"
+#> [125] "IDE00425.202012010610.tif"
+#> [126] "IDE00425.202012010620.tif"
+#> [127] "IDE00425.202012010630.tif"
+#> [128] "IDE00425.202012010640.tif"
+#> [129] "IDE00425.202012010650.tif"
+#> [130] "IDE00425.202012010700.tif"
+#> [131] "IDE00425.202012010710.tif"
+#> [132] "IDE00425.202012010720.tif"
+#> [133] "IDE00425.202012010730.tif"
+#> [134] "IDE00425.202012010740.tif"
+#> [135] "IDE00425.202012010750.tif"
+#> [136] "IDE00425.202012010800.tif"
+#> [137] "IDE00425.202012010810.tif"
+#> [138] "IDE00425.202012010820.tif"
+#> [139] "IDE00425.202012010830.tif"
+#> [140] "IDE00425.202012010840.tif"
+#> [141] "IDE00425.202012010850.tif"
+#> [142] "IDE00425.202012010900.tif"
+#>   [1] "IDE00425.202011300910.tif"
+#>   [2] "IDE00425.202011300920.tif"
+#>   [3] "IDE00425.202011300930.tif"
+#>   [4] "IDE00425.202011300940.tif"
+#>   [5] "IDE00425.202011300950.tif"
+#>   [6] "IDE00425.202011301000.tif"
+#>   [7] "IDE00425.202011301010.tif"
+#>   [8] "IDE00425.202011301020.tif"
+#>   [9] "IDE00425.202011301030.tif"
+#>  [10] "IDE00425.202011301040.tif"
+#>  [11] "IDE00425.202011301050.tif"
+#>  [12] "IDE00425.202011301100.tif"
+#>  [13] "IDE00425.202011301110.tif"
+#>  [14] "IDE00425.202011301120.tif"
+#>  [15] "IDE00425.202011301130.tif"
+#>  [16] "IDE00425.202011301140.tif"
+#>  [17] "IDE00425.202011301150.tif"
+#>  [18] "IDE00425.202011301200.tif"
+#>  [19] "IDE00425.202011301210.tif"
+#>  [20] "IDE00425.202011301220.tif"
+#>  [21] "IDE00425.202011301230.tif"
+#>  [22] "IDE00425.202011301240.tif"
+#>  [23] "IDE00425.202011301250.tif"
+#>  [24] "IDE00425.202011301300.tif"
+#>  [25] "IDE00425.202011301310.tif"
+#>  [26] "IDE00425.202011301320.tif"
+#>  [27] "IDE00425.202011301330.tif"
+#>  [28] "IDE00425.202011301340.tif"
+#>  [29] "IDE00425.202011301350.tif"
+#>  [30] "IDE00425.202011301400.tif"
+#>  [31] "IDE00425.202011301410.tif"
+#>  [32] "IDE00425.202011301420.tif"
+#>  [33] "IDE00425.202011301430.tif"
+#>  [34] "IDE00425.202011301450.tif"
+#>  [35] "IDE00425.202011301500.tif"
+#>  [36] "IDE00425.202011301510.tif"
+#>  [37] "IDE00425.202011301520.tif"
+#>  [38] "IDE00425.202011301530.tif"
+#>  [39] "IDE00425.202011301540.tif"
+#>  [40] "IDE00425.202011301550.tif"
+#>  [41] "IDE00425.202011301600.tif"
+#>  [42] "IDE00425.202011301610.tif"
+#>  [43] "IDE00425.202011301620.tif"
+#>  [44] "IDE00425.202011301630.tif"
+#>  [45] "IDE00425.202011301640.tif"
+#>  [46] "IDE00425.202011301650.tif"
+#>  [47] "IDE00425.202011301700.tif"
+#>  [48] "IDE00425.202011301710.tif"
+#>  [49] "IDE00425.202011301720.tif"
+#>  [50] "IDE00425.202011301730.tif"
+#>  [51] "IDE00425.202011301740.tif"
+#>  [52] "IDE00425.202011301750.tif"
+#>  [53] "IDE00425.202011301800.tif"
+#>  [54] "IDE00425.202011301810.tif"
+#>  [55] "IDE00425.202011301820.tif"
+#>  [56] "IDE00425.202011301830.tif"
+#>  [57] "IDE00425.202011301840.tif"
+#>  [58] "IDE00425.202011301850.tif"
+#>  [59] "IDE00425.202011301900.tif"
+#>  [60] "IDE00425.202011301910.tif"
+#>  [61] "IDE00425.202011301920.tif"
+#>  [62] "IDE00425.202011301930.tif"
+#>  [63] "IDE00425.202011301940.tif"
+#>  [64] "IDE00425.202011301950.tif"
+#>  [65] "IDE00425.202011302000.tif"
+#>  [66] "IDE00425.202011302010.tif"
+#>  [67] "IDE00425.202011302020.tif"
+#>  [68] "IDE00425.202011302030.tif"
+#>  [69] "IDE00425.202011302040.tif"
+#>  [70] "IDE00425.202011302050.tif"
+#>  [71] "IDE00425.202011302100.tif"
+#>  [72] "IDE00425.202011302110.tif"
+#>  [73] "IDE00425.202011302120.tif"
+#>  [74] "IDE00425.202011302130.tif"
+#>  [75] "IDE00425.202011302140.tif"
+#>  [76] "IDE00425.202011302150.tif"
+#>  [77] "IDE00425.202011302200.tif"
+#>  [78] "IDE00425.202011302210.tif"
+#>  [79] "IDE00425.202011302220.tif"
+#>  [80] "IDE00425.202011302230.tif"
+#>  [81] "IDE00425.202011302240.tif"
+#>  [82] "IDE00425.202011302250.tif"
+#>  [83] "IDE00425.202011302300.tif"
+#>  [84] "IDE00425.202011302310.tif"
+#>  [85] "IDE00425.202011302320.tif"
+#>  [86] "IDE00425.202011302330.tif"
+#>  [87] "IDE00425.202011302340.tif"
+#>  [88] "IDE00425.202011302350.tif"
+#>  [89] "IDE00425.202012010000.tif"
+#>  [90] "IDE00425.202012010010.tif"
+#>  [91] "IDE00425.202012010020.tif"
+#>  [92] "IDE00425.202012010030.tif"
+#>  [93] "IDE00425.202012010040.tif"
+#>  [94] "IDE00425.202012010050.tif"
+#>  [95] "IDE00425.202012010100.tif"
+#>  [96] "IDE00425.202012010110.tif"
+#>  [97] "IDE00425.202012010120.tif"
+#>  [98] "IDE00425.202012010130.tif"
+#>  [99] "IDE00425.202012010140.tif"
+#> [100] "IDE00425.202012010150.tif"
+#> [101] "IDE00425.202012010200.tif"
+#> [102] "IDE00425.202012010210.tif"
+#> [103] "IDE00425.202012010220.tif"
+#> [104] "IDE00425.202012010230.tif"
+#> [105] "IDE00425.202012010250.tif"
+#> [106] "IDE00425.202012010300.tif"
+#> [107] "IDE00425.202012010310.tif"
+#> [108] "IDE00425.202012010320.tif"
+#> [109] "IDE00425.202012010330.tif"
+#> [110] "IDE00425.202012010340.tif"
+#> [111] "IDE00425.202012010350.tif"
+#> [112] "IDE00425.202012010400.tif"
+#> [113] "IDE00425.202012010410.tif"
+#> [114] "IDE00425.202012010420.tif"
+#> [115] "IDE00425.202012010430.tif"
+#> [116] "IDE00425.202012010440.tif"
+#> [117] "IDE00425.202012010450.tif"
+#> [118] "IDE00425.202012010500.tif"
+#> [119] "IDE00425.202012010510.tif"
+#> [120] "IDE00425.202012010520.tif"
+#> [121] "IDE00425.202012010530.tif"
+#> [122] "IDE00425.202012010540.tif"
+#> [123] "IDE00425.202012010550.tif"
+#> [124] "IDE00425.202012010600.tif"
+#> [125] "IDE00425.202012010610.tif"
+#> [126] "IDE00425.202012010620.tif"
+#> [127] "IDE00425.202012010630.tif"
+#> [128] "IDE00425.202012010640.tif"
+#> [129] "IDE00425.202012010650.tif"
+#> [130] "IDE00425.202012010700.tif"
+#> [131] "IDE00425.202012010710.tif"
+#> [132] "IDE00425.202012010720.tif"
+#> [133] "IDE00425.202012010730.tif"
+#> [134] "IDE00425.202012010740.tif"
+#> [135] "IDE00425.202012010750.tif"
+#> [136] "IDE00425.202012010800.tif"
+#> [137] "IDE00425.202012010810.tif"
+#> [138] "IDE00425.202012010820.tif"
+#> [139] "IDE00425.202012010830.tif"
+#> [140] "IDE00425.202012010840.tif"
+#> [141] "IDE00425.202012010850.tif"
+#> [142] "IDE00425.202012010900.tif"
 ```
 
 ### Using get_satellite_imagery()
@@ -1667,18 +1671,23 @@ i <- get_satellite_imagery(product_id = avail, scans = 1)
 
 # Cache image for later use
 i <- get_satellite_imagery(product_id = avail, scans = 1, cache = TRUE)
+```
 
+`terra::plot()` has been re-exported to simplify visualising these files while using _bomrang_.
+
+
+```r
 plot(i)
 ```
 
-<img src="get_satellite_imagery-1.png" title="plot of chunk get_satellite_imagery" alt="plot of chunk get_satellite_imagery" style="display: block; margin: auto;" />
+<img src="plot_satellite-1.png" title="plot of chunk plot_satellite" alt="plot of chunk plot_satellite" style="display: block; margin: auto;" />
 
 ## Using caching for satellite imagery
 
 If you elect to use `cache = TRUE` when downloading imagery, note that the GTiff files can be quite large and will fill disk space.
 By using the default `cache = FALSE` the files will be deleted when the current R session is closed.
 
-Should you chose to use caching, _bomrang_ provided functions to interact with the cached files:
+Should you choose to use caching, _bomrang_ provided functions to interact with the cached files:
 
 - List files in the cache, `manage_cache$list()`
   
@@ -1700,7 +1709,8 @@ To access the files directly, outside of R, the following command will give you 
 
 ## Using _bomrang_ to retrieve radar imagery
 
-_bomrang_ provides functionality to retrieve the latest radar imagery provided by BOM through public FTP. These are the latest snapshots for each radar locations at various radar ranges _e.g._, 512km, 256km, 128km and 64km for some stations.
+_bomrang_ provides functionality to retrieve the latest radar imagery provided by BOM through public FTP.
+These are the latest snapshots for each radar locations at various radar ranges _e.g._, 512km, 256km, 128km and 64km for some stations.
 
 ### Using get_available_radar()
 
@@ -1753,13 +1763,11 @@ This value must be specified and the function will accept only one at a time.
 
 
 ```r
-x <- get_radar_imagery(product_id = "IDR032")
-#> file downloaded to:/var/folders/w7/y2cm1lcj4wn647m7zr3nvd500000gn/T//RtmpYJF5NX/file194b3a931929.gif
-
-plot(x)
+(get_radar_imagery(product_id = "IDR032"))
+#> file downloaded to:/var/folders/w7/y2cm1lcj4wn647m7zr3nvd500000gn/T//RtmpPZEc07/file5d6e63cdd91c.gif
 ```
 
-<img src="get_radar_imagery-1.png" title="plot of chunk get_radar_imagery" alt="plot of chunk get_radar_imagery" style="display: block; margin: auto;" />
+<img src="get_radar_imagery-1.gif" title="plot of chunk get_radar_imagery" alt="plot of chunk get_radar_imagery" style="display: block; margin: auto;" />
 
 # dplyr compatibility
 
@@ -1770,7 +1778,7 @@ For example:
 
 ```r
 adlmax <- get_historical(stationid = "023000", type = "max")
-#> Data saved as /var/folders/w7/y2cm1lcj4wn647m7zr3nvd500000gn/T//RtmpYJF5NX/IDCJAC0010_023000_1800_Data.csv
+#> Data saved as /var/folders/w7/y2cm1lcj4wn647m7zr3nvd500000gn/T//RtmpPZEc07/IDCJAC0010_023000_1800_Data.csv
 adlmax
 #>   --- Australian Bureau of Meteorology (BOM) Data Resource ---
 #>   (Original Request Parameters)
@@ -1838,8 +1846,7 @@ filter(adlmax, month == 10)
 #> 4154:            18.2              1       Y
 ```
 
-The `magrittr` pipe has also been re-exported, so that too can be used 
-to chain together operations
+The `magrittr` pipe has also been re-exported, so that too can be used to chain together operations
 
 
 ```r
