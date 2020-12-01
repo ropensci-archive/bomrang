@@ -8,27 +8,24 @@ vignette: >
   %\VignetteIndexEntry{bomrang Use Case}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
+  %\VignetteDepends{dplyr}
+  %\VignetteDepends{mailR}
+  
 ---
 
 
 
 ## Using _bomrang_ with the _WINS_ for pulses project
 
-[Summer pulses (*e.g.*, mungbeans) are a high value crop for Queensland grain growers](http://www.pulseaus.com.au/about/australian-pulse-industry). However,
-temperatures above 40C, particularly during flowering, can have a severe
-detrimental effect on crop yields (Kaushal *et al.* 2016). A key strategy that
-plants use to minimise the impact of heat stress is evapourative cooling.
-Ensuring crops are well watered prior to a heat stress event (so to facilitate
-high rates of evaporative cooling) is a potential strategy to ensure that
-irrigated crops avoid heat stress. However, this requires farmers to recognise a
-heat stress event is coming and commence irrigating with enough time to water
-the entire crop prior to the event occurring.
+[Summer pulses (*e.g.*, mungbeans) are a high value crop for Queensland grain growers](http://www.pulseaus.com.au/about/australian-pulse-industry).
+However, temperatures above 40 °C, particularly during flowering, can have a severe detrimental effect on crop yields (Kaushal *et al.* 2016).
+A key strategy that plants use to minimise the impact of heat stress is evapourative cooling.
+Ensuring crops are well watered prior to a heat stress event (so to facilitate high rates of evaporative cooling) is a potential strategy to ensure that irrigated crops avoid heat stress.
+However, this requires farmers to recognise a heat stress event is coming and commence irrigating with enough time to water the entire crop prior to the event occurring.
 
-The [_WINS_](https://github.com/ToowoombaTrio/WINS) for pulses project provides
-warnings when heat stress events are likely to occur so that farmers can
-irrigate their crops prior to the event to minimise any resulting yield
-loss. It does this by using the `get_precis_forecast()` function from
-_bomrang_ along with functionality from 
+The [_WINS_](https://github.com/ToowoombaTrio/WINS) for pulses project provides warnings when heat stress events are likely to occur so that farmers can irrigate their crops prior to the event to minimise any resulting yield
+loss.
+It does this by using the `get_precis_forecast()` function from _bomrang_ along with functionality from 
 [_mailR_](https://CRAN.R-project.org/package=mailR) (Rahul 2015).
 
 
@@ -40,8 +37,8 @@ library(bomrang)
 library(mailR)
 ```
 
-For this to work we require a list of alert subscribers. Here we create a dummy
-set of subscribers, locations, and email addresses.
+For this to work we require a list of alert subscribers.
+Here we create a dummy set of subscribers, locations, and email addresses.
 
 
 ```r
@@ -70,8 +67,8 @@ head(subscribers_list)
 ## 3     3 Jayne     Doe   Warwick     123.123@gmail.com
 ```
 
-We also need to specify our email address and password. For this project we are
-using a gmail account to send the email alerts.
+We also need to specify our email address and password.
+For this project we are using a gmail account to send the email alerts.
 
 
 ```r
@@ -79,8 +76,7 @@ our_email <- "yyyy***xxxx@gmail.com"
 our_password <- "*password*"
 ```
 
-Finally we need to set a forecast temperature threshold that will trigger an
-alert to be sent.
+Finally we need to set a forecast temperature threshold that will trigger an alert to be sent.
 
 
 ```r
@@ -89,17 +85,15 @@ threshold_temp <- 40
 
 We then use _bomrang_ to access the latest précis forecast for Queensland.
 
+
 ```r
 QLD_forecast <- get_precis_forecast(state = "QLD")
 ```
 
-Now we use a `for()` loop that searches through the Queensland précis forecast
-data frame and subsets it based on location each subscriber has nominated and
-the temperature threshold we have set. As part of the `for()` loop there is an
-`if()` statement that uses the _mailR_ package to send an email to the
-subscribers if the forecast maximum temperatures are greater than or equal to
-the threshold. This email informs the recipient of the dates that high
-temperatures are expected.
+Now we use a `for()` loop that searches through the Queensland précis forecast data frame and subsets it based on location each subscriber has nominated and the temperature threshold we have set.\
+As part of the `for()` loop there is an `if()` statement that uses the _mailR_ package to send an email to the
+subscribers if the forecast maximum temperatures are greater than or equal to the threshold.
+This email informs the recipient of the dates that high temperatures are expected.
 
 
 ```r
@@ -144,18 +138,12 @@ for (x in seq_len(nrow(subscribers_list))) {
 }
 ```
 
-The process is automated to run on a cron job such that the précis forecast is
-automatically downloaded and thresholds are calculated on a daily basis with
-email alerts being sent automatically.
+The process is automated to run on a cron job such that the précis forecast is automatically downloaded and thresholds are calculated on a daily basis with email alerts being sent automatically.
 
-While mungbean heat stress is illustrated here, other thresholds can be
-implemented, *e.g.*, frost events for sugarcane harvest using this same
-functionality.
+While mungbean heat stress is illustrated here, other thresholds can be implemented, *e.g.*, frost events for sugarcane harvest using this same functionality.
 
 # References
 
-Kaushal, N., Bhandari, K., Siddique, K. H., & Nayyar, H. (2016). Food crops face
-rising temperatures: An overview of responses, adaptive mechanisms, and
-approaches to improve heat tolerance. Cogent Food & Agriculture, 2(1), 1134380.
+Kaushal, N., Bhandari, K., Siddique, K. H., & Nayyar, H. (2016). Food crops face rising temperatures: An overview of responses, adaptive mechanisms, and approaches to improve heat tolerance. Cogent Food & Agriculture, 2(1), 1134380.
 
 Rahul P (2015). mailR: A Utility to Send emails from R. R package version 0.4.1.https://CRAN.R-project.org/package=mailR  
