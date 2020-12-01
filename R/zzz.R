@@ -15,13 +15,4 @@ manage_cache <- NULL # nocov start
     options(bomrang.connection = stdin())
   }
 
-"%||%" <- function(a, b) if (!is.null(a)) a else b
-
-# This function is never called.
-# It only supresses the "Namespaces in Imports field not imported from:" check
-# Suggested by @jeroen in rOpenSci Slack
-
-stub <- function() {
-  rgdal::readGDAL()
-}
 # nocov end
