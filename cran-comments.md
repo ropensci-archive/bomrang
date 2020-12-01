@@ -27,7 +27,7 @@ This is a new patch release that fixes a bug in data retrieval and enhances othe
 * `radar_id` values in `get_available_radar()` are now provided as a numeric value.
 This previously was a character that was internally coerced to numeric
 
-* `get_radar_imagery()` now returns a magick-image object rather than a `raster` object.
+* `get_radar_imagery()` now returns a `magick-image` object rather than a `raster` object.
 The files are .gif natively, this is a better way to handle them
 
 ## Reverse dependencies
