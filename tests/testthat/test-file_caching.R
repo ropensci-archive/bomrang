@@ -47,10 +47,10 @@ test_that("caching utils list files in cache and delete when asked", {
   skip_on_cran()
   manage_cache$cache_path_set("foobar", type = "tempdir")
   f <-
-    raster::raster(system.file("external/test.grd", package = "raster"))
+    terra::rast(system.file("external/test.grd", package = "raster"))
   cache_dir <- manage_cache$cache_path_get()
-  raster::writeRaster(f, file.path(cache_dir, "file1.tif"), format = "GTiff")
-  raster::writeRaster(f, file.path(cache_dir, "file2.tif"), format = "GTiff")
+  terra::writeRaster(f, file.path(cache_dir, "file1.tif"), format = "GTiff")
+  terra::writeRaster(f, file.path(cache_dir, "file2.tif"), format = "GTiff")
 
   # test bomrang cache list
   k <- basename(manage_cache$list())

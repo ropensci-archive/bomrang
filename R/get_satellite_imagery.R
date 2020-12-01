@@ -66,12 +66,12 @@ get_available_imagery <- function(product_id = "all") {
 #'
 #' Fetch  \acronym{BOM} satellite GeoTIFF imagery from
 #' \url{ftp://ftp.bom.gov.au/anon/gen/gms/} and return a raster
-#' \code{\link[raster]{stack}} object of 'GeoTIFF' files. Files are available at
+#' \code{\link[terra]{SpatRaster}} object of 'GeoTIFF' files. Files are available at
 #' ten minute update frequency with a 24 hour delete time. Suggested to check
 #' file availability first by using \code{\link{get_available_imagery}}.
 #'
 #' @param product_id Character.  \acronym{BOM} product ID to download in
-#' 'GeoTIFF' format and import as a \code{\link[raster]{stack}} object.  A
+#' 'GeoTIFF' format and import as a \code{\link[terra]{SpatRaster}} object.  A
 #' vector of values from \code{\link{get_available_imagery}} may be used here.
 #' Value is required.
 #' @param scans Numeric.  Number of scans to download, starting with most recent
@@ -116,8 +116,8 @@ get_available_imagery <- function(product_id = "all") {
 #' \code{\link{manage_cache}}
 #'
 #' @return
-#' A raster stack of GeoTIFF images with layers named by \acronym{BOM} Product
-#' ID, timestamp and band.
+#' A \code{SpatRaster} object of GeoTIFF images with layers named by
+#'  \acronym{BOM} Product ID, timestamp and band.
 #'
 #' @references
 #' Australian Bureau of Meteorology (BOM) high-definition satellite images \cr
@@ -126,7 +126,7 @@ get_available_imagery <- function(product_id = "all") {
 #' @examples
 #' \donttest{
 #' # Fetch AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km FD
-#' # GEOS GIS raster stack for most recent single scan available
+#' # GEOS GIS \code{SpatRaster} object for most recent single scan available
 #'
 #' imagery <- get_satellite_imagery(product_id = "IDE00425", scans = 1)
 #'
@@ -199,7 +199,7 @@ get_satellite_imagery <- get_satellite <-
       )
     },
     error = function() {
-      return(raster::raster(
+      return(terra::rast(
         system.file("error_images",
                     "image_error_message.png",
                     package = "bomrang")
@@ -212,10 +212,10 @@ get_satellite_imagery <- get_satellite <-
     files <- basename(files)[basename(files) %in% basename(tif_files)]
     files <- file.path(cache_dir, files)
     if (all(substr(files, nchar(files) - 3, nchar(files)) == ".tif")) {
-      read_tif <- raster::stack(files)
+      read_tif <- terra::rast(files)
     } else {
       stop(paste0(
-        "\nCannot create a raster stack object of ", files, ".\n",
+        "\nCannot create a `SpatRaster` object of ", files, ".\n",
         "\nPerhaps the file download corrupted?\n",
         "\nYou might also check your cache directory for the files.\n"
       ))

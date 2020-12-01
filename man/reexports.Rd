@@ -11,6 +11,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{raster}{\code{\link[raster]{plot}}}
+  \item{terra}{\code{\link[terra]{plot}}}
 }}
 

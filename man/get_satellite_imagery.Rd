@@ -8,7 +8,7 @@ get_satellite_imagery(product_id, scans = 1, cache = FALSE)
 }
 \arguments{
 \item{product_id}{Character.  \acronym{BOM} product ID to download in
-'GeoTIFF' format and import as a \code{\link[raster]{stack}} object.  A
+'GeoTIFF' format and import as a \code{\link[terra]{SpatRaster}} object.  A
 vector of values from \code{\link{get_available_imagery}} may be used here.
 Value is required.}
 
@@ -24,13 +24,13 @@ take advantage of cached files in future sessions, use \code{cache = TRUE}.
 Defaults to \code{FALSE}.  Value is optional.}
 }
 \value{
-A raster stack of GeoTIFF images with layers named by \acronym{BOM} Product
-ID, timestamp and band.
+A \code{SpatRaster} object of GeoTIFF images with layers named by
+\acronym{BOM} Product ID, timestamp and band.
 }
 \description{
 Fetch  \acronym{BOM} satellite GeoTIFF imagery from
 \url{ftp://ftp.bom.gov.au/anon/gen/gms/} and return a raster
-\code{\link[raster]{stack}} object of 'GeoTIFF' files. Files are available at
+\code{\link[terra]{SpatRaster}} object of 'GeoTIFF' files. Files are available at
 ten minute update frequency with a 24 hour delete time. Suggested to check
 file availability first by using \code{\link{get_available_imagery}}.
 }
@@ -65,7 +65,7 @@ We cache using \CRANpkg{hoardr}, find your cache folder by executing
 \examples{
 \donttest{
 # Fetch AHI VIS (true colour) / IR (Ch13 greyscale) composite 1km FD
-# GEOS GIS raster stack for most recent single scan available
+# GEOS GIS \code{SpatRaster} object for most recent single scan available
 
 imagery <- get_satellite_imagery(product_id = "IDE00425", scans = 1)
 

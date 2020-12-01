@@ -38,7 +38,7 @@ test_that("Error handling works", {
 test_that("get_radar_imagery functions properly", {
   skip_on_cran()
   y <- get_radar_imagery(product_id = "IDR022")
-  expect_is(y, "RasterLayer")
+  expect_is(y, "SpatRaster")
 
   yy <- get_radar_imagery(product_id = "IDR022", download_only = TRUE)
   expect_null(yy)

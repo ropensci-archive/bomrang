@@ -73,20 +73,20 @@ get_available_radar <- function(radar_id = "all") {
 #'
 #' Fetch \acronym{BOM} radar imagery from
 #' \url{ftp://ftp.bom.gov.au/anon/gen/radar/} and return a
-#' \code{\link[raster]{raster}} layer object.  Files available are the most
+#' \code{\link[terra]{SpatRaster}} layer object.  Files available are the most
 #' recent radar snapshot which are updated approximately every 6 to 10 minutes.
 #' Suggested to check file availability first by using
 #' \code{\link{get_available_radar}}.
 #'
 #' @param product_id Character. \acronym{BOM} product ID to download and import
-#' as a \code{\link[raster]{raster}} object.  Value is required.
+#' as a \code{\link[terra]{SpatRaster}} object.  Value is required.
 #'
 #' @param path Character. A character string with the name where the downloaded
 #' file is saved. If not provided, the default value \code{NULL} is used which
 #' saves the file in a temp directory.
 #'
 #' @param download_only Logical. Whether the radar image is loaded into the
-#' environment as a \code{\link[raster]{raster}} layer, or just downloaded.
+#' environment as a \code{\link[terra]{SpatRaster}} layer, or just downloaded.
 #'
 #' @details Valid \acronym{BOM} \acronym{Radar} Product IDs for radar imagery
 #' can be obtained from \code{\link{get_available_radar}}.
@@ -107,7 +107,6 @@ get_available_radar <- function(radar_id = "all") {
 #' @examples
 #' \donttest{
 #' # Fetch most recent radar image for Wollongong 256km radar
-#' library(raster)
 #' imagery <- get_radar_imagery(product_id = "IDR032")
 #' plot(imagery)
 #' }
@@ -151,13 +150,13 @@ get_radar_imagery <- get_radar <-
           quiet = TRUE
         )
         message("file downloaded to:", path)
-        y <- raster::raster(x = path)
+        y <- terra::rast(x = path)
         y[is.na(y)] <- 999
         return(y)
       }
     },
     error = function() {
-      return(raster::raster(
+      return(terra::rast(
         system.file("error_images",
                     "image_error_message.png",
                     package = "bomrang")
@@ -166,6 +165,6 @@ get_radar_imagery <- get_radar <-
   }
 
 # Export raster plot functionality to plot radar imagery
-#' @importFrom raster plot
+#' @importFrom terra plot
 #' @export
-raster::plot
+terra::plot
