@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropensci/bomrang",
   "issueTracker": "https://github.com/ropensci/bomrang/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -376,6 +376,18 @@
     },
     {
       "@type": "SoftwareApplication",
+      "identifier": "magick",
+      "name": "magick",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=magick"
+    },
+    {
+      "@type": "SoftwareApplication",
       "identifier": "magrittr",
       "name": "magrittr",
       "version": ">= 1.5",
@@ -386,30 +398,6 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=magrittr"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "raster",
-      "name": "raster",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=raster"
-    },
-    {
-      "@type": "SoftwareApplication",
-      "identifier": "rgdal",
-      "name": "rgdal",
-      "provider": {
-        "@id": "https://cran.r-project.org",
-        "@type": "Organization",
-        "name": "Comprehensive R Archive Network (CRAN)",
-        "url": "https://cran.r-project.org"
-      },
-      "sameAs": "https://CRAN.R-project.org/package=rgdal"
     },
     {
       "@type": "SoftwareApplication",
@@ -435,6 +423,18 @@
         "url": "https://cran.r-project.org"
       },
       "sameAs": "https://CRAN.R-project.org/package=rvest"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "identifier": "terra",
+      "name": "terra",
+      "provider": {
+        "@id": "https://cran.r-project.org",
+        "@type": "Organization",
+        "name": "Comprehensive R Archive Network (CRAN)",
+        "url": "https://cran.r-project.org"
+      },
+      "sameAs": "https://CRAN.R-project.org/package=terra"
     },
     {
       "@type": "SoftwareApplication",
@@ -585,5 +585,5 @@
   "developmentStatus": "https://www.repostatus.org/#active",
   "copyrightHolder": {},
   "funder": {},
-  "fileSize": "1360.913KB"
+  "fileSize": "3564.674KB"
 }
