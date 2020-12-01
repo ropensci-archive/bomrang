@@ -470,7 +470,7 @@ The files available are the latest `.gif` files of BOM radar imagery which are t
 There are usually several radar ranges available for each radar location, such as 512km, 256km, 128km and possibly 64km.
 The arguments are:
 
-* `radar_id`  which is the BOM radar ID number. This defaults to 'all' which will return a data frame of all radar ID's in Australia.
+* `radar_id`  which is the BOM radar ID number; this defaults to 'all' which will return a data frame of all radar ID's in Australia.
 
 ```{r, get_available_radar}
 x <- get_available_radar()
