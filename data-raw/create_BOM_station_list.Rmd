@@ -113,7 +113,7 @@ bom_stations_raw <- bom_stations_raw[1:nrows, ]
 
 # add current year to stations that are still active
 bom_stations_raw["end"][is.na(bom_stations_raw["end"])] <- 
-    as.integer(format(Sys.Date(), "%Y"))
+    as.double(format(Sys.Date(), "%Y"))
 
 # keep only currently reporting stations
 bom_stations_raw <- 
@@ -132,17 +132,18 @@ Occasionally the stations are listed in the wrong location, _e.g._, Alice Spring
 Perform quality check to ensure that the station locations are accurate based on the lat/lon values.
 
 ```{r check-locations}
-library(ASGS.foyer)
-library(data.table)
-
-`%notin%` <- function(x, table) {
+`%notin%`  <- function(x, table) {
   # Same as !(x %in% table)
   match(x, table, nomatch = 0L) == 0L
 }
 
 data.table::setDT(bom_stations_raw)
 latlon2state <- function(lat, lon) {
-  ASGS.foyer::latlon2SA(lat, lon, to = "STE", yr = "2016", return = "v")
+  ASGS.foyer::latlon2SA(lat,
+                        lon,
+                        to = "STE",
+                        yr = "2016",
+                        return = "v")
 }
 
 bom_stations_raw %>%
@@ -190,7 +191,8 @@ bom_stations_raw$state_code[bom_stations_raw$state == "QLD"] <- "Q"
 bom_stations_raw$state_code[bom_stations_raw$state == "VIC"] <- "V"
 bom_stations_raw$state_code[bom_stations_raw$state == "NT"] <- "D"
 bom_stations_raw$state_code[bom_stations_raw$state == "TAS" |
-                              bom_stations_raw$state == "ANT"] <- "T"
+                              bom_stations_raw$state == "ANT"] <-
+  "T"
 bom_stations_raw$state_code[bom_stations_raw$state == "NSW"] <- "N"
 bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <- "S"
 ```
@@ -201,54 +203,54 @@ bom_stations_raw$state_code[bom_stations_raw$state == "SA"] <- "S"
 stations_site_list <-
   bom_stations_raw %>%
   dplyr::select(site:wmo, state, state_code) %>%
-  tidyr::drop_na(wmo) %>% 
+  tidyr::drop_na(wmo) %>%
   dplyr::mutate(
-  url = dplyr::case_when(
-    .$state == "NSW" |
-      .$state == "NT" |
-      .$state == "QLD" |
-      .$state == "SA" |
-      .$state == "TAS" |
-      .$state == "VIC" |
-      .$state == "WA" ~
-      paste0(
-        "http://www.bom.gov.au/fwo/ID",
-        .$state_code,
-        "60801",
-        "/",
-        "ID",
-        .$state_code,
-        "60801",
-        ".",
-        .$wmo,
-        ".json"
-      ),
-    .$state == "ACT" ~
-      paste0(
-        "http://www.bom.gov.au/fwo/IDN",
-        "60903",
-        "/",
-        "IDN",
-        "60903",
-        ".",
-        .$wmo,
-        ".json"
-      ),
-    .$state == "ANT" ~
-      paste0(
-        "http://www.bom.gov.au/fwo/ID",
-        .$state_code,
-        "60803",
-        "/",
-        "ID",
-        .$state_code,
-        "60803",
-        ".",
-        .$wmo,
-        ".json"
-      )
+    url = dplyr::case_when(
+      .$state == "NSW" |
+        .$state == "NT" |
+        .$state == "QLD" |
+        .$state == "SA" |
+        .$state == "TAS" |
+        .$state == "VIC" |
+        .$state == "WA" ~
+        paste0(
+          "http://www.bom.gov.au/fwo/ID",
+          .$state_code,
+          "60801",
+          "/",
+          "ID",
+          .$state_code,
+          "60801",
+          ".",
+          .$wmo,
+          ".json"
+        ),
+      .$state == "ACT" ~
+        paste0(
+          "http://www.bom.gov.au/fwo/IDN",
+          "60903",
+          "/",
+          "IDN",
+          "60903",
+          ".",
+          .$wmo,
+          ".json"
+        ),
+      .$state == "ANT" ~
+        paste0(
+          "http://www.bom.gov.au/fwo/ID",
+          .$state_code,
+          "60803",
+          "/",
+          "ID",
+          .$state_code,
+          "60803",
+          ".",
+          .$wmo,
+          ".json"
+        )
+    )
   )
-)
 ```
 
 ## Save data
@@ -276,6 +278,8 @@ if (!dir.exists("../inst/extdata")) {
   dir.create("../inst/extdata", recursive = TRUE)
 }
 
+str(JSONurl_site_list)
+
 # Save database
 save(JSONurl_site_list,
      file = "../inst/extdata/JSONurl_site_list.rda",
@@ -301,6 +305,8 @@ stations_site_list$site <-
 
 data.table::setDT(stations_site_list)
 data.table::setkey(stations_site_list, "site")
+
+str(stations_site_list)
 
 save(stations_site_list,
      file = "../inst/extdata/current_stations_site_list.rda",
