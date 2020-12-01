@@ -1,5 +1,7 @@
 # bomrang (development version)
 
+* Remove rOpenSci footer from README
+
 # bomrang 0.7.3
 
 ## Bug fixes
