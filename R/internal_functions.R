@@ -1,4 +1,5 @@
 
+"%||%" <- function(a, b) if (!is.null(a)) a else b
 
 `%notin%` <- function(x, table) {
   match(x, table, nomatch = 0L) == 0L
