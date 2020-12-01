@@ -4,6 +4,12 @@
 
 * `get_current_weather()` now returns the correct values for `rel_hum`, rather than returning a column of `NA`
 
+* `get_available_imagery()` now fails properly if a non-numeric `radar_id` is supplied
+
+## Minor changes
+
+* Switch GIS raster file support from `raster` to `terra`
+
 # bomrang 0.7.2
 
 * Fixes an example that wrote to R userspace, when it should not in `get_radar_imagery()`
