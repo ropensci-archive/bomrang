@@ -384,3 +384,9 @@ get_satellite_imagery <- get_satellite <-
   }
   return(tif_files)
 }
+
+
+# Export terra plot functionality to plot radar imagery
+#' @importFrom terra plot
+#' @export
+terra::plot
