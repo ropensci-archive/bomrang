@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropensci/bomrang",
   "issueTracker": "https://github.com/ropensci/bomrang/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.7.3",
+  "version": "0.7.3.9000",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -474,7 +474,6 @@
     }
   ],
   "contIntegration": "https://codecov.io/gh/ropensci/bomrang",
-  "releaseNotes": "https://github.com/ropensci/bomrang/blob/master/NEWS.md",
   "readme": "https://github.com/ropensci/bomrang/blob/master/README.md",
   "citation": [
     {
@@ -585,5 +584,5 @@
   "developmentStatus": "https://www.repostatus.org/#active",
   "copyrightHolder": {},
   "funder": {},
-  "fileSize": "3515.323KB"
+  "fileSize": "3515.316KB"
 }
