@@ -84,7 +84,7 @@ jobs:
 
       - name: "[Stage] [Linux] Install curl and libgit2"
         if: runner.os == 'Linux'
-        run: sudo apt install libcurl4-openssl-dev libgit2-dev
+        run: sudo apt install ccache libcurl4-openssl-dev libglu1-mesa-dev libgmp-dev libgs-dev libgdal-dev libproj-dev libgeos-dev libudunits2-dev libmagick++-dev libgit2-dev 
 
       - name: "[Stage] [macOS] Install libgit2"
         if: runner.os == 'macOS'
