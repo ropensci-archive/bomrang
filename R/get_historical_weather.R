@@ -176,6 +176,7 @@ get_historical_weather <- get_historical <-
                                "quality"),
                       solar = c("solar_exposure")
                     ))
+    dat[["station_number"]] <- sprintf("%06d", as.integer(dat[["station_number"]]))
     
     return(
       structure(
