@@ -39,21 +39,21 @@ A \code{bomrang_tbl} object (extension of a
 station/product type, with some subset of the following columns:
 
 \tabular{rl}{
-\strong{Product_code}:\tab BOM internal code.\cr
-\strong{Station_number}:\tab BOM station ID.\cr
-\strong{Year}:\tab Year of observation (YYYY).\cr
-\strong{Month}:\tab Month of observation (1-12).\cr
-\strong{Day}:\tab Day of observation (1-31).\cr
-\strong{Min_temperature}:\tab Minimum daily recorded temperature (degrees C).\cr
-\strong{Max_temperature}:\tab Maximum daily recorded temperature (degrees C).\cr
-\strong{Accum_days_min}:\tab Accumulated number of days of minimum
+\strong{product_code}:\tab BOM internal code.\cr
+\strong{station_number}:\tab BOM station ID.\cr
+\strong{year}:\tab Year of observation (YYYY).\cr
+\strong{month}:\tab Month of observation (1-12).\cr
+\strong{day}:\tab Day of observation (1-31).\cr
+\strong{min_temperature}:\tab Minimum daily recorded temperature (degrees C).\cr
+\strong{max_temperature}:\tab Maximum daily recorded temperature (degrees C).\cr
+\strong{accum_days_min}:\tab Accumulated number of days of minimum
 temperature.\cr
-\strong{Accum_days_max}:\tab Accumulated number of days of maximum
+\strong{accum_days_max}:\tab Accumulated number of days of maximum
 temperature.\cr
-\strong{Rainfall}:\tab Daily recorded rainfall in mm.\cr
-\strong{Period}:\tab Period over which rainfall was measured.\cr
-\strong{Solar_exposure}:\tab Daily global solar exposure in MJ/m^2.\cr
-\strong{Quality}:\tab Y, N, or missing. Data which have not yet completed the\cr
+\strong{rainfall}:\tab Daily recorded rainfall in mm.\cr
+\strong{period}:\tab Period over which rainfall was measured.\cr
+\strong{solar_exposure}:\tab Daily global solar exposure in MJ/m^2.\cr
+\strong{quality}:\tab Y, N, or missing. Data which have not yet completed the\cr
 \tab routine quality control process are marked accordingly.
 }
 

@@ -20,21 +20,21 @@
 #'   station/product type, with some subset of the following columns:
 #'
 #'   \tabular{rl}{
-#'   **Product_code**:\tab BOM internal code.\cr
-#'   **Station_number**:\tab BOM station ID.\cr
-#'   **Year**:\tab Year of observation (YYYY).\cr
-#'   **Month**:\tab Month of observation (1-12).\cr
-#'   **Day**:\tab Day of observation (1-31).\cr
-#'   **Min_temperature**:\tab Minimum daily recorded temperature (degrees C).\cr
-#'   **Max_temperature**:\tab Maximum daily recorded temperature (degrees C).\cr
-#'   **Accum_days_min**:\tab Accumulated number of days of minimum
+#'   **product_code**:\tab BOM internal code.\cr
+#'   **station_number**:\tab BOM station ID.\cr
+#'   **year**:\tab Year of observation (YYYY).\cr
+#'   **month**:\tab Month of observation (1-12).\cr
+#'   **day**:\tab Day of observation (1-31).\cr
+#'   **min_temperature**:\tab Minimum daily recorded temperature (degrees C).\cr
+#'   **max_temperature**:\tab Maximum daily recorded temperature (degrees C).\cr
+#'   **accum_days_min**:\tab Accumulated number of days of minimum
 #'    temperature.\cr
-#'   **Accum_days_max**:\tab Accumulated number of days of maximum
+#'   **accum_days_max**:\tab Accumulated number of days of maximum
 #'   temperature.\cr
-#'   **Rainfall**:\tab Daily recorded rainfall in mm.\cr
-#'   **Period**:\tab Period over which rainfall was measured.\cr
-#'   **Solar_exposure**:\tab Daily global solar exposure in MJ/m^2.\cr
-#'   **Quality**:\tab Y, N, or missing. Data which have not yet completed the\cr
+#'   **rainfall**:\tab Daily recorded rainfall in mm.\cr
+#'   **period**:\tab Period over which rainfall was measured.\cr
+#'   **solar_exposure**:\tab Daily global solar exposure in MJ/m^2.\cr
+#'   **quality**:\tab Y, N, or missing. Data which have not yet completed the\cr
 #'               \tab routine quality control process are marked accordingly.
 #'   }
 #'
