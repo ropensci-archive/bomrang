@@ -24,10 +24,18 @@
 #' @noRd
 #'
 .get_url <- function(remote_file) {
+  
+  # BOM's FTP server can timeout too quickly
+  h <- curl::new_handle()
+  curl::handle_setopt(
+    handle = h,
+    FTP_RESPONSE_TIMEOUT = 200000,
+    CONNECTTIMEOUT = 90
+  )
+  
   try_GET <- function(x, ...) {
     tryCatch({
-      response = curl::curl_fetch_memory(url = x,
-                                         handle = curl::new_handle())
+      response = curl::curl_fetch_memory(url = x, handle = h)
     },
     error = function(e)
       conditionMessage(e),

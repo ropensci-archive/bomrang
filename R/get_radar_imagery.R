@@ -36,9 +36,12 @@ get_available_radar <- function(radar_id = "all") {
   radar_locations <- NULL #nocov
   load(system.file("extdata", "radar_locations.rda", package = "bomrang"))
   list_files <- curl::new_handle()
-  curl::handle_setopt(list_files,
+  curl::handle_setopt(handle = list_files,
+                      FTP_RESPONSE_TIMEOUT = 200000,
+                      CONNECTTIMEOUT = 90,
                       ftp_use_epsv = TRUE,
-                      dirlistonly = TRUE)
+                      dirlistonly = TRUE
+  )
   con <- curl::curl(url = ftp_base, "r", handle = list_files)
   files <- readLines(con)
   close(con)
@@ -133,13 +136,20 @@ get_radar_imagery <- get_radar <-
     if (is.null(path)) {
       path <- tempfile(fileext = ".gif", tmpdir = tempdir())
     }
+    h <- curl::new_handle()
+    curl::handle_setopt(
+      handle = h,
+      FTP_RESPONSE_TIMEOUT = 200000,
+      CONNECTTIMEOUT = 90
+    )
     tryCatch({
       if (download_only == TRUE) {
         curl::curl_download(
           url = fp,
           destfile = path,
           mode = "wb",
-          quiet = TRUE
+          quiet = TRUE,
+          handle = h
         )
         message("file downloaded to:", path)
       } else {
@@ -147,7 +157,8 @@ get_radar_imagery <- get_radar <-
           url = fp,
           destfile = path,
           mode = "wb",
-          quiet = TRUE
+          quiet = TRUE,
+          handle = h
         )
         message("file downloaded to:", path)
         y <- magick::image_read(path = path)

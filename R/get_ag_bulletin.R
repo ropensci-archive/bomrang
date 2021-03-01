@@ -113,7 +113,7 @@ get_ag_bulletin <- function(state = "AUS") {
   
   # load the XML from ftp
   if (substr(xml_url, 1, 3) == "ftp") {
-    xml_object <- .get_url(xml_url)
+    xml_object <- .get_url(remote_file = xml_url)
     if (is.null(xml_object)) {
       return(invisible(NULL))
     }

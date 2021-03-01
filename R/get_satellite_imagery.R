@@ -186,13 +186,22 @@ get_satellite_imagery <- get_satellite <-
     tif_files <- paste0(ftp_base, tif_files)
 
     # download files from server
+    
+    h <- curl::new_handle()
+    curl::handle_setopt(handle = h,
+                        FTP_RESPONSE_TIMEOUT = 200000,
+                        CONNECTTIMEOUT = 90,
+                        ftp_use_epsv = TRUE
+    )
+    
     tryCatch({
       Map(
         function(urls, destination)
           curl::curl_download(urls,
             destination,
             mode = "wb",
-            quiet = TRUE
+            quiet = TRUE,
+            handle = h
           ),
         tif_files,
         file.path(cache_dir, basename(tif_files))
@@ -260,11 +269,12 @@ get_satellite_imagery <- get_satellite <-
 
 #' @noRd
 .ftp_images <- function(product_id, bom_server) {
-  # setup internal variables
   list_files <- curl::new_handle()
-  curl::handle_setopt(list_files,
-    ftp_use_epsv = TRUE,
-    dirlistonly = TRUE
+  curl::handle_setopt(handle = list_files,
+                      FTP_RESPONSE_TIMEOUT = 200000,
+                      CONNECTTIMEOUT = 90,
+                      ftp_use_epsv = TRUE,
+                      dirlistonly = TRUE
   )
 
   # get file list from FTP server
