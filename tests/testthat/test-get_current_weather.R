@@ -1,5 +1,3 @@
-context("Current weather")
-
 test_that("Error handling", {
   skip_on_cran()
   expect_error(get_current_weather(), regexp = "station_name.*latlon")

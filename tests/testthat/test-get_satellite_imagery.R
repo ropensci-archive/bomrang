@@ -1,6 +1,3 @@
-
-context("Satellite imagery")
-
 test_that("Error handling", {
   skip_on_cran()
   expect_error(get_available_imagery(product_id = "abcdc"))
@@ -23,7 +20,6 @@ test_that("get_available_imagery functions properly", {
                           cache = TRUE)
   expect_is(j, "SpatRaster")
   expect_true(dir.exists(manage_cache$cache_path_get()))
-
 })
 
 test_that("product ID urls are properly handled", {

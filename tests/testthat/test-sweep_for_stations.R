@@ -1,4 +1,3 @@
-context("Sweep for stations")
 
 test_that("sweep_for_stations returns correct default", {
   DT <- sweep_for_stations()

@@ -1,7 +1,5 @@
 # get_precis_forecast() --------------------------------------------------------
 
-context("get_precis_forecast()")
-
 # Test that get_precis_forecast() returns a data frame with 19 columns
 test_that("get_precis_forecast() returns 19 columns and min < max", {
   skip_on_cran()
@@ -114,8 +112,6 @@ test_that("get_precis_forecast() stops if the state is recognised", {
 })
 
 # parse_precis_forecast() ------------------------------------------------------
-
-context("parse_precis_forecast()")
 
 # Test that parse_precis_forecast() returns a data frame with 19 columns
 test_that("parse_precis_forecast() returns 19 columns and min < max", {

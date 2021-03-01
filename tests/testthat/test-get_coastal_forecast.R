@@ -1,6 +1,4 @@
 # get_coastal_forecast() -------------------------------------------------------
-context("get_coastal_forecast()")
-
 # Test that get_coastal_forecast returns a data frame with 19 columns
 test_that("get_coastal_forecast returns at most 22 columns", {
   skip_on_cran()
@@ -84,8 +82,6 @@ test_that("get_coastal_forecast() stops if the state is recognised", {
 })
 
 # parse_coastal_forecast() -----------------------------------------------------
-context("parse_coastal_forecast()")
-
 # Test that parse_coastal_forecast() returns a data frame with 19 columns
 test_that("parse_coastal_forecast returns at most 22 columns", {
   skip_on_cran()

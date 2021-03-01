@@ -1,5 +1,3 @@
-context("Historical Observations")
-
 test_that("Error handling", {
   skip_on_cran()
   expect_error(get_historical_weather(), regexp = "stationid.*latlon.*provided")

@@ -1,5 +1,4 @@
 
-context("get_weather_bulletins()")
 test_that("get_weather_bulletins() returns a properly formed data.table", {
   skip_on_cran()
   x <- get_weather_bulletin(state = "qld", morning = TRUE)

@@ -1,4 +1,3 @@
-context("Internal functions")
 
 # bankstown to sydney airports approximately 17628m
 test_that("Bankstown airport to Sydney airport approximately 17628m", {

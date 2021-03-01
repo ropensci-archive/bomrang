@@ -1,6 +1,4 @@
 # get_ag_bulletin() ------------------------------------------------------------
-context("get_ag_bulletin()")
-
 # Test that get_ag_bulletin() returns a data frame with 30 columns
 test_that("get_ag_bulletin returns 30 columns", {
   skip_on_cran()
@@ -97,8 +95,6 @@ test_that("get_ag_bulletin() stops if the state is recognised", {
 })
 
 # parse_ag_bulletin() ----------------------------------------------------------
-context("parse_ag_bulletin()")
-
 # Test that get_ag_bulletin() returns a data frame with 30 columns
 test_that("get_ag_bulletin returns 30 columns", {
   skip_on_cran()

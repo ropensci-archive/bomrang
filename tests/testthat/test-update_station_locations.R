@@ -1,7 +1,4 @@
 
-
-context("update_station_locations()")
-
 test_that("update_station_locations() stops if 'no'", {
   skip_on_cran()
 

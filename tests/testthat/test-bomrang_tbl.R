@@ -1,5 +1,4 @@
 
-context("print.bomrang_tbl()")
 test_that("print.bomrang_tbl() returns a proper header", {
   skip_on_cran()
   x <-
