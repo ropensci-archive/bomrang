@@ -7,6 +7,15 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r color, echo = FALSE, results='asis'}
+# crayon needs to be explicitly activated in Rmd
+options(crayon.enabled = TRUE)
+# Hooks needs to be set to deal with outputs
+# thanks to fansi logic
+old_hooks <- fansi::set_knit_hooks(knitr::knit_hooks, 
+                                   which = c("output", "message", "error"))
+```
+
 ## Get BOM Radar Locations
 
 BOM maintains a shapefile of radar site names and their geographic locations.
@@ -22,23 +31,38 @@ curl::curl_download(
   quiet = TRUE
 )
 
-radar_locations <-
+new_radar_locations <-
   foreign::read.dbf(paste0(tempdir(), "radar_locations.dbf"), as.is = TRUE)
 
-radar_locations$LocationID <-
+new_radar_locations$LocationID <-
   ifelse(
-    test = nchar(radar_locations$LocationID) == 1,
-    yes = paste0("0", radar_locations$LocationID),
-    no = radar_locations$LocationID
+    test = nchar(new_radar_locations$LocationID) == 1,
+    yes = paste0("0", new_radar_locations$LocationID),
+    no = new_radar_locations$LocationID
   )
 
-data.table::setDT(radar_locations)
-data.table::setkey(radar_locations, "Name")
+data.table::setDT(new_radar_locations)
+data.table::setkey(new_radar_locations, "Name")
 
-str(radar_locations)
+str(new_radar_locations)
 ```
 
-Save the radar locations to disk for use in the R package.
+## Show Changes from Last Release
+
+```{r diff-codes}
+`%notin%` <- function(x, table) {
+  match(x, table, nomatch = 0L) == 0L
+}
+
+load(system.file("extdata", "radar_locations.rda", package = "bomrang"))
+
+(changes <-
+    waldo::compare(new_radar_locations, radar_locations, max_diffs = Inf))
+```
+
+# Save Radar Stations Data and Changes
+
+Save the radar stations' metadata and changes to disk for use in _bomrang_.
 
 ```{r create_data}
 if (!dir.exists("../inst/extdata")) {
@@ -47,8 +71,16 @@ if (!dir.exists("../inst/extdata")) {
 
 save(radar_locations,
      file = "../inst/extdata/radar_locations.rda",
-     compress = "bzip2"
-)
+     compress = "bzip2")
+
+load(system.file("extdata", "radar_location_changes.rda", package = "bomrang"))
+
+release_version <- paste0("v", packageVersion("bomrang"))
+radar_location_changes[[release_version]] <- changes
+
+save(radar_location_changes,
+     file = "../inst/extdata/radar_location_changes.rda",
+     compress = "bzip2")
 ```
 
 ## Session Info
