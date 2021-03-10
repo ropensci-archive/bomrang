@@ -7,6 +7,15 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r color, echo = FALSE, results='asis'}
+# crayon needs to be explicitly activated in Rmd
+options(crayon.enabled = TRUE)
+# Hooks needs to be set to deal with outputs
+# thanks to fansi logic
+old_hooks <- fansi::set_knit_hooks(knitr::knit_hooks, 
+                                   which = c("output", "message", "error"))
+```
+
 This document provides details on methods used to create the database of BOM JSON files for stations and corresponding metadata, _e.g._, latitude, longitude (which are more detailed than what is in the JSON file), start, end, elevation, etc.
 
 Refer to these BOM pages for more reference:
@@ -120,10 +129,6 @@ bom_stations_raw <-
   bom_stations_raw[bom_stations_raw$end == format(Sys.Date(), "%Y"), ] %>% 
   dplyr::mutate(start = as.integer(start),
                 end = as.integer(end))
-
-str(bom_stations_raw)
-
-bom_stations_raw
 ```
 
 ## Check station locations
@@ -262,58 +267,98 @@ There are weather stations that do have a WMO but don't report online, _e.g._, K
 ### Save URL database for get_current_weather() and get_historical_weather()
 
 ```{r save_url_data, eval=TRUE, message=FALSE}
-JSONurl_site_list <-
-  stations_site_list[!is.na(stations_site_list$url), ]
-
-JSONurl_site_list <-
-  JSONurl_site_list %>%
+new_JSONurl_site_list <-
+  stations_site_list %>%
   dplyr::rowwise() %>%
   dplyr::mutate(url = dplyr::if_else(httr::http_error(url), NA_character_, url))
 
 # Remove new NA values from invalid URLs and convert to data.table
-JSONurl_site_list <-
+new_JSONurl_site_list <-
   data.table::data.table(stations_site_list[!is.na(stations_site_list$url), ])
+```
 
+## Show Changes from Last Release
+
+```{r changes-JSONurl-site-list}
+load(system.file("extdata", "JSONurl_site_list.rda", package = "bomrang"))
+
+(changes <-
+    waldo::compare(new_JSONurl_site_list, JSONurl_site_list, max_diffs = Inf))
+```
+
+### Save JSONurl_site_list
+
+```{r save-JSONurl-site-list}
 if (!dir.exists("../inst/extdata")) {
   dir.create("../inst/extdata", recursive = TRUE)
 }
-
-str(JSONurl_site_list)
 
 # Save database
 save(JSONurl_site_list,
      file = "../inst/extdata/JSONurl_site_list.rda",
      compress = "bzip2")
+
+load(system.file("extdata", "JSONurl_site_list_changes.rda",
+                 package = "bomrang"))
+
+release_version <- paste0("v", packageVersion("bomrang"))
+JSONurl_site_list_changes[[release_version]] <- changes
+
+save(JSONurl_site_list_changes,
+     file = "../inst/extdata/JSONurl_site_list_changes.rda",
+     compress = "bzip2")
 ```
 
-### Save station location database for get_ag_bulletin()
+### Station location database for get_ag_bulletin()
 
 First, rename columns and drop a few that aren't necessary for the ag bulletin information.
 Filter for only stations currently reporting values.
 Then pad the `site` field with 0 to match the data in the XML file that holds the ag bulletin information.
-Lastly, create the databases for use in `bomrang`.
+Lastly, create the databases for use in _bomrang_.
 
-```{r save_location_data, eval=TRUE, message=FALSE}
-stations_site_list <-
+```{r create-stations-site-list, eval=TRUE, message=FALSE}
+new_stations_site_list <-
   stations_site_list %>%
   dplyr::select(-state_code, -url) %>% 
   dplyr::filter(end == lubridate::year(Sys.Date())) %>% 
   dplyr::mutate(end = as.integer(end))
 
-stations_site_list$site <-
-  gsub("^0{1,2}", "", stations_site_list$site)
+new_stations_site_list$site <-
+  gsub("^0{1,2}", "", new_stations_site_list$site)
 
-data.table::setDT(stations_site_list)
-data.table::setkey(stations_site_list, "site")
+data.table::setDT(new_stations_site_list)
+data.table::setkey(new_stations_site_list, "site")
+```
 
-str(stations_site_list)
+#### Changes in stations_site_list
 
+```{r changes-stations-site-list}
+load(system.file("extdata", "stations_site_list.rda", package = "bomrang"))
+
+(changes <-
+    waldo::compare(new_stations_site_list, stations_site_list, max_diffs = Inf))
+```
+
+#### Save stations_site_list Data and Changes
+
+```{r save-stations-site-list}
 save(stations_site_list,
      file = "../inst/extdata/current_stations_site_list.rda",
+     compress = "bzip2")
+
+load(system.file("extdata", "stations_site_list_changes.rda",
+                 package = "bomrang"))
+
+release_version <- paste0("v", packageVersion("bomrang"))
+stations_site_list_changes[[release_version]] <- changes
+
+save(stations_site_list_changes,
+     file = "../inst/extdata/stations_site_list_changes.rda",
      compress = "bzip2")
 ```
 
 ## Session Info
+
 ```{r session_info, echo=FALSE}
 sessioninfo::session_info()
 ```
