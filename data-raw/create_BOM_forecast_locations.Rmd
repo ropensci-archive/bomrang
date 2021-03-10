@@ -45,6 +45,8 @@ data.table::setnames(new_AAC_codes, c(2, 5), c("town", "elev"))
 data.table::setkey(new_AAC_codes, "aac")
 ```
 
+## Show Changes from Last Release
+
 ```{r diff-codes}
 `%notin%` <- function(x, table) {
   match(x, table, nomatch = 0L) == 0L
@@ -69,7 +71,7 @@ save(AAC_codes,
      compress = "bzip2"
 )
 
-AAC_code_changes <- list()
+load(system.file("extdata", "AAC_code_changes.rda", package = "bomrang"))
 
 release_version <- paste0("v", packageVersion("bomrang"))
 AAC_code_changes[[release_version]] <- changes
