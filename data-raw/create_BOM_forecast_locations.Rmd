@@ -7,6 +7,15 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r color, echo = FALSE, results='asis'}
+# crayon needs to be explicitly activated in Rmd
+options(crayon.enabled = TRUE)
+# Hooks needs to be set to deal with outputs
+# thanks to fansi logic
+old_hooks <- fansi::set_knit_hooks(knitr::knit_hooks, 
+                                   which = c("output", "message", "error"))
+```
+
 ## Get BOM Forecast Town Names and Geographic Locations
 
 BOM maintains a shapefile of forecast town names and their geographic locations.
@@ -22,24 +31,35 @@ curl::curl_download(
   quiet = TRUE
 )
 
-AAC_codes <-
+new_AAC_codes <-
   foreign::read.dbf(paste0(tempdir(), "AAC_codes.dbf"), as.is = TRUE)
 
 # convert names to lower case for consistency with bomrang output
-names(AAC_codes) <- tolower(names(AAC_codes))
+names(new_AAC_codes) <- tolower(names(new_AAC_codes))
 
 # reorder columns
-AAC_codes <- AAC_codes[, c(2:3, 7:9)]
+new_AAC_codes <- new_AAC_codes[, c(2:3, 7:9)]
 
-data.table::setDT(AAC_codes)
-data.table::setnames(AAC_codes, c(2, 5), c("town", "elev"))
-data.table::setkey(AAC_codes, "aac")
-str(AAC_codes)
+data.table::setDT(new_AAC_codes)
+data.table::setnames(new_AAC_codes, c(2, 5), c("town", "elev"))
+data.table::setkey(new_AAC_codes, "aac")
 ```
 
-Save the stations to disk for use in the R package.
+```{r diff-codes}
+`%notin%` <- function(x, table) {
+  match(x, table, nomatch = 0L) == 0L
+}
 
-```{r create_data}
+load(system.file("extdata", "AAC_codes.rda", package = "bomrang"))
+
+(changes <- waldo::compare(new_AAC_codes, AAC_codes, max_diffs = Inf))
+```
+
+# Save the data
+
+Save the stations' metadata and changes to disk for use in _bomrang_.
+
+```{r save_data}
 if (!dir.exists("../inst/extdata")) {
   dir.create("../inst/extdata", recursive = TRUE)
 }
@@ -48,6 +68,15 @@ save(AAC_codes,
      file = "../inst/extdata/AAC_codes.rda",
      compress = "bzip2"
 )
+
+AAC_code_changes <- list()
+
+release_version <- paste0("v", packageVersion("bomrang"))
+AAC_code_changes[[release_version]] <- changes
+
+save(AAC_code_changes,
+     file = "../inst/extdata/AAC_code_changes.rda",
+     compress = "bzip2")
 ```
 
 ## Session Info
