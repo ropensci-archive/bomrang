@@ -7,6 +7,15 @@ output: github_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+```{r color, echo = FALSE, results='asis'}
+# crayon needs to be explicitly activated in Rmd
+options(crayon.enabled = TRUE)
+# Hooks needs to be set to deal with outputs
+# thanks to fansi logic
+old_hooks <- fansi::set_knit_hooks(knitr::knit_hooks, 
+                                   which = c("output", "message", "error"))
+```
+
 ## Get BOM Forecast Marine Zones
 
 BOM maintains a shapefile of forecast marine zone names and their geographic locations.
@@ -21,29 +30,52 @@ curl::curl_download(
   quiet = TRUE
 )
 
-marine_AAC_codes <-
+new_marine_AAC_codes <-
   foreign::read.dbf(paste0(tempdir(), "marine_AAC_codes.dbf"), as.is = TRUE)
 
 # convert names to lower case for consistency with bomrang output
-names(marine_AAC_codes) <- tolower(names(marine_AAC_codes))
+names(new_marine_AAC_codes) <- tolower(names(new_marine_AAC_codes))
 
 # reorder columns
-marine_AAC_codes <- marine_AAC_codes[, c(1, 3, 4, 5, 6, 7)]
+new_marine_AAC_codes <- new_marine_AAC_codes[, c(1, 3, 4, 5, 6, 7)]
 
-data.table::setDT(marine_AAC_codes)
-data.table::setkey(marine_AAC_codes, "aac")
-
-str(marine_AAC_codes)
+data.table::setDT(new_marine_AAC_codes)
+data.table::setkey(new_marine_AAC_codes, "aac")
 ```
 
-Save the marine zones to disk for use in bomrang.
+## Show Changes from Last Release
+
+```{r diff-codes}
+`%notin%` <- function(x, table) {
+  match(x, table, nomatch = 0L) == 0L
+}
+
+load(system.file("extdata", "marine_AAC_codes.rda", package = "bomrang"))
+
+(changes <-
+    waldo::compare(new_marine_AAC_codes, marine_AAC_codes, max_diffs = Inf))
+```
+
+# Save Marine Locations Data and Changes
+
+Save the marine zones' metadata and changes to disk for use in _bomrang_.
 
 ```{r create_data}
 if (!dir.exists("../inst/extdata")) {
   dir.create("../inst/extdata", recursive = TRUE)
 }
 
-save(marine_AAC_codes, file = "../inst/extdata/marine_AAC_codes.rda",
+save(marine_AAC_codes,
+     file = "../inst/extdata/marine_AAC_codes.rda",
+     compress = "bzip2")
+
+load(system.file("extdata", "marine_AAC_code_changes.rda", package = "bomrang"))
+
+release_version <- paste0("v", packageVersion("bomrang"))
+marine_AAC_code_changes[[release_version]] <- changes
+
+save(marine_AAC_code_changes,
+     file = "../inst/extdata/marine_AAC_code_changes.rda",
      compress = "bzip2")
 ```
 
