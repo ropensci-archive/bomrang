@@ -11,9 +11,8 @@
 
 #' Get response from a BOM URL
 #'
-#' Gets response from a BOM URL, checks for response first, then
-#' tries to fetch the data or returns an informative message, failing
-#' gracefully per CRAN policies.
+#' Gets response from a BOM URL, checks the server for response first, then
+#' tries to fetch the file or returns an informative message.
 #'
 #' @param remote_file file resource being requested from BOM
 #'
