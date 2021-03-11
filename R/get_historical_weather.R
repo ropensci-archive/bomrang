@@ -156,7 +156,7 @@ get_historical_weather <- get_historical <-
            "\n")
     
     zipurl <- .get_zip_url(stationid, obscode)
-    dat <- .get_zip_and_load(zipurl)
+    dat <- .get_url(zipurl)
     
     names(dat) <- c("product_code",
                     "station_number",
@@ -358,24 +358,4 @@ get_historical <- get_historical_weather
       code
     )
   url2
-}
-
-#' Download a BOM Data .zip file and load into session
-#'
-#' @param url URL of zip file to be downloaded/extracted/loaded.
-#'
-#' @return data loaded from the zip file
-#' @keywords internal
-#' @author Jonathan Carroll, \email{rpkg@@jcarroll.com.au}
-#' @noRd
-.get_zip_and_load <- function(url) {
-  tmp <- tempfile(fileext = ".zip")
-  curl::curl_download(url, tmp, mode = "wb", quiet = TRUE)
-  zipped <- utils::unzip(tmp, exdir = dirname(tmp))
-  unlink(tmp)
-  datfile <- grep("Data.csv", zipped, value = TRUE)
-  message("Data saved as ", datfile)
-  dat <-
-    utils::read.csv(datfile, header = TRUE, stringsAsFactors = TRUE)
-  dat
 }
