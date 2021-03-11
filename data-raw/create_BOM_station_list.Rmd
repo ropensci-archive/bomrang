@@ -262,7 +262,8 @@ stations_site_list <-
 
 Now that we have the data frame of stations and have generated the URLs for the JSON files for stations providing weather data feeds, save the data as databases for _bomrang_ to use.
 
-There are weather stations that do have a WMO but don't report online, _e.g._, KIRIBATI NTC AWS or MARSHALL ISLANDS NTC AWS, in this section remove these from the list and then create a database to provide URLs for valid JSON files providing weather data from BOM.
+There are weather stations that do have a WMO but don't report online, _e.g._, KIRIBATI NTC AWS or MARSHALL ISLANDS NTC AWS.
+In this section remove these from the list and then create a database to provide URLs for valid JSON files providing weather data from BOM.
 
 ### Save URL database for get_current_weather() and get_historical_weather()
 
