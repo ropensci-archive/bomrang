@@ -271,8 +271,7 @@ get_satellite_imagery <- get_satellite <-
 .ftp_images <- function(product_id, bom_server) {
   list_files <- curl::new_handle()
   curl::handle_setopt(handle = list_files,
-                      FTP_RESPONSE_TIMEOUT = 200000,
-                      CONNECTTIMEOUT = 90,
+                      FTP_RESPONSE_TIMEOUT = 60L,
                       ftp_use_epsv = TRUE,
                       dirlistonly = TRUE
   )
