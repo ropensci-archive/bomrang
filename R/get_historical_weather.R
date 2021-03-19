@@ -156,7 +156,7 @@ get_historical_weather <- get_historical <-
            "\n")
     
     zipurl <- .get_zip_url(stationid, obscode)
-    dat <- .get_url(zipurl)
+    dat <- .get_zip_and_load(zipurl)
     
     names(dat) <- c("product_code",
                     "station_number",
@@ -223,6 +223,15 @@ get_historical <- get_historical_weather
 #' @noRd
 
 .get_ncc <- function() {
+  
+  # set a custom user-agent, restore original settings on exit
+  # required for #130 - BOM returns 403 for RStudio
+  op <- options()
+  on.exit(options(op))
+  options(HTTPUserAgent = paste0("{bomrang} R package (",
+                                 packageVersion("bomrang"),
+                                 ") https://github.com/ropensci/bomrang"))
+  
   # CRAN NOTE avoidance
   site <- name <- lat <- lon <- start_month <- #nocov start
     start_year <-
@@ -358,4 +367,47 @@ get_historical <- get_historical_weather
       code
     )
   url2
+}
+
+#' Download a BOM Data .zip file and load into session
+#'
+#' @param url URL of zip file to be downloaded/extracted/loaded.
+#'
+#' @return data loaded from the zip file
+#' @keywords internal
+#' @author Jonathan Carroll, \email{rpkg@@jcarroll.com.au}
+#' @noRd
+.get_zip_and_load <- function(url) {
+  
+  USERAGENT <- paste0("{bomrang} R package (",
+                      packageVersion("bomrang"),
+                      ") https://github.com/ropensci/bomrang")
+  # set a custom user-agent, restore original settings on exit
+  # required for #130 - BOM returns 403 for RStudio
+  op <- options()
+  on.exit(options(op))
+  options(HTTPUserAgent = USERAGENT)
+  
+  # BOM's FTP server can timeout too quickly
+  # Also, BOM's http server sometimes sends a http response of 200, "all good",
+  # but then will not actually serve the requested file, so we want to set a max
+  # time limit for the complete process to complete as well.
+  h <- curl::new_handle()
+  curl::handle_setopt(
+    handle = h,
+    FTP_RESPONSE_TIMEOUT = 60L,
+    CONNECTTIMEOUT = 60L,
+    TIMEOUT = 120L,
+    USERAGENT = USERAGENT
+  )
+  
+  tmp <- tempfile(fileext = ".zip")
+  curl::curl_download(url, tmp, mode = "wb", quiet = TRUE, handle = h)
+  zipped <- utils::unzip(tmp, exdir = dirname(tmp))
+  unlink(tmp)
+  datfile <- grep("Data.csv", zipped, value = TRUE)
+  message("Data saved as ", datfile)
+  dat <-
+    utils::read.csv(datfile, header = TRUE, stringsAsFactors = TRUE)
+  dat
 }

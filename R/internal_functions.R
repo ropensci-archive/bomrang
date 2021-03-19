@@ -23,6 +23,16 @@
 #' @noRd
 #'
 .get_url <- function(remote_file) {
+  
+  USERAGENT <- paste0("{bomrang} R package (",
+                      packageVersion("bomrang"),
+                      ") https://github.com/ropensci/bomrang")
+  # set a custom user-agent, restore original settings on exit
+  # required for #130 - BOM returns 403 for RStudio
+  op <- options()
+  on.exit(options(op))
+  options(HTTPUserAgent = USERAGENT)
+  
   # BOM's FTP server can timeout too quickly
   # Also, BOM's http server sometimes sends a http response of 200, "all good",
   # but then will not actually serve the requested file, so we want to set a max
@@ -32,7 +42,8 @@
     handle = h,
     FTP_RESPONSE_TIMEOUT = 60L,
     CONNECTTIMEOUT = 60L,
-    TIMEOUT = 120L
+    TIMEOUT = 120L,
+    USERAGENT = USERAGENT
   )
   
   try_GET <- function(x, ...) {

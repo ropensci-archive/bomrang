@@ -36,7 +36,7 @@ test_that(
     expect_true(nrow(ADLhistrain) > 0)
     expect_equal(ncol(ADLhistrain), 8)
     expect_equal(ADLhistrain$product_code[1], factor("IDCJAC0009"))
-    expect_equal(ADLhistrain$station_number[1], 23000)
+    expect_equal(ADLhistrain$station_number[1], "023000")
     expect_equal(attr(ADLhistrain, "station"), "023000")
   }
 )
@@ -64,7 +64,7 @@ test_that(
     expect_true(nrow(ADLhistrain) > 0)
     expect_equal(ncol(ADLhistrain), 8)
     expect_equal(ADLhistrain$product_code[1], factor("IDCJAC0009"))
-    expect_equal(ADLhistrain$station_number[1], 23000)
+    expect_equal(ADLhistrain$station_number[1], "023000")
     expect_equal(attr(ADLhistrain, "station"), "023000")
   }
 )
