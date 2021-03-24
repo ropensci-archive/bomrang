@@ -59,114 +59,77 @@ str(new_radar_locations)
 
 ## Show Changes from Last Release
 
+To ensure that the data being compared is from the most recent release,
+reinstall bomrang from CRAN.
+
 ``` r
-`%notin%` <- function(x, table) {
-  match(x, table, nomatch = 0L) == 0L
-}
-
-load(system.file("extdata", "radar_locations.rda", package = "bomrang"))
-
-(changes <-
-    waldo::compare(new_radar_locations, radar_locations, max_diffs = Inf))
+install.packages("bomrang", repos = "http://cran.us.r-project.org")
 ```
 
-<PRE class="fansi fansi-output"><CODE>## `attr(old, 'row.names')[60:63]`: <span style='color: #555555;'>60</span><span> </span><span style='color: #555555;'>61</span><span> </span><span style='color: #555555;'>62</span><span> </span><span style='color: #BBBB00;'>63</span><span>
-## `attr(new, 'row.names')[60:62]`: </span><span style='color: #555555;'>60</span><span> </span><span style='color: #555555;'>61</span><span> </span><span style='color: #555555;'>62</span><span>   
-## 
-##     old$Name        | new$Name           
-## [3] </span><span style='color: #555555;'>"Alice Springs"</span><span> | </span><span style='color: #555555;'>"Alice Springs"</span><span> [3]
-## [4] </span><span style='color: #555555;'>"Bairnsdale"</span><span>    | </span><span style='color: #555555;'>"Bairnsdale"</span><span>    [4]
-## [5] </span><span style='color: #555555;'>"Bowen"</span><span>         | </span><span style='color: #555555;'>"Bowen"</span><span>         [5]
-## [6] </span><span style='color: #BBBB00;'>"Brewarrina"</span><span>    -                    
-## [7] </span><span style='color: #555555;'>"Brisbane"</span><span>      | </span><span style='color: #555555;'>"Brisbane"</span><span>      [6]
-## [8] </span><span style='color: #555555;'>"Broadmeadows"</span><span>  | </span><span style='color: #555555;'>"Broadmeadows"</span><span>  [7]
-## [9] </span><span style='color: #555555;'>"Broome"</span><span>        | </span><span style='color: #555555;'>"Broome"</span><span>        [8]
-## 
-## `old$Longitude[3:9]`: </span><span style='color: #555555;'>133.888</span><span> </span><span style='color: #555555;'>147.5755</span><span> </span><span style='color: #555555;'>148.075</span><span> </span><span style='color: #BBBB00;'>146.814</span><span> </span><span style='color: #555555;'>153.24</span><span> </span><span style='color: #555555;'>144.946</span><span> </span><span style='color: #555555;'>122.2353</span><span>
-## `new$Longitude[3:8]`: </span><span style='color: #555555;'>133.888</span><span> </span><span style='color: #555555;'>147.5755</span><span> </span><span style='color: #555555;'>148.075</span><span>         </span><span style='color: #555555;'>153.24</span><span> </span><span style='color: #555555;'>144.946</span><span> </span><span style='color: #555555;'>122.2353</span><span>
-## 
-## `old$Latitude[3:9]`: </span><span style='color: #555555;'>-23.796</span><span> </span><span style='color: #555555;'>-37.8876</span><span> </span><span style='color: #555555;'>-19.886</span><span> </span><span style='color: #BBBB00;'>-29.971</span><span> </span><span style='color: #555555;'>-27.7178</span><span> </span><span style='color: #555555;'>-37.691</span><span> </span><span style='color: #555555;'>-17.9483</span><span>
-## `new$Latitude[3:8]`: </span><span style='color: #555555;'>-23.796</span><span> </span><span style='color: #555555;'>-37.8876</span><span> </span><span style='color: #555555;'>-19.886</span><span>         </span><span style='color: #555555;'>-27.7178</span><span> </span><span style='color: #555555;'>-37.691</span><span> </span><span style='color: #555555;'>-17.9483</span><span>
-## 
-## `old$Radar_id[3:9]`: </span><span style='color: #555555;'>25</span><span> </span><span style='color: #555555;'>68</span><span> </span><span style='color: #555555;'>24</span><span> </span><span style='color: #BBBB00;'>93</span><span> </span><span style='color: #555555;'>66</span><span> </span><span style='color: #555555;'>1</span><span> </span><span style='color: #555555;'>17</span><span>
-## `new$Radar_id[3:8]`: </span><span style='color: #555555;'>25</span><span> </span><span style='color: #555555;'>68</span><span> </span><span style='color: #555555;'>24</span><span>    </span><span style='color: #555555;'>66</span><span> </span><span style='color: #555555;'>1</span><span> </span><span style='color: #555555;'>17</span><span>
-## 
-##     old$Full_Name              | new$Full_Name                 
-## [3] </span><span style='color: #555555;'>"Alice Springs"</span><span>            | </span><span style='color: #555555;'>"Alice Springs"</span><span>            [3]
-## [4] </span><span style='color: #555555;'>"Bairnsdale"</span><span>               | </span><span style='color: #555555;'>"Bairnsdale"</span><span>               [4]
-## [5] </span><span style='color: #555555;'>"Bowen"</span><span>                    | </span><span style='color: #555555;'>"Bowen"</span><span>                    [5]
-## [6] </span><span style='color: #BBBB00;'>"Brewarrina"</span><span>               -                               
-## [7] </span><span style='color: #555555;'>"Brisbane (Mt Stapylton)"</span><span>  | </span><span style='color: #555555;'>"Brisbane (Mt Stapylton)"</span><span>  [6]
-## [8] </span><span style='color: #555555;'>"Melbourne (Broadmeadows)"</span><span> | </span><span style='color: #555555;'>"Melbourne (Broadmeadows)"</span><span> [7]
-## [9] </span><span style='color: #555555;'>"Broome"</span><span>                   | </span><span style='color: #555555;'>"Broome"</span><span>                   [8]
-## 
-##     old$IDRnn0name | new$IDRnn0name    
-## [3] </span><span style='color: #555555;'>"AliceSp"</span><span>      | </span><span style='color: #555555;'>"AliceSp"</span><span>      [3]
-## [4] </span><span style='color: #555555;'>"Bnsdale"</span><span>      | </span><span style='color: #555555;'>"Bnsdale"</span><span>      [4]
-## [5] </span><span style='color: #555555;'>"Bowen"</span><span>        | </span><span style='color: #555555;'>"Bowen"</span><span>        [5]
-## [6] </span><span style='color: #BBBB00;'>"Brewrna"</span><span>      -                   
-## [7] </span><span style='color: #555555;'>"MtStapl"</span><span>      | </span><span style='color: #555555;'>"MtStapl"</span><span>      [6]
-## [8] </span><span style='color: #555555;'>"CampRd"</span><span>       | </span><span style='color: #555555;'>"CampRd"</span><span>       [7]
-## [9] </span><span style='color: #555555;'>"Broome"</span><span>       | </span><span style='color: #555555;'>"Broome"</span><span>       [8]
-## 
-##     old$IDRnn1name | new$IDRnn1name    
-## [3] </span><span style='color: #555555;'>"AliceSprings"</span><span> | </span><span style='color: #555555;'>"AliceSprings"</span><span> [3]
-## [4] </span><span style='color: #555555;'>"Bairnsdale"</span><span>   | </span><span style='color: #555555;'>"Bairnsdale"</span><span>   [4]
-## [5] </span><span style='color: #555555;'>"Bowen"</span><span>        | </span><span style='color: #555555;'>"Bowen"</span><span>        [5]
-## [6] </span><span style='color: #BBBB00;'>"Brewrna"</span><span>      -                   
-## [7] </span><span style='color: #555555;'>"MtStapylton"</span><span>  | </span><span style='color: #555555;'>"MtStapylton"</span><span>  [6]
-## [8] </span><span style='color: #555555;'>"CampRd"</span><span>       | </span><span style='color: #555555;'>"CampRd"</span><span>       [7]
-## [9] </span><span style='color: #555555;'>"Broome"</span><span>       | </span><span style='color: #555555;'>"Broome"</span><span>       [8]
-## 
-## `old$State[3:9]`: </span><span style='color: #555555;'>"NT"</span><span> </span><span style='color: #555555;'>"VIC"</span><span> </span><span style='color: #555555;'>"QLD"</span><span> </span><span style='color: #BBBB00;'>"NSW"</span><span> </span><span style='color: #555555;'>"QLD"</span><span> </span><span style='color: #555555;'>"VIC"</span><span> </span><span style='color: #555555;'>"WA"</span><span>
-## `new$State[3:8]`: </span><span style='color: #555555;'>"NT"</span><span> </span><span style='color: #555555;'>"VIC"</span><span> </span><span style='color: #555555;'>"QLD"</span><span>       </span><span style='color: #555555;'>"QLD"</span><span> </span><span style='color: #555555;'>"VIC"</span><span> </span><span style='color: #555555;'>"WA"</span><span>
-## 
-##     old$Type                 | new$Type                    
-## [1] </span><span style='color: #555555;'>"Doppler"</span><span>                | </span><span style='color: #555555;'>"Doppler"</span><span>                [1]
-## [2] </span><span style='color: #555555;'>"Doppler"</span><span>                | </span><span style='color: #555555;'>"Doppler"</span><span>                [2]
-## [3] </span><span style='color: #555555;'>"Standard weather watch"</span><span> | </span><span style='color: #555555;'>"Standard weather watch"</span><span> [3]
-## [4] </span><span style='color: #BBBB00;'>"Doppler"</span><span>                -                             
-## [5] </span><span style='color: #555555;'>"Standard weather watch"</span><span> | </span><span style='color: #555555;'>"Standard weather watch"</span><span> [4]
-## [6] </span><span style='color: #00BB00;'>"Doppler"</span><span>                - </span><span style='color: #00BB00;'>"Standard weather watch"</span><span> [5]
-## [7] </span><span style='color: #555555;'>"Doppler"</span><span>                | </span><span style='color: #555555;'>"Doppler"</span><span>                [6]
-## [8] </span><span style='color: #555555;'>"Doppler"</span><span>                | </span><span style='color: #555555;'>"Doppler"</span><span>                [7]
-## [9] </span><span style='color: #555555;'>"Standard weather watch"</span><span> | </span><span style='color: #555555;'>"Standard weather watch"</span><span> [8]
-## 
-##      old$Type                 | new$Type                     
-## [11] </span><span style='color: #555555;'>"Doppler"</span><span>                | </span><span style='color: #555555;'>"Doppler"</span><span>                [10]
-## [12] </span><span style='color: #555555;'>"Standard weather watch"</span><span> | </span><span style='color: #555555;'>"Standard weather watch"</span><span> [11]
-## [13] </span><span style='color: #555555;'>"Standard weather watch"</span><span> | </span><span style='color: #555555;'>"Standard weather watch"</span><span> [12]
-## [14] </span><span style='color: #00BB00;'>"Doppler"</span><span>                - </span><span style='color: #00BB00;'>"Standard weather watch"</span><span> [13]
-## [15] </span><span style='color: #555555;'>"Doppler"</span><span>                | </span><span style='color: #555555;'>"Doppler"</span><span>                [14]
-## [16] </span><span style='color: #555555;'>"Standard weather watch"</span><span> | </span><span style='color: #555555;'>"Standard weather watch"</span><span> [15]
-## [17] </span><span style='color: #555555;'>"Doppler"</span><span>                | </span><span style='color: #555555;'>"Doppler"</span><span>                [16]
-## 
-## `old$Group[12:18]`: </span><span style='color: #555555;'>"Yes"</span><span> </span><span style='color: #555555;'>"Yes"</span><span> </span><span style='color: #555555;'>"Yes"</span><span> </span><span style='color: #BBBB00;'>"Yes"</span><span> </span><span style='color: #555555;'>"No"</span><span> </span><span style='color: #555555;'>"Yes"</span><span> </span><span style='color: #555555;'>"Yes"</span><span>
-## `new$Group[12:17]`: </span><span style='color: #555555;'>"Yes"</span><span> </span><span style='color: #555555;'>"Yes"</span><span> </span><span style='color: #555555;'>"Yes"</span><span>       </span><span style='color: #555555;'>"No"</span><span> </span><span style='color: #555555;'>"Yes"</span><span> </span><span style='color: #555555;'>"Yes"</span><span>
-## 
-##      old$Status  | new$Status     
-##  [4] </span><span style='color: #555555;'>"Public"</span><span>    | </span><span style='color: #555555;'>"Public"</span><span>    [4]
-##  [5] </span><span style='color: #555555;'>"Public"</span><span>    | </span><span style='color: #555555;'>"Public"</span><span>    [5]
-##  [6] </span><span style='color: #555555;'>"Public"</span><span>    | </span><span style='color: #555555;'>"Public"</span><span>    [6]
-##  [7] </span><span style='color: #BBBB00;'>"Public"</span><span>    -                
-##  [8] </span><span style='color: #555555;'>"Reg_users"</span><span> | </span><span style='color: #555555;'>"Reg_users"</span><span> [7]
-##  [9] </span><span style='color: #555555;'>"Public"</span><span>    | </span><span style='color: #555555;'>"Public"</span><span>    [8]
-## [10] </span><span style='color: #555555;'>"Public"</span><span>    | </span><span style='color: #555555;'>"Public"</span><span>    [9]
-## 
-##     old$Archive | new$Archive    
-## [3] </span><span style='color: #555555;'>"AliceSp"</span><span>   | </span><span style='color: #555555;'>"AliceSp"</span><span>   [3]
-## [4] </span><span style='color: #555555;'>"Bnsdale"</span><span>   | </span><span style='color: #555555;'>"Bnsdale"</span><span>   [4]
-## [5] </span><span style='color: #555555;'>"Bowen"</span><span>     | </span><span style='color: #555555;'>"Bowen"</span><span>     [5]
-## [6] </span><span style='color: #BBBB00;'>"Brewrna"</span><span>   -                
-## [7] </span><span style='color: #555555;'>"MtStapl"</span><span>   | </span><span style='color: #555555;'>"MtStapl"</span><span>   [6]
-## [8] </span><span style='color: #555555;'>"CampRd"</span><span>    | </span><span style='color: #555555;'>"CampRd"</span><span>    [7]
-## [9] </span><span style='color: #555555;'>"Broome"</span><span>    | </span><span style='color: #555555;'>"Broome"</span><span>    [8]
-## 
-## `old$LocationID[3:9]`: </span><span style='color: #555555;'>"25"</span><span> </span><span style='color: #555555;'>"68"</span><span> </span><span style='color: #555555;'>"24"</span><span> </span><span style='color: #BBBB00;'>"93"</span><span> </span><span style='color: #555555;'>"66"</span><span> </span><span style='color: #555555;'>"01"</span><span> </span><span style='color: #555555;'>"17"</span><span>
-## `new$LocationID[3:8]`: </span><span style='color: #555555;'>"25"</span><span> </span><span style='color: #555555;'>"68"</span><span> </span><span style='color: #555555;'>"24"</span><span>      </span><span style='color: #555555;'>"66"</span><span> </span><span style='color: #555555;'>"01"</span><span> </span><span style='color: #555555;'>"17"</span><span>
+    ## Installing package into '/Users/adamsparks/Library/R/4.0/library'
+    ## (as 'lib' is unspecified)
+
+    ## 
+    ## The downloaded binary packages are in
+    ##  /var/folders/hc/tft3s5bn48gb81cs99mycyf00000gn/T//Rtmp2Igv7e/downloaded_packages
+
+``` r
+load(system.file("extdata", "radar_locations.rda", package = "bomrang"))
+
+(
+  radar_location_changes <-
+    diffobj::diffPrint(new_radar_locations, radar_locations)
+)
+```
+
+<PRE class="fansi fansi-output"><CODE>## <span style='color: #BBBB00;'>&lt;</span><span> </span><span style='color: #BBBB00;'>new_radar_locations</span><span>                                                     
+## </span><span style='color: #0000BB;'>&gt;</span><span> </span><span style='color: #0000BB;'>radar_locations</span><span>                                                         
+## </span><span style='color: #00BBBB;'>@@ 5,5 / 5,4 @@                                                           </span><span>
+## </span><span style='color: #555555;'>~                 Name Longitude Latitude Radar_id                        </span><span>
+##   </span><span style='color: #555555;'> 4: </span><span>      Bairnsdale     147.6   -37.89       68                        
+##   </span><span style='color: #555555;'> 5: </span><span>           Bowen     148.1   -19.89       24                        
+## </span><span style='color: #BBBB00;'>&lt;</span><span> </span><span style='color: #555555;'> 6: </span><span>      </span><span style='color: #BBBB00;'>Brewarrina</span><span>     </span><span style='color: #BBBB00;'>146.8</span><span>   </span><span style='color: #BBBB00;'>-29.97</span><span>       </span><span style='color: #BBBB00;'>93</span><span>                        
+##   </span><span style='color: #555555;'> 7: </span><span>        Brisbane     153.2   -27.72       66                        
+##   </span><span style='color: #555555;'> 8: </span><span>    Broadmeadows     144.9   -37.69        1                        
+## </span><span style='color: #00BBBB;'>@@ 35,5 / 34,5 @@                                                         </span><span>
+##   </span><span style='color: #555555;'>34: </span><span>         Marburg     152.5   -27.61       50                        
+##   </span><span style='color: #555555;'>35: </span><span>       Melbourne     144.8   -37.86        2                        
+## </span><span style='color: #BBBB00;'>&lt;</span><span> </span><span style='color: #555555;'>36: </span><span>         Mildura     </span><span style='color: #BBBB00;'>141.6</span><span>   </span><span style='color: #BBBB00;'>-34.29</span><span>       </span><span style='color: #BBBB00;'>97</span><span>                        
+## </span><span style='color: #0000BB;'>&gt;</span><span> </span><span style='color: #555555;'>35: </span><span>         Mildura     </span><span style='color: #0000BB;'>142.1</span><span>   </span><span style='color: #0000BB;'>-34.24</span><span>       </span><span style='color: #0000BB;'>30</span><span>                        
+##   </span><span style='color: #555555;'>37: </span><span>           Moree     149.8   -29.50       53                        
+##   </span><span style='color: #555555;'>38: </span><span>   Mornington Is     139.2   -16.67       36                        
+## </span><span style='color: #00BBBB;'>@@ 70,5 / 69,4 @@                                                         </span><span>
+##   </span><span style='color: #555555;'> 4: </span><span>                             Bairnsdale     Bnsdale       Bairnsdale
+##   </span><span style='color: #555555;'> 5: </span><span>                                  Bowen       Bowen            Bowen
+## </span><span style='color: #BBBB00;'>&lt;</span><span> </span><span style='color: #555555;'> 6: </span><span>                             </span><span style='color: #BBBB00;'>Brewarrina</span><span>     </span><span style='color: #BBBB00;'>Brewrna</span><span>          </span><span style='color: #BBBB00;'>Brewrna</span><span>
+##   </span><span style='color: #555555;'> 7: </span><span>                Brisbane (Mt Stapylton)     MtStapl      MtStapylton
+##   </span><span style='color: #555555;'> 8: </span><span>               Melbourne (Broadmeadows)      CampRd           CampRd
+## </span><span style='color: #00BBBB;'>@@ 133,7 / 131,6 @@                                                       </span><span>
+##   </span><span style='color: #555555;'> 2: </span><span>   WA                Doppler   Yes    Public  Albany         31     
+##   </span><span style='color: #555555;'> 3: </span><span>   NT Standard weather watch   Yes    Public AliceSp         25     
+## </span><span style='color: #BBBB00;'>&lt;</span><span> </span><span style='color: #555555;'> 4: </span><span>  VIC                </span><span style='color: #BBBB00;'>Doppler</span><span>   Yes    Public Bnsdale         68     
+## </span><span style='color: #0000BB;'>&gt;</span><span> </span><span style='color: #555555;'> 4: </span><span>  VIC </span><span style='color: #0000BB;'>Standard</span><span> </span><span style='color: #0000BB;'>weather</span><span> </span><span style='color: #0000BB;'>watch</span><span>   Yes    Public Bnsdale         68     
+##   </span><span style='color: #555555;'> 5: </span><span>  QLD Standard weather watch   Yes    Public   Bowen         24     
+## </span><span style='color: #BBBB00;'>&lt;</span><span> </span><span style='color: #555555;'> 6: </span><span>  </span><span style='color: #BBBB00;'>NSW</span><span>                </span><span style='color: #BBBB00;'>Doppler</span><span>   </span><span style='color: #BBBB00;'>Yes</span><span>    </span><span style='color: #BBBB00;'>Public</span><span> </span><span style='color: #BBBB00;'>Brewrna</span><span>         </span><span style='color: #BBBB00;'>93</span><span>     
+##   </span><span style='color: #555555;'> 7: </span><span>  QLD                Doppler   Yes    Public MtStapl         66     
+##   </span><span style='color: #555555;'> 8: </span><span>  VIC                Doppler   Yes Reg_users  CampRd         01     
+## </span><span style='color: #00BBBB;'>@@ 143,5 / 140,5 @@                                                       </span><span>
+##   </span><span style='color: #555555;'>12: </span><span>   WA Standard weather watch   Yes    Public  Carnvn         05     
+##   </span><span style='color: #555555;'>13: </span><span>   SA Standard weather watch   Yes    Public  Ceduna         33     
+## </span><span style='color: #BBBB00;'>&lt;</span><span> </span><span style='color: #555555;'>14: </span><span>   WA                </span><span style='color: #BBBB00;'>Doppler</span><span>   Yes    Public Dampier         15     
+## </span><span style='color: #0000BB;'>&gt;</span><span> </span><span style='color: #555555;'>13: </span><span>   WA </span><span style='color: #0000BB;'>Standard</span><span> </span><span style='color: #0000BB;'>weather</span><span> </span><span style='color: #0000BB;'>watch</span><span>   Yes    Public Dampier         15     
+##   </span><span style='color: #555555;'>15: </span><span>   NT                Doppler   Yes    Public Berrima         63     
+##   </span><span style='color: #555555;'>16: </span><span>   NT Standard weather watch    No Reg_users  Darwin         10     
+## </span><span style='color: #00BBBB;'>@@ 165,5 / 162,5 @@                                                       </span><span>
+##   </span><span style='color: #555555;'>34: </span><span>  QLD Standard weather watch   Yes    Public Marburg         50     
+##   </span><span style='color: #555555;'>35: </span><span>  VIC                Doppler   Yes    Public    Melb         02     
+## </span><span style='color: #BBBB00;'>&lt;</span><span> </span><span style='color: #555555;'>36: </span><span>  VIC                </span><span style='color: #BBBB00;'>Doppler</span><span>   Yes    Public Mildura         </span><span style='color: #BBBB00;'>97</span><span>     
+## </span><span style='color: #0000BB;'>&gt;</span><span> </span><span style='color: #555555;'>35: </span><span>  VIC </span><span style='color: #0000BB;'>Standard</span><span> </span><span style='color: #0000BB;'>weather</span><span> </span><span style='color: #0000BB;'>watch</span><span>   Yes    Public Mildura         </span><span style='color: #0000BB;'>30</span><span>     
+##   </span><span style='color: #555555;'>37: </span><span>  NSW Standard weather watch   Yes    Public   Moree         53     
+##   </span><span style='color: #555555;'>38: </span><span>  QLD Standard weather watch   Yes    Public GlfCarp         36
 </span></CODE></PRE>
 
-# Save the data
+# Save Radar Stations Data and Changes
 
 Save the radar stations’ metadata and changes to disk for use in
 *bomrang*.
@@ -179,11 +142,6 @@ if (!dir.exists("../inst/extdata")) {
 save(radar_locations,
      file = "../inst/extdata/radar_locations.rda",
      compress = "bzip2")
-
-radar_location_changes <- list()
-
-release_version <- paste0("v", packageVersion("bomrang"))
-radar_location_changes[[release_version]] <- changes
 
 save(radar_location_changes,
      file = "../inst/extdata/radar_location_changes.rda",
@@ -206,41 +164,32 @@ sessioninfo::session_info()
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Perth             
-    ##  date     2021-03-10                  
+    ##  date     2021-03-24                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
-    ##  package     * version date       lib source        
-    ##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.0.2)
-    ##  cli           2.3.1   2021-02-23 [1] CRAN (R 4.0.4)
-    ##  crayon        1.4.1   2021-02-08 [1] CRAN (R 4.0.2)
-    ##  curl          4.3     2019-12-02 [1] CRAN (R 4.0.1)
-    ##  data.table    1.14.0  2021-02-21 [1] CRAN (R 4.0.4)
-    ##  diffobj       0.3.3   2021-01-07 [1] CRAN (R 4.0.2)
-    ##  digest        0.6.27  2020-10-24 [1] CRAN (R 4.0.2)
-    ##  ellipsis      0.3.1   2020-05-15 [1] CRAN (R 4.0.2)
-    ##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.0.1)
-    ##  fansi         0.4.2   2021-01-15 [1] CRAN (R 4.0.2)
-    ##  foreign       0.8-81  2020-12-22 [2] CRAN (R 4.0.4)
-    ##  glue          1.4.2   2020-08-27 [1] CRAN (R 4.0.2)
-    ##  htmltools     0.5.1.1 2021-01-22 [1] CRAN (R 4.0.2)
-    ##  knitr         1.31    2021-01-27 [1] CRAN (R 4.0.2)
-    ##  lifecycle     1.0.0   2021-02-15 [1] CRAN (R 4.0.4)
-    ##  magrittr      2.0.1   2020-11-17 [1] CRAN (R 4.0.2)
-    ##  pillar        1.5.1   2021-03-05 [1] CRAN (R 4.0.2)
-    ##  pkgconfig     2.0.3   2019-09-22 [1] CRAN (R 4.0.2)
-    ##  rematch2      2.1.2   2020-05-01 [1] CRAN (R 4.0.2)
-    ##  rlang         0.4.10  2020-12-30 [1] CRAN (R 4.0.2)
-    ##  rmarkdown     2.7     2021-02-19 [1] CRAN (R 4.0.4)
-    ##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.0.2)
-    ##  stringi       1.5.3   2020-09-09 [1] CRAN (R 4.0.2)
-    ##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.0.2)
-    ##  tibble        3.1.0   2021-02-25 [1] CRAN (R 4.0.2)
-    ##  utf8          1.1.4   2018-05-24 [1] CRAN (R 4.0.2)
-    ##  vctrs         0.3.6   2020-12-17 [1] CRAN (R 4.0.2)
-    ##  waldo         0.2.5   2021-03-08 [1] CRAN (R 4.0.4)
-    ##  withr         2.4.1   2021-01-26 [1] CRAN (R 4.0.2)
-    ##  xfun          0.21    2021-02-10 [1] CRAN (R 4.0.2)
-    ##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.2)
+    ##  package     * version date       lib source                            
+    ##  assertthat    0.2.1   2019-03-21 [1] CRAN (R 4.0.2)                    
+    ##  cli           2.3.1   2021-02-23 [1] CRAN (R 4.0.4)                    
+    ##  crayon        1.4.1   2021-02-08 [1] CRAN (R 4.0.2)                    
+    ##  curl          4.3     2019-12-02 [1] CRAN (R 4.0.1)                    
+    ##  data.table    1.14.0  2021-02-21 [1] CRAN (R 4.0.4)                    
+    ##  diffobj       0.3.4   2021-03-22 [1] CRAN (R 4.0.4)                    
+    ##  digest        0.6.27  2020-10-24 [1] CRAN (R 4.0.2)                    
+    ##  evaluate      0.14    2019-05-28 [1] CRAN (R 4.0.1)                    
+    ##  fansi         0.4.2   2021-01-15 [1] CRAN (R 4.0.2)                    
+    ##  foreign       0.8-81  2020-12-22 [2] CRAN (R 4.0.4)                    
+    ##  glue          1.4.2   2020-08-27 [1] CRAN (R 4.0.2)                    
+    ##  htmltools     0.5.1.1 2021-01-22 [1] CRAN (R 4.0.2)                    
+    ##  knitr         1.31    2021-01-27 [1] CRAN (R 4.0.2)                    
+    ##  magrittr      2.0.1   2020-11-17 [1] CRAN (R 4.0.2)                    
+    ##  rlang         0.4.10  2020-12-30 [1] CRAN (R 4.0.2)                    
+    ##  rmarkdown     2.7.3   2021-03-15 [1] Github (rstudio/rmarkdown@61db7a9)
+    ##  sessioninfo   1.1.1   2018-11-05 [1] CRAN (R 4.0.2)                    
+    ##  stringi       1.5.3   2020-09-09 [1] CRAN (R 4.0.2)                    
+    ##  stringr       1.4.0   2019-02-10 [1] CRAN (R 4.0.2)                    
+    ##  withr         2.4.1   2021-01-26 [1] CRAN (R 4.0.2)                    
+    ##  xfun          0.22    2021-03-11 [1] CRAN (R 4.0.4)                    
+    ##  yaml          2.2.1   2020-02-01 [1] CRAN (R 4.0.2)                    
     ## 
     ## [1] /Users/adamsparks/Library/R/4.0/library
     ## [2] /Library/Frameworks/R.framework/Versions/4.0/Resources/library
