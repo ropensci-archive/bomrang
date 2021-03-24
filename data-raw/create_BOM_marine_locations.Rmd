@@ -45,15 +45,17 @@ data.table::setkey(new_marine_AAC_codes, "aac")
 
 ## Show Changes from Last Release
 
+To ensure that the data being compared is from the most recent release, reinstall bomrang from CRAN.
+
 ```{r diff-codes}
-`%notin%` <- function(x, table) {
-  match(x, table, nomatch = 0L) == 0L
-}
+install.packages("bomrang", repos = "http://cran.us.r-project.org")
 
 load(system.file("extdata", "marine_AAC_codes.rda", package = "bomrang"))
 
-(changes <-
-    waldo::compare(new_marine_AAC_codes, marine_AAC_codes, max_diffs = Inf))
+(
+  marine_AAC_code_changes <-
+    diffobj::diffPrint(new_marine_AAC_codes, marine_AAC_codes)
+)
 ```
 
 # Save Marine Locations Data and Changes
@@ -68,11 +70,6 @@ if (!dir.exists("../inst/extdata")) {
 save(marine_AAC_codes,
      file = "../inst/extdata/marine_AAC_codes.rda",
      compress = "bzip2")
-
-load(system.file("extdata", "marine_AAC_code_changes.rda", package = "bomrang"))
-
-release_version <- paste0("v", packageVersion("bomrang"))
-marine_AAC_code_changes[[release_version]] <- changes
 
 save(marine_AAC_code_changes,
      file = "../inst/extdata/marine_AAC_code_changes.rda",
