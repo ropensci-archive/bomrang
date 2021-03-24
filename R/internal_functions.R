@@ -25,7 +25,7 @@
 .get_url <- function(remote_file) {
   
   USERAGENT <- paste0("{bomrang} R package (",
-                      packageVersion("bomrang"),
+                      utils::packageVersion("bomrang"),
                       ") https://github.com/ropensci/bomrang")
   # set a custom user-agent, restore original settings on exit
   # required for #130 - BOM returns 403 for RStudio

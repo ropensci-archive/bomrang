@@ -229,7 +229,7 @@ get_historical <- get_historical_weather
   op <- options()
   on.exit(options(op))
   options(HTTPUserAgent = paste0("{bomrang} R package (",
-                                 packageVersion("bomrang"),
+                                 utils::packageVersion("bomrang"),
                                  ") https://github.com/ropensci/bomrang"))
   
   # CRAN NOTE avoidance
@@ -380,7 +380,7 @@ get_historical <- get_historical_weather
 .get_zip_and_load <- function(url) {
   
   USERAGENT <- paste0("{bomrang} R package (",
-                      packageVersion("bomrang"),
+                      utils::packageVersion("bomrang"),
                       ") https://github.com/ropensci/bomrang")
   # set a custom user-agent, restore original settings on exit
   # required for #130 - BOM returns 403 for RStudio
