@@ -19,3 +19,5 @@
 ^Meta$
 ^\.ccache$
 ^tic\.R$
+^\.vscode$
+^bomrang\.code-workspace$
