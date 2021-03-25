@@ -64,13 +64,31 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
   }
 
   # http server
+  USERAGENT <- paste0("{bomrang} R package (",
+                      utils::packageVersion("bomrang"),
+                      ") https://github.com/ropensci/bomrang")
+  # set a custom user-agent, restore original settings on exit
+  # required for #130 - BOM returns 403 for RStudio
+  op <- options()
+  on.exit(options(op))
+  options(HTTPUserAgent = USERAGENT)
+  
   http_base <- "http://www.bom.gov.au/"
   wb_url <-
     paste0(http_base, tolower(the_state), "/observations/",
            url_suffix)
+  
+  USERAGENT <- paste0("{bomrang} R package (",
+                      utils::packageVersion("bomrang"),
+                      ") https://github.com/ropensci/bomrang")
+  # set a custom user-agent, restore original settings on exit
+  # required for #130 - BOM returns 403 for RStudio
+  op <- options()
+  on.exit(options(op))
+  options(HTTPUserAgent = USERAGENT)
 
   dat <- xml2::read_html(wb_url) %>%
-    rvest::html_table(fill = TRUE)
+    rvest::html_table()
   # WA includes extra tables of rainfall stats (9am) and daily extrema (3pm)
   if (the_state == "WA") {
     dat[[length(dat)]] <- NULL
