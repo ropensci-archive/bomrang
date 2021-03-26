@@ -14,13 +14,13 @@ test_that("get_weather_bulletins() returns a properly formed data.table", {
                  "temp_c_min",
                  "temp_c_gr",
                  "barhpa",
-                 "rain_mm",
+                 "rain_mm_24hr_days",
                  "weather",
-                 "seastate"
+                 "seastate_sea_swell_dir"
                  ))
 })
   
-test_that("get_weather_bulletins() stops if 'AUS'' is specfied", {
+test_that("get_weather_bulletin() stops if 'AUS'' is specfied", {
     skip_on_cran()
     expect_error(get_weather_bulletin(state = "AUS"),
                  regexp = "Weather bulletins can only be extracted*.")
