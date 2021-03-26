@@ -120,8 +120,10 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
     janitor::clean_names(case = "old_janitor") %>%
     janitor::remove_empty("cols")
 
+  names(dat) <- gsub("\\_nbsp", "", names (dat))
+  names(dat) <- gsub ("rainmm", "rain_mm", names (dat))
+
   if (the_state %notin% c("WA", "SA")) {
-    names(dat)[grepl("rain", names(dat))] <- "rain_mm"
     # vars for subsequent tidying:
     vars <-
       c(
@@ -146,17 +148,16 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
   }
   windvar <- grep("wind", names(dat))
 
-  # bind_rows inserts NAs in all extra rows, so
-  if ("seastate" %in% names(dat)) {
-    dat$seastate[is.na(dat$seastate)] <- ""
-  }
   # Final manual cleaning:
+  # bind_rows inserts NAs in all extra rows, so
+  i <- grep("seastate", names (dat))
+  dat[, i][is.na(dat[, i])] <- ""
   # cld8ths can have "#" to indicate fog so no cloud obs possible
   i <- grep("cld8ths", names(dat))
   dat[, i][dat[, i] == "#"] <- ""
   # A valid rain value is "Tce" for "Trace", which is here converted to 0.1
   i <- grep("rain", names(dat))
-  dat[, i][dat[, i] == "Tce"] <- 0.1
+  dat[, i][dat[, i] == "Tce"] <- "0.1"
 
   # Then just the tidy stuff:
   out <- tidyr::separate(
@@ -176,21 +177,31 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
   names(out) <- sub("x24_hour_details_", "", names(out))
   names(out) <- sub("x6_hour_details_", "", names(out))
 
-  return(data.table::setDT(out))
+  out <- data.table::setDT(out)
+
+  # DT auto-coverts most var types, but fails on these.
+  # The code is written to avoid DT warnings on NA conversion
+  col_convert <- function (x, colname, fn) {
+      i <- grep (colname, names (x))
+      nm <- names (x) [i]
+      val <- do.call (fn, list (x [, get (nm)]))
+      x [, i] <- val
+      return (x)
+  }
+
+  out <- col_convert (out, "cld8ths", as.integer)
+  out <- col_convert (out, "rain_mm", as.numeric)
+
+  return (out)
 }
 
 #' tidy_bulletin_header
 #'
 #' @param bull A \code{data.frame} containing a single page of potentially
-#' multi-page daily weather bulletin for a given state.
+#' multi-page daily weather bulletins for a given state.
 #'
 #' @return Same \code{data.frame} with header tidied up through removal of
 #' extraneous first rows.
-#'
-#' @note This is the only bit that is a bit messy because the headers do not
-#' conform to the structure of the actual table, and lots of header text gets
-#' dumped in the first data.frame row. This function re-combines the
-#' auto-generated names with the contents of the first row.
 #'
 #' @noRd
 tidy_bulletin_header <- function(bull) {
@@ -200,65 +211,68 @@ tidy_bulletin_header <- function(bull) {
 
   # remove filled rows containing district names only:
   bull <- bull[apply(bull, 1, function(i)
-    any(i != i[1])), ]
+                     any(i != i[1])), ]
 
-  # Then tidy column names - the only really messy bit!
-  r1 <- names(bull)
-  r2 <- as.character(bull[1, ])
-  if (sum(bull[, 1] == names(bull)[1]) == 1) {
-    # Values of r2 need to be re-aligned through removing "TEMP (C)" and
-    # inserting an additional empty value at the end
-    r2 <- r2[which(!grepl("TEMP", r2))]
-    if ("gr" %in% r2) {
-      i <- which(r2 == "gr") # last former "TEMP (C)" value
-      r2 <- r2[c(1:i, i:length(r2), length(r2))]
-    } else if ("min" %in% r2 & "WEATHER" %notin% r2) {
-      # nt only [STATIONS, CLD8THS, dir spd, dry, dew, max, min, 24hr/days
-      # tas has same but with "WEATHER" as well
-      i <-
-        which(r2 == "min") # HP: As far as I can see this line is not used.
-      r2 <- c(r2, data.table::last(r2))
-    }
-    r2[duplicated(r2)] <- ""
-    r2[r2 == r1] <- ""
-    r2 <- pad_white(r2)
-    r2[grepl("nbsp", r2)] <- ""
-    nms <- paste0(r1, r2)
-    names(bull) <- gsub(" %", "%", nms) # 9am & 3pm differ here
-    bull <- bull[2:nrow(bull), ]
-  } else if (sum(bull[, 1] == names(bull)[1]) == 2) {
-    all_NA <- vapply(bull, function(i)
-      all(is.na(i)), FALSE)
-    if (any(all_NA)) {
-      # SA 3pm
-      i <- which(all_NA)
-      indx <- setdiff(seq_along(bull), i)
-      nms <- names(bull)[indx]
-      bull <- bull[, indx]
-      names(bull) <- nms
-      r1 <- names(bull)
-      r2 <- as.character(bull[1, ])
-    }
-    r3 <- as.character(bull[2, ])
-    r2[is.na(r2)] <- ""
-    r3[is.na(r3)] <- ""
-    r3 <- c(r3[!grepl("TEMP ", r3, ignore.case = TRUE)], "")
-    r3[r3 == r2] <- ""
-    r2[r2 == r1] <- ""
-    r3[r3 %in% c("LOCATION", "STATIONS")] <- ""
-    r2 <- pad_white(r2)
-    r3 <- pad_white(r3)
-    names(bull) <- paste0(r1, r2, r3)
-    bull <- bull[3:nrow(bull), ]
-  } else {
-    stop("Weather bulletin has unrecognised format.",
-         call. = FALSE)
-  }
+  bull <- merge_first_two_rows (bull)
+  bull <- merge_header_plus_row (bull)
 
-  bull
+  return (bull)
 }
 
 pad_white <- function(x) {
   x[nzchar(x)] <- paste0(" ", x[nzchar(x)])
   return(x)
+}
+
+# The headers for some bulletins like WA are read as colunm names PLUS the first
+# TWO rows of the table. This function checks if the first 2 rows are parts of
+# column names, and merges them into one row
+merge_first_two_rows <- function(x) {
+
+    if (x [1, 1, drop = TRUE] != x [2, 1, drop = TRUE])
+        return (x)
+
+    row1 <- unname (unlist (x [1, ]))
+    row2 <- unname (unlist (x [2, ]))
+    row2 [row2 == row1] <- ""
+    row2 [which (row2 != "")] <- paste0 (" ", row2 [which (row2 != "")])
+
+    row1 <- paste0 (row1, row2)
+
+    x <- x [-2, ]
+    for (r in seq_along (row1))
+        x [1, r] <- row1 [r]
+
+    return (x)
+}
+
+merge_header_plus_row <- function (x) {
+
+    if (sum(x[,1] == names(x)[1]) != 1)
+        return (x)
+
+    cnms <- names (x)
+    row1 <- unname (unlist (x [1, ]))
+    row1 [row1 == cnms] <- ""
+    row1 [row1 != ""] <- paste0 (" ", row1 [row1 != ""])
+
+    names (x) <- paste0 (cnms, row1)
+    x <- x [-1, ]
+}
+
+convert_var_types <- function (x) {
+
+    intvars <- c ("cld8ths",
+                  "wind_speed",
+                  "bar")
+    dblvars <- c ("temp_c")
+
+    for (i in intvars) {
+        index <- grep (i, names (x))
+        x [, index] <- as.integer (x [, index, drop = TRUE])
+    }
+    for (i in dblvars) {
+        index <- grep (i, names (x))
+        x [, index] <- as.numeric (x [, index])
+    }
 }
