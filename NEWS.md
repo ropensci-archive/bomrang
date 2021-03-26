@@ -2,9 +2,9 @@
 
 ## Bug fixes
 
-* `get_weather_bulletin()` now works properly with new versions of *tibble* and *rvest* (@mpadge).
+* `get_weather_bulletin()` now works properly with new versions of *tibble* and *rvest* (@mpadge, #134).
 
-* A custom useragent is specified for the *bomrang* package as the RStudio useragent results in an error 403 (denied) when attempting to connect to BOM servers. This did not appear to affect R running in sessions outside of RStudio (@jonocarroll).
+* A custom useragent is specified for the *bomrang* package as the RStudio useragent results in an error 403 (denied) when attempting to connect to BOM servers. This did not appear to affect R running in sessions outside of RStudio (@jonocarroll, #130).
 
 * _curl_ options are now set to handle the slow responses from BOM servers rather than timing out.
 
