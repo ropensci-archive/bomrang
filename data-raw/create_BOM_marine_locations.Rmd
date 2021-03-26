@@ -45,7 +45,7 @@ data.table::setkey(new_marine_AAC_codes, "aac")
 
 ## Show Changes from Last Release
 
-To ensure that the data being compared is from the most recent release, reinstall bomrang from CRAN.
+To ensure that the data being compared is from the most recent release, reinstall _bomrang_ from CRAN.
 
 ```{r diff-codes}
 install.packages("bomrang", repos = "http://cran.us.r-project.org")
@@ -66,6 +66,8 @@ Save the marine zones' metadata and changes to disk for use in _bomrang_.
 if (!dir.exists("../inst/extdata")) {
   dir.create("../inst/extdata", recursive = TRUE)
 }
+
+marine_AAC_codes <- new_marine_AAC_codes
 
 save(marine_AAC_codes,
      file = "../inst/extdata/marine_AAC_codes.rda",
