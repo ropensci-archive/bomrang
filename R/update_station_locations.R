@@ -64,7 +64,7 @@ update_station_locations <- function() {
   },
   error = function(x)
     stop(
-      "\nThe server with the location information is not responding.",
+      "\nThe server with the location information is not responding. ",
       "Please retry again later.\n",
       call. = FALSE
     ))
