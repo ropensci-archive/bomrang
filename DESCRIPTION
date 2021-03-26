@@ -51,8 +51,9 @@ Authors@R:
             family = "Anderson",
             role = "rev",
             email = "brooke.anderson@colostate.edu",
-            comment = c(ORCID = "0000-0002-5012-9035"))
-            )
+            comment = c(ORCID = "0000-0002-5012-9035")),
+     person(given = "Western Australia Agriculture Authority",
+            role = c("fnd", "cph")))
 Description: Provides functions to interface with Australian Government Bureau
     of Meteorology ('BOM') data, fetching data and returning a data frame of
     precis forecasts, historical and current weather data from stations,

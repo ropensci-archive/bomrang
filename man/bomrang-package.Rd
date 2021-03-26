@@ -44,6 +44,7 @@ Other contributors:
 \itemize{
   \item James Balamuta \email{balamut2@illinois.edu} (\href{https://orcid.org/0000-0003-2826-8458}{ORCID}) [contributor]
   \item Brooke Anderson \email{brooke.anderson@colostate.edu} (\href{https://orcid.org/0000-0002-5012-9035}{ORCID}) [reviewer]
+  \item Western Australia Agriculture Authority [funder, copyright holder]
 }
 
 }
