@@ -269,9 +269,26 @@ get_satellite_imagery <- get_satellite <-
 
 #' @noRd
 .ftp_images <- function(product_id, bom_server) {
+  # define custom useragent and handle for communicating with BOM servers
+  USERAGENT <- paste0("{bomrang} R package (",
+                      utils::packageVersion("bomrang"),
+                      ") https://github.com/ropensci/bomrang")
+  # set a custom user-agent, restore original settings on exit
+  # required for #130 - BOM returns 403 for RStudio
+  op <- options()
+  on.exit(options(op))
+  options(HTTPUserAgent = USERAGENT)
+  
+  # BOM's FTP server can timeout too quickly
+  # Also, BOM's http server sometimes sends a http response of 200, "all good",
+  # but then will not actually serve the requested file, so we want to set a max
+  # time limit for the complete process to complete as well.
   list_files <- curl::new_handle()
   curl::handle_setopt(handle = list_files,
                       FTP_RESPONSE_TIMEOUT = 60L,
+                      CONNECTTIMEOUT = 60L,
+                      TIMEOUT = 120L,
+                      USERAGENT = USERAGENT,
                       ftp_use_epsv = TRUE,
                       dirlistonly = TRUE
   )
