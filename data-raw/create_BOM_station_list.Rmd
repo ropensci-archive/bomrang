@@ -280,7 +280,7 @@ new_JSONurl_site_list <-
 
 ## Show Changes from Last Release
 
-To ensure that the data being compared is from the most recent release, reinstall bomrang from CRAN.
+To ensure that the data being compared is from the most recent release, reinstall _bomrang_ from CRAN.
 
 ```{r diff-codes}
 install.packages("bomrang", repos = "http://cran.us.r-project.org")
@@ -299,6 +299,8 @@ load(system.file("extdata", "JSONurl_site_list.rda", package = "bomrang"))
 if (!dir.exists("../inst/extdata")) {
   dir.create("../inst/extdata", recursive = TRUE)
 }
+
+JSONurl_site_list <- new_JSONurl_site_list
 
 # Save database
 save(JSONurl_site_list,
@@ -345,8 +347,14 @@ load(system.file("extdata", "stations_site_list.rda", package = "bomrang"))
 #### Save stations_site_list Data and Changes
 
 ```{r save-stations-site-list}
+if (!dir.exists("../inst/extdata")) {
+  dir.create("../inst/extdata", recursive = TRUE)
+}
+
+stations_site_list <- new_stations_site_list
+
 save(stations_site_list,
-     file = "../inst/extdata/current_stations_site_list.rda",
+     file = "../inst/extdata/stations_site_list.rda",
      compress = "bzip2")
 
 save(stations_site_list_changes,

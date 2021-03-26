@@ -295,9 +295,17 @@ install.packages("bomrang", repos = "http://cran.us.r-project.org")
     ## Installing package into '/Users/adamsparks/Library/R/4.0/library'
     ## (as 'lib' is unspecified)
 
+    ## Warning: unable to access index for repository http://cran.us.r-project.org/src/contrib:
+    ##   cannot open URL 'http://cran.us.r-project.org/src/contrib/PACKAGES'
+
+    ## Warning: package 'bomrang' is not available for this version of R
     ## 
-    ## The downloaded binary packages are in
-    ##  /var/folders/hc/tft3s5bn48gb81cs99mycyf00000gn/T//Rtmpd2qYxg/downloaded_packages
+    ## A version of this package for your version of R might be available elsewhere,
+    ## see the ideas at
+    ## https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+
+    ## Warning: unable to access index for repository http://cran.us.r-project.org/bin/macosx/contrib/4.0:
+    ##   cannot open URL 'http://cran.us.r-project.org/bin/macosx/contrib/4.0/PACKAGES'
 
 ``` r
 load(system.file("extdata", "JSONurl_site_list.rda", package = "bomrang"))
@@ -373,6 +381,8 @@ load(system.file("extdata", "JSONurl_site_list.rda", package = "bomrang"))
 if (!dir.exists("../inst/extdata")) {
   dir.create("../inst/extdata", recursive = TRUE)
 }
+
+JSONurl_site_list <- new_JSONurl_site_list
 
 # Save database
 save(JSONurl_site_list,
@@ -2241,8 +2251,14 @@ load(system.file("extdata", "stations_site_list.rda", package = "bomrang"))
 #### Save stations\_site\_list Data and Changes
 
 ``` r
+if (!dir.exists("../inst/extdata")) {
+  dir.create("../inst/extdata", recursive = TRUE)
+}
+
+stations_site_list <- new_stations_site_list
+
 save(stations_site_list,
-     file = "../inst/extdata/current_stations_site_list.rda",
+     file = "../inst/extdata/stations_site_list.rda",
      compress = "bzip2")
 
 save(stations_site_list_changes,
@@ -2262,7 +2278,7 @@ save(stations_site_list_changes,
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Perth             
-    ##  date     2021-03-24                  
+    ##  date     2021-03-26                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
     ##  package     * version date       lib source                            
