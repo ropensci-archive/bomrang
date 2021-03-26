@@ -71,7 +71,7 @@ install.packages("bomrang", repos = "http://cran.us.r-project.org")
 
     ## 
     ## The downloaded binary packages are in
-    ##  /var/folders/hc/tft3s5bn48gb81cs99mycyf00000gn/T//Rtmp2Igv7e/downloaded_packages
+    ##  /var/folders/hc/tft3s5bn48gb81cs99mycyf00000gn/T//Rtmp8LjsfH/downloaded_packages
 
 ``` r
 load(system.file("extdata", "radar_locations.rda", package = "bomrang"))
@@ -139,6 +139,8 @@ if (!dir.exists("../inst/extdata")) {
   dir.create("../inst/extdata", recursive = TRUE)
 }
 
+radar_locations <- new_radar_locations
+
 save(radar_locations,
      file = "../inst/extdata/radar_locations.rda",
      compress = "bzip2")
@@ -164,7 +166,7 @@ sessioninfo::session_info()
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Perth             
-    ##  date     2021-03-24                  
+    ##  date     2021-03-26                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
     ##  package     * version date       lib source                            

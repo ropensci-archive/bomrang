@@ -49,7 +49,7 @@ str(new_radar_locations)
 
 ## Show Changes from Last Release
 
-To ensure that the data being compared is from the most recent release, reinstall bomrang from CRAN.
+To ensure that the data being compared is from the most recent release, reinstall _bomrang_ from CRAN.
 
 ```{r diff-codes}
 install.packages("bomrang", repos = "http://cran.us.r-project.org")
@@ -70,6 +70,8 @@ Save the radar stations' metadata and changes to disk for use in _bomrang_.
 if (!dir.exists("../inst/extdata")) {
   dir.create("../inst/extdata", recursive = TRUE)
 }
+
+radar_locations <- new_radar_locations
 
 save(radar_locations,
      file = "../inst/extdata/radar_locations.rda",
