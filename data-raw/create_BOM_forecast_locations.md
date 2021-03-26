@@ -52,7 +52,7 @@ install.packages("bomrang", repos = "http://cran.us.r-project.org")
 
     ## 
     ## The downloaded binary packages are in
-    ##  /var/folders/hc/tft3s5bn48gb81cs99mycyf00000gn/T//RtmpJ1H8Ws/downloaded_packages
+    ##  /var/folders/hc/tft3s5bn48gb81cs99mycyf00000gn/T//RtmpsDeMjr/downloaded_packages
 
 ``` r
 load(system.file("extdata", "AAC_codes.rda", package = "bomrang"))
@@ -87,6 +87,8 @@ if (!dir.exists("../inst/extdata")) {
   dir.create("../inst/extdata", recursive = TRUE)
 }
 
+AAC_codes <- new_AAC_codes
+
 save(AAC_codes,
      file = "../inst/extdata/AAC_codes.rda",
      compress = "bzip2"
@@ -113,7 +115,7 @@ sessioninfo::session_info()
     ##  collate  en_AU.UTF-8                 
     ##  ctype    en_AU.UTF-8                 
     ##  tz       Australia/Perth             
-    ##  date     2021-03-24                  
+    ##  date     2021-03-26                  
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
     ##  package     * version date       lib source                            
