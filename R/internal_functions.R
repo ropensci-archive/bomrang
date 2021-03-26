@@ -24,6 +24,7 @@
 #'
 .get_url <- function(remote_file) {
   
+  # define custom useragent and handle for communicating with BOM servers
   USERAGENT <- paste0("{bomrang} R package (",
                       utils::packageVersion("bomrang"),
                       ") https://github.com/ropensci/bomrang")
