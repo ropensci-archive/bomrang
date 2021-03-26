@@ -86,8 +86,29 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
   op <- options()
   on.exit(options(op))
   options(HTTPUserAgent = USERAGENT)
+  
+  # BOM's FTP server can timeout too quickly
+  # Also, BOM's http server sometimes sends a http response of 200, "all good",
+  # but then will not actually serve the requested file, so we want to set a max
+  # time limit for the complete process to complete as well.
+  h <- curl::new_handle()
+  curl::handle_setopt(
+    handle = h,
+    FTP_RESPONSE_TIMEOUT = 60L,
+    CONNECTTIMEOUT = 60L,
+    TIMEOUT = 120L,
+    USERAGENT = USERAGENT
+  )
 
-  dat <- xml2::read_html(wb_url) %>%
+  dat <- file.path(tempdir(), "bulletin.xml")
+  
+  curl::curl_download(
+    url = wb_url,
+    handle = h,
+    destfile = dat
+  )
+  
+  dat <- xml2::read_html(dat) %>%
     rvest::html_table()
   # WA includes extra tables of rainfall stats (9am) and daily extrema (3pm)
   if (the_state == "WA") {
