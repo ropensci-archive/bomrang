@@ -21,6 +21,8 @@
 
 * Remove rOpenSci footer from README.
 
+* Corrects incomplete final line found on /inst/CITATION.
+
 # bomrang 0.7.3
 
 ## Bug fixes
