@@ -16,7 +16,7 @@
     "name": "R",
     "url": "https://r-project.org"
   },
-  "runtimePlatform": "R version 4.0.3 (2020-10-10)",
+  "runtimePlatform": "R version 4.0.4 (2021-02-15)",
   "provider": {
     "@id": "https://cran.r-project.org",
     "@type": "Organization",
@@ -582,7 +582,23 @@
     "https://docs.ropensci.org/bomrang/"
   ],
   "developmentStatus": "https://www.repostatus.org/#active",
-  "copyrightHolder": {},
-  "funder": {},
-  "fileSize": "3515.316KB"
+  "copyrightHolder": [
+    {
+      "@type": "Organization",
+      "name": "Western Australia Agriculture Authority"
+    }
+  ],
+  "funder": [
+    {
+      "@type": "Organization",
+      "name": "Western Australia Agriculture Authority"
+    }
+  ],
+  "fileSize": "1393495.457KB",
+  "releaseNotes": "https://github.com/ropensci/bomrang/blob/master/NEWS.md",
+  "review": {
+    "@type": "Review",
+    "url": "https://github.com/ropensci/software-review/issues/121",
+    "provider": "https://ropensci.org"
+  }
 }
