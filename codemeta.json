@@ -10,7 +10,7 @@
   "codeRepository": "https://github.com/ropensci/bomrang",
   "issueTracker": "https://github.com/ropensci/bomrang/issues",
   "license": "https://spdx.org/licenses/MIT",
-  "version": "0.7.3.9000",
+  "version": "0.7.4",
   "programmingLanguage": {
     "@type": "ComputerLanguage",
     "name": "R",
@@ -594,7 +594,7 @@
       "name": "Western Australia Agriculture Authority"
     }
   ],
-  "fileSize": "1393495.457KB",
+  "fileSize": "3123.585KB",
   "releaseNotes": "https://github.com/ropensci/bomrang/blob/master/NEWS.md",
   "review": {
     "@type": "Review",
