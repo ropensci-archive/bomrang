@@ -1,4 +1,4 @@
-# vignettes that depend on internet access need to be precompiled and take a
+# vignettes that depend on Internet access need to be precompiled and take a
 # while to run
 library(knitr)
 knit(input = "vignettes/bomrang.Rmd.orig",
