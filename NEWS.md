@@ -8,7 +8,7 @@
 
 * _curl_ options are now set to handle the slow responses from BOM servers rather than timing out.
 
-* Fixes CRAN NOTE: "'LazyData' is specified without a 'data' directory"
+* Fixes CRAN NOTE: "'LazyData' is specified without a 'data' directory".
 
 ## Minor changes and improvements
 
@@ -19,7 +19,7 @@
   * `load(system.file("extdata", "radar_location_changes.rda", package = "bomrang"))`
   * `load(system.file("extdata", "stations_site_list_changes.rda", package = "bomrang"))`
   
-* Station numbers are padded with "0" in output from `get_historical_weather()` to align with BOM naming conventions and other _bomrang_ functions (@jonocarroll).
+* Station numbers are padded with "0" in output from `get_historical_weather()` to align with BOM naming conventions and other _bomrang_ functions (@jonocarroll, #127).
 
 * Remove rOpenSci footer from README.
 
