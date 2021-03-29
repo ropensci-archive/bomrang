@@ -57,7 +57,6 @@ test_that("caching utils list files in cache and delete when asked", {
     x = f,
     filename = file.path(cache_dir, "file2.tif")
   )
-  
   # test bomrang cache list
   k <- basename(manage_cache$list())
   expect_equal(basename(manage_cache$list()), k)

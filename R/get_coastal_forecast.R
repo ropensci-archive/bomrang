@@ -55,7 +55,6 @@
 get_coastal_forecast <- function(state = "AUS") {
   # this is just a placeholder for functionality with parse_coastal_forecast()
   filepath <- NULL
-  
   # see internal_functions.R for these functions
   the_state <- .check_states(state)
   location <- .validate_filepath(filepath)
@@ -87,7 +86,6 @@ get_coastal_forecast <- function(state = "AUS") {
     xml_url <- .create_bom_file(AUS_XML,
                                 .the_state = cleaned_state,
                                 .file_loc = file_loc)
-    
     coastal_out <- .parse_coastal_forecast(xml_url)
     if (is.null(coastal_out)) {
       return(invisible(NULL))
@@ -112,7 +110,6 @@ get_coastal_forecast <- function(state = "AUS") {
     state_code <-
     tropical_system_location <-
     forecast_waves <- .SD <- AAC_codes <- NULL # nocov end
-  
   # load the XML from ftp
   if (substr(xml_url, 1, 3) == "ftp") {
     xml_object <- .get_url(xml_url)
@@ -123,50 +120,37 @@ get_coastal_forecast <- function(state = "AUS") {
     # load the XML from local
     xml_object <- xml2::read_xml(xml_url)
   }
-  
   out <- .parse_coastal_xml(xml_object)
-  
   # clean up and split out time cols into offset and remove extra chars
   .split_time_cols(x = out)
-  
   # merge with aac codes for location information
   load(system.file("extdata",
                    "marine_AAC_codes.rda",
                    package = "bomrang"))  # nocov
   data.table::setkey(out, "aac")
   out <- marine_AAC_codes[out, on = c("aac", "dist_name")]
-  
   # add state field
   out[, state_code := gsub("_.*", "", out$aac)]
-  
-  # return final forecast object
-  
   # add product ID field
   out[, product_id := substr(basename(xml_url),
                              1,
                              nchar(basename(xml_url)) - 4)]
-  
   # some fields only come out on special occasions, if absent, add as NA
   if (!"forecast_swell2" %in% colnames(out)) {
     out[, forecast_swell2 := NA]
   }
-  
   if (!"forecast_caution" %in% colnames(out)) {
     out[, forecast_caution := NA]
   }
-  
   if (!"marine_forecast" %in% colnames(out)) {
     out[, marine_forecast := NA]
   }
-  
   if (!"tropical_system_location" %in% colnames(out)) {
     out[, tropical_system_location := NA]
   }
-  
   if (!"forecast_waves" %in% colnames(out)) {
     out[, forecast_waves := NA]
   }
-  
   # reorder columns
   refcols <- c(
     "index",
@@ -192,21 +176,17 @@ get_coastal_forecast <- function(state = "AUS") {
     "tropical_system_location",
     "forecast_waves"
   )
-  
   data.table::setcolorder(out, refcols)
-  
   # set col classes
   # factors
   out[, c(1, 11) := lapply(.SD, function(x)
     as.factor(x)),
     .SDcols = c(1, 11)]
-  
   out[, c(9:10) := lapply(.SD, function(x)
     as.POSIXct(x,
                origin = "1970-1-1",
                format = "%Y-%m-%d %H:%M:%OS")),
     .SDcols = c(9:10)]
-  
   out[, c(12:13) := lapply(.SD, function(x)
     as.POSIXct(
       x,
@@ -215,12 +195,10 @@ get_coastal_forecast <- function(state = "AUS") {
       tz = "GMT"
     )),
     .SDcols = c(12:13)]
-  
   # character
   out[, c(6:8, 14:20) := lapply(.SD, function(x)
     as.character(x)),
     .SDcols = c(6:8, 14:20)]
-  
   return(out)
 }
 
@@ -238,11 +216,9 @@ get_coastal_forecast <- function(state = "AUS") {
     forecast_waves <- synoptic_situation <-  # nocov start
     preamble <- warning_summary_footer <- product_footer <-
     postamble <- NULL  # nocov end
-  
   # get the actual forecast objects
   meta <- xml2::xml_find_all(xml_object, ".//text")
   fp <- xml2::xml_find_all(xml_object, ".//forecast-period")
-  
   locations_index <- data.table::data.table(
     # find all the aacs
     aac = xml2::xml_parent(meta) %>%
@@ -269,7 +245,6 @@ get_coastal_forecast <- function(state = "AUS") {
       xml2::xml_find_first(".//parent::forecast-period") %>%
       xml2::xml_attr("start-time-local")
   )
-  
   vals <- lapply(fp, function(node) {
     # find names of all children nodes
     childnodes <- node %>%
@@ -281,40 +256,31 @@ get_coastal_forecast <- function(state = "AUS") {
       xml2::xml_attr("type")
     # create columns names based on either node name or attr value
     names <- ifelse(is.na(names), childnodes, names)
-    
     # find all values
     values <- node %>%
       xml2::xml_children() %>%
       xml2::xml_text()
-    
     # create data frame and properly label the columns
     df <- data.frame(t(values), stringsAsFactors = FALSE)
     names(df) <- names
     df
   })
-  
   vals <- data.table::rbindlist(vals, fill = TRUE)
   sub_out <- cbind(locations_index, vals)
-  
   if ("synoptic_situation" %in% names(sub_out)) {
     sub_out[, synoptic_situation := NULL]
   }
-  
   if ("preamble" %in% names(sub_out)) {
     sub_out[, preamble := NULL]
   }
-  
   if ("warning_summary_footer" %in% names(sub_out)) {
     sub_out[, warning_summary_footer := NULL]
   }
-  
   if ("product_footer" %in% names(sub_out)) {
     sub_out[, product_footer := NULL]
   }
-  
   if ("postamble" %in% names(sub_out)) {
     sub_out[, postamble := NULL]
   }
-  
   return(sub_out)
 }

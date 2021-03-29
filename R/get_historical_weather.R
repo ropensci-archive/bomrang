@@ -176,7 +176,8 @@ get_historical_weather <- get_historical <-
                                "quality"),
                       solar = c("solar_exposure")
                     ))
-    dat[["station_number"]] <- sprintf("%06d", as.integer(dat[["station_number"]]))
+    dat[["station_number"]] <- sprintf("%06d",
+                                       as.integer(dat[["station_number"]]))
     
     return(
       structure(
@@ -259,8 +260,8 @@ get_historical <- get_historical_weather
     # read the station list in as a vector first so that we can
     # detect and remove the header and footer...
     ncc <- readLines(weather[i])
-    header_start <- grep('^\\-+$', ncc) + 1L
-    footer_start <- grep('^[0-9]+ stations', ncc) - 1L
+    header_start <- grep("^\\-+$", ncc) + 1L
+    footer_start <- grep("^[0-9]+ stations", ncc) - 1L
     
     if (length(header_start > 0) && length(footer_start > 0)) {
       # ... then process it as a data frame

@@ -48,7 +48,6 @@
 #' @export get_weather_bulletin
 
 get_weather_bulletin <- function(state = "qld", morning = TRUE) {
-
   na_if <- NULL
   
   the_state <- .convert_state(state) # see internal_functions.R
@@ -56,17 +55,19 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
     stop(call. = FALSE,
          "Weather bulletins can only be extracted for individual states.")
   }
-
+  
   if (morning) {
     url_suffix <- "9am_bulletin.shtml"
   } else {
     url_suffix <- "3pm_bulletin.shtml"
   }
-
+  
   # http server
-  USERAGENT <- paste0("{bomrang} R package (",
-                      utils::packageVersion("bomrang"),
-                      ") https://github.com/ropensci/bomrang")
+  USERAGENT <- paste0(
+    "{bomrang} R package (",
+    utils::packageVersion("bomrang"),
+    ") https://github.com/ropensci/bomrang"
+  )
   # set a custom user-agent, restore original settings on exit
   # required for #130 - BOM returns 403 for RStudio
   op <- options()
@@ -78,9 +79,11 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
     paste0(http_base, tolower(the_state), "/observations/",
            url_suffix)
   
-  USERAGENT <- paste0("{bomrang} R package (",
-                      utils::packageVersion("bomrang"),
-                      ") https://github.com/ropensci/bomrang")
+  USERAGENT <- paste0(
+    "{bomrang} R package (",
+    utils::packageVersion("bomrang"),
+    ") https://github.com/ropensci/bomrang"
+  )
   # set a custom user-agent, restore original settings on exit
   # required for #130 - BOM returns 403 for RStudio
   op <- options()
@@ -99,14 +102,12 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
     TIMEOUT = 120L,
     USERAGENT = USERAGENT
   )
-
+  
   dat <- file.path(tempdir(), "bulletin.xml")
   
-  curl::curl_download(
-    url = wb_url,
-    handle = h,
-    destfile = dat
-  )
+  curl::curl_download(url = wb_url,
+                      handle = h,
+                      destfile = dat)
   
   dat <- xml2::read_html(dat) %>%
     rvest::html_table()
@@ -114,15 +115,15 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
   if (the_state == "WA") {
     dat[[length(dat)]] <- NULL
   }
-
+  
   dat <- lapply(dat, tidy_bulletin_header) %>%
     dplyr::bind_rows() %>%
     janitor::clean_names(case = "old_janitor") %>%
     janitor::remove_empty("cols")
-
+  
   names(dat) <- gsub("\\_nbsp", "", names (dat))
   names(dat) <- gsub ("rainmm", "rain_mm", names (dat))
-
+  
   if (the_state %notin% c("WA", "SA")) {
     # vars for subsequent tidying:
     vars <-
@@ -147,7 +148,7 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
     vars <- setdiff(names(dat), charvars)
   }
   windvar <- grep("wind", names(dat))
-
+  
   # Final manual cleaning:
   # bind_rows inserts NAs in all extra rows, so
   i <- grep("seastate", names (dat))
@@ -158,7 +159,7 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
   # A valid rain value is "Tce" for "Trace", which is here converted to 0.1
   i <- grep("rain", names(dat))
   dat[, i][dat[, i] == "Tce"] <- "0.1"
-
+  
   # Then just the tidy stuff:
   out <- tidyr::separate(
     dat,
@@ -170,28 +171,26 @@ get_weather_bulletin <- function(state = "qld", morning = TRUE) {
   ) %>%
     dplyr::mutate_at(.funs = as.numeric,
                      .vars = vars) %>%
-    dplyr::mutate_all(list(~dplyr::na_if(., "")))
-  
-
+    dplyr::mutate_all(list(~ dplyr::na_if(., "")))
   names(out) <- sub("current_details_", "", names(out))
   names(out) <- sub("x24_hour_details_", "", names(out))
   names(out) <- sub("x6_hour_details_", "", names(out))
-
+  
   out <- data.table::setDT(out)
-
+  
   # DT auto-coverts most var types, but fails on these.
   # The code is written to avoid DT warnings on NA conversion
   col_convert <- function (x, colname, fn) {
-      i <- grep (colname, names (x))
-      nm <- names (x) [i]
-      val <- do.call (fn, list (x [, get (nm)]))
-      x [, i] <- val
-      return (x)
+    i <- grep (colname, names (x))
+    nm <- names (x) [i]
+    val <- do.call (fn, list (x [, get (nm)]))
+    x [, i] <- val
+    return (x)
   }
-
+  
   out <- col_convert (out, "cld8ths", as.integer)
   out <- col_convert (out, "rain_mm", as.numeric)
-
+  
   return (out)
 }
 
@@ -208,14 +207,14 @@ tidy_bulletin_header <- function(bull) {
   if (nrow(bull) <= 1) {
     return(NULL)
   }
-
+  
   # remove filled rows containing district names only:
   bull <- bull[apply(bull, 1, function(i)
-                     any(i != i[1])), ]
-
+    any(i != i[1])), ]
+  
   bull <- merge_first_two_rows (bull)
   bull <- merge_header_plus_row (bull)
-
+  
   return (bull)
 }
 
@@ -228,51 +227,48 @@ pad_white <- function(x) {
 # TWO rows of the table. This function checks if the first 2 rows are parts of
 # column names, and merges them into one row
 merge_first_two_rows <- function(x) {
-
-    if (x [1, 1, drop = TRUE] != x [2, 1, drop = TRUE])
-        return (x)
-
-    row1 <- unname (unlist (x [1, ]))
-    row2 <- unname (unlist (x [2, ]))
-    row2 [row2 == row1] <- ""
-    row2 [which (row2 != "")] <- paste0 (" ", row2 [which (row2 != "")])
-
-    row1 <- paste0 (row1, row2)
-
-    x <- x [-2, ]
-    for (r in seq_along (row1))
-        x [1, r] <- row1 [r]
-
+  if (x [1, 1, drop = TRUE] != x [2, 1, drop = TRUE])
     return (x)
+  
+  row1 <- unname (unlist (x [1,]))
+  row2 <- unname (unlist (x [2,]))
+  row2 [row2 == row1] <- ""
+  row2 [which (row2 != "")] <-
+    paste0 (" ", row2 [which (row2 != "")])
+  
+  row1 <- paste0(row1, row2)
+  
+  x <- x [-2,]
+  for (r in seq_along(row1))
+    x [1, r] <- row1 [r]
+  
+  return(x)
 }
 
-merge_header_plus_row <- function (x) {
-
-    if (sum(x[,1] == names(x)[1]) != 1)
-        return (x)
-
-    cnms <- names (x)
-    row1 <- unname (unlist (x [1, ]))
-    row1 [row1 == cnms] <- ""
-    row1 [row1 != ""] <- paste0 (" ", row1 [row1 != ""])
-
-    names (x) <- paste0 (cnms, row1)
-    x <- x [-1, ]
+merge_header_plus_row <- function(x) {
+  if (sum(x[, 1] == names(x)[1]) != 1)
+    return(x)
+  
+  cnms <- names(x)
+  row1 <- unname(unlist(x [1,]))
+  row1 [row1 == cnms] <- ""
+  row1 [row1 != ""] <- paste0(" ", row1 [row1 != ""])
+  names (x) <- paste0 (cnms, row1)
+  x <- x[-1,]
 }
 
-convert_var_types <- function (x) {
-
-    intvars <- c ("cld8ths",
-                  "wind_speed",
-                  "bar")
-    dblvars <- c ("temp_c")
-
-    for (i in intvars) {
-        index <- grep (i, names (x))
-        x [, index] <- as.integer (x [, index, drop = TRUE])
-    }
-    for (i in dblvars) {
-        index <- grep (i, names (x))
-        x [, index] <- as.numeric (x [, index])
-    }
+convert_var_types <- function(x) {
+  intvars <- c("cld8ths",
+               "wind_speed",
+               "bar")
+  dblvars <- c("temp_c")
+  
+  for (i in intvars) {
+    index <- grep(i, names (x))
+    x [, index] <- as.integer(x [, index, drop = TRUE])
+  }
+  for (i in dblvars) {
+    index <- grep(i, names (x))
+    x [, index] <- as.numeric (x [, index])
+  }
 }

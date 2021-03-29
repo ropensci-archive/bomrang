@@ -20,11 +20,11 @@ with \CRANpkg{bomrang}. In fact, for reproducibility purposes, users are
 discouraged from using this function.
 }
 \details{
-If \CRANpkg{ASGS.foyer} is installed locally, this function will automatically
-check and correct any invalid state values for stations located in Australia.
-If \CRANpkg{ASGS.foyer} is not installed, the function will update the internal
-database without validating the state values for stations by reported
-longitude/latitude location.
+If \CRANpkg{ASGS.foyer} is installed locally, this function will
+automatically check and correct any invalid state values for stations located
+in Australia.  If \CRANpkg{ASGS.foyer} is not installed, the function will
+update the internal database without validating the state values for stations
+by reported longitude/latitude location.
 }
 \examples{
 \dontrun{

@@ -36,11 +36,12 @@ get_available_radar <- function(radar_id = "all") {
   radar_locations <- NULL #nocov
   load(system.file("extdata", "radar_locations.rda", package = "bomrang"))
   list_files <- curl::new_handle()
-  curl::handle_setopt(handle = list_files,
-                      FTP_RESPONSE_TIMEOUT = 200000,
-                      CONNECTTIMEOUT = 90,
-                      ftp_use_epsv = TRUE,
-                      dirlistonly = TRUE
+  curl::handle_setopt(
+    handle = list_files,
+    FTP_RESPONSE_TIMEOUT = 200000,
+    CONNECTTIMEOUT = 90,
+    ftp_use_epsv = TRUE,
+    dirlistonly = TRUE
   )
   con <- curl::curl(url = ftp_base, "r", handle = list_files)
   files <- readLines(con)
@@ -65,7 +66,7 @@ get_available_radar <- function(radar_id = "all") {
   if (radar_id[1] == "all") {
     dat <- dat
   } else if (is.numeric(radar_id) && radar_id %in% dat$Radar_id) {
-    dat <- dat[dat$Radar_id %in% radar_id, ]
+    dat <- dat[dat$Radar_id %in% radar_id,]
   } else{
     stop("radar_id not found")
   }
@@ -129,10 +130,10 @@ get_radar_imagery <- get_radar <-
         call. = FALSE
       )
     }
-
+    
     ftp_base <- "ftp://ftp.bom.gov.au/anon/gen/radar"
     fp <- file.path(ftp_base, paste0(product_id, ".gif"))
-
+    
     if (is.null(path)) {
       path <- tempfile(fileext = ".gif", tmpdir = tempdir())
     }
@@ -167,10 +168,9 @@ get_radar_imagery <- get_radar <-
     },
     error = function() {
       return(magick::image_read(
-        path = 
-        system.file("error_images",
-                    "image_error_message.png",
-                    package = "bomrang")
+        path = system.file("error_images",
+                           "image_error_message.png",
+                           package = "bomrang")
       ))
     })
   }

@@ -75,9 +75,6 @@ get_precis_forecast <- function(state = "AUS") {
 #'
 #' @noRd
 .return_precis <- function(file_loc, cleaned_state) {
-  
-  product_id <- probability_of_precipitation <- lower_precipitation_limit <- NULL
-  
   # create vector of XML files
   AUS_XML <- c(
     "IDN11060.xml",
@@ -98,7 +95,6 @@ get_precis_forecast <- function(state = "AUS") {
     xml_url <- .create_bom_file(AUS_XML,
                                 .the_state = cleaned_state,
                                 .file_loc = file_loc)
-    
     precis_out <- .parse_precis_forecast(xml_url)
     if (is.null(precis_out)) {
       return(invisible(NULL))

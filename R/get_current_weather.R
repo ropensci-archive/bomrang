@@ -74,7 +74,7 @@ get_current_weather <-
            strict = FALSE,
            latlon = NULL,
            emit_latlon_msg = TRUE) {
-    JSONurl_site_list <- name <- .SD <- na_if <- NULL
+    JSONurl_site_list <- name <- .SD <- NULL
     
     # Load JSON URL list
     load(system.file("extdata", "JSONurl_site_list.rda",  # nocov start

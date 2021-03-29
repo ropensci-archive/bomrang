@@ -30,9 +30,10 @@ A \code{SpatRaster} object of GeoTIFF images with layers named by
 \description{
 Fetch  \acronym{BOM} satellite GeoTIFF imagery from
 \url{ftp://ftp.bom.gov.au/anon/gen/gms/} and return a raster
-\code{\link[terra]{SpatRaster}} object of 'GeoTIFF' files. Files are available at
-ten minute update frequency with a 24 hour delete time. Suggested to check
-file availability first by using \code{\link{get_available_imagery}}.
+\code{\link[terra]{SpatRaster}} object of 'GeoTIFF' files. Files are
+available at ten minutes update frequency with a 24 hour delete time.
+It is suggested to check file availability first by using
+\code{\link{get_available_imagery}}.
 }
 \details{
 Valid \acronym{BOM} satellite Product IDs for use with

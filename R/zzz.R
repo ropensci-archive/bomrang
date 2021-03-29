@@ -13,6 +13,4 @@ manage_cache <- NULL # nocov start
       manage_cache <<- x
     }
     options(bomrang.connection = stdin())
-  }
-
-# nocov end
+  } # nocov end
