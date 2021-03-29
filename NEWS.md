@@ -8,6 +8,8 @@
 
 * _curl_ options are now set to handle the slow responses from BOM servers rather than timing out.
 
+* Fixes CRAN NOTE: "'LazyData' is specified without a 'data' directory"
+
 ## Minor changes and improvements
 
 * Changes to internal databases of BOM metadata for station, radar and forecast locations are now tracked in the `data_raw` directory of the repository on GitHub with the changes being stored in `extdata` and available in the package through:
