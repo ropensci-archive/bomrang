@@ -5,6 +5,7 @@
 * GitHub Actions (ubuntu-latest): release, devel
 * GitHub Actions (windows): release
 * Github Actions (macOS): release
+* Local macOS M1: release
 * win-builder: devel
 
 ## R CMD check results
