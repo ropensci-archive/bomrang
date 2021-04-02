@@ -4,7 +4,7 @@ pkgdown_sha: ~
 articles:
   bomrang: bomrang.html
   use_case: use_case.html
-last_built: 2021-03-31T04:51Z
+last_built: 2021-04-02T05:28Z
 urls:
   reference: https://docs.ropensci.org/bomrang/reference
   article: https://docs.ropensci.org/bomrang/articles
