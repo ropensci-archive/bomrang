@@ -1,5 +1,9 @@
 # bomrang (development version)
 
+# bomrang 0.7.5
+
+* `get_historical_weather()` has been disabled due to changes by BOM. See https://github.com/ropensci/bomrang/discussions/141
+
 # bomrang 0.7.4
 
 ## Bug fixes

@@ -87,7 +87,8 @@
 #' @author Jonathan Carroll, \email{rpkg@@jcarroll.com.au}
 #'
 #' @examples
-#' \donttest{
+#' \dontrun{
+#' ## these are currently not functional due to BOM changes
 #' get_historical_weather(stationid = "023000",
 #'                       type = "max") ## ~48,000+ daily records
 #' get_historical_weather(latlon = c(-35.2809, 149.1300),
@@ -101,6 +102,12 @@ get_historical_weather <- get_historical <-
            latlon = NULL,
            radius = NULL,
            type = c("rain", "min", "max", "solar")) {
+
+    stop("Due to recent changes by the BOM, this functionality is temporarily disabled. 
+    Refer to http://reg.bom.gov.au/other/copyright.shtml
+    and
+    https://github.com/ropensci/bomrang/discussions/141")
+
     site <- ncc_obs_code <- NULL #nocov
     
     if (is.null(stationid) & is.null(latlon))
