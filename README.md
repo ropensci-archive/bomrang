@@ -9,18 +9,36 @@ _bomrang_: Australian Government Bureau of Meteorology (BOM) Data Client <img al
 
 Provides functions to interface with Australian Government Bureau of Meteorology (BOM) data, fetching data and returning a tidy data frame of précis forecasts, current weather data from stations, ag information bulletins, historical weather data and downloading and importing radar or satellite imagery.
 
-Credit for the name, *bomrang*, goes to [Di Cook](http://dicook.org/), who suggested it while attending the rOpenSci AUUnconf in Brisbane, 2016.
+Credit for the name, _bomrang_, goes to [Di Cook](http://dicook.org/), who suggested it while attending the rOpenSci AUUnconf in Brisbane, 2016.
+
+NOTE
+-----------
+BOM have decided that the data that they provide should not all be easily available.
+Therefore, some portions of this package (any that depend on HTTP requests) are now broken.
+These include:
+
+ * `get_historical_weather()`,
+ * `get_weather_bulletins()`, and
+ * `get_current_weather()`
+
+All other functions in the package work as advertise assuming server availability as they rely on FTP requests.
+
+BOM's official statement
+
+> Website notification of change
+Scheduled Release Date: 3 March 2021
+A web application firewall policy has been implemented for www.bom.gov.au which will block screen scraping activity.
+The Bureau is monitoring screen scraping activity on the site and will commence interrupting, and eventually blocking, this activity on www.bom.gov.au from Wednesday, 3 March 2021. This is aimed at protecting infrastructure, system access and security, intellectual property and server/service load.
+Web or screen scraping is the act of copying information that shows on a digital display so it can be used for another purpose. This activity has always been at odds with the Bureau's terms and conditions.
+We understand www.bom.gov.au contributes significantly to the work of many individuals and organisations and we are committed to continuing to provide access through our registered user’s channel.
+For further information, or to discuss the ongoing use of our materials, please make contact with us via weatherquestions@bom.gov.au.
 
 Quick Start
 -----------
 
-Install the stable release from CRAN.
-
-``` r
-install.packages("bomrang")
-```
-
-Or from GitHub for the version in development.
+_bomrang_ has been archived from CRAN for reasons beyond _bomrang_ actually being broken.
+As such at this time I've declined to "fix" the package.
+It can still be installed using the following commands.
 
 ``` r
 if (!require("remotes")) {
