@@ -1,3 +1,7 @@
+# bomrang archived
+
+As of 10.01.2023 the package, bomrang, has been archived due to the BOM's unwillingness to allow programmatic access to their data
+
 # bomrang 0.7.4
 
 ## Bug fixes
