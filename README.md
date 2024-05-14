@@ -5,6 +5,8 @@
 
 This package has been archived due to BOM's ongoing unwillingness to allow programmatic access to their data and actively blocking any attempts made using this package or other similar efforts.
 
+However, the [{weatherOz}](https://docs.ropensci.org/weatherOz/) package from rOpenSci provides a good alternative to this package now that you may find suits your needs.
+
 The former README is now in [README-old](README-old.md).
 
 
